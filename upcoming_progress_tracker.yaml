@@ -1,5 +1,5 @@
 version: 1
-as_of_utc: "2026-02-24T20:55:49Z"
+as_of_utc: "2026-02-24T21:43:04Z"
 
 naming_legend:
   WS: "Workstream (pipeline lane/stage, e.g., WS1-WS6)"
@@ -43,13 +43,14 @@ milestones:
       - "No missing source_commit/default_branch in pilot records."
   - id: "M2"
     name: "WS6 materialization v1"
-    status: "PENDING"
+    status: "COMPLETE"
+    completed_at_utc: "2026-02-24T21:43:04Z"
     done_when:
       - "tools/ws6_deep_integrator.py writes materialized deep facts, not only spec output."
       - "Materialized output validates against contracts/ws1/deep_fact.schema.yaml."
   - id: "M3"
     name: "Canonical query bridge"
-    status: "PENDING"
+    status: "IN_PROGRESS"
     done_when:
       - "tools/query_master.py can surface deep facts by repo/node from canonical outputs."
       - "At least one end-to-end query example is documented in status artifacts."
@@ -75,7 +76,10 @@ key_metrics:
     actual: 10
   - name: "deep_facts_materialized"
     target: 1
-    actual: 0
+    actual: 1350
+  - name: "unmapped_sections_count"
+    target: 0
+    actual: 123
   - name: "queue_sync_gate_pass_rate"
     target: "100%"
     actual: "100%"
@@ -87,7 +91,7 @@ execution_checklist:
   - "[x] Assign domain_hint metadata to each pilot repo record."
   - "[x] Enforce strict domain_hint alias canonicalization in intake preflight gate."
   - "[x] Run shallow-first intake and route outputs through WS5 -> WS4."
-  - "[ ] Implement WS6 materialization output and validator gate."
+  - "[x] Implement WS6 materialization output and validator gate."
   - "[ ] Extend query contract to read deep facts from canonical level."
   - "[ ] Add commit-time intake sync enforcement."
   - "[ ] Update project_status.yaml and this tracker at each checkpoint."
@@ -121,17 +125,27 @@ results:
     - "(cd llm_repos/knowledge && python3 validate.py) => PASS"
     - "(cd ssh_repos/knowledge && python3 validate.py) => PASS"
     - "python3 tools/ws4_master_compiler.py --workspace-root . => PASS (gate_ready true)"
-    - "python3 tools/query_master.py stats => repos=60 nodes=74 edges=152 deep_facts=0"
+    - "python3 tools/ws6_deep_integrator.py --workspace-root . --reports-dir reports/ws6_deep_integration --materialize-spec reports/ws6_deep_integration/spec.yaml => PASS (deep_narrative_files=48 deep_fact_draft_files=0 repos_materialized=43 facts_materialized=1350 unmapped_sections_count=123 blocking_mismatches=0 writes_changed=0 gate_ready=true)"
+    - "python3 tools/ws6_deep_integrator.py --workspace-root . --reports-dir reports/ws6_deep_integration --materialize-spec reports/ws6_deep_integration/spec.yaml => PASS stability rerun (writes_changed=0 gate_ready=true)"
+    - "python3 tools/ws1_contract_validator.py --workspace-root . --external-node-policy first_class => PASS (shallow/deep identity parity OK for llm_repos + ssh_repos)"
+    - "python3 tools/trust_gates.py llm_repos/knowledge --production => PASS"
+    - "python3 tools/trust_gates.py ssh_repos/knowledge --production => PASS"
+    - "python3 tools/ws4_master_compiler.py --workspace-root . --master-index master_index.yaml --master-graph master_graph.yaml --reports-dir reports/ws4_master_build => PASS (gate_ready true)"
+    - "python3 tools/query_master.py stats => repos=60 nodes=74 edges=152 deep_facts=1350"
+    - "python3 tools/ws6_deep_integrator.py --workspace-root . --reports-dir reports/ws6_deep_integration --materialize-spec reports/ws6_deep_integration/spec.yaml --run-validation-suite => PASS (validation_mode=full_validation_run validation_steps_executed=7 validation_steps_failed=0 ws6_gate_ready=true gate_ready=true)"
   completion_status: null
   issues_encountered:
     - "Initial WS4 compile reported duplicate repo node IDs (cloudflared/tailscale) after an incorrect manifest default shard. Resolved by restoring WS5 default shard and cleaning accidental llm duplicate records before re-running gates."
 
 findings: |
-  INTAKE-PILOT-1 shallow execution complete:
-  queue sync stayed PASS, pilot lifecycle records are now shallow_complete, and
-  WS5/WS1/trust/shard validators + WS4 compile all passed after duplicate-node
-  cleanup. This remains a classic "staging-to-canonical promotion" pattern where
-  strict schema gates protect master artifacts from draft-state drift.
+  INTAKE-PILOT-1 shallow execution remains complete and stable. WS6 v1 now also
+  materializes canonical deep facts (1350) into shard-level deep_facts outputs
+  plus master_deep_facts.yaml, with strict unknown_predicate blocking to prevent
+  silent schema drift. This is the classic contract-first canonicalization
+  pattern: strict schema gates keep draft narratives from silently mutating the
+  top-level graph semantics. validation_runs semantics are now explicit:
+  required_commands is plan-only, and execution_results is recorder-backed with
+  no PENDING_EXECUTION states.
 
 decision_rule: |
   IF M1+M2+M3+M4 all complete and acceptance criteria are met:

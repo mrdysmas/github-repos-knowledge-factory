@@ -1,5 +1,5 @@
 version: 1
-as_of_utc: "2026-02-24T20:55:49Z"
+as_of_utc: "2026-02-24T21:43:04Z"
 
 naming_legend:
   WS: "Workstream (pipeline lane/stage, e.g., WS1-WS6)"
@@ -47,13 +47,21 @@ canonical:
     - "master_graph.yaml"
   upcoming_workstreams:
     ws6:
-      status: "PLANNED"
+      status: "COMPLETE"
+      completed_at_utc: "2026-02-24T21:43:04Z"
       purpose: "Deep fact normalization + canonical queryability"
       primary_contracts:
         - "contracts/ws1/deep_fact.schema.yaml"
       primary_specs:
         - "tools/ws6_deep_integrator.py"
         - "tools/query_master.py"
+      outputs:
+        - "llm_repos/knowledge/deep_facts/*.yaml"
+        - "ssh_repos/knowledge/deep_facts/*.yaml"
+        - "master_deep_facts.yaml"
+        - "reports/ws6_deep_integration/coverage.yaml"
+        - "reports/ws6_deep_integration/mismatch_report.yaml"
+        - "reports/ws6_deep_integration/validation_runs.yaml"
   intake_controls:
     manifest: "inputs/intake/intake_manifest.yaml"
     pilot_batch: "inputs/intake/pilot_batch.yaml"
@@ -123,8 +131,8 @@ todo:
       note: "Explore implementing a generated SQLite/DuckDB read-model keyed by node_id that joins master artifacts with deep files for practical querying."
     - id: "E"
       topic: "WS6 deep integration bootstrap"
-      status: "IN_PROGRESS"
-      note: "Define and implement canonical deep facts flow (deep schema + ws6 integrator + master query contract)."
+      status: "COMPLETE"
+      note: "WS6 v1 now materializes canonical deep facts with strict unknown_predicate blocking, deterministic fact IDs/order, per-repo coverage counts, mismatch reporting, stable rerun (writes_changed=0), and validation_runs semantics split (required_commands=PLANNED contract + execution_results recorder with no PENDING states)."
     - id: "F"
       topic: "Intake lifecycle + clone prune workflow"
       status: "IN_PROGRESS"
@@ -141,7 +149,7 @@ todo:
 next_agent_handoff:
   if_user_asks: "What now? What should we work on?"
   answer:
-    current_focus: "WS6 Deep Integration + Intake Pilot"
+    current_focus: "Intake hard enforcement + deep-candidate prioritization"
     read_first:
       - "project_status.yaml"
       - "upcoming_progress_tracker.yaml"
@@ -158,27 +166,28 @@ next_agent_handoff:
       - "inputs/intake/prune_policy.yaml"
       - "master_graph_merge_progress.yaml"
     immediate_next_step:
-      id: "INTAKE-1"
-      objective: "Pilot shallow canonicalization is complete; move to deep-candidate prioritization + WS6 materialization."
+      id: "INTAKE-2"
+      objective: "WS6 v1 is complete; enforce commit-time intake sync and prioritize pilot deep follow-ups."
       first_commands:
         - "python3 tools/check_intake_queue_sync.py --workspace-root ."
         - "python3 tools/query_master.py stats"
-        - "python3 tools/ws6_deep_integrator.py --workspace-root . --materialize-spec reports/ws6_deep_integration/spec.yaml"
+        - "python3 tools/ws6_deep_integrator.py --workspace-root . --reports-dir reports/ws6_deep_integration --materialize-spec reports/ws6_deep_integration/spec.yaml --run-validation-suite"
       operator_actions:
         - "Use inputs/intake/pilot_batch.yaml as source of truth for pilot repo lifecycle and provenance."
         - "Maintain domain_hint metadata for pilot/new intake records; do not treat domain_hint as shard routing input yet."
         - "Add net-new candidates only via tools/add_repo_candidate.py (not manual queue edits)."
         - "Mark top deep candidates with explicit priority reasons and queue deep follow-up."
       parallel_step:
-        id: "WS6-1"
-        objective: "Implement executable deep fact materialization in ws6_deep_integrator.py."
+        id: "M4-1"
+        objective: "Add commit-time check_intake_queue_sync enforcement."
       done_when:
         - "Queue sync gate passes via tools/check_intake_queue_sync.py."
         - "inputs/intake/intake_queue.yaml is refreshed and used as source backlog."
         - "Intake pilot repos are lifecycle-tracked with source_commit + provenance metadata."
         - "Shallow outputs for pilot repos are canonicalized through WS5/WS4."
         - "At least 3 pilot repos are flagged as deep candidates with explicit priority reasons."
-        - "WS6 implementation work continues from spec toward materialized deep_facts outputs."
+        - "WS6 materialization remains stable on rerun (writes_changed=0) and query stats keep deep_facts > 0."
+        - "WS6 validation_runs.yaml keeps required_commands as plan-only and records real execution outcomes under execution_results."
     recommendation_on_new_data:
       summary: "Current llm+ssh deep corpus is enough for WS6 v1; run a short intake calibration batch before freezing v1.1."
       calibration_batch_target: "8-12 additional repos outside current llm/ssh concentration."
