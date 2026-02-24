@@ -1,0 +1,1635 @@
+artifact_type: intake_repo_queue
+contract_version: 1.0.0-intake
+generated_at_utc: '2026-02-24T16:01:02Z'
+source:
+  catalog_file: master_repo_list.yaml
+  master_index_file: master_index.yaml
+  notes: Queue entries are deduplicated by github_full_name.
+summary:
+  source_rows_total: 122
+  source_rows_missing_github_url: 5
+  source_rows_invalid_full_name: 0
+  deduped_entries_total: 115
+  already_canonical_count: 48
+  queued_count: 67
+policies:
+  scan_mode_default: shallow_first
+  clone_strategy: clone_on_demand
+  deep_strategy: priority_based
+entries:
+- queue_id: intake::1panel-dev/maxkb
+  github_full_name: 1panel-dev/maxkb
+  html_url: https://github.com/1Panel-dev/maxkb
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: llm_repos
+  source_categories:
+  - llm_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/llm_repos/MaxKB-2
+  needs_review_count: 0
+  source_row_indexes:
+  - 109
+- queue_id: intake::airtable/airtable.js
+  github_full_name: airtable/airtable.js
+  html_url: https://github.com/airtable/airtable.js
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - workflow_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/workflow_repos/airtable.js-master
+  needs_review_count: 0
+  source_row_indexes:
+  - 19
+- queue_id: intake::anderspitman/awesome-tunneling
+  github_full_name: anderspitman/awesome-tunneling
+  html_url: https://github.com/anderspitman/awesome-tunneling
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: ssh_repos
+  source_categories:
+  - ssh_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/ssh_repos/awesome-tunneling-master
+  needs_review_count: 0
+  source_row_indexes:
+  - 75
+- queue_id: intake::anomalyco/opencode
+  github_full_name: anomalyco/opencode
+  html_url: https://github.com/anomalyco/opencode
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - cli_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/opencode-dev
+  needs_review_count: 0
+  source_row_indexes:
+  - 69
+- queue_id: intake::ansible/ansible
+  github_full_name: ansible/ansible
+  html_url: https://github.com/ansible/ansible
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - cli_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/ansible-devel
+  needs_review_count: 0
+  source_row_indexes:
+  - 62
+- queue_id: intake::anthropics/claude-code
+  github_full_name: anthropics/claude-code
+  html_url: https://github.com/anthropics/claude-code
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - cli_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/claude-code-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 63
+- queue_id: intake::anthropics/skills
+  github_full_name: anthropics/skills
+  html_url: https://github.com/anthropics/skills
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - skills_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/skills_repos/skills-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 4
+- queue_id: intake::anysiteio/agent-skills
+  github_full_name: anysiteio/agent-skills
+  html_url: https://github.com/anysiteio/agent-skills
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - skills_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/skills_repos/agent-skills-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 2
+- queue_id: intake::apernet/hysteria
+  github_full_name: apernet/hysteria
+  html_url: https://github.com/apernet/hysteria
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: ssh_repos
+  source_categories:
+  - ssh_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/ssh_repos/hysteria-master
+  needs_review_count: 0
+  source_row_indexes:
+  - 82
+- queue_id: intake::avelino/awesome-go
+  github_full_name: avelino/awesome-go
+  html_url: https://github.com/avelino/awesome-go
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - awesome_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/awesome_repos/awesome-go-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 0
+- queue_id: intake::borgbackup/borg
+  github_full_name: borgbackup/borg
+  html_url: https://github.com/borgbackup/borg
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - uncat_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/uncat_repos/borg-master
+  needs_review_count: 0
+  source_row_indexes:
+  - 35
+- queue_id: intake::brianpetro/obsidian-smart-connections
+  github_full_name: brianpetro/obsidian-smart-connections
+  html_url: https://github.com/brianpetro/obsidian-smart-connections
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - office_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/office_repos/obsidian-smart-connections-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 11
+- queue_id: intake::butlerx/wetty
+  github_full_name: butlerx/wetty
+  html_url: https://github.com/butlerx/wetty
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - cli_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/wetty-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 73
+- queue_id: intake::capistrano/capistrano
+  github_full_name: capistrano/capistrano
+  html_url: https://github.com/capistrano/capistrano
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - uncat_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/uncat_repos/capistrano-master
+  needs_review_count: 0
+  source_row_indexes:
+  - 36
+- queue_id: intake::code-yeongyu/oh-my-opencode
+  github_full_name: code-yeongyu/oh-my-opencode
+  html_url: https://github.com/code-yeongyu/oh-my-opencode
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - plugin_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/plugin_repos/oh-my-opencode-dev-3.6.0
+  needs_review_count: 0
+  source_row_indexes:
+  - 29
+- queue_id: intake::coder/code-server
+  github_full_name: coder/code-server
+  html_url: https://github.com/coder/code-server
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - cli_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/code-server-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 64
+- queue_id: intake::ComposioHQ/awesome-claude-skills
+  github_full_name: ComposioHQ/awesome-claude-skills
+  html_url: https://github.com/ComposioHQ/awesome-claude-skills
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - skills_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/skills_repos/awesome-claude-skills-master
+  needs_review_count: 0
+  source_row_indexes:
+  - 3
+- queue_id: intake::containers/podman
+  github_full_name: containers/podman
+  html_url: https://github.com/containers/podman
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - cli_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/podman-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 70
+- queue_id: intake::cristipufu/tunnelite
+  github_full_name: cristipufu/tunnelite
+  html_url: https://github.com/cristipufu/tunnelite
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: ssh_repos
+  source_categories:
+  - ssh_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/ssh_repos/tunnelite-master
+  needs_review_count: 0
+  source_row_indexes:
+  - 92
+- queue_id: intake::dair-ai/prompt-engineering-guide
+  github_full_name: dair-ai/prompt-engineering-guide
+  html_url: https://github.com/dair-ai/Prompt-Engineering-Guide
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: llm_repos
+  source_categories:
+  - llm_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/llm_repos/Prompt-Engineering-Guide-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 119
+- queue_id: intake::dottxt-ai/outlines
+  github_full_name: dottxt-ai/outlines
+  html_url: https://github.com/dottxt-ai/outlines
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - structured_outputs
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/structured_outputs/outlines-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 43
+- queue_id: intake::drduh/yubikey-guide
+  github_full_name: drduh/yubikey-guide
+  html_url: https://github.com/drduh/YubiKey-Guide
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: ssh_repos
+  source_categories:
+  - ssh_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/ssh_repos/YubiKey-Guide-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 96
+- queue_id: intake::ekzhang/bore
+  github_full_name: ekzhang/bore
+  html_url: https://github.com/ekzhang/bore
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: ssh_repos
+  source_categories:
+  - ssh_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/ssh_repos/bore-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 76
+- queue_id: intake::emcie-co/parlant
+  github_full_name: emcie-co/parlant
+  html_url: https://github.com/emcie-co/parlant
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: llm_repos
+  source_categories:
+  - llm_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/llm_repos/parlant-develop
+  needs_review_count: 0
+  source_row_indexes:
+  - 117
+- queue_id: intake::fatedier/frp
+  github_full_name: fatedier/frp
+  html_url: https://github.com/fatedier/frp
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: ssh_repos
+  source_categories:
+  - go_repos
+  - ssh_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/go_repos/frp-dev
+  - /Users/szilaa/scripts/ext_sources/github_repos/ssh_repos/frp-dev
+  needs_review_count: 0
+  source_row_indexes:
+  - 6
+  - 77
+- queue_id: intake::FlowiseAI/Flowise
+  github_full_name: FlowiseAI/Flowise
+  html_url: https://github.com/FlowiseAI/Flowise
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - workflow_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/workflow_repos/Flowise-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 22
+- queue_id: intake::fosrl/pangolin
+  github_full_name: fosrl/pangolin
+  html_url: https://github.com/fosrl/pangolin
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: ssh_repos
+  source_categories:
+  - ssh_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/ssh_repos/pangolin-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 86
+- queue_id: intake::frankbria/ralph-claude-code
+  github_full_name: frankbria/ralph-claude-code
+  html_url: https://github.com/frankbria/ralph-claude-code
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - plugin_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/plugin_repos/ralph-claude-code-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 30
+- queue_id: intake::ggml-org/llama.cpp
+  github_full_name: ggml-org/llama.cpp
+  html_url: https://github.com/ggml-org/llama.cpp
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: llm_repos
+  source_categories:
+  - llm_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/llm_repos/llama.cpp-master
+  needs_review_count: 0
+  source_row_indexes:
+  - 105
+- queue_id: intake::gin-gonic/gin
+  github_full_name: gin-gonic/gin
+  html_url: https://github.com/gin-gonic/gin
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: ssh_repos
+  source_categories:
+  - go_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/go_repos/gin-master
+  needs_review_count: 0
+  source_row_indexes:
+  - 7
+- queue_id: intake::github/copilot-cli
+  github_full_name: github/copilot-cli
+  html_url: https://github.com/github/copilot-cli
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - cli_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/copilot-cli-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 66
+- queue_id: intake::go-gost/gost
+  github_full_name: go-gost/gost
+  html_url: https://github.com/go-gost/gost
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: ssh_repos
+  source_categories:
+  - ssh_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/ssh_repos/gost-master
+  needs_review_count: 0
+  source_row_indexes:
+  - 78
+- queue_id: intake::gohugoio/hugo
+  github_full_name: gohugoio/hugo
+  html_url: https://github.com/gohugoio/hugo
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: ssh_repos
+  source_categories:
+  - go_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/go_repos/hugo-master
+  needs_review_count: 0
+  source_row_indexes:
+  - 8
+- queue_id: intake::gravitational/teleport
+  github_full_name: gravitational/teleport
+  html_url: https://github.com/gravitational/teleport
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: ssh_repos
+  source_categories:
+  - ssh_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/ssh_repos/teleport-master
+  needs_review_count: 0
+  source_row_indexes:
+  - 91
+- queue_id: intake::haifengl/smile
+  github_full_name: haifengl/smile
+  html_url: https://github.com/haifengl/smile
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - vector_db
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/vector_db/smile-master
+  needs_review_count: 0
+  source_row_indexes:
+  - 57
+- queue_id: intake::henryboldi/felony
+  github_full_name: henryboldi/felony
+  html_url: https://github.com/henryboldi/felony
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - uncat_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/uncat_repos/felony-master
+  needs_review_count: 0
+  source_row_indexes:
+  - 37
+- queue_id: intake::hiddify/hiddify-app
+  github_full_name: hiddify/hiddify-app
+  html_url: https://github.com/hiddify/hiddify-app
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: ssh_repos
+  source_categories:
+  - ssh_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/ssh_repos/hiddify-app-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 80
+- queue_id: intake::hiyouga/llama-factory
+  github_full_name: hiyouga/llama-factory
+  html_url: https://github.com/hiyouga/LLaMA-Factory
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: llm_repos
+  source_categories:
+  - llm_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/llm_repos/LlamaFactory-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 106
+- queue_id: intake::iluwatar/java-design-patterns
+  github_full_name: iluwatar/java-design-patterns
+  html_url: https://github.com/iluwatar/java-design-patterns
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - awesome_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/awesome_repos/java-design-patterns-master
+  needs_review_count: 0
+  source_row_indexes:
+  - 1
+- queue_id: intake::infiniflow/infinity
+  github_full_name: infiniflow/infinity
+  html_url: https://github.com/infiniflow/infinity
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - vector_db
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/vector_db/infinity-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 50
+- queue_id: intake::infiniflow/ragflow
+  github_full_name: infiniflow/ragflow
+  html_url: https://github.com/infiniflow/ragflow
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: llm_repos
+  source_categories:
+  - llm_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/llm_repos/ragflow-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 120
+- queue_id: intake::instructor-ai/instructor
+  github_full_name: instructor-ai/instructor
+  html_url: https://github.com/instructor-ai/instructor
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - structured_outputs
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/structured_outputs/instructor-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 41
+- queue_id: intake::internlm/lmdeploy
+  github_full_name: internlm/lmdeploy
+  html_url: https://github.com/InternLM/lmdeploy
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: llm_repos
+  source_categories:
+  - llm_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/llm_repos/lmdeploy-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 108
+- queue_id: intake::jeecgboot/jeecgboot
+  github_full_name: jeecgboot/jeecgboot
+  html_url: https://github.com/jeecgboot/JeecgBoot
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: llm_repos
+  source_categories:
+  - llm_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/llm_repos/JeecgBoot-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 101
+- queue_id: intake::josephdove/netmask
+  github_full_name: josephdove/netmask
+  html_url: https://github.com/josephdove/netmask
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: ssh_repos
+  source_categories:
+  - ssh_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/ssh_repos/netmask-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 85
+- queue_id: intake::juanfont/headscale
+  github_full_name: juanfont/headscale
+  html_url: https://github.com/juanfont/headscale
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: ssh_repos
+  source_categories:
+  - ssh_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/ssh_repos/headscale-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 79
+- queue_id: intake::kaitranntt/ccs
+  github_full_name: kaitranntt/ccs
+  html_url: https://github.com/kaitranntt/ccs
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - plugin_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/plugin_repos/ccs-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 24
+- queue_id: intake::katarmal-ram/codemoot
+  github_full_name: katarmal-ram/codemoot
+  html_url: https://github.com/katarmal-ram/codemoot
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - plugin_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/plugin_repos/codemoot-master
+  needs_review_count: 0
+  source_row_indexes:
+  - 28
+- queue_id: intake::khoj-ai/khoj
+  github_full_name: khoj-ai/khoj
+  html_url: https://github.com/khoj-ai/khoj
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: llm_repos
+  source_categories:
+  - llm_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/llm_repos/khoj-master
+  needs_review_count: 0
+  source_row_indexes:
+  - 102
+- queue_id: intake::Krosebrook/archdesigner
+  github_full_name: Krosebrook/archdesigner
+  html_url: https://github.com/Krosebrook/archdesigner
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - workflow_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/workflow_repos/archdesigner-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 20
+- queue_id: intake::lancedb/lancedb
+  github_full_name: lancedb/lancedb
+  html_url: https://github.com/lancedb/lancedb
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - vector_db
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/vector_db/lancedb-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 51
+- queue_id: intake::langchain-ai/langchain
+  github_full_name: langchain-ai/langchain
+  html_url: https://github.com/langchain-ai/langchain
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: llm_repos
+  source_categories:
+  - llm_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/llm_repos/langchain-master
+  needs_review_count: 0
+  source_row_indexes:
+  - 103
+- queue_id: intake::langgenius/dify
+  github_full_name: langgenius/dify
+  html_url: https://github.com/langgenius/dify
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - workflow_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/workflow_repos/dify-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 21
+- queue_id: intake::MariaDB/server
+  github_full_name: MariaDB/server
+  html_url: https://github.com/MariaDB/server
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - vector_db
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/vector_db/server-main_mariadb
+  needs_review_count: 0
+  source_row_indexes:
+  - 56
+- queue_id: intake::mem0ai/mem0
+  github_full_name: mem0ai/mem0
+  html_url: https://github.com/mem0ai/mem0
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: llm_repos
+  source_categories:
+  - llm_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/llm_repos/mem0-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 110
+- queue_id: intake::michaelshimeles/ralphy
+  github_full_name: michaelshimeles/ralphy
+  html_url: https://github.com/michaelshimeles/ralphy
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - plugin_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/plugin_repos/ralphy-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 32
+- queue_id: intake::microsoft/graphrag
+  github_full_name: microsoft/graphrag
+  html_url: https://github.com/microsoft/graphrag
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: llm_repos
+  source_categories:
+  - llm_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/llm_repos/graphrag-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 99
+- queue_id: intake::microsoft/llguidance
+  github_full_name: microsoft/llguidance
+  html_url: https://github.com/microsoft/llguidance
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - structured_outputs
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/structured_outputs/llguidance-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 42
+- queue_id: intake::mikeroyal/self-hosting-guide
+  github_full_name: mikeroyal/self-hosting-guide
+  html_url: https://github.com/mikeroyal/Self-Hosting-Guide
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: ssh_repos
+  source_categories:
+  - ssh_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/ssh_repos/Self-Hosting-Guide-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 88
+- queue_id: intake::milvus-io/milvus
+  github_full_name: milvus-io/milvus
+  html_url: https://github.com/milvus-io/milvus
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: llm_repos
+  source_categories:
+  - llm_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/llm_repos/milvus-master
+  needs_review_count: 0
+  source_row_indexes:
+  - 111
+- queue_id: intake::mindsdb/mindsdb
+  github_full_name: mindsdb/mindsdb
+  html_url: https://github.com/mindsdb/mindsdb
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: llm_repos
+  source_categories:
+  - llm_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/llm_repos/mindsdb-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 112
+- queue_id: intake::MiniMax-AI/Mini-Agent
+  github_full_name: MiniMax-AI/Mini-Agent
+  html_url: https://github.com/MiniMax-AI/Mini-Agent
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - workflow_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/workflow_repos/Mini-Agent-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 23
+- queue_id: intake::mintplex-labs/anything-llm
+  github_full_name: mintplex-labs/anything-llm
+  html_url: https://github.com/Mintplex-Labs/anything-llm
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: llm_repos
+  source_categories:
+  - llm_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/llm_repos/anything-llm-master
+  needs_review_count: 0
+  source_row_indexes:
+  - 97
+- queue_id: intake::mlpack/mlpack
+  github_full_name: mlpack/mlpack
+  html_url: https://github.com/mlpack/mlpack
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - vector_db
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/vector_db/mlpack-master
+  needs_review_count: 0
+  source_row_indexes:
+  - 52
+- queue_id: intake::monteslu/hsync
+  github_full_name: monteslu/hsync
+  html_url: https://github.com/monteslu/hsync
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: ssh_repos
+  source_categories:
+  - ssh_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/ssh_repos/hsync-master
+  needs_review_count: 0
+  source_row_indexes:
+  - 81
+- queue_id: intake::MoonshotAI/kimi-cli
+  github_full_name: MoonshotAI/kimi-cli
+  html_url: https://github.com/MoonshotAI/kimi-cli
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - cli_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/kimi-cli-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 68
+- queue_id: intake::mscdex/ssh2
+  github_full_name: mscdex/ssh2
+  html_url: https://github.com/mscdex/ssh2
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - cli_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/ssh2-master
+  needs_review_count: 0
+  source_row_indexes:
+  - 71
+- queue_id: intake::nexaai/nexa-sdk
+  github_full_name: nexaai/nexa-sdk
+  html_url: https://github.com/NexaAI/nexa-sdk
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: llm_repos
+  source_categories:
+  - llm_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/llm_repos/nexa-sdk-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 113
+- queue_id: intake::obra/superpowers
+  github_full_name: obra/superpowers
+  html_url: https://github.com/obra/superpowers
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - plugin_repos
+  - skills_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/plugin_repos/superpowers-main
+  - /Users/szilaa/scripts/ext_sources/github_repos/skills_repos/superpowers-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 5
+  - 33
+- queue_id: intake::obsidianmd/obsidian-releases
+  github_full_name: obsidianmd/obsidian-releases
+  html_url: https://github.com/obsidianmd/obsidian-releases
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - office_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/office_repos/obsidian-releases-master
+  needs_review_count: 0
+  source_row_indexes:
+  - 10
+- queue_id: intake::obsproject/obs-studio
+  github_full_name: obsproject/obs-studio
+  html_url: https://github.com/obsproject/obs-studio
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - testing_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/testing_repos/obs-studio-master
+  needs_review_count: 0
+  source_row_indexes:
+  - 14
+- queue_id: intake::ollama/ollama
+  github_full_name: ollama/ollama
+  html_url: https://github.com/ollama/ollama
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: llm_repos
+  source_categories:
+  - llm_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/llm_repos/ollama-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 114
+- queue_id: intake::open-compass/opencompass
+  github_full_name: open-compass/opencompass
+  html_url: https://github.com/open-compass/opencompass
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: llm_repos
+  source_categories:
+  - llm_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/llm_repos/opencompass-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 116
+- queue_id: intake::open-webui/open-webui
+  github_full_name: open-webui/open-webui
+  html_url: https://github.com/open-webui/open-webui
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: llm_repos
+  source_categories:
+  - llm_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/llm_repos/open-webui-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 115
+- queue_id: intake::openai/codex
+  github_full_name: openai/codex
+  html_url: https://github.com/openai/codex
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - cli_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/codex-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 65
+- queue_id: intake::PaddlePaddle/PaddleOCR
+  github_full_name: PaddlePaddle/PaddleOCR
+  html_url: https://github.com/PaddlePaddle/PaddleOCR
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - office_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/office_repos/PaddleOCR-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 12
+- queue_id: intake::pathwaycom/llm-app
+  github_full_name: pathwaycom/llm-app
+  html_url: https://github.com/pathwaycom/llm-app
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: llm_repos
+  source_categories:
+  - llm_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/llm_repos/llm-app-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 107
+- queue_id: intake::pathwaycom/pathway
+  github_full_name: pathwaycom/pathway
+  html_url: https://github.com/pathwaycom/pathway
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: llm_repos
+  source_categories:
+  - llm_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/llm_repos/pathway-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 118
+- queue_id: intake::pgvector/pgvector
+  github_full_name: pgvector/pgvector
+  html_url: https://github.com/pgvector/pgvector
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - vector_db
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/vector_db/pgvector-master
+  needs_review_count: 0
+  source_row_indexes:
+  - 54
+- queue_id: intake::phuocng/1loc
+  github_full_name: phuocng/1loc
+  html_url: https://github.com/phuocng/1loc
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - uncat_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/uncat_repos/1loc-master
+  needs_review_count: 0
+  source_row_indexes:
+  - 34
+- queue_id: intake::puppeteer/puppeteer
+  github_full_name: puppeteer/puppeteer
+  html_url: https://github.com/puppeteer/puppeteer
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - uncat_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/uncat_repos/puppeteer-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 38
+- queue_id: intake::pydantic/pydantic
+  github_full_name: pydantic/pydantic
+  html_url: https://github.com/pydantic/pydantic
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - structured_outputs
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/structured_outputs/pydantic-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 46
+- queue_id: intake::pydantic/pydantic-ai
+  github_full_name: pydantic/pydantic-ai
+  html_url: https://github.com/pydantic/pydantic-ai
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - structured_outputs
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/structured_outputs/pydantic-ai-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 44
+- queue_id: intake::pydantic/pydantic-core
+  github_full_name: pydantic/pydantic-core
+  html_url: https://github.com/pydantic/pydantic-core
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - structured_outputs
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/structured_outputs/pydantic-core-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 45
+- queue_id: intake::pydantic/pydantic-settings
+  github_full_name: pydantic/pydantic-settings
+  html_url: https://github.com/pydantic/pydantic-settings
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - structured_outputs
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/structured_outputs/pydantic-settings-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 47
+- queue_id: intake::qdrant/qdrant
+  github_full_name: qdrant/qdrant
+  html_url: https://github.com/qdrant/qdrant
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - vector_db
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/vector_db/qdrant-master
+  needs_review_count: 0
+  source_row_indexes:
+  - 55
+- queue_id: intake::rapiz1/rathole
+  github_full_name: rapiz1/rathole
+  html_url: https://github.com/rapiz1/rathole
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: ssh_repos
+  source_categories:
+  - ssh_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/ssh_repos/rathole-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 87
+- queue_id: intake::run-llama/llama_index
+  github_full_name: run-llama/llama_index
+  html_url: https://github.com/run-llama/llama_index
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: llm_repos
+  source_categories:
+  - llm_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/llm_repos/llama_index-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 104
+- queue_id: intake::ruvnet/claude-flow
+  github_full_name: ruvnet/claude-flow
+  html_url: https://github.com/ruvnet/claude-flow
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - plugin_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/plugin_repos/claude-flow-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 26
+- queue_id: intake::shubhamsaboo/awesome-llm-apps
+  github_full_name: shubhamsaboo/awesome-llm-apps
+  html_url: https://github.com/Shubhamsaboo/awesome-llm-apps
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: llm_repos
+  source_categories:
+  - llm_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/llm_repos/awesome-llm-apps-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 98
+- queue_id: intake::Siddhesh2377/ToolNeuron
+  github_full_name: Siddhesh2377/ToolNeuron
+  html_url: https://github.com/Siddhesh2377/ToolNeuron
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - uncat_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/uncat_repos/ToolNeuron-re-write
+  needs_review_count: 0
+  source_row_indexes:
+  - 39
+- queue_id: intake::slackhq/nebula
+  github_full_name: slackhq/nebula
+  html_url: https://github.com/slackhq/nebula
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: ssh_repos
+  source_categories:
+  - ssh_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/ssh_repos/nebula-master
+  needs_review_count: 0
+  source_row_indexes:
+  - 84
+- queue_id: intake::snarktank/ralph
+  github_full_name: snarktank/ralph
+  html_url: https://github.com/snarktank/ralph
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - plugin_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/plugin_repos/ralph-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 31
+- queue_id: intake::spotify/annoy
+  github_full_name: spotify/annoy
+  html_url: https://github.com/spotify/annoy
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - vector_db
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/vector_db/annoy-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 49
+- queue_id: intake::spotify/voyager
+  github_full_name: spotify/voyager
+  html_url: https://github.com/spotify/voyager
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - vector_db
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/vector_db/voyager-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 60
+- queue_id: intake::sshuttle/sshuttle
+  github_full_name: sshuttle/sshuttle
+  html_url: https://github.com/sshuttle/sshuttle
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: ssh_repos
+  source_categories:
+  - ssh_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/ssh_repos/sshuttle-master
+  needs_review_count: 0
+  source_row_indexes:
+  - 89
+- queue_id: intake::Stirling-Tools/Stirling-PDF
+  github_full_name: Stirling-Tools/Stirling-PDF
+  html_url: https://github.com/Stirling-Tools/Stirling-PDF
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - office_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/office_repos/Stirling-PDF-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 13
+- queue_id: intake::streisandeffect/streisand
+  github_full_name: streisandeffect/streisand
+  html_url: https://github.com/StreisandEffect/streisand
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: ssh_repos
+  source_categories:
+  - ssh_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/ssh_repos/streisand-master
+  needs_review_count: 0
+  source_row_indexes:
+  - 90
+- queue_id: intake::styfle/vgrok
+  github_full_name: styfle/vgrok
+  html_url: https://github.com/styfle/vgrok
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: ssh_repos
+  source_categories:
+  - ssh_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/ssh_repos/vgrok-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 93
+- queue_id: intake::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  html_url: https://github.com/tailscale/tailscale
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: ssh_repos
+  source_categories:
+  - go_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/go_repos/tailscale-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 9
+- queue_id: intake::thedotmack/claude-mem
+  github_full_name: thedotmack/claude-mem
+  html_url: https://github.com/thedotmack/claude-mem
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - plugin_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/plugin_repos/claude-mem-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 27
+- queue_id: intake::thephpleague/fractal
+  github_full_name: thephpleague/fractal
+  html_url: https://github.com/thephpleague/fractal
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - structured_outputs
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/structured_outputs/fractal-master
+  needs_review_count: 0
+  source_row_indexes:
+  - 40
+- queue_id: intake::tmux/tmux
+  github_full_name: tmux/tmux
+  html_url: https://github.com/tmux/tmux
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - cli_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/tmux-master
+  needs_review_count: 0
+  source_row_indexes:
+  - 72
+- queue_id: intake::unum-cloud/usearch
+  github_full_name: unum-cloud/usearch
+  html_url: https://github.com/unum-cloud/usearch
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - vector_db
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/vector_db/USearch-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 58
+- queue_id: intake::vllm-project/vllm
+  github_full_name: vllm-project/vllm
+  html_url: https://github.com/vllm-project/vllm
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: llm_repos
+  source_categories:
+  - llm_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/llm_repos/vllm-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 121
+- queue_id: intake::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  html_url: https://github.com/weaviate/weaviate
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - vector_db
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/vector_db/weaviate-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 61
+- queue_id: intake::wez/wezterm
+  github_full_name: wez/wezterm
+  html_url: https://github.com/wez/wezterm
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - cli_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/wezterm-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 74
+- queue_id: intake::xorbitsai/inference
+  github_full_name: xorbitsai/inference
+  html_url: https://github.com/xorbitsai/inference
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: llm_repos
+  source_categories:
+  - llm_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/llm_repos/inference-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 100
+- queue_id: intake::xqsit94/glm
+  github_full_name: xqsit94/glm
+  html_url: https://github.com/xqsit94/glm
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - cli_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/glm-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 67
+- queue_id: intake::xtermjs/xterm.js
+  github_full_name: xtermjs/xterm.js
+  html_url: https://github.com/xtermjs/xterm.js
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: ssh_repos
+  source_categories:
+  - ssh_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/ssh_repos/xterm.js-master
+  needs_review_count: 0
+  source_row_indexes:
+  - 94
+- queue_id: intake::yahoojapan/NGT
+  github_full_name: yahoojapan/NGT
+  html_url: https://github.com/yahoojapan/NGT
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - vector_db
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/vector_db/NGT-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 53
+- queue_id: intake::yetidevworks/ytunnel
+  github_full_name: yetidevworks/ytunnel
+  html_url: https://github.com/yetidevworks/ytunnel
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: ssh_repos
+  source_categories:
+  - ssh_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/ssh_repos/ytunnel-master
+  needs_review_count: 0
+  source_row_indexes:
+  - 95
+- queue_id: intake::ykdojo/claude-code-tips
+  github_full_name: ykdojo/claude-code-tips
+  html_url: https://github.com/ykdojo/claude-code-tips
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - plugin_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/plugin_repos/claude-code-tips-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 25
+- queue_id: intake::yusuf-musleh/mmar
+  github_full_name: yusuf-musleh/mmar
+  html_url: https://github.com/yusuf-musleh/mmar
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: ssh_repos
+  source_categories:
+  - ssh_repos
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/ssh_repos/mmar-master
+  needs_review_count: 0
+  source_row_indexes:
+  - 83
+- queue_id: intake::zilliztech/VectorDBBench
+  github_full_name: zilliztech/VectorDBBench
+  html_url: https://github.com/zilliztech/VectorDBBench
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: undecided
+  source_categories:
+  - vector_db
+  source_local_paths:
+  - /Users/szilaa/scripts/ext_sources/github_repos/vector_db/VectorDBBench-main
+  needs_review_count: 0
+  source_row_indexes:
+  - 59

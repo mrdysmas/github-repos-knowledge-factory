@@ -1,0 +1,461 @@
+edges:
+- src_id: repo::ekzhang/bore
+  dst_id: repo::rapiz1/rathole
+  dst_kind: repo
+  relation: similar_to
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: similar_to
+    source_edge_index: 0
+  note: Both minimal Rust tunnels, rathole has more features
+- src_id: repo::ekzhang/bore
+  dst_id: repo::fatedier/frp
+  dst_kind: repo
+  relation: similar_to
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: similar_to
+    source_edge_index: 1
+  note: bore is minimalist (~400 LOC), frp is feature-complete
+- src_id: repo::rapiz1/rathole
+  dst_id: repo::fatedier/frp
+  dst_kind: repo
+  relation: alternative_to
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: alternative_to
+    source_edge_index: 2
+  note: Rust vs Go, rathole uses less resources
+- src_id: repo::fatedier/frp
+  dst_id: external_tool::ngrok
+  dst_kind: external_tool
+  relation: alternative_to
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: alternative_to
+    source_edge_index: 3
+  note: Self-hosted vs SaaS
+- src_id: repo::ekzhang/bore
+  dst_id: repo::yusuf-musleh/mmar
+  dst_kind: repo
+  relation: similar_to
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: similar_to
+    source_edge_index: 4
+  note: Both minimalist tunnels, mmar is Go-based
+- src_id: repo::yusuf-musleh/mmar
+  dst_id: external_tool::ngrok
+  dst_kind: external_tool
+  relation: alternative_to
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: alternative_to
+    source_edge_index: 5
+  note: Self-hosted ngrok alternative
+- src_id: repo::styfle/vgrok
+  dst_id: external_tool::ngrok
+  dst_kind: external_tool
+  relation: alternative_to
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: alternative_to
+    source_edge_index: 6
+  note: Uses Vercel sandboxes instead of dedicated server
+- src_id: repo::monteslu/hsync
+  dst_id: repo::ekzhang/bore
+  dst_kind: repo
+  relation: similar_to
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: similar_to
+    source_edge_index: 7
+  note: Both support P2P, hsync uses WebRTC
+- src_id: repo::yetidevworks/ytunnel
+  dst_id: external_tool::cloudflared
+  dst_kind: external_tool
+  relation: wrapper_for
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: wrapper_for
+    source_edge_index: 8
+  note: TUI wrapper for cloudflared with custom domain management
+- src_id: repo::cristipufu/tunnelite
+  dst_id: external_tool::ngrok
+  dst_kind: external_tool
+  relation: alternative_to
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: alternative_to
+    source_edge_index: 9
+  note: .NET-based tunnel with SignalR
+- src_id: repo::josephdove/netmask
+  dst_id: external_tool::ngrok
+  dst_kind: external_tool
+  relation: alternative_to
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: alternative_to
+    source_edge_index: 10
+  note: Python-based with rolling key encryption
+- src_id: repo::go-gost/gost
+  dst_id: repo::fatedier/frp
+  dst_kind: repo
+  relation: similar_to
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: similar_to
+    source_edge_index: 11
+  note: GOST is proxy-focused, frp is tunnel-focused
+- src_id: repo::go-gost/gost
+  dst_id: external_tool::v2ray
+  dst_kind: external_tool
+  relation: similar_to
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: similar_to
+    source_edge_index: 12
+  note: Both multi-protocol proxy platforms
+- src_id: repo::juanfont/headscale
+  dst_id: external_tool::tailscale
+  dst_kind: external_tool
+  relation: alternative_to
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: alternative_to
+    source_edge_index: 13
+  note: Open-source control server for Tailscale clients
+- src_id: repo::juanfont/headscale
+  dst_id: repo::slackhq/nebula
+  dst_kind: repo
+  relation: similar_to
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: similar_to
+    source_edge_index: 14
+  note: Both mesh VPNs, different architectures
+- src_id: repo::slackhq/nebula
+  dst_id: external_tool::wireguard
+  dst_kind: external_tool
+  relation: similar_to
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: similar_to
+    source_edge_index: 15
+  note: Nebula uses Noise protocol, WireGuard uses its own
+- src_id: repo::slackhq/nebula
+  dst_id: external_tool::tailscale
+  dst_kind: external_tool
+  relation: alternative_to
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: alternative_to
+    source_edge_index: 16
+  note: Slack's mesh vs Tailscale's coordination
+- src_id: repo::apernet/hysteria
+  dst_id: external_tool::shadowsocks
+  dst_kind: external_tool
+  relation: similar_to
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: similar_to
+    source_edge_index: 17
+  note: Both anti-censorship proxies
+- src_id: repo::apernet/hysteria
+  dst_id: external_tool::v2ray
+  dst_kind: external_tool
+  relation: similar_to
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: similar_to
+    source_edge_index: 18
+  note: QUIC-based vs TCP-based
+- src_id: repo::streisandeffect/streisand
+  dst_id: external_tool::algo
+  dst_kind: external_tool
+  relation: similar_to
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: similar_to
+    source_edge_index: 19
+  note: Both Ansible-based VPN provisioners
+- src_id: repo::streisandeffect/streisand
+  dst_id: external_tool::wireguard
+  dst_kind: external_tool
+  relation: deploys
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: deploys
+    source_edge_index: 20
+  note: Streisand deploys WireGuard among other protocols
+- src_id: repo::streisandeffect/streisand
+  dst_id: external_tool::openvpn
+  dst_kind: external_tool
+  relation: deploys
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: deploys
+    source_edge_index: 21
+  note: Streisand deploys OpenVPN among other protocols
+- src_id: repo::sshuttle/sshuttle
+  dst_id: external_tool::openvpn
+  dst_kind: external_tool
+  relation: alternative_to
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: alternative_to
+    source_edge_index: 22
+  note: '''Poor man''s VPN'' over SSH'
+- src_id: repo::sshuttle/sshuttle
+  dst_id: external_tool::ssh
+  dst_kind: external_tool
+  relation: extends
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: extends
+    source_edge_index: 23
+  note: Transparent proxy over SSH connection
+- src_id: repo::gravitational/teleport
+  dst_id: external_tool::ssh
+  dst_kind: external_tool
+  relation: replaces
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: replaces
+    source_edge_index: 24
+  note: Certificate-based auth replaces SSH keys
+- src_id: repo::gravitational/teleport
+  dst_id: external_tool::boundary
+  dst_kind: external_tool
+  relation: alternative_to
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: alternative_to
+    source_edge_index: 25
+  note: Teleport vs HashiCorp Boundary
+- src_id: repo::gravitational/teleport
+  dst_id: repo::fosrl/pangolin
+  dst_kind: repo
+  relation: similar_to
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: similar_to
+    source_edge_index: 26
+  note: Both identity-aware access platforms
+- src_id: repo::fosrl/pangolin
+  dst_id: external_tool::tailscale
+  dst_kind: external_tool
+  relation: similar_to
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: similar_to
+    source_edge_index: 27
+  note: Both WireGuard-based with identity
+- src_id: repo::fosrl/pangolin
+  dst_id: external_tool::cloudflare_access
+  dst_kind: external_tool
+  relation: similar_to
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: similar_to
+    source_edge_index: 28
+  note: Both zero-trust proxy approaches
+- src_id: repo::xtermjs/xterm.js
+  dst_id: external_tool::wetty
+  dst_kind: external_tool
+  relation: used_by
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: used_by
+    source_edge_index: 29
+  note: WeTTY uses xterm.js for browser terminal
+- src_id: repo::xtermjs/xterm.js
+  dst_id: external_tool::vscode
+  dst_kind: external_tool
+  relation: used_by
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: used_by
+    source_edge_index: 30
+  note: VS Code integrated terminal uses xterm.js
+- src_id: repo::hiddify/hiddify-app
+  dst_id: external_tool::sing_box
+  dst_kind: external_tool
+  relation: built_on
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: built_on
+    source_edge_index: 31
+  note: Flutter UI frontend for sing-box core
+- src_id: repo::hiddify/hiddify-app
+  dst_id: repo::apernet/hysteria
+  dst_kind: repo
+  relation: supports
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: supports
+    source_edge_index: 32
+  note: Hiddify supports Hysteria protocol
+- src_id: repo::anderspitman/awesome-tunneling
+  dst_id: repo::fatedier/frp
+  dst_kind: repo
+  relation: references
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: references
+    source_edge_index: 33
+- src_id: repo::anderspitman/awesome-tunneling
+  dst_id: repo::rapiz1/rathole
+  dst_kind: repo
+  relation: references
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: references
+    source_edge_index: 34
+- src_id: repo::anderspitman/awesome-tunneling
+  dst_id: repo::ekzhang/bore
+  dst_kind: repo
+  relation: references
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: references
+    source_edge_index: 35
+- src_id: repo::anderspitman/awesome-tunneling
+  dst_id: repo::fosrl/pangolin
+  dst_kind: repo
+  relation: references
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: references
+    source_edge_index: 36
+- src_id: repo::mikeroyal/self-hosting-guide
+  dst_id: external_tool::wireguard
+  dst_kind: external_tool
+  relation: references
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: references
+    source_edge_index: 37
+- src_id: repo::mikeroyal/self-hosting-guide
+  dst_id: external_tool::tailscale
+  dst_kind: external_tool
+  relation: references
+  as_of: '2026-02-23'
+  provenance:
+    shard: ssh_repos
+    source_file: ssh_repos/knowledge/graph.yaml
+    source_relation: references
+    source_edge_index: 38
+clusters:
+- name: ngrok_alternatives
+  members:
+  - bore
+  - rathole
+  - frp
+  - mmar
+  - vgrok
+  - hsync
+  - tunnelite
+  - netmask
+  description: Self-hosted tunneling tools that expose local services
+- name: mesh_vpn
+  members:
+  - nebula
+  - headscale
+  - tailscale
+  description: Overlay network solutions with NAT traversal
+- name: anti_censorship
+  members:
+  - hysteria
+  - streisand
+  - hiddify-app
+  - gost
+  - v2ray
+  - shadowsocks
+  description: Tools designed for restrictive network environments
+- name: remote_access
+  members:
+  - teleport
+  - sshuttle
+  - pangolin
+  description: Identity-aware secure access solutions
+- name: terminal_emulation
+  members:
+  - xtermjs
+  description: Web-based terminal rendering

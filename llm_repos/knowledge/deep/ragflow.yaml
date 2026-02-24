@@ -1,0 +1,353 @@
+name: ragflow
+node_id: repo::infiniflow/ragflow
+github_full_name: infiniflow/ragflow
+html_url: https://github.com/infiniflow/ragflow
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep/ragflow.yaml
+  as_of: '2026-02-23'
+sparse: false
+
+code_patterns:
+  - name: Quart Async API Setup
+    description: Flask-like async API with CORS and OpenAPI
+    code: |
+      # File: api/apps/__init__.py
+      from quart import Quart
+      from quart_cors import cors
+      from quart_schema import QuartSchema
+
+      app = Quart(__name__)
+      app = cors(app, allow_origin="*")
+      QuartSchema(app)  # OpenAPI support
+      app.url_map.strict_slashes = False
+      app.json_encoder = CustomJSONEncoder
+
+      # Timeout for LLM responses
+      app.config["RESPONSE_TIMEOUT"] = int(
+          os.environ.get("QUART_RESPONSE_TIMEOUT", 600)
+      )
+    file_reference: api/apps/__init__.py
+
+  - name: Document Upload and Parsing
+    description: File upload with knowledge base association
+    code: |
+      # File: api/apps/document_app.py
+      @manager.route("/upload", methods=["POST"])
+      @login_required
+      @validate_request("kb_id")
+      async def upload():
+          form = await request.form
+          kb_id = form.get("kb_id")
+          files = await request.files
+          # Process files, create document records
+          # Queue for parsing based on parser type
+
+      @manager.route("/run", methods=["POST"])
+      @login_required
+      @validate_request("doc_ids", "run")
+      async def run():
+          # Trigger parsing and chunking
+          # Parser options: deepdoc, mineru, docling, paddleocr
+    file_reference: api/apps/document_app.py
+
+  - name: Chunk Management with Embedding
+    description: Create chunks with tokenization and embedding
+    code: |
+      # File: api/apps/chunk_app.py
+      import xxhash
+
+      # Generate chunk ID
+      chunk_id = xxhash.xxh64(
+          (content + doc_id).encode("utf-8")
+      ).hexdigest()
+
+      # Chunk structure
+      d = {
+          "id": chunk_id,
+          "content_ltks": rag_tokenizer.tokenize(content),
+          "content_with_weight": content,
+          "content_sm_ltks": rag_tokenizer.fine_grained_tokenize(tokens),
+          "important_kwd": [],
+          "question_kwd": [],
+          "kb_id": [kb_id],
+          "doc_id": doc_id,
+          "docnm_kwd": doc_name,
+      }
+
+      # Generate embedding (weighted: 10% title + 90% content)
+      v, c = embd_mdl.encode([doc_name, content])
+      d[f"q_{len(v[0])}_vec"] = (0.1 * v[0] + 0.9 * v[1]).tolist()
+    file_reference: api/apps/chunk_app.py
+
+  - name: PDF Parser (DeepDoc)
+    description: OCR + layout analysis + table extraction pipeline
+    code: |
+      # File: deepdoc/parser/pdf_parser.py
+      class RAGFlowPdfParser:
+          def __init__(self, **kwargs):
+              self.ocr = OCR()
+              self.layouter = LayoutRecognizer(recognizer_domain)
+              self.tbl_det = TableStructureRecognizer()
+
+          def __call__(self, fnm, need_image=True, zoomin=3):
+              # Pipeline:
+              self.__images__(fnm, zoomin)          # 1. OCR
+              self._layouts_rec(zoomin)             # 2. Layout detection
+              self._table_transformer_job(zoomin)   # 3. Table analysis
+              self._text_merge()                    # 4. Merge text blocks
+              self._concat_downward()               # 5. Concatenate rows
+              self._filter_forpages()               # 6. Filter TOC/garbage
+              tbls = self._extract_table_figure(...)
+              return boxes, tbls
+    file_reference: deepdoc/parser/pdf_parser.py
+
+  - name: Hybrid Search with Fusion
+    description: Fulltext + vector search with weighted fusion
+    code: |
+      # File: rag/nlp/search.py
+      async def search(self, req, idx_names, kb_ids, emb_mdl=None):
+          question = req.get("question", "")
+
+          # Fulltext query (min 30% match)
+          matchText, keywords = self.qryr.question(question, min_match=0.3)
+
+          # Vector query
+          matchDense = await self.get_vector(question, emb_mdl, topk, similarity)
+
+          # Fusion: 5% text + 95% vector (default)
+          fusionExpr = FusionExpr(
+              "weighted_sum", topk,
+              {"weights": "0.05,0.95"}
+          )
+
+          # Execute hybrid search
+          res = self.dataStore.search(
+              src, highlightFields, filters,
+              [matchText, matchDense, fusionExpr],
+              orderBy, offset, limit, idx_names, kb_ids
+          )
+          return SearchResult(total, ids, query_vector, field, highlight)
+    file_reference: rag/nlp/search.py
+
+  - name: LLM Chat with Retry
+    description: OpenAI-compatible client with exponential backoff
+    code: |
+      # File: rag/llm/chat_model.py
+      class Base(ABC):
+          def __init__(self, key, model_name, base_url, **kwargs):
+              timeout = int(os.environ.get("LLM_TIMEOUT_SECONDS", 600))
+              self.client = OpenAI(api_key=key, base_url=base_url, timeout=timeout)
+              self.max_retries = kwargs.get("max_retries", 5)
+              self.base_delay = kwargs.get("retry_interval", 2.0)
+
+          async def async_chat_streamly(self, system, history, gen_conf={}):
+              """Streaming chat with error classification and retry"""
+              # Error types: RATE_LIMIT, AUTH_ERROR, INVALID_REQUEST, SERVER_ERROR
+              for attempt in range(self.max_retries):
+                  try:
+                      response = await self.async_client.chat.completions.create(
+                          model=self.model_name,
+                          messages=[{"role": "system", "content": system}] + history,
+                          stream=True,
+                          **gen_conf
+                      )
+                      async for chunk in response:
+                          yield chunk
+                  except RateLimitError:
+                      await asyncio.sleep(self.base_delay * (2 ** attempt))
+    file_reference: rag/llm/chat_model.py
+
+configuration:
+  - name: Service Configuration
+    options:
+      - key: ragflow.host
+        default: "0.0.0.0"
+        description: Server bind address
+      - key: ragflow.http_port
+        default: "9380"
+        description: API server port
+      - key: mysql.host
+        default: "mysql"
+        description: MySQL host
+      - key: mysql.port
+        default: "3306"
+        description: MySQL port
+      - key: minio.host
+        default: "minio:9000"
+        description: MinIO object storage
+      - key: es.hosts
+        default: "http://es01:9200"
+        description: Elasticsearch hosts
+      - key: redis.host
+        default: "redis:6379"
+        description: Redis host
+
+  - name: Parser Types
+    options:
+      - key: deepdoc
+        default: "default"
+        description: OCR-based with layout analysis
+      - key: mineru
+        default: ""
+        description: MinerU PDF parser
+      - key: docling
+        default: ""
+        description: IBM Docling parser
+      - key: paddleocr
+        default: ""
+        description: PaddleOCR integration
+      - key: plaintext
+        default: ""
+        description: Plain text or vision model
+
+  - name: Document Engine
+    options:
+      - key: DOC_ENGINE
+        default: "es"
+        description: "Document store: es, infinity, opensearch"
+
+  - name: Retrieval Parameters
+    options:
+      - key: similarity_threshold
+        default: "0.1"
+        description: Vector similarity threshold
+      - key: vector_similarity_weight
+        default: "0.95"
+        description: Weight for vector vs text (5% text)
+      - key: top_k
+        default: "1024"
+        description: Vector search candidates
+      - key: top_n
+        default: "8"
+        description: Final results after rerank
+
+  - name: LLM Types
+    options:
+      - key: CHAT
+        default: ""
+        description: Text generation
+      - key: EMBEDDING
+        default: ""
+        description: Text embeddings
+      - key: RERANK
+        default: ""
+        description: Result reranking
+      - key: IMAGE2TEXT
+        default: ""
+        description: Vision models
+      - key: SPEECH2TEXT
+        default: ""
+        description: Speech recognition
+      - key: TTS
+        default: ""
+        description: Text-to-speech
+
+common_tasks:
+  - task: Deploy with Docker Compose
+    steps:
+      - "cd docker && cp .env.example .env"
+      - "Edit .env: set passwords, ports"
+      - "docker compose -f docker-compose.yml up -d"
+      - "Access UI at http://localhost:80"
+      - "Configure LLM in Settings > Model Providers"
+    gotchas:
+      - "First start downloads Docker images - can take 10+ minutes"
+      - "GPU profile requires nvidia-docker: docker compose --profile gpu up"
+      - "Change default passwords before production"
+
+  - task: Create Knowledge Base and Ingest
+    steps:
+      - "Create KB: select embedding model, parser type"
+      - "Upload files: drag-drop or API"
+      - "Run parsing: triggers automatically or manually"
+      - "Monitor progress in document list"
+      - "Test retrieval in chat interface"
+    gotchas:
+      - "Large PDFs may timeout - increase QUART_RESPONSE_TIMEOUT"
+      - "Parser choice affects quality: deepdoc best for tables/figures"
+      - "Chunk size configurable per KB"
+
+  - task: Configure Custom LLM
+    steps:
+      - "Settings > Model Providers > Add"
+      - "Select type: OpenAI-compatible, Ollama, etc."
+      - "Set base_url and api_key"
+      - "Test connection before saving"
+      - "Set as default for chat/embedding/rerank"
+    gotchas:
+      - "Ollama: use http://host.docker.internal:11434 from container"
+      - "Custom models need correct embedding dimensions"
+
+troubleshooting:
+  - symptom: PDF parsing fails or times out
+    cause: Large files or insufficient memory
+    fix: "Increase QUART_RESPONSE_TIMEOUT, reduce zoomin parameter, use simpler parser"
+
+  - symptom: Empty search results
+    cause: Similarity threshold too high or embedding mismatch
+    fix: "Lower similarity_threshold (default 0.1), check embedding model matches"
+
+  - symptom: Elasticsearch connection refused
+    cause: ES not ready or wrong host
+    fix: "Wait for ES health check, verify ES_HOST in .env matches docker service name"
+
+  - symptom: GPU not detected in container
+    cause: Missing nvidia-docker or profile not activated
+    fix: "Use --profile gpu flag, verify nvidia-smi works on host"
+
+quick_reference:
+  - topic: API Endpoints
+    content: |
+      ┌──────────────────────────┬────────┬─────────────────────┐
+      │ Endpoint                 │ Method │ Description         │
+      ├──────────────────────────┼────────┼─────────────────────┤
+      │ /api/document/upload     │ POST   │ Upload files        │
+      │ /api/document/list       │ POST   │ List documents      │
+      │ /api/document/run        │ POST   │ Trigger parsing     │
+      │ /api/chunk/list          │ POST   │ List chunks         │
+      │ /api/chunk/create        │ POST   │ Create chunk        │
+      │ /api/chunk/retrieval_test│ POST   │ Test retrieval      │
+      │ /api/conversation/completion│ POST│ Chat completion    │
+      │ /api/conversation/ask    │ POST   │ Quick Q&A           │
+      └──────────────────────────┴────────┴─────────────────────┘
+
+  - topic: Docker Services
+    content: |
+      ┌────────────────┬─────────────────────────────────────────┐
+      │ Service        │ Description                             │
+      ├────────────────┼─────────────────────────────────────────┤
+      │ ragflow        │ Main application (CPU or GPU)           │
+      │ mysql          │ Metadata storage                        │
+      │ elasticsearch  │ Vector + fulltext index                 │
+      │ minio          │ Object storage for files                │
+      │ redis          │ Caching and task queue                  │
+      │ infinity       │ Alternative vector DB (optional)        │
+      └────────────────┴─────────────────────────────────────────┘
+
+  - topic: Environment Variables
+    content: |
+      ┌─────────────────────────────┬───────────────────────────┐
+      │ Variable                    │ Default                   │
+      ├─────────────────────────────┼───────────────────────────┤
+      │ RAGFLOW_IMAGE               │ infiniflow/ragflow:nightly│
+      │ QUART_RESPONSE_TIMEOUT      │ 600                       │
+      │ LLM_TIMEOUT_SECONDS         │ 600                       │
+      │ DOC_ENGINE                  │ es                        │
+      │ SVR_HTTP_PORT               │ 9380                      │
+      │ SVR_WEB_HTTP_PORT           │ 80                        │
+      └─────────────────────────────┴───────────────────────────┘
+
+  - topic: Retrieval Configuration
+    content: |
+      RetrievalParam:
+        similarity_threshold: 0.2    # Min vector similarity
+        keywords_similarity_weight: 0.5  # Text weight (1-this = vector)
+        top_n: 8                     # Final results
+        top_k: 1024                  # Vector candidates
+        rerank_id: ""                # Rerank model
+        use_kg: false                # Knowledge graph
+        cross_languages: []          # Translate queries
+        toc_enhance: false           # Use table of contents
+        meta_data_filter: {}         # Metadata filters

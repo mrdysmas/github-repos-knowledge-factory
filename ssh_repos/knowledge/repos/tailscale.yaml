@@ -1,0 +1,34 @@
+name: tailscale
+node_id: repo::tailscale/tailscale
+github_full_name: tailscale/tailscale
+html_url: https://github.com/tailscale/tailscale
+source: remote_api
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/repos/tailscale.yaml
+  as_of: '2026-02-23'
+directory: remote::tailscale/tailscale
+category: vpn_mesh
+summary: WireGuard-based mesh networking platform with identity-aware connectivity
+  controls.
+core_concepts:
+- Mesh VPN over WireGuard
+- Identity-aware network access
+key_entry_points:
+- cmd/tailscale
+- cmd/tailscaled
+build_run:
+  language: go
+  build: go build ./cmd/tailscale ./cmd/tailscaled
+  test: go test ./...
+local_cache_dir: null
+extras:
+  remote:
+    provider: github
+    mode: api
+    endpoint: /repos/tailscale/tailscale
+    fetched_at_utc: '2026-02-23T03:20:00Z'
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false

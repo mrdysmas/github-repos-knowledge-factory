@@ -1,0 +1,60 @@
+artifact_type: intake_clone_prune_policy
+contract_version: 1.0.0-intake
+as_of_utc: "2026-02-24T16:21:47Z"
+
+policy:
+  default_mode: "metadata_preserving_clone_minimization"
+  intent: "Allow deleting local clones after extraction while preserving reproducibility."
+
+required_before_any_clone_deletion:
+  - github_full_name
+  - html_url
+  - source_commit
+  - default_branch
+  - provenance_as_of
+  - shallow_artifact_paths
+  - deep_artifact_paths_or_explicit_deep_skip
+  - canonical_ingestion_status
+
+canonical_ingestion_status_rules:
+  accepted_values:
+    - "not_started"
+    - "shallow_only_canonical"
+    - "shallow_deep_canonical"
+  delete_allowed_only_when:
+    - "shallow_only_canonical"
+    - "shallow_deep_canonical"
+
+retention_tiers:
+  - tier: keep_clone
+    conditions:
+      - "deep scan in progress"
+      - "active bugfix/follow-up task references local workspace paths"
+      - "missing source_commit (reproducibility gap)"
+  - tier: delete_clone_keep_metadata
+    conditions:
+      - "required_before_any_clone_deletion satisfied"
+      - "no active follow-up task requiring local repo"
+      - "canonical_ingestion_status is shallow_only_canonical or shallow_deep_canonical"
+  - tier: archive_only
+    conditions:
+      - "repo no longer in active scope and canonical artifacts retained"
+
+rehydration_contract:
+  clone_command_template: "git clone https://github.com/<owner>/<repo>.git <target_dir>"
+  checkout_template: "git -C <target_dir> checkout <source_commit>"
+  guarantee: "Every deleted clone must be re-hydratable to extraction commit via recorded metadata."
+
+deletion_safety_checks:
+  preflight:
+    - "Verify source_commit resolves in remote."
+    - "Verify referenced shallow/deep files parse."
+    - "Verify provenance source_file paths point to canonical artifacts, not transient temp files."
+  execution:
+    - "Delete clone directory only after preflight PASS."
+  postflight:
+    - "Record deletion_timestamp_utc and approver in intake manifest record."
+
+explicit_non_goals:
+  - "Do not delete canonical artifact files."
+  - "Do not delete clone directories with unresolved deep extraction blockers."

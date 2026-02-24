@@ -1,0 +1,77 @@
+name: nebula
+node_id: repo::slackhq/nebula
+github_full_name: slackhq/nebula
+html_url: https://github.com/slackhq/nebula
+source: ssh_repos
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/repos/nebula.yaml
+  as_of: '2026-02-23'
+directory: nebula-master
+category: vpn_mesh
+summary: |
+  Slack's open-source scalable overlay networking tool that creates secure, encrypted mesh VPNs
+  connecting computers anywhere in the world. Uses Noise Protocol Framework for mutual authentication,
+  lighthouses for peer discovery, and certificate-based identity with built-in security groups for
+  fine-grained traffic control.
+core_concepts:
+  - name: lighthouses
+    description: |
+      Discovery nodes with routable IPs that help peers find each other in the mesh.
+      Lighthouses store peer endpoints and facilitate UDP hole punching for NAT traversal.
+      Minimal compute requirements - a $6/mo VPS suffices.
+  - name: certificates
+    description: |
+      PKI system using X.509-style certificates (v1 protobuf or v2 ASN.1) that assert
+      a node's IP address, name, and group membership. CAs can constrain what IPs, groups,
+      and networks subordinate certificates may contain. Supports Curve25519 (default) or P256.
+  - name: security groups
+    description: |
+      User-defined groups in certificates enable cloud-style firewall rules without
+      provider lock-in. Rules can filter by group membership, allowing expressive
+      traffic policies like "allow SSH from laptop group to servers group".
+key_entry_points:
+  - path: cmd/nebula/main.go:34
+    purpose: Main CLI entry point - loads config, initializes nebula interface, starts the VPN daemon
+  - path: cmd/nebula-cert/main.go:42
+    purpose: Certificate utility - ca, keygen, sign, print, verify commands for PKI management
+  - path: cmd/nebula-service/main.go
+    purpose: OS service wrapper for running nebula as a system daemon (Windows/Linux/macOS)
+  - path: interface.go:148
+    purpose: Interface struct and initialization - core networking engine managing TUN device, UDP connections, hostmap, firewall
+  - path: lighthouse.go:29
+    purpose: LightHouse struct - peer discovery service, address caching, NAT hole punching coordination
+  - path: cert/cert.go:19
+    purpose: Certificate interface - abstracts v1/v2 certificate versions with common operations
+  - path: firewall.go:1
+    purpose: Firewall engine - rule evaluation, conntrack state, packet filtering logic
+  - path: handshake_manager.go:1
+    purpose: Noise Protocol handshake orchestration - manages peer connection establishment
+build_run:
+  language: go
+  go_version: "1.25"
+  package_manager: go mod
+  build_command: make all (all platforms) or go build ./cmd/nebula
+  run_command: ./nebula -config /path/to/config.yml
+  test_command: go test ./...
+  key_dependencies:
+    - flynn/noise (Noise Protocol Framework implementation)
+    - golang.org/x/crypto (cryptographic primitives)
+    - google/gopacket (packet parsing)
+    - vishvananda/netlink (Linux network interfaces)
+ecosystem_connections:
+  similar_to:
+    - wireguard (simpler point-to-point, no built-in discovery/firewall groups)
+    - tailscale (commercial mesh VPN, uses WireGuard under the hood)
+    - zerotier (overlay network with controller-based architecture)
+    - innernet (WireGuard-based mesh with similar CA approach)
+  alternatives:
+    - wireguard (lighter weight but manual peer management)
+    - openvpn (traditional client-server VPN, not mesh)
+    - tinc (older mesh VPN, less modern crypto)
+    - netmaker (WireGuard management platform)
+  used_with:
+    - kubernetes (cluster networking across clouds)
+    - terraform (infrastructure provisioning with nebula nodes)
+    - ansible (configuration management for nebula deployments)
+    - prometheus (built-in metrics export)

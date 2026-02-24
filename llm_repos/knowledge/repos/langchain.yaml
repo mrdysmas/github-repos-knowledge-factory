@@ -1,0 +1,128 @@
+name: langchain
+node_id: repo::langchain-ai/langchain
+github_full_name: langchain-ai/langchain
+html_url: https://github.com/langchain-ai/langchain
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/repos/langchain.yaml
+  as_of: '2026-02-23'
+directory: langchain-master
+category: rag_frameworks
+
+summary: |
+  The dominant Python framework for building LLM applications. Provides standard interfaces
+  for models, embeddings, vector stores, and chains. LangChain abstracts away provider
+  differences, enabling rapid prototyping and model interoperability. The ecosystem
+  includes LangGraph for agent orchestration and LangSmith for observability.
+
+core_concepts:
+  - name: langchain-core
+    description: Base abstractions (interfaces, protocols) that all integrations implement
+    location: libs/core/
+
+  - name: langchain (main package)
+    description: Concrete implementations and high-level utilities
+    location: libs/langchain/
+
+  - name: Partners/Integrations
+    description: Third-party provider integrations (OpenAI, Anthropic, Ollama, etc.)
+    location: libs/partners/
+
+  - name: Runnables
+    description: LCEL (LangChain Expression Language) for composing chains
+    location: libs/core/langchain_core/runnables/
+
+  - name: Messages & Prompts
+    description: Structured prompt templates and chat message abstractions
+    location: libs/core/langchain_core/messages/, libs/core/langchain_core/prompts/
+
+  - name: Output Parsers
+    description: Extract structured data from LLM outputs
+    location: libs/core/langchain_core/output_parsers/
+
+key_entry_points:
+  - path: libs/core/langchain_core/
+    purpose: Core abstractions (language_models, embeddings, vectorstores, tools)
+
+  - path: libs/partners/
+    purpose: Provider integrations (openai, anthropic, ollama, groq, etc.)
+
+  - path: libs/langchain/langchain/
+    purpose: High-level chains, agents, and utilities
+
+  - path: libs/text-splitters/
+    purpose: Document chunking for RAG pipelines
+
+monorepo_packages:
+  - name: langchain-core
+    pypi: langchain-core
+    purpose: Base abstractions
+
+  - name: langchain
+    pypi: langchain
+    purpose: Main package (langchain_v1 in repo)
+
+  - name: langchain-openai
+    pypi: langchain-openai
+    purpose: OpenAI integration
+
+  - name: langchain-anthropic
+    pypi: langchain-anthropic
+    purpose: Anthropic/Claude integration
+
+  - name: langchain-ollama
+    pypi: langchain-ollama
+    purpose: Ollama local model integration
+
+  - name: langchain-chroma
+    pypi: langchain-chroma
+    purpose: Chroma vector store integration
+
+  - name: langchain-qdrant
+    pypi: langchain-qdrant
+    purpose: Qdrant vector store integration
+
+build_run:
+  language: Python
+  manager: uv
+  build: "uv sync --all-groups"
+  test: "make test"
+  lint: "make lint"
+  type_check: "uv run --group lint mypy ."
+
+ecosystem_connections:
+  - target: llama_index
+    relation: alternative_to
+    note: Both are RAG frameworks; LangChain is more general, LlamaIndex focuses on data
+
+  - target: ollama
+    relation: integrates_with
+    note: langchain-ollama package provides local model support
+
+  - target: milvus
+    relation: integrates_with
+    note: langchain-milvus (external repo) for vector storage
+
+  - target: open_webui
+    relation: related_to
+    note: Can be used as backend for chat applications
+
+  - target: mem0
+    relation: related_to
+    note: Both handle memory/conversation context
+
+  - target: ragflow
+    relation: alternative_to
+    note: RAGFlow is document-focused RAG; LangChain is general-purpose
+
+  - target: graphrag
+    relation: related_to
+    note: GraphRAG adds graph-based retrieval; can complement LangChain
+
+further_reading:
+  - libs/README.md
+  - libs/core/README.md
+  - libs/langchain/README.md
+  - docs: https://docs.langchain.com/oss/python/langchain/overview
+  - api_reference: https://reference.langchain.com/python

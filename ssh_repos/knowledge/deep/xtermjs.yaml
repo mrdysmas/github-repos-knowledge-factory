@@ -1,0 +1,216 @@
+name: xtermjs
+node_id: repo::xtermjs/xterm.js
+github_full_name: xtermjs/xterm.js
+html_url: https://github.com/xtermjs/xterm.js
+source: ssh_repos
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/deep/xtermjs.yaml
+  as_of: '2026-02-23'
+directory: xterm.js-master
+category: terminal_ui
+
+# Inherited from shallow file
+summary: |
+  A TypeScript/JavaScript library that brings fully-featured terminal emulation to the browser -
+  rendering VT100/xterm escape sequences, handling input, and providing a programmable terminal
+  UI component used by VS Code, Hyper, and hundreds of web-based terminal applications.
+
+# Deep additions
+architecture:
+  module_breakdown:
+    - module: src/browser/public/Terminal.ts
+      responsibility: Public Terminal class - primary API entry point
+      key_files: [src/browser/public/Terminal.ts]
+    - module: src/browser/CoreBrowserTerminal.ts
+      responsibility: Browser terminal - DOM integration, input events, rendering
+      key_files: [src/browser/CoreBrowserTerminal.ts]
+    - module: src/common/CoreTerminal.ts
+      responsibility: Platform-agnostic core - buffer management, input parsing, services
+      key_files: [src/common/CoreTerminal.ts]
+    - module: src/common/InputHandler.ts
+      responsibility: Escape sequence parser - CSI/OSC/DCS/APC processing
+      key_files: [src/common/InputHandler.ts]
+    - module: src/common/buffer/
+      responsibility: Buffer system - Buffer, BufferSet, BufferLine, circular storage
+      key_files: [src/common/buffer/Buffer.ts, src/common/buffer/BufferSet.ts]
+    - module: src/common/parser/
+      responsibility: Parser - EscapeSequenceParser, type definitions
+      key_files: [src/common/parser/EscapeSequenceParser.ts]
+    - module: src/common/services/
+      responsibility: Services - BufferService, OptionsService, InstantiationService
+      key_files: [src/common/services/]
+    - module: src/browser/renderer/
+      responsibility: Rendering - DOM renderer, shared utilities
+      key_files: [src/browser/renderer/dom/DomRenderer.ts]
+    - module: addons/
+      responsibility: Extensions - web-links, search, serialize, etc.
+      key_files: [addons/addon-web-links/, addons/addon-search/]
+  data_flow: |
+    1. Terminal instantiated with options
+    2. open() creates DOM structure (textarea for input, screen element)
+    3. write() data enters InputHandler
+    4. Parser tokenizes escape sequences (CSI/OSC/DCS/APC)
+    5. Handlers update buffer (cursor, text, attributes)
+    6. RenderService triggers redraw on animation frame
+    7. User input captured via textarea, emitted as onData events
+  key_abstractions:
+    - name: IBuffer
+      purpose: Buffer interface - lines, cursor, scroll position, markers
+    - name: IBufferSet
+      purpose: Manages normal and alternate screen buffers
+    - name: InputHandler
+      purpose: Parses and processes VT100/xterm sequences
+    - name: IService
+      purpose: Dependency injection via InstantiationService
+    - name: ITerminalAddon
+      purpose: Addon interface with activate/dispose lifecycle
+
+implementation_patterns:
+  - pattern: Service-based DI
+    description: Services injected via InstantiationService for loose coupling
+    location: src/common/services/InstantiationService.ts
+  - pattern: Split Architecture
+    description: browser/ vs common/ separates DOM from core logic
+    location: src/browser/CoreBrowserTerminal.ts
+  - pattern: Buffer Pooling
+    description: CircularList for efficient line storage with scrollback
+    location: src/common/buffer/Buffer.ts
+  - pattern: Escape Sequence Parsing
+    description: State machine parser for CSI/OSC/DCS/APC sequences
+    location: src/common/parser/EscapeSequenceParser.ts
+  - pattern: Addon Loading
+    description: ITerminalAddon interface with activate() method
+    location: src/browser/public/Terminal.ts:1419
+  - pattern: Marker System
+    description: Line position tracking for decorations and features
+    location: src/common/buffer/Buffer.ts
+
+configuration:
+  file: TypeScript options (ITerminalOptions)
+  options:
+    - name: allowProposedApi
+      type: boolean
+      default: false
+      description: Enable experimental APIs
+    - name: cols
+      type: number
+      default: 80
+      description: Terminal width in columns
+    - name: rows
+      type: number
+      default: 24
+      description: Terminal height in rows
+    - name: cursorBlink
+      type: boolean
+      default: false
+      description: Enable cursor blinking
+    - name: cursorStyle
+      type: string
+      default: "block"
+      description: Cursor style (block/underline/bar)
+    - name: fontSize
+      type: number
+      default: 15
+      description: Font size in pixels
+    - name: fontFamily
+      type: string
+      default: "courier-new, courier, monospace"
+      description: Font family
+    - name: scrollback
+      type: number
+      default: 1000
+      description: Maximum scrollback lines
+    - name: theme
+      type: ITheme
+      default: {}
+      description: Color theme (foreground, background, cursor, etc.)
+    - name: convertEol
+      type: boolean
+      default: true
+      description: Convert \n to \r\n
+    - name: disableStdin
+      type: boolean
+      default: false
+      description: Disable user input
+    - name: lineHeight
+      type: number
+      default: 1.0
+      description: Line height multiplier
+    - name: letterSpacing
+      type: number
+      default: 0
+      description: Character spacing in pixels
+
+api_surface:
+  public_functions:
+    - name: Terminal constructor
+      signature: "new Terminal(options?: ITerminalOptions)"
+      purpose: Create terminal instance
+      location: src/browser/public/Terminal.ts:25
+    - name: open
+      signature: "open(parent: HTMLElement): void"
+      purpose: Attach terminal to DOM
+      location: src/browser/public/Terminal.ts
+    - name: write
+      signature: "write(data: string | Uint8Array, callback?: () => void): void"
+      purpose: Write data to terminal
+      location: src/browser/public/Terminal.ts
+    - name: onData
+      signature: "onData(callback: (data: string) => void): IDisposable"
+      purpose: Subscribe to input events
+      location: src/browser/public/Terminal.ts
+    - name: onResize
+      signature: "onResize(callback: (size: {cols, rows}) => void): IDisposable"
+      purpose: Subscribe to resize events
+      location: src/browser/public/Terminal.ts
+    - name: loadAddon
+      signature: "loadAddon(addon: ITerminalAddon): void"
+      purpose: Load extension addon
+      location: src/browser/public/Terminal.ts:1419
+    - name: registerLinkProvider
+      signature: "registerLinkProvider(provider: ILinkProvider): IDisposable"
+      purpose: Register custom link detection
+      location: typings/xterm.d.ts:1221
+    - name: registerCsiHandler
+      signature: "registerCsiHandler(id, callback): IDisposable"
+      purpose: Register custom CSI sequence handler
+      location: src/common/public/ParserApi.ts
+    - name: registerOscHandler
+      signature: "registerOscHandler(ident, callback): IDisposable"
+      purpose: Register custom OSC sequence handler
+      location: src/common/public/ParserApi.ts
+
+testing:
+  framework: Jasmine/Mocha
+  structure: test/ directory with unit and integration tests
+  coverage_areas:
+    - Escape sequence parsing
+    - Buffer operations
+    - Input handling
+    - Rendering
+    - Addon loading
+  test_patterns:
+    - Fixtures for escape sequence test data
+    - Mock services for isolated testing
+    - Screenshot tests for rendering
+
+extension_points:
+  - location: src/browser/public/Terminal.ts
+    hook: "ITerminalAddon interface - activate(terminal: Terminal)"
+    example: Create custom addon with new functionality
+  - location: src/common/public/ParserApi.ts
+    hook: registerCsiHandler - Custom CSI sequence handlers
+    example: Support custom terminal extensions
+  - location: src/common/public/ParserApi.ts
+    hook: registerOscHandler - Custom OSC sequence handlers
+    example: Implement proprietary OSC commands
+  - location: typings/xterm.d.ts
+    hook: ILinkProvider interface
+    example: Custom link detection (URLs, file paths, etc.)
+  - location: src/browser/public/Terminal.ts
+    hook: registerCharacterJoiner callback
+    example: Ligature support for programming fonts
+  - location: typings/xterm.d.ts
+    hook: IDecorationOptions via registerDecoration
+    example: Visual overlays, underlines, highlights

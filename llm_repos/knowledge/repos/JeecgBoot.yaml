@@ -1,0 +1,72 @@
+name: JeecgBoot
+node_id: repo::jeecgboot/jeecgboot
+github_full_name: jeecgboot/jeecgboot
+html_url: https://github.com/jeecgboot/jeecgboot
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/repos/JeecgBoot.yaml
+  as_of: '2026-02-23'
+directory: JeecgBoot-main
+category: ui_tools
+
+summary: |
+  Enterprise-level low-code development platform with AI integration. Features
+  chat-based business operations, MCP plugin support, AI application management,
+  model management, and workflow orchestration. Built on SpringBoot (backend)
+  and Vue3/TypeScript (frontend).
+
+core_concepts:
+  - name: Low-Code Platform
+    description: Visual development with drag-and-drop components
+    location: jeecg-module-system/
+
+  - name: AI Integration
+    description: Built-in AI capabilities for chat and automation
+    location: jeecg-module-ai/
+
+  - name: MCP Plugins
+    description: Model Context Protocol plugin architecture
+    location: (AI module)
+
+  - name: Workflow Engine
+    description: Visual workflow orchestration for business processes
+    location: jeecg-module-workflow/
+
+key_entry_points:
+  - path: jeecg-boot-base-core/
+    purpose: Core framework and utilities
+
+  - path: jeecg-module-system/
+    purpose: System management and low-code engine
+
+  - path: jeecg-server-cloud/
+    purpose: Microservices deployment
+
+build_run:
+  language: Java
+  manager: Maven
+  build: "mvn clean install"
+  test: "mvn test"
+  frontend: "cd ant-design-vue-jeecg && npm install && npm run build"
+
+ecosystem_connections:
+  - target: ollama
+    relation: integrates_with
+    note: Can use Ollama as local LLM backend
+
+  - target: vllm
+    relation: integrates_with
+    note: Compatible with vLLM inference servers
+
+  - target: open_webui
+    relation: alternative_to
+    note: JeecgBoot is enterprise low-code; Open WebUI is chat-focused
+
+  - target: maxkb
+    relation: related_to
+    note: Both enterprise platforms with AI capabilities
+
+further_reading:
+  - README.md
+  - README_EN.md

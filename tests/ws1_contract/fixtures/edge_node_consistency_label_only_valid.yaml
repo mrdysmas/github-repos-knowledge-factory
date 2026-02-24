@@ -1,0 +1,15 @@
+contract_version: "1.0.0-ws1"
+nodes:
+  - node_id: repo::langchain
+    kind: repo
+  - node_id: repo::llama_index
+    kind: repo
+edges:
+  - src_id: repo::langchain
+    dst_id: repo::llama_index
+    dst_kind: repo
+    relation: alternative_to
+  - src_id: repo::langchain
+    dst_id: ext::ngrok
+    dst_kind: external_tool
+    relation: references

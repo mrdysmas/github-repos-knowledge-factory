@@ -1,0 +1,103 @@
+artifact_type: ws4_master_build_validation_runs
+generated_at_utc: '2026-02-23T00:00:00Z'
+contract_version: 1.0.0-ws1
+required_commands:
+- step: 1
+  command: python3 tools/ws1_contract_validator.py --workspace-root . --external-node-policy
+    first_class
+  exit_code: 0
+  status: PASS
+  expectation: 'WS1_CONTRACT_STATUS: PASS'
+- step: 2
+  command: python3 tools/ws1_contract_validator.py --workspace-root . --external-node-policy
+    label_only
+  exit_code: 0
+  status: PASS
+  expectation: 'WS1_CONTRACT_STATUS: PASS'
+- step: 3
+  command: python3 tools/trust_gates.py llm_repos/knowledge --production
+  exit_code: 0
+  status: PASS
+  expectation: 'overall_status: PASS and ready_state_allowed: true'
+- step: 4
+  command: python3 tools/trust_gates.py ssh_repos/knowledge --production
+  exit_code: 0
+  status: PASS
+  expectation: 'overall_status: PASS and ready_state_allowed: true'
+- step: 5
+  command: cd llm_repos/knowledge && python3 validate.py
+  exit_code: 0
+  status: PASS
+  expectation: validate.py exits 0
+- step: 6
+  command: cd ssh_repos/knowledge && python3 validate.py
+  exit_code: 0
+  status: PASS
+  expectation: validate.py exits 0
+- step: 7
+  command: python3 tools/ws4_master_compiler.py --workspace-root . --master-index
+    master_index.yaml --master-graph master_graph.yaml --reports-dir reports/ws4_master_build
+  exit_code: 0
+  status: PASS
+  expectation: Compiler writes deterministic master artifacts and WS4 evidence artifacts
+- step: 8
+  command: 'Re-run command #7 and verify deterministic output (artifact hashes unchanged)'
+  exit_code: 0
+  status: PASS
+  expectation: artifact hashes unchanged
+artifact_hashes:
+  master_index.yaml: 5469b44dd2dfefc47af1648f8e8dab0c96cb41411334d163b3eb31920744a29d
+  master_graph.yaml: 846991d3200a3a0c151beae95d033e6e44dc7fbf57a3e23983df141359a9b532
+  reports/ws4_master_build/coverage.yaml: c693ea183624cc20b17f49f8a6ab6600a37670203473f8086f02a4110a85dc4e
+  reports/ws4_master_build/mismatch_report.yaml: 736c21a581fb48a94a2c1f1e714bd8f1c123caf73ccd06641d660fa80f177e2b
+metrics:
+  coverage:
+    repo_records:
+      input_total: 50
+      compiled_total: 50
+      coverage_pct: 100.0
+    edge_records:
+      input_total: 152
+      compiled_total: 152
+      coverage_pct: 100.0
+    node_records:
+      compiled_total: 64
+      repo_nodes: 50
+      external_nodes: 14
+  unmapped_relations:
+    count: 0
+  unknown_repo_node_refs_dst_kind_repo:
+    count: 0
+  stale_records:
+    count: 0
+    repo_records: 0
+    edge_records: 0
+  structured_list_fidelity:
+    source_repos_with_structured_entries: 48
+    compiled_repos_with_preserved_structured_entries: 48
+    preservation_pct: 100.0
+gate_bools:
+  repo_coverage_100pct: true
+  edge_coverage_100pct: true
+  unmapped_relation_types_empty: true
+  unknown_repo_node_refs_dst_kind_repo_zero: true
+  stale_records_zero: true
+  duplicate_repo_node_ids_zero: true
+  compile_errors_zero: true
+  master_index_yaml_parseable: true
+  master_graph_yaml_parseable: true
+  master_repo_records_source_compiled_master: true
+  master_node_records_source_compiled_master: true
+  external_policy_first_class_compatible: true
+  external_policy_label_only_compatible: true
+  structured_list_fidelity_preserved_under_extras: true
+  ws1_contract_first_class_pass: true
+  ws1_contract_label_only_pass: true
+  trust_gates_llm_pass: true
+  trust_gates_ssh_pass: true
+  llm_validate_entrypoint_pass: true
+  ssh_validate_entrypoint_pass: true
+  ws4_command_7_compiler_pass: true
+  ws4_command_8_deterministic_hash_unchanged: true
+  all_required_commands_exit_zero: true
+gate_ready: true

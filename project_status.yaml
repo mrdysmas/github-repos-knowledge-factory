@@ -1,0 +1,171 @@
+version: 1
+as_of_utc: "2026-02-24T18:13:41Z"
+
+phase:
+  id: "0"
+  name: "Master Knowledge Graph Consolidation"
+  status: "COMPLETE"
+  closeout_approved: true
+  closeout_approved_at_utc: "2026-02-24T02:53:46Z"
+
+workstream_closeouts:
+  ws5:
+    status: "COMPLETE"
+    closeout_approved: true
+    closeout_approved_at_utc: "2026-02-23T04:57:06Z"
+
+governance:
+  resolved_at_utc: "2026-02-24T01:41:13Z"
+  decisions:
+    D1:
+      summary: "YAML-only canonical source of truth now; SQLite read-model later only if needed."
+      status: "RESOLVED"
+    D2:
+      summary: "Richer ontology plus canonical mapping."
+      status: "RESOLVED"
+    D3:
+      summary: "First-class external nodes."
+      status: "RESOLVED"
+    D4:
+      summary: "Strict blocking gates."
+      status: "RESOLVED"
+
+canonical:
+  source_of_truth: "YAML artifacts"
+  generated_artifacts:
+    - "master_index.yaml"
+    - "master_graph.yaml"
+  upcoming_workstreams:
+    ws6:
+      status: "PLANNED"
+      purpose: "Deep fact normalization + canonical queryability"
+      primary_contracts:
+        - "contracts/ws1/deep_fact.schema.yaml"
+      primary_specs:
+        - "tools/ws6_deep_integrator.py"
+        - "tools/query_master.py"
+  intake_controls:
+    manifest: "inputs/intake/intake_manifest.yaml"
+    queue: "inputs/intake/intake_queue.yaml"
+    queue_generator: "tools/build_intake_queue_from_master_repo_list.py"
+    queue_sync_gate: "tools/check_intake_queue_sync.py"
+    add_candidate_command: "tools/add_repo_candidate.py"
+    prune_policy: "inputs/intake/prune_policy.yaml"
+    intake_directory: "intake_repos/"
+    source_dirs_pending_consolidation: []
+    strategy: "Queue-driven clone-on-demand from master_repo_list-derived intake queue."
+    active_pilot_batch:
+      status: "CLONED_READY"
+      prepared_at_utc: "2026-02-24T17:06:16Z"
+      repo_count: 10
+      repo_dirs:
+        - "intake_repos/anthropics__claude-code"
+        - "intake_repos/openai__codex"
+        - "intake_repos/langgenius__dify"
+        - "intake_repos/FlowiseAI__Flowise"
+        - "intake_repos/qdrant__qdrant"
+        - "intake_repos/weaviate__weaviate"
+        - "intake_repos/lancedb__lancedb"
+        - "intake_repos/pydantic__pydantic-ai"
+        - "intake_repos/ruvnet__claude-flow"
+        - "intake_repos/gin-gonic__gin"
+  growth_path:
+    input_manifest: "inputs/ws5/ws5_input_manifest.yaml"
+    ingestion: "tools/ws5_remote_ingestion.py"
+    gates:
+      - "tools/ws1_contract_validator.py"
+      - "tools/trust_gates.py"
+      - "llm_repos/knowledge/validate.py"
+      - "ssh_repos/knowledge/validate.py"
+    compile: "tools/ws4_master_compiler.py"
+  execution_tracker: "upcoming_progress_tracker.yaml"
+
+non_canonical:
+  kgraph_repos:
+    allowed_use: "Draft/raw discovery only"
+    restriction: "Must be mapped into WS1/WS5 pipeline before merge artifacts."
+
+todo:
+  walkthrough:
+    - id: "A"
+      topic: "Data structure"
+      status: "PENDING"
+    - id: "B"
+      topic: "Update workflow"
+      status: "IN_PROGRESS"
+    - id: "C"
+      topic: "Quality gates"
+      status: "PENDING"
+    - id: "D"
+      topic: "Query read-model + deep semantic access"
+      status: "PENDING"
+      note: "Explore implementing a generated SQLite/DuckDB read-model keyed by node_id that joins master artifacts with deep files for practical querying."
+    - id: "E"
+      topic: "WS6 deep integration bootstrap"
+      status: "IN_PROGRESS"
+      note: "Define and implement canonical deep facts flow (deep schema + ws6 integrator + master query contract)."
+    - id: "F"
+      topic: "Intake lifecycle + clone prune workflow"
+      status: "IN_PROGRESS"
+      note: "Pilot clone set is prepared (10 repos). Next: record source_commit/provenance and run shallow-first canonicalization through WS5/WS4."
+    - id: "G"
+      topic: "Hard enforcement for intake queue sync"
+      status: "PENDING"
+      note: "Add commit-time enforcement (pre-commit or equivalent) that blocks changes when tools/check_intake_queue_sync.py fails."
+    - id: "H"
+      topic: "Forward execution tracker maintenance"
+      status: "IN_PROGRESS"
+      note: "Use upcoming_progress_tracker.yaml as checkpoint source of truth for M1-M4 progress and metrics."
+
+next_agent_handoff:
+  if_user_asks: "What now? What should we work on?"
+  answer:
+    current_focus: "WS6 Deep Integration + Intake Pilot"
+    read_first:
+      - "project_status.yaml"
+      - "upcoming_progress_tracker.yaml"
+      - "contracts/ws1/deep_fact.schema.yaml"
+      - "tools/ws6_deep_integrator.py"
+      - "tools/query_master.py"
+      - "tools/build_intake_queue_from_master_repo_list.py"
+      - "tools/check_intake_queue_sync.py"
+      - "tools/add_repo_candidate.py"
+      - "inputs/intake/intake_manifest.yaml"
+      - "inputs/intake/intake_queue.yaml"
+      - "inputs/intake/README.md"
+      - "inputs/intake/prune_policy.yaml"
+      - "master_graph_merge_progress.yaml"
+    immediate_next_step:
+      id: "INTAKE-1"
+      objective: "Run shallow-first intake on the prepared 10-repo pilot clone set and capture provenance metadata."
+      first_commands:
+        - "python3 tools/check_intake_queue_sync.py --workspace-root ."
+        - "python3 tools/build_intake_queue_from_master_repo_list.py --workspace-root . --source master_repo_list.yaml --master-index master_index.yaml --output inputs/intake/intake_queue.yaml"
+        - "python3 tools/query_master.py stats"
+        - "python3 tools/ws6_deep_integrator.py --workspace-root . --materialize-spec reports/ws6_deep_integration/spec.yaml"
+      operator_actions:
+        - "Create/update pilot records from inputs/intake/intake_manifest.yaml template for the 10 active pilot clone dirs."
+        - "Capture source_commit/default_branch/provenance for each pilot repo before scan output generation."
+        - "Add net-new candidates only via tools/add_repo_candidate.py (not manual queue edits)."
+        - "Route pilot shallow outputs through WS5/WS4; mark top deep candidates with priority reasons."
+      parallel_step:
+        id: "WS6-1"
+        objective: "Implement executable deep fact materialization in ws6_deep_integrator.py."
+      done_when:
+        - "Queue sync gate passes via tools/check_intake_queue_sync.py."
+        - "inputs/intake/intake_queue.yaml is refreshed and used as source backlog."
+        - "Intake pilot repos are lifecycle-tracked with source_commit + provenance metadata."
+        - "Shallow outputs for pilot repos are canonicalized through WS5/WS4."
+        - "At least 3 pilot repos are flagged as deep candidates with explicit priority reasons."
+        - "WS6 implementation work continues from spec toward materialized deep_facts outputs."
+    recommendation_on_new_data:
+      summary: "Current llm+ssh deep corpus is enough for WS6 v1; run a short intake calibration batch before freezing v1.1."
+      calibration_batch_target: "8-12 additional repos outside current llm/ssh concentration."
+      caution: "Do not block WS6 v1 implementation waiting for broad corpus expansion."
+
+status_docs:
+  current: "project_status.yaml"
+  execution_tracker: "upcoming_progress_tracker.yaml"
+  historical: "master_graph_merge_progress.yaml"
+  archived:
+    - "docs/archive/high_view_summary--master_graph-merge.md"

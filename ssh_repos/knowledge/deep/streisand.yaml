@@ -1,0 +1,202 @@
+name: streisand
+node_id: repo::streisandeffect/streisand
+github_full_name: streisandeffect/streisand
+html_url: https://github.com/streisandeffect/streisand
+source: ssh_repos
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/deep/streisand.yaml
+  as_of: '2026-02-23'
+directory: streisand-master
+category: vpn_mesh
+
+# Inherited from shallow file
+summary: |
+  Ansible-based automation tool that provisions cloud servers with multiple
+  censorship-resistant VPN protocols (WireGuard, OpenVPN, Shadowsocks, Tor bridge, etc.)
+
+# Deep additions
+architecture:
+  module_breakdown:
+    - module: playbooks/streisand.yml
+      responsibility: Master playbook orchestrating all role imports
+      key_files: [playbooks/streisand.yml]
+    - module: playbooks/roles/*-genesis
+      responsibility: Cloud provider provisioning (AWS, Azure, DO, GCE, Linode, Rackspace)
+      key_files: [playbooks/roles/genesis-digitalocean/]
+    - module: playbooks/roles/openvpn
+      responsibility: OpenVPN with TCP/UDP, multiple ports, stunnel support
+      key_files: [playbooks/roles/openvpn/]
+    - module: playbooks/roles/wireguard
+      responsibility: WireGuard VPN configuration
+      key_files: [playbooks/roles/wireguard/]
+    - module: playbooks/roles/shadowsocks
+      responsibility: Shadowsocks proxy with chacha20-ietf-poly1305
+      key_files: [playbooks/roles/shadowsocks/]
+    - module: playbooks/roles/tor-bridge
+      responsibility: Tor bridge with obfs4 (disabled by default)
+      key_files: [playbooks/roles/tor-bridge/]
+    - module: playbooks/roles/streisand-gateway
+      responsibility: Documentation web interface generation
+      key_files: [playbooks/roles/streisand-gateway/]
+    - module: playbooks/roles/nginx
+      responsibility: HTTPS web server for gateway
+      key_files: [playbooks/roles/nginx/]
+    - module: playbooks/roles/sslh
+      responsibility: SSL/TLS multiplexer for protocol hiding
+      key_files: [playbooks/roles/sslh/]
+  data_flow: |
+    1. User runs ./streisand script
+    2. Script prompts for cloud provider selection
+    3. Provider playbook prompts for credentials, region
+    4. Genesis role creates cloud instance
+    5. SSH setup playbook configures access
+    6. streisand.yml imports all enabled VPN roles
+    7. Each role: installs packages, generates configs, sets up firewall
+    8. Gateway role generates HTTPS documentation site
+    9. Client configs downloadable from gateway
+  key_abstractions:
+    - name: Provider Playbook
+      purpose: Cloud-specific YAML with region selection, credential prompts
+      example: digitalocean.yml, amazon.yml
+    - name: Genesis Role
+      purpose: Creates cloud instance, sets up inventory, waits for boot
+      location: playbooks/roles/genesis-*/
+    - name: VPN Role
+      purpose: Installs and configures specific VPN protocol
+      pattern: tasks/main.yml, defaults/main.yml, templates/
+    - name: Site Configuration
+      purpose: User-customizable settings in ~/.streisand/site.yml
+
+implementation_patterns:
+  - pattern: Conditional Role Enablement
+    description: "Services enabled/disabled via when: streisand_*_enabled"
+    location: playbooks/streisand.yml
+  - pattern: Genesis Pattern
+    description: "All providers follow same pattern: SSH key, create instance, wait, inventory"
+    location: playbooks/roles/genesis-digitalocean/tasks/main.yml
+  - pattern: Jinja2 Configuration Templates
+    description: Service configs generated from templates with variable substitution
+    location: playbooks/roles/openvpn/templates/
+  - pattern: Client Profile Generation
+    description: Random client names, profile files, QR codes
+    location: playbooks/roles/openvpn/tasks/docs.yml
+  - pattern: Gateway Documentation
+    description: i18n-docs generates HTML docs in multiple languages
+    location: playbooks/roles/i18n-docs/
+
+configuration:
+  file: global_vars/default-site.yml
+  options:
+    - name: vpn_clients
+      type: int
+      default: 10
+      description: Number of client profiles to generate
+    - name: streisand_ad_blocking_enabled
+      type: bool
+      default: false
+      description: Enable DNS-based ad blocking
+    - name: streisand_openconnect_enabled
+      type: bool
+      default: true
+      description: Enable Cisco AnyConnect VPN
+    - name: streisand_openvpn_enabled
+      type: bool
+      default: true
+      description: Enable OpenVPN
+    - name: streisand_shadowsocks_enabled
+      type: bool
+      default: true
+      description: Enable Shadowsocks proxy
+    - name: streisand_wireguard_enabled
+      type: bool
+      default: true
+      description: Enable WireGuard VPN
+    - name: streisand_tor_enabled
+      type: bool
+      default: false
+      description: Enable Tor bridge
+    - name: streisand_stunnel_enabled
+      type: bool
+      default: true
+      description: Enable TLS wrapper for OpenVPN
+    - name: upstream_dns_servers
+      type: list
+      default: ["1.1.1.1", "1.0.0.1"]
+      description: Upstream DNS servers
+
+vpn_protocols:
+  - name: OpenConnect
+    role: openconnect
+    port: "443 (sslh)"
+    config: client.mobileconfig
+  - name: OpenVPN
+    role: openvpn
+    ports: "636/8757 TCP/UDP"
+    encryption: AES-256-CBC
+  - name: Shadowsocks
+    role: shadowsocks
+    port: "8530"
+    encryption: chacha20-ietf-poly1305
+  - name: WireGuard
+    role: wireguard
+    port: "51820"
+    encryption: AES-256-GCM
+  - name: SSH Forward
+    role: ssh-forward
+    type: SOCKS proxy
+  - name: TinyProxy
+    role: tinyproxy
+    port: "8888"
+    type: HTTP proxy
+  - name: Tor Bridge
+    role: tor-bridge
+    default: disabled
+  - name: Cloudflared
+    role: cloudflared
+    default: disabled
+    type: DNS-over-HTTPS
+
+cloud_providers:
+  - name: Amazon Web Services
+    playbook: amazon.yml
+    regions: 18
+    features: VPC/Subnet, Auto-recovery alarms
+  - name: Azure
+    playbook: azure.yml
+    features: Network security groups
+  - name: DigitalOcean
+    playbook: digitalocean.yml
+    regions: 12
+    auth: Personal Access Token
+  - name: Google Cloud
+    playbook: google.yml
+    features: Compute Engine, VPC networks
+  - name: Linode
+    playbook: linode.yml
+  - name: Rackspace
+    playbook: rackspace.yml
+  - name: Local/Existing
+    playbook: localhost.yml, existing-server.yml
+
+testing:
+  framework: Ansible check mode, manual testing
+  structure: playbooks/roles/test-client/
+  coverage: Client configuration validation, gateway connectivity tests
+
+extension_points:
+  - location: playbooks/roles/
+    hook: New VPN protocol role (create new subdirectory)
+    example: Create role with tasks/, defaults/, templates/, docs.yml, mirror.yml
+  - location: global_vars/default-site.yml
+    hook: Service enablement variable
+    example: "streisand_{protocol}_enabled: yes"
+  - location: playbooks/streisand.yml
+    hook: Role import
+    example: "- role: {protocol}\n  when: streisand_{protocol}_enabled"
+  - location: playbooks/roles/
+    hook: New cloud provider genesis role
+    example: Implement genesis pattern with provider-specific API calls
+  - location: playbooks/customize.yml
+    hook: Customization prompts
+    example: Add vars_prompt for new configuration options

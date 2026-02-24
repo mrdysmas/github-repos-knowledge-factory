@@ -1,0 +1,231 @@
+version: '1.0'
+generated: 2026-02-21
+total_repos: 24
+categories:
+  tunneling:
+    description: Reverse tunneling and port forwarding tools
+    repos:
+    - bore
+    - rathole
+    - frp
+    - gost
+    - hsync
+    - vgrok
+    - ytunnel
+    - tunnelite
+    - mmar
+  vpn_mesh:
+    description: VPN and mesh networking solutions
+    repos:
+    - headscale
+    - hysteria
+    - nebula
+    - streisand
+    - tailscale
+  remote_access:
+    description: SSH and remote access utilities
+    repos:
+    - sshuttle
+    - teleport
+  terminal_ui:
+    description: Terminal emulators and web UIs
+    repos:
+    - xtermjs
+  network_utils:
+    description: Network utility libraries
+    repos:
+    - netmask
+  network_infrastructure:
+    description: Network infrastructure and access platforms
+    repos:
+    - cloudflared
+    - pangolin
+  documentation:
+    description: Guides and reference documentation
+    repos:
+    - self-hosting-guide
+    - hiddify-app
+    - awesome-tunneling
+    - yubikey-guide
+repos:
+  awesome-tunneling:
+    category: documentation
+    directory: awesome-tunneling-master
+    summary: Curated list of tunneling tools and solutions
+  bore:
+    category: tunneling
+    directory: bore-main
+    summary: Minimalist Rust TCP tunnel (~400 LOC)
+    language: rust
+  frp:
+    category: tunneling
+    directory: frp-dev
+    summary: Fast reverse proxy with extensive features
+    language: go
+  gost:
+    category: tunneling
+    directory: gost-master
+    summary: GO Simple Tunnel - 40+ protocol support
+    language: go
+  headscale:
+    category: vpn_mesh
+    directory: headscale-main
+    summary: Open-source Tailscale control server
+    language: go
+  hiddify-app:
+    category: documentation
+    directory: hiddify-app-main
+    summary: Cross-platform proxy/VPN client (Flutter)
+    language: dart
+  hsync:
+    category: tunneling
+    directory: hsync-master
+    summary: Node.js tunnel with WebRTC P2P
+    language: javascript
+  hysteria:
+    category: vpn_mesh
+    directory: hysteria-master
+    summary: QUIC-based proxy for censorship resistance
+    language: go
+  mmar:
+    category: tunneling
+    directory: mmar-master
+    summary: Zero-dependency HTTP tunnel (Go)
+    language: go
+  nebula:
+    category: vpn_mesh
+    directory: nebula-master
+    summary: Slack's scalable mesh VPN
+    language: go
+  netmask:
+    category: network_utils
+    directory: netmask-main
+    summary: Python tunnel with encryption
+    language: python
+  pangolin:
+    category: network_infrastructure
+    directory: pangolin-main
+    summary: Identity-aware VPN and reverse proxy
+    language: typescript
+  rathole:
+    category: tunneling
+    directory: rathole-main
+    summary: High-performance Rust reverse proxy
+    language: rust
+  self-hosting-guide:
+    category: documentation
+    directory: Self-Hosting-Guide-main
+    summary: Comprehensive self-hosting guide
+  sshuttle:
+    category: remote_access
+    directory: sshuttle-master
+    summary: '''Poor man''s VPN'' over SSH'
+    language: python
+  streisand:
+    category: vpn_mesh
+    directory: streisand-master
+    summary: Ansible-based multi-protocol VPN provisioner
+    language: ansible
+  teleport:
+    category: remote_access
+    directory: teleport-master
+    summary: Identity-aware access plane for infrastructure
+    language: go
+  tunnelite:
+    category: tunneling
+    directory: tunnelite-master
+    summary: .NET tunnel with SignalR
+    language: csharp
+  vgrok:
+    category: tunneling
+    directory: vgrok-main
+    summary: Tunnel via Vercel sandboxes
+    language: typescript
+  xtermjs:
+    category: terminal_ui
+    directory: xterm.js-master
+    summary: Terminal emulator for the browser
+    language: typescript
+  ytunnel:
+    category: tunneling
+    directory: ytunnel-master
+    summary: TUI for Cloudflare Tunnel management
+    language: rust
+  yubikey-guide:
+    category: documentation
+    directory: YubiKey-Guide-main
+    summary: YubiKey for GPG and SSH guide
+  cloudflared:
+    category: network_infrastructure
+    directory: remote::cloudflare/cloudflared
+    summary: Cloudflare Tunnel client for exposing private services through Cloudflare
+      Zero Trust.
+    language: go
+  tailscale:
+    category: vpn_mesh
+    directory: remote::tailscale/tailscale
+    summary: WireGuard-based mesh networking platform with identity-aware connectivity
+      controls.
+    language: go
+languages:
+  rust:
+  - bore
+  - rathole
+  - ytunnel
+  go:
+  - frp
+  - gost
+  - headscale
+  - hysteria
+  - mmar
+  - nebula
+  - teleport
+  python:
+  - netmask
+  - sshuttle
+  typescript:
+  - pangolin
+  - vgrok
+  - xtermjs
+  javascript:
+  - hsync
+  dart:
+  - hiddify-app
+  csharp:
+  - tunnelite
+  ansible:
+  - streisand
+key_alternatives:
+  ngrok:
+  - bore
+  - rathole
+  - frp
+  - mmar
+  - vgrok
+  - tunnelite
+  - netmask
+  tailscale:
+  - headscale
+  - nebula
+  openvpn:
+  - sshuttle
+  - streisand
+  ssh:
+  - teleport
+  - sshuttle
+stats:
+  by_category:
+    tunneling: 9
+    vpn_mesh: 4
+    documentation: 4
+    remote_access: 2
+    terminal_ui: 1
+    network_utils: 1
+    network_infrastructure: 1
+  by_language:
+    go: 7
+    rust: 3
+    typescript: 3
+    python: 2
+    documentation: 3
+    other: 4

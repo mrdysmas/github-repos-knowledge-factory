@@ -1,0 +1,246 @@
+# Deep Knowledge: Khoj
+# Repository: khoj-master
+# Last Updated: 2026-02-22
+
+name: khoj
+node_id: repo::khoj-ai/khoj
+github_full_name: khoj-ai/khoj
+html_url: https://github.com/khoj-ai/khoj
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep/khoj.yaml
+  as_of: '2026-02-23'
+description: AI personal assistant with document indexing and multi-LLM support
+tech_stack:
+  - Python
+  - FastAPI
+  - Django
+  - PostgreSQL
+  - pgvector
+
+# Core Architecture
+architecture:
+  pattern: Hybrid (Django + FastAPI)
+  components:
+    - name: FastAPI Routes
+      path: src/khoj/routers/
+      description: API endpoints for chat, search, content management
+    - name: Django ORM
+      path: src/khoj/app/
+      description: Database models, migrations, admin interface
+    - name: Content Processors
+      path: src/khoj/processor/content/
+      description: Document parsing for various formats
+    - name: Conversation
+      path: src/khoj/processor/conversation/
+      description: Multi-LLM chat handlers
+    - name: Agent Framework
+      path: src/khoj/processor/operator/
+      description: Computer/browser automation agents
+
+# Code Patterns
+code_patterns:
+  - pattern: Django+FastAPI Hybrid
+    files:
+      - src/khoj/main.py
+      - src/khoj/configure.py
+    key_functions:
+      - run()
+      - start_server()
+      - initialize_server()
+      - configure_routes()
+    description: |
+      Django initializes first for ORM access, then FastAPI app created.
+      Django ASGI mounted at /server path.
+      FastAPI handles web routes while Django manages data layer.
+
+  - pattern: Content Processors
+    base_class: src/khoj/processor/content/text_to_entries.py
+    implementations:
+      - file: src/khoj/processor/content/org_mode/org_to_entries.py
+        class: OrgToEntries
+        format: Emacs Org mode
+      - file: src/khoj/processor/content/markdown/markdown_to_entries.py
+        class: MarkdownToEntries
+        format: Markdown files
+      - file: src/khoj/processor/content/pdf/
+        format: PDF documents
+      - file: src/khoj/processor/content/images/
+        format: Images with OCR
+      - file: src/khoj/processor/content/plaintext/
+        format: Plain text files
+    description: |
+      Each processor inherits from TextToEntries base class.
+      Process: extract entries → split tokens → update embeddings.
+      Returns counts of new/deleted embeddings.
+
+  - pattern: Multi-LLM Chat
+    file: src/khoj/processor/conversation/utils.py
+    implementations:
+      - file: src/khoj/processor/conversation/openai/gpt.py
+        functions: converse_openai(), openai_send_message_to_model()
+      - file: src/khoj/processor/conversation/anthropic/
+        provider: Anthropic Claude
+      - file: src/khoj/processor/conversation/google/
+        provider: Google Gemini
+    key_components:
+      - model_to_prompt_size
+      - Agent framework classes
+      - Conversation state management
+    description: |
+      Abstraction layer for multiple LLM providers.
+      Handles context management, token counting.
+      Implements retry with exponential backoff.
+
+  - pattern: Agent Framework
+    base_class: src/khoj/processor/operator/operator_agent_base.py
+    implementations:
+      - file: src/khoj/processor/operator/operator_agent_openai.py
+      - file: src/khoj/processor/operator/operator_agent_anthropic.py
+      - file: src/khoj/processor/operator/operator_agent_binary.py
+    environments:
+      - file: src/khoj/processor/operator/operator_environment_computer.py
+        type: Desktop automation
+      - file: src/khoj/processor/operator/operator_environment_browser.py
+        type: Browser automation
+    key_methods:
+      - act()
+      - summarize()
+      - add_action_results()
+    description: |
+      Abstract base class for agents with tool calling.
+      Context compression for long conversations.
+      Trajectory tracking and summarization.
+
+  - pattern: Embeddings + Search
+    file: src/khoj/processor/embeddings.py
+    class: EmbeddingsModel
+    key_methods:
+      - embed_query()
+      - embed_documents()
+      - embed_with_openai()
+      - embed_with_hf()
+    search_types:
+      - Vector similarity search
+      - Cross-encoder re-ranking
+      - Multi-modal support
+    description: |
+      Supports local (SentenceTransformers), OpenAI API, HuggingFace.
+      pgvector for PostgreSQL vector storage.
+
+# Configuration
+environment:
+  required:
+    - key: KHOJ_DJANGO_SECRET_KEY
+      description: Django session secret
+
+  optional:
+    - key: KHOJ_DOMAIN
+      default: localhost
+      description: Custom domain for production
+    - key: KHOJ_NO_HTTPS
+      default: "false"
+      description: Disable HTTPS (true/false)
+
+cli_arguments:
+  - flag: --host
+    default: 127.0.0.1
+    description: Server bind address
+  - flag: --port
+    default: "42110"
+    description: Server port
+  - flag: --log-file
+    default: ~/.khoj/khoj.log
+    description: Log file path
+  - flag: --verbose
+    default: "0"
+    description: Verbosity level
+  - flag: --anonymous-mode
+    default: "false"
+    description: Single user mode, no auth required
+  - flag: --non-interactive
+    default: "false"
+    description: Skip interactive prompts
+  - flag: --sslcert
+    description: SSL certificate path
+  - flag: --sslkey
+    description: SSL key path
+  - flag: --socket
+    description: UNIX socket path
+
+# Commands
+commands:
+  installation:
+    command: pip install -e '.[dev]'
+    alternatives:
+      - uv sync --all-extras
+      - ./scripts/dev_setup.sh
+    description: Install with development dependencies
+
+  running:
+    command: python -m khoj.main
+    description: Start server with defaults
+    alternatives:
+      - python -m khoj.main --host 0.0.0.0
+      - python -m khoj.main --port 8080
+      - python -m khoj.main --anonymous-mode
+
+  database:
+    command: python manage.py migrate
+    description: Run Django migrations
+    alternatives:
+      - python manage.py showmigrations
+
+# Troubleshooting
+troubleshooting:
+  - issue: Database connection errors
+    symptom: Migration failures, connection refused
+    cause: PostgreSQL not running or pgvector not installed
+    solution: |
+      Check PostgreSQL status, ensure pgvector extension is available:
+      python manage.py showmigrations
+
+  - issue: Model not loading
+    symptom: Embeddings fail, search returns empty
+    cause: SearchModelConfig not properly configured
+    solution: |
+      Verify SearchModelConfig has valid embedding model.
+      Check model path or API credentials.
+
+  - issue: Authentication failures
+    symptom: 401 errors on API calls
+    cause: Invalid bearer token format or expired token
+    solution: |
+      Verify bearer token format: "Bearer <token>"
+      Try --anonymous-mode for testing.
+
+  - issue: Content not indexed
+    symptom: Search doesn't find documents
+    cause: Content processor failed or not configured
+    solution: |
+      Check file permissions and formats.
+      Verify content source configuration.
+
+# Integration Points
+integrations:
+  api_endpoints:
+    - path: /api/chat
+      method: POST
+      description: Chat with AI assistant
+    - path: /api/index/update
+      method: POST
+      description: Update content index
+    - path: /api/search
+      method: GET
+      description: Search indexed content
+
+  content_sources:
+    - Org mode files
+    - Markdown files
+    - PDF documents
+    - GitHub repositories
+    - Notion pages
+
+  mcp:
+    - description: Model Context Protocol integration for agents

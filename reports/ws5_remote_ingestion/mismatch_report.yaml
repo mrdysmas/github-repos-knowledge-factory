@@ -1,0 +1,37 @@
+artifact_type: ws5_remote_ingestion_mismatch_report
+generated_at_utc: '2026-02-23T00:00:00Z'
+contract_version: 1.0.0-ws1
+summary:
+  manifest_parse_errors_count: 0
+  invalid_manifest_entries_count: 0
+  unsupported_source_values_count: 0
+  readme_fallback_entries_count: 0
+  invalid_provenance_shards_count: 0
+  local_cache_policy_violations_count: 0
+  duplicate_node_ids_count: 0
+  duplicate_repo_file_paths_count: 0
+  write_failures_count: 0
+  blocking_mismatches_count: 0
+manifest_parse_errors: []
+invalid_manifest_entries: []
+unsupported_source_values: []
+invalid_provenance_shards: []
+local_cache_policy_violations: []
+duplicate_node_ids: []
+duplicate_repo_file_paths: []
+write_failures: []
+gate_summary:
+  gate_bools:
+    manifest_parseable: true
+    manifest_entries_present: true
+    manifest_entries_all_valid: true
+    source_values_remote_only: true
+    source_values_within_ws1_enum: true
+    provenance_shard_values_valid: true
+    duplicate_node_ids_zero: true
+    duplicate_repo_file_paths_zero: true
+    local_cache_dir_null_when_absent: true
+    repo_writes_succeeded: true
+    required_field_coverage_100pct: true
+    blocking_mismatches_zero: true
+  gate_ready: true

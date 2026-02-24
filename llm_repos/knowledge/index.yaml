@@ -1,0 +1,177 @@
+# LLM Repos Knowledge Base - Master Index
+# Each repo has a detailed entry in repos/{name}.yaml
+
+metadata:
+  created: 2026-02-20
+  purpose: Quick reference for LLM-related repositories
+  total_repos: 26
+
+categories:
+  rag_frameworks:
+    description: RAG, orchestration, and LLM application frameworks
+    repos:
+      - name: awesome-llm-apps
+        summary: Curated collection of practical LLM applications with RAG, agents, MCP examples
+      - name: graphrag
+        summary: Microsoft's knowledge graph-based RAG for narrative data
+      - name: langchain
+        summary: Dominant Python LLM framework with provider abstractions
+      - name: llama_index
+        summary: Data-focused RAG framework with 300+ integrations
+      - name: llm-app
+        summary: Pathway-based real-time RAG templates with live document indexing
+      - name: ragflow
+        summary: Full-stack RAG platform with deep document understanding
+
+  inference_serving:
+    description: Model serving and inference engines
+    repos:
+      - name: llama.cpp
+        summary: C/C++ inference engine, GGUF format pioneer, CPU-optimized
+      - name: lmdeploy
+        summary: High-performance toolkit with TurboMind engine, strong quantization
+      - name: nexa_sdk
+        summary: On-device AI for mobile/edge with NPU support (Qualcomm, Apple, Intel)
+      - name: ollama
+        summary: Easiest way to run LLMs locally, wraps llama.cpp
+      - name: vllm
+        summary: High-throughput inference with PagedAttention, production-ready
+      - name: xinference
+        summary: Versatile serving for LLM/image/audio/multimodal, multi-backend
+
+  ui_tools:
+    description: Web UIs and developer tools
+    repos:
+      - name: anything_llm
+        summary: All-in-one desktop/server app for document chat, no-code agents
+      - name: JeecgBoot
+        summary: Enterprise low-code platform with AI integration, MCP plugins (Java/Vue)
+      - name: maxkb
+        summary: Enterprise agent platform with RAG, workflows, MCP tools (Chinese)
+      - name: open_webui
+        summary: Feature-rich self-hosted ChatGPT UI with RAG, most popular for Ollama
+
+  agent_frameworks:
+    description: Agent orchestration and memory systems
+    repos:
+      - name: khoj
+        summary: Personal AI second brain with RAG, multi-platform access, custom agents
+      - name: mem0
+        summary: Intelligent memory layer for personalized AI (Y Combinator S24)
+      - name: parlant
+        summary: Enterprise agent framework with ensured compliance and behavioral guidelines
+
+  vector_databases:
+    description: Vector storage and retrieval
+    repos:
+      - name: milvus
+        summary: High-performance scalable vector DB, K8s-native, Go/C++
+
+  fine_tuning:
+    description: Model fine-tuning and training
+    repos:
+      - name: llamafactory
+        summary: Zero-code fine-tuning for 100+ LLMs with Web UI
+
+  evaluation:
+    description: Model evaluation and benchmarking
+    repos:
+      - name: opencompass
+        summary: Comprehensive LLM evaluation toolkit, 100+ benchmarks
+
+  data_pipelines:
+    description: Real-time data processing and ETL for AI/LLM
+    repos:
+      - name: mindsdb
+        summary: Data federation platform with MCP server, knowledge bases
+      - name: pathway
+        summary: Stream processing framework with LLM/RAG xpack, Rust engine
+
+  educational:
+    description: Tutorials, guides, and learning resources for LLM development
+    repos:
+      - name: Prompt-Engineering-Guide
+        summary: Comprehensive prompt engineering guide with techniques and patterns
+      - name: self-llm
+        summary: Chinese-language tutorials for open-source LLM deployment and fine-tuning
+
+# Quick reference: all repos alphabetically
+repos_alpha:
+  - name: anything_llm
+    category: ui_tools
+    file: repos/anything_llm.yaml
+  - name: awesome-llm-apps
+    category: rag_frameworks
+    file: repos/awesome-llm-apps.yaml
+  - name: graphrag
+    category: rag_frameworks
+    file: repos/graphrag.yaml
+  - name: JeecgBoot
+    category: ui_tools
+    file: repos/JeecgBoot.yaml
+  - name: khoj
+    category: agent_frameworks
+    file: repos/khoj.yaml
+  - name: langchain
+    category: rag_frameworks
+    file: repos/langchain.yaml
+  - name: llama.cpp
+    category: inference_serving
+    file: repos/llama.cpp.yaml
+  - name: llamafactory
+    category: fine_tuning
+    file: repos/llamafactory.yaml
+  - name: llama_index
+    category: rag_frameworks
+    file: repos/llama_index.yaml
+  - name: llm-app
+    category: rag_frameworks
+    file: repos/llm-app.yaml
+  - name: lmdeploy
+    category: inference_serving
+    file: repos/lmdeploy.yaml
+  - name: maxkb
+    category: ui_tools
+    file: repos/maxkb.yaml
+  - name: mem0
+    category: agent_frameworks
+    file: repos/mem0.yaml
+  - name: mindsdb
+    category: data_pipelines
+    file: repos/mindsdb.yaml
+  - name: milvus
+    category: vector_databases
+    file: repos/milvus.yaml
+  - name: nexa_sdk
+    category: inference_serving
+    file: repos/nexa_sdk.yaml
+  - name: ollama
+    category: inference_serving
+    file: repos/ollama.yaml
+  - name: open_webui
+    category: ui_tools
+    file: repos/open_webui.yaml
+  - name: opencompass
+    category: evaluation
+    file: repos/opencompass.yaml
+  - name: parlant
+    category: agent_frameworks
+    file: repos/parlant.yaml
+  - name: pathway
+    category: data_pipelines
+    file: repos/pathway.yaml
+  - name: Prompt-Engineering-Guide
+    category: educational
+    file: repos/Prompt-Engineering-Guide.yaml
+  - name: ragflow
+    category: rag_frameworks
+    file: repos/ragflow.yaml
+  - name: self-llm
+    category: educational
+    file: repos/self-llm.yaml
+  - name: vllm
+    category: inference_serving
+    file: repos/vllm.yaml
+  - name: xinference
+    category: inference_serving
+    file: repos/xinference.yaml

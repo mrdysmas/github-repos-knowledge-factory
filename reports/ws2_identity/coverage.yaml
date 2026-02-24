@@ -1,0 +1,91 @@
+artifact_type: ws2_identity_coverage_report
+generated_at_utc: '2026-02-23T00:21:16Z'
+contract_version: 1.0.0-ws1
+scope:
+  definition: All shard repo and deep YAML records 
+    (llm_repos/knowledge/{repos,deep}, ssh_repos/knowledge/{repos,deep})
+  total_records: 96
+  shard_record_counts:
+    llm_repos:
+      repos: 26
+      deep: 26
+    ssh_repos:
+      repos: 22
+      deep: 22
+required_identity_fields:
+  - node_id
+  - github_full_name
+  - html_url
+  - source
+  - provenance
+coverage_by_shard_and_artifact:
+  llm_repos:
+    repos:
+      scoped_records: 26
+      required_field_presence_counts:
+        node_id: 26
+        github_full_name: 26
+        html_url: 26
+        source: 26
+        provenance: 26
+      required_field_coverage_pct:
+        node_id: 100.0
+        github_full_name: 100.0
+        html_url: 100.0
+        source: 100.0
+        provenance: 100.0
+    deep:
+      scoped_records: 26
+      required_field_presence_counts:
+        node_id: 26
+        github_full_name: 26
+        html_url: 26
+        source: 26
+        provenance: 26
+      required_field_coverage_pct:
+        node_id: 100.0
+        github_full_name: 100.0
+        html_url: 100.0
+        source: 100.0
+        provenance: 100.0
+  ssh_repos:
+    repos:
+      scoped_records: 22
+      required_field_presence_counts:
+        node_id: 22
+        github_full_name: 22
+        html_url: 22
+        source: 22
+        provenance: 22
+      required_field_coverage_pct:
+        node_id: 100.0
+        github_full_name: 100.0
+        html_url: 100.0
+        source: 100.0
+        provenance: 100.0
+    deep:
+      scoped_records: 22
+      required_field_presence_counts:
+        node_id: 22
+        github_full_name: 22
+        html_url: 22
+        source: 22
+        provenance: 22
+      required_field_coverage_pct:
+        node_id: 100.0
+        github_full_name: 100.0
+        html_url: 100.0
+        source: 100.0
+        provenance: 100.0
+overall:
+  records_with_all_required_fields: 96
+  records_with_all_required_fields_pct: 100.0
+  duplicate_node_id_count: 0
+  malformed_field_count: 0
+  provenance_error_count: 0
+gate_evaluation:
+  identity_field_coverage_100pct: true
+  duplicate_node_id_zero: true
+  malformed_identity_fields_zero: true
+  provenance_requirements_met: true
+  gate_ready: true

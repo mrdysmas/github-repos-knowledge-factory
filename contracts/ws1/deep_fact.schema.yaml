@@ -1,0 +1,251 @@
+contract_version: "1.0.0-ws6-draft"
+artifact_type: "ws1_deep_fact_schema"
+source_enums:
+  - llm_repos
+  - ssh_repos
+  - remote_metadata
+  - remote_api
+  - compiled_master
+fact_type_enums:
+  - component
+  - config_option
+  - api_endpoint
+  - implementation_pattern
+  - extension_point
+  - operational_task
+  - failure_mode
+  - protocol_usage
+predicate_enums:
+  - has_component
+  - has_config_option
+  - exposes_api_endpoint
+  - implements_pattern
+  - has_extension_point
+  - supports_task
+  - has_failure_mode
+  - uses_protocol
+object_kind_enums:
+  - text
+  - repo
+  - external_tool
+  - concept
+  - path
+  - config_key
+  - api_route
+  - command
+  - protocol
+  - issue
+evidence_kind_enums:
+  - file_line
+  - file_block
+  - doc_url
+  - command_output
+schema:
+  $schema: "https://json-schema.org/draft/2020-12/schema"
+  title: "WS6 Canonical Deep Facts (Per-Repo File)"
+  type: object
+  additionalProperties: false
+  required:
+    - name
+    - node_id
+    - github_full_name
+    - html_url
+    - source
+    - provenance
+    - facts
+  properties:
+    name:
+      type: string
+      minLength: 1
+    node_id:
+      type: string
+      pattern: "^repo::[^/]+/[^/]+$"
+    github_full_name:
+      type: string
+      pattern: "^[^/]+/[^/]+$"
+    html_url:
+      type: string
+      pattern: "^https://"
+    source:
+      type: string
+      enum:
+        - llm_repos
+        - ssh_repos
+        - remote_metadata
+        - remote_api
+        - compiled_master
+    provenance:
+      type: object
+      additionalProperties: false
+      required:
+        - shard
+        - source_file
+        - as_of
+      properties:
+        shard:
+          type: string
+          enum:
+            - llm_repos
+            - ssh_repos
+            - merged
+        source_file:
+          type: string
+          minLength: 1
+        as_of:
+          type: string
+          minLength: 1
+        extractor_version:
+          type: string
+          minLength: 1
+    facts:
+      type: array
+      minItems: 1
+      items:
+        type: object
+        additionalProperties: false
+        required:
+          - fact_id
+          - fact_type
+          - predicate
+          - object_kind
+          - confidence
+          - as_of
+          - provenance
+          - evidence
+        properties:
+          fact_id:
+            type: string
+            pattern: "^fact::[a-z0-9._-]+$"
+          fact_type:
+            type: string
+            enum:
+              - component
+              - config_option
+              - api_endpoint
+              - implementation_pattern
+              - extension_point
+              - operational_task
+              - failure_mode
+              - protocol_usage
+          predicate:
+            type: string
+            enum:
+              - has_component
+              - has_config_option
+              - exposes_api_endpoint
+              - implements_pattern
+              - has_extension_point
+              - supports_task
+              - has_failure_mode
+              - uses_protocol
+          object_kind:
+            type: string
+            enum:
+              - text
+              - repo
+              - external_tool
+              - concept
+              - path
+              - config_key
+              - api_route
+              - command
+              - protocol
+              - issue
+          object_value:
+            type: string
+            minLength: 1
+          object_node_id:
+            type: string
+            minLength: 1
+          note:
+            type: string
+          confidence:
+            type: number
+            minimum: 0.0
+            maximum: 1.0
+          as_of:
+            type: string
+            minLength: 1
+          provenance:
+            type: object
+            additionalProperties: false
+            required:
+              - source_file
+            properties:
+              source_file:
+                type: string
+                minLength: 1
+              source_section:
+                type: string
+              extraction_mode:
+                type: string
+          evidence:
+            type: array
+            minItems: 1
+            items:
+              type: object
+              additionalProperties: false
+              required:
+                - kind
+                - ref
+                - source_file
+              properties:
+                kind:
+                  type: string
+                  enum:
+                    - file_line
+                    - file_block
+                    - doc_url
+                    - command_output
+                ref:
+                  type: string
+                  minLength: 1
+                source_file:
+                  type: string
+                  minLength: 1
+                excerpt:
+                  type: string
+                start_line:
+                  type: integer
+                  minimum: 1
+                end_line:
+                  type: integer
+                  minimum: 1
+        allOf:
+          - if:
+              properties:
+                object_kind:
+                  const: repo
+            then:
+              required:
+                - object_node_id
+              properties:
+                object_node_id:
+                  type: string
+                  pattern: "^repo::[^/]+/[^/]+$"
+          - if:
+              properties:
+                object_kind:
+                  const: external_tool
+            then:
+              required:
+                - object_node_id
+              properties:
+                object_node_id:
+                  type: string
+                  pattern: "^external_tool::.+$"
+          - if:
+              properties:
+                object_kind:
+                  enum:
+                    - text
+                    - concept
+                    - path
+                    - config_key
+                    - api_route
+                    - command
+                    - protocol
+                    - issue
+            then:
+              required:
+                - object_value

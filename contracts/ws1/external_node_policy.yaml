@@ -1,0 +1,26 @@
+contract_version: "1.0.0-ws1"
+artifact_type: "ws1_external_node_policy"
+decision_state:
+  decision_id: D3
+  status: OPEN
+  note: "WS1 keeps D3 open; runtime mode is required for validator enforcement."
+policy_modes:
+  first_class:
+    description: "All non-repo external targets must be explicit nodes with kind external_tool or concept."
+    validator_implications:
+      - "Edge src_id and dst_id must both resolve to declared node records."
+      - "Edge dst_kind must equal destination node kind."
+      - "External nodes require external_ref metadata."
+  label_only:
+    description: "Non-repo external targets can remain edge labels without explicit node declarations."
+    validator_implications:
+      - "Edge src_id must resolve to a declared node record."
+      - "Edge dst_kind=repo always requires explicit destination node."
+      - "If destination node is declared, edge dst_kind must still match destination node kind."
+runtime_enforcement:
+  required_runtime_selection: true
+  cli_flag: "--external-node-policy"
+  allowed_values:
+    - first_class
+    - label_only
+  recommended_mode: first_class

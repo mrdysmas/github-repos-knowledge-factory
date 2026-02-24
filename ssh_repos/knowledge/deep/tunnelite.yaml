@@ -1,0 +1,182 @@
+name: tunnelite
+node_id: repo::cristipufu/tunnelite
+github_full_name: cristipufu/tunnelite
+html_url: https://github.com/cristipufu/tunnelite
+source: ssh_repos
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+  as_of: '2026-02-23'
+directory: tunnelite-master
+category: tunneling
+
+# Inherited from shallow file
+summary: |
+  A .NET tunneling tool that exposes local applications to the internet via websocket connections, supporting HTTP(S), WebSocket, SSE, and TCP tunneling through a managed service or self-hosted server.
+
+# Deep additions
+architecture:
+  module_breakdown:
+    - module: src/Tunnelite.Sdk/
+      responsibility: Core client SDK with SignalR implementations for all tunnel types
+      key_files: [src/Tunnelite.Sdk/ITunnelClient.cs, src/Tunnelite.Sdk/HttpTunnel/HttpTunnelClient.cs]
+    - module: src/Tunnelite.Client/
+      responsibility: CLI tool using Spectre.Console for user interface
+      key_files: [src/Tunnelite.Client/Program.cs]
+    - module: src/Tunnelite.Server/
+      responsibility: ASP.NET Core server with SignalR hub middleware
+      key_files: [src/Tunnelite.Server/Program.cs, src/Tunnelite.Server/HttpTunnel/HttpTunnelHub.cs]
+    - module: src/Tunnelite.AspNetCore/
+      responsibility: Extension method for seamless ASP.NET Core integration
+      key_files: [src/Tunnelite.AspNetCore/TunneliteExtensions.cs]
+  data_flow: |
+    1. Client connects to server via SignalR with MessagePack
+    2. Client registers tunnel with subdomain
+    3. Public requests hit server at tunnel URL
+    4. Server queues request, notifies client via SignalR
+    5. Client fetches request, forwards to local application
+    6. Response streamed back through SignalR
+    7. For WS/SSE/TCP: bidirectional streaming channels
+  key_abstractions:
+    - name: ITunnelClient
+      purpose: Core interface for all tunnel clients
+    - name: HubConnection
+      purpose: SignalR connection with MessagePack for bidirectional communication
+    - name: Request Queue
+      purpose: Deferred request handling with completion tracking
+
+implementation_patterns:
+  - pattern: Bidirectional Streaming
+    description: IAsyncEnumerable for streaming data between client and server
+    location: src/Tunnelite.Sdk/HttpTunnel/HttpTunnelClient.cs:214-232
+  - pattern: Buffer Pooling
+    description: ArrayPool<byte>.Shared for efficient memory management
+    location: src/Tunnelite.Sdk/HttpTunnel/HttpTunnelClient.cs:248
+  - pattern: Connection Resilience
+    description: Automatic reconnection with exponential backoff
+    location: src/Tunnelite.Sdk/HttpTunnel/HttpTunnelClient.cs
+  - pattern: Deferred Request Middleware
+    description: Requests queued while waiting for client connection
+    location: src/Tunnelite.Server/HttpTunnel/HttpAppExtensions.cs
+  - pattern: Header Passthrough
+    description: Custom headers prefixed with X-TR- and X-TC- for metadata
+    location: src/Tunnelite.Server/HttpTunnel/HttpAppExtensions.cs
+
+configuration:
+  file: appsettings.json and CLI arguments
+  options:
+    - name: localUrl
+      type: string
+      required: true
+      description: The local URL to tunnel to
+    - name: publicUrl
+      type: string
+      default: "https://tunnelite.com"
+      description: Public server URL
+    - name: log
+      type: LogLevel
+      default:
+      description: Logging level (Trace, Debug, Information, Warning, Error, Critical)
+  server_options:
+    - name: Azure:SignalR:ConnectionString
+      type: string
+      description: Azure SignalR service for scalability
+    - name: AllowedHosts
+      type: string
+      default: "*"
+      description: CORS allowed hosts
+  tunnel_config:
+    - name: Subdomain
+      type: string
+      description: Auto-generated or specified subdomain
+    - name: ClientId
+      type: Guid
+      description: Unique client identifier
+    - name: LocalPort
+      type: int
+      description: For TCP tunnels, local port to forward
+    - name: PublicPort
+      type: int
+      description: For TCP tunnels, public port (auto-assigned if null)
+
+api_surface:
+  public_functions:
+    - name: ITunnelClient.ConnectAsync
+      signature: Task ConnectAsync()
+      purpose: Establish connection to tunnel server
+      location: src/Tunnelite.Sdk/ITunnelClient.cs:5-19
+    - name: ITunnelClient.TunnelUrl
+      signature: string? TunnelUrl { get; }
+      purpose: Public URL after connection
+      location: src/Tunnelite.Sdk/ITunnelClient.cs
+    - name: HttpTunnelClient.TunnelHttpConnectionAsync
+      signature: Task TunnelHttpConnectionAsync(HttpConnection)
+      purpose: Handle HTTP tunnel streaming
+      location: src/Tunnelite.Sdk/HttpTunnel/HttpTunnelClient.cs
+    - name: HttpTunnelClient.TunnelWsConnectionAsync
+      signature: Task TunnelWsConnectionAsync(WsConnection)
+      purpose: Handle WebSocket tunnel streaming
+      location: src/Tunnelite.Sdk/HttpTunnel/HttpTunnelClient.cs
+    - name: TcpTunnelClient.HandleNewTcpConnectionAsync
+      signature: Task HandleNewTcpConnectionAsync(TcpConnection)
+      purpose: Handle TCP tunnel connections
+      location: src/Tunnelite.Sdk/TcpTunnel/TcpTunnelClient.cs
+  events:
+    - name: Connected
+      purpose: Fired when tunnel connects
+    - name: LogRequest
+      purpose: Log incoming requests (method, path)
+    - name: LogFailedRequest
+      purpose: Log failed requests
+    - name: LogException
+      purpose: Log exceptions
+    - name: Log
+      purpose: General logging
+    - name: LogError
+      purpose: Error logging
+  server_endpoints:
+    - path: POST /tunnelite/tunnel
+      purpose: Register new tunnel
+    - path: GET /tunnelite/request/{requestId}
+      purpose: Get deferred request details
+    - path: POST /tunnelite/request/{requestId}
+      purpose: Forward response back
+    - path: DELETE /tunnelite/request/{requestId}
+      purpose: Handle error cases
+  signalr_hubs:
+    - path: /wsshttptunnel
+      purpose: HTTP/SSE/WebSocket tunneling hub
+    - path: /wsstcptunnel
+      purpose: TCP tunneling hub
+
+testing:
+  framework: xUnit (inferred from .NET ecosystem)
+  structure: test/ with sample applications
+  coverage_areas:
+    - HTTP tunneling: Request/response streaming
+    - WebSocket tunneling: Bidirectional streaming
+    - SSE tunneling: Server-sent events
+    - TCP tunneling: Port forwarding
+    - Connection resilience: Reconnection scenarios
+  test_components:
+    - Test.WebApi: ASP.NET Core API integration
+    - Test.TcpServer: TCP server testing
+    - Test.TcpClient: TCP client testing
+    - Test.TcpForwarder: TCP forwarding scenarios
+
+extension_points:
+  - location: src/Tunnelite.Sdk/ITunnelClient.cs
+    hook: ITunnelClient interface
+    example: Implement custom tunnel types
+  - location: src/Tunnelite.Server/HttpTunnel/HttpAppExtensions.cs
+    hook: NotAllowedHeaders array
+    example: Modify header filtering
+  - location: src/Tunnelite.AspNetCore/TunneliteExtensions.cs:15-56
+    hook: UseTunnelite() middleware
+    example: Custom middleware pipeline
+  - location: src/Tunnelite.Server/
+    hook: HttpTunnelStore, HttpRequestsQueue
+    example: Custom storage backends
+  - location: Azure SignalR integration
+    hook: Connection string configuration
+    example: Scale to multiple instances

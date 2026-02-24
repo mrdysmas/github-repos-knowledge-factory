@@ -1,0 +1,79 @@
+artifact_type: ws5_remote_ingestion_validation_runs
+generated_at_utc: '2026-02-23T00:00:00Z'
+contract_version: 1.0.0-ws1
+required_commands:
+- step: 1
+  command: python3 tools/ws1_contract_validator.py --workspace-root . --external-node-policy
+    first_class
+  status: PENDING_EXECUTION
+  exit_code: null
+  expectation: 'WS1_CONTRACT_STATUS: PASS'
+- step: 2
+  command: python3 tools/ws1_contract_validator.py --workspace-root . --external-node-policy
+    label_only
+  status: PENDING_EXECUTION
+  exit_code: null
+  expectation: 'WS1_CONTRACT_STATUS: PASS'
+- step: 3
+  command: python3 tools/trust_gates.py llm_repos/knowledge --production
+  status: PENDING_EXECUTION
+  exit_code: null
+  expectation: 'overall_status: PASS and ready_state_allowed: true'
+- step: 4
+  command: python3 tools/trust_gates.py ssh_repos/knowledge --production
+  status: PENDING_EXECUTION
+  exit_code: null
+  expectation: 'overall_status: PASS and ready_state_allowed: true'
+- step: 5
+  command: cd llm_repos/knowledge && python3 validate.py
+  status: PENDING_EXECUTION
+  exit_code: null
+  expectation: validate.py exits 0
+- step: 6
+  command: cd ssh_repos/knowledge && python3 validate.py
+  status: PENDING_EXECUTION
+  exit_code: null
+  expectation: validate.py exits 0
+- step: 7
+  command: python3 -m unittest discover -s tests/ws5_remote_ingestion -p 'test_*.py'
+  status: PENDING_EXECUTION
+  exit_code: null
+  expectation: unittest exits 0
+- step: 8
+  command: python3 tools/ws5_remote_ingestion.py --workspace-root . --input inputs/ws5/ws5_input_manifest.yaml
+    --reports-dir reports/ws5_remote_ingestion
+  status: PASS
+  exit_code: 0
+  expectation: WS5 ingestion writes deterministic reports and WS1-compatible records
+- step: 9
+  command: python3 tools/ws4_master_compiler.py --workspace-root . --master-index
+    master_index.yaml --master-graph master_graph.yaml --reports-dir reports/ws4_master_build
+  status: PENDING_EXECUTION
+  exit_code: null
+  expectation: 'compiler exits 0 and reports/ws4_master_build/coverage.yaml gate_ready:
+    true'
+- step: 10
+  command: Re-run commands 8 and 9 with identical input and verify artifact hashes
+    unchanged
+  status: PENDING_EXECUTION
+  exit_code: null
+  expectation: hashes unchanged
+artifact_hashes:
+  inputs/ws5/ws5_input_manifest.yaml: 87b0b3bb7dc96514b977488d55fb8ab5d883bf535dca76ed085b9d27a10a8c11
+  reports/ws5_remote_ingestion/coverage.yaml: 6cf87e73947073569ecc49cea697963facc761557f52231bba5f09c7fef404a1
+  reports/ws5_remote_ingestion/mismatch_report.yaml: 286ea42da440194b828fbb73747a7ceeafcde73244e52bb93ed778d5355da39e
+input_manifest_sha256: 87b0b3bb7dc96514b977488d55fb8ab5d883bf535dca76ed085b9d27a10a8c11
+gate_bools:
+  manifest_parseable: true
+  manifest_entries_present: true
+  manifest_entries_all_valid: true
+  source_values_remote_only: true
+  source_values_within_ws1_enum: true
+  provenance_shard_values_valid: true
+  duplicate_node_ids_zero: true
+  duplicate_repo_file_paths_zero: true
+  local_cache_dir_null_when_absent: true
+  repo_writes_succeeded: true
+  required_field_coverage_100pct: true
+  blocking_mismatches_zero: true
+gate_ready: true

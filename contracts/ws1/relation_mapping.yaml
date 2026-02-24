@@ -1,0 +1,81 @@
+contract_version: "1.0.0-ws1"
+artifact_type: "ws1_relation_mapping"
+canonical_relations:
+  - alternative_to
+  - integrates_with
+  - extends
+  - depends_on
+  - related_to
+  - similar_to
+  - built_on
+  - deploys
+  - references
+  - replaces
+  - supports
+  - used_by
+  - wrapper_for
+coverage:
+  unique_observed_labels: 12
+  unique_mapped_labels: 12
+  unique_canonical_coverage: "12/12"
+  per_shard_observed_rows: 14
+  per_shard_mapped_rows: 14
+  unsupported_rows: 0
+mappings:
+  - shard: llm_repos
+    observed_label: alternative_to
+    canonical_relation: alternative_to
+    status: mapped
+  - shard: llm_repos
+    observed_label: extends
+    canonical_relation: extends
+    status: mapped
+  - shard: llm_repos
+    observed_label: integrates_with
+    canonical_relation: integrates_with
+    status: mapped
+  - shard: llm_repos
+    observed_label: related_to
+    canonical_relation: related_to
+    status: mapped
+  - shard: ssh_repos
+    observed_label: alternative_to
+    canonical_relation: alternative_to
+    status: mapped
+  - shard: ssh_repos
+    observed_label: built_on
+    canonical_relation: built_on
+    status: mapped
+  - shard: ssh_repos
+    observed_label: deploys
+    canonical_relation: deploys
+    status: mapped
+  - shard: ssh_repos
+    observed_label: extends
+    canonical_relation: extends
+    status: mapped
+  - shard: ssh_repos
+    observed_label: references
+    canonical_relation: references
+    status: mapped
+  - shard: ssh_repos
+    observed_label: replaces
+    canonical_relation: replaces
+    status: mapped
+  - shard: ssh_repos
+    observed_label: similar_to
+    canonical_relation: similar_to
+    status: mapped
+  - shard: ssh_repos
+    observed_label: supports
+    canonical_relation: supports
+    status: mapped
+  - shard: ssh_repos
+    observed_label: used_by
+    canonical_relation: used_by
+    status: mapped
+  - shard: ssh_repos
+    observed_label: wrapper_for
+    canonical_relation: wrapper_for
+    status: mapped
+unsupported: []

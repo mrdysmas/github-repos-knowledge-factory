@@ -1,0 +1,114 @@
+version: 1
+as_of_utc: "2026-02-24T18:13:41Z"
+
+phase:
+  number: "1"
+  name: "Intake Pilot + WS6 Deep Integration"
+  status: "IN_PROGRESS"
+  workflow: "PENDING -> IN_PROGRESS -> CHECKPOINT_1 -> CHECKPOINT_2 -> COMPLETE"
+  date_initiated: "2026-02-24"
+  date_started: "2026-02-24"
+  date_completed: null
+
+objective: |
+  Convert the queue-driven intake setup into repeatable canonical outputs while
+  making deep findings queryable from canonical artifacts. This phase must prove:
+  (1) pilot repos can be scanned and routed through WS5/WS4 with provenance, and
+  (2) WS6 can materialize deep facts in a schema-bound way instead of leaving
+  deep YAML as isolated repo notes.
+
+dependencies:
+  - "inputs/intake/intake_queue.yaml is generated from master_repo_list.yaml and sync gate passes."
+  - "Pilot clone batch exists in intake_repos/."
+  - "WS1 contracts stay strict; non-canonical kgraph output remains draft-only."
+
+acceptance_criteria:
+  - "All 10 pilot repos have lifecycle/provenance metadata (source_url, default_branch, source_commit, scan timestamps)."
+  - "Pilot shallow outputs pass WS1 + trust gates and compile through WS4 into canonical artifacts."
+  - "WS6 emits a materialized deep-facts artifact with schema-conformant records."
+  - "Top-level query path can retrieve deep facts without opening per-repo deep YAML manually."
+  - "Intake enforcement blocks drift (queue sync + controlled candidate-add path)."
+
+milestones:
+  - id: "M1"
+    name: "Pilot provenance complete"
+    status: "PENDING"
+    done_when:
+      - "10/10 pilot repos have provenance fields recorded."
+      - "No missing source_commit/default_branch in pilot records."
+  - id: "M2"
+    name: "WS6 materialization v1"
+    status: "PENDING"
+    done_when:
+      - "tools/ws6_deep_integrator.py writes materialized deep facts, not only spec output."
+      - "Materialized output validates against contracts/ws1/deep_fact.schema.yaml."
+  - id: "M3"
+    name: "Canonical query bridge"
+    status: "PENDING"
+    done_when:
+      - "tools/query_master.py can surface deep facts by repo/node from canonical outputs."
+      - "At least one end-to-end query example is documented in status artifacts."
+  - id: "M4"
+    name: "Intake hard enforcement"
+    status: "PENDING"
+    done_when:
+      - "A commit-time gate blocks when tools/check_intake_queue_sync.py fails."
+      - "New candidates are added only via tools/add_repo_candidate.py."
+
+key_metrics:
+  - name: "pilot_repos_with_provenance"
+    target: 10
+    actual: 0
+  - name: "pilot_repos_canonicalized"
+    target: 10
+    actual: 0
+  - name: "deep_facts_materialized"
+    target: 1
+    actual: 0
+  - name: "queue_sync_gate_pass_rate"
+    target: "100%"
+    actual: "100%"
+
+execution_checklist:
+  - "[x] Queue generated from master_repo_list and synced."
+  - "[x] Pilot clone batch prepared in intake_repos."
+  - "[ ] Capture provenance metadata for each pilot repo."
+  - "[ ] Run shallow-first intake and route outputs through WS5 -> WS4."
+  - "[ ] Implement WS6 materialization output and validator gate."
+  - "[ ] Extend query contract to read deep facts from canonical level."
+  - "[ ] Add commit-time intake sync enforcement."
+  - "[ ] Update project_status.yaml and this tracker at each checkpoint."
+
+risks:
+  - description: "Schema drift between deep repo YAML and canonical deep_fact contract."
+    mitigation: "Lock predicate vocabulary + enforce schema validation in WS6 gate."
+    status: "OPEN"
+  - description: "Queue and source list drift from manual edits."
+    mitigation: "Enforce add path via tool + pre-commit sync check."
+    status: "OPEN"
+  - description: "Over-scanning before WS6 contract is stable."
+    mitigation: "Limit to pilot + small calibration batch before expansion."
+    status: "OPEN"
+
+results:
+  deliverables: []
+  validation_runs: []
+  completion_status: null
+  issues_encountered: []
+
+findings: |
+  Pending execution. Initial architecture signal:
+  this is a classic "staging-to-canonical promotion" pattern where draft discovery
+  must be schema-normalized before merge. Biggest failure mode is treating draft
+  deep YAML as canonical data without a materialization gate.
+
+decision_rule: |
+  IF M1+M2+M3+M4 all complete and acceptance criteria are met:
+    -> Mark phase COMPLETE and scale intake beyond pilot
+  IF M1 complete but M2/M3 blocked:
+    -> Continue pilot shallow ingestion only; defer deep scale-out
+  IF queue enforcement fails at any point:
+    -> Stop intake expansion until sync/add gates are restored
+
+decision: null
+next_phase: "Phase 2 - Scale intake throughput and calibration batch execution"

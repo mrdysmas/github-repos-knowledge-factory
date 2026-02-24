@@ -1,0 +1,26 @@
+# Intake repos are disposable clone worktrees.
+# Keep only intake metadata docs in git.
+/intake_repos/*
+!/intake_repos/README.md
+
+# LLM source clones are disposable; keep curated knowledge artifacts.
+/llm_repos/*
+!/llm_repos/knowledge/
+!/llm_repos/knowledge/**
+!/llm_repos/*.yaml
+!/llm_repos/repos.yaml
+!/llm_repos/CLAUDE.md
+
+# SSH source clones are disposable; keep curated knowledge artifacts.
+/ssh_repos/*
+!/ssh_repos/knowledge/
+!/ssh_repos/knowledge/**
+!/ssh_repos/*.yaml
+!/ssh_repos/.gitignore
+
+# Local noise (kept last so these still win inside allowlisted folders)
+**/.DS_Store
+**/__pycache__/
+**/*.py[cod]
+**/.tmp/
+**/.knowledge-history/

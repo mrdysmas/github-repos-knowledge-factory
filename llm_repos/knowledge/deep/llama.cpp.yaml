@@ -1,0 +1,272 @@
+name: llama.cpp
+node_id: repo::ggml-org/llama.cpp
+github_full_name: ggml-org/llama.cpp
+html_url: https://github.com/ggml-org/llama.cpp
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+  as_of: '2026-02-23'
+sparse: false
+
+code_patterns:
+  - name: Basic Text Generation
+    description: Load model and generate text with sampling
+    code: |
+      #include "llama.h"
+
+      // Load model
+      llama_model_params model_params = llama_model_default_params();
+      llama_model * model = llama_model_load_from_file(model_path.c_str(), model_params);
+
+      // Initialize context
+      llama_context_params ctx_params = llama_context_default_params();
+      llama_context * ctx = llama_init_from_model(model, ctx_params);
+
+      // Create batch and decode
+      llama_batch batch = llama_batch_get_one(prompt_tokens.data(), prompt_tokens.size());
+      llama_decode(ctx, batch);
+
+      // Sample token
+      llama_token new_token_id = llama_sampler_sample(smpl, ctx, -1);
+    file_reference: examples/simple/simple.cpp
+
+  - name: Chat Mode CLI
+    description: Interactive chat with automatic template detection
+    code: |
+      # Automatic chat mode
+      llama-cli -m model.gguf
+
+      # Custom chat template
+      llama-cli -m model.gguf -cnv --chat-template chatml
+
+      # Custom prefix/prompt
+      llama-cli -m model.gguf -cnv --in-prefix 'User: ' --reverse-prompt 'User:'
+    file_reference: README.md
+
+  - name: HTTP Server
+    description: Start OpenAI-compatible API server
+    code: |
+      # Basic server
+      llama-server -m model.gguf --port 8080
+
+      # Multiple concurrent users
+      llama-server -m model.gguf -c 16384 -np 4
+
+      # Speculative decoding with draft model
+      llama-server -m model.gguf -md draft.gguf
+
+      # Embeddings endpoint
+      llama-server -m model.gguf --embedding --pooling cls -ub 8192
+    file_reference: README.md
+
+  - name: Model Quantization
+    description: Convert and quantize models to GGUF format
+    code: |
+      # Convert from Hugging Face
+      python3 convert_hf_to_gguf.py ./models/mymodel/
+
+      # Basic quantization
+      ./llama-quantize input-f32.gguf output-Q4_K_M.gguf Q4_K_M
+
+      # With importance matrix (better quality)
+      python3 -m llama.cpp.quantize input.gguf imatrix.gguf --threads 4
+      ./llama-quantize --imatrix imatrix.gguf input.gguf output.gguf Q4_K_M
+    file_reference: tools/quantize/README.md
+
+  - name: GPU Offload
+    description: Offload layers to GPU for acceleration
+    code: |
+      # Runtime GPU offload
+      ./llama-cli -m model.gguf -ngl 2000000
+
+      # Multi-GPU with layer split
+      ./llama-cli -m model.gguf --split-mode layer --tensor-split 0.5,0.5 -ngl 999
+
+      # Check GPU usage (look for)
+      # llama_model_load_internal: [cublas] offloading 60 layers to GPU
+      # llama_model_load_internal: [cublas] total VRAM used: 17223 MB
+    file_reference: docs/build.md
+
+  - name: Multimodal Input
+    description: Vision/audio model support
+    code: |
+      # CLI with multimodal model
+      llama-mtmd-cli -hf ggml-org/gemma-3-4b-it-GGUF
+
+      # Server with custom mmproj
+      llama-server -m model.gguf --mmproj mmproj-file.gguf
+
+      # Disable GPU offload for projector
+      llama-server -hf model.gguf --no-mmproj-offload
+    file_reference: tools/mtmd/README.md
+
+configuration:
+  - name: Build Flags
+    options:
+      - key: GGML_CUDA
+        default: "OFF"
+        description: Enable NVIDIA GPU support
+      - key: GGML_METAL
+        default: "ON (macOS)"
+        description: Enable Apple Metal support
+      - key: GGML_VULKAN
+        default: "OFF"
+        description: Enable Vulkan cross-platform backend
+      - key: GGML_SYCL
+        default: "OFF"
+        description: Enable Intel GPU support
+      - key: GGML_HIP
+        default: "OFF"
+        description: Enable AMD GPU support
+      - key: GGML_BLAS
+        default: "OFF"
+        description: Enable BLAS acceleration
+
+  - name: Runtime Options
+    options:
+      - key: --n-ctx
+        default: "512"
+        description: Context window size
+      - key: --n-batch
+        default: "512"
+        description: Batch size for prompt processing
+      - key: --n-gpu-layers / -ngl
+        default: "0"
+        description: Number of layers to offload to GPU
+      - key: --threads / -t
+        default: "all available"
+        description: Number of CPU threads
+      - key: --temp
+        default: "0.8"
+        description: Sampling temperature
+      - key: --use-mmap
+        default: "true"
+        description: Use memory mapping for model loading
+      - key: --use-mlock
+        default: "false"
+        description: Keep model locked in memory
+
+  - name: Quantization Types
+    options:
+      - key: Q4_K_M
+        default: recommended
+        description: ~4.89 bits, excellent quality/speed balance
+      - key: Q5_K_M
+        default: optional
+        description: ~5.70 bits, higher quality, larger file
+      - key: Q8_0
+        default: optional
+        description: ~8.50 bits, near lossless
+      - key: F16
+        default: optional
+        description: 16-bit floating point, lossless
+
+common_tasks:
+  - task: Convert model to GGUF
+    steps:
+      - "Install dependencies: pip install -r requirements.txt"
+      - "Convert: python3 convert_hf_to_gguf.py ./models/mymodel/"
+      - "Verify tokenizer files present"
+    gotchas:
+      - Models must be in correct directory structure
+      - Safetensors files need to be converted
+
+  - task: Quantize a model
+    steps:
+      - "Run: ./llama-quantize input.gguf output-Q4_K_M.gguf Q4_K_M"
+      - "For better quality, use importance matrix first"
+      - "Always quantize from F16/F32, never from already quantized"
+    gotchas:
+      - Need disk space for both input and output
+      - Never re-quantize (significant quality loss)
+
+  - task: Run with GPU acceleration
+    steps:
+      - "Build with CUDA: cmake -B build -DGGML_CUDA=ON"
+      - "Offload layers: ./llama-cli -m model.gguf -ngl 999"
+      - "Use -t to prevent CPU oversaturation"
+    gotchas:
+      - Not all quantizations work equally well on GPU
+      - VRAM usage scales with offloaded layers
+
+  - task: Use as OpenAI-compatible server
+    steps:
+      - "Start: llama-server -m model.gguf --port 8080"
+      - "Multiple users: add -c 8192 -np 4"
+      - "Auth: add --api-key your-key"
+    gotchas:
+      - Default port is 8080
+      - RAM can be high with concurrent requests
+
+  - task: Multimodal input
+    steps:
+      - "Use specific multimodal models from Hugging Face"
+      - "CLI: llama-mtmd-cli -hf ggml-org/gemma-3-4b-it-GGUF"
+      - "Increase context: -c 8192 or more"
+    gotchas:
+      - Only specific models support multimodal
+      - Image input requires base64 encoding
+
+troubleshooting:
+  - symptom: GPU not being used, slow performance
+    cause: Missing CUDA build or incorrect runtime flags
+    fix: |
+      cmake -B build -DGGML_CUDA=ON && cmake --build build
+      ./llama-cli -m model.gguf -ngl 999
+
+  - symptom: Very slow token generation (< 1 token/sec)
+    cause: CPU oversaturation or wrong thread count
+    fix: |
+      Reduce threads: --threads 4
+      Verify GPU offload working
+
+  - symptom: CUDA out of memory
+    cause: Insufficient VRAM
+    fix: |
+      Reduce offload: --n-gpu-layers 20
+      Use smaller quantization: Q4_0 instead of F16
+
+  - symptom: Failed to load model / invalid GGUF
+    cause: Corrupted file or unsupported format
+    fix: |
+      Verify GGUF file integrity
+      Try different quantization method
+      Use --dry-run to check options
+
+  - symptom: Incorrect response format in chat
+    cause: Wrong chat template
+    fix: |
+      Specify template: --chat-template chatml
+      Use custom prefix: --in-prefix "User: "
+
+quick_reference:
+  - topic: CLI Flags
+    content: |
+      | Flag | Default | Description |
+      |------|---------|-------------|
+      | -m | required | Model file path |
+      | -n | -1 | Tokens to predict |
+      | -c | 512 | Context window |
+      | -ngl | 0 | GPU layers to offload |
+      | -t | all | CPU threads |
+      | --temp | 0.8 | Sampling temperature |
+      | --port | 8080 | Server port |
+
+  - topic: Server API Endpoints
+    content: |
+      GET  /health           - Health check
+      GET  /v1/models        - List models
+      POST /v1/completions   - Text completion
+      POST /v1/chat/completions - Chat completion
+      POST /v1/embeddings    - Create embeddings
+      POST /v1/rerank        - Rerank documents
+
+  - topic: Quantization Comparison
+    content: |
+      | Type | Size (7B) | Speed | Quality |
+      |------|-----------|-------|---------|
+      | Q4_K_M | 4.89G | Fast | Excellent |
+      | Q5_K_M | 5.70G | Medium | Excellent |
+      | Q8_0 | 7.95G | Slow | Near lossless |
+      | F16 | 14.96G | Slow | Lossless |

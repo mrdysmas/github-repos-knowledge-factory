@@ -1,0 +1,64 @@
+name: hysteria
+node_id: repo::apernet/hysteria
+github_full_name: apernet/hysteria
+html_url: https://github.com/apernet/hysteria
+source: ssh_repos
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/repos/hysteria.yaml
+  as_of: '2026-02-23'
+directory: hysteria-master
+category: vpn_mesh
+summary: |
+  A QUIC-based proxy/VPN designed for high performance over unreliable networks and censorship resistance through HTTP/3 traffic masquerading.
+core_concepts:
+  - name: "Brutal Congestion Control"
+    description: "Custom bandwidth-aware congestion control that uses fixed-rate transmission based on configured tx/rx limits, unlike traditional BBR/Cubic. Designed for lossy networks where packet loss should not throttle throughput."
+  - name: "HTTP/3 Masquerading"
+    description: "Protocol disguise - server behaves as standard HTTP/3 web server to unauthorized clients. Authentication happens via custom HTTP headers (Hysteria-Auth) on a POST to /auth endpoint. Failed auth returns normal HTTP responses, making detection difficult."
+  - name: "QUIC Datagram Transport"
+    description: "TCP proxying uses QUIC streams; UDP uses QUIC unreliable datagrams with fragmentation support. Both wrapped in TLS 1.3, appearing as standard HTTP/3 traffic to observers."
+key_entry_points:
+  - path: "app/main.go:1"
+    purpose: "CLI entry point - imports cmd package and calls Execute()"
+  - path: "app/cmd/root.go:64"
+    purpose: "Cobra root command setup, default mode is client, config loading via Viper"
+  - path: "app/cmd/client.go:1"
+    purpose: "Client mode implementation - SOCKS5, HTTP proxy, TUN, TCP/UDP forwarding"
+  - path: "app/cmd/server.go:1"
+    purpose: "Server mode implementation - QUIC listener, auth handling, traffic logging"
+  - path: "core/server/server.go:45"
+    purpose: "Core server - QUIC listener setup, HTTP/3 handler, TCP/UDP proxy logic"
+  - path: "core/client/client.go:43"
+    purpose: "Core client - QUIC connection, authentication, TCP/UDP tunnel establishment"
+  - path: "core/internal/congestion/brutal/brutal.go:46"
+    purpose: "BrutalSender - custom congestion control with fixed-rate pacing based on configured bandwidth"
+  - path: "core/internal/protocol/proxy.go:1"
+    purpose: "Wire protocol - TCPRequest/Response framing, UDPMessage format with fragmentation"
+  - path: "core/internal/protocol/http.go:1"
+    purpose: "Auth protocol - HTTP header-based authentication exchanged during handshake"
+build_run:
+  language: go
+  go_version: "1.24"
+  package_manager: go mod (workspace)
+  build_command: cd app && go build -o hysteria .
+  run_command: |
+    Server: hysteria server -c config.yaml
+    Client: hysteria client -c config.yaml (or just hysteria for client mode)
+  test_command: go test ./... (run from app/, core/, or root with go.work)
+ecosystem_connections:
+  similar_to:
+    - "shadowsocks - encrypted proxy but lacks QUIC's UDP multiplexing and HTTP/3 disguise"
+    - "v2ray/xray - multi-protocol proxy platform, more complex but similar anti-censorship goals"
+    - "trojan - TLS-based proxy with similar hiding-in-plain-sight approach"
+    - "clash - proxy client with rule-based routing, often used with hysteria as backend"
+  alternatives:
+    - "naiveproxy - uses Chrome's network stack for TLS fingerprint resistance"
+    - "tuic - another QUIC-based proxy, uses standard congestion control"
+    - "wireguard - VPN protocol, not designed for censorship resistance"
+    - "shadowtls - TLS-based proxy that wraps another protocol"
+  used_with:
+    - "sing-box - multi-platform proxy client supporting hysteria protocol"
+    - "clash meta / mihomo - clash fork with hysteria support"
+    - "nekoray / v2rayN - GUI clients with hysteria integration"
+    - "caddy/nginx - reverse proxy backends for HTTP/3 masquerade content"

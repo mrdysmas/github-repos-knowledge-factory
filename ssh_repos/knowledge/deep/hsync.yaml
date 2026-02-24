@@ -1,0 +1,176 @@
+name: hsync
+node_id: repo::monteslu/hsync
+github_full_name: monteslu/hsync
+html_url: https://github.com/monteslu/hsync
+source: ssh_repos
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/deep/hsync.yaml
+  as_of: '2026-02-23'
+directory: hsync-master
+category: tunneling
+
+# Inherited from shallow file
+summary: |
+  A reverse-proxy/tunneling client for Node.js and browsers that exposes local webservers
+  as public URLs via hsync-server, with peer-to-peer TCP tunneling via WebRTC for direct
+  client-to-client connections without server intermediary.
+
+# Deep additions
+architecture:
+  module_breakdown:
+    - module: hsync.js / hsync-web.js
+      responsibility: Main exports for Node.js and browser environments
+      key_files: [hsync.js, hsync-web.js]
+    - module: connection.js
+      responsibility: Core createHsync() factory orchestrating MQTT, peers, listeners, relays
+      key_files: [connection.js]
+    - module: cli.js / shell.js
+      responsibility: CLI and interactive shell interfaces with Commander
+      key_files: [cli.js, shell.js]
+    - module: lib/peers.js
+      responsibility: WebRTC peer management, RPC method handling via rawr library
+      key_files: [lib/peers.js]
+    - module: lib/web-handler.js
+      responsibility: HTTP proxy with WebSocket support for web request tunneling
+      key_files: [lib/web-handler.js]
+    - module: lib/socket-listeners.js
+      responsibility: Accepts local connections, forwards to remote targets
+      key_files: [lib/socket-listeners.js]
+    - module: lib/socket-relays.js
+      responsibility: Accepts remote requests, connects to local TCP sockets
+      key_files: [lib/socket-relays.js]
+  data_flow: |
+    1. Client connects to hsync-server via MQTT over WebSocket
+    2. Server assigns hostname, client subscribes to MQTT topics
+    3. HTTP requests to public URL arrive at server, published to web/{hostname}/* topics
+    4. Client receives via MQTT, proxies to local server, responds via MQTT
+    5. For P2P: WebRTC data channel established between peers
+    6. TCP data flows directly between peers via data channel
+  key_abstractions:
+    - name: hsyncClient
+      purpose: Main client object exposing events, peer access, listener/relay management
+    - name: Peer
+      purpose: WebRTC-based P2P connection with JSON-RPC methods
+    - name: WebHandler
+      purpose: HTTP request proxy from MQTT messages to local server
+    - name: SocketListener/Relay
+      purpose: TCP port forwarding in both directions
+
+implementation_patterns:
+  - pattern: Dependency Injection
+    description: setNet(), setMqtt(), setRTC() allow swapping implementations
+    location: connection.js:19-27
+  - pattern: Factory Pattern
+    description: createHsync(config) creates and wires all components
+    location: connection.js:29-319
+  - pattern: Event-Driven Architecture
+    description: EventEmitter for connected, json, external_message, connect_error events
+    location: connection.js:86-91
+  - pattern: Strategy Pattern for RTC
+    description: WebRTC uses native API in browser (rtc-web.js), node-datachannel in Node.js (rtc-node.js)
+    location: lib/rtc-web.js
+  - pattern: Access Control Lists
+    description: Whitelist/blacklist with wildcard matching for relay security
+    location: lib/socket-relays.js:35-57
+
+configuration:
+  file: Environment variables and CLI flags
+  options:
+    - name: hsyncServer
+      type: string
+      default: env.HSYNC_SERVER
+      description: WebSocket URL to hsync-server
+    - name: hsyncSecret
+      type: string
+      default: env.HSYNC_SECRET
+      description: Authentication secret
+    - name: localHost
+      type: string
+      default: "localhost"
+      description: Local server host
+    - name: port
+      type: number
+      default: 3000
+      description: Local server port
+    - name: hsyncBase
+      type: string
+      default: "_hs"
+      description: Base path for routing
+    - name: keepalive
+      type: number
+      default: 300
+      description: MQTT keepalive interval (seconds)
+    - name: dynamicHost
+      type: string
+      default:
+      description: Dynamic host URL override
+
+api_surface:
+  public_functions:
+    - name: createConnection
+      signature: export async function createConnection(config)
+      purpose: Main entry point to create hsync client
+      location: hsync.js:31
+    - name: dynamicConnect
+      signature: export async function dynamicConnect(config)
+      purpose: Connect to dynamic host
+      location: hsync.js:32
+    - name: createHsync
+      signature: export function createHsync(config)
+      purpose: Factory function for full client setup
+      location: connection.js:29
+  instance_methods:
+    - name: hsyncClient.getPeer(hostName)
+      purpose: Get or create peer for P2P communication
+      location: connection.js:263
+    - name: hsyncClient.addSocketListener(options)
+      purpose: Forward local port to remote target
+      location: connection.js:278
+    - name: hsyncClient.addSocketRelay(options)
+      purpose: Accept remote connections to local target
+      location: connection.js:289
+    - name: hsyncClient.endClient(force, callback)
+      purpose: Disconnect from server
+      location: connection.js:318
+  events:
+    - name: connected
+      purpose: Successfully connected to server
+    - name: json
+      purpose: JSON-RPC message received
+    - name: external_message
+      purpose: Message from external peer
+    - name: connect_error
+      purpose: Connection failed
+
+testing:
+  framework: Vitest with ES modules
+  structure: test/unit/
+  coverage_areas:
+    - Peer management and RPC
+    - Socket relay functionality
+    - Socket listeners
+    - HTTP proxy handling
+    - Configuration parsing
+    - API client utilities
+  coverage: 85%+ with v8 profiler
+
+extension_points:
+  - location: connection.js:117
+    hook: config.webHandler
+    example: Custom web handler for HTTP proxy logic
+  - location: lib/peers.js:36-38
+    hook: setRTC(rtcImpl)
+    example: Custom WebRTC implementation
+  - location: connection.js:19-23
+    hook: setNet(netImpl)
+    example: Custom network stack (useful for testing)
+  - location: connection.js:25-27
+    hook: setMqtt(mqttImpl)
+    example: Custom MQTT client implementation
+  - location: connection.js:244-258
+    hook: peerMethods
+    example: Override or extend RPC methods for peers
+  - location: connection.js:191-242
+    hook: serverReplyMethods
+    example: Add custom server-side RPC handlers

@@ -1,0 +1,191 @@
+name: rathole
+node_id: repo::rapiz1/rathole
+github_full_name: rapiz1/rathole
+html_url: https://github.com/rapiz1/rathole
+source: ssh_repos
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/deep/rathole.yaml
+  as_of: '2026-02-23'
+directory: rathole-main
+category: tunneling
+
+# Inherited from shallow file
+summary: |
+  A high-performance reverse proxy for NAT traversal written in Rust, designed to expose
+  services behind NAT/firewalls to the public internet with lower resource consumption
+  and higher throughput than alternatives like frp or ngrok.
+
+# Deep additions
+architecture:
+  module_breakdown:
+    - module: src/lib.rs
+      responsibility: Main orchestrator - runs client/server modes, config watcher integration
+      key_files: [src/lib.rs]
+    - module: src/client.rs
+      responsibility: Client implementation - establishes control channel, creates data channels, heartbeats
+      key_files: [src/client.rs]
+    - module: src/server.rs
+      responsibility: Server implementation - accepts connections, validates auth, manages service routing
+      key_files: [src/server.rs]
+    - module: src/protocol.rs
+      responsibility: Wire protocol - message types (Hello/Auth/Ack/Cmd), framing, bincode serialization
+      key_files: [src/protocol.rs]
+    - module: src/transport/
+      responsibility: Transport abstraction - TCP/TLS/Noise/WebSocket implementations via trait
+      key_files: [src/transport/mod.rs, src/transport/tcp.rs, src/transport/noise.rs]
+    - module: src/config.rs
+      responsibility: Configuration schema - TOML parsing, validation, service configs
+      key_files: [src/config.rs]
+    - module: src/config_watcher.rs
+      responsibility: Hot reload - file watcher, service update channels
+      key_files: [src/config_watcher.rs]
+    - module: src/multi_map.rs
+      responsibility: Dual-key hash map for service routing (ServiceDigest + Nonce)
+      key_files: [src/multi_map.rs]
+  data_flow: |
+    1. Client connects to server via configured transport
+    2. Client sends Hello with service digest (SHA256 of service name)
+    3. Server validates service exists, responds with Ack
+    4. Client authenticates with token (SHA256 digest)
+    5. Heartbeats exchanged (30s interval, 40s timeout)
+    6. When traffic arrives at server port, server sends CreateDataChannel
+    7. Client opens new connection, sends DataChannelHello
+    8. Bidirectional forwarding begins (TCP or UDP with custom framing)
+  key_abstractions:
+    - name: Transport trait
+      purpose: Abstracts TCP/TLS/Noise/WebSocket with unified interface
+    - name: ServiceDigest
+      purpose: SHA256 hash of service name for routing without leaking names
+    - name: MultiMap
+      purpose: Dual-key routing by ServiceDigest and Nonce (session key)
+    - name: ControlChannelHandle
+      purpose: Manages single service connection and data forwarding
+
+implementation_patterns:
+  - pattern: Tokio Async Runtime
+    description: tokio::spawn for concurrent handlers, async streams for data transfer
+    location: src/client.rs:34-78, src/server.rs:42-89
+  - pattern: Trait-based Transport Abstraction
+    description: Transport trait with associated types for Acceptor/Stream
+    location: src/transport/mod.rs:52-68
+  - pattern: Bincode Serialization
+    description: Fixed-length packets with bincode for wire protocol
+    location: src/protocol.rs:15-59
+  - pattern: SHA256 Token Auth
+    description: Service tokens hashed for comparison, constant-time validation
+    location: src/protocol.rs:19-33, src/server.rs:67-72
+  - pattern: Hot Reload via File Watcher
+    description: notify crate watches config, sends updates via channel
+    location: src/config_watcher.rs:25-89
+  - pattern: UDP Framing with SocketAddr
+    description: Custom header prepends address + length for UDP packets
+    location: src/protocol.rs:62-66
+
+configuration:
+  file: TOML format
+  options:
+    # Client options
+    - name: remote_addr
+      type: String
+      default: required
+      description: Server address to connect to
+    - name: default_token
+      type: MaskedString
+      default: None
+      description: Fallback token for services without explicit token
+    - name: prefer_ipv6
+      type: bool
+      default: false
+      description: Prefer IPv6 when resolving addresses
+    - name: heartbeat_timeout
+      type: u64
+      default: "40"
+      description: Seconds before connection considered dead
+    - name: retry_interval
+      type: u64
+      default: "1"
+      description: Seconds between reconnection attempts
+    # Server options
+    - name: bind_addr
+      type: String
+      default: required
+      description: Address to bind control channel
+    - name: heartbeat_interval
+      type: u64
+      default: "30"
+      description: Seconds between heartbeat packets
+    # Service options
+    - name: service_type
+      type: ServiceType
+      default: Tcp
+      description: Tcp or Udp forwarding
+    - name: local_addr
+      type: String
+      default: required (client)
+      description: Local address to forward from/to
+    - name: token
+      type: MaskedString
+      default: None
+      description: Service-specific auth token
+    - name: nodelay
+      type: bool
+      default: true
+      description: TCP_NODELAY socket option
+    # Transport options
+    - name: transport_type
+      type: TransportType
+      default: Tcp
+      description: Tcp/Tls/Noise/Websocket
+    - name: noise.pattern
+      type: String
+      default: "Noise_NK_25519_ChaChaPoly_BLAKE2s"
+      description: Noise protocol pattern
+    - name: tcp.keepalive_secs
+      type: u64
+      default: "20"
+      description: TCP keepalive timeout
+    - name: tcp.proxy
+      type: Url
+      default: None
+      description: SOCKS5/HTTP proxy for outbound connections
+
+api_surface:
+  public_functions:
+    - name: run
+      signature: "pub async fn run(args: Cli, shutdown_rx: broadcast::Receiver<bool>) -> Result<()>"
+      purpose: Main entry point for library usage
+      location: src/lib.rs:10-27
+    - name: Cli
+      signature: pub struct Cli { config_path, server, client, genkey }
+      purpose: CLI argument structure
+      location: src/cli.rs:35-68
+    - name: Config
+      signature: pub struct Config { server, client }
+      purpose: Parsed configuration structure
+      location: src/config.rs:232-237
+
+testing:
+  framework: tokio::test, built-in Rust tests
+  structure: Inline tests in modules, integration tests possible
+  coverage_areas:
+    - Configuration parsing and validation
+    - Protocol message serialization
+    - Transport implementations
+  test_patterns:
+    - Feature-gated test modules
+    - Async test functions with #[tokio::test]
+
+extension_points:
+  - location: src/transport/mod.rs:52-68
+    hook: Transport trait
+    example: Implement for QUIC, WebTransport, or custom protocols
+  - location: src/protocol.rs:19-59
+    hook: Message enums (Hello, Ack, ControlChannelCmd, DataChannelCmd)
+    example: Add new commands for protocol extensions
+  - location: src/config.rs:82-89
+    hook: ServiceType enum
+    example: Add new service types (HTTP, custom protocols)
+  - location: src/config_watcher.rs:25-89
+    hook: ConfigChange enum
+    example: Custom reload behaviors for specific config changes

@@ -1,0 +1,179 @@
+name: sshuttle
+node_id: repo::sshuttle/sshuttle
+github_full_name: sshuttle/sshuttle
+html_url: https://github.com/sshuttle/sshuttle
+source: ssh_repos
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/deep/sshuttle.yaml
+  as_of: '2026-02-23'
+directory: sshuttle-master
+category: remote_access
+
+# Inherited from shallow file
+summary: |
+  "Poor man's VPN" that creates a transparent proxy over SSH, routing traffic through
+  a remote server without requiring admin access on the remote or dealing with complex
+  VPN protocols. Avoids TCP-over-TCP performance issues through intelligent proxying.
+
+# Deep additions
+architecture:
+  module_breakdown:
+    - module: sshuttle/cmdline.py
+      responsibility: CLI entry point - argument parsing, mode routing
+      key_files: [sshuttle/cmdline.py]
+    - module: sshuttle/client.py
+      responsibility: Client logic - SSH connection, firewall management, traffic proxying
+      key_files: [sshuttle/client.py]
+    - module: sshuttle/server.py
+      responsibility: Server-side - runs on remote host via SSH, handles proxied connections
+      key_files: [sshuttle/server.py]
+    - module: sshuttle/firewall.py
+      responsibility: Firewall subprocess - privileged process for routing rules
+      key_files: [sshuttle/firewall.py]
+    - module: sshuttle/ssnet.py
+      responsibility: Network protocol - Mux/Proxy classes, command protocol
+      key_files: [sshuttle/ssnet.py]
+    - module: sshuttle/methods/
+      responsibility: Firewall backends - nat/nft/pf/ipfw/windivert implementations
+      key_files: [sshuttle/methods/__init__.py, sshuttle/methods/nat.py, sshuttle/methods/pf.py]
+    - module: sshuttle/hostwatch.py
+      responsibility: Host monitoring - watches /etc/hosts changes
+      key_files: [sshuttle/hostwatch.py]
+  data_flow: |
+    1. cmdline parses args, determines mode (client/firewall/hostwatch)
+    2. Client establishes SSH connection to remote
+    3. Server code packaged as zlib modules, transferred via stdin
+    4. Server executes on remote, communicates over SSH channel
+    5. Firewall subprocess manipulates routing rules (requires sudo)
+    6. Intercepted traffic sent to client via Mux protocol
+    7. Client proxies over SSH to server, server connects to destination
+    8. Uses SO_ORIGINAL_DST to get true destination (avoids TCP-over-TCP)
+  key_abstractions:
+    - name: BaseMethod
+      purpose: Firewall backend interface - common API for iptables/nft/pf/ipfw/WinDivert
+    - name: Mux
+      purpose: Multiplexer for multiple channels over single SSH connection
+    - name: Proxy
+      purpose: Channel handler for TCP/UDP traffic
+    - name: SockWrapper
+      purpose: Socket wrapper with SO_ORIGINAL_DST for true destination
+
+implementation_patterns:
+  - pattern: Firewall Method Interface
+    description: BaseMethod with setup/restore/route methods for each platform
+    location: sshuttle/methods/__init__.py:109
+  - pattern: TCP-over-TCP Avoidance
+    description: SO_ORIGINAL_DST socket option to discover true destination
+    location: sshuttle/client.py:100+
+  - pattern: Module Transfer
+    description: Server code packaged as zlib modules, sent via SSH stdin
+    location: sshuttle/client.py
+  - pattern: Binary Protocol with 8-byte Headers
+    description: SS prefix, channel ID, command type, length
+    location: sshuttle/ssnet.py
+  - pattern: Firewall Subprocess
+    description: Separate privileged process for rule manipulation
+    location: sshuttle/firewall.py:25
+
+configuration:
+  file: CLI flags only (no config file)
+  options:
+    - name: -r/--remote
+      type: string
+      default: required
+      description: Remote host (user@hostname)
+    - name: subnet
+      type: list[string]
+      default: required
+      description: Subnets to route (e.g., 0/0, 10.0.0.0/8)
+    - name: --dns
+      type: bool
+      default: false
+      description: Route DNS queries through tunnel
+    - name: --ns-hosts
+      type: list[string]
+      default: []
+      description: DNS servers to use
+    - name: --method
+      type: string
+      default: auto
+      description: Firewall method (auto/nat/nft/pf/ipfw)
+    - name: --exclude
+      type: list[string]
+      default: []
+      description: Subnets to exclude from tunneling
+    - name: -x/--exclude-from-auto
+      type: bool
+      default: false
+      description: Exclude remote host's network
+    - name: -e/--ssh-cmd
+      type: string
+      default: "ssh"
+      description: SSH command to use
+    - name: --python
+      type: string
+      default: auto
+      description: Python path on remote
+    - name: -l/--listen
+      type: string
+      default: auto
+      description: Local listen address
+    - name: -v/--verbose
+      type: int
+      default: 0
+      description: Verbosity level
+    - name: --syslog
+      type: bool
+      default: false
+      description: Send logs to syslog
+
+api_surface:
+  public_functions:
+    - name: cmdline.main
+      signature: def main() -> None
+      purpose: CLI entry point
+      location: sshuttle/cmdline.py:17
+    - name: client.main
+      signature: "def main(rhost: str, rport: int, ...) -> None"
+      purpose: Client implementation
+      location: sshuttle/client.py:100+
+    - name: server.main
+      signature: def main() -> None
+      purpose: Server-side entry (runs on remote)
+      location: sshuttle/server.py:1
+    - name: firewall.main
+      signature: "def main(method_name: str, ...) -> None"
+      purpose: Firewall subprocess
+      location: sshuttle/firewall.py:25
+    - name: methods.get_method
+      signature: "def get_method(name: str) -> BaseMethod"
+      purpose: Load firewall backend
+      location: sshuttle/methods/__init__.py:109
+
+testing:
+  framework: pytest with coverage
+  structure: tests/ directory
+  coverage_areas:
+    - Configuration parsing
+    - Firewall method selection
+    - Protocol encoding/decoding
+    - Host watch functionality
+  test_patterns:
+    - Fixtures for mock firewall methods
+    - Parametrized tests for different platforms
+    - Integration tests with mock SSH
+
+extension_points:
+  - location: sshuttle/methods/__init__.py:109
+    hook: BaseMethod interface
+    example: Implement for new platforms (e.g., custom firewall)
+  - location: sshuttle/ssnet.py
+    hook: Mux/Proxy classes
+    example: Add new channel types for different protocols
+  - location: sshuttle/client.py
+    hook: Client connection logic
+    example: Support alternative transports (WebSocket, QUIC)
+  - location: sshuttle/server.py
+    hook: Server request handling
+    example: Add custom routing or filtering logic

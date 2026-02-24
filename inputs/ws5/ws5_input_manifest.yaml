@@ -1,0 +1,50 @@
+artifact_type: ws5_remote_ingestion_input_manifest
+contract_version: 1.0.0-ws1
+defaults:
+  target_shard: ssh_repos
+  as_of: '2026-02-23'
+repos:
+  - name: cloudflared
+    github_full_name: cloudflare/cloudflared
+    html_url: https://github.com/cloudflare/cloudflared
+    source: remote_metadata
+    category: network_infrastructure
+    summary: Cloudflare Tunnel client for exposing private services through Cloudflare Zero Trust.
+    core_concepts:
+      - Cloudflare Tunnel client
+      - Zero Trust service exposure
+    key_entry_points:
+      - cmd/cloudflared
+      - README.md
+    build_run:
+      language: go
+      build: go build ./cmd/cloudflared
+      test: go test ./...
+    local_cache_dir: null
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/cloudflare/cloudflared
+      fetched_at_utc: '2026-02-23T03:20:00Z'
+  - name: tailscale
+    github_full_name: tailscale/tailscale
+    html_url: https://github.com/tailscale/tailscale
+    source: remote_api
+    category: vpn_mesh
+    summary: WireGuard-based mesh networking platform with identity-aware connectivity controls.
+    core_concepts:
+      - Mesh VPN over WireGuard
+      - Identity-aware network access
+    key_entry_points:
+      - cmd/tailscale
+      - cmd/tailscaled
+    build_run:
+      language: go
+      build: go build ./cmd/tailscale ./cmd/tailscaled
+      test: go test ./...
+    local_cache_dir: null
+    remote:
+      provider: github
+      mode: api
+      endpoint: /repos/tailscale/tailscale
+      fetched_at_utc: '2026-02-23T03:20:00Z'

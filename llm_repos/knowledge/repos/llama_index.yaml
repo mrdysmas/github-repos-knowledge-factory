@@ -1,0 +1,135 @@
+name: llama_index
+node_id: repo::run-llama/llama_index
+github_full_name: run-llama/llama_index
+html_url: https://github.com/run-llama/llama_index
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/repos/llama_index.yaml
+  as_of: '2026-02-23'
+directory: llama_index-main
+category: rag_frameworks
+
+summary: |
+  A "data framework" for building LLM applications with a focus on RAG (Retrieval-Augmented
+  Generation). LlamaIndex excels at data ingestion, indexing, and retrieval with 100+ LLM
+  integrations and 80+ vector store integrations. Unlike LangChain's general-purpose approach,
+  LlamaIndex specializes in connecting LLMs to your private data. Also offers LlamaCloud for
+  managed document parsing (LlamaParse) and extraction.
+
+core_concepts:
+  - name: llama-index-core
+    description: Core framework with indices, retrievers, query engines
+    location: llama-index-core/llama_index/core/
+
+  - name: Data Connectors (Readers)
+    description: Ingest data from APIs, PDFs, SQL, etc. via LlamaHub
+    location: llama-index-core/llama_index/core/readers/
+
+  - name: Indices
+    description: Vector, tree, keyword, and summary indices for data structure
+    location: llama-index-core/llama_index/core/indices/
+
+  - name: Query Engines
+    description: Retrieval + response synthesis pipeline
+    location: llama-index-core/llama_index/core/query_engine/
+
+  - name: Retrievers
+    description: Fetch relevant context from indices
+    location: llama-index-core/llama_index/core/retrievers/
+
+  - name: Integrations
+    description: 300+ integration packages for LLMs, embeddings, vector stores
+    location: llama-index-integrations/
+
+key_entry_points:
+  - path: llama-index-core/llama_index/core/
+    purpose: Core framework abstractions
+
+  - path: llama-index-integrations/llms/
+    purpose: 100+ LLM provider integrations
+
+  - path: llama-index-integrations/vector_stores/
+    purpose: 80+ vector store integrations
+
+  - path: llama-index-integrations/embeddings/
+    purpose: Embedding model integrations
+
+  - path: docs/examples/
+    purpose: Usage examples for common patterns
+
+monorepo_packages:
+  - name: llama-index
+    pypi: llama-index
+    purpose: Starter package (core + common integrations)
+
+  - name: llama-index-core
+    pypi: llama-index-core
+    purpose: Core framework only
+
+  - name: llama-index-llms-openai
+    pypi: llama-index-llms-openai
+    purpose: OpenAI integration
+
+  - name: llama-index-llms-ollama
+    pypi: llama-index-llms-ollama
+    purpose: Ollama local model integration
+
+  - name: llama-index-llms-anthropic
+    pypi: llama-index-llms-anthropic
+    purpose: Anthropic/Claude integration
+
+  - name: llama-index-vector-stores-milvus
+    pypi: llama-index-vector-stores-milvus
+    purpose: Milvus vector store
+
+  - name: llama-index-vector-stores-chroma
+    pypi: llama-index-vector-stores-chroma
+    purpose: Chroma vector store
+
+  - name: llama-index-vector-stores-qdrant
+    pypi: llama-index-vector-stores-qdrant
+    purpose: Qdrant vector store
+
+build_run:
+  language: Python
+  manager: poetry
+  build: "pip install poetry && poetry install --with dev"
+  test: "pytest"
+  docs: "make docs"
+
+ecosystem_connections:
+  - target: langchain
+    relation: alternative_to
+    note: LlamaIndex is data-focused RAG; LangChain is general-purpose orchestration
+
+  - target: ollama
+    relation: integrates_with
+    note: llama-index-llms-ollama for local models
+
+  - target: milvus
+    relation: integrates_with
+    note: llama-index-vector-stores-milvus for vector storage
+
+  - target: vllm
+    relation: integrates_with
+    note: llama-index-llms-vllm integration available
+
+  - target: ragflow
+    relation: alternative_to
+    note: Both focus on RAG; different approaches to document understanding
+
+  - target: graphrag
+    relation: related_to
+    note: LlamaIndex has graph_rag module; complementary approaches
+
+  - target: xinference
+    relation: integrates_with
+    note: llama-index-llms-xinference integration
+
+further_reading:
+  - README.md
+  - docs/examples/ (extensive examples)
+  - docs: https://docs.llamaindex.ai/en/stable/
+  - llamahub: https://llamahub.ai/ (integration catalog)
+  - llamacloud: https://cloud.llamaindex.ai/ (managed platform)

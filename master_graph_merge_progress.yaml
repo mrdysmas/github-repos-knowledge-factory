@@ -1,0 +1,822 @@
+---
+# Phase 0: Master Knowledge Graph Consolidation
+# Unify knowledge shards into a canonical master index + master graph
+# Date initiated: 2026-02-22
+
+phase:
+  number: "0"
+  name: "Master Knowledge Graph Consolidation"
+  status: "COMPLETE"  # Workflow: PENDING -> IN_PROGRESS -> CHECKPOINT_1 -> CHECKPOINT_2 -> COMPLETE
+  date_initiated: "2026-02-22"
+  date_started: null
+  date_completed: "2026-02-24"
+  owner: "user + coding agents"
+  scope: "Merge llm_repos/knowledge + ssh_repos/knowledge into canonical master artifacts"
+
+objective: |
+  Build one canonical master index and one canonical master graph that can scale beyond local clones.
+  The target operating model is remote-first: maintain graph/index for repos of interest without requiring
+  full local source checkout. Domain knowledge shards remain useful inputs, but master artifacts must follow
+  a single identity model, graph schema, and validation contract.
+
+dependencies:
+  - "Existing shards: llm_repos/knowledge and ssh_repos/knowledge"
+  - "Agreement on canonical repo identity (GitHub-native)"
+  - "Agreement on canonical relation ontology and node kinds"
+  - "Agreement on master build flow (compile from shards; no manual master edits)"
+
+acceptance_criteria:
+  - "100% of knowledge artifacts parse as valid YAML (index, graph, repos, deep, progress, audit-progress)"
+  - "No COMPLETE/READY status is allowed when parse errors exist or pending queues are non-empty"
+  - "Canonical identity exists for 100% of tracked repos (owner/repo + URL + stable node_id)"
+  - "100% of shard edges compile into canonical edge schema without field-loss"
+  - "Relation ontology mapping coverage is 100% (no unmapped relation types)"
+  - "Validator enforces identical core rules across all shard inputs"
+  - "Master graph supports both internal repo nodes and external ecosystem nodes via explicit node kinds"
+  - "Incremental refresh job updates changed repos only and records provenance/as_of timestamps"
+  - "Fresh agent can resume from tracker only (no chat history dependency)"
+
+milestones:
+  - name: "Checkpoint 0 - Trust Gates"
+    description: "Parser and status-semantic gates prevent false-green READY/COMPLETE outcomes"
+    expected_completion: "1 working session"
+    status: "COMPLETE"
+  - name: "Checkpoint 1 - Contract Freeze"
+    description: "Canonical schemas (repo, node, edge) + relation ontology + validation rules approved"
+    expected_completion: "1-2 working sessions"
+    status: "COMPLETE"
+  - name: "Checkpoint 2 - Identity and Schema Normalization"
+    description: "Both shards normalized to canonical schema with migration artifacts and mismatch report"
+    expected_completion: "2-4 working sessions"
+    status: "COMPLETE"
+  - name: "Checkpoint 3 - Master Compiler and Validation"
+    description: "Automated build generates master_index/master_graph + deterministic validation passes"
+    expected_completion: "2-4 working sessions"
+    status: "COMPLETE"
+  - name: "Checkpoint 4 - Remote-First Operation"
+    description: "Pipeline can add/refresh repos from GitHub metadata without requiring local clone"
+    expected_completion: "3-6 working sessions"
+    status: "COMPLETE"
+
+workstreams:
+  - id: "WS0"
+    name: "Trust & Validation Hardening"
+    status: "COMPLETE"
+    outcome: "No false-green outputs; strict parse + status gates before merge work"
+    context_window_control:
+      max_scope_per_task: "one validator + one status artifact at a time"
+      max_files_per_task: 4
+  - id: "WS1"
+    name: "Canonical Data Contract"
+    status: "COMPLETE"
+    outcome: "One schema and ontology for all current/future shards"
+    context_window_control:
+      max_scope_per_task: "schema + one validator diff only"
+      max_files_per_task: 3
+  - id: "WS2"
+    name: "Identity Backfill"
+    status: "COMPLETE"
+    outcome: "All repos carry GitHub-native identity fields"
+    context_window_control:
+      max_scope_per_task: "batch 10-15 repos"
+      max_files_per_task: 20
+  - id: "WS3"
+    name: "Graph Normalization"
+    status: "COMPLETE"
+    outcome: "All edges converted to canonical keys and relation types"
+    context_window_control:
+      max_scope_per_task: "one relation family at a time"
+      max_files_per_task: 4
+  - id: "WS4"
+    name: "Master Build + Validation"
+    status: "COMPLETE"
+    outcome: "Deterministic compile pipeline + unified quality gates"
+    context_window_control:
+      max_scope_per_task: "single script + tests"
+      max_files_per_task: 5
+  - id: "WS5"
+    name: "Remote-First Ingestion"
+    status: "COMPLETE"
+    outcome: "Starred/watchlist repos can be tracked without local repo contents"
+    context_window_control:
+      max_scope_per_task: "one source adapter at a time"
+      max_files_per_task: 6
+
+execution_checklist:
+  - "[x] Step 1: Add strict parse validation for all artifact types (index, graph, repos, deep, progress, audit-progress)"
+  - "[x] Step 2: Add status-semantic gates (COMPLETE/READY forbidden when pending items remain or parse fails)"
+  - "[x] Step 3: Repair invalid audit artifact formatting and enforce machine-parseable report schema"
+  - "[x] Step 4: Define canonical repo identity fields (node_id, github_full_name, html_url, source, local_cache_dir optional)"
+  - "[x] Step 5: Define canonical edge schema (src_id, dst_id, dst_kind, relation, confidence, evidence, as_of)"
+  - "[x] Step 6: Define relation ontology and mapping table from existing shard relation labels"
+  - "[x] Step 7: Define node kinds and policies (repo, external_tool, concept) to resolve closed/open world conflict"
+  - "[x] Step 8: Create migration spec for llm graph keys (source/target/relation) and ssh graph keys (from/to/type) (WAIVED by supervisor on 2026-02-24: WS3 canonicalization + WS1/WS4 validation controls accepted as equivalent; no separate migration-spec artifact required)."
+  - "[x] Step 9: Backfill canonical identity into all shallow repo files and deep files"
+  - "[x] Step 10: Normalize deep-file schema in llm shard (name/repo/repo_id/full_name variants to canonical contract)"
+  - "[x] Step 11: Unify validator rules for shallow + deep across both shards"
+  - "[x] Step 12: Build compiler that generates master_index.yaml and master_graph.yaml from shard inputs"
+  - "[x] Step 13: Add deterministic reports (coverage, unmapped relations, unknown nodes, stale records)"
+  - "[x] Step 14: Define refresh workflow for remote-only repositories (API/README metadata fallback strategy)"
+  - "[x] Step 15: Run end-to-end dry run and record baseline vs post-normalization metrics"
+
+key_metrics:
+  - name: "artifact_parse_validity"
+    target: "100%"
+    actual: "100% for WS0 in-scope shards (llm_repos/knowledge + ssh_repos/knowledge) under trust gates run on 2026-02-22"
+  - name: "status_semantic_integrity"
+    target: "100%"
+    actual: "100% for WS0 in-scope shards under trust gates run on 2026-02-22; contradiction case retained as regression fixture"
+  - name: "repo_identity_coverage"
+    target: "100%"
+    actual: "WS2 supervisor check (2026-02-23): 96/96 in-scope records have full required identity/provenance fields (100% coverage)"
+  - name: "edge_schema_compatibility"
+    target: "100%"
+    actual: "WS3 complete (2026-02-23): 100% shard-edge canonicalization to WS1 schema (152/152), legacy edge keys after=0, field_loss_count=0, unmapped_relation_types=0"
+  - name: "relation_mapping_coverage"
+    target: "100%"
+    actual: "100% mapped: unique canonical coverage 12/12; per-shard observed rows 14/14 (unsupported 0)"
+  - name: "deep_schema_conformance"
+    target: ">=95%"
+    actual: "Phase-finalization hardening (2026-02-24): llm deep schema normalized to canonical identity keys (26/26), legacy alias keys removed, missing-name count 0"
+  - name: "external_node_modeling_coverage"
+    target: "100%"
+    actual: "WS1 policy artifact defines configurable modes (first_class or label_only) with validator implications"
+  - name: "validator_parity_across_shards"
+    target: "100%"
+    actual: "Phase-finalization hardening (2026-02-24): WS1 validator is single enforcement source for shallow+deep identity parity across llm/ssh shards (both policy modes PASS)"
+
+baseline_snapshot:
+  captured_at: "2026-02-22T22:00:00"
+  datasets:
+    llm_repos:
+      repo_files: 26
+      deep_files: 26
+      deep_schema_variants: 13
+      deep_files_missing_name: 9
+      graph_edges: 113
+      relation_types: ["alternative_to", "extends", "integrates_with", "related_to"]
+      graph_nodes_external_targets: 0
+      audit_progress_yaml_parseable: false
+      notes:
+        - "Graph uses source/target/relation"
+        - "Validator enforces all graph nodes must exist as local repos"
+        - "Deep coverage complete but not yet on one canonical schema"
+    ssh_repos:
+      repo_files: 22
+      deep_files: 22
+      graph_edges: 39
+      relation_types: ["alternative_to", "built_on", "deploys", "extends", "references", "replaces", "similar_to", "supports", "used_by", "wrapper_for"]
+      graph_nodes_external_targets: 14
+      audit_progress_yaml_parseable: true
+      notes:
+        - "Graph uses from/to/type"
+        - "Validator allows external edge targets"
+    skills_bank_kgraph_sample:
+      deep_files: 19
+      deep_files_yaml_parse_errors: 7
+      audit_progress_yaml_parseable: false
+      notes:
+        - "Sample artifacts show parse failures despite VERIFIED/complete statuses"
+  evidence_refs:
+    - "llm_repos/knowledge/graph.yaml:10"
+    - "ssh_repos/knowledge/graph.yaml:12"
+    - "llm_repos/knowledge/validate.py:238"
+    - "ssh_repos/knowledge/validate.py:104"
+    - "kgraph-repos/SKILL.md:139"
+    - "kgraph-repos/SKILL.md:143"
+    - "kgraph-repos/scripts/validate.py:87"
+    - "kgraph-repos/scripts/validate.py:96"
+    - "llm_repos/knowledge/audit-progress.yaml:71"
+    - "kgraph-repos/knowledge/audit-progress.yaml:11"
+    - "kgraph-repos/knowledge/progress.yaml:4"
+    - "kgraph-repos/knowledge/progress.yaml:16"
+    - "llm_repos/knowledge/deep/anything_llm.yaml:5"
+    - "llm_repos/knowledge/deep/awesome_llm_apps.yaml:1"
+    - "llm_repos/knowledge/deep/prompt_engineering_guide.yaml:5"
+
+risks:
+  - id: "R1"
+    severity: "HIGH"
+    description: "Identity drift blocks remote-first operation"
+    why_it_matters: "Without GitHub-native identity, entries are tied to local directory names and cannot be reliably refreshed"
+    mitigation: "Make canonical identity mandatory; local directory becomes optional cache field"
+    status: "OPEN"
+  - id: "R2"
+    severity: "HIGH"
+    description: "Schema drift between shards causes merge breakage and custom one-off logic"
+    why_it_matters: "Different key names and relation vocabularies multiply glue code and failure points"
+    mitigation: "Introduce schema contract + normalization layer before master compiler"
+    status: "OPEN"
+  - id: "R3"
+    severity: "HIGH"
+    description: "Closed-world vs open-world node policy conflict"
+    why_it_matters: "One shard requires all nodes local while the other models external ecosystem tools"
+    mitigation: "Add explicit node kinds and validation policy per node kind"
+    status: "OPEN"
+  - id: "R4"
+    severity: "HIGH"
+    description: "Deep knowledge layer inconsistency in llm shard"
+    why_it_matters: "Missing canonical keys in deep files limits trust and automation"
+    mitigation: "Backfill deep schema and add strict deep validation gates"
+    status: "OPEN"
+  - id: "R5"
+    severity: "MEDIUM"
+    description: "Quality signals may be overstated"
+    why_it_matters: "Sampled audit checks can produce false confidence"
+    mitigation: "Use deterministic coverage metrics and full-check validation for critical dimensions"
+    status: "OPEN"
+  - id: "R6"
+    severity: "MEDIUM"
+    description: "No provenance/freshness fields for relationships"
+    why_it_matters: "Edges can become stale and unverifiable over time"
+    mitigation: "Add evidence + as_of + confidence fields for all compiled edges"
+    status: "OPEN"
+  - id: "R7"
+    severity: "HIGH"
+    description: "False-green verification artifacts"
+    why_it_matters: "Artifacts can claim READY/VERIFIED while not parseable, undermining trust in outputs"
+    mitigation: "Hard gate READY/COMPLETE on strict parser pass across all artifact files"
+    status: "OPEN"
+  - id: "R8"
+    severity: "HIGH"
+    description: "Spec vs validator mismatch"
+    why_it_matters: "Skill documentation promises full validation scope that implementation does not enforce"
+    mitigation: "Align skill spec, templates, and validator behavior; test conformance in CI-like gate"
+    status: "OPEN"
+  - id: "R9"
+    severity: "MEDIUM"
+    description: "Status semantic corruption (complete with pending work)"
+    why_it_matters: "Progress files become unreliable for scheduling and agent handoff decisions"
+    mitigation: "Add status consistency checks and fail on contradictory states"
+    status: "OPEN"
+
+open_decisions:
+  - id: "D1"
+    question: "Master persistence model: YAML-only vs YAML + SQLite index?"
+    options:
+      - "YAML-only (simpler diffs, lower complexity, weaker query performance)"
+      - "YAML + SQLite (stronger queryability and refresh workflows, more moving parts)"
+    owner: "user"
+    deadline: null
+    status: "RESOLVED"
+    decision: "YAML-only canonical source of truth for now; allow generated SQLite read-model later if query scale requires it."
+    resolved_at: "2026-02-24T01:41:13Z"
+    residual_risk: "Ad-hoc analytics may become slow as repository count and relationship volume grow."
+    follow_up: "Define explicit trigger thresholds (size/query-latency) for introducing generated SQLite read-model."
+  - id: "D2"
+    question: "Relation ontology strategy: strict minimal set vs richer ontology with compatibility mapping?"
+    options:
+      - "Strict minimal set (easier maintenance, less expressiveness)"
+      - "Richer ontology + canonical mapping (better fidelity, higher governance burden)"
+    owner: "user"
+    deadline: null
+    status: "RESOLVED"
+    decision: "Adopt richer ontology with canonical mapping as governance boundary."
+    resolved_at: "2026-02-24T01:41:13Z"
+    residual_risk: "Mapping table growth can drift without ownership and compatibility checks."
+    follow_up: "Add ontology change-control checklist and mapping-coverage gate to decision review cadence."
+  - id: "D3"
+    question: "External nodes in master graph: first-class nodes vs lightweight labels only?"
+    options:
+      - "First-class nodes (better analytics, higher schema/ingestion complexity)"
+      - "Label-only references (lighter implementation, weaker graph reasoning)"
+    owner: "user"
+    deadline: null
+    status: "RESOLVED"
+    decision: "Model external entities as first-class nodes in master graph."
+    resolved_at: "2026-02-24T01:41:13Z"
+    residual_risk: "Node-cardinality growth can increase ingestion and validation cost."
+    follow_up: "Define node-kind lifecycle policy (creation/update/deprecation) and monitor external-node growth."
+  - id: "D4"
+    question: "Quality gate strictness: block all READY/COMPLETE states on any parse/status inconsistency?"
+    options:
+      - "Strict blocking (recommended) - no READY/COMPLETE unless all parser + status gates pass"
+      - "Soft warnings - allow READY with notes and manual review burden"
+    owner: "user"
+    deadline: null
+    status: "RESOLVED"
+    decision: "Strict blocking implemented in WS0 trust gates preflight"
+    resolved_at: "2026-02-22"
+
+results:
+  deliverables:
+    - "Standalone WS0 preflight script: tools/trust_gates.py (G1/G2/G3 + deterministic report output)"
+    - "Deterministic per-knowledge-dir report artifact: knowledge/trust-gates-report.yaml"
+    - "Enforced preflight orchestration in llm_repos/knowledge/validate.py and ssh_repos/knowledge/validate.py"
+    - "Regression fixtures/tests for parse-invalid audit artifact, complete+pending contradiction, and clean pass"
+  completion_status: "PARTIAL"  # COMPLETE, PARTIAL, BLOCKED
+  issues_encountered:
+    - "Initial G3 detector falsely inferred deep-scope coverage from docstring text; detection tightened to quoted path references."
+  completed_steps:
+    - "Implemented tools/trust_gates.py and generated deterministic reports with fields required by ws0_trust_gates_spec.md."
+    - "Repaired llm_repos/knowledge/audit-progress.yaml parse error (line with unquoted colon-containing note)."
+    - "Command: python3 -m unittest discover -s tests/ws0_trust_gates -p 'test_*.py' -> PASS (3 tests, 0 failures)."
+    - "Command: python3 tools/trust_gates.py llm_repos/knowledge --production -> PASS (G1 PASS, G2 PASS, G3 PASS, overall PASS)."
+    - "Command: python3 tools/trust_gates.py ssh_repos/knowledge --production -> PASS (G1 PASS, G2 PASS, G3 PASS, overall PASS)."
+    - "Command: cd llm_repos/knowledge && python3 validate.py -> PASS (trust gates preflight PASS, validator summary: Passed 32, Failed 0)."
+    - "Command: cd ssh_repos/knowledge && python3 validate.py -> PASS (trust gates preflight PASS, validator passed with 22 repo files)."
+    - "Supervisor re-verify (2026-02-22T22:57:52Z): python3 -m unittest discover -s tests/ws0_trust_gates -p 'test_*.py' -v -> PASS (Ran 3 tests, OK)."
+    - "Supervisor re-verify (2026-02-22T22:57:52Z): python3 tools/trust_gates.py llm_repos/knowledge --production -> PASS (G1 PASS, G2 PASS, G3 PASS, Overall PASS, ready_state_allowed true)."
+    - "Supervisor re-verify (2026-02-22T22:57:52Z): python3 tools/trust_gates.py ssh_repos/knowledge --production -> PASS (G1 PASS, G2 PASS, G3 PASS, Overall PASS, ready_state_allowed true)."
+    - "Supervisor re-verify (2026-02-22T22:57:52Z): validate.py preflight paths PASS in both shards (llm: Passed 32/Failed 0; ssh: Validation passed with 22 repo files)."
+  pattern_notes:
+    - "Pattern: false-green guardrail hardening via preflight gate before legacy validator execution."
+    - "Failure mode prevented: READY/COMPLETE states surviving despite parse/semantic contradictions."
+  supervisor_verification:
+    ws0_decision: "PASS"
+    ws1_gate_decision: "GO"
+    verified_at_utc: "2026-02-22T22:57:52Z"
+    files_touched_by_ws0:
+      - "tools/trust_gates.py"
+      - "llm_repos/knowledge/validate.py"
+      - "ssh_repos/knowledge/validate.py"
+      - "llm_repos/knowledge/audit-progress.yaml"
+      - "llm_repos/knowledge/trust-gates-report.yaml"
+      - "ssh_repos/knowledge/trust-gates-report.yaml"
+      - "tests/ws0_trust_gates/test_trust_gates.py"
+      - "tests/ws0_trust_gates/__init__.py"
+      - "tests/ws0_trust_gates/fixtures/"
+    blockers: []
+    residual_risks:
+      - "Trust gates are mandatory on validate.py path; ad-hoc manual reads can still bypass scripted enforcement."
+  ws1_results:
+    completion_status: "PASS"  # PASS, PARTIAL, BLOCKED
+    checkpoint_state: "CHECKPOINT_2_APPROVED"
+    contract_version: "1.0.0-ws1"
+    deliverables:
+      - "Human-readable WS1 contract spec: ws1_canonical_data_contract.md"
+      - "Machine-readable schemas: contracts/ws1/repo.schema.yaml, contracts/ws1/node.schema.yaml, contracts/ws1/edge.schema.yaml"
+      - "Machine-readable relation mapping: contracts/ws1/relation_mapping.yaml"
+      - "Machine-readable external-node policy artifact: contracts/ws1/external_node_policy.yaml"
+      - "Machine-readable validator contract/enforcement artifact: contracts/ws1/validator_contract.yaml"
+      - "WS1 boundary validator: tools/ws1_contract_validator.py"
+      - "WS1 regression tests + fixtures: tests/ws1_contract/"
+      - "Mandatory WS1 preflight hooks added in llm_repos/knowledge/validate.py and ssh_repos/knowledge/validate.py"
+    completed_steps:
+      - "Defined canonical repo/node/edge contracts with explicit required/optional fields, constraints, and source enums aligned for remote-first cases."
+      - "Defined canonical relation ontology and mapping table from llm/ssh graph labels with explicit coverage metrics."
+      - "Implemented external-node policy as configurable runtime mode (first_class|label_only) to preserve open D3 decision."
+      - "Added explicit edge/node consistency validation rule for dst_kind integrity."
+      - "Implemented canonical command: python3 tools/ws1_contract_validator.py --workspace-root <repo_root> --external-node-policy <first_class|label_only>."
+      - "Enforced canonical WS1 command in both shard validate.py preflight paths."
+      - "Added regression tests for pass/fail policy modes, dst_kind mismatch, and mapping coverage mismatch."
+    commands_run:
+      - "python3 tools/ws1_contract_validator.py --workspace-root . --external-node-policy first_class -> PASS (WS1_CONTRACT_STATUS: PASS)"
+      - "python3 tools/ws1_contract_validator.py --workspace-root . --external-node-policy label_only -> PASS (WS1_CONTRACT_STATUS: PASS)"
+      - "python3 -m unittest discover -s tests/ws1_contract -p 'test_*.py' -> PASS (Ran 4 tests, OK)"
+      - "cd llm_repos/knowledge && python3 validate.py -> PASS (trust gates PASS + WS1 preflight PASS + validator summary Passed 32, Failed 0)"
+      - "cd ssh_repos/knowledge && python3 validate.py -> PASS (trust gates PASS + WS1 preflight PASS + Validation passed with 22 repo files)"
+      - "Supervisor re-verify (2026-02-22T23:34:15Z): python3 tools/ws1_contract_validator.py --workspace-root . --external-node-policy first_class -> PASS (unique 12/12, rows 14/14)"
+      - "Supervisor re-verify (2026-02-22T23:34:15Z): python3 tools/ws1_contract_validator.py --workspace-root . --external-node-policy label_only -> PASS"
+      - "Supervisor re-verify (2026-02-22T23:34:15Z): python3 -m unittest discover -s tests/ws1_contract -p 'test_*.py' -> PASS (Ran 4 tests, OK)"
+      - "Supervisor re-verify (2026-02-22T23:34:15Z): llm/ssh validate.py both PASS with trust-gates + WS1 preflight enforced."
+      - "Supervisor re-verify (2026-02-22T23:34:15Z): WS1_EXTERNAL_NODE_POLICY=label_only cd llm_repos/knowledge && python3 validate.py -> PASS (policy switch honored on shard entrypoint)."
+    blockers: []
+    supervisor_verification:
+      decision: "PASS"
+      verified_at_utc: "2026-02-22T23:34:15Z"
+      go_for_ws2_ws3: true
+      notes:
+        - "D1/D2/D3 preserved OPEN; configurable external-node policy prevents implicit D3 closure."
+        - "WS1 contract validator enforcement path is active in both shard validators."
+    open_decisions_preserved:
+      - "D1 remains OPEN (no persistence architecture finalization in WS1)"
+      - "D2 remains OPEN (mapping implemented without forcing ontology governance finalization)"
+      - "D3 remains OPEN (validator mode is configurable; no implicit first_class/label_only finalization)"
+  ws2_results:
+    completion_status: "PASS"  # PASS, PARTIAL, BLOCKED
+    checkpoint_state: "CHECKPOINT_2_WS2_PASS"
+    verified_at_utc: "2026-02-23T00:28:23Z"
+    scope:
+      definition: "All shard repo + deep YAML records under llm_repos/knowledge and ssh_repos/knowledge"
+      records_scanned_total: 96
+      shard_breakdown:
+        llm_repos:
+          repos: 26
+          deep: 26
+        ssh_repos:
+          repos: 22
+          deep: 22
+    evidence_artifacts:
+      - "reports/ws2_identity/coverage.yaml (generated_at_utc 2026-02-23T00:21:16Z)"
+      - "reports/ws2_identity/mismatch_report.yaml (generated_at_utc 2026-02-23T00:21:16Z)"
+      - "tools/ws2_identity_backfill.py"
+      - "llm_repos/knowledge/trust-gates-report.yaml (run_at 2026-02-23T00:24:52Z)"
+      - "ssh_repos/knowledge/trust-gates-report.yaml (run_at 2026-02-23T00:24:52Z)"
+      - "llm_repos/repos.yaml (identity precedence source #3 for llm shard)"
+      - "master_repo_list.yaml (assistive input only; source #4 fallback for unresolved records)"
+      - "llm_repos/knowledge/repos/llm-app.yaml"
+      - "llm_repos/knowledge/repos/parlant.yaml"
+      - "llm_repos/knowledge/repos/llama.cpp.yaml"
+      - "ssh_repos/knowledge/repos/awesome-tunneling.yaml"
+    files_changed_observed:
+      - "All 96 in-scope records now contain canonical identity/provenance fields (26 llm repos + 26 llm deep + 22 ssh repos + 22 ssh deep)."
+      - "provenance.as_of is consistently 2026-02-23 across all 96 in-scope records."
+      - "WS2 evidence reports regenerated with gate_ready=true and zero mismatch lists."
+      - "Trust-gates reports refreshed by validator runs as expected side effects."
+    commands_run:
+      - "WS2 agent-reported run: python3 tools/ws2_identity_backfill.py --workspace-root . -> PASS (records=96, fallback_mappings=1, conflict_overrides=0, as_of=2026-02-23)"
+      - "Supervisor re-verify (2026-02-23T00:25:12Z): python3 tools/ws1_contract_validator.py --workspace-root . --external-node-policy first_class -> PASS"
+      - "Supervisor re-verify (2026-02-23T00:25:12Z): python3 tools/ws1_contract_validator.py --workspace-root . --external-node-policy label_only -> PASS"
+      - "Supervisor re-verify (2026-02-23T00:25:12Z): python3 tools/trust_gates.py llm_repos/knowledge --production -> PASS"
+      - "Supervisor re-verify (2026-02-23T00:25:12Z): python3 tools/trust_gates.py ssh_repos/knowledge --production -> PASS"
+      - "Supervisor re-verify (2026-02-23T00:25:12Z): cd llm_repos/knowledge && python3 validate.py -> PASS (Passed 32, Failed 0)"
+      - "Supervisor re-verify (2026-02-23T00:25:12Z): cd ssh_repos/knowledge && python3 validate.py -> PASS (Validation passed with 22 repo files)"
+      - "Supervisor re-verify (2026-02-23T00:25:12Z): provenance scan over 96 in-scope YAML records -> as_of_values=['2026-02-23']"
+      - "Supervisor re-verify (2026-02-23T00:28:23Z): conflict-aware identity scan over 96 in-scope YAML records -> records_total=96, node_id_values=48, duplicate_conflict_node_id=0"
+      - "Supervisor evidence scan (2026-02-23T00:25:12Z): validated ambiguity cases llm-app/parlant/llama.cpp/awesome-tunneling against precedence sources and mismatch report fallback/conflict logs"
+    gate_results:
+      identity_field_coverage_100pct: "PASS (96/96 records with all required fields; coverage report generated_at_utc 2026-02-23T00:21:16Z)"
+      duplicate_node_id_zero: "PASS (0 duplicate conflicts by WS2 rule: max one repos + one deep per node_id and single github_full_name per node_id)"
+      malformed_github_full_name_and_html_url_zero: "PASS (0 malformed identity values)"
+      provenance_requirements_met: "PASS (0 provenance errors; as_of=2026-02-23 on all 96 records)"
+      contract_conformance_checks: "PASS (WS1 validator passes in both external-node-policy modes)"
+      existing_gate_commands: "PASS (trust gates + both shard validators pass on supervisor re-verification)"
+    ambiguity_handling_status:
+      llm_app_conflict:
+        expected: "Resolve and log conflict using approved WS2 precedence (source #3 before source #4 fallback-only)."
+        found: "Resolved. Conflict observed (llm_repos/repos.yaml -> llm-app/llm-app vs master_repo_list.yaml -> pathwaycom/llm-app). Canonical value in shallow+deep is pathwaycom/llm-app with no fallback event and no unresolved ambiguity."
+        status: "RESOLVED"
+      parlant_conflict:
+        expected: "Resolve and log conflict using approved WS2 precedence (source #3 before source #4 fallback-only)."
+        found: "Resolved. Conflict observed (llm_repos/repos.yaml -> parlant-io/parlant vs master_repo_list.yaml -> emcie-co/parlant). Canonical value in shallow+deep is emcie-co/parlant with no fallback event and no unresolved ambiguity."
+        status: "RESOLVED"
+      llama_cpp_missing_in_llm_repos_repos_yaml:
+        expected: "When source #3 has no mapping, resolve from source #4 fallback and record provenance/override decision."
+        found: "Resolved. llm_repos/repos.yaml has no llama.cpp mapping; canonical identity set to ggml-org/llama.cpp in shallow+deep records. mismatch_report shows fallback_mappings_used=1 for awesome-tunneling only, so llama.cpp did not require fallback."
+        status: "RESOLVED"
+      awesome_tunneling_fallback_use:
+        expected: "Fallback-only mapping should be used only after unresolved sources #1-#3 and be logged."
+        found: "Resolved. Fallback event is explicitly logged once in mismatch_report: ssh_repos/knowledge/repos/awesome-tunneling.yaml -> anderspitman/awesome-tunneling (source_used assistive_master_repo_list, reason no_resolvable_local_self_match)."
+        status: "RESOLVED"
+    blockers: []
+    open_decisions_preserved:
+      - "D1 remains OPEN"
+      - "D2 remains OPEN"
+      - "D3 remains OPEN"
+    resolved_decision_respected:
+      - "D4 strict blocking is enforced in tools/ws2_identity_backfill.py (duplicate candidate pre-write hard block and post-write duplicate hard block)."
+      - "WS2 pass was accepted only after all gate booleans in coverage/mismatch reports and supervisor re-verification commands were PASS."
+    residual_risks:
+      - "Duplicate gate semantics allow one repos + one deep record per node_id; this should be kept explicit in WS2 docs to avoid misreading '0 duplicate node_id' as per-file global uniqueness."
+  ws3_results:
+    completion_status: "PASS"  # PASS, PARTIAL, BLOCKED
+    checkpoint_state: "CHECKPOINT_2_CLOSED_APPROVED"
+    verified_at_utc: "2026-02-23T01:02:12Z"
+    closeout_approved: true
+    closeout_approved_at_utc: "2026-02-23T01:27:11Z"
+    closeout_approved_by: "supervisor"
+    scope:
+      definition: "Shard graph normalization to WS1 canonical edge schema (llm_repos + ssh_repos)"
+      shard_breakdown:
+        llm_repos:
+          edges_before: 113
+          edges_after: 113
+        ssh_repos:
+          edges_before: 39
+          edges_after: 39
+      totals:
+        edges_before: 152
+        edges_after: 152
+    evidence_artifacts:
+      - "reports/ws3_graph_normalization/coverage.yaml (generated_at_utc 2026-02-23T01:02:12Z)"
+      - "reports/ws3_graph_normalization/mismatch_report.yaml (generated_at_utc 2026-02-23T01:02:12Z)"
+      - "reports/ws3_graph_normalization/validation_runs.yaml (generated_at_utc 2026-02-23T01:02:12Z)"
+    files_changed_observed:
+      - "llm_repos/knowledge/graph.yaml (113 edges normalized to canonical keys with provenance)"
+      - "ssh_repos/knowledge/graph.yaml (39 edges normalized to canonical keys with provenance)"
+      - "llm_repos/knowledge/validate.py (canonical edge validation + query compatibility by node_id)"
+      - "ssh_repos/knowledge/validate.py (canonical edge validation by node_id + required provenance checks)"
+      - "tools/ws1_contract_validator.py (ssh relation observation compatibility for relation/type keys)"
+      - "reports/ws3_graph_normalization/coverage.yaml"
+      - "reports/ws3_graph_normalization/mismatch_report.yaml"
+      - "reports/ws3_graph_normalization/validation_runs.yaml"
+    commands_run:
+      - "python3 tools/ws1_contract_validator.py --workspace-root . --external-node-policy first_class -> PASS (WS1_CONTRACT_STATUS: PASS)"
+      - "python3 tools/ws1_contract_validator.py --workspace-root . --external-node-policy label_only -> PASS (WS1_CONTRACT_STATUS: PASS)"
+      - "python3 tools/trust_gates.py llm_repos/knowledge --production -> PASS (Overall PASS, ready_state_allowed true)"
+      - "python3 tools/trust_gates.py ssh_repos/knowledge --production -> PASS (Overall PASS, ready_state_allowed true)"
+      - "cd llm_repos/knowledge && python3 validate.py -> PASS (trust gates + WS1 preflight + validator pass)"
+      - "cd ssh_repos/knowledge && python3 validate.py -> PASS (trust gates + WS1 preflight + validator pass)"
+    gate_results:
+      normalized_edges_pct: "PASS (100.0)"
+      legacy_edge_key_count_after: "PASS (0)"
+      field_loss_count: "PASS (0)"
+      unmapped_relation_types: "PASS ([])"
+      ws1_contract_first_class: "PASS"
+      ws1_contract_label_only: "PASS"
+      trust_gates_llm: "PASS"
+      trust_gates_ssh: "PASS"
+      llm_validate_entrypoint: "PASS"
+      ssh_validate_entrypoint: "PASS"
+      gate_ready: "PASS (true)"
+    blockers: []
+    open_decisions_preserved:
+      - "D1 remains OPEN"
+      - "D2 remains OPEN"
+      - "D3 remains OPEN"
+    resolved_decision_respected:
+      - "D4 strict blocking enforced: no failed gate tolerated during WS3 execution."
+      - "Checkpoint-2 milestone marked COMPLETE only after explicit supervisor closeout approval."
+  ws4_results:
+    completion_status: "PASS"  # PASS, PARTIAL, BLOCKED
+    checkpoint_state: "CHECKPOINT_3_CLOSED_APPROVED"
+    verified_at_utc: "2026-02-23T03:03:41Z"
+    closeout_approved: true
+    closeout_approved_at_utc: "2026-02-23T03:14:46Z"
+    closeout_approved_by: "supervisor"
+    scope:
+      definition: "Deterministic master compile from shard inputs + unified WS4 validation gates"
+      shard_breakdown:
+        llm_repos:
+          repo_records: 26
+          graph_edges: 113
+        ssh_repos:
+          repo_records: 22
+          graph_edges: 39
+      totals:
+        repo_records: 48
+        graph_edges: 152
+        graph_nodes: 62
+    evidence_artifacts:
+      - "master_index.yaml (generated_at_utc 2026-02-23T00:00:00Z)"
+      - "master_graph.yaml (generated_at_utc 2026-02-23T00:00:00Z)"
+      - "reports/ws4_master_build/coverage.yaml (generated_at_utc 2026-02-23T00:00:00Z)"
+      - "reports/ws4_master_build/mismatch_report.yaml (generated_at_utc 2026-02-23T00:00:00Z)"
+      - "reports/ws4_master_build/validation_runs.yaml (generated_at_utc 2026-02-23T00:00:00Z)"
+      - "llm_repos/knowledge/trust-gates-report.yaml (refreshed by required validation runs)"
+      - "ssh_repos/knowledge/trust-gates-report.yaml (refreshed by required validation runs)"
+    files_changed_observed:
+      - "tools/ws4_master_compiler.py (deterministic master compiler + unified validation + WS4 report writer)"
+      - "master_index.yaml"
+      - "master_graph.yaml"
+      - "reports/ws4_master_build/coverage.yaml"
+      - "reports/ws4_master_build/mismatch_report.yaml"
+      - "reports/ws4_master_build/validation_runs.yaml"
+      - "llm_repos/knowledge/trust-gates-report.yaml"
+      - "ssh_repos/knowledge/trust-gates-report.yaml"
+      - "master_graph_merge_progress.yaml"
+    commands_run:
+      - "python3 tools/ws1_contract_validator.py --workspace-root . --external-node-policy first_class -> PASS (WS1_CONTRACT_STATUS: PASS)"
+      - "python3 tools/ws1_contract_validator.py --workspace-root . --external-node-policy label_only -> PASS (WS1_CONTRACT_STATUS: PASS)"
+      - "python3 tools/trust_gates.py llm_repos/knowledge --production -> PASS (Overall PASS, ready_state_allowed true)"
+      - "python3 tools/trust_gates.py ssh_repos/knowledge --production -> PASS (Overall PASS, ready_state_allowed true)"
+      - "cd llm_repos/knowledge && python3 validate.py -> PASS"
+      - "cd ssh_repos/knowledge && python3 validate.py -> PASS"
+      - "python3 tools/ws4_master_compiler.py --workspace-root . --master-index master_index.yaml --master-graph master_graph.yaml --reports-dir reports/ws4_master_build -> PASS (gate_ready true)"
+      - "Re-run command #7 and verify hashes unchanged -> PASS (master_index f9f435045e49..., master_graph 3f58b477b5ee..., coverage df3c4199ceb3..., mismatch 9af2bd344bc6..., validation_runs 3635dda37031...)"
+      - "Structured fidelity check -> PASS (48/48 source repos with structured core_concepts/key_entry_points preserved in master extras.raw_core_concepts_structured / extras.raw_key_entry_points_structured)"
+    gate_results:
+      ws1_contract_first_class: "PASS"
+      ws1_contract_label_only: "PASS"
+      trust_gates_llm: "PASS (Overall PASS, ready_state_allowed true)"
+      trust_gates_ssh: "PASS (Overall PASS, ready_state_allowed true)"
+      llm_validate_entrypoint: "PASS"
+      ssh_validate_entrypoint: "PASS"
+      master_index_yaml_parseable: "PASS"
+      master_graph_yaml_parseable: "PASS"
+      unmapped_relation_types: "PASS ([])"
+      unknown_repo_node_refs_dst_kind_repo: "PASS (0)"
+      stale_records: "PASS (0)"
+      source_compiled_master_where_applicable: "PASS"
+      external_policy_first_class_compatible: "PASS"
+      external_policy_label_only_compatible: "PASS"
+      deterministic_hashes_unchanged_on_rerun: "PASS"
+      structured_list_fidelity_preserved_under_extras: "PASS (48/48)"
+      all_required_commands_exit_zero: "PASS"
+      gate_ready: "PASS (true)"
+    blockers: []
+    open_decisions_preserved:
+      - "D1 remains OPEN"
+      - "D2 remains OPEN"
+      - "D3 remains OPEN"
+    resolved_decision_respected:
+      - "D4 strict blocking respected: WS4 did not report READY/COMPLETE while gates were failing during initial compile attempt."
+      - "Checkpoint-3 closeout was applied only after explicit supervisor approval; no self-close occurred."
+    residual_risks:
+      - "Compiler emits WS1-compliant string arrays for core_concepts/key_entry_points and preserves raw structured entries under extras.raw_core_concepts_structured and extras.raw_key_entry_points_structured; downstream consumers must read extras for full nested fidelity."
+      - "WS4 remains dependent on upstream WS5 metadata quality; README fallback reduces missing-field risk but does not validate semantic correctness of fallback content."
+  ws5_results:
+    completion_status: "PASS"
+    checkpoint_state: "CHECKPOINT_4_CLOSED_APPROVED"
+    verified_at_utc: "2026-02-23T04:41:57Z"
+    scope:
+      definition: "Remote-first ingestion from static manifest into WS1-compatible shard repo records without requiring local clone content"
+      manifest_path: "inputs/ws5/ws5_input_manifest.yaml"
+      manifest_entries_total: 2
+      target_shard_counts:
+        llm_repos: 0
+        ssh_repos: 2
+      source_counts:
+        remote_metadata: 1
+        remote_api: 1
+    evidence_artifacts:
+      - "tools/ws5_remote_ingestion.py"
+      - "inputs/ws5/ws5_input_manifest.yaml"
+      - "reports/ws5_remote_ingestion/coverage.yaml (generated_at_utc 2026-02-23T00:00:00Z)"
+      - "reports/ws5_remote_ingestion/mismatch_report.yaml (generated_at_utc 2026-02-23T00:00:00Z)"
+      - "reports/ws5_remote_ingestion/validation_runs.yaml (generated_at_utc 2026-02-23T00:00:00Z)"
+      - "master_index.yaml (regenerated through WS4 compiler)"
+      - "master_graph.yaml (regenerated through WS4 compiler)"
+      - "reports/ws4_master_build/coverage.yaml (regenerated)"
+      - "reports/ws4_master_build/mismatch_report.yaml (regenerated)"
+      - "reports/ws4_master_build/validation_runs.yaml (regenerated)"
+    files_changed_observed:
+      - "master_graph_merge_progress.yaml"
+      - "tools/ws5_remote_ingestion.py"
+      - "inputs/ws5/ws5_input_manifest.yaml"
+      - "tests/ws5_remote_ingestion/__init__.py"
+      - "tests/ws5_remote_ingestion/test_ws5_remote_ingestion.py"
+      - "ssh_repos/knowledge/repos/cloudflared.yaml"
+      - "ssh_repos/knowledge/repos/tailscale.yaml"
+      - "ssh_repos/knowledge/index.yaml"
+      - "reports/ws5_remote_ingestion/coverage.yaml"
+      - "reports/ws5_remote_ingestion/mismatch_report.yaml"
+      - "reports/ws5_remote_ingestion/validation_runs.yaml"
+      - "master_index.yaml"
+      - "master_graph.yaml"
+      - "reports/ws4_master_build/coverage.yaml"
+      - "reports/ws4_master_build/mismatch_report.yaml"
+      - "reports/ws4_master_build/validation_runs.yaml"
+      - "llm_repos/knowledge/trust-gates-report.yaml"
+      - "ssh_repos/knowledge/trust-gates-report.yaml"
+    commands_run:
+      - "python3 tools/ws1_contract_validator.py --workspace-root . --external-node-policy first_class -> PASS (WS1_CONTRACT_STATUS: PASS)"
+      - "python3 tools/ws1_contract_validator.py --workspace-root . --external-node-policy label_only -> PASS (WS1_CONTRACT_STATUS: PASS)"
+      - "python3 tools/trust_gates.py llm_repos/knowledge --production -> PASS (overall_status PASS, ready_state_allowed true)"
+      - "python3 tools/trust_gates.py ssh_repos/knowledge --production -> PASS (overall_status PASS, ready_state_allowed true)"
+      - "cd llm_repos/knowledge && python3 validate.py -> PASS"
+      - "cd ssh_repos/knowledge && python3 validate.py -> PASS"
+      - "python3 -m unittest discover -s tests/ws5_remote_ingestion -p 'test_*.py' -> PASS (Ran 2 tests, OK)"
+      - "python3 tools/ws5_remote_ingestion.py --workspace-root . --input inputs/ws5/ws5_input_manifest.yaml --reports-dir reports/ws5_remote_ingestion -> PASS (gate_ready true)"
+      - "python3 tools/ws4_master_compiler.py --workspace-root . --master-index master_index.yaml --master-graph master_graph.yaml --reports-dir reports/ws4_master_build -> PASS (gate_ready true)"
+      - "Re-run commands 8 and 9 with identical input and verify artifact hashes unchanged -> PASS (all compared hashes identical)"
+      - "Supervisor option_3 revised reverify: python3 -m unittest discover -s tests/ws5_remote_ingestion -p 'test_*.py' -> PASS (Ran 3 tests, OK)"
+      - "Supervisor option_3 revised reverify: python3 tools/ws5_remote_ingestion.py ... && python3 tools/ws4_master_compiler.py ... -> PASS (both gate_ready true)"
+      - "Supervisor option_3 revised reverify: shasum before/after + cmp on WS5/WS4 evidence set -> PASS (hashes identical)"
+    gate_results:
+      ws1_contract_first_class: "PASS (WS1_CONTRACT_STATUS: PASS)"
+      ws1_contract_label_only: "PASS (WS1_CONTRACT_STATUS: PASS)"
+      trust_gates_llm: "PASS (overall_status PASS, ready_state_allowed true)"
+      trust_gates_ssh: "PASS (overall_status PASS, ready_state_allowed true)"
+      llm_validate_entrypoint: "PASS"
+      ssh_validate_entrypoint: "PASS"
+      ws5_unit_tests: "PASS"
+      ws5_coverage_gate_ready: "PASS (true)"
+      ws5_mismatch_blocking_count: "PASS (0)"
+      ws4_coverage_gate_ready: "PASS (true)"
+      deterministic_rerun_hashes_unchanged: "PASS (true)"
+      input_manifest_sha256_recorded: "PASS (87b0b3bb7dc96514b977488d55fb8ab5d883bf535dca76ed085b9d27a10a8c11)"
+      all_required_commands_exit_zero: "WAIVED (supervisor option_3 for this cycle: historical non-step8 status reconstruction not required)"
+      revised_supervisor_acceptance_option_3: "PASS (gates + deterministic rerun hashes + tracker-state integrity verified at 2026-02-23T04:41:57Z)"
+      gate_ready: "PASS (true)"
+    blockers: []
+    open_decisions_preserved:
+      - "D1 remains OPEN"
+      - "D2 remains OPEN"
+      - "D3 remains OPEN"
+    resolved_decision_respected:
+      - "D4 strict blocking enforced: execution paused at manifest source decision until supervisor approved option_1 and path inputs/ws5/ws5_input_manifest.yaml."
+      - "D4 strict blocking enforced for runtime gates and deterministic rerun checks; supervisor option_3 waives historical WS5 required_commands PASS-row reconstruction for this cycle."
+      - "WS5 blocker resolution: validation_runs lifecycle bug fixed in tools/ws5_remote_ingestion.py so command-8 reruns merge-update evidence and no longer downgrade previously finalized non-step8 command statuses to PENDING_EXECUTION; regression covered in tests/ws5_remote_ingestion/test_ws5_remote_ingestion.py."
+      - "closeout approved via supervisor Option-3 revised acceptance criteria (waiver on historical non-step8 status reconstruction)."
+    closeout_approved: true
+    closeout_approved_at_utc: "2026-02-23T04:57:06Z"
+    closeout_approved_by: "supervisor"
+  phase_finalization_results:
+    completion_status: "PASS"
+    checkpoint_state: "CHECKPOINT_2_CLOSED_APPROVED"
+    verified_at_utc: "2026-02-24T02:43:00Z"
+    closeout_approved: true
+    closeout_approved_at_utc: "2026-02-24T02:53:46Z"
+    closeout_approved_by: "supervisor"
+    scope:
+      definition: "Finalize remaining checklist hardening for Step 10 (llm deep schema), Step 11 (single-source validator parity), Step 14 (remote refresh API-first + README fallback workflow)"
+      normalized_llm_deep_files: 12
+      ws1_validator_tests: 5
+      ws5_ingestion_tests: 4
+    files_changed_observed:
+      - "llm_repos/knowledge/deep/anything_llm.yaml"
+      - "llm_repos/knowledge/deep/awesome_llm_apps.yaml"
+      - "llm_repos/knowledge/deep/khoj.yaml"
+      - "llm_repos/knowledge/deep/lmdeploy.yaml"
+      - "llm_repos/knowledge/deep/maxkb.yaml"
+      - "llm_repos/knowledge/deep/milvus.yaml"
+      - "llm_repos/knowledge/deep/mindsdb.yaml"
+      - "llm_repos/knowledge/deep/nexa_sdk.yaml"
+      - "llm_repos/knowledge/deep/parlant.yaml"
+      - "llm_repos/knowledge/deep/pathway.yaml"
+      - "llm_repos/knowledge/deep/prompt_engineering_guide.yaml"
+      - "llm_repos/knowledge/deep/self_llm.yaml"
+      - "tools/ws1_contract_validator.py"
+      - "tests/ws1_contract/test_ws1_contract.py"
+      - "tools/ws5_remote_ingestion.py"
+      - "tests/ws5_remote_ingestion/test_ws5_remote_ingestion.py"
+      - "inputs/ws5/README.md"
+      - "reports/ws5_remote_ingestion/coverage.yaml"
+      - "reports/ws5_remote_ingestion/mismatch_report.yaml"
+      - "reports/ws5_remote_ingestion/validation_runs.yaml"
+      - "reports/ws4_master_build/coverage.yaml"
+      - "reports/ws4_master_build/mismatch_report.yaml"
+      - "reports/ws4_master_build/validation_runs.yaml"
+      - "master_index.yaml"
+      - "master_graph.yaml"
+      - "master_graph_merge_progress.yaml"
+    commands_run:
+      - "python3 -m unittest discover -s tests/ws1_contract -p 'test_*.py' -> PASS (Ran 5 tests, OK)"
+      - "python3 -m unittest discover -s tests/ws5_remote_ingestion -p 'test_*.py' -> PASS (Ran 4 tests, OK)"
+      - "python3 tools/ws1_contract_validator.py --workspace-root . --external-node-policy first_class -> PASS"
+      - "python3 tools/ws1_contract_validator.py --workspace-root . --external-node-policy label_only -> PASS"
+      - "python3 tools/trust_gates.py llm_repos/knowledge --production -> PASS"
+      - "python3 tools/trust_gates.py ssh_repos/knowledge --production -> PASS"
+      - "cd llm_repos/knowledge && python3 validate.py -> PASS"
+      - "cd ssh_repos/knowledge && python3 validate.py -> PASS"
+      - "python3 tools/ws5_remote_ingestion.py --workspace-root . --input inputs/ws5/ws5_input_manifest.yaml --reports-dir reports/ws5_remote_ingestion -> PASS (gate_ready true)"
+      - "python3 tools/ws4_master_compiler.py --workspace-root . --master-index master_index.yaml --master-graph master_graph.yaml --reports-dir reports/ws4_master_build -> PASS (gate_ready true)"
+      - "Determinism check: rerun WS5 + WS4 and compare hash set -> PASS (HASH_STABLE=true)"
+    gate_results:
+      step10_llm_deep_alias_keys_removed: "PASS (legacy keys repo_id/repo/full_name=0)"
+      step10_llm_deep_missing_name: "PASS (missing name count=0)"
+      step10_llm_deep_name_equals_shallow_name: "PASS"
+      step11_single_source_ws1_enforcement: "PASS"
+      step14_refresh_precedence_api_then_readme: "PASS"
+      step14_fallback_usage_metadata_recorded: "PASS"
+      step14_rerun_hash_stability: "PASS"
+      required_gate_pack: "PASS"
+    residual_risks:
+      - "README fallback improves completeness but can still carry stale/inaccurate summaries if upstream extraction is low quality."
+      - "Remote-only repos currently have no deep files; this is expected but limits deep-analysis coverage until dedicated deep refresh is defined."
+    blockers: []
+
+findings: |
+  Pattern recognized: federated shard knowledge bases with divergent schema contracts.
+  Typical failure mode: teams merge data before defining identity/ontology contracts, then spend cycles
+  on brittle migration logic and manual cleanup.
+  Additional pattern recognized: false-green pipelines (READY/COMPLETE reported while artifacts are not machine-parseable).
+  Additional pattern recognized: open architectural decisions can be preserved while still freezing enforceable contract boundaries.
+  Recommendation: establish trust gates first, freeze WS1 boundary contracts with configurable policy switches, then normalize shards, then compile master artifacts.
+
+decision_rule: |
+  IF parser or status-semantic gates fail on any tracked artifact:
+    -> Mark BLOCKED and do not proceed to merge implementation.
+  IF checkpoint 1 contract is not approved:
+    -> Do not implement master merge logic; continue contract and validation-hardening work only.
+  IF contract approved and normalization coverage >= 95% with no HIGH-severity open blockers:
+    -> Proceed to compiler and unified validation implementation.
+  IF merge output passes validation but freshness/provenance is missing:
+    -> Mark PARTIAL and block production adoption until provenance fields are present.
+
+decision: "WS5 PASS and Checkpoint-4 closeout approved (2026-02-23T04:57:06Z); governance decisions D1/D2/D3 resolved (2026-02-24T01:41:13Z); phase-finalization hardening for Steps 10/11/14 executed with required gate pack PASS (2026-02-24T02:43:00Z); supervisor approved phase closeout and Step-8 waiver (2026-02-24T02:53:46Z)."
+next_phase: "Phase 0 closed. Continue operational maintenance via remote refresh cadence and governance follow-up controls."
+
+context_for_fresh_agent: |
+  Canonical status file: master_graph_merge_progress.yaml (this file)
+
+  Current status after Phase-0 closeout approval:
+  - WS0 trust gates are implemented and enforced before legacy validators.
+  - WS1 canonical contract artifacts exist under contracts/ws1/ with contract_version 1.0.0-ws1.
+  - WS1 relation mapping coverage is explicit (unique 12/12, per-shard rows 14/14).
+  - Governance closure complete: D1 (YAML-only canonical with optional future SQLite read-model), D2 (richer ontology + canonical mapping), D3 (first-class external nodes) resolved on 2026-02-24T01:41:13Z.
+  - WS1 validator is mandatory in llm/ssh validate.py preflight paths and supervisor-verified.
+  - llm_repos/knowledge and ssh_repos/knowledge both pass G1/G2/G3 in production mode.
+  - WS1 contract regression tests pass (5 tests, including deep legacy-alias fail case plus dst_kind mismatch + coverage mismatch fail cases).
+  - Phase-finalization hardening is executed and closed-approved: Step 10 (llm deep schema normalization), Step 11 (WS1 single-source shallow+deep parity enforcement), Step 14 (API-first README-fallback remote refresh workflow with deterministic rerun checks).
+  - Step 8 migration-spec artifact is explicitly waived by supervisor (2026-02-24) because WS3 canonicalization + WS1/WS4 controls provide equivalent enforcement for this cycle.
+  - WS2 evidence artifacts were regenerated on 2026-02-23T00:21:16Z with gate_ready=true.
+  - WS2 identity coverage is 96/96 full records; fallback mapping used once (awesome-tunneling), conflict overrides 0.
+  - WS3 graph normalization is complete: canonical edge coverage 100% (152/152), legacy edge keys after=0, field loss=0, unmapped relation types=0.
+  - Checkpoint-2 is COMPLETE and closeout approved by supervisor at 2026-02-23T01:27:11Z.
+  - WS4 deterministic compiler is implemented at tools/ws4_master_compiler.py and generates master_index.yaml + master_graph.yaml plus deterministic WS4 evidence reports.
+  - WS4 compiler preserves structured source list fidelity under explicit extras keys: raw_core_concepts_structured and raw_key_entry_points_structured.
+  - WS4 required validation runs are captured in reports/ws4_master_build/validation_runs.yaml with all commands PASS and gate_ready=true.
+  - Checkpoint-3 and WS4 are COMPLETE with supervisor closeout approval recorded at 2026-02-23T03:14:46Z.
+
+  Relevant files:
+  - ws1_canonical_data_contract.md
+  - contracts/ws1/repo.schema.yaml
+  - contracts/ws1/node.schema.yaml
+  - contracts/ws1/edge.schema.yaml
+  - contracts/ws1/relation_mapping.yaml
+  - contracts/ws1/external_node_policy.yaml
+  - contracts/ws1/validator_contract.yaml
+  - tools/ws1_contract_validator.py
+  - tests/ws1_contract/test_ws1_contract.py
+  - tests/ws1_contract/fixtures/
+  - llm_repos/knowledge/index.yaml
+  - llm_repos/knowledge/graph.yaml
+  - llm_repos/knowledge/validate.py
+  - ssh_repos/knowledge/index.yaml
+  - ssh_repos/knowledge/graph.yaml
+  - ssh_repos/knowledge/validate.py
+
+  Validation pattern now:
+  - python3 tools/ws1_contract_validator.py --workspace-root <repo_root> --external-node-policy <first_class|label_only>
+  - python3 tools/trust_gates.py <knowledge_dir> --production
+  - cd llm_repos/knowledge && python3 validate.py
+  - cd ssh_repos/knowledge && python3 validate.py
+
+  Expected near-term implementation pattern:
+  - Keep trust gates and WS1 contract validator as mandatory preflight before merge logic.
+  - Use WS4 compiler outputs as canonical generated artifacts; keep shard artifacts as immutable source inputs.
+  - WS5 started after explicit supervisor approval (option_1 static manifest at inputs/ws5/ws5_input_manifest.yaml); checkpoint-4 state is CHECKPOINT_4_CLOSED_APPROVED with closeout approved at 2026-02-23T04:57:06Z.
+  - Keep shard artifacts as source; avoid hand-editing generated master outputs.

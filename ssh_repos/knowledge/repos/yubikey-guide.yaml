@@ -1,0 +1,68 @@
+name: yubikey-guide
+node_id: repo::drduh/yubikey-guide
+github_full_name: drduh/yubikey-guide
+html_url: https://github.com/drduh/yubikey-guide
+source: ssh_repos
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/repos/yubikey-guide.yaml
+  as_of: '2026-02-23'
+directory: YubiKey-Guide-main
+category: documentation
+summary: |
+  Comprehensive guide for using YubiKey as a smart card for secure GPG encryption, signing, and SSH authentication. Covers full key generation workflow in air-gapped environments, subkey management, YubiKey configuration, and integration with GitHub, email clients, and remote systems.
+
+core_concepts:
+  - name: GnuPG Key Hierarchy
+    description: |
+      Master Certify key (offline) with three subkeys stored on YubiKey: Signature (signing commits/files), Encryption (decrypting messages), Authentication (SSH login). Keys are non-exportable from YubiKey, providing hardware-backed security.
+  - name: Air-Gapped Key Generation
+    description: |
+      Recommended practice of generating cryptographic keys in isolated environments (Debian Live, Tails, Alpine Linux) booted from removable media without network access or internal storage, minimizing exposure to compromise.
+  - name: SSH via GPG Agent
+    description: |
+      Using YubiKey's authentication subkey for SSH by configuring gpg-agent with enable-ssh-support. The private key never leaves the device; SSH operations require physical touch and PIN entry. Supports agent forwarding to remote hosts.
+
+key_entry_points:
+  - path: README.md
+    purpose: |
+      Main documentation covering complete workflow: environment preparation, software installation, GPG configuration, key generation, YubiKey setup, SSH/GitHub/email integration, key rotation, troubleshooting.
+  - path: SECENV.md
+    purpose: |
+      Supplemental guide for creating a secure Alpine Linux environment for GPG key management, with emphasis on offline package installation and verification for ARM-based devices like Raspberry Pi.
+  - path: config/gpg.conf
+    purpose: |
+      Hardened GnuPG configuration with strong cipher preferences (AES256), SHA512 digests, UTF-8 support, and security-focused options like require-secmem and throw-keyids.
+  - path: config/gpg-agent.conf
+    purpose: |
+      GPG agent configuration enabling SSH support, cache TTLs, and platform-specific pinentry paths for Linux, macOS (Intel/Apple silicon), and Windows.
+  - path: scripts/reset-yubikey
+    purpose: |
+      GPG connect-agent script to factory reset YubiKey OpenPGP applet by exhausting PIN retries and issuing terminate/reset APDUs.
+  - path: nix/flake.nix
+    purpose: |
+      NixOS flake for building an air-gapped live ISO image with all required GPG/YubiKey tools pre-installed.
+
+build_run:
+  format: markdown
+  primary_language: n/a
+  organization: |
+    Single comprehensive README.md (~2300 lines) with detailed table of contents. Supplemental files include SECENV.md for Alpine Linux setup, config/ for hardened GPG settings, scripts/ for utility operations (reset, key switching), templates/ for passphrase generation, and nix/ for reproducible live ISO builds. Includes media/schema_gpg.png diagram illustrating key relationships.
+
+ecosystem_connections:
+  references:
+    - GnuPG (gpg, gpg-agent, scdaemon)
+    - YubiKey Manager (ykman)
+    - YubiKey Personalization
+    - pcscd (smart card daemon)
+    - pinentry (PIN entry dialogs)
+    - OpenSSH
+    - git (commit/tag signing)
+    - Thunderbird/Mailvelope/Mutt (email encryption)
+    - keys.openpgp.org, keyserver.ubuntu.com (keyserver)
+    - Tails OS, Debian Live, Alpine Linux (secure environments)
+  related_guides:
+    - drduh/config (hardened configurations)
+    - dhess/nixos-yubikey
+    - smlx/piv-agent (PIV-based alternative)
+    - Vorburger's ed25519-sk.md (FIDO2/U2F SSH without GPG)

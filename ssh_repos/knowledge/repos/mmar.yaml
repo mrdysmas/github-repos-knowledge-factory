@@ -1,0 +1,53 @@
+name: mmar
+node_id: repo::yusuf-musleh/mmar
+github_full_name: yusuf-musleh/mmar
+html_url: https://github.com/yusuf-musleh/mmar
+source: ssh_repos
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/repos/mmar.yaml
+  as_of: '2026-02-23'
+directory: mmar-master
+category: tunneling
+summary: |
+  Zero-dependency, self-hostable HTTP tunnel that exposes localhost services on public URLs via auto-generated subdomains - useful for quick sharing, testing webhooks, or demoing work-in-progress without full deployment.
+core_concepts:
+  - name: Client-Server Tunnel Architecture
+    description: Client connects to server via TCP, server assigns unique subdomain, HTTP requests to subdomain are serialized and tunneled through TCP connection to client which forwards to localhost
+  - name: Custom Tunnel Protocol
+    description: Binary protocol with version, message type, length delimiter, and data payload; supports message types like REQUEST, RESPONSE, CREATE_TUNNEL, HEARTBEAT for connection health
+  - name: Auto-Reconnect with Subdomain Reclamation
+    description: Client detects disconnection via heartbeat timeout, attempts reconnection, and reclaims the same subdomain to maintain URL stability for long-running sessions
+key_entry_points:
+  - path: cmd/mmar/main.go:14
+    purpose: CLI entry point - parses flags and dispatches to server/client/version subcommands
+  - path: internal/client/main.go:283
+    purpose: Client Run() - establishes TCP connection to server, creates tunnel, processes incoming requests
+  - path: internal/server/main.go:582
+    purpose: Server Run() - starts HTTP server for public requests and TCP server for client connections
+  - path: internal/protocol/main.go:77
+    purpose: Tunnel struct and message serialization/deserialization - core protocol implementation
+build_run:
+  language: go
+  package_manager: go modules
+  build_command: go build -o mmar ./cmd/mmar
+  run_command: |
+    # Client mode (expose localhost:8080)
+    ./mmar client --local-port 8080
+    # Server mode (self-hosted)
+    ./mmar server --http-port 3376 --tcp-port 6673
+  test_command: go test ./...
+ecosystem_connections:
+  similar_to:
+    - ngrok (the canonical HTTP tunnel tool)
+    - bore (Rust-based tunnel, similar simplicity)
+    - localhost.run (SSH-based tunneling)
+  alternatives:
+    - ngrok (more features, paid tiers)
+    - cloudflared (Cloudflare Tunnel, enterprise-grade)
+    - frp (more protocol support, complex config)
+    - tunnelto (Rust-based, similar scope)
+  used_with:
+    - Caddy (reverse proxy for self-hosted, handles wildcard SSL)
+    - Docker (official container images available)
+    - webhook testing services (Stripe, GitHub, Slack webhooks)

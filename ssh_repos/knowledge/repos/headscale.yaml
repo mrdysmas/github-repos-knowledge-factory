@@ -1,0 +1,75 @@
+name: headscale
+node_id: repo::juanfont/headscale
+github_full_name: juanfont/headscale
+html_url: https://github.com/juanfont/headscale
+source: ssh_repos
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/repos/headscale.yaml
+  as_of: '2026-02-23'
+directory: headscale-main
+category: vpn_mesh
+summary: |
+  Open-source, self-hosted implementation of the Tailscale control server - enables private WireGuard-based mesh VPNs without relying on Tailscale's proprietary control plane, ideal for self-hosters and small organizations who want full control over their tailnet infrastructure.
+core_concepts:
+  - name: Control Server
+    description: Acts as the coordination point for Tailscale networks (tailnets), managing node registration, WireGuard public key exchange, IP allocation, policy/ACL enforcement, and DERP relay routing - the one proprietary component in Tailscale's otherwise open stack.
+  - name: Tailnet (Network Namespace)
+    description: A private network namespace containing nodes (devices) that can communicate securely. Headscale implements a single tailnet suitable for personal use or small organizations, with users providing logical grouping/ownership within the network.
+  - name: MapRequest/MapResponse Protocol
+    description: The core Tailscale wire protocol where clients poll the control server (via poll.go) to receive network topology updates, peer information, and policy changes - enabling real-time mesh network coordination.
+key_entry_points:
+  - path: cmd/headscale/headscale.go:13
+    purpose: Main CLI entry point - initializes logging and delegates to cobra CLI for command parsing
+  - path: hscontrol/app.go:91
+    purpose: Headscale struct definition - core application with state management, DERP server, and HTTP/gRPC handlers
+  - path: hscontrol/state/state.go:67
+    purpose: State coordinator - thread-safe central hub managing database, policy, IP allocation, and node store
+  - path: hscontrol/state/node_store.go
+    purpose: In-memory node cache with copy-on-write semantics - performance-critical for high-frequency operations
+  - path: hscontrol/poll.go
+    purpose: Handles Tailscale MapRequest/MapResponse protocol - processes client updates every 15-60 seconds
+  - path: hscontrol/noise.go
+    purpose: Noise protocol implementation for secure client-to-control-server communication
+  - path: hscontrol/mapper/mapper.go
+    purpose: Converts internal Headscale state to Tailscale wire protocol format for distribution to clients
+build_run:
+  language: go
+  go_version: "1.26"
+  package_manager: go mod
+  build_command: make build (or go build ./cmd/headscale)
+  run_command: headscale serve (daemon) or headscale [cli-commands]
+  test_command: make test (unit) or go run ./cmd/hi run "TestName" (integration with Docker)
+  dev_setup: nix develop (recommended for consistent toolchain)
+  dependencies:
+    - tailscale.com (core networking/protocol libraries)
+    - gorm.io (database ORM with SQLite/PostgreSQL support)
+    - spf13/cobra (CLI framework)
+    - spf13/viper (configuration)
+    - grpc (management API)
+    - rs/zerolog (structured logging)
+ecosystem_connections:
+  similar_to:
+    - Tailscale control server (proprietary upstream)
+    - NetBird (wireguard mesh with open control plane)
+    - WireGuard (underlying VPN protocol)
+    - ZeroTier (layer 2 SD-WAN alternative)
+  alternatives:
+    - Tailscale SaaS (proprietary, hosted control server)
+    - NetBird (open-source alternative with built-in coordination)
+    - Twingate (zero-trust network access)
+    - OpenVPN (traditional VPN, not mesh)
+    - Nebula (mesh VPN with different architecture)
+  used_with:
+    - Official Tailscale clients (connect to headscale instead of Tailscale)
+    - Headscale clients (third-party GUI for macOS/Windows)
+    - DERP servers (relay for NAT traversal)
+    - PostgreSQL (production database backend)
+    - SQLite (development/single-node database)
+    - OIDC providers (user authentication)
+    - NixOS (first-class module support)
+  relationship_notes: |
+    Headscale is a clean-room reimplementation of Tailscale's control server protocol.
+    One active maintainer is employed by Tailscale and contributes during work hours.
+    Uses official Tailscale client libraries for protocol compatibility.
+    Clients must override the control URL to point to headscale instead of Tailscale.

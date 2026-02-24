@@ -1,0 +1,60 @@
+name: hsync
+node_id: repo::monteslu/hsync
+github_full_name: monteslu/hsync
+html_url: https://github.com/monteslu/hsync
+source: ssh_repos
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/repos/hsync.yaml
+  as_of: '2026-02-23'
+directory: hsync-master
+category: tunneling
+summary: |
+  A reverse-proxy/tunneling client for Node.js and browsers that exposes local webservers
+  as public URLs via hsync-server, with peer-to-peer TCP tunneling via WebRTC for direct
+  client-to-client connections without server intermediary.
+core_concepts:
+  - name: MQTT-based reverse proxy
+    description: |
+      Uses MQTT protocol to communicate with hsync-server for web request handling.
+      HTTP requests to the public URL are proxied through the server via MQTT topics
+      (e.g., web/{hostname}/{segment}/{action}) back to the local client.
+  - name: WebRTC peer-to-peer tunneling
+    description: |
+      Establishes direct P2P connections between hsync clients using WebRTC data channels.
+      Once connected, TCP socket data flows directly between peers, bypassing the server
+      entirely. Uses rawr library for JSON-RPC over the data channel.
+  - name: Socket relays and listeners
+    description: |
+      Two tunneling modes: listeners (accept local connections, forward to remote target)
+      and relays (accept remote requests, connect to local target). Supports whitelist/blacklist
+      for access control on relay ports.
+key_entry_points:
+  - path: cli.js:1
+    purpose: CLI entry point using Commander; parses flags and creates tunnel connections
+  - path: hsync.js:31
+    purpose: Main export for Node.js; provides createConnection() and dynamicConnect() APIs
+  - path: connection.js:29
+    purpose: Core createHsync() function that sets up MQTT connection, peer management, and tunnel infrastructure
+  - path: lib/peers.js:40
+    purpose: Peer management and WebRTC connection handling; creates RPC peers for P2P communication
+  - path: lib/socket-relays.js:63
+    purpose: Inbound relay handling; accepts remote connection requests and bridges to local TCP sockets
+build_run:
+  language: JavaScript (ES modules)
+  package_manager: npm
+  build_command: npm run build
+  run_command: npx hsync (or npm install -g hsync && hsync)
+  test_command: npm test (uses Vitest)
+ecosystem_connections:
+  similar_to:
+    - ngrok (reverse proxy / tunnel to localhost)
+    - bore (simple TCP tunnel)
+    - localtunnel (expose localhost to web)
+  alternatives:
+    - ngrok (more mature, proprietary server)
+    - cloudflared / Cloudflare Tunnel (enterprise-focused)
+    - tailscale/zerotier (full VPN mesh, not just tunneling)
+  used_with:
+    - hsync-server (required server component)
+    - node-datachannel (optional WebRTC implementation for Node.js)

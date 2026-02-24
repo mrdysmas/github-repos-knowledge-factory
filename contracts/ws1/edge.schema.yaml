@@ -1,0 +1,94 @@
+contract_version: "1.0.0-ws1"
+artifact_type: "ws1_edge_schema"
+canonical_relations:
+  - alternative_to
+  - integrates_with
+  - extends
+  - depends_on
+  - related_to
+  - similar_to
+  - built_on
+  - deploys
+  - references
+  - replaces
+  - supports
+  - used_by
+  - wrapper_for
+schema:
+  $schema: "https://json-schema.org/draft/2020-12/schema"
+  title: "WS1 Canonical Graph Edge"
+  type: object
+  additionalProperties: false
+  required:
+    - src_id
+    - dst_id
+    - dst_kind
+    - relation
+    - as_of
+    - provenance
+  properties:
+    src_id:
+      type: string
+      minLength: 1
+    dst_id:
+      type: string
+      minLength: 1
+    dst_kind:
+      type: string
+      enum:
+        - repo
+        - external_tool
+        - concept
+    relation:
+      type: string
+      enum:
+        - alternative_to
+        - integrates_with
+        - extends
+        - depends_on
+        - related_to
+        - similar_to
+        - built_on
+        - deploys
+        - references
+        - replaces
+        - supports
+        - used_by
+        - wrapper_for
+    as_of:
+      type: string
+      minLength: 1
+    confidence:
+      type: number
+      minimum: 0.0
+      maximum: 1.0
+    evidence:
+      type: array
+      items:
+        type: string
+    note:
+      type: string
+    provenance:
+      type: object
+      additionalProperties: false
+      required:
+        - shard
+        - source_file
+        - source_relation
+        - source_edge_index
+      properties:
+        shard:
+          type: string
+          enum:
+            - llm_repos
+            - ssh_repos
+            - merged
+        source_file:
+          type: string
+          minLength: 1
+        source_relation:
+          type: string
+          minLength: 1
+        source_edge_index:
+          type: integer
+          minimum: 0

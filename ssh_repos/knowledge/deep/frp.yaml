@@ -1,0 +1,190 @@
+name: frp
+node_id: repo::fatedier/frp
+github_full_name: fatedier/frp
+html_url: https://github.com/fatedier/frp
+source: ssh_repos
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/deep/frp.yaml
+  as_of: '2026-02-23'
+directory: frp-dev
+category: tunneling
+
+# Inherited from shallow file
+summary: |
+  A fast reverse proxy for NAT/firewall traversal that exposes local services to the public internet.
+  Supports TCP, UDP, HTTP, HTTPS protocols with features like P2P mode, load balancing, encryption,
+  and extensive plugin system.
+
+# Deep additions
+architecture:
+  module_breakdown:
+    - module: client/
+      responsibility: Client service orchestration, control connections, proxy/visitor management
+      key_files: [client/service.go, client/control.go, client/proxy/proxy.go]
+    - module: server/
+      responsibility: Server service with multi-protocol listeners, proxy registry, API endpoints
+      key_files: [server/service.go, server/proxy/proxy.go, server/registry/]
+    - module: pkg/config/v1/
+      responsibility: Configuration structures and validation for all components
+      key_files: [pkg/config/v1/client.go, pkg/config/v1/server.go, pkg/config/v1/proxy.go]
+    - module: pkg/msg/
+      responsibility: Protocol message definitions (Login, NewProxy, WorkConn, heartbeats)
+      key_files: [pkg/msg/msg.go]
+    - module: pkg/transport/
+      responsibility: Message transport layer with multiplexing support
+      key_files: [pkg/transport/]
+    - module: pkg/plugin/
+      responsibility: Plugin system interfaces for client and server extensions
+      key_files: [pkg/plugin/client/, pkg/plugin/server/]
+  data_flow: |
+    1. Client connects to server via configured protocol (TCP/KCP/QUIC/WebSocket)
+    2. Server authenticates client using token or OIDC
+    3. Client registers proxies and visitors via NewProxy messages
+    4. Work connections multiplexed over control connection using yamux
+    5. Data forwarded between client and server based on proxy rules
+  key_abstractions:
+    - name: Proxy
+      purpose: Defines how to handle work connections for different types (TCP, HTTP, STCP, etc.)
+    - name: Visitor
+      purpose: Reverse proxy connections from server to client for secure access
+    - name: Control Connection
+      purpose: Persistent connection for control messages and heartbeats
+    - name: Work Connection
+      purpose: Multiplexed connections for actual data transfer
+
+implementation_patterns:
+  - pattern: Factory Registration
+    description: Proxy types registered via RegisterProxyFactory() at init time
+    location: client/proxy/proxy.go:41-45
+  - pattern: Base Proxy Composition
+    description: Common functionality in BaseProxy struct, specialized types embed it
+    location: client/proxy/proxy.go:88-103
+  - pattern: Message Type Dispatch
+    description: Single-byte type identifiers for protocol message routing
+    location: pkg/msg/msg.go:22-41
+  - pattern: TCP Multiplexing
+    description: Uses yamux for stream multiplexing over single TCP connection
+    location: client/control.go
+  - pattern: Plugin Hook System
+    description: Client/server plugins intercept connections for custom processing
+    location: pkg/plugin/client/plugin.go
+
+configuration:
+  file: frps.toml / frpc.toml (also supports YAML, JSON)
+  options:
+    # Server options
+    - name: bindAddr
+      type: string
+      default: "0.0.0.0"
+      description: Address to bind server listeners
+    - name: bindPort
+      type: int
+      default: 7000
+      description: Main server port for client connections
+    - name: kcpBindPort
+      type: int
+      default: 0
+      description: KCP protocol port (UDP-based, lower latency)
+    - name: quicBindPort
+      type: int
+      default: 0
+      description: QUIC protocol port (modern UDP multiplexed)
+    - name: vhostHTTPPort
+      type: int
+      default: 0
+      description: HTTP virtual host port for HTTP proxy type
+    - name: vhostHTTPSPort
+      type: int
+      default: 0
+      description: HTTPS virtual host port
+    - name: tcpmuxHTTPConnectPort
+      type: int
+      default: 0
+      description: TCP multiplexing via HTTP CONNECT
+    - name: auth.method
+      type: string
+      default: "token"
+      description: Authentication method (token, oidc)
+    - name: auth.token
+      type: string
+      default: ""
+      description: Shared secret token for authentication
+    # Client options
+    - name: serverAddr
+      type: string
+      default: "0.0.0.0"
+      description: Server address to connect to
+    - name: serverPort
+      type: int
+      default: 7000
+      description: Server port
+    - name: protocol
+      type: string
+      default: "tcp"
+      description: Transport protocol (tcp, kcp, quic, websocket)
+    - name: poolCount
+      type: int
+      default: 1
+      description: Number of connection pool entries
+    - name: transport.useEncryption
+      type: bool
+      default: false
+      description: Enable encryption on connections
+    - name: transport.useCompression
+      type: bool
+      default: false
+      description: Enable compression on connections
+
+api_surface:
+  public_functions:
+    - name: client/service.NewService
+      signature: func NewService(options ServiceOptions) (*Service, error)
+      purpose: Create and initialize client service
+      location: client/service.go:144
+    - name: client/service.Run
+      signature: func (sv *Service) Run(ctx context.Context) error
+      purpose: Start client service and establish server connection
+      location: client/service.go:165
+    - name: server/service.NewService
+      signature: func NewService(cfg *v1.ServerConfig) (*Service, error)
+      purpose: Create and initialize server service
+      location: server/service.go:135
+    - name: server/service.Run
+      signature: func (sv *Service) Run(ctx context.Context) error
+      purpose: Start all server listeners and handlers
+      location: server/service.go:200
+  rest_endpoints:
+    - path: /api/serverinfo
+      purpose: Server status and configuration
+    - path: /api/proxies
+      purpose: List all active proxies
+    - path: /api/clients
+      purpose: List connected clients
+    - path: /metrics
+      purpose: Prometheus metrics when enabled
+
+testing:
+  framework: Go testing + custom e2e framework
+  structure: test/e2e/ with framework/, basic/, features/, plugin/
+  coverage_areas:
+    - TCP/UDP/HTTP/HTTPS proxy types
+    - Load balancing and grouping
+    - Bandwidth limiting
+    - Health checks
+    - Plugin system
+    - Authentication flows
+
+extension_points:
+  - location: client/proxy/proxy.go
+    hook: RegisterProxyFactory
+    example: Register custom proxy type with factory function
+  - location: pkg/plugin/client/
+    hook: Plugin interface
+    example: Implement Handle() for custom connection processing
+  - location: pkg/plugin/server/
+    hook: HTTPPluginOptions
+    example: Add server-side HTTP plugins for auth hooks
+  - location: pkg/msg/msg.go
+    hook: msgTypeMap
+    example: Add custom message types for protocol extensions

@@ -1,0 +1,265 @@
+name: JeecgBoot
+node_id: repo::jeecgboot/jeecgboot
+github_full_name: jeecgboot/jeecgboot
+html_url: https://github.com/jeecgboot/jeecgboot
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+  as_of: '2026-02-23'
+sparse: false
+
+code_patterns:
+  - name: AI Chat Handler
+    description: Centralized AI chat with multi-model support
+    code: |
+      @Component
+      public class AIChatHandler implements IAIChatHandler {
+          @Autowired
+          private AiragModelMapper airagModelMapper;
+
+          public ChatResponse sendChat(ChatSendParams params) {
+              // Handle multiple AI models (ChatGPT, DeepSeek, Ollama)
+              // Tool execution and context management
+              // Streaming responses
+          }
+      }
+    file_reference: jeecg-boot/jeecg-boot-module/jeecg-boot-module-airag/src/main/java/org/jeecg/modules/airag/llm/handler/AIChatHandler.java
+
+  - name: Online Form Builder
+    description: Dynamic form generation with JSON configuration
+    code: |
+      <template>
+        <online-form
+          :jsonConfig="formJson"
+          :formData="formData"
+          @change="handleFormChange"
+        />
+      </template>
+    file_reference: jeecgboot-vue3/src/views/demo/form/
+
+  - name: MCP Plugin Configuration
+    description: Model Context Protocol plugin with SSE/stdio support
+    code: |
+      @Data
+      @TableName("airag_mcp")
+      public class AiragMcp implements Serializable {
+          private String category; // "plugin" or "mcp"
+          private String type;     // "sse" or "stdio"
+          private String endpoint; // URL for SSE, command for stdio
+          private String headers;  // Request headers or env vars
+      }
+    file_reference: jeecg-boot/jeecg-boot-module/jeecg-boot-module-airag/src/main/java/org/jeecg/modules/airag/llm/entity/AiragMcp.java
+
+  - name: Workflow Engine Nodes
+    description: Visual workflow designer with node types
+    code: |
+      public enum NodeType {
+          START("开始"),
+          END("结束"),
+          KNOWLEDGE_BASE("AI知识库"),
+          AI_NODE("AI节点"),
+          BRANCH("分支节点"),
+          JAVA("JAVA节点"),
+          SCRIPT("脚本节点"),
+          HTTP_REQUEST("http请求节点")
+      }
+    file_reference: jeecg-boot/jeecg-boot-base-core/src/main/java/org/jeecg/common/api/dto/AiragFlowDTO.java
+
+  - name: RESTful API with Pagination
+    description: Standardized CRUD with MyBatis-Plus
+    code: |
+      @RestController
+      @RequestMapping("/airag/knowledge")
+      public class AiragKnowledgeController {
+          @GetMapping("/list")
+          public Result<IPage<AiragKnowledge>> queryPageList(
+              AiragKnowledgeQuery query,
+              @RequestParam(name="pageNo", defaultValue="1") Integer pageNo,
+              @RequestParam(name="pageSize", defaultValue="10") Integer pageSize
+          ) {
+              return Result.OK(airagKnowledgeService.page(new Page<>(pageNo, pageSize), query));
+          }
+      }
+    file_reference: jeecg-boot/jeecg-boot-module/jeecg-boot-module-airag/src/main/java/org/jeecg/modules/airag/
+
+  - name: Vue 3 Composition API
+    description: Modern Vue 3 with TypeScript
+    code: |
+      <script setup lang="ts">
+      import { ref, computed, onMounted } from 'vue'
+      import { message } from 'ant-design-vue'
+
+      const chatData = ref([])
+      const loading = ref(false)
+
+      const sendMessage = async (content: string) => {
+          loading.value = true
+          try {
+              const response = await axios.post('/airag/chat/send', { content })
+              chatData.value.push(response.data)
+          } catch (error) {
+              message.error('发送失败: ' + error.message)
+          } finally {
+              loading.value = false
+          }
+      }
+      </script>
+    file_reference: jeecgboot-vue3/src/views/super/airag/
+
+configuration:
+  - name: Database Settings
+    options:
+      - key: spring.datasource.url
+        default: required
+        description: "jdbc:mysql://localhost:3306/jeecg-boot-dev"
+      - key: spring.datasource.username
+        default: "root"
+        description: Database username
+      - key: spring.datasource.password
+        default: required
+        description: Database password
+
+  - name: AI/LLM Provider Config
+    options:
+      - key: jeecg.ai-rag.embed-store.host
+        default: "localhost"
+        description: Vector store host
+      - key: jeecg.ai-rag.embed-store.port
+        default: "15432"
+        description: Vector store port
+      - key: jeecg.ai-rag.embed-store.database
+        default: "postgres"
+        description: Vector database name
+
+  - name: MCP Plugin Config
+    options:
+      - key: category
+        default: required
+        description: 'plugin or mcp'
+      - key: type
+        default: required
+        description: 'sse or stdio'
+      - key: endpoint
+        default: required
+        description: URL for SSE, command for stdio
+      - key: headers
+        default: optional
+        description: JSON headers or environment variables
+
+  - name: Authentication
+    options:
+      - key: jeecg.shiro.enabled
+        default: "true"
+        description: Enable Apache Shiro auth
+      - key: Default credentials
+        default: "admin/123456"
+        description: Default admin login
+
+common_tasks:
+  - task: Set up development environment
+    steps:
+      - "Backend: cd jeecg-boot && mvn clean install -DskipTests"
+      - "Frontend: cd jeecgboot-vue3 && pnpm install && pnpm dev"
+      - "Install Lombok plugin in IDEA"
+      - "Ensure MySQL 5.7+ running"
+    gotchas:
+      - Requires Node.js 20+ and pnpm 9+
+      - Need Lombok plugin in IDEA
+
+  - task: Configure Ollama as AI provider
+    steps:
+      - "Install and start Ollama: ollama serve"
+      - "Pull model: ollama pull deepseek"
+      - "Add model in AiragModel entity with modelType: ollama"
+      - "Set baseUrl: http://localhost:11434"
+    gotchas:
+      - Ollama must be running on port 11434
+      - Pull models before use
+
+  - task: Create low-code form
+    steps:
+      - "Navigate to Online Form Builder"
+      - "Create new form with JSON config"
+      - "Define fields with validation rules"
+      - "Generate backend API automatically"
+      - "Review generated code"
+    gotchas:
+      - Form JSON must follow JeecgBoot schema
+      - Generated code needs manual review
+
+  - task: Add AI chat to application
+    steps:
+      - "Create AI Application in platform"
+      - "Configure model and parameters"
+      - "Add knowledge bases if needed"
+      - "Configure chat interface"
+      - "Embed using iframe"
+    gotchas:
+      - Chat history stored in database
+      - Rate limits apply based on model
+
+  - task: Deploy to production
+    steps:
+      - "Build frontend: pnpm build"
+      - "Build JAR: mvn clean package -DskipTests"
+      - "Deploy: docker-compose -f docker-compose.yml up -d"
+    gotchas:
+      - Use production config file
+      - Set proper environment variables
+
+troubleshooting:
+  - symptom: Build fails with Lombok errors
+    cause: Missing Lombok plugin in IDE
+    fix: Install Lombok plugin in IntelliJ IDEA
+
+  - symptom: AI chat returns 404
+    cause: Airag module not enabled
+    fix: Check application.yml includes airag module
+
+  - symptom: Vector search fails
+    cause: PostgreSQL not running or pgVector not installed
+    fix: Start PostgreSQL and install pgvector extension
+
+  - symptom: Frontend build fails
+    cause: Node.js version < 20
+    fix: Upgrade to Node.js 20+
+
+  - symptom: MCP connection fails
+    cause: Wrong endpoint or headers
+    fix: Verify MCP configuration in database
+
+  - symptom: Slow AI responses
+    cause: Rate limiting or model timeout
+    fix: Adjust timeout settings or use faster model
+
+quick_reference:
+  - topic: Maven Build Commands
+    content: |
+      mvn clean install           - Clean build
+      mvn clean install -DskipTests - Skip tests
+      mvn clean package           - Package JAR
+      mvn clean install -pl module-name - Build specific module
+
+  - topic: Key API Endpoints
+    content: |
+      POST /jeecg-boot/airag/chat/send     - AI Chat
+      GET  /jeecg-boot/airag/model/list    - List models
+      POST /jeecg-boot/airag/model/add     - Add model
+      GET  /jeecg-boot/airag/knowledge/list - List knowledge
+      POST /jeecg-boot/airag/knowledge/upload - Upload docs
+      GET  /jeecg-boot/airag/mcp/list      - List MCP plugins
+      POST /jeecg-boot/airag/mcp/test      - Test MCP connection
+
+  - topic: Configuration Files
+    content: |
+      Main:    jeecg-module-system/jeecg-system-start/src/main/resources/application.yml
+      AI:      jeecg-boot-module/jeecg-boot-module-airag/src/main/resources/application.yml
+      Frontend: jeecgboot-vue3/src/config/
+
+  - topic: Docker Commands
+    content: |
+      docker-compose up -d          - Start services
+      docker-compose down           - Stop services
+      docker-compose logs -f jeecg-boot-system - View logs
+      docker exec -it jeecg-boot-system bash - Enter container

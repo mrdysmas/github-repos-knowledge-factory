@@ -1,0 +1,170 @@
+name: netmask
+node_id: repo::josephdove/netmask
+github_full_name: josephdove/netmask
+html_url: https://github.com/josephdove/netmask
+source: ssh_repos
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/deep/netmask.yaml
+  as_of: '2026-02-23'
+directory: netmask-main
+category: network_utils
+
+# Inherited from shallow file
+summary: |
+  Self-hosted TCP/UDP reverse proxy/tunneling solution (Ngrok alternative) with encrypted
+  client-server communication, dual-stack IPv4/IPv6 support, and optional terminal GUI.
+
+# Deep additions
+architecture:
+  module_breakdown:
+    - module: netmasks.py / netmaskc.py
+      responsibility: CLI entry points for server and client
+      key_files: [netmask/netmasks.py, netmask/netmaskc.py]
+    - module: server/main.py
+      responsibility: NetmaskServer class handling TCP/UDP listeners, client connections, tunnel management
+      key_files: [netmask/server/main.py]
+    - module: client/main.py
+      responsibility: NetmaskClient class with TCP/UDP forwarding threads and connection management
+      key_files: [netmask/client/main.py]
+    - module: impl/packets.py
+      responsibility: ProtocolHandler base class for packet serialization/deserialization with encryption
+      key_files: [netmask/impl/packets.py]
+    - module: utils/encryption.py
+      responsibility: NetmaskEncryption class implementing rolling key XOR cipher
+      key_files: [netmask/utils/encryption.py]
+  data_flow: |
+    1. Client connects to server via TCP (client/main.py:407)
+    2. Handshake protocol validates encryption key (packets.py:292-314)
+    3. Server generates unique UID for each connection (server/main.py:54)
+    4. Bind request establishes tunnel with protocol/port (packets.py:185-217)
+    5. Server starts listener on assigned port
+    6. Data forwarding begins between client-server and tunnel destination
+  key_abstractions:
+    - name: NetmaskServer
+      purpose: Main server class handling connections, TCP/UDP protocols, dual-stack networking
+      location: netmask/server/main.py
+    - name: NetmaskClient
+      purpose: Client tunnel implementation with TCP/UDP forwarding
+      location: netmask/client/main.py
+    - name: ProtocolHandler
+      purpose: Base class for packet encryption/decryption
+      location: netmask/impl/packets.py
+    - name: NetmaskEncryption
+      purpose: Rolling key encryption system
+      location: netmask/utils/encryption.py
+
+implementation_patterns:
+  - pattern: Rolling Key Encryption
+    description: SHA-256 rolling keys change per packet with Shake-256 XOR encryption
+    location: netmask/utils/encryption.py
+  - pattern: Async TCP Handler
+    description: AsyncTCPWrapper bridges sync/async gap with bidirectional forwarding via asyncio.gather
+    location: netmask/server/main.py
+  - pattern: UDP Datagram Handler
+    description: Connectionless protocol with address-based client tracking and buffering
+    location: netmask/server/main.py
+  - pattern: Dual-Stack IPv4/IPv6
+    description: IPv6 socket with IPV6_V6ONLY=0 for simultaneous IPv4/IPv6 binding
+    location: netmask/server/main.py
+  - pattern: Proof-of-Encryption Handshake
+    description: Challenge-response with SHA-256 hash validation before tunnel establishment
+    location: netmask/impl/packets.py
+
+configuration:
+  file: CLI arguments (argparse)
+  options:
+    - name: listener4
+      type: string
+      default: required
+      description: IPv4 listener IP (0.0.0.0 or -)
+    - name: listener6
+      type: string
+      default: required
+      description: "IPv6 listener IP (:: or -)"
+    - name: port
+      type: int
+      default: 1024
+      description: Server listening port
+    - name: key
+      type: string
+      default: "0"
+      description: Communication key for encryption
+    - name: bindMode
+      type: string
+      default: required
+      description: Protocol mode (tcp/udp)
+    - name: ipVersion
+      type: int
+      default: required
+      description: IP version (4 or 6)
+    - name: nogui
+      type: bool
+      default: false
+      description: Disable terminal GUI
+
+api_surface:
+  public_functions:
+    - name: NetmaskServer.start
+      signature: def start(self, ipv4host, ipv6host, port)
+      purpose: Start server with dual-stack listeners
+      location: netmask/server/main.py
+    - name: NetmaskClient.connect
+      signature: def connect(self, host, port)
+      purpose: Establish connection to server
+      location: netmask/client/main.py
+    - name: ProtocolHandler.sendPacket
+      signature: def sendPacket(self, packet)
+      purpose: Send encrypted packet
+      location: netmask/impl/packets.py
+    - name: ProtocolHandler.recvPacket
+      signature: def recvPacket(self, expectedPacket)
+      purpose: Receive and decrypt packet
+      location: netmask/impl/packets.py
+  packet_types:
+    - id: 1
+      name: CHandshakeRequest
+      purpose: Client sends encryption key
+    - id: 2
+      name: SPOERequest
+      purpose: Server sends 32-byte challenge
+    - id: 3
+      name: CPOEResponse
+      purpose: Client responds with SHA-256 hash
+    - id: 4
+      name: SHandshakeResponse
+      purpose: Server confirms connection
+    - id: 5
+      name: CBindRequest
+      purpose: Client requests tunnel configuration
+    - id: 6
+      name: SBindResponse
+      purpose: Server assigns tunnel port
+    - id: 7
+      name: SConnection
+      purpose: New tunnel connection notification
+    - id: 255
+      name: SKick
+      purpose: Server disconnects client
+
+testing:
+  framework: None
+  structure: No tests included
+  coverage: N/A
+
+extension_points:
+  - location: netmask/impl/packets.py
+    hook: terminateConnection()
+    example: Override for custom connection termination logic
+  - location: netmask/utils/encryption.py
+    hook: NetmaskEncryption class
+    example: Replace with different cipher algorithms
+  - location: netmask/client/main.py
+    hook: NetmaskClientGUI
+    example: Subclass for custom terminal UI styles
+  - location: netmask/server/main.py
+    hook: ServerConnection.connectionHandler()
+    example: Extend for additional authentication
+  - location: netmask/impl/packets.py
+    hook: packetList dictionary
+    example: Add new packet types for protocol extensions

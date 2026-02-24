@@ -1,0 +1,112 @@
+artifact_type: intake_repo_lifecycle_manifest
+contract_version: 1.0.0-intake
+as_of_utc: "2026-02-24T16:21:47Z"
+
+intake_model:
+  mode: "metadata_first_deep_on_demand"
+  canonical_boundary: "Only WS1/WS5/WS6/WS4 outputs are canonical."
+  scan_policy:
+    shallow_default: "Run shallow pass for all admitted repos."
+    deep_default: "Do not deep-scan by default; deep is triggered by priority."
+    deep_priority_inputs:
+      - "user intent/active project relevance"
+      - "high centrality in graph relations"
+      - "new capability area not represented in current corpus"
+      - "recent upstream changes affecting architecture/configuration"
+
+directory_strategy:
+  preferred_single_intake_dir: "/Users/szilaa/scripts/ext_sources/github_repos/intake_repos"
+  status: "CONSOLIDATED_TO_INTAKE_ROOT_AND_QUEUE_DRIVEN"
+  note: "Canonical shards (llm_repos/ssh_repos) remain output targets, not raw intake buckets."
+
+queue_source:
+  source_catalog: "/Users/szilaa/scripts/ext_sources/github_repos/master_repo_list.yaml"
+  generated_queue: "/Users/szilaa/scripts/ext_sources/github_repos/inputs/intake/intake_queue.yaml"
+  generator: "/Users/szilaa/scripts/ext_sources/github_repos/tools/build_intake_queue_from_master_repo_list.py"
+  sync_gate: "/Users/szilaa/scripts/ext_sources/github_repos/tools/check_intake_queue_sync.py"
+  add_candidate_command: "/Users/szilaa/scripts/ext_sources/github_repos/tools/add_repo_candidate.py"
+  mode: "clone_on_demand_from_queue"
+
+lifecycle_states:
+  - state: discovered
+    required_fields:
+      - github_full_name
+      - html_url
+      - intake_path
+      - discovered_at_utc
+  - state: shallow_queued
+    required_fields:
+      - scan_mode
+      - target_shard
+  - state: shallow_complete
+    required_fields:
+      - shallow_artifact_paths
+      - shallow_as_of
+      - source_commit
+  - state: deep_candidate
+    required_fields:
+      - deep_priority_reason
+  - state: deep_queued
+    required_fields:
+      - deep_scope
+      - source_commit
+  - state: deep_complete
+    required_fields:
+      - deep_artifact_paths
+      - deep_as_of
+      - source_commit
+  - state: metadata_only_retained
+    required_fields:
+      - source_commit
+      - deletion_approved
+      - deletion_timestamp_utc
+
+record_template:
+  repo_id: "repo::<owner>/<name>"
+  github_full_name: "<owner>/<name>"
+  html_url: "https://github.com/<owner>/<name>"
+  intake_path: "/Users/szilaa/scripts/ext_sources/github_repos/intake_repos/<repo-dir>"
+  target_shard: "llm_repos | ssh_repos"
+  current_state: "discovered"
+  source:
+    mode: "local_clone | remote_api | remote_metadata"
+    source_commit: "<git_sha_or_null>"
+    default_branch: "<branch_or_null>"
+    observed_at_utc: "<timestamp>"
+  outputs:
+    shallow_artifact_paths: []
+    deep_artifact_paths: []
+    ws5_manifest_row: null
+  deep_priority:
+    score: 0
+    reason: ""
+  retention:
+    clone_retention: "pending"
+    eligible_for_deletion: false
+    deletion_approved: false
+    deletion_timestamp_utc: null
+
+gates_for_progression:
+  shallow_complete_requires:
+    - "Shallow artifact generated and parseable."
+    - "WS1 identity fields present."
+    - "provenance.as_of populated."
+  deep_complete_requires:
+    - "Deep artifact generated and parseable."
+    - "Identity parity with shallow artifact."
+    - "Evidence/provenance fields captured for extracted details."
+  metadata_only_retained_requires:
+    - "source_commit recorded."
+    - "canonical shallow/deep artifacts committed."
+    - "no active deep follow-up task."
+    - "prune policy allows deletion."
+
+initial_backlog:
+  - id: "INTAKE-PILOT-1"
+    objective: "Run shallow-first intake pilot from queued repos in inputs/intake/intake_queue.yaml."
+    target_repo_count: "8-12"
+    status: "PENDING"
+    expected_outputs:
+      - "WS5-ready manifest rows"
+      - "Shallow artifact coverage report"
+      - "Top deep candidates with priority reasons"

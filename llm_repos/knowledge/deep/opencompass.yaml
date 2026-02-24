@@ -1,0 +1,199 @@
+name: opencompass
+node_id: repo::open-compass/opencompass
+github_full_name: open-compass/opencompass
+html_url: https://github.com/open-compass/opencompass
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep/opencompass.yaml
+  as_of: '2026-02-23'
+sparse: false
+code_patterns:
+  - name: HuggingFace Model Config
+    description: Standard configuration for evaluating HuggingFace models with chat templates
+    file_reference: opencompass/configs/models/qwen2_5/hf_qwen2_5_7b_instruct.py
+    code: |
+      from opencompass.models import HuggingFacewithChatTemplate
+
+      models = [
+          dict(
+              type=HuggingFacewithChatTemplate,
+              abbr='qwen2.5-7b-instruct-hf',
+              path='Qwen/Qwen2.5-7B-Instruct',
+              max_out_len=4096,
+              batch_size=8,
+              run_cfg=dict(num_gpus=1),
+          )
+      ]
+
+  - name: VLLM Model Config
+    description: Configuration for accelerated inference with vLLM backend
+    file_reference: opencompass/configs/models/qwen2_5/vllm_qwen2_5_7b_instruct.py
+    code: |
+      from opencompass.models import VLLMwithChatTemplate
+
+      models = [
+          dict(
+              type=VLLMwithChatTemplate,
+              abbr='qwen2.5-7b-instruct-vllm',
+              path='Qwen/Qwen2.5-7B-Instruct',
+              max_out_len=4096,
+              batch_size=8,
+              run_cfg=dict(num_gpus=1),
+          )
+      ]
+
+  - name: Dataset Config with Reader
+    description: Dataset configuration specifying test range and evaluation settings
+    file_reference: opencompass/configs/datasets/demo/demo_gsm8k_chat_gen.py
+    code: |
+      from mmengine import read_base
+
+      with read_base():
+          from ..gsm8k.gsm8k_gen_1d7fe4 import gsm8k_datasets
+
+      # Modify for demo subset
+      gsm8k_datasets[0]['abbr'] = 'demo_' + gsm8k_datasets[0]['abbr']
+      gsm8k_datasets[0]['reader_cfg']['test_range'] = '[0:64]'
+
+  - name: Summarizer Config
+    description: Configuration for aggregating and presenting evaluation results
+    file_reference: opencompass/configs/summarizers/example.py
+    code: |
+      from opencompass.summarizers import Summarizer
+
+      summarizer = dict(
+          type=Summarizer,
+          # Dataset groups for aggregation
+          dataset_groups=dict(
+              math=['gsm8k', 'math'],
+              reasoning=['bbh', 'hellaswag'],
+          ),
+      )
+
+  - name: Full Evaluation Config Pattern
+    description: Typical structure combining models, datasets, and summarizers
+    file_reference: examples/eval_chat_demo.py
+    code: |
+      # Combine model and dataset configs
+      from mmengine.config import read_base
+
+      with read_base():
+          # Import models
+          from .models.qwen2_5.hf_qwen2_5_7b_instruct import models
+          # Import datasets
+          from .datasets.demo.demo_gsm8k_chat_gen import gsm8k_datasets as datasets
+
+      # Evaluation settings
+      work_dir = './outputs/demo_eval/'
+
+configuration:
+  - key: models[].type
+    type: class
+    default: required
+    description: Model class (HuggingFacewithChatTemplate, VLLMwithChatTemplate, etc.)
+  - key: models[].path
+    type: str
+    default: required
+    description: HuggingFace model ID or local path
+  - key: models[].abbr
+    type: str
+    default: required
+    description: Short name for results display
+  - key: models[].max_out_len
+    type: int
+    default: 100
+    description: Maximum output token length
+  - key: models[].batch_size
+    type: int
+    default: 8
+    description: Batch size for inference
+  - key: models[].run_cfg.num_gpus
+    type: int
+    default: 1
+    description: Number of GPUs required
+  - key: models[].model_kwargs
+    type: dict
+    default: {}
+    description: Additional model arguments (trust_remote_code, etc.)
+  - key: datasets[].abbr
+    type: str
+    default: required
+    description: Dataset abbreviation for results
+  - key: datasets[].type
+    type: class
+    default: required
+    description: Dataset loader class
+  - key: datasets[].reader_cfg.test_range
+    type: str
+    default: '[:]'
+    description: Test subset range (e.g., '[0:64]' for first 64 samples)
+  - key: work_dir
+    type: str
+    default: ./outputs/
+    description: Output directory for results
+
+common_tasks:
+  - task: Quick demo evaluation
+    command: opencompass --models hf_internlm2_chat_1_8b --datasets demo_gsm8k_chat_gen
+    description: Run quick test on small model with demo dataset
+  - task: Evaluate with vLLM acceleration
+    command: opencompass --models hf_qwen2_5_7b_instruct --datasets demo_gsm8k_chat_gen -a vllm
+    description: Use vLLM backend for faster inference
+  - task: Multiple models and datasets
+    command: opencompass --models model1 model2 --datasets ds1 ds2 ds3
+    description: Evaluate multiple models across multiple benchmarks
+  - task: Distributed evaluation
+    command: opencompass --models hf_model --datasets benchmark --max-num-worker 4
+    description: Parallel evaluation across multiple workers
+  - task: Custom config file
+    command: opencompass configs/eval_demo.py
+    description: Run evaluation from Python config file
+  - task: Limit evaluation samples
+    command: opencompass --models hf_model --datasets gsm8k --max-samples 100
+    description: Evaluate only first N samples for quick testing
+
+troubleshooting:
+  - issue: CUDA out of memory
+    solution: |
+      - Reduce batch_size in model config
+      - Reduce max_out_len
+      - Use smaller model variant
+      - Enable batch_padding=false in some configs
+      - Use vLLM or LMDeploy backends for memory efficiency
+  - issue: Model loading errors
+    solution: |
+      - Add trust_remote_code=true to model_kwargs
+      - Verify model path is correct
+      - Check for required auth tokens (HF_TOKEN)
+      - Ensure model supports the task type
+  - issue: Missing datasets
+    solution: |
+      - Install full package: pip install "opencompass[full]"
+      - Check dataset config path
+      - Some datasets require manual download
+  - issue: Slow evaluation
+    solution: |
+      - Use vLLM (-a vllm) or LMDeploy (-a lmdeploy) backend
+      - Increase batch_size if memory allows
+      - Use --max-num-worker for parallel evaluation
+      - Reduce test_range for quick validation
+
+quick_reference:
+  - "# List available model configs"
+  - "ls opencompass/configs/models/"
+  - ""
+  - "# List available dataset configs"
+  - "ls opencompass/configs/datasets/"
+  - ""
+  - "# Quick demo with small model"
+  - "opencompass --models hf_internlm2_chat_1_8b --datasets demo_gsm8k_chat_gen"
+  - ""
+  - "# Evaluation with vLLM"
+  - "opencompass --models hf_qwen_7b --datasets mmlu ceval -a vllm"
+  - ""
+  - "# Run from config file"
+  - "opencompass configs/eval_chat_demo.py"
+  - ""
+  - "# Multi-GPU evaluation"
+  - "opencompass --models hf_llama_70b --datasets gsm8k --max-num-worker 4"

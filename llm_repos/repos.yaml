@@ -1,0 +1,229 @@
+# LLM Repos Index
+# Phase 2: Extended schema (+ github_url, build_cmd, test_cmd)
+
+version: 2
+schema_phase: extended
+last_updated: 2026-02-20
+
+categories:
+  - inference_serving
+  - rag_framework
+  - agent_framework
+  - vector_db
+  - fine_tuning
+  - evaluation
+  - ui_tools
+  - memory
+  - data_pipeline
+  - tutorials
+
+repos:
+  # === INFERENCE / SERVING ===
+  - name: ollama-main
+    description: Local LLM inference server with model management
+    language: Go
+    category: inference_serving
+    github_url: https://github.com/ollama/ollama
+    build_cmd: go build .
+    test_cmd: go test ./...
+
+  - name: vllm-main
+    description: High-performance LLM inference engine with PagedAttention
+    language: Python
+    category: inference_serving
+    github_url: https://github.com/vllm-project/vllm
+    build_cmd: pip install -e .
+    test_cmd: pytest
+
+  - name: lmdeploy-main
+    description: LMDeploy inference deployment and optimization toolkit
+    language: Python
+    category: inference_serving
+    github_url: https://github.com/InternLM/lmdeploy
+    build_cmd: pip install -e .
+    test_cmd: pytest
+
+  - name: inference-main
+    description: Xinference - model serving framework for diverse backends
+    language: Python
+    category: inference_serving
+    github_url: https://github.com/xorbitsai/inference
+    build_cmd: pip install -e .
+    test_cmd: pytest
+
+  - name: nexa-sdk-main
+    description: Nexa SDK for on-device model inference
+    language: Python
+    category: inference_serving
+    github_url: https://github.com/NexaAI/nexa-sdk
+    build_cmd: pip install -e .
+    test_cmd: pytest
+
+  # === RAG FRAMEWORKS ===
+  - name: langchain-master
+    description: Framework for building LLM-powered applications
+    language: Python
+    category: rag_framework
+    github_url: https://github.com/langchain-ai/langchain
+    build_cmd: make build
+    test_cmd: make test
+
+  - name: llama_index-main
+    description: Data framework for connecting custom data to LLMs
+    language: Python
+    category: rag_framework
+    github_url: https://github.com/run-llama/llama_index
+    build_cmd: pip install -e .
+    test_cmd: make test
+
+  - name: ragflow-main
+    description: RAG engine with deep document understanding
+    language: Python
+    category: rag_framework
+    github_url: https://github.com/infiniflow/ragflow
+    build_cmd: pip install -e .
+    test_cmd: pytest
+
+  - name: graphrag-main
+    description: Microsoft's graph-based RAG approach
+    language: Python
+    category: rag_framework
+    github_url: https://github.com/microsoft/graphrag
+    build_cmd: pip install -e .
+    test_cmd: pytest
+
+  # === AGENT FRAMEWORKS ===
+  - name: parlant-develop
+    description: Framework for building conversational AI agents
+    language: Python
+    category: agent_framework
+    github_url: https://github.com/parlant-io/parlant
+    build_cmd: pip install -e .
+    test_cmd: pytest
+
+  - name: llm-app-main
+    description: Collection of LLM application templates
+    language: Python
+    category: agent_framework
+    github_url: https://github.com/llm-app/llm-app
+    build_cmd: pip install -e .
+    test_cmd: pytest
+
+  - name: awesome-llm-apps-main
+    description: Curated collection of advanced LLM applications
+    language: Python
+    category: agent_framework
+    github_url: https://github.com/Shubhamsaboo/awesome-llm-apps
+    build_cmd: pip install -r requirements.txt
+    test_cmd: null
+
+  # === VECTOR DATABASES ===
+  - name: milvus-master
+    description: Cloud-native vector database for AI applications
+    language: Go
+    category: vector_db
+    github_url: https://github.com/milvus-io/milvus
+    build_cmd: make milvus
+    test_cmd: make test
+
+  # === FINE-TUNING ===
+  - name: LlamaFactory-main
+    description: Unified fine-tuning framework for LLMs
+    language: Python
+    category: fine_tuning
+    github_url: https://github.com/hiyouga/LLaMA-Factory
+    build_cmd: pip install -e .
+    test_cmd: make test
+
+  # === EVALUATION ===
+  - name: opencompass-main
+    description: Model evaluation toolkit and benchmark suite
+    language: Python
+    category: evaluation
+    github_url: https://github.com/open-compass/opencompass
+    build_cmd: pip install -e .
+    test_cmd: pytest
+
+  # === UI / TOOLS ===
+  - name: open-webui-main
+    description: Web interface for LLM interaction and management
+    language: Python
+    category: ui_tools
+    github_url: https://github.com/open-webui/open-webui
+    build_cmd: pip install -e .
+    test_cmd: pytest
+
+  - name: anything-llm-master
+    description: All-in-one document chat application
+    language: Node.js
+    category: ui_tools
+    github_url: https://github.com/Mintplex-Labs/anything-llm
+    build_cmd: npm install && npm run build
+    test_cmd: npm test
+
+  - name: khoj-master
+    description: AI personal assistant with multiple interfaces
+    language: Python
+    category: ui_tools
+    github_url: https://github.com/khoj-ai/khoj
+    build_cmd: pip install -e .
+    test_cmd: pytest
+
+  - name: MaxKB-2
+    description: Knowledge base chatbot platform
+    language: Python
+    category: ui_tools
+    github_url: https://github.com/1Panel-dev/MaxKB
+    build_cmd: pip install -e .
+    test_cmd: pytest
+
+  - name: JeecgBoot-main
+    description: Low-code enterprise development platform
+    language: Java
+    category: ui_tools
+    github_url: https://github.com/jeecgboot/JeecgBoot
+    build_cmd: mvn clean install
+    test_cmd: mvn test
+
+  # === MEMORY ===
+  - name: mem0-main
+    description: Memory layer for AI applications and agents
+    language: Python
+    category: memory
+    github_url: https://github.com/mem0ai/mem0
+    build_cmd: make build
+    test_cmd: make test
+
+  # === DATA PIPELINES ===
+  - name: pathway-main
+    description: Real-time data processing pipelines
+    language: Rust
+    category: data_pipeline
+    github_url: https://github.com/pathwaycom/pathway
+    build_cmd: cargo build
+    test_cmd: cargo test
+
+  - name: mindsdb-main
+    description: AI tables and database integration
+    language: Python
+    category: data_pipeline
+    github_url: https://github.com/mindsdb/mindsdb
+    build_cmd: pip install -e .
+    test_cmd: pytest
+
+  # === TUTORIALS / GUIDES ===
+  - name: Prompt-Engineering-Guide-main
+    description: Comprehensive prompt engineering guide
+    language: Markdown
+    category: tutorials
+    github_url: https://github.com/dair-ai/Prompt-Engineering-Guide
+    build_cmd: null
+    test_cmd: null
+
+  - name: self-llm_HOW-TO
+    description: Chinese LLM tutorials and implementation guides
+    language: Markdown
+    category: tutorials
+    github_url: https://github.com/datawhalechina/self-llm
+    build_cmd: null
+    test_cmd: null

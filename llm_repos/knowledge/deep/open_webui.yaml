@@ -1,0 +1,349 @@
+name: open_webui
+node_id: repo::open-webui/open-webui
+github_full_name: open-webui/open-webui
+html_url: https://github.com/open-webui/open-webui
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep/open_webui.yaml
+  as_of: '2026-02-23'
+sparse: false
+
+code_patterns:
+  - name: FastAPI Router Composition
+    description: Modular API structure with dependency injection
+    code: |
+      # File: backend/open_webui/main.py
+      from fastapi import FastAPI, Depends
+      from open_webui.routers import auths, users, chats, ollama, openai
+
+      app = FastAPI()
+
+      # Include routers with prefixes
+      app.include_router(ollama.router, prefix="/ollama", tags=["ollama"])
+      app.include_router(openai.router, prefix="/openai", tags=["openai"])
+      app.include_router(auths.router, prefix="/api/v1/auths", tags=["auths"])
+      app.include_router(chats.router, prefix="/api/v1/chats", tags=["chats"])
+
+      # Auth dependency pattern
+      @router.get("/protected")
+      async def protected(user: UserModel = Depends(get_verified_user)):
+          return {"user_id": user.id}
+    file_reference: backend/open_webui/main.py
+
+  - name: Ollama Proxy Pattern
+    description: Async proxy with user context forwarding
+    code: |
+      # File: backend/open_webui/routers/ollama.py
+      import aiohttp
+
+      async def send_post_request(url, payload, stream=True, user=None):
+          session = aiohttp.ClientSession(
+              trust_env=True,
+              timeout=aiohttp.ClientTimeout(total=AIOHTTP_CLIENT_TIMEOUT)
+          )
+          headers = {"Content-Type": "application/json"}
+
+          # Forward user context for audit trails
+          if ENABLE_FORWARD_USER_INFO_HEADERS and user:
+              headers = include_user_info_headers(headers, user)
+
+          r = await session.post(url, data=payload, headers=headers, ssl=False)
+
+          if stream:
+              return StreamingResponse(
+                  r.content,
+                  media_type="application/x-ndjson"
+              )
+          return await r.json()
+    file_reference: backend/open_webui/routers/ollama.py
+
+  - name: Authentication Session Builder
+    description: JWT + cookie hybrid auth with multiple providers
+    code: |
+      # File: backend/open_webui/routers/auths.py
+      def create_session_response(request, user, db, response=None, set_cookie=False):
+          # Create JWT token
+          expires_delta = parse_duration(request.app.state.config.JWT_EXPIRES_IN)
+          token = create_token(data={"id": user.id}, expires_delta=expires_delta)
+
+          # Optional cookie-based auth
+          if set_cookie and response:
+              response.set_cookie(
+                  key="token",
+                  value=token,
+                  httponly=True,
+                  samesite=WEBUI_AUTH_COOKIE_SAME_SITE,
+                  secure=WEBUI_AUTH_COOKIE_SECURE,
+              )
+
+          return {
+              "token": token,
+              "token_type": "Bearer",
+              "id": user.id,
+              "email": user.email,
+              "role": user.role,
+              "permissions": get_permissions(user.id, config.USER_PERMISSIONS),
+          }
+    file_reference: backend/open_webui/routers/auths.py
+
+  - name: Persistent Configuration
+    description: Database-backed config with env var fallback
+    code: |
+      # File: backend/open_webui/config.py
+      class PersistentConfig(Generic[T]):
+          def __init__(self, env_name, config_path, env_value):
+              self.env_name = env_name
+              self.config_path = config_path
+              self.env_value = env_value
+              self.config_value = get_config_value(config_path)
+
+              # DB value takes precedence if persistent config enabled
+              if self.config_value is not None and ENABLE_PERSISTENT_CONFIG:
+                  self.value = self.config_value
+              else:
+                  self.value = env_value
+
+      # Usage
+      OLLAMA_BASE_URLS = PersistentConfig(
+          "OLLAMA_BASE_URLS",
+          "ollama.base_urls",
+          [os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434")],
+      )
+    file_reference: backend/open_webui/config.py
+
+  - name: RAG Embedding Loader
+    description: Pluggable embedding with device detection
+    code: |
+      # File: backend/open_webui/routers/retrieval.py
+      from sentence_transformers import SentenceTransformer
+
+      def get_ef(engine, embedding_model, auto_update=True):
+          if embedding_model and engine == "":
+              try:
+                  ef = SentenceTransformer(
+                      get_model_path(embedding_model, auto_update),
+                      device=DEVICE_TYPE,  # "cpu", "cuda", "mps"
+                      trust_remote_code=RAG_EMBEDDING_MODEL_TRUST_REMOTE_CODE,
+                  )
+                  return ef
+              except Exception as e:
+                  log.debug(f"Error loading SentenceTransformer: {e}")
+          return None
+
+      # Vector stores: ChromaDB, Qdrant, Milvus, OpenSearch, Weaviate
+    file_reference: backend/open_webui/routers/retrieval.py
+
+  - name: Reasoning Model Handler
+    description: Payload transformation for model-specific APIs
+    code: |
+      # File: backend/open_webui/routers/openai.py
+      def openai_reasoning_model_handler(payload):
+          # Convert max_tokens for reasoning models
+          if "max_tokens" in payload:
+              payload["max_completion_tokens"] = payload["max_tokens"]
+              del payload["max_tokens"]
+
+          # Handle system role conversion
+          if payload["messages"][0]["role"] == "system":
+              model_lower = payload["model"].lower()
+              # Legacy models use "user" instead of "system"
+              if model_lower.startswith("o1-mini") or model_lower.startswith("o1-preview"):
+                  payload["messages"][0]["role"] = "user"
+              else:
+                  payload["messages"][0]["role"] = "developer"
+
+          return payload
+    file_reference: backend/open_webui/routers/openai.py
+
+configuration:
+  - name: Core Settings
+    options:
+      - key: WEBUI_SECRET_KEY
+        default: "required"
+        description: JWT signing key (MUST be set)
+      - key: DATA_DIR
+        default: "backend/data"
+        description: Persistent data directory
+      - key: DATABASE_URL
+        default: "sqlite:///data/webui.db"
+        description: Database connection string
+      - key: WEBUI_AUTH
+        default: "True"
+        description: Enable authentication
+
+  - name: LLM Backend
+    options:
+      - key: OLLAMA_BASE_URL
+        default: "http://localhost:11434"
+        description: Ollama endpoint
+      - key: OPENAI_API_BASE_URL
+        default: ""
+        description: OpenAI-compatible endpoint
+      - key: OPENAI_API_KEY
+        default: ""
+        description: API key for OpenAI-compatible
+
+  - name: RAG Settings
+    options:
+      - key: RAG_EMBEDDING_MODEL
+        default: "sentence-transformers/all-MiniLM-L6-v2"
+        description: Embedding model for RAG
+      - key: RAG_RERANKING_MODEL
+        default: ""
+        description: Optional reranking model
+      - key: DEVICE_TYPE
+        default: "cpu"
+        description: "Inference device: cpu, cuda, mps"
+      - key: RAG_TOP_K
+        default: "5"
+        description: Top-k retrieval results
+      - key: RAG_TEXT_SPLITTER
+        default: "token"
+        description: "Splitter: token, semantic"
+
+  - name: OAuth/SSO
+    options:
+      - key: ENABLE_OAUTH_SIGNUP
+        default: "False"
+        description: Allow OAuth signup
+      - key: OAUTH_CLIENT_ID
+        default: ""
+        description: OAuth client ID
+      - key: OAUTH_CLIENT_SECRET
+        default: ""
+        description: OAuth client secret
+      - key: OPENID_PROVIDER_URL
+        default: ""
+        description: OIDC discovery URL
+      - key: ENABLE_LDAP
+        default: "False"
+        description: Enable LDAP auth
+
+  - name: Infrastructure
+    options:
+      - key: REDIS_URL
+        default: ""
+        description: Redis for sessions/caching
+      - key: UVICORN_WORKERS
+        default: "1"
+        description: Worker processes
+      - key: ENABLE_WEBSOCKET_SUPPORT
+        default: "True"
+        description: Real-time updates
+
+common_tasks:
+  - task: Deploy with Ollama
+    steps:
+      - "docker run -d -p 3000:8080 \\"
+      - "  -v open-webui:/app/backend/data \\"
+      - "  -e OLLAMA_BASE_URL=http://host.docker.internal:11434 \\"
+      - "  -e WEBUI_SECRET_KEY=your-secret \\"
+      - "  ghcr.io/open-webui/open-webui:main"
+    gotchas:
+      - "Use host.docker.internal for Ollama on Mac/Windows"
+      - "First startup takes time to download embedding model"
+
+  - task: Configure External LLM (OpenAI/vLLM/etc.)
+    steps:
+      - "Set OPENAI_API_BASE_URL to your endpoint"
+      - "Set OPENAI_API_KEY"
+      - "Configure in UI: Settings > Connections"
+    gotchas:
+      - "vLLM needs /v1 suffix in URL"
+      - "Some providers need model name in base_url"
+
+  - task: Enable RAG with Documents
+    steps:
+      - "Set RAG_EMBEDDING_MODEL (or use default)"
+      - "For GPU: set DEVICE_TYPE=cuda, use :cuda image"
+      - "Upload documents via Workspace > Knowledge"
+      - "Reference in chat with #knowledge-base"
+    gotchas:
+      - "GPU image is much larger (~15GB vs 2GB)"
+      - "ChromaDB is default - switch to Qdrant for scale"
+
+  - task: Setup OAuth SSO
+    steps:
+      - "Create OAuth app in provider (Google, GitHub, etc.)"
+      - "Set OAUTH_CLIENT_ID and OAUTH_CLIENT_SECRET"
+      - "Set OPENID_PROVIDER_URL for OIDC"
+      - "Set ENABLE_OAUTH_SIGNUP=True for auto-provisioning"
+    gotchas:
+      - "Callback URL is /oauth/oidc/callback"
+      - "JWT_EXPIRES_IN controls session length"
+
+troubleshooting:
+  - symptom: Cannot connect to Ollama
+    cause: Network isolation in Docker
+    fix: "Use host.docker.internal:11434 on Mac/Windows, or --network host on Linux"
+
+  - symptom: RAG not finding documents
+    cause: Embedding model mismatch or index not built
+    fix: "Ensure same embedding model for upload and query, check vector DB has documents"
+
+  - symptom: Login loops or session expires
+    cause: JWT secret changed or cookie issues
+    fix: "Set stable WEBUI_SECRET_KEY, check cookie same-site settings"
+
+  - symptom: Slow first response
+    cause: Model loading or embedding download
+    fix: "Pre-download models, use WARMUP_ON_START=true"
+
+quick_reference:
+  - topic: API Endpoints
+    content: |
+      ┌────────────────────────────┬────────┬──────────────────┐
+      │ Endpoint                   │ Method │ Description      │
+      ├────────────────────────────┼────────┼──────────────────┤
+      │ /ollama/api/chat          │ POST   │ Ollama chat      │
+      │ /ollama/api/generate      │ POST   │ Ollama generate  │
+      │ /ollama/api/tags          │ GET    │ List Ollama      │
+      │ /openai/v1/chat/completions│ POST  │ OpenAI chat      │
+      │ /openai/v1/models         │ GET    │ List models      │
+      │ /api/v1/auths/signin      │ POST   │ Login            │
+      │ /api/v1/auths/signup      │ POST   │ Register         │
+      │ /api/v1/chats             │ GET/POST│ Chat CRUD       │
+      │ /api/v1/retrieval/upload  │ POST   │ Upload docs      │
+      │ /api/v1/retrieval/query   │ GET    │ Search docs      │
+      │ /api/v1/knowledge         │ GET/POST│ Knowledge base  │
+      └────────────────────────────┴────────┴──────────────────┘
+
+  - topic: Docker Images
+    content: |
+      ┌─────────────────────────────┬─────────────────────────┐
+      │ Image                       │ Description             │
+      ├─────────────────────────────┼─────────────────────────┤
+      │ ghcr.io/open-webui/...:main │ Standard (CPU)          │
+      │ ghcr.io/open-webui/...:cuda │ NVIDIA GPU support      │
+      │ ghcr.io/open-webui/...:ollama │ Bundled Ollama        │
+      └─────────────────────────────┴─────────────────────────┘
+
+  - topic: Environment Variables
+    content: |
+      ┌───────────────────────────────┬─────────────────────┐
+      │ Variable                      │ Default             │
+      ├───────────────────────────────┼─────────────────────┤
+      │ WEBUI_SECRET_KEY              │ (required)          │
+      │ OLLAMA_BASE_URL               │ http://localhost:11434│
+      │ OPENAI_API_BASE_URL           │ ""                  │
+      │ OPENAI_API_KEY                │ ""                  │
+      │ RAG_EMBEDDING_MODEL           │ all-MiniLM-L6-v2    │
+      │ DEVICE_TYPE                   │ cpu                 │
+      │ DATA_DIR                      │ backend/data        │
+      │ DATABASE_URL                  │ sqlite:///data/...  │
+      │ REDIS_URL                     │ ""                  │
+      │ ENABLE_OAUTH_SIGNUP           │ False               │
+      └───────────────────────────────┴─────────────────────┘
+
+  - topic: Vector Store Options
+    content: |
+      ┌─────────────────┬─────────────────────────────────────────┐
+      │ Store           │ Notes                                   │
+      ├─────────────────┼─────────────────────────────────────────┤
+      │ chroma          │ Default, local, easy setup               │
+      │ qdrant          │ Production, scalable, cloud option       │
+      │ milvus          │ Enterprise scale, distributed            │
+      │ opensearch      │ AWS-friendly, full-text + vector         │
+      │ weaviate        │ GraphQL API, modular                     │
+      └─────────────────┴─────────────────────────────────────────┘

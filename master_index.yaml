@@ -1,0 +1,4282 @@
+artifact_type: ws4_master_index
+generated_at_utc: '2026-02-23T00:00:00Z'
+contract_version: 1.0.0-ws1
+metadata:
+  source_shards:
+  - llm_repos
+  - ssh_repos
+  total_repos: 50
+  repo_counts_by_shard:
+    llm_repos: 26
+    ssh_repos: 24
+  category_counts:
+    agent_frameworks: 3
+    data_pipelines: 2
+    documentation: 4
+    educational: 2
+    evaluation: 1
+    fine_tuning: 1
+    inference_serving: 6
+    network_infrastructure: 2
+    network_utils: 1
+    rag_frameworks: 6
+    remote_access: 2
+    terminal_ui: 1
+    tunneling: 9
+    ui_tools: 4
+    vector_databases: 1
+    vpn_mesh: 5
+  compiled_source: compiled_master
+repos:
+- node_id: repo::1panel-dev/maxkb
+  github_full_name: 1panel-dev/maxkb
+  html_url: https://github.com/1panel-dev/maxkb
+  source: compiled_master
+  name: maxkb
+  category: ui_tools
+  summary: 'Open-source enterprise-grade agent platform (Max Knowledge Brain). Combines
+    RAG pipelines,
+
+    agentic workflows, and MCP tool-use capabilities. Built for intelligent customer
+    service,
+
+    corporate knowledge bases, and education. Zero-code integration with existing
+    systems.
+
+    Chinese-developed with strong multi-model support including DeepSeek, Qwen.
+
+    '
+  core_concepts:
+  - Application Builder
+  - Knowledge Management
+  - Workflow Engine
+  - Model Providers
+  - MCP Tools
+  key_entry_points:
+  - apps/
+  - apps/application/
+  - apps/knowledge/
+  - ui/
+  build_run:
+    language: Python (Django) + Vue.js
+    install: docker run -d --name=maxkb -p 8080:8080 1panel/maxkb
+    usage: '# Access at http://localhost:8080
+
+      # Default: admin / MaxKB@123..
+
+      '
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/maxkb.yaml
+    as_of: '2026-02-23'
+  ecosystem_connections:
+  - target: langchain
+    relation: extends
+    note: Built on LangChain framework
+  - target: ragflow
+    relation: alternative_to
+    note: Both full-stack RAG platforms with visual UI
+  - target: open_webui
+    relation: alternative_to
+    note: Both enterprise-ready; MaxKB has stronger workflow engine
+  - target: milvus
+    relation: integrates_with
+    note: MaxKB could use Milvus for vector storage
+  extras:
+    directory: MaxKB-2
+    further_reading:
+    - README.md
+    - README_CN.md
+    - USE-CASES.md
+    - web: https://maxkb.cn
+    key_features:
+    - RAG pipeline with auto-crawling
+    - Visual workflow engine
+    - MCP tool-use support
+    - Multi-modal (text, image, audio, video)
+    - Zero-code third-party integration
+    - Model-agnostic (local and cloud models)
+    - PostgreSQL + pgvector storage
+    - Built on LangChain
+    raw_core_concepts_structured:
+    - name: Application Builder
+      description: Agent/knowledge base application configuration
+      location: apps/application/
+    - name: Knowledge Management
+      description: Document upload, crawling, vectorization
+      location: apps/knowledge/
+    - name: Workflow Engine
+      description: Visual agentic workflow orchestration
+      location: apps/application/workflow/
+    - name: Model Providers
+      description: Multi-model support (DeepSeek, Llama, Qwen, OpenAI)
+      location: apps/models_provider/
+    - name: MCP Tools
+      description: Model Context Protocol tool integration
+      location: apps/tools/
+    raw_key_entry_points_structured:
+    - path: apps/
+      purpose: Django application modules
+    - path: apps/application/
+      purpose: Core agent/knowledge base logic
+    - path: apps/knowledge/
+      purpose: Document processing and RAG
+    - path: ui/
+      purpose: Vue.js frontend
+    use_cases:
+    - Intelligent customer service
+    - Corporate internal knowledge base
+    - Academic research assistance
+    - Educational chatbots
+- node_id: repo::anderspitman/awesome-tunneling
+  github_full_name: anderspitman/awesome-tunneling
+  html_url: https://github.com/anderspitman/awesome-tunneling
+  source: compiled_master
+  name: awesome-tunneling
+  category: documentation
+  summary: 'Curated list of tunneling tools and solutions for exposing local services
+    publicly, with focus on self-hosting and NAT traversal.
+
+    '
+  core_concepts:
+  - Reverse Tunnels
+  - Overlay Networks
+  - Protocol Multiplexing
+  key_entry_points:
+  - README.md
+  build_run:
+    format: markdown
+    primary_language: n/a
+    organization: Categorized into Open Source tools, Commercial/Closed Source, Overlay
+      Networks/Advanced Tools, and Reference materials
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/awesome-tunneling.yaml
+    as_of: '2026-02-23'
+  extras:
+    directory: awesome-tunneling-master
+    notable_insights:
+    - Author's "dream" tool would combine domain registration, DNS management, auto
+      HTTPS certs, and simple GUI - no single tool achieves this yet
+    - Minimum 100 GitHub stars required for new additions (as of 2026-02-16)
+    - Primary use case is self-hosters and developers exposing local services
+    raw_core_concepts_structured:
+    - name: Reverse Tunnels
+      description: Tools that expose local webservers/ports via public domain names
+        with automatic HTTPS, even behind NAT or restricted networks.
+    - name: Overlay Networks
+      description: Peer-to-peer mesh networks (Tailscale, ZeroTier, Nebula) that create
+        virtual private networks with NAT traversal.
+    - name: Protocol Multiplexing
+      description: Techniques for carrying multiple connections over a single transport
+        (HTTP/2, QUIC, WebSocket, SSH).
+    raw_key_entry_points_structured:
+    - path: README.md
+      purpose: Main curated list organized by license type (open source, commercial,
+        overlay networks)
+- node_id: repo::apernet/hysteria
+  github_full_name: apernet/hysteria
+  html_url: https://github.com/apernet/hysteria
+  source: compiled_master
+  name: hysteria
+  category: vpn_mesh
+  summary: 'A QUIC-based proxy/VPN designed for high performance over unreliable networks
+    and censorship resistance through HTTP/3 traffic masquerading.
+
+    '
+  core_concepts:
+  - Brutal Congestion Control
+  - HTTP/3 Masquerading
+  - QUIC Datagram Transport
+  key_entry_points:
+  - app/main.go:1
+  - app/cmd/root.go:64
+  - app/cmd/client.go:1
+  - app/cmd/server.go:1
+  - core/server/server.go:45
+  - core/client/client.go:43
+  - core/internal/congestion/brutal/brutal.go:46
+  - core/internal/protocol/proxy.go:1
+  - core/internal/protocol/http.go:1
+  build_run:
+    language: go
+    go_version: '1.24'
+    package_manager: go mod (workspace)
+    build_command: cd app && go build -o hysteria .
+    run_command: 'Server: hysteria server -c config.yaml
+
+      Client: hysteria client -c config.yaml (or just hysteria for client mode)
+
+      '
+    test_command: go test ./... (run from app/, core/, or root with go.work)
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/hysteria.yaml
+    as_of: '2026-02-23'
+  extras:
+    directory: hysteria-master
+    raw_core_concepts_structured:
+    - name: Brutal Congestion Control
+      description: Custom bandwidth-aware congestion control that uses fixed-rate
+        transmission based on configured tx/rx limits, unlike traditional BBR/Cubic.
+        Designed for lossy networks where packet loss should not throttle throughput.
+    - name: HTTP/3 Masquerading
+      description: Protocol disguise - server behaves as standard HTTP/3 web server
+        to unauthorized clients. Authentication happens via custom HTTP headers (Hysteria-Auth)
+        on a POST to /auth endpoint. Failed auth returns normal HTTP responses, making
+        detection difficult.
+    - name: QUIC Datagram Transport
+      description: TCP proxying uses QUIC streams; UDP uses QUIC unreliable datagrams
+        with fragmentation support. Both wrapped in TLS 1.3, appearing as standard
+        HTTP/3 traffic to observers.
+    raw_key_entry_points_structured:
+    - path: app/main.go:1
+      purpose: CLI entry point - imports cmd package and calls Execute()
+    - path: app/cmd/root.go:64
+      purpose: Cobra root command setup, default mode is client, config loading via
+        Viper
+    - path: app/cmd/client.go:1
+      purpose: Client mode implementation - SOCKS5, HTTP proxy, TUN, TCP/UDP forwarding
+    - path: app/cmd/server.go:1
+      purpose: Server mode implementation - QUIC listener, auth handling, traffic
+        logging
+    - path: core/server/server.go:45
+      purpose: Core server - QUIC listener setup, HTTP/3 handler, TCP/UDP proxy logic
+    - path: core/client/client.go:43
+      purpose: Core client - QUIC connection, authentication, TCP/UDP tunnel establishment
+    - path: core/internal/congestion/brutal/brutal.go:46
+      purpose: BrutalSender - custom congestion control with fixed-rate pacing based
+        on configured bandwidth
+    - path: core/internal/protocol/proxy.go:1
+      purpose: Wire protocol - TCPRequest/Response framing, UDPMessage format with
+        fragmentation
+    - path: core/internal/protocol/http.go:1
+      purpose: Auth protocol - HTTP header-based authentication exchanged during handshake
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  html_url: https://github.com/cloudflare/cloudflared
+  source: compiled_master
+  name: cloudflared
+  category: network_infrastructure
+  summary: Cloudflare Tunnel client for exposing private services through Cloudflare
+    Zero Trust.
+  core_concepts:
+  - Cloudflare Tunnel client
+  - Zero Trust service exposure
+  key_entry_points:
+  - cmd/cloudflared
+  - README.md
+  build_run:
+    language: go
+    build: go build ./cmd/cloudflared
+    test: go test ./...
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/cloudflared.yaml
+    as_of: '2026-02-23'
+  local_cache_dir: null
+  extras:
+    directory: remote::cloudflare/cloudflared
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/cloudflare/cloudflared
+      fetched_at_utc: '2026-02-23T03:20:00Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
+- node_id: repo::cristipufu/tunnelite
+  github_full_name: cristipufu/tunnelite
+  html_url: https://github.com/cristipufu/tunnelite
+  source: compiled_master
+  name: tunnelite
+  category: tunneling
+  summary: 'A .NET tunneling tool that exposes local applications to the internet
+    via websocket connections, supporting HTTP(S), WebSocket, SSE, and TCP tunneling
+    through a managed service or self-hosted server.
+
+    '
+  core_concepts:
+  - SignalR-based tunneling
+  - Multi-protocol support
+  - Deferred request processing
+  key_entry_points:
+  - src/Tunnelite.Client/Program.cs:14
+  - src/Tunnelite.Server/Program.cs:7
+  - src/Tunnelite.Sdk/HttpTunnel/HttpTunnelClient.cs:12
+  - src/Tunnelite.Server/HttpTunnel/HttpTunnelHub.cs:9
+  - src/Tunnelite.AspNetCore/TunneliteExtensions.cs:15
+  build_run:
+    language: C# / .NET 8.0
+    package_manager: NuGet
+    build_command: dotnet build Tunnelite.sln
+    run_command: dotnet run --project src/Tunnelite.Client (client) or dotnet run
+      --project src/Tunnelite.Server (server)
+    test_command: dotnet test (no test project found; test/ contains sample apps for
+      manual testing)
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/tunnelite.yaml
+    as_of: '2026-02-23'
+  extras:
+    directory: tunnelite-master
+    raw_core_concepts_structured:
+    - name: SignalR-based tunneling
+      description: Uses ASP.NET Core SignalR with MessagePack protocol to establish
+        persistent bidirectional connections between local clients and the public
+        server, enabling real-time request forwarding.
+    - name: Multi-protocol support
+      description: Handles HTTP(S) requests, WebSocket connections, Server-Sent Events
+        (SSE), and raw TCP traffic through separate middleware pipelines and hub implementations.
+    - name: Deferred request processing
+      description: Incoming public requests are queued and deferred until the local
+        client streams them to the target application, with bidirectional streaming
+        for responses.
+    raw_key_entry_points_structured:
+    - path: src/Tunnelite.Client/Program.cs:14
+      purpose: CLI entry point; parses arguments and initializes HTTP or TCP tunnel
+        based on URL scheme.
+    - path: src/Tunnelite.Server/Program.cs:7
+      purpose: Server entry point; configures all tunneling middleware (HTTP, TCP,
+        WebSocket, SSE) and SignalR hubs.
+    - path: src/Tunnelite.Sdk/HttpTunnel/HttpTunnelClient.cs:12
+      purpose: Core client implementation that connects to server via SignalR and
+        handles request/response streaming for HTTP, WS, and SSE.
+    - path: src/Tunnelite.Server/HttpTunnel/HttpTunnelHub.cs:9
+      purpose: Server-side SignalR hub that coordinates tunnel registration and streams
+        WebSocket/SSE data between public requests and connected clients.
+    - path: src/Tunnelite.AspNetCore/TunneliteExtensions.cs:15
+      purpose: ASP.NET Core middleware extension for one-line integration (UseTunnelite())
+        that auto-tunnels the app on startup.
+- node_id: repo::dair-ai/prompt-engineering-guide
+  github_full_name: dair-ai/prompt-engineering-guide
+  html_url: https://github.com/dair-ai/prompt-engineering-guide
+  source: compiled_master
+  name: Prompt-Engineering-Guide
+  category: educational
+  summary: 'Comprehensive guide to prompt engineering techniques, patterns, and best
+
+    practices. Covers basics, advanced techniques (CoT, ToT, GoT), applications,
+
+    and model-specific guidance. Available in multiple languages with web version
+
+    at promptingguide.ai.
+
+    '
+  core_concepts:
+  - Prompting Basics
+  - Advanced Techniques
+  - Applications
+  - Model Guides
+  key_entry_points:
+  - README.md
+  - guides/
+  - papers/
+  - models/
+  build_run:
+    language: Markdown/Documentation
+    manager: none
+    build: N/A - static documentation
+    test: N/A
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/Prompt-Engineering-Guide.yaml
+    as_of: '2026-02-23'
+  ecosystem_connections:
+  - target: langchain
+    relation: related_to
+    note: Prompt patterns applicable to LangChain development
+  - target: llama_index
+    relation: related_to
+    note: RAG prompting techniques
+  - target: open_webui
+    relation: related_to
+    note: Practical prompting for chat applications
+  extras:
+    directory: Prompt-Engineering-Guide-main
+    further_reading:
+    - README.md
+    - https://www.promptingguide.ai/
+    raw_core_concepts_structured:
+    - name: Prompting Basics
+      description: Introduction to prompt engineering fundamentals
+      location: guides/prompts.md
+    - name: Advanced Techniques
+      description: Chain-of-thought, Tree-of-thought, Graph-of-thought prompting
+      location: guides/adv_prompting.md
+    - name: Applications
+      description: Real-world use cases and patterns
+      location: guides/applications.md
+    - name: Model Guides
+      description: Specific guidance for different LLM providers
+      location: guides/models.md
+    raw_key_entry_points_structured:
+    - path: README.md
+      purpose: Main index and navigation
+    - path: guides/
+      purpose: Core learning materials
+    - path: papers/
+      purpose: Academic paper references
+    - path: models/
+      purpose: Model-specific resources
+- node_id: repo::datawhalechina/self-llm
+  github_full_name: datawhalechina/self-llm
+  html_url: https://github.com/datawhalechina/self-llm
+  source: compiled_master
+  name: self-llm
+  category: educational
+  summary: 'Chinese-language tutorial collection for learning and deploying open-source
+
+    LLMs. Covers model deployment (Llama, Qwen, ChatGLM), fine-tuning (LoRA,
+
+    P-Tuning), and application development. Includes hands-on guides with code
+
+    examples and practical exercises.
+
+    '
+  core_concepts:
+  - Model Deployment
+  - Fine-tuning
+  - RAG Applications
+  - Prompt Engineering
+  key_entry_points:
+  - README.md
+  - llm-universe-main/
+  build_run:
+    language: Python/Markdown
+    manager: pip
+    build: pip install -r requirements.txt (per project)
+    test: Varies by tutorial
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/self-llm.yaml
+    as_of: '2026-02-23'
+  ecosystem_connections:
+  - target: llamafactory
+    relation: related_to
+    note: Fine-tuning concepts overlap
+  - target: langchain
+    relation: related_to
+    note: Application development tutorials use LangChain
+  - target: vllm
+    relation: related_to
+    note: Deployment guides may reference vLLM
+  - target: ollama
+    relation: related_to
+    note: Local deployment alternatives
+  extras:
+    directory: self-llm_HOW-TO
+    further_reading:
+    - README.md
+    - llm-universe-main/README.md
+    raw_core_concepts_structured:
+    - name: Model Deployment
+      description: Guides for deploying various open-source models
+      location: (distributed by model)
+    - name: Fine-tuning
+      description: LoRA, P-Tuning, and full fine-tuning tutorials
+      location: (fine-tuning section)
+    - name: RAG Applications
+      description: Building RAG systems with open-source models
+      location: (RAG section)
+    - name: Prompt Engineering
+      description: Chinese-language prompting guides
+      location: (prompting section)
+    raw_key_entry_points_structured:
+    - path: README.md
+      purpose: Index of all tutorials
+    - path: llm-universe-main/
+      purpose: Core learning materials and code examples
+- node_id: repo::drduh/yubikey-guide
+  github_full_name: drduh/yubikey-guide
+  html_url: https://github.com/drduh/yubikey-guide
+  source: compiled_master
+  name: yubikey-guide
+  category: documentation
+  summary: 'Comprehensive guide for using YubiKey as a smart card for secure GPG encryption,
+    signing, and SSH authentication. Covers full key generation workflow in air-gapped
+    environments, subkey management, YubiKey configuration, and integration with GitHub,
+    email clients, and remote systems.
+
+    '
+  core_concepts:
+  - GnuPG Key Hierarchy
+  - Air-Gapped Key Generation
+  - SSH via GPG Agent
+  key_entry_points:
+  - README.md
+  - SECENV.md
+  - config/gpg.conf
+  - config/gpg-agent.conf
+  - scripts/reset-yubikey
+  - nix/flake.nix
+  build_run:
+    format: markdown
+    primary_language: n/a
+    organization: 'Single comprehensive README.md (~2300 lines) with detailed table
+      of contents. Supplemental files include SECENV.md for Alpine Linux setup, config/
+      for hardened GPG settings, scripts/ for utility operations (reset, key switching),
+      templates/ for passphrase generation, and nix/ for reproducible live ISO builds.
+      Includes media/schema_gpg.png diagram illustrating key relationships.
+
+      '
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/yubikey-guide.yaml
+    as_of: '2026-02-23'
+  extras:
+    directory: YubiKey-Guide-main
+    raw_core_concepts_structured:
+    - name: GnuPG Key Hierarchy
+      description: 'Master Certify key (offline) with three subkeys stored on YubiKey:
+        Signature (signing commits/files), Encryption (decrypting messages), Authentication
+        (SSH login). Keys are non-exportable from YubiKey, providing hardware-backed
+        security.
+
+        '
+    - name: Air-Gapped Key Generation
+      description: 'Recommended practice of generating cryptographic keys in isolated
+        environments (Debian Live, Tails, Alpine Linux) booted from removable media
+        without network access or internal storage, minimizing exposure to compromise.
+
+        '
+    - name: SSH via GPG Agent
+      description: 'Using YubiKey''s authentication subkey for SSH by configuring
+        gpg-agent with enable-ssh-support. The private key never leaves the device;
+        SSH operations require physical touch and PIN entry. Supports agent forwarding
+        to remote hosts.
+
+        '
+    raw_key_entry_points_structured:
+    - path: README.md
+      purpose: 'Main documentation covering complete workflow: environment preparation,
+        software installation, GPG configuration, key generation, YubiKey setup, SSH/GitHub/email
+        integration, key rotation, troubleshooting.
+
+        '
+    - path: SECENV.md
+      purpose: 'Supplemental guide for creating a secure Alpine Linux environment
+        for GPG key management, with emphasis on offline package installation and
+        verification for ARM-based devices like Raspberry Pi.
+
+        '
+    - path: config/gpg.conf
+      purpose: 'Hardened GnuPG configuration with strong cipher preferences (AES256),
+        SHA512 digests, UTF-8 support, and security-focused options like require-secmem
+        and throw-keyids.
+
+        '
+    - path: config/gpg-agent.conf
+      purpose: 'GPG agent configuration enabling SSH support, cache TTLs, and platform-specific
+        pinentry paths for Linux, macOS (Intel/Apple silicon), and Windows.
+
+        '
+    - path: scripts/reset-yubikey
+      purpose: 'GPG connect-agent script to factory reset YubiKey OpenPGP applet by
+        exhausting PIN retries and issuing terminate/reset APDUs.
+
+        '
+    - path: nix/flake.nix
+      purpose: 'NixOS flake for building an air-gapped live ISO image with all required
+        GPG/YubiKey tools pre-installed.
+
+        '
+- node_id: repo::ekzhang/bore
+  github_full_name: ekzhang/bore
+  html_url: https://github.com/ekzhang/bore
+  source: compiled_master
+  name: bore
+  category: tunneling
+  summary: 'A minimalist TCP tunnel (~400 lines of async Rust) that exposes local
+    ports to a public server, bypassing NAT firewalls. Designed for simplicity and
+    self-hosting with no frills.
+
+    '
+  core_concepts:
+  - Control Protocol
+  - Connection Proxying
+  - HMAC Authentication
+  key_entry_points:
+  - src/main.rs:63
+  - src/client.rs:36
+  - src/client.rs:105
+  - src/server.rs:59
+  - src/server.rs:118
+  - src/server.rs:81
+  - src/shared.rs:15
+  build_run:
+    language: rust
+    package_manager: cargo
+    build_command: cargo build --release
+    run_command: bore [local <port> --to <server> | server]
+    test_command: cargo test
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/bore.yaml
+    as_of: '2026-02-23'
+  extras:
+    directory: bore-main
+    raw_core_concepts_structured:
+    - name: Control Protocol
+      description: Client-server handshake over TCP port 7835 using null-delimited
+        JSON messages. Client sends Hello with desired port, server responds with
+        assigned port and forwards incoming connections via UUID-tagged messages.
+    - name: Connection Proxying
+      description: When external traffic hits the server's exposed port, server generates
+        a UUID, notifies client via control channel, client opens new TCP stream and
+        sends Accept with UUID, then server bidirectionally proxies bytes between
+        both connections.
+    - name: HMAC Authentication
+      description: Optional shared-secret auth using HMAC challenge-response. Server
+        sends random challenge (UUID), client must respond with correct HMAC-SHA256
+        to prove secret possession. Only secures handshake, not data.
+    raw_key_entry_points_structured:
+    - path: src/main.rs:63
+      purpose: CLI entry point with clap subcommands (Local, Server), spawns async
+        runtime and dispatches to Client or Server
+    - path: src/client.rs:36
+      purpose: Client::new() establishes control connection, performs auth handshake,
+        sends Hello; Client::listen() receives Connection messages and spawns handlers
+    - path: src/client.rs:105
+      purpose: handle_connection() opens new stream to server, sends Accept with UUID,
+        then bidirectionally copies bytes between local and remote
+    - path: src/server.rs:59
+      purpose: Server::listen() accepts control connections on port 7835, spawns handler
+        for each client
+    - path: src/server.rs:118
+      purpose: handle_connection() handles auth, processes Hello/Accept messages,
+        manages tunnel listener lifecycle
+    - path: src/server.rs:81
+      purpose: create_listener() binds to requested port (or finds random available
+        port via 150-attempt probabilistic search)
+    - path: src/shared.rs:15
+      purpose: CONTROL_PORT constant (7835), ClientMessage/ServerMessage enums defining
+        protocol, Delimited wrapper for null-delimited JSON framing
+- node_id: repo::emcie-co/parlant
+  github_full_name: emcie-co/parlant
+  html_url: https://github.com/emcie-co/parlant
+  source: compiled_master
+  name: parlant
+  category: agent_frameworks
+  summary: 'Enterprise-grade AI agent framework focused on compliance and predictable
+    behavior.
+
+    Parlant guarantees rule-following through behavioral guidelines, journeys, and
+    tool
+
+    associations rather than hoping LLMs follow system prompts. Built with hexagonal
+
+    architecture for enterprise scale with SLAs and security requirements.
+
+    '
+  core_concepts:
+  - Guidelines Engine
+  - Journeys
+  - Tool Integration
+  - Canned Responses
+  - SDK
+  key_entry_points:
+  - src/parlant/core/
+  - src/parlant/adapters/
+  - src/parlant/api/
+  - src/parlant/sdk.py
+  build_run:
+    language: Python
+    install: pip install parlant
+    usage: "import parlant_sdk as p\n\nasync with p.Server() as server:\n    agent\
+      \ = await server.create_agent(name=\"Bot\")\n    await agent.create_guideline(\n\
+      \        condition=\"User asks about X\",\n        action=\"Do Y\",\n      \
+      \  tools=[my_tool]\n    )\n"
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/parlant.yaml
+    as_of: '2026-02-23'
+  ecosystem_connections:
+  - target: langchain
+    relation: alternative_to
+    note: Parlant focuses on compliance; LangChain on flexibility
+  - target: mem0
+    relation: related_to
+    note: Both enhance agent behavior; Parlant via rules, mem0 via memory
+  - target: open_webui
+    relation: related_to
+    note: Parlant has React widget for custom UI integration
+  extras:
+    directory: parlant-develop
+    further_reading:
+    - README.md
+    - CLAUDE.md
+    - docs: https://parlant.io/docs
+    - blog: https://parlant.io/blog
+    key_features:
+    - Ensured guideline compliance (not hopeful)
+    - Conversational journeys
+    - Dynamic tool association
+    - Canned responses (zero hallucination)
+    - Full explainability
+    - Built-in testing framework
+    - React widget for web integration
+    - Enterprise-ready (HIPAA, financial compliance)
+    raw_core_concepts_structured:
+    - name: Guidelines Engine
+      description: Natural language rules with ensured compliance
+      location: src/parlant/core/guidelines/
+    - name: Journeys
+      description: Step-by-step customer conversation flows
+      location: src/parlant/core/journeys/
+    - name: Tool Integration
+      description: Reliable API/backend service attachment
+      location: src/parlant/core/tools/
+    - name: Canned Responses
+      description: Template-based responses to eliminate hallucination
+      location: src/parlant/core/canned_responses/
+    - name: SDK
+      description: Python SDK for agent development
+      location: src/parlant/sdk.py
+    raw_key_entry_points_structured:
+    - path: src/parlant/core/
+      purpose: Core framework (hexagonal architecture)
+    - path: src/parlant/adapters/
+      purpose: LLM, database, and external service adapters
+    - path: src/parlant/api/
+      purpose: REST API layer (FastAPI)
+    - path: src/parlant/sdk.py
+      purpose: Main SDK entry point
+    use_cases:
+    - Customer service agents with guaranteed behavior
+    - Financial services compliance
+    - Healthcare patient interactions
+    - Legal tech with precise responses
+    - E-commerce at scale
+- node_id: repo::fatedier/frp
+  github_full_name: fatedier/frp
+  html_url: https://github.com/fatedier/frp
+  source: compiled_master
+  name: frp
+  category: tunneling
+  summary: 'A fast reverse proxy for NAT/firewall traversal that exposes local services
+    to the public internet. Supports TCP, UDP, HTTP, HTTPS protocols with features
+    like P2P mode, load balancing, encryption, and extensive plugin system.
+
+    '
+  core_concepts:
+  - client-server proxy architecture
+  - proxy types and multiplexing
+  - visitor pattern for secure access
+  - plugin extensibility
+  key_entry_points:
+  - cmd/frpc/main.go:23
+  - cmd/frps/main.go:23
+  - cmd/frpc/sub/root.go:122
+  - cmd/frps/root.go:111
+  - client/service.go:144
+  - server/service.go:135
+  - pkg/config/v1/
+  - pkg/msg/
+  build_run:
+    language: go
+    go_version: '1.24'
+    package_manager: go mod
+    build_command: make build (or go build -o bin/frps ./cmd/frps && go build -o bin/frpc
+      ./cmd/frpc)
+    run_command: 'Server: ./frps -c frps.toml
+
+      Client: ./frpc -c frpc.toml
+
+      '
+    test_command: make test (or go test -v --cover ./...)
+    extra_info: 'Build with CGO_ENABLED=0 for static binaries. Key transports:
+
+      - TCP (default) with optional TLS encryption
+
+      - KCP protocol (UDP-based, lower latency)
+
+      - QUIC protocol (modern UDP multiplexed transport)
+
+      - WebSocket for HTTP proxy compatibility
+
+
+      Hot-reload client config: frpc reload -c frpc.toml
+
+      Check proxy status: frpc status -c frpc.toml
+
+      '
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/frp.yaml
+    as_of: '2026-02-23'
+  extras:
+    directory: frp-dev
+    raw_core_concepts_structured:
+    - name: client-server proxy architecture
+      description: frps (server) runs on a public-facing machine; frpc (client) runs
+        behind NAT/firewall and establishes outbound connections. Server forwards
+        incoming traffic through the persistent tunnel back to internal services.
+    - name: proxy types and multiplexing
+      description: Supports tcp, udp, http, https, stcp (secret TCP), tcpmux (HTTP
+        CONNECT multiplexing), and xtcp (P2P). TCP stream multiplexing via yamux allows
+        multiple logical connections over a single TCP connection.
+    - name: visitor pattern for secure access
+      description: STCP and XTCP modes use visitors - separate frpc instances that
+        connect to the server to access exposed services, requiring preshared keys
+        for authentication instead of opening ports publicly.
+    - name: plugin extensibility
+      description: Built-in client plugins (unix_domain_socket, http_proxy, socks5,
+        static_file, https2http) and server HTTP plugins enable custom processing
+        without modifying core code.
+    raw_key_entry_points_structured:
+    - path: cmd/frpc/main.go:23
+      purpose: frpc binary entry point; enables compatibility mode, delegates to sub.Execute()
+        for CLI handling
+    - path: cmd/frps/main.go:23
+      purpose: frps binary entry point; enables compatibility mode, delegates to Execute()
+        for CLI handling
+    - path: cmd/frpc/sub/root.go:122
+      purpose: runClient() - loads config, validates, creates and starts client Service
+    - path: cmd/frps/root.go:111
+      purpose: runServer() - initializes logging, creates and runs server Service
+    - path: client/service.go:144
+      purpose: NewService() and Run() - client service initialization, login to server,
+        control loop management
+    - path: server/service.go:135
+      purpose: NewService() and Run() - server service setup including listeners (TCP,
+        KCP, QUIC, WebSocket, TLS), vhost routers, dashboard
+    - path: pkg/config/v1/
+      purpose: Configuration structures and validation for client, server, proxy,
+        and visitor configs (TOML/YAML/JSON supported)
+    - path: pkg/msg/
+      purpose: Protocol message definitions (Login, LoginResp, NewWorkConn, StartWorkConn,
+        etc.) for client-server communication
+- node_id: repo::fosrl/pangolin
+  github_full_name: fosrl/pangolin
+  html_url: https://github.com/fosrl/pangolin
+  source: compiled_master
+  name: pangolin
+  category: network_infrastructure
+  summary: 'Open-source identity-aware VPN and reverse proxy platform built on WireGuard
+    that combines zero-trust network access with browser-based web application access,
+    enabling secure connectivity to private resources without exposing networks to
+    the internet.
+
+    '
+  core_concepts:
+  - sites
+  - targets
+  - zero-trust access
+  key_entry_points:
+  - server/index.ts:27
+  - server/apiServer.ts:29
+  - server/nextServer.ts:10
+  - server/internalServer.ts
+  - server/lib/traefik/TraefikConfigManager.ts:15
+  - src/app/
+  build_run:
+    language: typescript
+    package_manager: npm
+    build_command: npm run build
+    run_command: npm run dev (development) or npm run start (production)
+    test_command: docker run -it -p 3000:3000 -p 3001:3001 -p 3002:3002 fosrl/pangolin:latest
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/pangolin.yaml
+    as_of: '2026-02-23'
+  extras:
+    directory: pangolin-main
+    raw_core_concepts_structured:
+    - name: sites
+      description: Lightweight connectors that create secure tunnels from remote networks
+        without requiring public IPs or open ports, making any network available for
+        authorized access
+    - name: targets
+      description: Resources (web apps, SSH servers, databases) exposed through Pangolin
+        with identity-based access control, health checking, and automatic SSL certificate
+        management via Traefik
+    - name: zero-trust access
+      description: Users get access to specific resources rather than entire networks;
+        integrates with OIDC identity providers and supports granular role-based permissions
+    raw_key_entry_points_structured:
+    - path: server/index.ts:27
+      purpose: Main entry point that initializes config, licensing, and starts all
+        servers (API, Next.js, internal, integration)
+    - path: server/apiServer.ts:29
+      purpose: Creates Express API server handling authentication, rate limiting,
+        WebSocket upgrades, and REST endpoints
+    - path: server/nextServer.ts:10
+      purpose: Creates Next.js server for the web dashboard UI
+    - path: server/internalServer.ts
+      purpose: Internal server for site-to-control-plane communication (WireGuard
+        tunnel management)
+    - path: server/lib/traefik/TraefikConfigManager.ts:15
+      purpose: Manages Traefik reverse proxy configuration, SSL certificates, and
+        dynamic routing
+    - path: src/app/
+      purpose: Next.js App Router pages for the web dashboard
+- node_id: repo::ggml-org/llama.cpp
+  github_full_name: ggml-org/llama.cpp
+  html_url: https://github.com/ggml-org/llama.cpp
+  source: compiled_master
+  name: llama.cpp
+  category: inference_serving
+  summary: 'High-performance LLM inference in pure C/C++ with minimal dependencies.
+
+    Pioneered GGUF quantization format for efficient model storage. Optimized
+
+    for CPU inference with optional GPU acceleration (CUDA, Metal, Vulkan).
+
+    The foundation that Ollama and many other tools are built on.
+
+    '
+  core_concepts:
+  - GGUF Format
+  - Quantization
+  - CPU Inference
+  - GPU Backends
+  key_entry_points:
+  - main.cpp
+  - server.cpp
+  - ggml.c
+  - gguf.c
+  build_run:
+    language: C/C++
+    manager: make
+    build: make
+    test: make test
+    cuda_build: make LLAMA_CUDA=1
+    metal_build: make LLAMA_METAL=1 (macOS default)
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/llama.cpp.yaml
+    as_of: '2026-02-23'
+  ecosystem_connections:
+  - target: ollama
+    relation: extends
+    note: Ollama wraps llama.cpp for inference
+  - target: vllm
+    relation: alternative_to
+    note: llama.cpp for CPU/local; vLLM for GPU/production
+  - target: lmdeploy
+    relation: alternative_to
+    note: Different optimization approaches
+  - target: xinference
+    relation: integrates_with
+    note: Xinference can use llama.cpp as backend
+  extras:
+    directory: llama.cpp-master
+    further_reading:
+    - README.md
+    - examples/README.md
+    - docs/
+    raw_core_concepts_structured:
+    - name: GGUF Format
+      description: Quantized model format for efficient storage and fast loading
+      location: gguf.c, gguf.h
+    - name: Quantization
+      description: Multiple quantization methods (4-bit, 5-bit, 8-bit)
+      location: ggml.c, quantize.cpp
+    - name: CPU Inference
+      description: Highly optimized CPU inference with SIMD support
+      location: ggml.c
+    - name: GPU Backends
+      description: CUDA, Metal (Apple), Vulkan, ROCm support
+      location: ggml-cuda/, ggml-metal/, ggml-vulkan/
+    raw_key_entry_points_structured:
+    - path: main.cpp
+      purpose: Main CLI inference entry point
+    - path: server.cpp
+      purpose: HTTP server for API access
+    - path: ggml.c
+      purpose: Core tensor library
+    - path: gguf.c
+      purpose: GGUF format implementation
+- node_id: repo::go-gost/gost
+  github_full_name: go-gost/gost
+  html_url: https://github.com/go-gost/gost
+  source: compiled_master
+  name: gost
+  category: tunneling
+  summary: 'GO Simple Tunnel - a versatile Go-based tunneling tool that functions
+    as a forward proxy, port forwarder, and reverse proxy with multi-protocol support
+    and chaining capabilities for secure network traversal.
+
+    '
+  core_concepts:
+  - Forwarding Chain
+  - Protocol Diversity
+  - Service Architecture
+  key_entry_points:
+  - cmd/gost/main.go:106
+  - cmd/gost/program.go:35
+  - cmd/gost/register.go:1
+  build_run:
+    language: go
+    go_version: '1.24'
+    package_manager: go mod
+    build_command: cd cmd/gost && go build
+    run_command: ./gost -L [service] -F [chain] or ./gost -C [config.yaml]
+    test_command: go test ./...
+    docker_command: docker run --rm gogost/gost -V
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/gost.yaml
+    as_of: '2026-02-23'
+  extras:
+    directory: gost-master
+    raw_core_concepts_structured:
+    - name: Forwarding Chain
+      description: Multi-hop proxy chains allowing composition of different protocols
+        (SOCKS, HTTP, SS, SSH, etc.) in sequence for layered network traversal.
+    - name: Protocol Diversity
+      description: Supports 40+ protocols including SOCKS4/5, HTTP/HTTPS, Shadowsocks,
+        SSH, QUIC, WebSocket, gRPC, KCP, WireGuard, and TUN/TAP devices.
+    - name: Service Architecture
+      description: Modular design with connectors, dialers, handlers, and listeners
+        registered via dependency injection; enables dynamic configuration and hot-reload
+        via SIGHUP.
+    raw_key_entry_points_structured:
+    - path: cmd/gost/main.go:106
+      purpose: Application entry point; initializes logger and runs the program service
+        lifecycle.
+    - path: cmd/gost/program.go:35
+      purpose: Service lifecycle management (Init/Start/Stop); configures parser,
+        loads config, and orchestrates API/metrics/profiling services.
+    - path: cmd/gost/register.go:1
+      purpose: Blank imports that register all available connectors, dialers, handlers,
+        and listeners via init() functions.
+- node_id: repo::gravitational/teleport
+  github_full_name: gravitational/teleport
+  html_url: https://github.com/gravitational/teleport
+  source: compiled_master
+  name: teleport
+  category: remote_access
+  summary: 'Identity-aware access plane that provides unified connectivity, authentication,
+    access controls,
+
+    and audit for infrastructure. Replaces SSH keys, VPNs, and bastion hosts with
+    short-lived
+
+    certificate-based auth and Just-in-Time access across SSH, Kubernetes, databases,
+    and cloud APIs.
+
+    '
+  core_concepts:
+  - Short-lived Certificates
+  - Auth Service (Certificate Authority)
+  - Proxy Service
+  - Cluster and Trusted Clusters
+  key_entry_points:
+  - tool/teleport/main.go:32
+  - tool/teleport/common/teleport.go:76
+  - tool/teleport/common/teleport.go:894
+  - lib/service/service.go
+  - lib/auth/auth.go
+  - tool/tsh/main.go:26
+  - tool/tctl/main.go:32
+  build_run:
+    language: go
+    go_version: '1.25'
+    package_manager: go mod
+    build_command: make full
+    run_command: teleport start --config=/etc/teleport.yaml
+    test_command: go test ./...
+    additional_deps:
+    - Rust (for some components)
+    - Node.js (for Web UI)
+    - libfido2 (for FIDO2/ WebAuthn support)
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/teleport.yaml
+    as_of: '2026-02-23'
+  extras:
+    directory: teleport-master
+    notes: 'Architecture highlights:
+
+      - Single Go binary with multiple roles (auth, proxy, node, app, db, kube)
+
+      - gRPC for internal service communication
+
+      - Multiple backend options: SQLite, DynamoDB, etcd, Firestore, PostgreSQL
+
+      - Web UI built in TypeScript (web/ directory)
+
+      - Supports both self-hosted and Teleport Cloud (SaaS)
+
+
+      Key binaries produced:
+
+      - teleport: Main daemon
+
+      - tsh: User client (SSH, kubectl, db proxy)
+
+      - tctl: Admin tool
+
+      - tbot: Machine identity agent for workloads
+
+
+      License: AGPL-3.0 (core), Apache 2.0 (API module), commercial for Enterprise
+
+      '
+    raw_core_concepts_structured:
+    - name: Short-lived Certificates
+      description: 'Instead of long-lived SSH keys or passwords, Teleport issues auto-expiring
+        TLS/SSH certificates
+
+        bound to user identity. Eliminates credential rotation and vault dependencies.
+
+        '
+    - name: Auth Service (Certificate Authority)
+      description: 'Central CA that issues certificates, enforces RBAC/ABAC policies,
+        and maintains cluster state.
+
+        Integrates with SSO providers (Okta, GitHub, Entra ID) for identity.
+
+        '
+    - name: Proxy Service
+      description: 'Identity-aware reverse proxy that terminates connections and enforces
+        access policies.
+
+        Provides Web UI, CLI access (`tsh`), and tunnels to resources behind NAT/firewalls.
+
+        '
+    - name: Cluster and Trusted Clusters
+      description: 'A Teleport deployment forms a cluster with Auth + Proxy services.
+        Trusted clusters enable
+
+        federation across multiple Teleport deployments for multi-team/multi-cloud
+        scenarios.
+
+        '
+    raw_key_entry_points_structured:
+    - path: tool/teleport/main.go:32
+      purpose: Main daemon entry point - delegates to common.Run() for CLI parsing
+        and service startup
+    - path: tool/teleport/common/teleport.go:76
+      purpose: CLI command routing - handles start, configure, status, and all subcommands
+    - path: tool/teleport/common/teleport.go:894
+      purpose: OnStart() - initializes and runs the Teleport service with merged configuration
+    - path: lib/service/service.go
+      purpose: Core service orchestration - manages Auth, Proxy, SSH, DB, Kube, App
+        services lifecycle
+    - path: lib/auth/auth.go
+      purpose: Auth server implementation - certificate signing, access control, user
+        management
+    - path: tool/tsh/main.go:26
+      purpose: tsh client entry point - user CLI for connecting to Teleport clusters
+    - path: tool/tctl/main.go:32
+      purpose: tctl admin tool - cluster management, user provisioning, configuration
+- node_id: repo::hiddify/hiddify-app
+  github_full_name: hiddify/hiddify-app
+  html_url: https://github.com/hiddify/hiddify-app
+  source: compiled_master
+  name: hiddify-app
+  category: documentation
+  summary: 'Cross-platform multi-protocol proxy/VPN client built on Flutter with Sing-box
+    core,
+
+    designed for censorship circumvention in restrictive regions (Iran, China, Russia).
+
+    '
+  core_concepts:
+  - Sing-box Core Integration
+  - Profile-based Configuration
+  - Multi-platform TUN Mode
+  key_entry_points:
+  - lib/main.dart:7
+  - lib/bootstrap.dart:32
+  - lib/features/app/widget/app.dart:34
+  - lib/features/connection/notifier/connection_notifier.dart:24
+  - lib/hiddifycore/hiddify_core_service.dart:32
+  build_run:
+    language: Dart/Flutter
+    package_manager: pub (flutter pub get)
+    flutter_version: '>=3.38.5'
+    dart_sdk: '>=3.10.4'
+    build_command: '# Development build
+
+      flutter pub get
+
+      dart run build_runner build --delete-conflicting-outputs
+
+      flutter run
+
+
+      # Platform-specific release (requires core libs)
+
+      make android-prepare  # or windows-prepare, linux-prepare, macos-prepare, ios-prepare
+
+      flutter build apk     # or appropriate platform build
+
+      '
+    run_command: flutter run
+    notes: 'Requires hiddify-core native libraries downloaded via Makefile targets.
+
+      Core libraries are fetched from github.com/hiddify/hiddify-next-core releases.
+
+      Build uses fastforge for release packaging across platforms.
+
+      '
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/hiddify-app.yaml
+    as_of: '2026-02-23'
+  extras:
+    directory: hiddify-app-main
+    raw_core_concepts_structured:
+    - name: Sing-box Core Integration
+      description: 'Uses a separate Go-based core (hiddify-core) compiled as native
+        library,
+
+        communicated via gRPC. The Flutter app acts as UI frontend managing profiles,
+
+        connections, and configuration while the core handles actual tunneling.
+
+        '
+    - name: Profile-based Configuration
+      description: 'Supports multiple subscription/profile formats (Sing-box, V2ray,
+        Clash, Clash Meta)
+
+        with automatic updates, traffic usage tracking, and expiry monitoring.
+
+        Profiles contain proxy server configurations and routing rules.
+
+        '
+    - name: Multi-platform TUN Mode
+      description: 'Implements system-wide VPN tunneling via TUN interface across
+        Android, iOS,
+
+        Windows, macOS, and Linux using platform-specific network extensions
+
+        (PacketTunnelProvider on iOS/macOS, VpnService on Android).
+
+        '
+    raw_key_entry_points_structured:
+    - path: lib/main.dart:7
+      purpose: Main entry point - initializes Flutter binding and calls lazyBootstrap
+    - path: lib/bootstrap.dart:32
+      purpose: App initialization orchestration - sets up directories, preferences,
+        logging, profiles, translations, core service, and system tray
+    - path: lib/features/app/widget/app.dart:34
+      purpose: Root App widget - configures routing, theming, localization, lifecycle
+        handling, and wraps app with connection/window/shortcut providers
+    - path: lib/features/connection/notifier/connection_notifier.dart:24
+      purpose: Connection state management - handles connect/disconnect/reconnect
+        operations, monitors connection status stream from core
+    - path: lib/hiddifycore/hiddify_core_service.dart:32
+      purpose: gRPC client wrapper - communicates with hiddify-core native library
+        for tunnel start/stop, config validation, outbound selection, logs
+- node_id: repo::hiyouga/llama-factory
+  github_full_name: hiyouga/llama-factory
+  html_url: https://github.com/hiyouga/llama-factory
+  source: compiled_master
+  name: llamafactory
+  category: fine_tuning
+  summary: 'Comprehensive LLM fine-tuning framework supporting 100+ models. Unified
+    interface for
+
+    various training approaches (LoRA, QLoRA, Full, Freeze). Zero-code CLI and Gradio
+    Web UI
+
+    (LLaMA Board). Used by Amazon, NVIDIA, Aliyun. Supports distributed training,
+    quantization,
+
+    and multiple precision types.
+
+    '
+  core_concepts:
+  - Training Approaches
+  - Model Support
+  - Data Processing
+  - Web UI (LLaMA Board)
+  - Evaluation
+  key_entry_points:
+  - src/llamafactory/
+  - src/llamafactory/train/
+  - src/llamafactory/webui/
+  - data/
+  build_run:
+    language: Python
+    install: pip install llamafactory
+    cli: llamafactory-cli train config.yaml
+    webui: llamafactory-cli webui
+    docker: docker run -it --gpus all hiyouga/llamafactory:latest
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/llamafactory.yaml
+    as_of: '2026-02-23'
+  ecosystem_connections:
+  - target: vllm
+    relation: related_to
+    note: Fine-tuned models can be deployed with vLLM
+  - target: lmdeploy
+    relation: related_to
+    note: Fine-tuned models can be deployed with LMDeploy
+  - target: opencompass
+    relation: related_to
+    note: Evaluate fine-tuned models with OpenCompass
+  extras:
+    directory: LlamaFactory-main
+    further_reading:
+    - README.md
+    - docs: https://llamafactory.readthedocs.io
+    - blog: https://blog.llamafactory.net
+    - colab: https://colab.research.google.com/drive/1eRTPn37ltBbYsISy9Aw2NuI2Aq5CQrD9
+    raw_core_concepts_structured:
+    - name: Training Approaches
+      description: LoRA, QLoRA, Full, Freeze, DoRA
+      location: src/llamafactory/train/
+    - name: Model Support
+      description: 100+ models (LLaMA, Qwen, Mistral, etc.)
+      location: src/llamafactory/model/
+    - name: Data Processing
+      description: Dataset formatting and loading
+      location: src/llamafactory/data/
+    - name: Web UI (LLaMA Board)
+      description: Gradio-based zero-code interface
+      location: src/llamafactory/webui/
+    - name: Evaluation
+      description: Model evaluation pipelines
+      location: src/llamafactory/eval/
+    raw_key_entry_points_structured:
+    - path: src/llamafactory/
+      purpose: Main library
+    - path: src/llamafactory/train/
+      purpose: Training implementations
+    - path: src/llamafactory/webui/
+      purpose: Gradio Web UI
+    - path: data/
+      purpose: Example datasets
+    supported_features:
+    - 100+ LLM models
+    - Multiple training approaches
+    - 4-bit/8-bit quantization
+    - Distributed training (DeepSpeed, FSDP)
+    - Multiple precision (FP16, BF16, FP32)
+    - RLHF training
+    - Vision-language models
+    - Export to various formats
+    training_approaches:
+    - Full (full parameter fine-tuning)
+    - Freeze (freeze most layers)
+    - LoRA (Low-Rank Adaptation)
+    - QLoRA (Quantized LoRA)
+    - DoRA (Weight-Decomposed Low-Rank Adaptation)
+- node_id: repo::infiniflow/ragflow
+  github_full_name: infiniflow/ragflow
+  html_url: https://github.com/infiniflow/ragflow
+  source: compiled_master
+  name: ragflow
+  category: rag_frameworks
+  summary: 'Full-stack RAG engine with deep document understanding capabilities. Unlike
+    LangChain/LlamaIndex
+
+    which are frameworks, RAGFlow is an end-to-end platform with a Web UI, Docker
+    deployment, and
+
+    built-in document parsing (OCR, layout analysis via DeepDoc). Excels at handling
+    complex document
+
+    formats (scanned PDFs, tables, images) with template-based chunking. Now includes
+    agent
+
+    capabilities with MCP support.
+
+    '
+  core_concepts:
+  - DeepDoc
+  - RAG Pipeline
+  - LLM Abstractions
+  - GraphRAG Module
+  - Agent System
+  - API Server
+  key_entry_points:
+  - api/ragflow_server.py
+  - api/apps/
+  - deepdoc/
+  - rag/llm/
+  - agent/
+  - web/
+  build_run:
+    language: Python + TypeScript
+    manager: uv (Python), npm (frontend)
+    run_docker: 'cd docker
+
+      docker compose -f docker-compose.yml up -d
+
+      '
+    run_dev: '# Backend
+
+      uv sync --python 3.12
+
+      docker compose -f docker/docker-compose-base.yml up -d
+
+      bash docker/launch_backend_service.sh
+
+      # Frontend
+
+      cd web && npm install && npm run dev
+
+      '
+    test: uv run pytest
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/ragflow.yaml
+    as_of: '2026-02-23'
+  ecosystem_connections:
+  - target: langchain
+    relation: alternative_to
+    note: RAGFlow is a platform; LangChain is a framework
+  - target: llama_index
+    relation: alternative_to
+    note: Both RAG-focused; RAGFlow is end-to-end with UI
+  - target: graphrag
+    relation: related_to
+    note: RAGFlow has its own graphrag module
+  - target: milvus
+    relation: integrates_with
+    note: Can use Milvus as vector backend
+  - target: ollama
+    relation: integrates_with
+    note: Supports Ollama as LLM provider
+  - target: open_webui
+    relation: alternative_to
+    note: Both provide web UIs; RAGFlow focuses on documents
+  extras:
+    architecture:
+      backend: Python (Flask)
+      frontend: React/TypeScript (UmiJS)
+      data_stores:
+      - MySQL
+      - Elasticsearch (default) or Infinity
+      - Redis
+      - MinIO (object storage)
+      deployment: Docker Compose
+    directory: ragflow-main
+    further_reading:
+    - README.md
+    - CLAUDE.md (development guide)
+    - deepdoc/README.md
+    - docs: https://ragflow.io/docs/dev/
+    - demo: https://demo.ragflow.io/
+    raw_core_concepts_structured:
+    - name: DeepDoc
+      description: Document parsing engine with OCR, layout analysis, table extraction
+      location: deepdoc/
+    - name: RAG Pipeline
+      description: Chunking, parsing, indexing, retrieval orchestration
+      location: rag/flow/
+    - name: LLM Abstractions
+      description: Unified interface for chat, embedding, reranking models
+      location: rag/llm/
+    - name: GraphRAG Module
+      description: Knowledge graph construction and querying
+      location: rag/graphrag/
+    - name: Agent System
+      description: Workflow components, tools, templates for agents
+      location: agent/
+    - name: API Server
+      description: Flask-based REST API with modular blueprints
+      location: api/
+    raw_key_entry_points_structured:
+    - path: api/ragflow_server.py
+      purpose: Main server entry point
+    - path: api/apps/
+      purpose: Flask blueprints (kb, dialog, document, canvas, file)
+    - path: deepdoc/
+      purpose: Document understanding (OCR, layout, tables)
+    - path: rag/llm/
+      purpose: LLM/embedding/reranking integrations
+    - path: agent/
+      purpose: Agent components and tools
+    - path: web/
+      purpose: React/TypeScript frontend (UmiJS)
+- node_id: repo::internlm/lmdeploy
+  github_full_name: internlm/lmdeploy
+  html_url: https://github.com/internlm/lmdeploy
+  source: compiled_master
+  name: lmdeploy
+  category: inference_serving
+  summary: 'High-performance LLM inference toolkit from InternLM team (OpenMMLab).
+    LMDeploy offers
+
+    both TurboMind (C++ engine) and PyTorch backends with strong quantization support.
+
+    Claims 1.8x higher throughput than vLLM with 4-bit inference at 2.4x FP16 speed.
+
+    Supports Huawei Ascend in addition to NVIDIA GPUs.
+
+    '
+  core_concepts:
+  - TurboMind Engine
+  - PyTorch Engine
+  - Quantization
+  - API Server
+  - Model Converter
+  key_entry_points:
+  - lmdeploy/turbomind/
+  - lmdeploy/pytorch/
+  - lmdeploy/serve/
+  - lmdeploy/quantization/
+  - lmdeploy/vl/
+  build_run:
+    language: Python + C++/CUDA
+    install: pip install lmdeploy
+    run_server: lmdeploy serve api_server <model> --server-port 8000
+    cli: lmdeploy chat turbomind <model>
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/lmdeploy.yaml
+    as_of: '2026-02-23'
+  ecosystem_connections:
+  - target: vllm
+    relation: alternative_to
+    note: Both high-performance; LMDeploy claims better throughput
+  - target: xinference
+    relation: related_to
+    note: Xinference can integrate with various backends
+  - target: langchain
+    relation: integrates_with
+    note: Can be used as LangChain backend
+  extras:
+    directory: lmdeploy-main
+    further_reading:
+    - README.md
+    - docs: https://lmdeploy.readthedocs.io
+    - quantization: docs/en/quantization/
+    hardware_support:
+    - NVIDIA GPUs
+    - Huawei Ascend
+    - CPU fallback
+    performance_features:
+    - TurboMind engine (persistent batch, blocked KV cache)
+    - 4-bit inference (2.4x faster than FP16)
+    - AWQ quantization
+    - KV cache quantization
+    - Dynamic split&fuse
+    - FlashAttention support
+    - Tensor parallelism
+    raw_core_concepts_structured:
+    - name: TurboMind Engine
+      description: High-performance C++ inference engine
+      location: lmdeploy/turbomind/
+    - name: PyTorch Engine
+      description: Python-native engine for flexibility
+      location: lmdeploy/pytorch/
+    - name: Quantization
+      description: Weight-only and KV cache quantization (AWQ, W4A16)
+      location: lmdeploy/quantization/
+    - name: API Server
+      description: RESTful API for inference
+      location: lmdeploy/serve/
+    - name: Model Converter
+      description: Convert models for deployment
+      location: lmdeploy/convert/
+    raw_key_entry_points_structured:
+    - path: lmdeploy/turbomind/
+      purpose: TurboMind C++ inference engine
+    - path: lmdeploy/pytorch/
+      purpose: PyTorch inference engine
+    - path: lmdeploy/serve/
+      purpose: API server and gradio interfaces
+    - path: lmdeploy/quantization/
+      purpose: Model quantization utilities
+    - path: lmdeploy/vl/
+      purpose: Vision-language model support
+- node_id: repo::jeecgboot/jeecgboot
+  github_full_name: jeecgboot/jeecgboot
+  html_url: https://github.com/jeecgboot/jeecgboot
+  source: compiled_master
+  name: JeecgBoot
+  category: ui_tools
+  summary: 'Enterprise-level low-code development platform with AI integration. Features
+
+    chat-based business operations, MCP plugin support, AI application management,
+
+    model management, and workflow orchestration. Built on SpringBoot (backend)
+
+    and Vue3/TypeScript (frontend).
+
+    '
+  core_concepts:
+  - Low-Code Platform
+  - AI Integration
+  - MCP Plugins
+  - Workflow Engine
+  key_entry_points:
+  - jeecg-boot-base-core/
+  - jeecg-module-system/
+  - jeecg-server-cloud/
+  build_run:
+    language: Java
+    manager: Maven
+    build: mvn clean install
+    test: mvn test
+    frontend: cd ant-design-vue-jeecg && npm install && npm run build
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/JeecgBoot.yaml
+    as_of: '2026-02-23'
+  ecosystem_connections:
+  - target: ollama
+    relation: integrates_with
+    note: Can use Ollama as local LLM backend
+  - target: vllm
+    relation: integrates_with
+    note: Compatible with vLLM inference servers
+  - target: open_webui
+    relation: alternative_to
+    note: JeecgBoot is enterprise low-code; Open WebUI is chat-focused
+  - target: maxkb
+    relation: related_to
+    note: Both enterprise platforms with AI capabilities
+  extras:
+    directory: JeecgBoot-main
+    further_reading:
+    - README.md
+    - README_EN.md
+    raw_core_concepts_structured:
+    - name: Low-Code Platform
+      description: Visual development with drag-and-drop components
+      location: jeecg-module-system/
+    - name: AI Integration
+      description: Built-in AI capabilities for chat and automation
+      location: jeecg-module-ai/
+    - name: MCP Plugins
+      description: Model Context Protocol plugin architecture
+      location: (AI module)
+    - name: Workflow Engine
+      description: Visual workflow orchestration for business processes
+      location: jeecg-module-workflow/
+    raw_key_entry_points_structured:
+    - path: jeecg-boot-base-core/
+      purpose: Core framework and utilities
+    - path: jeecg-module-system/
+      purpose: System management and low-code engine
+    - path: jeecg-server-cloud/
+      purpose: Microservices deployment
+- node_id: repo::josephdove/netmask
+  github_full_name: josephdove/netmask
+  html_url: https://github.com/josephdove/netmask
+  source: compiled_master
+  name: netmask
+  category: network_utils
+  summary: 'Self-hosted TCP/UDP reverse proxy/tunneling solution (Ngrok alternative)
+    with encrypted client-server communication, dual-stack IPv4/IPv6 support, and
+    optional terminal GUI.
+
+    '
+  core_concepts:
+  - Client-Server Tunnel Architecture
+  - Rolling Key Encryption
+  - Protocol-Agnostic Forwarding
+  key_entry_points:
+  - netmask/netmasks.py:15
+  - netmask/netmaskc.py:6
+  - netmask/server/main.py:342
+  - netmask/client/main.py:228
+  - netmask/impl/packets.py:7
+  - netmask/utils/encryption.py:3
+  build_run:
+    language: python
+    package_manager: pip
+    build_command: pip install -e . or python3 setup.py install
+    run_command: 'Server: netmasks 0.0.0.0 :: --port 1024 --key mykey
+
+      Client: netmaskc tcp 8080 4 server.example.com:1024 --key mykey
+
+      '
+    test_command: No tests included in repository
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/netmask.yaml
+    as_of: '2026-02-23'
+  extras:
+    directory: netmask-main
+    raw_core_concepts_structured:
+    - name: Client-Server Tunnel Architecture
+      description: 'Two-component design: netmasks (server) listens for incoming connections
+        and manages tunnel endpoints; netmaskc (client) connects to server and forwards
+        local ports. Server dynamically allocates public ports for each tunnel.
+
+        '
+    - name: Rolling Key Encryption
+      description: 'XOR-based stream cipher with SHA-256 rolling keys that change
+        per packet. Key derivation from communication key via shake_256. Proof-of-encryption
+        handshake validates both sides share the same key before tunnel establishment.
+
+        '
+    - name: Protocol-Agnostic Forwarding
+      description: 'Supports both TCP and UDP protocols with unified architecture.
+        TCP uses async handlers with bidirectional forwarding; UDP uses datagram protocols
+        with address-based client tracking. Both support IPv4 and IPv6 simultaneously.
+
+        '
+    raw_key_entry_points_structured:
+    - path: netmask/netmasks.py:15
+      purpose: Server CLI entry point (netmasks command), parses args and starts NetmaskServer
+    - path: netmask/netmaskc.py:6
+      purpose: Client CLI entry point (netmaskc command), parses args and starts NetmaskClient
+        with optional GUI
+    - path: netmask/server/main.py:342
+      purpose: NetmaskServer class - core server implementation handling TCP/UDP listeners,
+        client connections, and tunnel management
+    - path: netmask/client/main.py:228
+      purpose: NetmaskClient class - client implementation with TCP/UDP forwarding
+        threads and connection management
+    - path: netmask/impl/packets.py:7
+      purpose: ProtocolHandler base class - packet serialization/deserialization with
+        encryption layer
+    - path: netmask/utils/encryption.py:3
+      purpose: NetmaskEncryption class - rolling key XOR cipher implementation
+- node_id: repo::juanfont/headscale
+  github_full_name: juanfont/headscale
+  html_url: https://github.com/juanfont/headscale
+  source: compiled_master
+  name: headscale
+  category: vpn_mesh
+  summary: 'Open-source, self-hosted implementation of the Tailscale control server
+    - enables private WireGuard-based mesh VPNs without relying on Tailscale''s proprietary
+    control plane, ideal for self-hosters and small organizations who want full control
+    over their tailnet infrastructure.
+
+    '
+  core_concepts:
+  - Control Server
+  - Tailnet (Network Namespace)
+  - MapRequest/MapResponse Protocol
+  key_entry_points:
+  - cmd/headscale/headscale.go:13
+  - hscontrol/app.go:91
+  - hscontrol/state/state.go:67
+  - hscontrol/state/node_store.go
+  - hscontrol/poll.go
+  - hscontrol/noise.go
+  - hscontrol/mapper/mapper.go
+  build_run:
+    language: go
+    go_version: '1.26'
+    package_manager: go mod
+    build_command: make build (or go build ./cmd/headscale)
+    run_command: headscale serve (daemon) or headscale [cli-commands]
+    test_command: make test (unit) or go run ./cmd/hi run "TestName" (integration
+      with Docker)
+    dev_setup: nix develop (recommended for consistent toolchain)
+    dependencies:
+    - tailscale.com (core networking/protocol libraries)
+    - gorm.io (database ORM with SQLite/PostgreSQL support)
+    - spf13/cobra (CLI framework)
+    - spf13/viper (configuration)
+    - grpc (management API)
+    - rs/zerolog (structured logging)
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/headscale.yaml
+    as_of: '2026-02-23'
+  extras:
+    directory: headscale-main
+    raw_core_concepts_structured:
+    - name: Control Server
+      description: Acts as the coordination point for Tailscale networks (tailnets),
+        managing node registration, WireGuard public key exchange, IP allocation,
+        policy/ACL enforcement, and DERP relay routing - the one proprietary component
+        in Tailscale's otherwise open stack.
+    - name: Tailnet (Network Namespace)
+      description: A private network namespace containing nodes (devices) that can
+        communicate securely. Headscale implements a single tailnet suitable for personal
+        use or small organizations, with users providing logical grouping/ownership
+        within the network.
+    - name: MapRequest/MapResponse Protocol
+      description: The core Tailscale wire protocol where clients poll the control
+        server (via poll.go) to receive network topology updates, peer information,
+        and policy changes - enabling real-time mesh network coordination.
+    raw_key_entry_points_structured:
+    - path: cmd/headscale/headscale.go:13
+      purpose: Main CLI entry point - initializes logging and delegates to cobra CLI
+        for command parsing
+    - path: hscontrol/app.go:91
+      purpose: Headscale struct definition - core application with state management,
+        DERP server, and HTTP/gRPC handlers
+    - path: hscontrol/state/state.go:67
+      purpose: State coordinator - thread-safe central hub managing database, policy,
+        IP allocation, and node store
+    - path: hscontrol/state/node_store.go
+      purpose: In-memory node cache with copy-on-write semantics - performance-critical
+        for high-frequency operations
+    - path: hscontrol/poll.go
+      purpose: Handles Tailscale MapRequest/MapResponse protocol - processes client
+        updates every 15-60 seconds
+    - path: hscontrol/noise.go
+      purpose: Noise protocol implementation for secure client-to-control-server communication
+    - path: hscontrol/mapper/mapper.go
+      purpose: Converts internal Headscale state to Tailscale wire protocol format
+        for distribution to clients
+- node_id: repo::khoj-ai/khoj
+  github_full_name: khoj-ai/khoj
+  html_url: https://github.com/khoj-ai/khoj
+  source: compiled_master
+  name: khoj
+  category: agent_frameworks
+  summary: 'Personal AI "second brain" application with RAG capabilities. Khoj scales
+    from on-device
+
+    personal AI to cloud-scale enterprise deployments. Supports chatting with local/online
+    LLMs,
+
+    document search (PDF, markdown, Notion, Word, org-mode), custom agent creation,
+    and
+
+    multi-platform access (browser, Obsidian, Emacs, desktop, phone, WhatsApp).
+
+    '
+  core_concepts:
+  - Multi-Platform Interface
+  - Agent System
+  - Document Processing
+  - Search Engine
+  key_entry_points:
+  - src/khoj/
+  - src/interface/
+  - src/khoj/processor/
+  build_run:
+    language: Python
+    install: pip install khoj
+    usage: 'khoj  # Start server
+
+      # Access at http://localhost:42110
+
+      '
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/khoj.yaml
+    as_of: '2026-02-23'
+  ecosystem_connections:
+  - target: ollama
+    relation: integrates_with
+    note: Supports local LLMs via Ollama
+  - target: langchain
+    relation: related_to
+    note: Both RAG frameworks with agent support
+  - target: open_webui
+    relation: alternative_to
+    note: Both self-hosted AI chat; Khoj has stronger RAG/document focus
+  - target: mem0
+    relation: related_to
+    note: Both provide persistent context/memory
+  extras:
+    directory: khoj-master
+    further_reading:
+    - README.md
+    - docs: https://docs.khoj.dev
+    - web: https://khoj.dev
+    - app: https://app.khoj.dev
+    key_features:
+    - Chat with any LLM (local or cloud)
+    - Document RAG (PDF, markdown, Notion, etc.)
+    - Custom agent creation with tools
+    - Multi-platform (browser, Obsidian, Emacs, desktop, mobile)
+    - Internet search integration
+    - Image generation
+    - Voice input/output
+    - Self-hostable or cloud
+    raw_core_concepts_structured:
+    - name: Multi-Platform Interface
+      description: Browser, Obsidian, Emacs, Desktop, Mobile, WhatsApp clients
+      location: src/interface/
+    - name: Agent System
+      description: Custom agents with knowledge, persona, tools
+      location: src/khoj/agent/
+    - name: Document Processing
+      description: PDF, Markdown, Notion, Word, org-mode support
+      location: src/khoj/content/
+    - name: Search Engine
+      description: Semantic search across indexed documents
+      location: src/khoj/search/
+    raw_key_entry_points_structured:
+    - path: src/khoj/
+      purpose: Core application logic
+    - path: src/interface/
+      purpose: Multi-platform client interfaces
+    - path: src/khoj/processor/
+      purpose: Document and content processors
+    use_cases:
+    - Personal knowledge management
+    - Research assistant
+    - Document chat
+    - Automated newsletters/notifications
+- node_id: repo::langchain-ai/langchain
+  github_full_name: langchain-ai/langchain
+  html_url: https://github.com/langchain-ai/langchain
+  source: compiled_master
+  name: langchain
+  category: rag_frameworks
+  summary: 'The dominant Python framework for building LLM applications. Provides
+    standard interfaces
+
+    for models, embeddings, vector stores, and chains. LangChain abstracts away provider
+
+    differences, enabling rapid prototyping and model interoperability. The ecosystem
+
+    includes LangGraph for agent orchestration and LangSmith for observability.
+
+    '
+  core_concepts:
+  - langchain-core
+  - langchain (main package)
+  - Partners/Integrations
+  - Runnables
+  - Messages & Prompts
+  - Output Parsers
+  key_entry_points:
+  - libs/core/langchain_core/
+  - libs/partners/
+  - libs/langchain/langchain/
+  - libs/text-splitters/
+  build_run:
+    language: Python
+    manager: uv
+    build: uv sync --all-groups
+    test: make test
+    lint: make lint
+    type_check: uv run --group lint mypy .
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/langchain.yaml
+    as_of: '2026-02-23'
+  ecosystem_connections:
+  - target: llama_index
+    relation: alternative_to
+    note: Both are RAG frameworks; LangChain is more general, LlamaIndex focuses on
+      data
+  - target: ollama
+    relation: integrates_with
+    note: langchain-ollama package provides local model support
+  - target: milvus
+    relation: integrates_with
+    note: langchain-milvus (external repo) for vector storage
+  - target: open_webui
+    relation: related_to
+    note: Can be used as backend for chat applications
+  - target: mem0
+    relation: related_to
+    note: Both handle memory/conversation context
+  - target: ragflow
+    relation: alternative_to
+    note: RAGFlow is document-focused RAG; LangChain is general-purpose
+  - target: graphrag
+    relation: related_to
+    note: GraphRAG adds graph-based retrieval; can complement LangChain
+  extras:
+    directory: langchain-master
+    further_reading:
+    - libs/README.md
+    - libs/core/README.md
+    - libs/langchain/README.md
+    - docs: https://docs.langchain.com/oss/python/langchain/overview
+    - api_reference: https://reference.langchain.com/python
+    monorepo_packages:
+    - name: langchain-core
+      pypi: langchain-core
+      purpose: Base abstractions
+    - name: langchain
+      pypi: langchain
+      purpose: Main package (langchain_v1 in repo)
+    - name: langchain-openai
+      pypi: langchain-openai
+      purpose: OpenAI integration
+    - name: langchain-anthropic
+      pypi: langchain-anthropic
+      purpose: Anthropic/Claude integration
+    - name: langchain-ollama
+      pypi: langchain-ollama
+      purpose: Ollama local model integration
+    - name: langchain-chroma
+      pypi: langchain-chroma
+      purpose: Chroma vector store integration
+    - name: langchain-qdrant
+      pypi: langchain-qdrant
+      purpose: Qdrant vector store integration
+    raw_core_concepts_structured:
+    - name: langchain-core
+      description: Base abstractions (interfaces, protocols) that all integrations
+        implement
+      location: libs/core/
+    - name: langchain (main package)
+      description: Concrete implementations and high-level utilities
+      location: libs/langchain/
+    - name: Partners/Integrations
+      description: Third-party provider integrations (OpenAI, Anthropic, Ollama, etc.)
+      location: libs/partners/
+    - name: Runnables
+      description: LCEL (LangChain Expression Language) for composing chains
+      location: libs/core/langchain_core/runnables/
+    - name: Messages & Prompts
+      description: Structured prompt templates and chat message abstractions
+      location: libs/core/langchain_core/messages/, libs/core/langchain_core/prompts/
+    - name: Output Parsers
+      description: Extract structured data from LLM outputs
+      location: libs/core/langchain_core/output_parsers/
+    raw_key_entry_points_structured:
+    - path: libs/core/langchain_core/
+      purpose: Core abstractions (language_models, embeddings, vectorstores, tools)
+    - path: libs/partners/
+      purpose: Provider integrations (openai, anthropic, ollama, groq, etc.)
+    - path: libs/langchain/langchain/
+      purpose: High-level chains, agents, and utilities
+    - path: libs/text-splitters/
+      purpose: Document chunking for RAG pipelines
+- node_id: repo::mem0ai/mem0
+  github_full_name: mem0ai/mem0
+  html_url: https://github.com/mem0ai/mem0
+  source: compiled_master
+  name: mem0
+  category: agent_frameworks
+  summary: 'Intelligent memory layer for AI applications and agents (Y Combinator
+    S24). Mem0
+
+    provides multi-level memory (user, session, agent) for personalized AI interactions.
+
+    Outperforms OpenAI Memory with +26% accuracy on LOCOMO benchmark, 91% faster responses,
+
+    and 90% lower token usage. Supports self-hosted or managed platform.
+
+    '
+  core_concepts:
+  - Multi-Level Memory
+  - Memory Operations
+  - Vector Store Integration
+  - LLM Integration
+  key_entry_points:
+  - mem0/
+  - mem0/client/
+  - mem0/vector_stores/
+  build_run:
+    language: Python
+    install: pip install mem0ai
+    usage: 'from mem0 import Memory
+
+      m = Memory()
+
+      m.add("likes pizza", user_id="alice")
+
+      results = m.search("what does alice like", user_id="alice")
+
+      '
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/mem0.yaml
+    as_of: '2026-02-23'
+  ecosystem_connections:
+  - target: langchain
+    relation: integrates_with
+    note: Can be used as memory layer in LangChain agents
+  - target: llama_index
+    relation: related_to
+    note: Both handle conversation context/memory
+  - target: open_webui
+    relation: related_to
+    note: Could enhance chat memory
+  extras:
+    directory: mem0-main
+    further_reading:
+    - README.md
+    - research: https://mem0.ai/research
+    - docs: https://docs.mem0.ai
+    - platform: https://mem0.ai
+    key_features:
+    - Multi-level memory (user/session/agent)
+    - +26% accuracy over OpenAI Memory
+    - 91% faster than full-context
+    - 90% lower token usage
+    - Cross-platform SDKs (Python, JS)
+    - Self-hosted or managed platform
+    - Automatic memory extraction
+    - Memory expiration support
+    raw_core_concepts_structured:
+    - name: Multi-Level Memory
+      description: User, session, and agent state management
+      location: mem0/memory/
+    - name: Memory Operations
+      description: Add, search, update, delete memories
+      location: mem0/client/
+    - name: Vector Store Integration
+      description: Multiple vector DB backends
+      location: mem0/vector_stores/
+    - name: LLM Integration
+      description: Multiple LLM provider support
+      location: mem0/llms/
+    raw_key_entry_points_structured:
+    - path: mem0/
+      purpose: Core memory library
+    - path: mem0/client/
+      purpose: Client SDK
+    - path: mem0/vector_stores/
+      purpose: Vector store backends
+    use_cases:
+    - AI assistants with persistent context
+    - Customer support with history recall
+    - Healthcare patient preferences
+    - Personalized recommendations
+- node_id: repo::microsoft/graphrag
+  github_full_name: microsoft/graphrag
+  html_url: https://github.com/microsoft/graphrag
+  source: compiled_master
+  name: graphrag
+  category: rag_frameworks
+  summary: 'Microsoft''s GraphRAG uses knowledge graphs to enhance LLM retrieval.
+    Unlike vector-based RAG,
+
+    GraphRAG builds a structured knowledge graph from documents, enabling better reasoning
+    over
+
+    relationships and communities. Best suited for complex narrative data where entity
+    relationships
+
+    matter. Warning: indexing is expensive (high LLM token usage).
+
+    '
+  core_concepts:
+  - Indexing Pipeline
+  - Query Engine
+  - Graphs
+  - Prompts
+  - Prompt Tuning
+  key_entry_points:
+  - packages/graphrag/graphrag/index/
+  - packages/graphrag/graphrag/query/
+  - packages/graphrag/graphrag/prompts/
+  - packages/graphrag/graphrag/cli/
+  build_run:
+    language: Python
+    manager: uv
+    install: uv sync
+    cli_init: graphrag init --root ./myproject
+    cli_index: graphrag index --root ./myproject
+    cli_query: graphrag query --root ./myproject --method local
+    test: pytest
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/graphrag.yaml
+    as_of: '2026-02-23'
+  ecosystem_connections:
+  - target: langchain
+    relation: related_to
+    note: Can complement LangChain; different retrieval paradigm
+  - target: llama_index
+    relation: related_to
+    note: LlamaIndex has graph_rag module inspired by this
+  - target: ragflow
+    relation: related_to
+    note: RAGFlow has graphrag module; similar approach
+  - target: milvus
+    relation: integrates_with
+    note: Can use Milvus for vector storage via graphrag-vectors
+  extras:
+    directory: graphrag-main
+    further_reading:
+    - README.md
+    - docs: https://microsoft.github.io/graphrag/
+    - paper: https://arxiv.org/pdf/2404.16130
+    - blog: https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-discovery-on-narrative-private-data/
+    monorepo_packages:
+    - name: graphrag
+      pypi: graphrag
+      purpose: Main package with CLI and API
+    - name: graphrag-llm
+      purpose: LLM abstractions
+    - name: graphrag-vectors
+      purpose: Vector store abstractions
+    - name: graphrag-storage
+      purpose: Storage backends
+    - name: graphrag-cache
+      purpose: Caching layer
+    - name: graphrag-input
+      purpose: Input/loading utilities
+    raw_core_concepts_structured:
+    - name: Indexing Pipeline
+      description: Extract entities, relationships, claims from documents
+      location: packages/graphrag/graphrag/index/
+    - name: Query Engine
+      description: Global (whole corpus) and local (neighborhood) search
+      location: packages/graphrag/graphrag/query/
+    - name: Graphs
+      description: Knowledge graph construction and community detection
+      location: packages/graphrag/graphrag/graphs/
+    - name: Prompts
+      description: LLM prompts for entity extraction, summarization
+      location: packages/graphrag/graphrag/prompts/
+    - name: Prompt Tuning
+      description: Customize prompts for your domain
+      location: packages/graphrag/graphrag/prompt_tune/
+    raw_key_entry_points_structured:
+    - path: packages/graphrag/graphrag/index/
+      purpose: Indexing pipeline (entity extraction, graph building)
+    - path: packages/graphrag/graphrag/query/
+      purpose: Search interfaces (global, local, drift)
+    - path: packages/graphrag/graphrag/prompts/
+      purpose: LLM prompts for extraction
+    - path: packages/graphrag/graphrag/cli/
+      purpose: CLI commands (init, index, query)
+    search_methods:
+    - name: Local Search
+      description: Query specific entities and their neighborhood
+    - name: Global Search
+      description: Reason about entire corpus using community summaries
+    - name: DRIFT Search
+      description: Dynamic reasoning with inference and flow tracking
+- node_id: repo::mikeroyal/self-hosting-guide
+  github_full_name: mikeroyal/self-hosting-guide
+  html_url: https://github.com/mikeroyal/self-hosting-guide
+  source: compiled_master
+  name: self-hosting-guide
+  category: documentation
+  summary: 'Comprehensive curated guide for self-hosting applications and services,
+    covering containers, cloud infrastructure, home servers, media centers, networking,
+    security, and development tools across 34 major topic areas.
+
+    '
+  core_concepts:
+  - Containerization & Orchestration
+  - Infrastructure & Networking
+  - Home Server Ecosystem
+  key_entry_points:
+  - README.md
+  - Getting Started  with Self-Hosting.dockerfile
+  - CONTRIBUTING.md
+  build_run:
+    format: markdown
+    primary_language: n/a
+    organization: 'Single massive README (~7100 lines) organized hierarchically:
+
+      - Table of Contents with 34 main sections
+
+      - "Getting Started" section with 60+ tool categories (containers, CI/CD, databases,
+      media servers, etc.)
+
+      - Dedicated deep-dive sections for WireGuard, Nextcloud, Raspberry Pi, Grafana,
+      Networking, Docker, Kubernetes, Ansible, Databases
+
+      - Development guides for Node.js, Python, Rust, C/C++, Java, Swift
+
+      - Resource lists: books, podcasts, YouTube channels, tutorials
+
+      '
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/self-hosting-guide.yaml
+    as_of: '2026-02-23'
+  extras:
+    directory: Self-Hosting-Guide-main
+    raw_core_concepts_structured:
+    - name: Containerization & Orchestration
+      description: Docker, Podman, Kubernetes, and container management tools (Portainer,
+        Yacht) for deploying isolated, reproducible self-hosted services.
+    - name: Infrastructure & Networking
+      description: VPNs (WireGuard, Tailscale), remote access, DNS, reverse proxies
+        (Nginx, Traefik, Caddy), and network security fundamentals.
+    - name: Home Server Ecosystem
+      description: Media servers (Plex, Jellyfin), home automation (Home Assistant,
+        ESPHome), Raspberry Pi projects, and personal cloud storage (Nextcloud).
+    raw_key_entry_points_structured:
+    - path: README.md
+      purpose: Single comprehensive document containing all 34 topic sections with
+        tool listings, learning resources, and setup guides.
+    - path: Getting Started  with Self-Hosting.dockerfile
+      purpose: Starter Dockerfile template for Ubuntu 22.04 with common development
+        tools pre-installed.
+    - path: CONTRIBUTING.md
+      purpose: Contribution guidelines for adding new tools and resources.
+- node_id: repo::milvus-io/milvus
+  github_full_name: milvus-io/milvus
+  html_url: https://github.com/milvus-io/milvus
+  source: compiled_master
+  name: milvus
+  category: vector_databases
+  summary: 'High-performance, scalable vector database from Zilliz/LF AI & Data Foundation.
+
+    Written in Go and C++ with hardware acceleration (CPU/GPU). Handles billions of
+
+    vectors with real-time updates. K8s-native distributed architecture. Milvus Lite
+
+    available for Python quickstart. Managed service via Zilliz Cloud.
+
+    '
+  core_concepts:
+  - Collections
+  - Index Types
+  - Query Node
+  - Data Node
+  - Proxy
+  key_entry_points:
+  - internal/core/
+  - internal/querynodev2/
+  - internal/proxy/
+  - pkg/
+  - client/
+  build_run:
+    language: Go + C++
+    run_docker: "docker run -d --name milvus-standalone \\\n  -p 19530:19530 -p 9091:9091\
+      \ \\\n  milvusdb/milvus:latest\n"
+    run_lite: pip install pymilvus[milvus_lite]
+    client_python: pip install pymilvus
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/milvus.yaml
+    as_of: '2026-02-23'
+  ecosystem_connections:
+  - target: langchain
+    relation: integrates_with
+    note: langchain-milvus vector store integration
+  - target: llama_index
+    relation: integrates_with
+    note: llama-index-vector-stores-milvus
+  - target: ragflow
+    relation: integrates_with
+    note: RAGFlow can use Milvus as vector backend
+  - target: open_webui
+    relation: integrates_with
+    note: Open WebUI supports Milvus for RAG
+  - target: anything_llm
+    relation: integrates_with
+    note: AnythingLLM supports Milvus
+  extras:
+    deployment_modes:
+    - Standalone (single machine, Docker)
+    - Cluster (K8s, distributed)
+    - Milvus Lite (embedded Python)
+    - Zilliz Cloud (managed)
+    directory: milvus-master
+    further_reading:
+    - README.md
+    - docs: https://milvus.io/docs
+    - cloud: https://zilliz.com/cloud
+    - lite: https://milvus.io/docs/milvus_lite.md
+    index_types:
+    - FLAT (brute force)
+    - IVF_FLAT, IVF_SQ8, IVF_PQ
+    - HNSW (graph-based)
+    - GPU_IVF_FLAT, GPU_IVF_PQ
+    - SCANN, DISKANN
+    raw_core_concepts_structured:
+    - name: Collections
+      description: Vector storage containers with schema
+      location: internal/core/
+    - name: Index Types
+      description: IVF, HNSW, GPU indexes for different use cases
+      location: internal/core/src/index/
+    - name: Query Node
+      description: Search execution engine
+      location: internal/querynodev2/
+    - name: Data Node
+      description: Data ingestion and indexing
+      location: internal/datanode/
+    - name: Proxy
+      description: API gateway layer
+      location: internal/proxy/
+    raw_key_entry_points_structured:
+    - path: internal/core/
+      purpose: Core C++ engine (indexing, search)
+    - path: internal/querynodev2/
+      purpose: Query execution
+    - path: internal/proxy/
+      purpose: API gateway
+    - path: pkg/
+      purpose: Go public packages
+    - path: client/
+      purpose: Go client SDK
+- node_id: repo::mindsdb/mindsdb
+  github_full_name: mindsdb/mindsdb
+  html_url: https://github.com/mindsdb/mindsdb
+  source: compiled_master
+  name: mindsdb
+  category: data_pipelines
+  summary: 'Data federation platform enabling humans, AI, and agents to query across
+    large-scale
+
+    data sources. Connect, Unify, Respond philosophy with built-in MCP server, knowledge
+
+    bases for unstructured data, and SQL-based agents. Connects to hundreds of enterprise
+
+    data sources for unified querying without ETL.
+
+    '
+  core_concepts:
+  - Data Integrations
+  - Knowledge Bases
+  - MCP Server
+  - Agents
+  key_entry_points:
+  - mindsdb/
+  - mindsdb/integrations/
+  - mindsdb/api/
+  - mindsdb/interfaces/
+  build_run:
+    language: Python
+    install: docker run -p 47324:47324 mindsdb/mindsdb
+    usage: '# Access at http://localhost:47324
+
+      # SQL interface for querying across data sources
+
+      # CREATE KNOWLEDGE BASE, CREATE AGENT via SQL
+
+      '
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/mindsdb.yaml
+    as_of: '2026-02-23'
+  ecosystem_connections:
+  - target: langchain
+    relation: integrates_with
+    note: MindsDB can be used as data source for LangChain agents
+  - target: milvus
+    relation: integrates_with
+    note: MindsDB may use vector backends for knowledge bases
+  - target: maxkb
+    relation: related_to
+    note: Both have MCP server support
+  - target: ragflow
+    relation: alternative_to
+    note: Different approaches; MindsDB is data federation, RAGFlow is RAG platform
+  extras:
+    directory: mindsdb-main
+    further_reading:
+    - README.md
+    - docs: https://docs.mindsdb.com
+    - web: https://mindsdb.com
+    key_features:
+    - 100+ data source integrations
+    - No-ETL data federation via views
+    - Built-in MCP server for AI agents
+    - Knowledge bases for unstructured data
+    - SQL-configured agents
+    - Jobs for scheduled sync/transformation
+    raw_core_concepts_structured:
+    - name: Data Integrations
+      description: 100+ connectors for databases, warehouses, SaaS
+      location: mindsdb/integrations/
+    - name: Knowledge Bases
+      description: Index and query unstructured data via SQL
+      location: mindsdb/interfaces/knowledge_base/
+    - name: MCP Server
+      description: Built-in Model Context Protocol for AI agents
+      location: mindsdb/api/mcp/
+    - name: Agents
+      description: SQL-configured agents for data Q&A
+      location: mindsdb/interfaces/agents/
+    raw_key_entry_points_structured:
+    - path: mindsdb/
+      purpose: Core server and modules
+    - path: mindsdb/integrations/
+      purpose: Data source connectors
+    - path: mindsdb/api/
+      purpose: HTTP and MCP APIs
+    - path: mindsdb/interfaces/
+      purpose: Knowledge bases, agents, ML engines
+    use_cases:
+    - Enterprise data unification
+    - AI agents over federated data
+    - Knowledge base from multiple sources
+    - Real-time data Q&A
+- node_id: repo::mintplex-labs/anything-llm
+  github_full_name: mintplex-labs/anything-llm
+  html_url: https://github.com/mintplex-labs/anything-llm
+  source: compiled_master
+  name: anything_llm
+  category: ui_tools
+  summary: 'All-in-one desktop and server AI application for document chat. AnythingLLM
+    emphasizes
+
+    ease-of-use with desktop apps (Mac/Windows/Linux) alongside Docker deployment.
+
+    Features workspace-based document organization, AI agent flows, MCP compatibility,
+
+    and a no-code agent builder. Supports 20+ LLM providers.
+
+    '
+  core_concepts:
+  - Workspaces
+  - Collector
+  - Agent Flows
+  - Vector DB Abstraction
+  - LLM Abstraction
+  key_entry_points:
+  - server/
+  - frontend/
+  - collector/
+  - docker/
+  - embed/
+  build_run:
+    frontend: React + Vite
+    backend: Node.js + Express
+    desktop: Electron
+    run_docker: docker run -d -p 3001:3001 -v anythingllm:/app/server/storage --name
+      anythingllm mintplexlabs/anythingllm
+    desktop_download: https://anythingllm.com/download
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/anything_llm.yaml
+    as_of: '2026-02-23'
+  ecosystem_connections:
+  - target: ollama
+    relation: integrates_with
+    note: Supports Ollama as LLM provider
+  - target: open_webui
+    relation: alternative_to
+    note: Both full-stack AI apps; AnythingLLM has desktop focus
+  - target: milvus
+    relation: integrates_with
+    note: Supported vector database option
+  - target: ragflow
+    relation: alternative_to
+    note: Both document-focused RAG apps
+  extras:
+    directory: anything-llm-master
+    further_reading:
+    - README.md
+    - docs: https://docs.anythingllm.com
+    - download: https://anythingllm.com/download
+    key_features:
+    - Desktop apps (Mac/Windows/Linux)
+    - Workspace-based document organization
+    - No-code AI agent builder
+    - Full MCP compatibility
+    - Custom AI agents (web browsing, etc.)
+    - Multi-user support (Docker)
+    - Embeddable chat widget
+    - 20+ LLM provider integrations
+    - Multiple vector DB options
+    - Developer API
+    raw_core_concepts_structured:
+    - name: Workspaces
+      description: Containerized document groups (like threads with docs)
+      location: frontend/src/pages/Workspace/
+    - name: Collector
+      description: Document ingestion and embedding pipeline
+      location: collector/
+    - name: Agent Flows
+      description: No-code AI agent builder
+      location: frontend/src/components/AgentFlows/
+    - name: Vector DB Abstraction
+      description: Unified interface for multiple vector stores
+      location: server/utils/vectorDbProviders/
+    - name: LLM Abstraction
+      description: Unified interface for multiple LLM providers
+      location: server/utils/AiProviders/
+    raw_key_entry_points_structured:
+    - path: server/
+      purpose: Node.js backend (Express)
+    - path: frontend/
+      purpose: React frontend
+    - path: collector/
+      purpose: Document processing pipeline
+    - path: docker/
+      purpose: Docker deployment configs
+    - path: embed/
+      purpose: Embeddable chat widget
+    supported_providers:
+      llms:
+      - OpenAI, Azure OpenAI, Anthropic
+      - Ollama, LM Studio, LocalAI
+      - Together AI, Fireworks, Perplexity
+      - OpenRouter, DeepSeek, Mistral
+      - Groq, Cohere, Gemini
+      - AWS Bedrock, NVIDIA NIM
+      vector_dbs:
+      - LanceDB (built-in)
+      - Chroma, Pinecone, Weaviate
+      - Qdrant, Milvus
+      - pgvector, Astra DB
+- node_id: repo::monteslu/hsync
+  github_full_name: monteslu/hsync
+  html_url: https://github.com/monteslu/hsync
+  source: compiled_master
+  name: hsync
+  category: tunneling
+  summary: 'A reverse-proxy/tunneling client for Node.js and browsers that exposes
+    local webservers
+
+    as public URLs via hsync-server, with peer-to-peer TCP tunneling via WebRTC for
+    direct
+
+    client-to-client connections without server intermediary.
+
+    '
+  core_concepts:
+  - MQTT-based reverse proxy
+  - WebRTC peer-to-peer tunneling
+  - Socket relays and listeners
+  key_entry_points:
+  - cli.js:1
+  - hsync.js:31
+  - connection.js:29
+  - lib/peers.js:40
+  - lib/socket-relays.js:63
+  build_run:
+    language: JavaScript (ES modules)
+    package_manager: npm
+    build_command: npm run build
+    run_command: npx hsync (or npm install -g hsync && hsync)
+    test_command: npm test (uses Vitest)
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/hsync.yaml
+    as_of: '2026-02-23'
+  extras:
+    directory: hsync-master
+    raw_core_concepts_structured:
+    - name: MQTT-based reverse proxy
+      description: 'Uses MQTT protocol to communicate with hsync-server for web request
+        handling.
+
+        HTTP requests to the public URL are proxied through the server via MQTT topics
+
+        (e.g., web/{hostname}/{segment}/{action}) back to the local client.
+
+        '
+    - name: WebRTC peer-to-peer tunneling
+      description: 'Establishes direct P2P connections between hsync clients using
+        WebRTC data channels.
+
+        Once connected, TCP socket data flows directly between peers, bypassing the
+        server
+
+        entirely. Uses rawr library for JSON-RPC over the data channel.
+
+        '
+    - name: Socket relays and listeners
+      description: 'Two tunneling modes: listeners (accept local connections, forward
+        to remote target)
+
+        and relays (accept remote requests, connect to local target). Supports whitelist/blacklist
+
+        for access control on relay ports.
+
+        '
+    raw_key_entry_points_structured:
+    - path: cli.js:1
+      purpose: CLI entry point using Commander; parses flags and creates tunnel connections
+    - path: hsync.js:31
+      purpose: Main export for Node.js; provides createConnection() and dynamicConnect()
+        APIs
+    - path: connection.js:29
+      purpose: Core createHsync() function that sets up MQTT connection, peer management,
+        and tunnel infrastructure
+    - path: lib/peers.js:40
+      purpose: Peer management and WebRTC connection handling; creates RPC peers for
+        P2P communication
+    - path: lib/socket-relays.js:63
+      purpose: Inbound relay handling; accepts remote connection requests and bridges
+        to local TCP sockets
+- node_id: repo::nexaai/nexa-sdk
+  github_full_name: nexaai/nexa-sdk
+  html_url: https://github.com/nexaai/nexa-sdk
+  source: compiled_master
+  name: nexa_sdk
+  category: inference_serving
+  summary: 'On-device AI inference framework optimized for NPU, GPU, and CPU across
+    mobile
+
+    (Android, iOS), desktop, and IoT. Day-0 support for latest models (Qwen3-VL, DeepSeek-OCR).
+
+    NPU-first approach with Qualcomm Hexagon, Apple ANE, Intel NPU, AMD NPU support.
+
+    Featured by Qualcomm, IBM, Google, NVIDIA, Microsoft for cutting-edge on-device
+    AI.
+
+    '
+  core_concepts:
+  - Python SDK
+  - Android SDK
+  - iOS SDK
+  - Runner/Engine
+  key_entry_points:
+  - bindings/python/
+  - bindings/android/
+  - runner/
+  - cookbook/
+  build_run:
+    language: Python/Kotlin/Swift/Go
+    install: pip install nexaai
+    usage: "from nexaai import LLM, GenerationConfig, LlmChatMessage\n\nllm = LLM.from_(model=\"\
+      NexaAI/Qwen3-0.6B-GGUF\")\nfor token in llm.generate_stream(prompt, GenerationConfig()):\n\
+      \    print(token, end=\"\")\n"
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/nexa_sdk.yaml
+    as_of: '2026-02-23'
+  ecosystem_connections:
+  - target: ollama
+    relation: alternative_to
+    note: NexaSDK has NPU support and mobile SDKs; Ollama is desktop-focused
+  - target: vllm
+    relation: alternative_to
+    note: vLLM is server/cloud; NexaSDK is on-device/mobile
+  - target: lmdeploy
+    relation: alternative_to
+    note: Different focus; LMDeploy for server deployment, NexaSDK for edge
+  extras:
+    directory: nexa-sdk-main
+    further_reading:
+    - README.md
+    - docs: https://docs.nexa.ai
+    - hub: https://sdk.nexa.ai/model
+    key_features:
+    - NPU-first (Qualcomm, Apple, Intel, AMD)
+    - Mobile SDKs (Android, iOS)
+    - Day-0 model support
+    - Multimodal (LLM, VLM, ASR, OCR, image gen)
+    - Multiple formats (GGUF, MLX, NEXA)
+    - OpenAI-compatible API
+    - Function calling support
+    - Cross-platform (desktop, mobile, IoT)
+    raw_core_concepts_structured:
+    - name: Python SDK
+      description: Python bindings for LLM, VLM, ASR, OCR, embeddings
+      location: bindings/python/
+    - name: Android SDK
+      description: Kotlin SDK for Qualcomm Snapdragon NPU
+      location: bindings/android/
+    - name: iOS SDK
+      description: Swift SDK for Apple Neural Engine
+      location: bindings/ios/
+    - name: Runner/Engine
+      description: Core inference engine (NexaML)
+      location: runner/
+    raw_key_entry_points_structured:
+    - path: bindings/python/
+      purpose: Python SDK
+    - path: bindings/android/
+      purpose: Android/Kotlin SDK
+    - path: runner/
+      purpose: Core inference engine
+    - path: cookbook/
+      purpose: Examples and tutorials
+    use_cases:
+    - On-device mobile AI apps
+    - Privacy-preserving inference
+    - Edge AI deployment
+    - Automotive/IoT AI
+- node_id: repo::ollama/ollama
+  github_full_name: ollama/ollama
+  html_url: https://github.com/ollama/ollama
+  source: compiled_master
+  name: ollama
+  category: inference_serving
+  summary: 'The easiest way to run LLMs locally. Ollama wraps llama.cpp with a simple
+    CLI and REST API,
+
+    handling model management (pull, list, run) automatically. Designed for developer
+    convenience
+
+    over raw performance. Supports GPU acceleration (CUDA, Metal) and offers a model
+    library
+
+    at ollama.com/library. Now integrates directly with coding tools like Claude Code.
+
+    '
+  core_concepts:
+  - Model Management
+  - REST API
+  - Modelfile
+  - llama.cpp Backend
+  - CLI
+  key_entry_points:
+  - cmd/
+  - api/
+  - app/
+  - convert/
+  build_run:
+    language: Go + C++
+    build: go build .
+    run: ollama serve
+    cli: ollama run <model>
+    docker: docker run -d -p 11434:11434 ollama/ollama
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/ollama.yaml
+    as_of: '2026-02-23'
+  ecosystem_connections:
+  - target: open_webui
+    relation: integrates_with
+    note: Most popular web UI for Ollama
+  - target: langchain
+    relation: integrates_with
+    note: langchain-ollama package
+  - target: llama_index
+    relation: integrates_with
+    note: llama-index-llms-ollama package
+  - target: vllm
+    relation: alternative_to
+    note: Ollama for convenience/local, vLLM for production throughput
+  - target: anything_llm
+    relation: integrates_with
+    note: AnythingLLM supports Ollama as backend
+  - target: ragflow
+    relation: integrates_with
+    note: RAGFlow supports Ollama as LLM provider
+  extras:
+    api_endpoints:
+    - POST /api/chat - Chat completions
+    - POST /api/generate - Text generation
+    - POST /api/embeddings - Generate embeddings
+    - POST /api/pull - Download model
+    - GET /api/tags - List models
+    directory: ollama-main
+    further_reading:
+    - README.md
+    - docs/development.md
+    - docs/api.md
+    - docs/modelfile.md
+    - library: https://ollama.com/library
+    - docs: https://docs.ollama.com
+    raw_core_concepts_structured:
+    - name: Model Management
+      description: Pull, list, run models from registry (ollama.com/library)
+      location: cmd/
+    - name: REST API
+      description: OpenAI-compatible API at localhost:11434
+      location: api/
+    - name: Modelfile
+      description: Model configuration format (like Dockerfile for models)
+      location: docs/modelfile.md
+    - name: llama.cpp Backend
+      description: GGUF-based inference engine
+      location: integrated via llama.cpp project
+    - name: CLI
+      description: Command-line interface for all operations
+      location: cmd/
+    raw_key_entry_points_structured:
+    - path: cmd/
+      purpose: CLI commands (ollama run, pull, serve, etc.)
+    - path: api/
+      purpose: REST API server and client implementations
+    - path: app/
+      purpose: Application logic and model loading
+    - path: convert/
+      purpose: Model conversion utilities (PyTorch/Safetensors to GGUF)
+- node_id: repo::open-compass/opencompass
+  github_full_name: open-compass/opencompass
+  html_url: https://github.com/open-compass/opencompass
+  source: compiled_master
+  name: opencompass
+  category: evaluation
+  summary: 'Comprehensive LLM evaluation toolkit from OpenInterX (Shanghai AI Lab).
+    Recommended
+
+    by Meta AI for Llama evaluation. Supports 100+ benchmarks including MMLU, GSM8K,
+
+    HumanEval, and specialized scientific benchmarks. LLM-as-judge support, distributed
+
+    evaluation, and public leaderboard (CompassRank).
+
+    '
+  core_concepts:
+  - Datasets/Benchmarks
+  - Models
+  - Evaluators
+  - Summarizers
+  - Runners
+  key_entry_points:
+  - opencompass/
+  - opencompass/datasets/
+  - opencompass/models/
+  - configs/
+  build_run:
+    language: Python
+    install: pip install opencompass
+    cli: opencompass <config_file>
+    python: 'from opencompass.runners import LocalRunner
+
+      from opencompass.tasks import OpenICLInferTask
+
+      '
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/opencompass.yaml
+    as_of: '2026-02-23'
+  ecosystem_connections:
+  - target: vllm
+    relation: integrates_with
+    note: OpenCompass can use vLLM as inference backend
+  - target: lmdeploy
+    relation: integrates_with
+    note: OpenCompass can use LMDeploy as inference backend
+  - target: llamafactory
+    relation: related_to
+    note: Evaluate fine-tuned models from LlamaFactory
+  extras:
+    directory: opencompass-main
+    further_reading:
+    - README.md
+    - docs: https://opencompass.readthedocs.io
+    - hub: https://hub.opencompass.org.cn
+    - rank: https://rank.opencompass.org.cn
+    key_features:
+    - 100+ built-in benchmarks
+    - LLM-as-judge (GenericLLMEvaluator)
+    - Math verification (MATHVerifyEvaluator)
+    - Cascade evaluation pipelines
+    - Distributed evaluation
+    - vLLM/LMDeploy backends
+    - Model post-processing (XFinder)
+    - CompassRank leaderboard
+    raw_core_concepts_structured:
+    - name: Datasets/Benchmarks
+      description: 100+ evaluation benchmarks
+      location: opencompass/datasets/
+    - name: Models
+      description: Model wrappers for various backends
+      location: opencompass/models/
+    - name: Evaluators
+      description: Evaluation logic and metrics
+      location: opencompass/evaluators/
+    - name: Summarizers
+      description: Result aggregation and reporting
+      location: opencompass/summarizers/
+    - name: Runners
+      description: Distributed evaluation orchestration
+      location: opencompass/runners/
+    raw_key_entry_points_structured:
+    - path: opencompass/
+      purpose: Main library
+    - path: opencompass/datasets/
+      purpose: Benchmark datasets
+    - path: opencompass/models/
+      purpose: Model integrations (HF, vLLM, LMDeploy, API)
+    - path: configs/
+      purpose: Configuration files
+    supported_benchmarks:
+    - General: MMLU, C-Eval, CMMLU, MMMLU
+    - Reasoning: GSM8K, MATH, MuSR, RULER
+    - Coding: HumanEval, MBPP, SciCode
+    - Long Context: BABILong, NeedleBench
+    - Knowledge: SuperGPQA
+    - Scientific: SciReasoner
+    - Custom: User-defined benchmarks
+- node_id: repo::open-webui/open-webui
+  github_full_name: open-webui/open-webui
+  html_url: https://github.com/open-webui/open-webui
+  source: compiled_master
+  name: open_webui
+  category: ui_tools
+  summary: 'Feature-rich, self-hosted ChatGPT-style interface for LLMs. Open WebUI
+    is the most
+
+    popular web UI for Ollama, with built-in RAG support, multi-user auth, pipelines
+    plugin
+
+    system, and enterprise features (SSO, RBAC). Supports both Ollama and OpenAI-compatible
+
+    APIs. Runs entirely offline with Docker deployment.
+
+    '
+  core_concepts:
+  - Chat Interface
+  - RAG Integration
+  - Pipelines
+  - Model Management
+  - Auth & Permissions
+  - Tools Workspace
+  key_entry_points:
+  - backend/
+  - src/
+  - backend/apps/rag/
+  - backend/apps/webui/
+  build_run:
+    frontend: SvelteKit + TypeScript
+    backend: FastAPI + Python
+    run_docker: docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway
+      -v open-webui:/app/backend/data --name open-webui ghcr.io/open-webui/open-webui:main
+    run_pip: pip install open-webui && open-webui
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/open_webui.yaml
+    as_of: '2026-02-23'
+  ecosystem_connections:
+  - target: ollama
+    relation: integrates_with
+    note: Primary backend, most popular UI for Ollama
+  - target: vllm
+    relation: integrates_with
+    note: Can use vLLM via OpenAI-compatible API
+  - target: langchain
+    relation: related_to
+    note: Can be used as UI layer for LangChain apps
+  - target: milvus
+    relation: integrates_with
+    note: One of 9 supported vector databases
+  - target: anything-llm
+    relation: alternative_to
+    note: Both full-stack AI apps; Open WebUI more community-driven
+  extras:
+    directory: open-webui-main
+    further_reading:
+    - README.md
+    - docs: https://docs.openwebui.com
+    - community: https://openwebui.com
+    - pipelines: https://github.com/open-webui/pipelines
+    key_features:
+    - Offline-capable, self-hosted
+    - Ollama + OpenAI-compatible APIs
+    - Built-in RAG with 9 vector DBs
+    - Web search integration (15+ providers)
+    - Image generation (DALL-E, ComfyUI, A1111)
+    - Voice/video call support
+    - Pipelines plugin system
+    - Multi-user with RBAC/SSO/LDAP
+    - Model builder for Ollama
+    - Python function calling tools
+    - Horizontal scalability (Redis)
+    raw_core_concepts_structured:
+    - name: Chat Interface
+      description: ChatGPT-like UI with markdown, LaTeX, voice/video
+      location: src/lib/components/chat/
+    - name: RAG Integration
+      description: Built-in document chat with 9 vector DB options
+      location: backend/apps/rag/
+    - name: Pipelines
+      description: Plugin framework for custom logic
+      location: Uses github.com/open-webui/pipelines
+    - name: Model Management
+      description: Pull, create, manage Ollama models
+      location: backend/apps/models/
+    - name: Auth & Permissions
+      description: Multi-user with RBAC, LDAP, SSO
+      location: backend/apps/webui/
+    - name: Tools Workspace
+      description: Native Python function calling
+      location: src/lib/components/workspace/
+    raw_key_entry_points_structured:
+    - path: backend/
+      purpose: FastAPI backend (Python)
+    - path: src/
+      purpose: SvelteKit frontend (TypeScript)
+    - path: backend/apps/rag/
+      purpose: RAG/document processing
+    - path: backend/apps/webui/
+      purpose: User/auth management
+- node_id: repo::pathwaycom/llm-app
+  github_full_name: pathwaycom/llm-app
+  html_url: https://github.com/pathwaycom/llm-app
+  source: compiled_master
+  name: llm-app
+  category: rag_frameworks
+  summary: 'Ready-to-deploy LLM application templates built on Pathway''s real-time
+    data
+
+    framework. Provides production-ready RAG pipelines with live document indexing,
+
+    incremental updates, and HTTP API endpoints. Includes templates for private
+
+    RAG, indexed RAG, and question-answering systems.
+
+    '
+  core_concepts:
+  - Real-time RAG
+  - Pathway Integration
+  - API Templates
+  - Docker Deployment
+  key_entry_points:
+  - app/
+  - examples/
+  - docker-compose.yaml
+  build_run:
+    language: Python
+    manager: pip
+    build: pip install -e .
+    test: pytest
+    docker: docker-compose up
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/llm-app.yaml
+    as_of: '2026-02-23'
+  ecosystem_connections:
+  - target: pathway
+    relation: extends
+    note: Built on Pathway's stream processing
+  - target: langchain
+    relation: alternative_to
+    note: Different approach; llm-app focuses on real-time
+  - target: llama_index
+    relation: alternative_to
+    note: llm-app emphasizes live data vs static indexing
+  - target: ragflow
+    relation: alternative_to
+    note: llm-app is lighter-weight, real-time focused
+  - target: ollama
+    relation: integrates_with
+    note: Can use Ollama for local LLM inference
+  extras:
+    directory: llm-app-main
+    further_reading:
+    - README.md
+    - examples/README.md
+    raw_core_concepts_structured:
+    - name: Real-time RAG
+      description: Live document indexing with automatic updates on file changes
+      location: app/
+    - name: Pathway Integration
+      description: Built on Pathway stream processing engine
+      location: (uses pathway package)
+    - name: API Templates
+      description: HTTP endpoints for querying and document management
+      location: app/
+    - name: Docker Deployment
+      description: Containerized deployment for production
+      location: docker-compose.yaml
+    raw_key_entry_points_structured:
+    - path: app/
+      purpose: Main application templates
+    - path: examples/
+      purpose: Example implementations
+    - path: docker-compose.yaml
+      purpose: Container orchestration
+- node_id: repo::pathwaycom/pathway
+  github_full_name: pathwaycom/pathway
+  html_url: https://github.com/pathwaycom/pathway
+  source: compiled_master
+  name: pathway
+  category: data_pipelines
+  summary: 'Python ETL framework for stream processing, real-time analytics, and LLM
+    pipelines.
+
+    Powered by a scalable Rust engine based on Differential Dataflow for incremental
+
+    computation. Same code works for batch and streaming. Includes LLM xpack with
+
+    vector index, embedders, and LangChain/LlamaIndex integrations for live RAG.
+
+    '
+  core_concepts:
+  - Streaming Engine
+  - Connectors (IO)
+  - LLM xpack
+  - Transformations
+  key_entry_points:
+  - python/pathway/
+  - python/pathway/io/
+  - python/pathway/xpacks/
+  build_run:
+    language: Python (Rust engine)
+    install: pip install pathway
+    usage: 'import pathway as pw
+
+
+      input_table = pw.io.csv.read("./input/", schema=MySchema)
+
+      result = input_table.filter(input_table.value >= 0)
+
+      pw.io.jsonlines.write(result, "output.jsonl")
+
+      pw.run()  # Start streaming
+
+      '
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/pathway.yaml
+    as_of: '2026-02-23'
+  ecosystem_connections:
+  - target: langchain
+    relation: integrates_with
+    note: Pathway vector store integration for LangChain
+  - target: llama_index
+    relation: integrates_with
+    note: Pathway retriever for LlamaIndex
+  - target: milvus
+    relation: alternative_to
+    note: Pathway has in-memory real-time vector index
+  - target: ollama
+    relation: integrates_with
+    note: Pathway supports Ollama for local LLM RAG
+  extras:
+    directory: pathway-main
+    further_reading:
+    - README.md
+    - docs: https://pathway.com/developers/
+    - templates: https://pathway.com/developers/templates
+    key_features:
+    - Unified batch and streaming code
+    - Rust engine for Python-scale performance
+    - 300+ data source connectors via Airbyte
+    - Real-time vector index for live RAG
+    - LangChain and LlamaIndex integrations
+    - Persistence and exactly-once consistency (enterprise)
+    - Monitoring dashboard
+    raw_core_concepts_structured:
+    - name: Streaming Engine
+      description: Rust-based differential dataflow for incremental computation
+      location: python/pathway/internals/
+    - name: Connectors (IO)
+      description: Kafka, GDrive, PostgreSQL, SharePoint, Airbyte (300+ sources)
+      location: python/pathway/io/
+    - name: LLM xpack
+      description: Vector index, embedders, splitters, LLM wrappers for RAG
+      location: python/pathway/xpacks/
+    - name: Transformations
+      description: Stateless and stateful (joins, windowing, sorting)
+      location: python/pathway/stdlib/
+    raw_key_entry_points_structured:
+    - path: python/pathway/
+      purpose: Core library
+    - path: python/pathway/io/
+      purpose: Data connectors
+    - path: python/pathway/xpacks/
+      purpose: LLM/RAG utilities
+    use_cases:
+    - Real-time ETL pipelines
+    - Live RAG with document updates
+    - Event-driven alerting
+    - Streaming analytics
+- node_id: repo::rapiz1/rathole
+  github_full_name: rapiz1/rathole
+  html_url: https://github.com/rapiz1/rathole
+  source: compiled_master
+  name: rathole
+  category: tunneling
+  summary: 'A high-performance reverse proxy for NAT traversal written in Rust, designed
+    to expose services behind NAT/firewalls to the public internet with lower resource
+    consumption and higher throughput than alternatives like frp or ngrok.
+
+    '
+  core_concepts:
+  - client-server tunnel architecture
+  - service-based token authentication
+  - transport layer abstraction
+  - hot reload
+  key_entry_points:
+  - src/main.rs:8
+  - src/lib.rs:62
+  - src/client.rs:34
+  - src/server.rs:42
+  - src/config.rs
+  - src/protocol.rs
+  - src/transport/mod.rs
+  build_run:
+    language: rust
+    package_manager: cargo
+    build_command: cargo build --release
+    run_command: rathole <config.toml>
+    test_command: cargo test
+    extra_info: 'Feature flags control included functionality:
+
+      - default: server, client, native-tls, noise, websocket-native-tls, hot-reload
+
+      - embedded: minimal build for routers (~500KB with strip + LTO)
+
+      - Build minimal: cargo build --release --no-default-features --features server,client,noise
+
+      '
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/rathole.yaml
+    as_of: '2026-02-23'
+  extras:
+    directory: rathole-main
+    raw_core_concepts_structured:
+    - name: client-server tunnel architecture
+      description: Client runs behind NAT, connects outbound to a public server; server
+        forwards incoming traffic back through the persistent tunnel. Auto-detects
+        mode based on config.
+    - name: service-based token authentication
+      description: Each forwarded service has its own mandatory token for authentication.
+        Tokens are validated during handshake, preventing unauthorized access.
+    - name: transport layer abstraction
+      description: Supports multiple transport types (TCP, TLS, Noise protocol, WebSocket)
+        with a unified interface. Noise protocol provides encryption without certificate
+        management.
+    - name: hot reload
+      description: Configuration can be reloaded at runtime to add/remove services
+        without restarting, using file watcher and service update channels.
+    raw_key_entry_points_structured:
+    - path: src/main.rs:8
+      purpose: Binary entry point; parses CLI args, sets up signal handling, initializes
+        logging, calls run()
+    - path: src/lib.rs:62
+      purpose: Core run() function; handles genkey command, creates config watcher,
+        manages instance lifecycle and hot reload
+    - path: src/client.rs:34
+      purpose: run_client() - client entry point; creates Client with appropriate
+        transport type and runs the tunnel
+    - path: src/server.rs:42
+      purpose: run_server() - server entry point; creates Server with appropriate
+        transport type and handles incoming connections
+    - path: src/config.rs
+      purpose: Configuration parsing and validation for client/server/services/transport
+        settings
+    - path: src/protocol.rs
+      purpose: Wire protocol definitions (Hello, Auth, Ack, ControlChannelCmd, DataChannelCmd)
+        for client-server communication
+    - path: src/transport/mod.rs
+      purpose: Transport trait and implementations for TCP/TLS/Noise/WebSocket abstraction
+- node_id: repo::run-llama/llama_index
+  github_full_name: run-llama/llama_index
+  html_url: https://github.com/run-llama/llama_index
+  source: compiled_master
+  name: llama_index
+  category: rag_frameworks
+  summary: 'A "data framework" for building LLM applications with a focus on RAG (Retrieval-Augmented
+
+    Generation). LlamaIndex excels at data ingestion, indexing, and retrieval with
+    100+ LLM
+
+    integrations and 80+ vector store integrations. Unlike LangChain''s general-purpose
+    approach,
+
+    LlamaIndex specializes in connecting LLMs to your private data. Also offers LlamaCloud
+    for
+
+    managed document parsing (LlamaParse) and extraction.
+
+    '
+  core_concepts:
+  - llama-index-core
+  - Data Connectors (Readers)
+  - Indices
+  - Query Engines
+  - Retrievers
+  - Integrations
+  key_entry_points:
+  - llama-index-core/llama_index/core/
+  - llama-index-integrations/llms/
+  - llama-index-integrations/vector_stores/
+  - llama-index-integrations/embeddings/
+  - docs/examples/
+  build_run:
+    language: Python
+    manager: poetry
+    build: pip install poetry && poetry install --with dev
+    test: pytest
+    docs: make docs
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/llama_index.yaml
+    as_of: '2026-02-23'
+  ecosystem_connections:
+  - target: langchain
+    relation: alternative_to
+    note: LlamaIndex is data-focused RAG; LangChain is general-purpose orchestration
+  - target: ollama
+    relation: integrates_with
+    note: llama-index-llms-ollama for local models
+  - target: milvus
+    relation: integrates_with
+    note: llama-index-vector-stores-milvus for vector storage
+  - target: vllm
+    relation: integrates_with
+    note: llama-index-llms-vllm integration available
+  - target: ragflow
+    relation: alternative_to
+    note: Both focus on RAG; different approaches to document understanding
+  - target: graphrag
+    relation: related_to
+    note: LlamaIndex has graph_rag module; complementary approaches
+  - target: xinference
+    relation: integrates_with
+    note: llama-index-llms-xinference integration
+  extras:
+    directory: llama_index-main
+    further_reading:
+    - README.md
+    - docs/examples/ (extensive examples)
+    - docs: https://docs.llamaindex.ai/en/stable/
+    - llamahub: https://llamahub.ai/ (integration catalog)
+    - llamacloud: https://cloud.llamaindex.ai/ (managed platform)
+    monorepo_packages:
+    - name: llama-index
+      pypi: llama-index
+      purpose: Starter package (core + common integrations)
+    - name: llama-index-core
+      pypi: llama-index-core
+      purpose: Core framework only
+    - name: llama-index-llms-openai
+      pypi: llama-index-llms-openai
+      purpose: OpenAI integration
+    - name: llama-index-llms-ollama
+      pypi: llama-index-llms-ollama
+      purpose: Ollama local model integration
+    - name: llama-index-llms-anthropic
+      pypi: llama-index-llms-anthropic
+      purpose: Anthropic/Claude integration
+    - name: llama-index-vector-stores-milvus
+      pypi: llama-index-vector-stores-milvus
+      purpose: Milvus vector store
+    - name: llama-index-vector-stores-chroma
+      pypi: llama-index-vector-stores-chroma
+      purpose: Chroma vector store
+    - name: llama-index-vector-stores-qdrant
+      pypi: llama-index-vector-stores-qdrant
+      purpose: Qdrant vector store
+    raw_core_concepts_structured:
+    - name: llama-index-core
+      description: Core framework with indices, retrievers, query engines
+      location: llama-index-core/llama_index/core/
+    - name: Data Connectors (Readers)
+      description: Ingest data from APIs, PDFs, SQL, etc. via LlamaHub
+      location: llama-index-core/llama_index/core/readers/
+    - name: Indices
+      description: Vector, tree, keyword, and summary indices for data structure
+      location: llama-index-core/llama_index/core/indices/
+    - name: Query Engines
+      description: Retrieval + response synthesis pipeline
+      location: llama-index-core/llama_index/core/query_engine/
+    - name: Retrievers
+      description: Fetch relevant context from indices
+      location: llama-index-core/llama_index/core/retrievers/
+    - name: Integrations
+      description: 300+ integration packages for LLMs, embeddings, vector stores
+      location: llama-index-integrations/
+    raw_key_entry_points_structured:
+    - path: llama-index-core/llama_index/core/
+      purpose: Core framework abstractions
+    - path: llama-index-integrations/llms/
+      purpose: 100+ LLM provider integrations
+    - path: llama-index-integrations/vector_stores/
+      purpose: 80+ vector store integrations
+    - path: llama-index-integrations/embeddings/
+      purpose: Embedding model integrations
+    - path: docs/examples/
+      purpose: Usage examples for common patterns
+- node_id: repo::shubhamsaboo/awesome-llm-apps
+  github_full_name: shubhamsaboo/awesome-llm-apps
+  html_url: https://github.com/shubhamsaboo/awesome-llm-apps
+  source: compiled_master
+  name: awesome-llm-apps
+  category: rag_frameworks
+  summary: 'Curated collection of practical LLM applications demonstrating RAG, AI
+    agents,
+
+    multi-agent teams, MCP, and voice agents. Each example includes complete code
+
+    and instructions for running with various model providers (OpenAI, Anthropic,
+
+    Google, xAI, and open-source models via local deployment).
+
+    '
+  core_concepts:
+  - RAG Applications
+  - Agent Implementations
+  - Voice Agents
+  - MCP Examples
+  key_entry_points:
+  - README.md
+  - (various project directories)
+  build_run:
+    language: Python
+    manager: pip
+    build: pip install -r requirements.txt (per project)
+    test: Varies by project
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/awesome-llm-apps.yaml
+    as_of: '2026-02-23'
+  ecosystem_connections:
+  - target: langchain
+    relation: integrates_with
+    note: Many examples use LangChain framework
+  - target: llama_index
+    relation: integrates_with
+    note: Examples using LlamaIndex for RAG
+  - target: ollama
+    relation: integrates_with
+    note: Local model examples via Ollama
+  - target: open_webui
+    relation: related_to
+    note: Similar UI-focused applications
+  extras:
+    directory: awesome-llm-apps-main
+    further_reading:
+    - README.md
+    raw_core_concepts_structured:
+    - name: RAG Applications
+      description: Examples of retrieval-augmented generation with various vector
+        stores
+      location: (distributed across examples/)
+    - name: Agent Implementations
+      description: Single and multi-agent systems with tool use
+      location: (distributed across examples/)
+    - name: Voice Agents
+      description: Speech-to-text and text-to-speech integrations
+      location: (distributed across examples/)
+    - name: MCP Examples
+      description: Model Context Protocol implementations
+      location: (distributed across examples/)
+    raw_key_entry_points_structured:
+    - path: README.md
+      purpose: Index of all applications with setup instructions
+    - path: (various project directories)
+      purpose: Each subdirectory is a standalone application
+- node_id: repo::slackhq/nebula
+  github_full_name: slackhq/nebula
+  html_url: https://github.com/slackhq/nebula
+  source: compiled_master
+  name: nebula
+  category: vpn_mesh
+  summary: 'Slack''s open-source scalable overlay networking tool that creates secure,
+    encrypted mesh VPNs
+
+    connecting computers anywhere in the world. Uses Noise Protocol Framework for
+    mutual authentication,
+
+    lighthouses for peer discovery, and certificate-based identity with built-in security
+    groups for
+
+    fine-grained traffic control.
+
+    '
+  core_concepts:
+  - lighthouses
+  - certificates
+  - security groups
+  key_entry_points:
+  - cmd/nebula/main.go:34
+  - cmd/nebula-cert/main.go:42
+  - cmd/nebula-service/main.go
+  - interface.go:148
+  - lighthouse.go:29
+  - cert/cert.go:19
+  - firewall.go:1
+  - handshake_manager.go:1
+  build_run:
+    language: go
+    go_version: '1.25'
+    package_manager: go mod
+    build_command: make all (all platforms) or go build ./cmd/nebula
+    run_command: ./nebula -config /path/to/config.yml
+    test_command: go test ./...
+    key_dependencies:
+    - flynn/noise (Noise Protocol Framework implementation)
+    - golang.org/x/crypto (cryptographic primitives)
+    - google/gopacket (packet parsing)
+    - vishvananda/netlink (Linux network interfaces)
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/nebula.yaml
+    as_of: '2026-02-23'
+  extras:
+    directory: nebula-master
+    raw_core_concepts_structured:
+    - name: lighthouses
+      description: 'Discovery nodes with routable IPs that help peers find each other
+        in the mesh.
+
+        Lighthouses store peer endpoints and facilitate UDP hole punching for NAT
+        traversal.
+
+        Minimal compute requirements - a $6/mo VPS suffices.
+
+        '
+    - name: certificates
+      description: 'PKI system using X.509-style certificates (v1 protobuf or v2 ASN.1)
+        that assert
+
+        a node''s IP address, name, and group membership. CAs can constrain what IPs,
+        groups,
+
+        and networks subordinate certificates may contain. Supports Curve25519 (default)
+        or P256.
+
+        '
+    - name: security groups
+      description: 'User-defined groups in certificates enable cloud-style firewall
+        rules without
+
+        provider lock-in. Rules can filter by group membership, allowing expressive
+
+        traffic policies like "allow SSH from laptop group to servers group".
+
+        '
+    raw_key_entry_points_structured:
+    - path: cmd/nebula/main.go:34
+      purpose: Main CLI entry point - loads config, initializes nebula interface,
+        starts the VPN daemon
+    - path: cmd/nebula-cert/main.go:42
+      purpose: Certificate utility - ca, keygen, sign, print, verify commands for
+        PKI management
+    - path: cmd/nebula-service/main.go
+      purpose: OS service wrapper for running nebula as a system daemon (Windows/Linux/macOS)
+    - path: interface.go:148
+      purpose: Interface struct and initialization - core networking engine managing
+        TUN device, UDP connections, hostmap, firewall
+    - path: lighthouse.go:29
+      purpose: LightHouse struct - peer discovery service, address caching, NAT hole
+        punching coordination
+    - path: cert/cert.go:19
+      purpose: Certificate interface - abstracts v1/v2 certificate versions with common
+        operations
+    - path: firewall.go:1
+      purpose: Firewall engine - rule evaluation, conntrack state, packet filtering
+        logic
+    - path: handshake_manager.go:1
+      purpose: Noise Protocol handshake orchestration - manages peer connection establishment
+- node_id: repo::sshuttle/sshuttle
+  github_full_name: sshuttle/sshuttle
+  html_url: https://github.com/sshuttle/sshuttle
+  source: compiled_master
+  name: sshuttle
+  category: remote_access
+  summary: '"Poor man''s VPN" that creates a transparent proxy over SSH, routing traffic
+    through
+
+    a remote server without requiring admin access on the remote or dealing with complex
+
+    VPN protocols. Avoids TCP-over-TCP performance issues through intelligent proxying.
+
+    '
+  core_concepts:
+  - Transparent Proxy via Firewall Manipulation
+  - TCP-over-TCP Avoidance
+  - Multi-Platform Firewall Methods
+  key_entry_points:
+  - sshuttle/cmdline.py:17
+  - sshuttle/__main__.py:8
+  - sshuttle/client.py:100+
+  - sshuttle/firewall.py:25
+  - sshuttle/server.py:1
+  - sshuttle/ssnet.py:1
+  - sshuttle/methods/__init__.py:109
+  build_run:
+    language: python
+    package_manager: uv/hatch
+    python_version: '>=3.9'
+    build_command: pip install . or uv pip install .
+    run_command: sshuttle -r user@remotehost 0/0
+    test_command: pytest --cov=sshuttle --cov-branch
+    key_dependencies:
+    - Python 3.9+ (no external runtime dependencies)
+    - sudo/root access for firewall manipulation
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/sshuttle.yaml
+    as_of: '2026-02-23'
+  extras:
+    directory: sshuttle-master
+    raw_core_concepts_structured:
+    - name: Transparent Proxy via Firewall Manipulation
+      description: 'Intercepts outbound traffic at the firewall level (using nat/nft/pf/ipfw/windivert)
+
+        and redirects it through an SSH tunnel. Works at the network layer without
+        requiring
+
+        application-level proxy configuration.
+
+        '
+    - name: TCP-over-TCP Avoidance
+      description: 'Unlike OpenSSH''s PermitTunnel, sshuttle avoids encapsulating
+        TCP inside TCP (which
+
+        causes terrible performance due to conflicting congestion control). It proxies
+
+        data at the application level over SSH, maintaining one clean TCP connection.
+
+        '
+    - name: Multi-Platform Firewall Methods
+      description: 'Supports multiple firewall backends auto-detected by platform:
+        iptables/nftables
+
+        (Linux), pf (macOS/BSD), ipfw (legacy BSD), and WinDivert (Windows). Each
+        method
+
+        implements the same BaseMethod interface for traffic interception.
+
+        '
+    raw_key_entry_points_structured:
+    - path: sshuttle/cmdline.py:17
+      purpose: Main CLI entry point - parses arguments and routes to firewall, hostwatch,
+        or client mode
+    - path: sshuttle/__main__.py:8
+      purpose: Package entry point - calls cmdline.main() for `python -m sshuttle`
+    - path: sshuttle/client.py:100+
+      purpose: Core client logic - establishes SSH connection, manages firewall, handles
+        traffic proxying
+    - path: sshuttle/firewall.py:25
+      purpose: Firewall subprocess - runs as privileged process to manipulate routing
+        rules
+    - path: sshuttle/server.py:1
+      purpose: Server-side code - runs on remote host via SSH, handles proxied connections
+    - path: sshuttle/ssnet.py:1
+      purpose: Network protocol - defines Mux/Proxy classes and command protocol for
+        client-server communication
+    - path: sshuttle/methods/__init__.py:109
+      purpose: Firewall method dispatcher - loads appropriate backend (nat/nft/pf/ipfw/windivert)
+- node_id: repo::streisandeffect/streisand
+  github_full_name: streisandeffect/streisand
+  html_url: https://github.com/streisandeffect/streisand
+  source: compiled_master
+  name: streisand
+  category: vpn_mesh
+  summary: 'Ansible-based automation tool that provisions cloud servers with multiple
+    censorship-resistant VPN protocols (WireGuard, OpenVPN, Shadowsocks, Tor bridge,
+    etc.) to bypass network restrictions. Named after the Streisand effect - attempts
+    to censor information only amplify its spread.
+
+    '
+  core_concepts:
+  - Multi-protocol VPN suite
+  - Builder/server architecture
+  - Gateway interface
+  key_entry_points:
+  - streisand:1
+  - playbooks/streisand.yml:1
+  - global_vars/default-site.yml:1
+  - playbooks/roles/:1
+  build_run:
+    language: ansible/yaml
+    package_manager: pip (Python dependencies)
+    build_command: 'git clone https://github.com/StreisandEffect/streisand.git &&
+      cd streisand
+
+      ./util/venv-dependencies.sh ./venv
+
+      source ./venv/bin/activate
+
+      '
+    run_command: ./streisand
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/streisand.yaml
+    as_of: '2026-02-23'
+  extras:
+    directory: streisand-master
+    raw_core_concepts_structured:
+    - name: Multi-protocol VPN suite
+      description: Deploys 6+ VPN protocols on a single server (WireGuard, OpenVPN,
+        OpenConnect, Shadowsocks, Tor bridge, SSH tunneling) to ensure at least one
+        works in hostile network environments.
+    - name: Builder/server architecture
+      description: The "builder" is your local machine running Ansible; it provisions
+        a separate "server" in the cloud. Keeps VPN config separate from your daily
+        driver.
+    - name: Gateway interface
+      description: Generates a private HTTPS website with downloadable client configs,
+        certificates, and step-by-step setup instructions for each protocol.
+    raw_key_entry_points_structured:
+    - path: streisand:1
+      purpose: Main entrypoint script - interactive CLI that prompts for cloud provider
+        and invokes appropriate Ansible playbook.
+    - path: playbooks/streisand.yml:1
+      purpose: Master playbook that orchestrates all role imports (VPN services, SSL,
+        firewall, gateway generation).
+    - path: global_vars/default-site.yml:1
+      purpose: Configuration file controlling which VPN services are enabled by default.
+    - path: playbooks/roles/:1
+      purpose: Directory containing 30+ Ansible roles - one per service (openvpn,
+        wireguard, shadowsocks, etc.).
+- node_id: repo::styfle/vgrok
+  github_full_name: styfle/vgrok
+  html_url: https://github.com/styfle/vgrok
+  source: compiled_master
+  name: vgrok
+  category: tunneling
+  summary: 'Exposes local web servers to the public internet via Vercel sandboxes,
+    enabling webhook testing and remote access without port forwarding.
+
+    '
+  core_concepts:
+  - Vercel Sandbox Proxy
+  - Bidirectional WebSocket Tunnel
+  - Sandbox Lifecycle Management
+  key_entry_points:
+  - src/vgrok.ts:1
+  - src/client.ts:33
+  - src/server.ts:1
+  - src/vercel-cli-auth.ts:54
+  build_run:
+    language: TypeScript
+    package_manager: pnpm
+    build_command: pnpm build (uses tsgo)
+    run_command: vgrok <port> or vgrok <port> start
+    test_command: Not configured
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/vgrok.yaml
+    as_of: '2026-02-23'
+  extras:
+    directory: vgrok-main
+    raw_core_concepts_structured:
+    - name: Vercel Sandbox Proxy
+      description: Spins up ephemeral Vercel sandbox instances that act as public-facing
+        proxies, relaying HTTP traffic back to your local machine via WebSocket tunnels.
+    - name: Bidirectional WebSocket Tunnel
+      description: Local client connects to sandbox via WebSocket; HTTP requests hitting
+        the sandbox are serialized, sent through the tunnel, executed locally, and
+        responses streamed back.
+    - name: Sandbox Lifecycle Management
+      description: Supports ephemeral mode (sandbox dies with process) or persistent
+        mode (sandbox reused across sessions via cached config), with 45-minute timeout
+        for hobby tier.
+    raw_key_entry_points_structured:
+    - path: src/vgrok.ts:1
+      purpose: CLI entry point; parses port argument, handles start/stop commands,
+        manages process lifecycle.
+    - path: src/client.ts:33
+      purpose: Core client logic; creates/reuses sandboxes, establishes WebSocket
+        tunnel, forwards local HTTP responses.
+    - path: src/server.ts:1
+      purpose: Runs inside Vercel sandbox; HTTP server that accepts public requests
+        and WebSocket client connections, coordinates request/response routing.
+    - path: src/vercel-cli-auth.ts:54
+      purpose: Extracts Vercel credentials from CLI config files or environment variables
+        for sandbox API authentication.
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  html_url: https://github.com/tailscale/tailscale
+  source: compiled_master
+  name: tailscale
+  category: vpn_mesh
+  summary: WireGuard-based mesh networking platform with identity-aware connectivity
+    controls.
+  core_concepts:
+  - Mesh VPN over WireGuard
+  - Identity-aware network access
+  key_entry_points:
+  - cmd/tailscale
+  - cmd/tailscaled
+  build_run:
+    language: go
+    build: go build ./cmd/tailscale ./cmd/tailscaled
+    test: go test ./...
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/tailscale.yaml
+    as_of: '2026-02-23'
+  local_cache_dir: null
+  extras:
+    directory: remote::tailscale/tailscale
+    remote:
+      provider: github
+      mode: api
+      endpoint: /repos/tailscale/tailscale
+      fetched_at_utc: '2026-02-23T03:20:00Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
+- node_id: repo::vllm-project/vllm
+  github_full_name: vllm-project/vllm
+  html_url: https://github.com/vllm-project/vllm
+  source: compiled_master
+  name: vllm
+  category: inference_serving
+  summary: 'High-throughput LLM inference engine from UC Berkeley. vLLM achieves state-of-the-art
+
+    serving performance via PagedAttention (efficient KV cache memory management),
+    continuous
+
+    batching, and optimized CUDA kernels. The go-to choice for production LLM deployments
+
+    requiring maximum throughput. OpenAI-compatible API server included.
+
+    '
+  core_concepts:
+  - PagedAttention
+  - Continuous Batching
+  - LLM Engine
+  - Model Loader
+  - API Server
+  - Distributed Inference
+  key_entry_points:
+  - vllm/engine/
+  - vllm/attention/
+  - vllm/entrypoints/openai/
+  - vllm/model_executor/
+  - vllm/worker/
+  build_run:
+    language: Python + C++/CUDA
+    install: pip install vllm
+    run_server: vllm serve <model> --port 8000
+    run_offline: 'from vllm import LLM
+
+      llm = LLM(model="meta-llama/Llama-2-7b-hf")
+
+      outputs = llm.generate(["Hello, world!"])
+
+      '
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/vllm.yaml
+    as_of: '2026-02-23'
+  ecosystem_connections:
+  - target: ollama
+    relation: alternative_to
+    note: vLLM for production throughput, Ollama for developer convenience
+  - target: lmdeploy
+    relation: alternative_to
+    note: Both high-performance engines; different optimization approaches
+  - target: langchain
+    relation: integrates_with
+    note: LangChain can use vLLM as backend
+  - target: llama_index
+    relation: integrates_with
+    note: llama-index-llms-vllm integration
+  - target: xinference
+    relation: related_to
+    note: Xinference can use vLLM as backend engine
+  extras:
+    directory: vllm-main
+    further_reading:
+    - README.md
+    - docs: https://docs.vllm.ai
+    - paper: https://arxiv.org/abs/2309.06180
+    - blog: https://blog.vllm.ai
+    performance_features:
+    - PagedAttention for efficient KV cache
+    - Continuous batching
+    - CUDA/HIP graphs
+    - FlashAttention integration
+    - Speculative decoding
+    - Quantization (GPTQ, AWQ, INT4/8, FP8)
+    - Chunked prefill
+    - Prefix caching
+    - Multi-LoRA support
+    raw_core_concepts_structured:
+    - name: PagedAttention
+      description: Memory-efficient attention using paged KV cache (like virtual memory)
+      location: vllm/attention/
+    - name: Continuous Batching
+      description: Iteration-level batching for optimal GPU utilization
+      location: vllm/engine/
+    - name: LLM Engine
+      description: Core inference orchestration
+      location: vllm/engine/
+    - name: Model Loader
+      description: HuggingFace model loading and optimization
+      location: vllm/model_executor/
+    - name: API Server
+      description: OpenAI-compatible REST API
+      location: vllm/entrypoints/openai/
+    - name: Distributed Inference
+      description: Tensor, pipeline, and expert parallelism
+      location: vllm/distributed/
+    raw_key_entry_points_structured:
+    - path: vllm/engine/
+      purpose: Core inference engine
+    - path: vllm/attention/
+      purpose: PagedAttention implementation
+    - path: vllm/entrypoints/openai/
+      purpose: OpenAI-compatible API server
+    - path: vllm/model_executor/
+      purpose: Model loading and execution
+    - path: vllm/worker/
+      purpose: GPU worker processes
+- node_id: repo::xorbitsai/inference
+  github_full_name: xorbitsai/inference
+  html_url: https://github.com/xorbitsai/inference
+  source: compiled_master
+  name: xinference
+  category: inference_serving
+  summary: 'Versatile model serving platform from Xorbits. Xinference supports LLMs,
+    embeddings,
+
+    image models, audio models, and multimodal models through a unified interface.
+    Offers
+
+    multiple backend engines (vLLM, llama.cpp, SGLang, MLX) and distributed deployment.
+
+    OpenAI-compatible API with function calling support.
+
+    '
+  core_concepts:
+  - Model Registry
+  - Multi-Backend Support
+  - Distributed Deployment
+  - API Server
+  - Supervisor/Worker
+  key_entry_points:
+  - xinference/api/
+  - xinference/inference/
+  - xinference/model/
+  - xinference/core/
+  - xinference/client/
+  build_run:
+    language: Python
+    install: pip install xinference
+    run_server: xinference-local --host 0.0.0.0 --port 9997
+    cli: xinference launch --model-name <name> --model-format pytorch
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/xinference.yaml
+    as_of: '2026-02-23'
+  ecosystem_connections:
+  - target: vllm
+    relation: integrates_with
+    note: Xinference can use vLLM as backend engine
+  - target: ollama
+    relation: alternative_to
+    note: Both easy deployment; Xinference more model types
+  - target: langchain
+    relation: integrates_with
+    note: LangChain has Xinference integration
+  - target: llama_index
+    relation: integrates_with
+    note: LlamaIndex has Xinference integration
+  - target: ragflow
+    relation: integrates_with
+    note: RAGFlow lists Xinference as integration
+  extras:
+    backends:
+    - vLLM (high throughput)
+    - llama.cpp / xllamacpp (GGUF, CPU-friendly)
+    - SGLang (structured outputs)
+    - MLX (Apple Silicon)
+    - Transformers (HuggingFace)
+    - TensorRT
+    directory: inference-main
+    further_reading:
+    - README.md
+    - docs: https://inference.readthedocs.io
+    - enterprise: https://xinference.io
+    raw_core_concepts_structured:
+    - name: Model Registry
+      description: Built-in catalog of state-of-the-art models
+      location: xinference/model/
+    - name: Multi-Backend Support
+      description: vLLM, llama.cpp, SGLang, Transformers, MLX
+      location: xinference/inference/
+    - name: Distributed Deployment
+      description: Multi-node, multi-GPU cluster support
+      location: xinference/deploy/
+    - name: API Server
+      description: OpenAI-compatible RESTful API
+      location: xinference/api/
+    - name: Supervisor/Worker
+      description: Cluster architecture with supervisor coordinating workers
+      location: xinference/core/
+    raw_key_entry_points_structured:
+    - path: xinference/api/
+      purpose: RESTful API server
+    - path: xinference/inference/
+      purpose: Backend engine integrations
+    - path: xinference/model/
+      purpose: Built-in model definitions
+    - path: xinference/core/
+      purpose: Distributed cluster coordination
+    - path: xinference/client/
+      purpose: Python client SDK
+    supported_model_types:
+    - LLMs (chat, completion)
+    - Embedding models
+    - Image models (text-to-image)
+    - Audio models (ASR, TTS)
+    - Multimodal models (VLM)
+    - Rerank models
+- node_id: repo::xtermjs/xterm.js
+  github_full_name: xtermjs/xterm.js
+  html_url: https://github.com/xtermjs/xterm.js
+  source: compiled_master
+  name: xtermjs
+  category: terminal_ui
+  summary: 'A TypeScript/JavaScript library that brings fully-featured terminal emulation
+    to the browser - rendering VT100/xterm escape sequences, handling input, and providing
+    a programmable terminal UI component used by VS Code, Hyper, and hundreds of web-based
+    terminal applications.
+
+    '
+  core_concepts:
+  - Terminal Emulation Engine
+  - Buffer System
+  - Addon Architecture
+  key_entry_points:
+  - src/browser/public/Terminal.ts:25
+  - src/browser/CoreBrowserTerminal.ts:62
+  - src/common/CoreTerminal.ts:46
+  - src/common/InputHandler.ts
+  - typings/xterm.d.ts
+  build_run:
+    language: typescript
+    package_manager: npm
+    build_command: npm run build
+    run_command: npm start
+    test_command: npm test
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/xtermjs.yaml
+    as_of: '2026-02-23'
+  extras:
+    directory: xterm.js-master
+    raw_core_concepts_structured:
+    - name: Terminal Emulation Engine
+      description: 'Parses and renders ANSI/VT escape sequences (CSI, OSC, DCS, APC)
+        to simulate xterm behavior in the browser. Handles cursor movement, text styling,
+        scrolling, mouse tracking, and alternate screen buffers. Zero core dependencies.
+
+        '
+    - name: Buffer System
+      description: 'Manages normal and alternate screen buffers with scrollback support.
+        Each buffer contains lines of cells with character data, attributes (colors,
+        styles), and width information for proper CJK/emoji rendering.
+
+        '
+    - name: Addon Architecture
+      description: 'Extensible via loadable addons for specialized features (webgl
+        rendering, search, web links, image support, clipboard, fit, serialize). Core
+        library stays lean while addons provide optional capabilities.
+
+        '
+    raw_key_entry_points_structured:
+    - path: src/browser/public/Terminal.ts:25
+      purpose: Main public Terminal class - the primary API entry point for creating
+        and interacting with terminal instances in browser apps
+    - path: src/browser/CoreBrowserTerminal.ts:62
+      purpose: Core browser terminal implementation - handles DOM integration, input
+        events, rendering services, and extends CoreTerminal
+    - path: src/common/CoreTerminal.ts:46
+      purpose: Platform-agnostic core terminal logic - buffer management, input parsing,
+        escape sequence handling, and service coordination
+    - path: src/common/InputHandler.ts
+      purpose: Parses and processes terminal input data, handling all ANSI/VT escape
+        sequences and control characters
+    - path: typings/xterm.d.ts
+      purpose: Public TypeScript type definitions - the authoritative API documentation
+        for library consumers
+- node_id: repo::yetidevworks/ytunnel
+  github_full_name: yetidevworks/ytunnel
+  html_url: https://github.com/yetidevworks/ytunnel
+  source: compiled_master
+  name: ytunnel
+  category: tunneling
+  summary: 'TUI-first CLI for managing Cloudflare Tunnels with custom domains - ngrok
+    alternative using your own Cloudflare-managed domain with persistent URLs, multi-account
+    support, and real-time metrics dashboard.
+
+    '
+  core_concepts:
+  - Tunnel Management Layer
+  - Ephemeral vs Persistent Tunnels
+  - Multi-Account/Multi-Zone Architecture
+  key_entry_points:
+  - src/main.rs:17
+  - src/cli.rs:1
+  - src/tui/mod.rs
+  - src/daemon.rs
+  - src/cloudflare.rs
+  - src/tunnel.rs:20
+  - src/config.rs:120
+  - src/state.rs
+  build_run:
+    language: rust
+    package_manager: cargo
+    build_command: cargo build --release
+    install_command: cargo install --path .
+    run_command: ytunnel [args]
+    test_command: cargo test
+    prerequisites:
+    - cloudflared (Cloudflare tunnel daemon installed separately)
+    - Cloudflare API token with Zone/DNS/Tunnel permissions
+    - Domain managed by Cloudflare
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/ytunnel.yaml
+    as_of: '2026-02-23'
+  extras:
+    directory: ytunnel-master
+    raw_core_concepts_structured:
+    - name: Tunnel Management Layer
+      description: 'ytunnel is a management orchestrator, not a daemon itself. It
+        generates cloudflared configs, creates launchd (macOS) or systemd (Linux)
+        service files, and delegates actual tunneling to Cloudflare''s cloudflared
+        binary. The tool runs only when invoked; persistent tunnels survive via OS
+        service managers.
+
+        '
+    - name: Ephemeral vs Persistent Tunnels
+      description: 'Two modes: ephemeral (ytunnel run) creates foreground tunnels
+        that auto-cleanup on Ctrl+C - ideal for quick testing; persistent (ytunnel
+        add) creates background daemons with auto-restart, optional login auto-start,
+        and survives reboots via launchd/systemd integration.
+
+        '
+    - name: Multi-Account/Multi-Zone Architecture
+      description: 'Supports multiple Cloudflare accounts and zones per account. Each
+        tunnel is scoped to an account_name, enabling work/personal environment isolation.
+        DNS CNAME records are auto-managed per zone, and credentials are stored per-tunnel
+        in the config directory.
+
+        '
+    raw_key_entry_points_structured:
+    - path: src/main.rs:17
+      purpose: Main entry point - parses CLI args and dispatches to command handlers
+        or opens TUI
+    - path: src/cli.rs:1
+      purpose: CLI command definitions using clap - defines all subcommands (init,
+        run, add, start, stop, logs, etc.)
+    - path: src/tui/mod.rs
+      purpose: TUI dashboard implementation using ratatui - interactive tunnel management
+        with live metrics
+    - path: src/daemon.rs
+      purpose: Platform-specific daemon management - generates launchd plists (macOS)
+        and systemd units (Linux)
+    - path: src/cloudflare.rs
+      purpose: Cloudflare API client - creates tunnels, manages DNS records, handles
+        credentials
+    - path: src/tunnel.rs:20
+      purpose: Ephemeral tunnel runner - spawns cloudflared process with generated
+        config, handles Ctrl+C cleanup
+    - path: src/config.rs:120
+      purpose: Multi-account config loading/saving with legacy format migration
+    - path: src/state.rs
+      purpose: Persistent tunnel state management (tunnels.toml) tracking tunnel metadata
+        and settings
+- node_id: repo::yusuf-musleh/mmar
+  github_full_name: yusuf-musleh/mmar
+  html_url: https://github.com/yusuf-musleh/mmar
+  source: compiled_master
+  name: mmar
+  category: tunneling
+  summary: 'Zero-dependency, self-hostable HTTP tunnel that exposes localhost services
+    on public URLs via auto-generated subdomains - useful for quick sharing, testing
+    webhooks, or demoing work-in-progress without full deployment.
+
+    '
+  core_concepts:
+  - Client-Server Tunnel Architecture
+  - Custom Tunnel Protocol
+  - Auto-Reconnect with Subdomain Reclamation
+  key_entry_points:
+  - cmd/mmar/main.go:14
+  - internal/client/main.go:283
+  - internal/server/main.go:582
+  - internal/protocol/main.go:77
+  build_run:
+    language: go
+    package_manager: go modules
+    build_command: go build -o mmar ./cmd/mmar
+    run_command: '# Client mode (expose localhost:8080)
+
+      ./mmar client --local-port 8080
+
+      # Server mode (self-hosted)
+
+      ./mmar server --http-port 3376 --tcp-port 6673
+
+      '
+    test_command: go test ./...
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/mmar.yaml
+    as_of: '2026-02-23'
+  extras:
+    directory: mmar-master
+    raw_core_concepts_structured:
+    - name: Client-Server Tunnel Architecture
+      description: Client connects to server via TCP, server assigns unique subdomain,
+        HTTP requests to subdomain are serialized and tunneled through TCP connection
+        to client which forwards to localhost
+    - name: Custom Tunnel Protocol
+      description: Binary protocol with version, message type, length delimiter, and
+        data payload; supports message types like REQUEST, RESPONSE, CREATE_TUNNEL,
+        HEARTBEAT for connection health
+    - name: Auto-Reconnect with Subdomain Reclamation
+      description: Client detects disconnection via heartbeat timeout, attempts reconnection,
+        and reclaims the same subdomain to maintain URL stability for long-running
+        sessions
+    raw_key_entry_points_structured:
+    - path: cmd/mmar/main.go:14
+      purpose: CLI entry point - parses flags and dispatches to server/client/version
+        subcommands
+    - path: internal/client/main.go:283
+      purpose: Client Run() - establishes TCP connection to server, creates tunnel,
+        processes incoming requests
+    - path: internal/server/main.go:582
+      purpose: Server Run() - starts HTTP server for public requests and TCP server
+        for client connections
+    - path: internal/protocol/main.go:77
+      purpose: Tunnel struct and message serialization/deserialization - core protocol
+        implementation

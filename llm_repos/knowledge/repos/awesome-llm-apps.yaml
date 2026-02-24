@@ -1,0 +1,67 @@
+name: awesome-llm-apps
+node_id: repo::shubhamsaboo/awesome-llm-apps
+github_full_name: shubhamsaboo/awesome-llm-apps
+html_url: https://github.com/shubhamsaboo/awesome-llm-apps
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/repos/awesome-llm-apps.yaml
+  as_of: '2026-02-23'
+directory: awesome-llm-apps-main
+category: rag_frameworks
+
+summary: |
+  Curated collection of practical LLM applications demonstrating RAG, AI agents,
+  multi-agent teams, MCP, and voice agents. Each example includes complete code
+  and instructions for running with various model providers (OpenAI, Anthropic,
+  Google, xAI, and open-source models via local deployment).
+
+core_concepts:
+  - name: RAG Applications
+    description: Examples of retrieval-augmented generation with various vector stores
+    location: (distributed across examples/)
+
+  - name: Agent Implementations
+    description: Single and multi-agent systems with tool use
+    location: (distributed across examples/)
+
+  - name: Voice Agents
+    description: Speech-to-text and text-to-speech integrations
+    location: (distributed across examples/)
+
+  - name: MCP Examples
+    description: Model Context Protocol implementations
+    location: (distributed across examples/)
+
+key_entry_points:
+  - path: README.md
+    purpose: Index of all applications with setup instructions
+
+  - path: (various project directories)
+    purpose: Each subdirectory is a standalone application
+
+build_run:
+  language: Python
+  manager: pip
+  build: "pip install -r requirements.txt (per project)"
+  test: "Varies by project"
+
+ecosystem_connections:
+  - target: langchain
+    relation: integrates_with
+    note: Many examples use LangChain framework
+
+  - target: llama_index
+    relation: integrates_with
+    note: Examples using LlamaIndex for RAG
+
+  - target: ollama
+    relation: integrates_with
+    note: Local model examples via Ollama
+
+  - target: open_webui
+    relation: related_to
+    note: Similar UI-focused applications
+
+further_reading:
+  - README.md
