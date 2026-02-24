@@ -1,5 +1,5 @@
 version: 1
-as_of_utc: "2026-02-24T19:58:27Z"
+as_of_utc: "2026-02-24T20:41:12Z"
 
 naming_legend:
   WS: "Workstream (pipeline lane/stage, e.g., WS1-WS6)"
@@ -67,6 +67,10 @@ canonical:
     strategy: "Queue-driven clone-on-demand from master_repo_list-derived intake queue."
     shard_routing_decision_ref: "docs/decisions/intake_shard_routing_decision.md"
     domain_hint_policy: "Metadata-only classifier for future shard split; does not affect current target_shard gate."
+    domain_hint_enforcement:
+      mode: "STRICT_WITH_ALIAS_CANONICALIZATION"
+      gate: "tools/check_intake_queue_sync.py"
+      behavior: "Canonical values required by default; --fix rewrites alias_map values to canonical domain_hint."
     active_pilot_batch:
       status: "SHALLOW_QUEUED_PROVENANCE_CAPTURED"
       prepared_at_utc: "2026-02-24T17:06:16Z"
@@ -123,7 +127,7 @@ todo:
     - id: "F"
       topic: "Intake lifecycle + clone prune workflow"
       status: "IN_PROGRESS"
-      note: "Pilot clone set now has lifecycle/provenance + domain_hint records in inputs/intake/pilot_batch.yaml. Next: run shallow-first canonicalization through WS5/WS4 and write shallow artifact paths back to pilot records."
+      note: "Pilot clone set now has lifecycle/provenance + domain_hint records in inputs/intake/pilot_batch.yaml. Domain_hint alias canonicalization is enforced in tools/check_intake_queue_sync.py. Next: run shallow-first canonicalization through WS5/WS4 and write shallow artifact paths back to pilot records."
     - id: "G"
       topic: "Hard enforcement for intake queue sync"
       status: "PENDING"

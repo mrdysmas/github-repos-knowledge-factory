@@ -36,6 +36,9 @@ This updates:
 python3 tools/check_intake_queue_sync.py --workspace-root .
 ```
 
+This check is strict: it validates queue sync and blocks invalid `domain_hint` values in `pilot_batch.yaml` using the allowlist in `intake_manifest.yaml` (`classification_strategy.domain_hint.suggested_values`).
+It also enforces alias normalization via `classification_strategy.domain_hint.alias_map`: alias values fail by default, and `--fix` rewrites aliases to canonical values.
+
 ## How to Use
 
 1. Refresh queue.

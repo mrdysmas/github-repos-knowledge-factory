@@ -1,6 +1,6 @@
 artifact_type: intake_repo_lifecycle_manifest
 contract_version: 1.0.0-intake
-as_of_utc: "2026-02-24T19:58:27Z"
+as_of_utc: "2026-02-24T20:10:00Z"
 
 intake_model:
   mode: "metadata_first_deep_on_demand"
@@ -38,6 +38,7 @@ classification_strategy:
     purpose: "Metadata-only classifier for future shard split and prioritization."
     affects_target_shard_now: false
     taxonomy_status: "provisional"
+    alias_policy: "aliases are transitional; canonical values in suggested_values are required in committed records"
     suggested_values:
       - "agent_cli"
       - "agent_platform"
@@ -46,6 +47,17 @@ classification_strategy:
       - "workflow_builder"
       - "vector_database"
       - "web_framework"
+    alias_map:
+      "agent-cli": "agent_cli"
+      "agentcli": "agent_cli"
+      "agent-platform": "agent_platform"
+      "agentframework": "agent_framework"
+      "agent-orchestration": "agent_orchestration"
+      "workflow-builder": "workflow_builder"
+      "vectordb": "vector_database"
+      "vector_db": "vector_database"
+      "vector-db": "vector_database"
+      "web-framework": "web_framework"
 
 lifecycle_states:
   - state: discovered

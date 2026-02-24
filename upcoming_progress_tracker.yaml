@@ -1,5 +1,5 @@
 version: 1
-as_of_utc: "2026-02-24T19:58:27Z"
+as_of_utc: "2026-02-24T20:41:12Z"
 
 naming_legend:
   WS: "Workstream (pipeline lane/stage, e.g., WS1-WS6)"
@@ -67,6 +67,9 @@ key_metrics:
   - name: "pilot_repos_with_domain_hint"
     target: 10
     actual: 10
+  - name: "domain_hint_alias_policy_enforced"
+    target: 1
+    actual: 1
   - name: "pilot_repos_canonicalized"
     target: 10
     actual: 0
@@ -82,6 +85,7 @@ execution_checklist:
   - "[x] Pilot clone batch prepared in intake_repos."
   - "[x] Capture provenance metadata for each pilot repo."
   - "[x] Assign domain_hint metadata to each pilot repo record."
+  - "[x] Enforce strict domain_hint alias canonicalization in intake preflight gate."
   - "[ ] Run shallow-first intake and route outputs through WS5 -> WS4."
   - "[ ] Implement WS6 materialization output and validator gate."
   - "[ ] Extend query contract to read deep facts from canonical level."
@@ -103,6 +107,7 @@ results:
   deliverables:
     - "inputs/intake/pilot_batch.yaml (10 pilot lifecycle records with source_commit/default_branch provenance)"
     - "docs/decisions/intake_shard_routing_decision.md (two-shard hold decision + expansion trigger)"
+    - "tools/check_intake_queue_sync.py strict domain_hint alias canonicalization gate"
   validation_runs:
     - "python3 tools/check_intake_queue_sync.py --workspace-root . => PASS (2026-02-24T19:46:56Z)"
   completion_status: null
