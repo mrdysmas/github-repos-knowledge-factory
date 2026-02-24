@@ -6,6 +6,7 @@ Files:
 - `intake_manifest.yaml`: Lifecycle model and progression gates.
 - `prune_policy.yaml`: Clone retention/deletion safety rules.
 - `intake_queue.yaml`: Pull-on-demand queue generated from `master_repo_list.yaml`.
+- `pilot_batch.yaml`: Active pilot execution state (selected repos, provenance, lifecycle status, `domain_hint` metadata).
 
 ## Refresh Queue
 
@@ -40,6 +41,7 @@ python3 tools/check_intake_queue_sync.py --workspace-root .
 1. Refresh queue.
 2. Select `canonical_status: queued` entries for next batch (8-12 recommended).
 3. Clone selected repos only when needed for scanning.
-4. Run shallow-first canonicalization flow.
-5. Mark top deep candidates and apply deep scan on demand.
-6. Apply prune policy to remove clones after extraction when safe.
+4. Assign/confirm `domain_hint` metadata for selected repos (metadata-only; does not change shard gates).
+5. Run shallow-first canonicalization flow.
+6. Mark top deep candidates and apply deep scan on demand.
+7. Apply prune policy to remove clones after extraction when safe.

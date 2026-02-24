@@ -1,10 +1,10 @@
 version: 1
-as_of_utc: "2026-02-24T18:19:50Z"
+as_of_utc: "2026-02-24T19:58:27Z"
 
 naming_legend:
   WS: "Workstream (pipeline lane/stage, e.g., WS1-WS6)"
   M: "Milestone (phase checkpoint, e.g., M1-M4)"
-  D: "Decision (governance decision ID, e.g., D1-D4)"
+  D: "Decision (governance decision ID, e.g., D1-D5)"
 
 phase:
   id: "0"
@@ -20,7 +20,7 @@ workstream_closeouts:
     closeout_approved_at_utc: "2026-02-23T04:57:06Z"
 
 governance:
-  resolved_at_utc: "2026-02-24T01:41:13Z"
+  resolved_at_utc: "2026-02-24T19:58:27Z"
   decisions:
     D1:
       summary: "YAML-only canonical source of truth now; SQLite read-model later only if needed."
@@ -34,6 +34,11 @@ governance:
     D4:
       summary: "Strict blocking gates."
       status: "RESOLVED"
+    D5:
+      summary: "Hold two canonical shards (llm_repos/ssh_repos) through pilot; use domain_hint metadata for non-LLM segmentation now."
+      status: "RESOLVED"
+      rationale: "Avoid pre-pilot schema/tool migration overhead; preserve existing WS1/WS4/WS5 contracts and add domain_hint for future routing flexibility."
+      expansion_trigger: "Consider new shard only after pilot shallow canonicalization is stable and enough repos share a distinct domain requiring different ontology/gates."
 
 canonical:
   source_of_truth: "YAML artifacts"
@@ -51,6 +56,7 @@ canonical:
         - "tools/query_master.py"
   intake_controls:
     manifest: "inputs/intake/intake_manifest.yaml"
+    pilot_batch: "inputs/intake/pilot_batch.yaml"
     queue: "inputs/intake/intake_queue.yaml"
     queue_generator: "tools/build_intake_queue_from_master_repo_list.py"
     queue_sync_gate: "tools/check_intake_queue_sync.py"
@@ -59,9 +65,14 @@ canonical:
     intake_directory: "intake_repos/"
     source_dirs_pending_consolidation: []
     strategy: "Queue-driven clone-on-demand from master_repo_list-derived intake queue."
+    shard_routing_decision_ref: "docs/decisions/intake_shard_routing_decision.md"
+    domain_hint_policy: "Metadata-only classifier for future shard split; does not affect current target_shard gate."
     active_pilot_batch:
-      status: "CLONED_READY"
+      status: "SHALLOW_QUEUED_PROVENANCE_CAPTURED"
       prepared_at_utc: "2026-02-24T17:06:16Z"
+      provenance_captured_at_utc: "2026-02-24T19:46:56Z"
+      queue_sync_status: "PASS"
+      pilot_batch_file: "inputs/intake/pilot_batch.yaml"
       repo_count: 10
       repo_dirs:
         - "intake_repos/anthropics__claude-code"
@@ -112,7 +123,7 @@ todo:
     - id: "F"
       topic: "Intake lifecycle + clone prune workflow"
       status: "IN_PROGRESS"
-      note: "Pilot clone set is prepared (10 repos). Next: record source_commit/provenance and run shallow-first canonicalization through WS5/WS4."
+      note: "Pilot clone set now has lifecycle/provenance + domain_hint records in inputs/intake/pilot_batch.yaml. Next: run shallow-first canonicalization through WS5/WS4 and write shallow artifact paths back to pilot records."
     - id: "G"
       topic: "Hard enforcement for intake queue sync"
       status: "PENDING"
@@ -136,21 +147,22 @@ next_agent_handoff:
       - "tools/check_intake_queue_sync.py"
       - "tools/add_repo_candidate.py"
       - "inputs/intake/intake_manifest.yaml"
+      - "inputs/intake/pilot_batch.yaml"
       - "inputs/intake/intake_queue.yaml"
       - "inputs/intake/README.md"
       - "inputs/intake/prune_policy.yaml"
       - "master_graph_merge_progress.yaml"
     immediate_next_step:
       id: "INTAKE-1"
-      objective: "Run shallow-first intake on the prepared 10-repo pilot clone set and capture provenance metadata."
+      objective: "Run shallow-first intake on the prepared 10-repo pilot clone set (provenance already captured)."
       first_commands:
         - "python3 tools/check_intake_queue_sync.py --workspace-root ."
         - "python3 tools/build_intake_queue_from_master_repo_list.py --workspace-root . --source master_repo_list.yaml --master-index master_index.yaml --output inputs/intake/intake_queue.yaml"
         - "python3 tools/query_master.py stats"
         - "python3 tools/ws6_deep_integrator.py --workspace-root . --materialize-spec reports/ws6_deep_integration/spec.yaml"
       operator_actions:
-        - "Create/update pilot records from inputs/intake/intake_manifest.yaml template for the 10 active pilot clone dirs."
-        - "Capture source_commit/default_branch/provenance for each pilot repo before scan output generation."
+        - "Use inputs/intake/pilot_batch.yaml as source of truth for pilot repo lifecycle and provenance."
+        - "Maintain domain_hint metadata for pilot/new intake records; do not treat domain_hint as shard routing input yet."
         - "Add net-new candidates only via tools/add_repo_candidate.py (not manual queue edits)."
         - "Route pilot shallow outputs through WS5/WS4; mark top deep candidates with priority reasons."
       parallel_step:
@@ -172,5 +184,7 @@ status_docs:
   current: "project_status.yaml"
   execution_tracker: "upcoming_progress_tracker.yaml"
   historical: "master_graph_merge_progress.yaml"
+  decisions:
+    - "docs/decisions/intake_shard_routing_decision.md"
   archived:
     - "docs/archive/high_view_summary--master_graph-merge.md"

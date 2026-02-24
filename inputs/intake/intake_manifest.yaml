@@ -1,6 +1,6 @@
 artifact_type: intake_repo_lifecycle_manifest
 contract_version: 1.0.0-intake
-as_of_utc: "2026-02-24T16:21:47Z"
+as_of_utc: "2026-02-24T19:58:27Z"
 
 intake_model:
   mode: "metadata_first_deep_on_demand"
@@ -26,6 +26,26 @@ queue_source:
   sync_gate: "/Users/szilaa/scripts/ext_sources/github_repos/tools/check_intake_queue_sync.py"
   add_candidate_command: "/Users/szilaa/scripts/ext_sources/github_repos/tools/add_repo_candidate.py"
   mode: "clone_on_demand_from_queue"
+
+classification_strategy:
+  shard_policy:
+    current_allowed_shards:
+      - "llm_repos"
+      - "ssh_repos"
+    decision: "Keep two-shard routing through pilot; defer new shard creation until post-pilot trigger."
+    decision_ref: "/Users/szilaa/scripts/ext_sources/github_repos/docs/decisions/intake_shard_routing_decision.md"
+  domain_hint:
+    purpose: "Metadata-only classifier for future shard split and prioritization."
+    affects_target_shard_now: false
+    taxonomy_status: "provisional"
+    suggested_values:
+      - "agent_cli"
+      - "agent_platform"
+      - "agent_framework"
+      - "agent_orchestration"
+      - "workflow_builder"
+      - "vector_database"
+      - "web_framework"
 
 lifecycle_states:
   - state: discovered
@@ -66,6 +86,7 @@ record_template:
   github_full_name: "<owner>/<name>"
   html_url: "https://github.com/<owner>/<name>"
   intake_path: "/Users/szilaa/scripts/ext_sources/github_repos/intake_repos/<repo-dir>"
+  domain_hint: "<metadata_classifier_only>"
   target_shard: "llm_repos | ssh_repos"
   current_state: "discovered"
   source:
@@ -105,7 +126,10 @@ initial_backlog:
   - id: "INTAKE-PILOT-1"
     objective: "Run shallow-first intake pilot from queued repos in inputs/intake/intake_queue.yaml."
     target_repo_count: "8-12"
-    status: "PENDING"
+    status: "IN_PROGRESS"
+    started_at_utc: "2026-02-24T19:46:56Z"
+    active_batch_file: "/Users/szilaa/scripts/ext_sources/github_repos/inputs/intake/pilot_batch.yaml"
+    note: "Pilot batch records created with queue sync PASS and source_commit/default_branch provenance + domain_hint captured for 10 repos."
     expected_outputs:
       - "WS5-ready manifest rows"
       - "Shallow artifact coverage report"

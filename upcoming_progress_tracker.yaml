@@ -1,5 +1,5 @@
 version: 1
-as_of_utc: "2026-02-24T18:19:50Z"
+as_of_utc: "2026-02-24T19:58:27Z"
 
 naming_legend:
   WS: "Workstream (pipeline lane/stage, e.g., WS1-WS6)"
@@ -36,7 +36,8 @@ acceptance_criteria:
 milestones:
   - id: "M1"
     name: "Pilot provenance complete"
-    status: "PENDING"
+    status: "COMPLETE"
+    completed_at_utc: "2026-02-24T19:46:56Z"
     done_when:
       - "10/10 pilot repos have provenance fields recorded."
       - "No missing source_commit/default_branch in pilot records."
@@ -62,7 +63,10 @@ milestones:
 key_metrics:
   - name: "pilot_repos_with_provenance"
     target: 10
-    actual: 0
+    actual: 10
+  - name: "pilot_repos_with_domain_hint"
+    target: 10
+    actual: 10
   - name: "pilot_repos_canonicalized"
     target: 10
     actual: 0
@@ -76,7 +80,8 @@ key_metrics:
 execution_checklist:
   - "[x] Queue generated from master_repo_list and synced."
   - "[x] Pilot clone batch prepared in intake_repos."
-  - "[ ] Capture provenance metadata for each pilot repo."
+  - "[x] Capture provenance metadata for each pilot repo."
+  - "[x] Assign domain_hint metadata to each pilot repo record."
   - "[ ] Run shallow-first intake and route outputs through WS5 -> WS4."
   - "[ ] Implement WS6 materialization output and validator gate."
   - "[ ] Extend query contract to read deep facts from canonical level."
@@ -95,16 +100,22 @@ risks:
     status: "OPEN"
 
 results:
-  deliverables: []
-  validation_runs: []
+  deliverables:
+    - "inputs/intake/pilot_batch.yaml (10 pilot lifecycle records with source_commit/default_branch provenance)"
+    - "docs/decisions/intake_shard_routing_decision.md (two-shard hold decision + expansion trigger)"
+  validation_runs:
+    - "python3 tools/check_intake_queue_sync.py --workspace-root . => PASS (2026-02-24T19:46:56Z)"
   completion_status: null
   issues_encountered: []
 
 findings: |
-  Pending execution. Initial architecture signal:
-  this is a classic "staging-to-canonical promotion" pattern where draft discovery
-  must be schema-normalized before merge. Biggest failure mode is treating draft
-  deep YAML as canonical data without a materialization gate.
+  Pilot setup checkpoint complete:
+  queue sync is passing and 10 pilot clones now have lifecycle/provenance records.
+  D5 is documented: keep two shards during pilot and use domain_hint as metadata-only.
+  Architecture signal remains the same: this is a classic "staging-to-canonical
+  promotion" pattern where draft discovery must be schema-normalized before merge.
+  Biggest failure mode is treating draft deep YAML as canonical data without a
+  materialization gate.
 
 decision_rule: |
   IF M1+M2+M3+M4 all complete and acceptance criteria are met:
