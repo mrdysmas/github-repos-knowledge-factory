@@ -1,5 +1,5 @@
 version: 1
-as_of_utc: "2026-02-24T20:41:12Z"
+as_of_utc: "2026-02-24T20:55:49Z"
 
 naming_legend:
   WS: "Workstream (pipeline lane/stage, e.g., WS1-WS6)"
@@ -72,7 +72,7 @@ key_metrics:
     actual: 1
   - name: "pilot_repos_canonicalized"
     target: 10
-    actual: 0
+    actual: 10
   - name: "deep_facts_materialized"
     target: 1
     actual: 0
@@ -86,7 +86,7 @@ execution_checklist:
   - "[x] Capture provenance metadata for each pilot repo."
   - "[x] Assign domain_hint metadata to each pilot repo record."
   - "[x] Enforce strict domain_hint alias canonicalization in intake preflight gate."
-  - "[ ] Run shallow-first intake and route outputs through WS5 -> WS4."
+  - "[x] Run shallow-first intake and route outputs through WS5 -> WS4."
   - "[ ] Implement WS6 materialization output and validator gate."
   - "[ ] Extend query contract to read deep facts from canonical level."
   - "[ ] Add commit-time intake sync enforcement."
@@ -106,21 +106,32 @@ risks:
 results:
   deliverables:
     - "inputs/intake/pilot_batch.yaml (10 pilot lifecycle records with source_commit/default_branch provenance)"
+    - "inputs/intake/pilot_batch.yaml (10 pilot records advanced to shallow_complete with shallow_artifact_paths + ws5_manifest_row)"
+    - "inputs/ws5/ws5_input_manifest.yaml (pilot rows merged onto canonical WS5 input path)"
     - "docs/decisions/intake_shard_routing_decision.md (two-shard hold decision + expansion trigger)"
     - "tools/check_intake_queue_sync.py strict domain_hint alias canonicalization gate"
   validation_runs:
     - "python3 tools/check_intake_queue_sync.py --workspace-root . => PASS (2026-02-24T19:46:56Z)"
+    - "python3 tools/check_intake_queue_sync.py --workspace-root . --fix => FIXED (queued_count=57, already_canonical_count=58)"
+    - "python3 tools/check_intake_queue_sync.py --workspace-root . => PASS (queued_count=57, already_canonical_count=58)"
+    - "python3 tools/ws5_remote_ingestion.py --workspace-root . --input inputs/ws5/ws5_input_manifest.yaml => PASS (gate_ready true)"
+    - "python3 tools/ws1_contract_validator.py --workspace-root . --external-node-policy first_class => PASS"
+    - "python3 tools/trust_gates.py llm_repos/knowledge --production => PASS"
+    - "python3 tools/trust_gates.py ssh_repos/knowledge --production => PASS"
+    - "(cd llm_repos/knowledge && python3 validate.py) => PASS"
+    - "(cd ssh_repos/knowledge && python3 validate.py) => PASS"
+    - "python3 tools/ws4_master_compiler.py --workspace-root . => PASS (gate_ready true)"
+    - "python3 tools/query_master.py stats => repos=60 nodes=74 edges=152 deep_facts=0"
   completion_status: null
-  issues_encountered: []
+  issues_encountered:
+    - "Initial WS4 compile reported duplicate repo node IDs (cloudflared/tailscale) after an incorrect manifest default shard. Resolved by restoring WS5 default shard and cleaning accidental llm duplicate records before re-running gates."
 
 findings: |
-  Pilot setup checkpoint complete:
-  queue sync is passing and 10 pilot clones now have lifecycle/provenance records.
-  D5 is documented: keep two shards during pilot and use domain_hint as metadata-only.
-  Architecture signal remains the same: this is a classic "staging-to-canonical
-  promotion" pattern where draft discovery must be schema-normalized before merge.
-  Biggest failure mode is treating draft deep YAML as canonical data without a
-  materialization gate.
+  INTAKE-PILOT-1 shallow execution complete:
+  queue sync stayed PASS, pilot lifecycle records are now shallow_complete, and
+  WS5/WS1/trust/shard validators + WS4 compile all passed after duplicate-node
+  cleanup. This remains a classic "staging-to-canonical promotion" pattern where
+  strict schema gates protect master artifacts from draft-state drift.
 
 decision_rule: |
   IF M1+M2+M3+M4 all complete and acceptance criteria are met:

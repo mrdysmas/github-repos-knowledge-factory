@@ -1,6 +1,6 @@
 artifact_type: intake_repo_queue
 contract_version: 1.0.0-intake
-generated_at_utc: '2026-02-24T16:01:02Z'
+generated_at_utc: '2026-02-24T20:55:30Z'
 source:
   catalog_file: master_repo_list.yaml
   master_index_file: master_index.yaml
@@ -10,8 +10,8 @@ summary:
   source_rows_missing_github_url: 5
   source_rows_invalid_full_name: 0
   deduped_entries_total: 115
-  already_canonical_count: 48
-  queued_count: 67
+  already_canonical_count: 58
+  queued_count: 57
 policies:
   scan_mode_default: shallow_first
   clone_strategy: clone_on_demand
@@ -90,9 +90,9 @@ entries:
 - queue_id: intake::anthropics/claude-code
   github_full_name: anthropics/claude-code
   html_url: https://github.com/anthropics/claude-code
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - cli_repos
@@ -370,12 +370,12 @@ entries:
   source_row_indexes:
   - 6
   - 77
-- queue_id: intake::FlowiseAI/Flowise
-  github_full_name: FlowiseAI/Flowise
+- queue_id: intake::flowiseai/flowise
+  github_full_name: flowiseai/flowise
   html_url: https://github.com/FlowiseAI/Flowise
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - workflow_repos
@@ -429,9 +429,9 @@ entries:
 - queue_id: intake::gin-gonic/gin
   github_full_name: gin-gonic/gin
   html_url: https://github.com/gin-gonic/gin
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: ssh_repos
   source_categories:
   - go_repos
@@ -723,9 +723,9 @@ entries:
 - queue_id: intake::lancedb/lancedb
   github_full_name: lancedb/lancedb
   html_url: https://github.com/lancedb/lancedb
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - vector_db
@@ -751,9 +751,9 @@ entries:
 - queue_id: intake::langgenius/dify
   github_full_name: langgenius/dify
   html_url: https://github.com/langgenius/dify
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - workflow_repos
@@ -1062,9 +1062,9 @@ entries:
 - queue_id: intake::openai/codex
   github_full_name: openai/codex
   html_url: https://github.com/openai/codex
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - cli_repos
@@ -1174,9 +1174,9 @@ entries:
 - queue_id: intake::pydantic/pydantic-ai
   github_full_name: pydantic/pydantic-ai
   html_url: https://github.com/pydantic/pydantic-ai
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - structured_outputs
@@ -1216,9 +1216,9 @@ entries:
 - queue_id: intake::qdrant/qdrant
   github_full_name: qdrant/qdrant
   html_url: https://github.com/qdrant/qdrant
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - vector_db
@@ -1258,9 +1258,9 @@ entries:
 - queue_id: intake::ruvnet/claude-flow
   github_full_name: ruvnet/claude-flow
   html_url: https://github.com/ruvnet/claude-flow
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - plugin_repos
@@ -1496,9 +1496,9 @@ entries:
 - queue_id: intake::weaviate/weaviate
   github_full_name: weaviate/weaviate
   html_url: https://github.com/weaviate/weaviate
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - vector_db

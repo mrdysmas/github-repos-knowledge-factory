@@ -1,278 +1,338 @@
 artifact_type: intake_repo_pilot_batch
 contract_version: 1.0.0-intake
-as_of_utc: "2026-02-24T19:58:27Z"
-
+as_of_utc: '2026-02-24T20:55:49Z'
 pilot_batch:
-  id: "INTAKE-PILOT-1"
-  status: "READY_FOR_SHALLOW"
+  id: INTAKE-PILOT-1
+  status: SHALLOW_COMPLETE_CANONICALIZED
   queue_sync:
-    checked_at_utc: "2026-02-24T19:46:56Z"
-    status: "PASS"
-  source_queue: "/Users/szilaa/scripts/ext_sources/github_repos/inputs/intake/intake_queue.yaml"
-  intake_directory: "/Users/szilaa/scripts/ext_sources/github_repos/intake_repos"
-  scan_mode: "shallow_first"
-  target_shard_policy: "pilot_non_ssh_default_to_llm_repos"
-  domain_hint_policy: "metadata_only_non_blocking"
-  shard_routing_decision_ref: "/Users/szilaa/scripts/ext_sources/github_repos/docs/decisions/intake_shard_routing_decision.md"
+    checked_at_utc: '2026-02-24T19:46:56Z'
+    status: PASS
+  source_queue: /Users/szilaa/scripts/ext_sources/github_repos/inputs/intake/intake_queue.yaml
+  intake_directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos
+  scan_mode: shallow_first
+  target_shard_policy: pilot_non_ssh_default_to_llm_repos
+  domain_hint_policy: metadata_only_non_blocking
+  shard_routing_decision_ref: /Users/szilaa/scripts/ext_sources/github_repos/docs/decisions/intake_shard_routing_decision.md
   repo_count: 10
-
+  shallow_completed_at_utc: '2026-02-24T20:54:32Z'
 records:
-  - repo_id: "repo::anthropics/claude-code"
-    queue_id: "intake::anthropics/claude-code"
-    github_full_name: "anthropics/claude-code"
-    html_url: "https://github.com/anthropics/claude-code"
-    intake_path: "/Users/szilaa/scripts/ext_sources/github_repos/intake_repos/anthropics__claude-code"
-    domain_hint: "agent_cli"
-    target_shard: "llm_repos"
-    current_state: "shallow_queued"
-    source:
-      mode: "local_clone"
-      source_commit: "8f0fe03e5687b10134d400c10240071523ace5c5"
-      default_branch: "main"
-      observed_at_utc: "2026-02-24T19:46:56Z"
-    outputs:
-      shallow_artifact_paths: []
-      deep_artifact_paths: []
-      ws5_manifest_row: null
-    deep_priority:
-      score: 0
-      reason: ""
-    retention:
-      clone_retention: "pending"
-      eligible_for_deletion: false
-      deletion_approved: false
-      deletion_timestamp_utc: null
-
-  - repo_id: "repo::openai/codex"
-    queue_id: "intake::openai/codex"
-    github_full_name: "openai/codex"
-    html_url: "https://github.com/openai/codex"
-    intake_path: "/Users/szilaa/scripts/ext_sources/github_repos/intake_repos/openai__codex"
-    domain_hint: "agent_cli"
-    target_shard: "llm_repos"
-    current_state: "shallow_queued"
-    source:
-      mode: "local_clone"
-      source_commit: "97d0068658a61df999fe545f06c13a69cda19e86"
-      default_branch: "main"
-      observed_at_utc: "2026-02-24T19:46:56Z"
-    outputs:
-      shallow_artifact_paths: []
-      deep_artifact_paths: []
-      ws5_manifest_row: null
-    deep_priority:
-      score: 0
-      reason: ""
-    retention:
-      clone_retention: "pending"
-      eligible_for_deletion: false
-      deletion_approved: false
-      deletion_timestamp_utc: null
-
-  - repo_id: "repo::langgenius/dify"
-    queue_id: "intake::langgenius/dify"
-    github_full_name: "langgenius/dify"
-    html_url: "https://github.com/langgenius/dify"
-    intake_path: "/Users/szilaa/scripts/ext_sources/github_repos/intake_repos/langgenius__dify"
-    domain_hint: "agent_platform"
-    target_shard: "llm_repos"
-    current_state: "shallow_queued"
-    source:
-      mode: "local_clone"
-      source_commit: "beea1acd9214576ffc79ce76d2cfbd1987e7c8a3"
-      default_branch: "main"
-      observed_at_utc: "2026-02-24T19:46:56Z"
-    outputs:
-      shallow_artifact_paths: []
-      deep_artifact_paths: []
-      ws5_manifest_row: null
-    deep_priority:
-      score: 0
-      reason: ""
-    retention:
-      clone_retention: "pending"
-      eligible_for_deletion: false
-      deletion_approved: false
-      deletion_timestamp_utc: null
-
-  - repo_id: "repo::FlowiseAI/Flowise"
-    queue_id: "intake::FlowiseAI/Flowise"
-    github_full_name: "FlowiseAI/Flowise"
-    html_url: "https://github.com/FlowiseAI/Flowise"
-    intake_path: "/Users/szilaa/scripts/ext_sources/github_repos/intake_repos/FlowiseAI__Flowise"
-    domain_hint: "workflow_builder"
-    target_shard: "llm_repos"
-    current_state: "shallow_queued"
-    source:
-      mode: "local_clone"
-      source_commit: "917e02eb36736fcbfaa4bef9342e217c5d4a9840"
-      default_branch: "main"
-      observed_at_utc: "2026-02-24T19:46:56Z"
-    outputs:
-      shallow_artifact_paths: []
-      deep_artifact_paths: []
-      ws5_manifest_row: null
-    deep_priority:
-      score: 0
-      reason: ""
-    retention:
-      clone_retention: "pending"
-      eligible_for_deletion: false
-      deletion_approved: false
-      deletion_timestamp_utc: null
-
-  - repo_id: "repo::qdrant/qdrant"
-    queue_id: "intake::qdrant/qdrant"
-    github_full_name: "qdrant/qdrant"
-    html_url: "https://github.com/qdrant/qdrant"
-    intake_path: "/Users/szilaa/scripts/ext_sources/github_repos/intake_repos/qdrant__qdrant"
-    domain_hint: "vector_database"
-    target_shard: "llm_repos"
-    current_state: "shallow_queued"
-    source:
-      mode: "local_clone"
-      source_commit: "09f87abbd8215031609988f3b0e220b739db2d9a"
-      default_branch: "master"
-      observed_at_utc: "2026-02-24T19:46:56Z"
-    outputs:
-      shallow_artifact_paths: []
-      deep_artifact_paths: []
-      ws5_manifest_row: null
-    deep_priority:
-      score: 0
-      reason: ""
-    retention:
-      clone_retention: "pending"
-      eligible_for_deletion: false
-      deletion_approved: false
-      deletion_timestamp_utc: null
-
-  - repo_id: "repo::weaviate/weaviate"
-    queue_id: "intake::weaviate/weaviate"
-    github_full_name: "weaviate/weaviate"
-    html_url: "https://github.com/weaviate/weaviate"
-    intake_path: "/Users/szilaa/scripts/ext_sources/github_repos/intake_repos/weaviate__weaviate"
-    domain_hint: "vector_database"
-    target_shard: "llm_repos"
-    current_state: "shallow_queued"
-    source:
-      mode: "local_clone"
-      source_commit: "a1de69b10383114595613810acc662bfb4b2e1d4"
-      default_branch: "main"
-      observed_at_utc: "2026-02-24T19:46:56Z"
-    outputs:
-      shallow_artifact_paths: []
-      deep_artifact_paths: []
-      ws5_manifest_row: null
-    deep_priority:
-      score: 0
-      reason: ""
-    retention:
-      clone_retention: "pending"
-      eligible_for_deletion: false
-      deletion_approved: false
-      deletion_timestamp_utc: null
-
-  - repo_id: "repo::lancedb/lancedb"
-    queue_id: "intake::lancedb/lancedb"
-    github_full_name: "lancedb/lancedb"
-    html_url: "https://github.com/lancedb/lancedb"
-    intake_path: "/Users/szilaa/scripts/ext_sources/github_repos/intake_repos/lancedb__lancedb"
-    domain_hint: "vector_database"
-    target_shard: "llm_repos"
-    current_state: "shallow_queued"
-    source:
-      mode: "local_clone"
-      source_commit: "0d3fc7860a5975238786cbc27c3a6047434568df"
-      default_branch: "main"
-      observed_at_utc: "2026-02-24T19:46:56Z"
-    outputs:
-      shallow_artifact_paths: []
-      deep_artifact_paths: []
-      ws5_manifest_row: null
-    deep_priority:
-      score: 0
-      reason: ""
-    retention:
-      clone_retention: "pending"
-      eligible_for_deletion: false
-      deletion_approved: false
-      deletion_timestamp_utc: null
-
-  - repo_id: "repo::pydantic/pydantic-ai"
-    queue_id: "intake::pydantic/pydantic-ai"
-    github_full_name: "pydantic/pydantic-ai"
-    html_url: "https://github.com/pydantic/pydantic-ai"
-    intake_path: "/Users/szilaa/scripts/ext_sources/github_repos/intake_repos/pydantic__pydantic-ai"
-    domain_hint: "agent_framework"
-    target_shard: "llm_repos"
-    current_state: "shallow_queued"
-    source:
-      mode: "local_clone"
-      source_commit: "bc7f6a28c14c960d9b90a27cfc7985f640f29744"
-      default_branch: "main"
-      observed_at_utc: "2026-02-24T19:46:56Z"
-    outputs:
-      shallow_artifact_paths: []
-      deep_artifact_paths: []
-      ws5_manifest_row: null
-    deep_priority:
-      score: 0
-      reason: ""
-    retention:
-      clone_retention: "pending"
-      eligible_for_deletion: false
-      deletion_approved: false
-      deletion_timestamp_utc: null
-
-  - repo_id: "repo::ruvnet/claude-flow"
-    queue_id: "intake::ruvnet/claude-flow"
-    github_full_name: "ruvnet/claude-flow"
-    html_url: "https://github.com/ruvnet/claude-flow"
-    intake_path: "/Users/szilaa/scripts/ext_sources/github_repos/intake_repos/ruvnet__claude-flow"
-    domain_hint: "agent_orchestration"
-    target_shard: "llm_repos"
-    current_state: "shallow_queued"
-    source:
-      mode: "local_clone"
-      source_commit: "7416506d2726906350cc3bed21ea6b43928c7340"
-      default_branch: "main"
-      observed_at_utc: "2026-02-24T19:46:56Z"
-    outputs:
-      shallow_artifact_paths: []
-      deep_artifact_paths: []
-      ws5_manifest_row: null
-    deep_priority:
-      score: 0
-      reason: ""
-    retention:
-      clone_retention: "pending"
-      eligible_for_deletion: false
-      deletion_approved: false
-      deletion_timestamp_utc: null
-
-  - repo_id: "repo::gin-gonic/gin"
-    queue_id: "intake::gin-gonic/gin"
-    github_full_name: "gin-gonic/gin"
-    html_url: "https://github.com/gin-gonic/gin"
-    intake_path: "/Users/szilaa/scripts/ext_sources/github_repos/intake_repos/gin-gonic__gin"
-    domain_hint: "web_framework"
-    target_shard: "llm_repos"
-    current_state: "shallow_queued"
-    source:
-      mode: "local_clone"
-      source_commit: "81dba468722f41347ed74ee66e9c1781d72f68a5"
-      default_branch: "master"
-      observed_at_utc: "2026-02-24T19:46:56Z"
-    outputs:
-      shallow_artifact_paths: []
-      deep_artifact_paths: []
-      ws5_manifest_row: null
-    deep_priority:
-      score: 0
-      reason: ""
-    retention:
-      clone_retention: "pending"
-      eligible_for_deletion: false
-      deletion_approved: false
-      deletion_timestamp_utc: null
+- repo_id: repo::anthropics/claude-code
+  queue_id: intake::anthropics/claude-code
+  github_full_name: anthropics/claude-code
+  html_url: https://github.com/anthropics/claude-code
+  intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/anthropics__claude-code
+  domain_hint: agent_cli
+  target_shard: llm_repos
+  current_state: shallow_complete
+  source:
+    mode: local_clone
+    source_commit: 8f0fe03e5687b10134d400c10240071523ace5c5
+    default_branch: main
+    observed_at_utc: '2026-02-24T19:46:56Z'
+  outputs:
+    shallow_artifact_paths:
+    - llm_repos/knowledge/repos/anthropics__claude-code.yaml
+    deep_artifact_paths: []
+    ws5_manifest_row:
+      manifest_path: inputs/ws5/ws5_input_manifest.yaml
+      row_index: 2
+      target_shard: llm_repos
+      file_stem: anthropics__claude-code
+      source: remote_metadata
+      as_of: '2026-02-24T19:46:56Z'
+  deep_priority:
+    score: 0
+    reason: ''
+  retention:
+    clone_retention: pending
+    eligible_for_deletion: false
+    deletion_approved: false
+    deletion_timestamp_utc: null
+- repo_id: repo::openai/codex
+  queue_id: intake::openai/codex
+  github_full_name: openai/codex
+  html_url: https://github.com/openai/codex
+  intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/openai__codex
+  domain_hint: agent_cli
+  target_shard: llm_repos
+  current_state: shallow_complete
+  source:
+    mode: local_clone
+    source_commit: 97d0068658a61df999fe545f06c13a69cda19e86
+    default_branch: main
+    observed_at_utc: '2026-02-24T19:46:56Z'
+  outputs:
+    shallow_artifact_paths:
+    - llm_repos/knowledge/repos/openai__codex.yaml
+    deep_artifact_paths: []
+    ws5_manifest_row:
+      manifest_path: inputs/ws5/ws5_input_manifest.yaml
+      row_index: 3
+      target_shard: llm_repos
+      file_stem: openai__codex
+      source: remote_metadata
+      as_of: '2026-02-24T19:46:56Z'
+  deep_priority:
+    score: 0
+    reason: ''
+  retention:
+    clone_retention: pending
+    eligible_for_deletion: false
+    deletion_approved: false
+    deletion_timestamp_utc: null
+- repo_id: repo::langgenius/dify
+  queue_id: intake::langgenius/dify
+  github_full_name: langgenius/dify
+  html_url: https://github.com/langgenius/dify
+  intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/langgenius__dify
+  domain_hint: agent_platform
+  target_shard: llm_repos
+  current_state: shallow_complete
+  source:
+    mode: local_clone
+    source_commit: beea1acd9214576ffc79ce76d2cfbd1987e7c8a3
+    default_branch: main
+    observed_at_utc: '2026-02-24T19:46:56Z'
+  outputs:
+    shallow_artifact_paths:
+    - llm_repos/knowledge/repos/langgenius__dify.yaml
+    deep_artifact_paths: []
+    ws5_manifest_row:
+      manifest_path: inputs/ws5/ws5_input_manifest.yaml
+      row_index: 4
+      target_shard: llm_repos
+      file_stem: langgenius__dify
+      source: remote_metadata
+      as_of: '2026-02-24T19:46:56Z'
+  deep_priority:
+    score: 0
+    reason: ''
+  retention:
+    clone_retention: pending
+    eligible_for_deletion: false
+    deletion_approved: false
+    deletion_timestamp_utc: null
+- repo_id: repo::FlowiseAI/Flowise
+  queue_id: intake::FlowiseAI/Flowise
+  github_full_name: FlowiseAI/Flowise
+  html_url: https://github.com/FlowiseAI/Flowise
+  intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/FlowiseAI__Flowise
+  domain_hint: workflow_builder
+  target_shard: llm_repos
+  current_state: shallow_complete
+  source:
+    mode: local_clone
+    source_commit: 917e02eb36736fcbfaa4bef9342e217c5d4a9840
+    default_branch: main
+    observed_at_utc: '2026-02-24T19:46:56Z'
+  outputs:
+    shallow_artifact_paths:
+    - llm_repos/knowledge/repos/flowiseai__flowise.yaml
+    deep_artifact_paths: []
+    ws5_manifest_row:
+      manifest_path: inputs/ws5/ws5_input_manifest.yaml
+      row_index: 5
+      target_shard: llm_repos
+      file_stem: flowiseai__flowise
+      source: remote_metadata
+      as_of: '2026-02-24T19:46:56Z'
+  deep_priority:
+    score: 0
+    reason: ''
+  retention:
+    clone_retention: pending
+    eligible_for_deletion: false
+    deletion_approved: false
+    deletion_timestamp_utc: null
+- repo_id: repo::qdrant/qdrant
+  queue_id: intake::qdrant/qdrant
+  github_full_name: qdrant/qdrant
+  html_url: https://github.com/qdrant/qdrant
+  intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/qdrant__qdrant
+  domain_hint: vector_database
+  target_shard: llm_repos
+  current_state: shallow_complete
+  source:
+    mode: local_clone
+    source_commit: 09f87abbd8215031609988f3b0e220b739db2d9a
+    default_branch: master
+    observed_at_utc: '2026-02-24T19:46:56Z'
+  outputs:
+    shallow_artifact_paths:
+    - llm_repos/knowledge/repos/qdrant__qdrant.yaml
+    deep_artifact_paths: []
+    ws5_manifest_row:
+      manifest_path: inputs/ws5/ws5_input_manifest.yaml
+      row_index: 6
+      target_shard: llm_repos
+      file_stem: qdrant__qdrant
+      source: remote_metadata
+      as_of: '2026-02-24T19:46:56Z'
+  deep_priority:
+    score: 0
+    reason: ''
+  retention:
+    clone_retention: pending
+    eligible_for_deletion: false
+    deletion_approved: false
+    deletion_timestamp_utc: null
+- repo_id: repo::weaviate/weaviate
+  queue_id: intake::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  html_url: https://github.com/weaviate/weaviate
+  intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/weaviate__weaviate
+  domain_hint: vector_database
+  target_shard: llm_repos
+  current_state: shallow_complete
+  source:
+    mode: local_clone
+    source_commit: a1de69b10383114595613810acc662bfb4b2e1d4
+    default_branch: main
+    observed_at_utc: '2026-02-24T19:46:56Z'
+  outputs:
+    shallow_artifact_paths:
+    - llm_repos/knowledge/repos/weaviate__weaviate.yaml
+    deep_artifact_paths: []
+    ws5_manifest_row:
+      manifest_path: inputs/ws5/ws5_input_manifest.yaml
+      row_index: 7
+      target_shard: llm_repos
+      file_stem: weaviate__weaviate
+      source: remote_metadata
+      as_of: '2026-02-24T19:46:56Z'
+  deep_priority:
+    score: 0
+    reason: ''
+  retention:
+    clone_retention: pending
+    eligible_for_deletion: false
+    deletion_approved: false
+    deletion_timestamp_utc: null
+- repo_id: repo::lancedb/lancedb
+  queue_id: intake::lancedb/lancedb
+  github_full_name: lancedb/lancedb
+  html_url: https://github.com/lancedb/lancedb
+  intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/lancedb__lancedb
+  domain_hint: vector_database
+  target_shard: llm_repos
+  current_state: shallow_complete
+  source:
+    mode: local_clone
+    source_commit: 0d3fc7860a5975238786cbc27c3a6047434568df
+    default_branch: main
+    observed_at_utc: '2026-02-24T19:46:56Z'
+  outputs:
+    shallow_artifact_paths:
+    - llm_repos/knowledge/repos/lancedb__lancedb.yaml
+    deep_artifact_paths: []
+    ws5_manifest_row:
+      manifest_path: inputs/ws5/ws5_input_manifest.yaml
+      row_index: 8
+      target_shard: llm_repos
+      file_stem: lancedb__lancedb
+      source: remote_metadata
+      as_of: '2026-02-24T19:46:56Z'
+  deep_priority:
+    score: 0
+    reason: ''
+  retention:
+    clone_retention: pending
+    eligible_for_deletion: false
+    deletion_approved: false
+    deletion_timestamp_utc: null
+- repo_id: repo::pydantic/pydantic-ai
+  queue_id: intake::pydantic/pydantic-ai
+  github_full_name: pydantic/pydantic-ai
+  html_url: https://github.com/pydantic/pydantic-ai
+  intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/pydantic__pydantic-ai
+  domain_hint: agent_framework
+  target_shard: llm_repos
+  current_state: shallow_complete
+  source:
+    mode: local_clone
+    source_commit: bc7f6a28c14c960d9b90a27cfc7985f640f29744
+    default_branch: main
+    observed_at_utc: '2026-02-24T19:46:56Z'
+  outputs:
+    shallow_artifact_paths:
+    - llm_repos/knowledge/repos/pydantic__pydantic-ai.yaml
+    deep_artifact_paths: []
+    ws5_manifest_row:
+      manifest_path: inputs/ws5/ws5_input_manifest.yaml
+      row_index: 9
+      target_shard: llm_repos
+      file_stem: pydantic__pydantic-ai
+      source: remote_metadata
+      as_of: '2026-02-24T19:46:56Z'
+  deep_priority:
+    score: 0
+    reason: ''
+  retention:
+    clone_retention: pending
+    eligible_for_deletion: false
+    deletion_approved: false
+    deletion_timestamp_utc: null
+- repo_id: repo::ruvnet/claude-flow
+  queue_id: intake::ruvnet/claude-flow
+  github_full_name: ruvnet/claude-flow
+  html_url: https://github.com/ruvnet/claude-flow
+  intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/ruvnet__claude-flow
+  domain_hint: agent_orchestration
+  target_shard: llm_repos
+  current_state: shallow_complete
+  source:
+    mode: local_clone
+    source_commit: 7416506d2726906350cc3bed21ea6b43928c7340
+    default_branch: main
+    observed_at_utc: '2026-02-24T19:46:56Z'
+  outputs:
+    shallow_artifact_paths:
+    - llm_repos/knowledge/repos/ruvnet__claude-flow.yaml
+    deep_artifact_paths: []
+    ws5_manifest_row:
+      manifest_path: inputs/ws5/ws5_input_manifest.yaml
+      row_index: 10
+      target_shard: llm_repos
+      file_stem: ruvnet__claude-flow
+      source: remote_metadata
+      as_of: '2026-02-24T19:46:56Z'
+  deep_priority:
+    score: 0
+    reason: ''
+  retention:
+    clone_retention: pending
+    eligible_for_deletion: false
+    deletion_approved: false
+    deletion_timestamp_utc: null
+- repo_id: repo::gin-gonic/gin
+  queue_id: intake::gin-gonic/gin
+  github_full_name: gin-gonic/gin
+  html_url: https://github.com/gin-gonic/gin
+  intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/gin-gonic__gin
+  domain_hint: web_framework
+  target_shard: llm_repos
+  current_state: shallow_complete
+  source:
+    mode: local_clone
+    source_commit: 81dba468722f41347ed74ee66e9c1781d72f68a5
+    default_branch: master
+    observed_at_utc: '2026-02-24T19:46:56Z'
+  outputs:
+    shallow_artifact_paths:
+    - llm_repos/knowledge/repos/gin-gonic__gin.yaml
+    deep_artifact_paths: []
+    ws5_manifest_row:
+      manifest_path: inputs/ws5/ws5_input_manifest.yaml
+      row_index: 11
+      target_shard: llm_repos
+      file_stem: gin-gonic__gin
+      source: remote_metadata
+      as_of: '2026-02-24T19:46:56Z'
+  deep_priority:
+    score: 0
+    reason: ''
+  retention:
+    clone_retention: pending
+    eligible_for_deletion: false
+    deletion_approved: false
+    deletion_timestamp_utc: null

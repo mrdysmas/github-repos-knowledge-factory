@@ -1,5 +1,5 @@
 version: 1
-as_of_utc: "2026-02-24T20:41:12Z"
+as_of_utc: "2026-02-24T20:55:49Z"
 
 naming_legend:
   WS: "Workstream (pipeline lane/stage, e.g., WS1-WS6)"
@@ -72,9 +72,10 @@ canonical:
       gate: "tools/check_intake_queue_sync.py"
       behavior: "Canonical values required by default; --fix rewrites alias_map values to canonical domain_hint."
     active_pilot_batch:
-      status: "SHALLOW_QUEUED_PROVENANCE_CAPTURED"
+      status: "SHALLOW_COMPLETE_CANONICALIZED"
       prepared_at_utc: "2026-02-24T17:06:16Z"
       provenance_captured_at_utc: "2026-02-24T19:46:56Z"
+      shallow_completed_at_utc: "2026-02-24T20:54:32Z"
       queue_sync_status: "PASS"
       pilot_batch_file: "inputs/intake/pilot_batch.yaml"
       repo_count: 10
@@ -127,7 +128,7 @@ todo:
     - id: "F"
       topic: "Intake lifecycle + clone prune workflow"
       status: "IN_PROGRESS"
-      note: "Pilot clone set now has lifecycle/provenance + domain_hint records in inputs/intake/pilot_batch.yaml. Domain_hint alias canonicalization is enforced in tools/check_intake_queue_sync.py. Next: run shallow-first canonicalization through WS5/WS4 and write shallow artifact paths back to pilot records."
+      note: "Pilot clone set lifecycle/provenance + domain_hint records are now shallow-canonicalized through WS5/WS4, and shallow artifact paths are written to inputs/intake/pilot_batch.yaml. Next: prioritize deep candidates and apply prune policy after follow-up gating."
     - id: "G"
       topic: "Hard enforcement for intake queue sync"
       status: "PENDING"
@@ -158,17 +159,16 @@ next_agent_handoff:
       - "master_graph_merge_progress.yaml"
     immediate_next_step:
       id: "INTAKE-1"
-      objective: "Run shallow-first intake on the prepared 10-repo pilot clone set (provenance already captured)."
+      objective: "Pilot shallow canonicalization is complete; move to deep-candidate prioritization + WS6 materialization."
       first_commands:
         - "python3 tools/check_intake_queue_sync.py --workspace-root ."
-        - "python3 tools/build_intake_queue_from_master_repo_list.py --workspace-root . --source master_repo_list.yaml --master-index master_index.yaml --output inputs/intake/intake_queue.yaml"
         - "python3 tools/query_master.py stats"
         - "python3 tools/ws6_deep_integrator.py --workspace-root . --materialize-spec reports/ws6_deep_integration/spec.yaml"
       operator_actions:
         - "Use inputs/intake/pilot_batch.yaml as source of truth for pilot repo lifecycle and provenance."
         - "Maintain domain_hint metadata for pilot/new intake records; do not treat domain_hint as shard routing input yet."
         - "Add net-new candidates only via tools/add_repo_candidate.py (not manual queue edits)."
-        - "Route pilot shallow outputs through WS5/WS4; mark top deep candidates with priority reasons."
+        - "Mark top deep candidates with explicit priority reasons and queue deep follow-up."
       parallel_step:
         id: "WS6-1"
         objective: "Implement executable deep fact materialization in ws6_deep_integrator.py."

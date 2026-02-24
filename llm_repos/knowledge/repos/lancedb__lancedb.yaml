@@ -1,0 +1,45 @@
+name: lancedb
+node_id: repo::lancedb/lancedb
+github_full_name: lancedb/lancedb
+html_url: https://github.com/lancedb/lancedb
+source: remote_metadata
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/repos/lancedb__lancedb.yaml
+  as_of: '2026-02-24T19:46:56Z'
+directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/lancedb__lancedb
+category: vector_database
+summary: Shallow intake pilot canonicalization for lancedb/lancedb in vector database
+  domain.
+core_concepts:
+- vector database capabilities
+- lancedb repository architecture
+key_entry_points:
+- README.md
+- Cargo.toml
+- docs/
+build_run:
+  language: rust
+  build: cargo build
+  test: cargo test
+local_cache_dir: null
+extras:
+  intake:
+    pilot_batch_id: INTAKE-PILOT-1
+    repo_id: repo::lancedb/lancedb
+    queue_id: intake::lancedb/lancedb
+    intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/lancedb__lancedb
+    domain_hint: vector_database
+    source_mode: local_clone
+    source_commit: 0d3fc7860a5975238786cbc27c3a6047434568df
+    default_branch: main
+    observed_at_utc: '2026-02-24T19:46:56Z'
+  remote:
+    provider: github
+    mode: metadata
+    endpoint: /repos/lancedb/lancedb
+    fetched_at_utc: '2026-02-24T19:46:56Z'
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
