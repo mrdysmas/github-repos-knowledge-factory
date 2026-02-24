@@ -1,0 +1,604 @@
+name: ollama
+node_id: repo::ollama/ollama
+github_full_name: ollama/ollama
+html_url: https://github.com/ollama/ollama
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep_facts/ollama.yaml
+  as_of: '2026-02-23'
+  extractor_version: ws6-deep-integrator-v1
+facts:
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    source_section: configuration[2].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[2].options[0]
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    excerpt: CUDA_VISIBLE_DEVICES
+  object_value: CUDA_VISIBLE_DEVICES
+  note: NVIDIA GPU selection (comma-separated IDs)
+  fact_id: fact::71a9f499f3211935cf1190da
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    source_section: configuration[2].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[2].options[1]
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    excerpt: HIP_VISIBLE_DEVICES
+  object_value: HIP_VISIBLE_DEVICES
+  note: AMD ROCm GPU selection
+  fact_id: fact::466967cf0081a6d8b439d71a
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    source_section: configuration[2].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[2].options[2]
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    excerpt: HSA_OVERRIDE_GFX_VERSION
+  object_value: HSA_OVERRIDE_GFX_VERSION
+  note: AMD GPU architecture override
+  fact_id: fact::c48672723a7df00eddf37f41
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    source_section: configuration[1].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[1]
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    excerpt: OLLAMA_DEBUG
+  object_value: OLLAMA_DEBUG
+  note: 'default: 0; Debug level: 0=off, 1=info, 2=debug, 3=trace'
+  fact_id: fact::ef050c746dc9b969f475966b
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    source_section: configuration[1].options[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[6]
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    excerpt: OLLAMA_FLASH_ATTENTION
+  object_value: OLLAMA_FLASH_ATTENTION
+  note: 'default: false; Enable flash attention'
+  fact_id: fact::f78702de0d8a67e5e66903cf
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    source_section: configuration[1].options[7]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[7]
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    excerpt: OLLAMA_GPU_OVERHEAD
+  object_value: OLLAMA_GPU_OVERHEAD
+  note: 'default: 0; Reserve VRAM per GPU in bytes'
+  fact_id: fact::bf73cce1b8089a6dbc84ea5a
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    source_section: configuration[1].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[0]
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    excerpt: OLLAMA_HOST
+  object_value: OLLAMA_HOST
+  note: 'default: 127.0.0.1:11434; Server listen address'
+  fact_id: fact::1be7054d0629383437a60b10
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    source_section: configuration[1].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[2]
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    excerpt: OLLAMA_KEEP_ALIVE
+  object_value: OLLAMA_KEEP_ALIVE
+  note: 'default: 5m; Duration to keep models in memory'
+  fact_id: fact::8f494345e64c63e3d1435aeb
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    source_section: configuration[1].options[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[4]
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    excerpt: OLLAMA_MAX_LOADED_MODELS
+  object_value: OLLAMA_MAX_LOADED_MODELS
+  note: 'default: 1; Max models loaded per GPU'
+  fact_id: fact::7d1ef4c5530391737dd95975
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    source_section: configuration[1].options[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[5]
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    excerpt: OLLAMA_MODELS
+  object_value: OLLAMA_MODELS
+  note: 'default: ~/.ollama/models; Models storage directory'
+  fact_id: fact::65d79823d3beddac6cc72765
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    source_section: configuration[1].options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[3]
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    excerpt: OLLAMA_NUM_PARALLEL
+  object_value: OLLAMA_NUM_PARALLEL
+  note: 'default: 1; Max parallel requests per model'
+  fact_id: fact::b77a3f1f3d61fecb188fa359
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    source_section: configuration[0].options[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[4]
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    excerpt: min_p
+  object_value: min_p
+  note: 'default: 0.0; Minimum probability threshold'
+  fact_id: fact::f2f26f2919f3af09fd02c969
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    source_section: configuration[0].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[0]
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    excerpt: num_ctx
+  object_value: num_ctx
+  note: 'default: 2048; Context window size'
+  fact_id: fact::71ed35f7983aad64a783293f
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    source_section: configuration[0].options[9]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[9]
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    excerpt: num_predict
+  object_value: num_predict
+  note: 'default: -1; Max tokens (-1 = infinite)'
+  fact_id: fact::3142a9b7be88a1094745083c
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    source_section: configuration[0].options[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[5]
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    excerpt: repeat_last_n
+  object_value: repeat_last_n
+  note: 'default: 64; How far back for repetition penalty'
+  fact_id: fact::3beefe5e49a21856e81c3d73
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    source_section: configuration[0].options[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[6]
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    excerpt: repeat_penalty
+  object_value: repeat_penalty
+  note: 'default: 1.1; Repetition penalty (>1 discourages)'
+  fact_id: fact::da48f3d284238bc5076c1d7d
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    source_section: configuration[0].options[7]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[7]
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    excerpt: seed
+  object_value: seed
+  note: 'default: -1; Random seed (-1 = random)'
+  fact_id: fact::d716a9601164f5c1d2c32484
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    source_section: configuration[0].options[8]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[8]
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    excerpt: stop
+  object_value: stop
+  note: Stop sequence(s)
+  fact_id: fact::9df063146ace25d90cb83fb6
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    source_section: configuration[0].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[1]
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    excerpt: temperature
+  object_value: temperature
+  note: 'default: 0.8; Randomness (0-2)'
+  fact_id: fact::5076bf080e5560f8dbe81a86
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    source_section: configuration[0].options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[3]
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    excerpt: top_k
+  object_value: top_k
+  note: 'default: 40; Top-k sampling'
+  fact_id: fact::75179c0e123e54fa5c00e50d
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    source_section: configuration[0].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[2]
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    excerpt: top_p
+  object_value: top_p
+  note: 'default: 0.9; Nucleus sampling threshold'
+  fact_id: fact::a97f7971478d18cb2641393b
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    excerpt: CUDA not detected
+  object_value: CUDA not detected
+  note: 'cause: Driver or library path issues; fix: Check nvidia-smi works, verify
+    CUDA installation, check OLLAMA_LLM_LIBRARY override'
+  fact_id: fact::7b205279f935231ff529ecc1
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    excerpt: Model not found after pull
+  object_value: Model not found after pull
+  note: 'cause: Model name mismatch or registry issue; fix: Check exact name with
+    ''ollama list'', use full name with tag (e.g., llama3.2:latest)'
+  fact_id: fact::bfe73eaf32135a195e21c730
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    excerpt: Out of memory errors
+  object_value: Out of memory errors
+  note: 'cause: GPU VRAM insufficient for model; fix: Reduce OLLAMA_NUM_PARALLEL,
+    use smaller quantization, or set OLLAMA_GPU_OVERHEAD'
+  fact_id: fact::61144bf727567b1d1e8d7848
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    excerpt: Slow first response
+  object_value: Slow first response
+  note: 'cause: Model loading from disk; fix: Increase OLLAMA_KEEP_ALIVE to keep model
+    in memory longer'
+  fact_id: fact::3a31755136597559246861f1
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    source_section: code_patterns[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: server/routes.go
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    excerpt: REST API handler for text generation with streaming
+  object_value: API Generate Handler
+  note: 'description: REST API handler for text generation with streaming; location:
+    server/routes.go'
+  fact_id: fact::80eeeb958ec7f56c9c20a1ec
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    source_section: code_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cmd/cmd.go
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    excerpt: Cobra command pattern for CLI subcommands
+  object_value: CLI Command Registration
+  note: 'description: Cobra command pattern for CLI subcommands; location: cmd/cmd.go'
+  fact_id: fact::86a75526422ed06bdc2513a6
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    source_section: code_patterns[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: envconfig/config.go
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    excerpt: Runtime configuration via environment variables
+  object_value: Environment Configuration
+  note: 'description: Runtime configuration via environment variables; location: envconfig/config.go'
+  fact_id: fact::170805afdae306e4ac262426
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    source_section: code_patterns[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: server/routes.go
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    excerpt: Layer options from model defaults + request overrides
+  object_value: Model Options Merging
+  note: 'description: Layer options from model defaults + request overrides; location:
+    server/routes.go'
+  fact_id: fact::63e3e38aebe6d54770aacadb
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    source_section: code_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: parser/parser.go
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    excerpt: State machine parser for Modelfile syntax
+  object_value: Modelfile Parser
+  note: 'description: State machine parser for Modelfile syntax; location: parser/parser.go'
+  fact_id: fact::32691ba300ea90cdf6c85c6b
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    source_section: code_patterns[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: server/routes.go
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    excerpt: Server-sent events via newline-delimited JSON
+  object_value: Streaming Response (NDJSON)
+  note: 'description: Server-sent events via newline-delimited JSON; location: server/routes.go'
+  fact_id: fact::7f5f44eb153fa225fac7217e
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    source_section: common_tasks[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[0]
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    excerpt: Create Custom Model from Modelfile
+  object_value: Create Custom Model from Modelfile
+  note: 'Create Modelfile: FROM llama3.2, Add parameters: PARAMETER temperature 0.7,
+    Set system: SYSTEM You are a helpful assistant, Build: ollama create mymodel -f
+    ./Modelfile, Run: ollama run mymodel; PARAMETER values are space-separated, not
+    equals, TEMPLATE uses Go template syntax...'
+  fact_id: fact::61611c2490ec546fc9c72db5
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    source_section: common_tasks[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[2]
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    excerpt: Quantize a Model
+  object_value: Quantize a Model
+  note: 'Pull base model: ollama pull llama3.2, Create with quant: ollama create mymodel
+    -q q4_K_M -f Modelfile, Available: q4_K_M, q4_K_S, q8_0, q5_K_M, etc.; Quantization
+    happens at create time, not pull time, Some quantization requires base model in
+    specific format'
+  fact_id: fact::0a352208f70baf2f572fc9f9
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    source_section: common_tasks[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[1]
+    source_file: llm_repos/knowledge/deep/ollama.yaml
+    excerpt: Use OpenAI-Compatible API
+  object_value: Use OpenAI-Compatible API
+  note: 'Start server: ollama serve (or auto-starts on first use), Pull model: ollama
+    pull llama3.2, Call API: curl http://localhost:11434/v1/chat/completions, Use
+    OpenAI SDK with base_url=http://localhost:11434/v1; API key can be any string
+    (e.g., ''ollama'') when not using cloud, Model...'
+  fact_id: fact::7ccdd97b425b6a37c669d0b1

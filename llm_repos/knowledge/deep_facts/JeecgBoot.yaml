@@ -1,0 +1,519 @@
+name: JeecgBoot
+node_id: repo::jeecgboot/jeecgboot
+github_full_name: jeecgboot/jeecgboot
+html_url: https://github.com/jeecgboot/jeecgboot
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep_facts/JeecgBoot.yaml
+  as_of: '2026-02-23'
+  extractor_version: ws6-deep-integrator-v1
+facts:
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    source_section: configuration[3].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[3].options[1]
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    excerpt: Default credentials
+  object_value: Default credentials
+  note: 'default: admin/123456; Default admin login'
+  fact_id: fact::c24230de38e01f3dfd30f7ca
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    source_section: configuration[2].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[2].options[0]
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    excerpt: category
+  object_value: category
+  note: 'default: required; plugin or mcp'
+  fact_id: fact::02e32edece0d4c4bdc0483dd
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    source_section: configuration[2].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[2].options[2]
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    excerpt: endpoint
+  object_value: endpoint
+  note: 'default: required; URL for SSE, command for stdio'
+  fact_id: fact::e8bf1f2eee14883f5c4df374
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    source_section: configuration[2].options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[2].options[3]
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    excerpt: headers
+  object_value: headers
+  note: 'default: optional; JSON headers or environment variables'
+  fact_id: fact::f2c613334f0732db8c1bc679
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    source_section: configuration[1].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[2]
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    excerpt: jeecg.ai-rag.embed-store.database
+  object_value: jeecg.ai-rag.embed-store.database
+  note: 'default: postgres; Vector database name'
+  fact_id: fact::568f533218f814efbeef317e
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    source_section: configuration[1].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[0]
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    excerpt: jeecg.ai-rag.embed-store.host
+  object_value: jeecg.ai-rag.embed-store.host
+  note: 'default: localhost; Vector store host'
+  fact_id: fact::5e5c2fd0f072d7012eaa7c3d
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    source_section: configuration[1].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[1]
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    excerpt: jeecg.ai-rag.embed-store.port
+  object_value: jeecg.ai-rag.embed-store.port
+  note: 'default: 15432; Vector store port'
+  fact_id: fact::f4064238bd7a9ef8ee38f465
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    source_section: configuration[3].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[3].options[0]
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    excerpt: jeecg.shiro.enabled
+  object_value: jeecg.shiro.enabled
+  note: 'default: true; Enable Apache Shiro auth'
+  fact_id: fact::aa952a1fb25440a6b5135004
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    source_section: configuration[0].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[2]
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    excerpt: spring.datasource.password
+  object_value: spring.datasource.password
+  note: 'default: required; Database password'
+  fact_id: fact::1ab514d02563d89d9194963d
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    source_section: configuration[0].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[0]
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    excerpt: spring.datasource.url
+  object_value: spring.datasource.url
+  note: 'default: required; jdbc:mysql://localhost:3306/jeecg-boot-dev'
+  fact_id: fact::616a9a8b13f13af96ae107bf
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    source_section: configuration[0].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[1]
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    excerpt: spring.datasource.username
+  object_value: spring.datasource.username
+  note: 'default: root; Database username'
+  fact_id: fact::863f1be2498234c223ef6e67
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    source_section: configuration[2].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[2].options[1]
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    excerpt: type
+  object_value: type
+  note: 'default: required; sse or stdio'
+  fact_id: fact::6290288b88b01a9ced193cfa
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    excerpt: AI chat returns 404
+  object_value: AI chat returns 404
+  note: 'cause: Airag module not enabled; fix: Check application.yml includes airag
+    module'
+  fact_id: fact::975de44a67c41412a1432cc7
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    excerpt: Build fails with Lombok errors
+  object_value: Build fails with Lombok errors
+  note: 'cause: Missing Lombok plugin in IDE; fix: Install Lombok plugin in IntelliJ
+    IDEA'
+  fact_id: fact::222c27fb2b5585f245be13ee
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    excerpt: Frontend build fails
+  object_value: Frontend build fails
+  note: 'cause: Node.js version < 20; fix: Upgrade to Node.js 20+'
+  fact_id: fact::acb9ea2d845cd1e9621e8236
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    source_section: troubleshooting[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[4]
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    excerpt: MCP connection fails
+  object_value: MCP connection fails
+  note: 'cause: Wrong endpoint or headers; fix: Verify MCP configuration in database'
+  fact_id: fact::1b23b89e7030b261c03d4f31
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    source_section: troubleshooting[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[5]
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    excerpt: Slow AI responses
+  object_value: Slow AI responses
+  note: 'cause: Rate limiting or model timeout; fix: Adjust timeout settings or use
+    faster model'
+  fact_id: fact::c0d6e7bd6a620f7980ad7ddc
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    excerpt: Vector search fails
+  object_value: Vector search fails
+  note: 'cause: PostgreSQL not running or pgVector not installed; fix: Start PostgreSQL
+    and install pgvector extension'
+  fact_id: fact::1e62248905b42f83451219fa
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    source_section: code_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: jeecg-boot/jeecg-boot-module/jeecg-boot-module-airag/src/main/java/org/jeecg/modules/airag/llm/handler/AIChatHandler.java
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    excerpt: Centralized AI chat with multi-model support
+  object_value: AI Chat Handler
+  note: 'description: Centralized AI chat with multi-model support; location: jeecg-boot/jeecg-boot-module/jeecg-boot-module-airag/src/main/java/org/jeecg/modules/airag/llm/handler/AIChatHandler.java'
+  fact_id: fact::a8b9174007be65b922fbd0c5
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    source_section: code_patterns[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: jeecg-boot/jeecg-boot-module/jeecg-boot-module-airag/src/main/java/org/jeecg/modules/airag/llm/entity/AiragMcp.java
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    excerpt: Model Context Protocol plugin with SSE/stdio support
+  object_value: MCP Plugin Configuration
+  note: 'description: Model Context Protocol plugin with SSE/stdio support; location:
+    jeecg-boot/jeecg-boot-module/jeecg-boot-module-airag/src/main/java/org/jeecg/modules/airag/llm/entity/AiragMcp.java'
+  fact_id: fact::0ab13d9231c3a571f99e8bc1
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    source_section: code_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: jeecgboot-vue3/src/views/demo/form/
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    excerpt: Dynamic form generation with JSON configuration
+  object_value: Online Form Builder
+  note: 'description: Dynamic form generation with JSON configuration; location: jeecgboot-vue3/src/views/demo/form/'
+  fact_id: fact::3c8bff104d0baac38f46b769
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    source_section: code_patterns[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: jeecg-boot/jeecg-boot-module/jeecg-boot-module-airag/src/main/java/org/jeecg/modules/airag/
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    excerpt: Standardized CRUD with MyBatis-Plus
+  object_value: RESTful API with Pagination
+  note: 'description: Standardized CRUD with MyBatis-Plus; location: jeecg-boot/jeecg-boot-module/jeecg-boot-module-airag/src/main/java/org/jeecg/modules/airag/'
+  fact_id: fact::ff5d1be03da7c967e52e5b07
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    source_section: code_patterns[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: jeecgboot-vue3/src/views/super/airag/
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    excerpt: Modern Vue 3 with TypeScript
+  object_value: Vue 3 Composition API
+  note: 'description: Modern Vue 3 with TypeScript; location: jeecgboot-vue3/src/views/super/airag/'
+  fact_id: fact::062cd820447c5b4ba72cae31
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    source_section: code_patterns[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: jeecg-boot/jeecg-boot-base-core/src/main/java/org/jeecg/common/api/dto/AiragFlowDTO.java
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    excerpt: Visual workflow designer with node types
+  object_value: Workflow Engine Nodes
+  note: 'description: Visual workflow designer with node types; location: jeecg-boot/jeecg-boot-base-core/src/main/java/org/jeecg/common/api/dto/AiragFlowDTO.java'
+  fact_id: fact::e707a11dd7aab932cf6495be
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    source_section: common_tasks[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[3]
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    excerpt: Add AI chat to application
+  object_value: Add AI chat to application
+  note: Create AI Application in platform, Configure model and parameters, Add knowledge
+    bases if needed, Configure chat interface, Embed using iframe; Chat history stored
+    in database, Rate limits apply based on model
+  fact_id: fact::7f65f48db958ee3173e87db8
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    source_section: common_tasks[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[1]
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    excerpt: Configure Ollama as AI provider
+  object_value: Configure Ollama as AI provider
+  note: 'Install and start Ollama: ollama serve, Pull model: ollama pull deepseek,
+    Add model in AiragModel entity with modelType: ollama, Set baseUrl: http://localhost:11434;
+    Ollama must be running on port 11434, Pull models before use'
+  fact_id: fact::0877b42bfb63394caed4fd18
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    source_section: common_tasks[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[2]
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    excerpt: Create low-code form
+  object_value: Create low-code form
+  note: Navigate to Online Form Builder, Create new form with JSON config, Define
+    fields with validation rules, Generate backend API automatically, Review generated
+    code; Form JSON must follow JeecgBoot schema, Generated code needs manual review
+  fact_id: fact::6730a7232d23976f3f57f7d0
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    source_section: common_tasks[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[4]
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    excerpt: Deploy to production
+  object_value: Deploy to production
+  note: 'Build frontend: pnpm build, Build JAR: mvn clean package -DskipTests, Deploy:
+    docker-compose -f docker-compose.yml up -d; Use production config file, Set proper
+    environment variables'
+  fact_id: fact::6272c5ddb4f43daaeae3ac3b
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    source_section: common_tasks[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[0]
+    source_file: llm_repos/knowledge/deep/JeecgBoot.yaml
+    excerpt: Set up development environment
+  object_value: Set up development environment
+  note: 'Backend: cd jeecg-boot && mvn clean install -DskipTests, Frontend: cd jeecgboot-vue3
+    && pnpm install && pnpm dev, Install Lombok plugin in IDEA, Ensure MySQL 5.7+
+    running; Requires Node.js 20+ and pnpm 9+, Need Lombok plugin in IDEA'
+  fact_id: fact::078838ccf352463bfe918324

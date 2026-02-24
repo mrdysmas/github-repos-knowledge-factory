@@ -1,0 +1,760 @@
+name: frp
+node_id: repo::fatedier/frp
+github_full_name: fatedier/frp
+html_url: https://github.com/fatedier/frp
+source: ssh_repos
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/deep_facts/frp.yaml
+  as_of: '2026-02-23'
+  extractor_version: ws6-deep-integrator-v1
+facts:
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: api_surface.rest_endpoints[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.rest_endpoints[2]
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: /api/clients
+  object_value: /api/clients
+  note: List connected clients
+  fact_id: fact::3209a23f98b1f20492890ab2
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: api_surface.rest_endpoints[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.rest_endpoints[1]
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: /api/proxies
+  object_value: /api/proxies
+  note: List all active proxies
+  fact_id: fact::3d8d86a794cf57a585486b10
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: api_surface.rest_endpoints[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.rest_endpoints[0]
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: /api/serverinfo
+  object_value: /api/serverinfo
+  note: Server status and configuration
+  fact_id: fact::a80d552f2a26342298cad912
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: api_surface.rest_endpoints[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.rest_endpoints[3]
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: /metrics
+  object_value: /metrics
+  note: Prometheus metrics when enabled
+  fact_id: fact::e5a8f94a74bc9d259e30199d
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: architecture.key_abstractions[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[2]
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: Persistent connection for control messages and heartbeats
+  object_value: Control Connection
+  note: Persistent connection for control messages and heartbeats
+  fact_id: fact::47c386723621d0e7c4ebe2ae
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: architecture.key_abstractions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[0]
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: Defines how to handle work connections for different types (TCP, HTTP,
+      STCP, etc.)
+  object_value: Proxy
+  note: Defines how to handle work connections for different types (TCP, HTTP, STCP,
+    etc.)
+  fact_id: fact::7c6abb1f500baff9c51edaae
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: architecture.key_abstractions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[1]
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: Reverse proxy connections from server to client for secure access
+  object_value: Visitor
+  note: Reverse proxy connections from server to client for secure access
+  fact_id: fact::72419abd245f2dd9b7f46b21
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: architecture.key_abstractions[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[3]
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: Multiplexed connections for actual data transfer
+  object_value: Work Connection
+  note: Multiplexed connections for actual data transfer
+  fact_id: fact::e49121a05d33e9f89477ac44
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: architecture.module_breakdown[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[0]
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: Client service orchestration, control connections, proxy/visitor management
+  object_value: client/
+  note: 'responsibility: Client service orchestration, control connections, proxy/visitor
+    management; key_files: client/service.go, client/control.go, client/proxy/proxy.go'
+  fact_id: fact::1f72542ef8ebce4594e3ab87
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: architecture.module_breakdown[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[2]
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: Configuration structures and validation for all components
+  object_value: pkg/config/v1/
+  note: 'responsibility: Configuration structures and validation for all components;
+    key_files: pkg/config/v1/client.go, pkg/config/v1/server.go, pkg/config/v1/proxy.go'
+  fact_id: fact::07f7b6b78c19ac68dfd37078
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: architecture.module_breakdown[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[3]
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: Protocol message definitions (Login, NewProxy, WorkConn, heartbeats)
+  object_value: pkg/msg/
+  note: 'responsibility: Protocol message definitions (Login, NewProxy, WorkConn,
+    heartbeats); key_files: pkg/msg/msg.go'
+  fact_id: fact::31f4664bb9fe7422e9ca9752
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: architecture.module_breakdown[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[5]
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: Plugin system interfaces for client and server extensions
+  object_value: pkg/plugin/
+  note: 'responsibility: Plugin system interfaces for client and server extensions;
+    key_files: pkg/plugin/client/, pkg/plugin/server/'
+  fact_id: fact::05d8bdd5c32974ba2cf80619
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: architecture.module_breakdown[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[4]
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: Message transport layer with multiplexing support
+  object_value: pkg/transport/
+  note: 'responsibility: Message transport layer with multiplexing support; key_files:
+    pkg/transport/'
+  fact_id: fact::bae5e0afcc83c726be06e0c6
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: architecture.module_breakdown[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[1]
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: Server service with multi-protocol listeners, proxy registry, API endpoints
+  object_value: server/
+  note: 'responsibility: Server service with multi-protocol listeners, proxy registry,
+    API endpoints; key_files: server/service.go, server/proxy/proxy.go, server/registry/'
+  fact_id: fact::d630a166bbbbe40952f2058f
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: configuration.options[7]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[7]
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: auth.method
+  object_value: auth.method
+  note: 'type: string; default: token; Authentication method (token, oidc)'
+  fact_id: fact::2a34e0a71e4a9ce7cd2a41a9
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: configuration.options[8]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[8]
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: auth.token
+  object_value: auth.token
+  note: 'type: string; Shared secret token for authentication'
+  fact_id: fact::1ab578c065c35da210ec3f54
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: configuration.options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[0]
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: bindAddr
+  object_value: bindAddr
+  note: 'type: string; default: 0.0.0.0; Address to bind server listeners'
+  fact_id: fact::f6b753a044206e5a151d3abc
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: configuration.options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[1]
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: bindPort
+  object_value: bindPort
+  note: 'type: int; Main server port for client connections'
+  fact_id: fact::06e5b3e2749aec0553bee9ec
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: configuration.file
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.file
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: file
+  object_value: file
+  note: 'default: frps.toml / frpc.toml (also supports YAML, JSON); configuration
+    default for file'
+  fact_id: fact::d70d37c188c040555c2253ff
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: configuration.options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[2]
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: kcpBindPort
+  object_value: kcpBindPort
+  note: 'type: int; KCP protocol port (UDP-based, lower latency)'
+  fact_id: fact::03b9f7541057185401398661
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: configuration.options[12]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[12]
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: poolCount
+  object_value: poolCount
+  note: 'type: int; Number of connection pool entries'
+  fact_id: fact::a841acb72f310099d680924e
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: configuration.options[11]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[11]
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: protocol
+  object_value: protocol
+  note: 'type: string; default: tcp; Transport protocol (tcp, kcp, quic, websocket)'
+  fact_id: fact::a4b46812417c95bc7022bf0e
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: configuration.options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[3]
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: quicBindPort
+  object_value: quicBindPort
+  note: 'type: int; QUIC protocol port (modern UDP multiplexed)'
+  fact_id: fact::ac5402aaa07c202c4cc36b67
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: configuration.options[9]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[9]
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: serverAddr
+  object_value: serverAddr
+  note: 'type: string; default: 0.0.0.0; Server address to connect to'
+  fact_id: fact::a9bee0fc195abd0b6acb3906
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: configuration.options[10]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[10]
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: serverPort
+  object_value: serverPort
+  note: 'type: int; Server port'
+  fact_id: fact::56a5a8bfe37bd559908c8d84
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: configuration.options[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[6]
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: tcpmuxHTTPConnectPort
+  object_value: tcpmuxHTTPConnectPort
+  note: 'type: int; TCP multiplexing via HTTP CONNECT'
+  fact_id: fact::2f88aeec290d134e7bce137c
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: configuration.options[14]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[14]
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: transport.useCompression
+  object_value: transport.useCompression
+  note: 'type: bool; Enable compression on connections'
+  fact_id: fact::a82ba213f33922afe491e44a
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: configuration.options[13]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[13]
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: transport.useEncryption
+  object_value: transport.useEncryption
+  note: 'type: bool; Enable encryption on connections'
+  fact_id: fact::de8008c5dfa2be80fc61cb4b
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: configuration.options[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[4]
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: vhostHTTPPort
+  object_value: vhostHTTPPort
+  note: 'type: int; HTTP virtual host port for HTTP proxy type'
+  fact_id: fact::d5ee8aec57ef06670b792fec
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: configuration.options[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[5]
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: vhostHTTPSPort
+  object_value: vhostHTTPSPort
+  note: 'type: int; HTTPS virtual host port'
+  fact_id: fact::ea6418a9bc176c4a24776860
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: api_surface.public_functions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[0]
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: client/service.NewService
+  object_value: client/service.NewService
+  note: Create and initialize client service; func NewService(options ServiceOptions)
+    (*Service, error); client/service.go:144
+  fact_id: fact::7947b3cef64a56f64c97e4a0
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: api_surface.public_functions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[1]
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: client/service.Run
+  object_value: client/service.Run
+  note: Start client service and establish server connection; func (sv *Service) Run(ctx
+    context.Context) error; client/service.go:165
+  fact_id: fact::4a47f8d21d02e4448860c9af
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: api_surface.public_functions[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[2]
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: server/service.NewService
+  object_value: server/service.NewService
+  note: Create and initialize server service; func NewService(cfg *v1.ServerConfig)
+    (*Service, error); server/service.go:135
+  fact_id: fact::21819a9ef51b0ea5cff1a958
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: api_surface.public_functions[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[3]
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: server/service.Run
+  object_value: server/service.Run
+  note: Start all server listeners and handlers; func (sv *Service) Run(ctx context.Context)
+    error; server/service.go:200
+  fact_id: fact::6071940ca2e3a7e7b2d0015b
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: path
+  confidence: 0.71
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: extension_points[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[0]
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: client/proxy/proxy.go
+  object_value: client/proxy/proxy.go
+  note: Register custom proxy type with factory function; RegisterProxyFactory
+  fact_id: fact::2da5976fee7f96f435fff0eb
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: path
+  confidence: 0.71
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: extension_points[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[3]
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: pkg/msg/msg.go
+  object_value: pkg/msg/msg.go
+  note: Add custom message types for protocol extensions; msgTypeMap
+  fact_id: fact::6d253fd8f7d9021eed700ab0
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: path
+  confidence: 0.71
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: extension_points[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[1]
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: pkg/plugin/client/
+  object_value: pkg/plugin/client/
+  note: Implement Handle() for custom connection processing; Plugin interface
+  fact_id: fact::e33dd4b506ee7d3cf72d6288
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: path
+  confidence: 0.71
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: extension_points[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[2]
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: pkg/plugin/server/
+  object_value: pkg/plugin/server/
+  note: Add server-side HTTP plugins for auth hooks; HTTPPluginOptions
+  fact_id: fact::1eb47cc95e0ca5619a3f57b5
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: implementation_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: client/proxy/proxy.go:88-103
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: Common functionality in BaseProxy struct, specialized types embed it
+  object_value: Base Proxy Composition
+  note: 'description: Common functionality in BaseProxy struct, specialized types
+    embed it; location: client/proxy/proxy.go:88-103'
+  fact_id: fact::58a350111e5aa89442752e51
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: implementation_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: client/proxy/proxy.go:41-45
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: Proxy types registered via RegisterProxyFactory() at init time
+  object_value: Factory Registration
+  note: 'description: Proxy types registered via RegisterProxyFactory() at init time;
+    location: client/proxy/proxy.go:41-45'
+  fact_id: fact::cea88e9024aba28b33cd8724
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: implementation_patterns[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: pkg/msg/msg.go:22-41
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: Single-byte type identifiers for protocol message routing
+  object_value: Message Type Dispatch
+  note: 'description: Single-byte type identifiers for protocol message routing; location:
+    pkg/msg/msg.go:22-41'
+  fact_id: fact::5597e4c74d6ac403748f0afa
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: implementation_patterns[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: pkg/plugin/client/plugin.go
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: Client/server plugins intercept connections for custom processing
+  object_value: Plugin Hook System
+  note: 'description: Client/server plugins intercept connections for custom processing;
+    location: pkg/plugin/client/plugin.go'
+  fact_id: fact::054d5ace28100f1c06501f2f
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    source_section: implementation_patterns[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: client/control.go
+    source_file: ssh_repos/knowledge/deep/frp.yaml
+    excerpt: Uses yamux for stream multiplexing over single TCP connection
+  object_value: TCP Multiplexing
+  note: 'description: Uses yamux for stream multiplexing over single TCP connection;
+    location: client/control.go'
+  fact_id: fact::79a1293d9a97169d4d90611c

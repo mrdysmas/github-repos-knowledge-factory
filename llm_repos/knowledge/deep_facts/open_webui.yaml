@@ -1,0 +1,604 @@
+name: open_webui
+node_id: repo::open-webui/open-webui
+github_full_name: open-webui/open-webui
+html_url: https://github.com/open-webui/open-webui
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep_facts/open_webui.yaml
+  as_of: '2026-02-23'
+  extractor_version: ws6-deep-integrator-v1
+facts:
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    source_section: configuration[0].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[2]
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    excerpt: DATABASE_URL
+  object_value: DATABASE_URL
+  note: 'default: sqlite:///data/webui.db; Database connection string'
+  fact_id: fact::bff47ec47a5ba581f5558222
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    source_section: configuration[0].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[1]
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    excerpt: DATA_DIR
+  object_value: DATA_DIR
+  note: 'default: backend/data; Persistent data directory'
+  fact_id: fact::1399d1af812609b43446c563
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    source_section: configuration[2].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[2].options[2]
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    excerpt: DEVICE_TYPE
+  object_value: DEVICE_TYPE
+  note: 'default: cpu; Inference device: cpu, cuda, mps'
+  fact_id: fact::4bbb2b5a131eba19a28446c0
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    source_section: configuration[3].options[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[3].options[4]
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    excerpt: ENABLE_LDAP
+  object_value: ENABLE_LDAP
+  note: 'default: False; Enable LDAP auth'
+  fact_id: fact::77c311bb9962893a34c21991
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    source_section: configuration[3].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[3].options[0]
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    excerpt: ENABLE_OAUTH_SIGNUP
+  object_value: ENABLE_OAUTH_SIGNUP
+  note: 'default: False; Allow OAuth signup'
+  fact_id: fact::6e094b9ceefce70c8d4388be
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    source_section: configuration[4].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[4].options[2]
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    excerpt: ENABLE_WEBSOCKET_SUPPORT
+  object_value: ENABLE_WEBSOCKET_SUPPORT
+  note: 'default: True; Real-time updates'
+  fact_id: fact::2bfc73771a1a3425583b8f9d
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    source_section: configuration[3].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[3].options[1]
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    excerpt: OAUTH_CLIENT_ID
+  object_value: OAUTH_CLIENT_ID
+  note: OAuth client ID
+  fact_id: fact::8c3cf127ec567a82ebd97f18
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    source_section: configuration[3].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[3].options[2]
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    excerpt: OAUTH_CLIENT_SECRET
+  object_value: OAUTH_CLIENT_SECRET
+  note: OAuth client secret
+  fact_id: fact::ab920fb2a4982791e46f63df
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    source_section: configuration[1].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[0]
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    excerpt: OLLAMA_BASE_URL
+  object_value: OLLAMA_BASE_URL
+  note: 'default: http://localhost:11434; Ollama endpoint'
+  fact_id: fact::3e340e8a93129b7663a23f39
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    source_section: configuration[1].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[1]
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    excerpt: OPENAI_API_BASE_URL
+  object_value: OPENAI_API_BASE_URL
+  note: OpenAI-compatible endpoint
+  fact_id: fact::17521fe705ddf691516ef8a6
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    source_section: configuration[1].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[2]
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    excerpt: OPENAI_API_KEY
+  object_value: OPENAI_API_KEY
+  note: API key for OpenAI-compatible
+  fact_id: fact::f0ac1abfb6f767f55a05e3eb
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    source_section: configuration[3].options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[3].options[3]
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    excerpt: OPENID_PROVIDER_URL
+  object_value: OPENID_PROVIDER_URL
+  note: OIDC discovery URL
+  fact_id: fact::3139196e92b87642a3e31ce5
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    source_section: configuration[2].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[2].options[0]
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    excerpt: RAG_EMBEDDING_MODEL
+  object_value: RAG_EMBEDDING_MODEL
+  note: 'default: sentence-transformers/all-MiniLM-L6-v2; Embedding model for RAG'
+  fact_id: fact::fa98877d99ad63f9dbb15b2e
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    source_section: configuration[2].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[2].options[1]
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    excerpt: RAG_RERANKING_MODEL
+  object_value: RAG_RERANKING_MODEL
+  note: Optional reranking model
+  fact_id: fact::124a73b980e40107155ab577
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    source_section: configuration[2].options[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[2].options[4]
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    excerpt: RAG_TEXT_SPLITTER
+  object_value: RAG_TEXT_SPLITTER
+  note: 'default: token; Splitter: token, semantic'
+  fact_id: fact::544fbaad888d1f971f9bb739
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    source_section: configuration[2].options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[2].options[3]
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    excerpt: RAG_TOP_K
+  object_value: RAG_TOP_K
+  note: 'default: 5; Top-k retrieval results'
+  fact_id: fact::95c16a49ecd7ca282aebadff
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    source_section: configuration[4].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[4].options[0]
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    excerpt: REDIS_URL
+  object_value: REDIS_URL
+  note: Redis for sessions/caching
+  fact_id: fact::290d6cd62c0d902c4889f8e1
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    source_section: configuration[4].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[4].options[1]
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    excerpt: UVICORN_WORKERS
+  object_value: UVICORN_WORKERS
+  note: 'default: 1; Worker processes'
+  fact_id: fact::d8015e033af07e7cc2f1bb5f
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    source_section: configuration[0].options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[3]
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    excerpt: WEBUI_AUTH
+  object_value: WEBUI_AUTH
+  note: 'default: True; Enable authentication'
+  fact_id: fact::27783b2eab21555888f7accb
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    source_section: configuration[0].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[0]
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    excerpt: WEBUI_SECRET_KEY
+  object_value: WEBUI_SECRET_KEY
+  note: 'default: required; JWT signing key (MUST be set)'
+  fact_id: fact::9bfbcb61258c70e843d5fcaf
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    excerpt: Cannot connect to Ollama
+  object_value: Cannot connect to Ollama
+  note: 'cause: Network isolation in Docker; fix: Use host.docker.internal:11434 on
+    Mac/Windows, or --network host on Linux'
+  fact_id: fact::d1c4728409d49dc33936fa1d
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    excerpt: Login loops or session expires
+  object_value: Login loops or session expires
+  note: 'cause: JWT secret changed or cookie issues; fix: Set stable WEBUI_SECRET_KEY,
+    check cookie same-site settings'
+  fact_id: fact::cd3e37f0e51a0e38cefd21b4
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    excerpt: RAG not finding documents
+  object_value: RAG not finding documents
+  note: 'cause: Embedding model mismatch or index not built; fix: Ensure same embedding
+    model for upload and query, check vector DB has documents'
+  fact_id: fact::50734f9afae8ea9b8e2e1e84
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    excerpt: Slow first response
+  object_value: Slow first response
+  note: 'cause: Model loading or embedding download; fix: Pre-download models, use
+    WARMUP_ON_START=true'
+  fact_id: fact::2e9013cf850f4a3bd9396cbd
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    source_section: code_patterns[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: backend/open_webui/routers/auths.py
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    excerpt: JWT + cookie hybrid auth with multiple providers
+  object_value: Authentication Session Builder
+  note: 'description: JWT + cookie hybrid auth with multiple providers; location:
+    backend/open_webui/routers/auths.py'
+  fact_id: fact::94a3ab753d5078c1d8d1a37c
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    source_section: code_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: backend/open_webui/main.py
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    excerpt: Modular API structure with dependency injection
+  object_value: FastAPI Router Composition
+  note: 'description: Modular API structure with dependency injection; location: backend/open_webui/main.py'
+  fact_id: fact::e8cdc21ea14c63915d688b3c
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    source_section: code_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: backend/open_webui/routers/ollama.py
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    excerpt: Async proxy with user context forwarding
+  object_value: Ollama Proxy Pattern
+  note: 'description: Async proxy with user context forwarding; location: backend/open_webui/routers/ollama.py'
+  fact_id: fact::089b6326da547a10d47e91f8
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    source_section: code_patterns[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: backend/open_webui/config.py
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    excerpt: Database-backed config with env var fallback
+  object_value: Persistent Configuration
+  note: 'description: Database-backed config with env var fallback; location: backend/open_webui/config.py'
+  fact_id: fact::6cdc16298e23c64948911f78
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    source_section: code_patterns[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: backend/open_webui/routers/retrieval.py
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    excerpt: Pluggable embedding with device detection
+  object_value: RAG Embedding Loader
+  note: 'description: Pluggable embedding with device detection; location: backend/open_webui/routers/retrieval.py'
+  fact_id: fact::5e89de94561f1f59f9a0f8da
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    source_section: code_patterns[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: backend/open_webui/routers/openai.py
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    excerpt: Payload transformation for model-specific APIs
+  object_value: Reasoning Model Handler
+  note: 'description: Payload transformation for model-specific APIs; location: backend/open_webui/routers/openai.py'
+  fact_id: fact::f2a2e311894757e9e21b7173
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    source_section: common_tasks[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[1]
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    excerpt: Configure External LLM (OpenAI/vLLM/etc.)
+  object_value: Configure External LLM (OpenAI/vLLM/etc.)
+  note: 'Set OPENAI_API_BASE_URL to your endpoint, Set OPENAI_API_KEY, Configure in
+    UI: Settings > Connections; vLLM needs /v1 suffix in URL, Some providers need
+    model name in base_url'
+  fact_id: fact::2865760cf41f22cd9c4eb0ba
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    source_section: common_tasks[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[0]
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    excerpt: Deploy with Ollama
+  object_value: Deploy with Ollama
+  note: docker run -d -p 3000:8080 \, -v open-webui:/app/backend/data \, -e OLLAMA_BASE_URL=http://host.docker.internal:11434
+    \, -e WEBUI_SECRET_KEY=your-secret \, ghcr.io/open-webui/open-webui:main; Use
+    host.docker.internal for Ollama on Mac/Windows, First startup takes time to downl...
+  fact_id: fact::b63811e031ab6e94482f63aa
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    source_section: common_tasks[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[2]
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    excerpt: Enable RAG with Documents
+  object_value: Enable RAG with Documents
+  note: 'Set RAG_EMBEDDING_MODEL (or use default), For GPU: set DEVICE_TYPE=cuda,
+    use :cuda image, Upload documents via Workspace > Knowledge, Reference in chat
+    with #knowledge-base; GPU image is much larger (~15GB vs 2GB), ChromaDB is default
+    - switch to Qdrant for scale'
+  fact_id: fact::65d87a0e1211ee88c0e8bea7
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    source_section: common_tasks[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[3]
+    source_file: llm_repos/knowledge/deep/open_webui.yaml
+    excerpt: Setup OAuth SSO
+  object_value: Setup OAuth SSO
+  note: Create OAuth app in provider (Google, GitHub, etc.), Set OAUTH_CLIENT_ID and
+    OAUTH_CLIENT_SECRET, Set OPENID_PROVIDER_URL for OIDC, Set ENABLE_OAUTH_SIGNUP=True
+    for auto-provisioning; Callback URL is /oauth/oidc/callback, JWT_EXPIRES_IN controls
+    session length
+  fact_id: fact::480028406f32abfcac397ffe

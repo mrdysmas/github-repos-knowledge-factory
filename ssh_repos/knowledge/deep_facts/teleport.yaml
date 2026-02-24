@@ -1,0 +1,618 @@
+name: teleport
+node_id: repo::gravitational/teleport
+github_full_name: gravitational/teleport
+html_url: https://github.com/gravitational/teleport
+source: ssh_repos
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/deep_facts/teleport.yaml
+  as_of: '2026-02-23'
+  extractor_version: ws6-deep-integrator-v1
+facts:
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    source_section: architecture.key_abstractions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[1]
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    excerpt: Central CA for certificate signing and RBAC enforcement
+  object_value: Auth Server
+  note: Central CA for certificate signing and RBAC enforcement
+  fact_id: fact::70fe318e584c1721519c7a59
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    source_section: architecture.key_abstractions[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[3]
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    excerpt: Storage abstraction for cluster state
+  object_value: Backend
+  note: Storage abstraction for cluster state
+  fact_id: fact::054c8cf54fd411444bc943b0
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    source_section: architecture.key_abstractions[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[2]
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    excerpt: Identity-aware reverse proxy terminating all connections
+  object_value: Proxy Service
+  note: Identity-aware reverse proxy terminating all connections
+  fact_id: fact::ea11d6b629bedb25192c81e5
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    source_section: architecture.key_abstractions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[0]
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    excerpt: Main daemon controller with Supervisor for process management
+  object_value: TeleportProcess
+  note: Main daemon controller with Supervisor for process management
+  fact_id: fact::a65ebd4d2b04cd6f141d678a
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    source_section: architecture.module_breakdown[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[5]
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    excerpt: Public API types, client interfaces, protocol definitions
+  object_value: api/
+  note: 'responsibility: Public API types, client interfaces, protocol definitions;
+    key_files: api/types/, api/client/'
+  fact_id: fact::e4f09ab7c9ba47c02a2d73e9
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    source_section: architecture.module_breakdown[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[1]
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    excerpt: Certificate authority, access control, user management
+  object_value: lib/auth/
+  note: 'responsibility: Certificate authority, access control, user management; key_files:
+    lib/auth/auth.go, lib/auth/authclient/'
+  fact_id: fact::0feff9bc8860be5b1ada591e
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    source_section: architecture.module_breakdown[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[4]
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    excerpt: Storage abstraction (SQLite, DynamoDB, PostgreSQL, etcd, Firestore)
+  object_value: lib/backend/
+  note: 'responsibility: Storage abstraction (SQLite, DynamoDB, PostgreSQL, etcd,
+    Firestore); key_files: lib/backend/backend.go'
+  fact_id: fact::971bf85f6cc447aef3f937c4
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    source_section: architecture.module_breakdown[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[2]
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    excerpt: Identity-aware reverse proxy, web UI, session management
+  object_value: lib/proxy/
+  note: 'responsibility: Identity-aware reverse proxy, web UI, session management;
+    key_files: lib/proxy/'
+  fact_id: fact::95a77c04b63c83bc9a89b39a
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    source_section: architecture.module_breakdown[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[0]
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    excerpt: Core service orchestration - manages all service lifecycles
+  object_value: lib/service/
+  note: 'responsibility: Core service orchestration - manages all service lifecycles;
+    key_files: lib/service/service.go, lib/service/servicecfg/config.go'
+  fact_id: fact::e3959afb61e0fdff2813fa74
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    source_section: architecture.module_breakdown[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[3]
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    excerpt: SSH server, database proxy, app access implementations
+  object_value: lib/srv/
+  note: 'responsibility: SSH server, database proxy, app access implementations; key_files:
+    lib/srv/'
+  fact_id: fact::84173a46c75bdd77f5c67cc6
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    source_section: architecture.module_breakdown[8]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[8]
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    excerpt: Admin tool for cluster management
+  object_value: tool/tctl/
+  note: 'responsibility: Admin tool for cluster management; key_files: tool/tctl/main.go'
+  fact_id: fact::47b60c9ffbae67bd5744e5bc
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    source_section: architecture.module_breakdown[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[6]
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    excerpt: Main daemon entry point and CLI handling
+  object_value: tool/teleport/
+  note: 'responsibility: Main daemon entry point and CLI handling; key_files: tool/teleport/main.go,
+    tool/teleport/common/teleport.go'
+  fact_id: fact::81e34e58a905aa6726109d51
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    source_section: architecture.module_breakdown[7]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[7]
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    excerpt: User client for SSH, kubectl, db proxy
+  object_value: tool/tsh/
+  note: 'responsibility: User client for SSH, kubectl, db proxy; key_files: tool/tsh/main.go'
+  fact_id: fact::b458b82ca4fdd2a3e2d96a8f
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    source_section: configuration.options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[3]
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    excerpt: auth.enabled
+  object_value: auth.enabled
+  note: 'type: bool; Enable auth service on this node'
+  fact_id: fact::6f6094bb43728c950eb54850
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    source_section: configuration.options[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[6]
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    excerpt: auth.listen_addr
+  object_value: auth.listen_addr
+  note: 'type: string; default: 0.0.0.0:3025; Auth service listen address'
+  fact_id: fact::4715c4554f8ab906ad4182d8
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    source_section: configuration.options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[1]
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    excerpt: data_dir
+  object_value: data_dir
+  note: 'type: string; default: /var/lib/teleport; Local state directory'
+  fact_id: fact::0af19ef670d3cbe6a1905f91
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    source_section: configuration.file
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.file
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    excerpt: file
+  object_value: file
+  note: 'default: /etc/teleport.yaml (YAML); configuration default for file'
+  fact_id: fact::6da99cc5b2c8a78717c41e26
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    source_section: configuration.options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[2]
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    excerpt: join_method
+  object_value: join_method
+  note: 'type: string; How node joins cluster (token, iam, ec2, etc.)'
+  fact_id: fact::d8539df7341aeb4c7e3e55c6
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    source_section: configuration.options[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[4]
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    excerpt: proxy.enabled
+  object_value: proxy.enabled
+  note: 'type: bool; Enable proxy service'
+  fact_id: fact::9ea7dba23251628de2755c8c
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    source_section: configuration.options[7]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[7]
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    excerpt: proxy.listen_addr
+  object_value: proxy.listen_addr
+  note: 'type: string; default: 0.0.0.0:3023; Proxy SSH listen address'
+  fact_id: fact::3d676805b340e05521fa5af7
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    source_section: configuration.options[8]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[8]
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    excerpt: proxy.web_addr
+  object_value: proxy.web_addr
+  note: 'type: string; default: 0.0.0.0:3080; Proxy web UI address'
+  fact_id: fact::cf1f6f767e7d3f85bc944de7
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    source_section: configuration.options[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[5]
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    excerpt: ssh.enabled
+  object_value: ssh.enabled
+  note: 'type: bool; Enable SSH service'
+  fact_id: fact::4b8d92d11ceaca8759f3856c
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    source_section: configuration.options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[0]
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    excerpt: version
+  object_value: version
+  note: 'type: string; default: v1; Config file version'
+  fact_id: fact::43db58952d26c177d111747a
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    source_section: api_surface.public_functions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[1]
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    excerpt: auth.NewServer
+  object_value: auth.NewServer
+  note: Create auth server instance; func NewServer(cfg auth.InitConfig) (*Server,
+    error); lib/auth/auth.go
+  fact_id: fact::e540c142044236eeb192feb8
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    source_section: api_surface.public_functions[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[2]
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    excerpt: client.New
+  object_value: client.New
+  note: Create API client for programmatic access; func New(ctx context.Context, cfg
+    client.Config) (*Client, error); api/client/client.go
+  fact_id: fact::3a67fe76854693b0754e1866
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    source_section: api_surface.public_functions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[0]
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    excerpt: service.Run
+  object_value: service.Run
+  note: Start teleport service with configuration; func Run(ctx context.Context, cfg
+    servicecfg.Config, privateKey []byte) error; lib/service/service.go
+  fact_id: fact::6631664e09a378166941860a
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: path
+  confidence: 0.71
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    source_section: extension_points[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[2]
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    excerpt: api/types/
+  object_value: api/types/
+  note: Add custom resource types; Resource interfaces
+  fact_id: fact::c5c8b3ecf1f900078293b2ae
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: path
+  confidence: 0.71
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    source_section: extension_points[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[3]
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    excerpt: lib/auth/
+  object_value: lib/auth/
+  note: Custom MFA providers, identity providers; Authentication plugins
+  fact_id: fact::9cb76f97683f92de6edaf2e4
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: path
+  confidence: 0.71
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    source_section: extension_points[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[1]
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    excerpt: lib/backend/
+  object_value: lib/backend/
+  note: Add new storage backend (e.g., CockroachDB); Backend interface
+  fact_id: fact::451e517d6b056c80ff8df327
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: path
+  confidence: 0.71
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    source_section: extension_points[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[0]
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    excerpt: lib/modules/
+  object_value: lib/modules/
+  note: Add enterprise features, custom crypto, FIPS compliance; Module interface
+  fact_id: fact::52e6a4096a1b243b2de293e5
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    source_section: implementation_patterns[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: lib/auth/auth.go
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    excerpt: Short-lived TLS/SSH certificates instead of long-lived keys
+  object_value: Certificate-Based Auth
+  note: 'description: Short-lived TLS/SSH certificates instead of long-lived keys;
+    location: lib/auth/auth.go'
+  fact_id: fact::03b2d262aae5a055101c8d55
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    source_section: implementation_patterns[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tool/teleport/common/teleport.go
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    excerpt: defaults -> file-based -> CLI flags precedence
+  object_value: Configuration Merge
+  note: 'description: defaults -> file-based -> CLI flags precedence; location: tool/teleport/common/teleport.go'
+  fact_id: fact::6fb65509a0cb0b738d6ff083
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    source_section: implementation_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: lib/backend/backend.go
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    excerpt: Backend storage abstraction with multiple implementations
+  object_value: Repository Pattern
+  note: 'description: Backend storage abstraction with multiple implementations; location:
+    lib/backend/backend.go'
+  fact_id: fact::a558c3662faf316e2729ecab
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    source_section: implementation_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: lib/service/service.go:626
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    excerpt: Process management with restart capabilities
+  object_value: Supervisor Pattern
+  note: 'description: Process management with restart capabilities; location: lib/service/service.go:626'
+  fact_id: fact::b054860efb15044a5468084c
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    source_section: implementation_patterns[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api/gen/proto/
+    source_file: ssh_repos/knowledge/deep/teleport.yaml
+    excerpt: Inter-service communication via gRPC
+  object_value: gRPC Services
+  note: 'description: Inter-service communication via gRPC; location: api/gen/proto/'
+  fact_id: fact::3127bdb16d05c9b29f7c0a21

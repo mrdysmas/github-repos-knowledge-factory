@@ -1,0 +1,829 @@
+name: vllm
+node_id: repo::vllm-project/vllm
+github_full_name: vllm-project/vllm
+html_url: https://github.com/vllm-project/vllm
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep_facts/vllm.yaml
+  as_of: '2026-02-23'
+  extractor_version: ws6-deep-integrator-v1
+facts:
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: configuration[5].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[5].options[2]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: api_key
+  object_value: api_key
+  note: 'default: null; API key for authentication'
+  fact_id: fact::9b8f0d1004453d97b43c024b
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: configuration[2].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[2].options[2]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: block_size
+  object_value: block_size
+  note: 'default: 16; Tokens per cache block'
+  fact_id: fact::9ce6b6dd348018df7ae0e4db
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: configuration[2].options[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[2].options[5]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: cpu_offload_gb
+  object_value: cpu_offload_gb
+  note: 'default: 0; CPU memory for offloading in GB'
+  fact_id: fact::d190273f487d4621458d5bf3
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: configuration[1].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[2]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: data_parallel_size
+  object_value: data_parallel_size
+  note: 'default: 1; Number of data parallel replicas'
+  fact_id: fact::57e3f3cae4279276640771a3
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: configuration[5].options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[5].options[3]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: disable_fastapi_docs
+  object_value: disable_fastapi_docs
+  note: 'default: false; Disable FastAPI documentation endpoints'
+  fact_id: fact::d99b31b276dae5efa68f25f8
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: configuration[1].options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[3]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: distributed_executor_backend
+  object_value: distributed_executor_backend
+  note: 'default: auto; Distributed backend: ray, mp (multiprocessing)'
+  fact_id: fact::b8a463473fc7043037101f82
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: configuration[0].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[1]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: dtype
+  object_value: dtype
+  note: 'default: auto; Data type: auto, float16, bfloat16, float32'
+  fact_id: fact::25f62a69b660a168b9072034
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: configuration[2].options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[2].options[3]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: enable_prefix_caching
+  object_value: enable_prefix_caching
+  note: 'default: false; Cache common prefixes across requests'
+  fact_id: fact::e8fa7991a2dbb795824ee251
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: configuration[4].options[7]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[4].options[7]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: frequency_penalty
+  object_value: frequency_penalty
+  note: 'default: 0.0; Frequency penalty (-2 to 2)'
+  fact_id: fact::888acc154e6072a66ee1d290
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: configuration[2].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[2].options[0]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: gpu_memory_utilization
+  object_value: gpu_memory_utilization
+  note: 'default: 0.9; Fraction of GPU memory to use'
+  fact_id: fact::b578feb9d3783c57041a9c29
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: configuration[5].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[5].options[0]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: host
+  object_value: host
+  note: 'default: localhost; Server host address'
+  fact_id: fact::a6f915dc247f739422eedd6e
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: configuration[2].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[2].options[1]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: kv_cache_dtype
+  object_value: kv_cache_dtype
+  note: 'default: auto; KV cache dtype: auto, fp8, fp16, bf16'
+  fact_id: fact::6906a201eb9111e5f52cc2af
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: configuration[0].options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[3]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: max_model_len
+  object_value: max_model_len
+  note: 'default: auto; Maximum context length'
+  fact_id: fact::029f436af70f7174e35414e5
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: configuration[3].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[3].options[1]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: max_num_batched_tokens
+  object_value: max_num_batched_tokens
+  note: 'default: auto; Maximum tokens in batch'
+  fact_id: fact::02aa20eb38019e9278c6f0f0
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: configuration[3].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[3].options[2]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: max_num_partial_prefills
+  object_value: max_num_partial_prefills
+  note: 'default: 1; Maximum partial prefills'
+  fact_id: fact::5cb78c42e0196a79722593db
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: configuration[3].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[3].options[0]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: max_num_seqs
+  object_value: max_num_seqs
+  note: 'default: 256; Maximum sequences per batch'
+  fact_id: fact::4ca46188abe51dd292fa9699
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: configuration[4].options[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[4].options[4]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: max_tokens
+  object_value: max_tokens
+  note: 'default: 16; Maximum tokens to generate'
+  fact_id: fact::64b771272fa76810bd81eb65
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: configuration[4].options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[4].options[3]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: min_p
+  object_value: min_p
+  note: 'default: 0.0; Minimum probability threshold'
+  fact_id: fact::1530eb428373c56b3f8706ec
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: configuration[4].options[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[4].options[5]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: min_tokens
+  object_value: min_tokens
+  note: 'default: 0; Minimum tokens before EOS'
+  fact_id: fact::23fded140a34e1c5d184ae99
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: configuration[0].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[0]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: model
+  object_value: model
+  note: 'default: required; HuggingFace model name or path'
+  fact_id: fact::1b5885099498b0e89892e54f
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: configuration[1].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[1]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: pipeline_parallel_size
+  object_value: pipeline_parallel_size
+  note: 'default: 1; Number of GPUs for pipeline parallelism'
+  fact_id: fact::000789646afaeb39acc556a0
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: configuration[5].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[5].options[1]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: port
+  object_value: port
+  note: 'default: 8000; Server port'
+  fact_id: fact::899dc2443a4fdda2b3776ac0
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: configuration[4].options[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[4].options[6]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: presence_penalty
+  object_value: presence_penalty
+  note: 'default: 0.0; Presence penalty (-2 to 2)'
+  fact_id: fact::c7762073578453e1ecce3a36
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: configuration[0].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[2]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: quantization
+  object_value: quantization
+  note: 'default: null; Quantization: awq, gptq, fp8, bitsandbytes'
+  fact_id: fact::22b0a920bd91ff7f947c16c0
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: configuration[4].options[8]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[4].options[8]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: repetition_penalty
+  object_value: repetition_penalty
+  note: 'default: 1.0; Repetition penalty (>1 discourages repeats)'
+  fact_id: fact::b6ba7cbd93556faf2d221355
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: configuration[2].options[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[2].options[4]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: swap_space
+  object_value: swap_space
+  note: 'default: 4; CPU swap space in GB'
+  fact_id: fact::71288c3fa5fc77708181a3e3
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: configuration[4].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[4].options[0]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: temperature
+  object_value: temperature
+  note: 'default: 1.0; Randomness (0 = greedy)'
+  fact_id: fact::4dbdc8cd65b77e4f9fda1794
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: configuration[1].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[0]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: tensor_parallel_size
+  object_value: tensor_parallel_size
+  note: 'default: 1; Number of GPUs for tensor parallelism'
+  fact_id: fact::6c5983fae3e45f468546c512
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: configuration[0].options[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[4]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: tokenizer_mode
+  object_value: tokenizer_mode
+  note: 'default: auto; Tokenizer mode: auto, hf, slow, mistral'
+  fact_id: fact::85848dabd1e01c20d387b22a
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: configuration[4].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[4].options[2]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: top_k
+  object_value: top_k
+  note: 'default: 0; Top-k sampling (0 = disabled)'
+  fact_id: fact::0cfe76eb8f455120a9706319
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: configuration[4].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[4].options[1]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: top_p
+  object_value: top_p
+  note: 'default: 1.0; Nucleus sampling threshold'
+  fact_id: fact::8856a2e9a8ab67a04a268827
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: configuration[0].options[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[5]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: trust_remote_code
+  object_value: trust_remote_code
+  note: 'default: false; Allow custom model code execution'
+  fact_id: fact::cd20ec7421b72c7d6ce171a5
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: KV cache memory exhausted
+  object_value: KV cache memory exhausted
+  note: 'cause: Too many concurrent sequences or long contexts; fix: Reduce max_num_seqs,
+    decrease max_model_len, or increase swap_space'
+  fact_id: fact::87cecdd544e8f0e3bca41d1a
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: NCCL timeout errors in multi-GPU
+  object_value: NCCL timeout errors in multi-GPU
+  note: 'cause: GPU communication issues or network problems; fix: Check NCCL_P2P_LEVEL=SYS,
+    ensure same CUDA version, verify network connectivity'
+  fact_id: fact::6292bb8a2b304367831adf15
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: OutOfMemoryError during model loading
+  object_value: OutOfMemoryError during model loading
+  note: 'cause: Model too large for GPU memory; fix: Reduce gpu_memory_utilization,
+    use quantization, or increase tensor_parallel_size'
+  fact_id: fact::ea0fa58485eee97701f4151d
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: Slow first request after server start
+  object_value: Slow first request after server start
+  note: 'cause: CUDA graph capture and KV cache allocation; fix: This is normal -
+    subsequent requests are fast. Use --enforce-eager to disable CUDA graphs.'
+  fact_id: fact::7b7f7429da8520defb168b4e
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: troubleshooting[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[4]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: Slow generation with long prompts
+  object_value: Slow generation with long prompts
+  note: 'cause: Prefill phase bottleneck; fix: Enable chunked prefill with max_num_partial_prefills,
+    use prefix caching'
+  fact_id: fact::9e36d6d6a6509cb30f652324
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: code_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: vllm/entrypoints/llm.py
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: Chat-style interaction with message format
+  object_value: Chat Completion with Messages
+  note: 'description: Chat-style interaction with message format; location: vllm/entrypoints/llm.py'
+  fact_id: fact::534c285edd2e79e2014707e6
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: code_patterns[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: vllm/entrypoints/llm.py
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: Generate embeddings or classifications using pooling
+  object_value: Embeddings and Classification
+  note: 'description: Generate embeddings or classifications using pooling; location:
+    vllm/entrypoints/llm.py'
+  fact_id: fact::afba6583faa2ab9891fc656b
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: code_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: vllm/entrypoints/llm.py
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: Basic text generation using the LLM class
+  object_value: Offline Inference with LLM Class
+  note: 'description: Basic text generation using the LLM class; location: vllm/entrypoints/llm.py'
+  fact_id: fact::da2b450ff4d21162a187c809
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: code_patterns[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: vllm/entrypoints/openai/api_server.py
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: Start OpenAI-compatible API server
+  object_value: OpenAI-Compatible Server Launch
+  note: 'description: Start OpenAI-compatible API server; location: vllm/entrypoints/openai/api_server.py'
+  fact_id: fact::75d29af425a22fb2c73ed390
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: code_patterns[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: vllm/v1/attention/ops/paged_attn.py
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: Core attention pattern for efficient memory management
+  object_value: PagedAttention KV Cache
+  note: 'description: Core attention pattern for efficient memory management; location:
+    vllm/v1/attention/ops/paged_attn.py'
+  fact_id: fact::ca68734f741c15c1ea27fc6c
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: code_patterns[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: vllm/sampling_params.py
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: Generate JSON or regex-constrained outputs
+  object_value: Structured Output Generation
+  note: 'description: Generate JSON or regex-constrained outputs; location: vllm/sampling_params.py'
+  fact_id: fact::030d5bdeb4d1a517a8b5221e
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: common_tasks[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[1]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: Configure Multi-GPU Inference
+  object_value: Configure Multi-GPU Inference
+  note: 'Set tensor_parallel_size to number of GPUs, Ensure all GPUs have same memory
+    capacity, Use RAY for distributed backend: --distributed-executor-backend ray,
+    Start Ray cluster first if multi-node; Model must fit in combined GPU memory,
+    Communication overhead increases with TP si...'
+  fact_id: fact::11f879ae9c73c9512526a2c1
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: common_tasks[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[0]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: Launch Production Server
+  object_value: Launch Production Server
+  note: 'Install: pip install vllm, Launch: vllm serve model-name --tensor-parallel-size
+    2, Monitor GPU usage with nvidia-smi, Test: curl http://localhost:8000/health;
+    First load downloads model - can take time, gpu_memory_utilization should leave
+    headroom for PyTorch, Use --disable-lo...'
+  fact_id: fact::262d17ab93ab60fbc56fc9e8
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: common_tasks[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[2]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: Optimize for Throughput
+  object_value: Optimize for Throughput
+  note: 'Increase max_num_seqs (default 256), Enable prefix caching: --enable-prefix-caching,
+    Increase gpu_memory_utilization to 0.95, Use FP8 KV cache: --kv-cache-dtype fp8;
+    Higher throughput may increase latency per request, FP8 requires GPU support (H100,
+    A100 with newer drivers)'
+  fact_id: fact::33c422ac350a9fc9256309d0
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    source_section: common_tasks[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[3]
+    source_file: llm_repos/knowledge/deep/vllm.yaml
+    excerpt: Use Quantized Models
+  object_value: Use Quantized Models
+  note: 'AWQ: --quantization awq with AWQ model, GPTQ: --quantization gptq with GPTQ
+    model, FP8: --kv-cache-dtype fp8 for KV cache only, BitsAndBytes: --quantization
+    bitsandbytes for 4-bit; Quantized models need specific checkpoints, not base models,
+    Quality may degrade with aggressive...'
+  fact_id: fact::897a99ad973cf80a4c5c201b

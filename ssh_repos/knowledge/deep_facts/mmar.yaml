@@ -1,0 +1,540 @@
+name: mmar
+node_id: repo::yusuf-musleh/mmar
+github_full_name: yusuf-musleh/mmar
+html_url: https://github.com/yusuf-musleh/mmar
+source: ssh_repos
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/deep_facts/mmar.yaml
+  as_of: '2026-02-23'
+  extractor_version: ws6-deep-integrator-v1
+facts:
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    source_section: architecture.key_abstractions[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[2]
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    excerpt: Tunnel wrapper with incoming/outgoing channels and request tracking
+  object_value: ClientTunnel
+  note: Tunnel wrapper with incoming/outgoing channels and request tracking
+  fact_id: fact::453babceef7f1b2027cc2d89
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    source_section: architecture.key_abstractions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[0]
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    excerpt: Client struct with embedded Tunnel, ConfigOptions, and subdomain
+  object_value: MmarClient
+  note: Client struct with embedded Tunnel, ConfigOptions, and subdomain
+  fact_id: fact::7d90e8ac10c4ae941d36fb4a
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    source_section: architecture.key_abstractions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[1]
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    excerpt: Server managing clients map, tunnelsPerIP limits, and handlers
+  object_value: MmarServer
+  note: Server managing clients map, tunnelsPerIP limits, and handlers
+  fact_id: fact::a86c9fe5a1e5c752249da790
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    source_section: architecture.key_abstractions[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[3]
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    excerpt: Protocol message with version, type, length, and data
+  object_value: TunnelMessage
+  note: Protocol message with version, type, length, and data
+  fact_id: fact::a325a6cc941ac9de64f684de
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.78
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    source_section: architecture.module_breakdown[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[6]
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    excerpt: Default ports, timeouts, environment variable names
+  object_value: constants
+  note: 'responsibility: Default ports, timeouts, environment variable names; key_files:
+    constants/main.go'
+  fact_id: fact::402f4ff3d9f6e412598c2ac0
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    source_section: architecture.module_breakdown[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[0]
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    excerpt: CLI entry point with server/client/version subcommands
+  object_value: cmd/mmar
+  note: 'responsibility: CLI entry point with server/client/version subcommands; key_files:
+    cmd/mmar/main.go'
+  fact_id: fact::3a9f4e1596c914868066c4a3
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    source_section: architecture.module_breakdown[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[1]
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    excerpt: MmarClient with TCP connection, tunnel creation, request processing
+  object_value: internal/client
+  note: 'responsibility: MmarClient with TCP connection, tunnel creation, request
+    processing; key_files: internal/client/main.go'
+  fact_id: fact::abd021c02daa4324428edaa2
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    source_section: architecture.module_breakdown[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[5]
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    excerpt: Colored logging utilities
+  object_value: internal/logger
+  note: 'responsibility: Colored logging utilities; key_files: internal/logger/main.go'
+  fact_id: fact::3ceb96def7ee52f7d1552934
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    source_section: architecture.module_breakdown[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[3]
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    excerpt: Tunnel struct and message serialization/deserialization
+  object_value: internal/protocol
+  note: 'responsibility: Tunnel struct and message serialization/deserialization;
+    key_files: internal/protocol/main.go'
+  fact_id: fact::0ffaf0f153cd30d240124d75
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    source_section: architecture.module_breakdown[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[2]
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    excerpt: MmarServer with HTTP server for public requests, TCP server for clients
+  object_value: internal/server
+  note: 'responsibility: MmarServer with HTTP server for public requests, TCP server
+    for clients; key_files: internal/server/main.go'
+  fact_id: fact::e326f2e8eeb0e5cd80e6fde2
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    source_section: architecture.module_breakdown[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[4]
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    excerpt: Subdomain extraction, ID generation utilities
+  object_value: internal/utils
+  note: 'responsibility: Subdomain extraction, ID generation utilities; key_files:
+    internal/utils/main.go'
+  fact_id: fact::fc4c13419f3a87bae3bbf5b1
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    source_section: configuration.file
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.file
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    excerpt: file
+  object_value: file
+  note: 'default: CLI flags and environment variables; configuration default for file'
+  fact_id: fact::d3928eba6476739834e5b4a2
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    source_section: configuration.options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[0]
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    excerpt: http-port
+  object_value: http-port
+  note: 'type: int; Server HTTP port for public requests'
+  fact_id: fact::447703441b9fa2aa1f58c6bb
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    source_section: configuration.options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[2]
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    excerpt: local-port
+  object_value: local-port
+  note: 'type: int; Client''s local port to forward'
+  fact_id: fact::8a5eaef90bc9217afa73180e
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    source_section: configuration.options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[1]
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    excerpt: tcp-port
+  object_value: tcp-port
+  note: 'type: int; Server TCP port for client connections'
+  fact_id: fact::80e4a93f249ee7272d3cd7ee
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    source_section: configuration.options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[3]
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    excerpt: tunnel-host
+  object_value: tunnel-host
+  note: 'type: string; default: mmar.dev; Tunnel server hostname'
+  fact_id: fact::acbdf5950f43c408f11e8c8d
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    source_section: configuration.options[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[4]
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    excerpt: tunnel-http-port
+  object_value: tunnel-http-port
+  note: 'type: int; Tunnel server HTTP port'
+  fact_id: fact::08cf3ae8a2c1796d8a040d80
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    source_section: configuration.options[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[5]
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    excerpt: tunnel-tcp-port
+  object_value: tunnel-tcp-port
+  note: 'type: int; Tunnel server TCP port'
+  fact_id: fact::9c0da40db35ffe890b0d89d5
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    source_section: api_surface.public_functions[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[2]
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    excerpt: Tunnel.SendMessage
+  object_value: Tunnel.SendMessage
+  note: Send message through tunnel; func (t *Tunnel) SendMessage(msg TunnelMessage);
+    internal/protocol/main.go
+  fact_id: fact::02e8dfe23dbd11b9667a0bb7
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    source_section: api_surface.public_functions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[0]
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    excerpt: client.Run
+  object_value: client.Run
+  note: Start client and establish tunnel; func Run(config ConfigOptions); internal/client/main.go:283
+  fact_id: fact::0f70a0dbec873c26ec49ba4f
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    source_section: api_surface.public_functions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[1]
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    excerpt: server.Run
+  object_value: server.Run
+  note: Start server with HTTP and TCP listeners; func Run(config ConfigOptions);
+    internal/server/main.go:582
+  fact_id: fact::cf7af9dd5aa80dffaae57a1a
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: path
+  confidence: 0.71
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    source_section: extension_points[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[0]
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    excerpt: internal/protocol/main.go
+  object_value: internal/protocol/main.go
+  note: Add new message types (NEW_MESSAGE_TYPE = uint8(iota + 35)); Message type
+    constants (lines 20-34)
+  fact_id: fact::1dee94c3aca19beced494221
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: path
+  confidence: 0.71
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    source_section: extension_points[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[2]
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    excerpt: internal/protocol/main.go
+  object_value: internal/protocol/main.go
+  note: Update range check for new message types; isValidTunnelMessageType() (lines
+    39-49)
+  fact_id: fact::5e4c91be6e1a0ec4edfae08b
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: path
+  confidence: 0.71
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    source_section: extension_points[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[1]
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    excerpt: internal/server/main.go
+  object_value: internal/server/main.go
+  note: Custom naming schemes, user-provided subdomains, hash-based generation; GenerateUniqueSubdomain()
+    (lines 248-257)
+  fact_id: fact::1155e3d1bf8a17db5244c582
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: path
+  confidence: 0.71
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    source_section: extension_points[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[3]
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    excerpt: internal/server/main.go
+  object_value: internal/server/main.go
+  note: Add authentication, rate limiting, request transformation; ServeHTTP() (lines
+    171-246)
+  fact_id: fact::cda0898189cae01e05ed12ff
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    source_section: implementation_patterns[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: internal/client/main.go:174-203
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    excerpt: Client detects disconnection, reconnects, sends RECLAIM_TUNNEL with previous
+      subdomain
+  object_value: Auto-Reconnect with Reclamation
+  note: 'description: Client detects disconnection, reconnects, sends RECLAIM_TUNNEL
+    with previous subdomain; location: internal/client/main.go:174-203'
+  fact_id: fact::d9c4b14fc6b0e62e7669518b
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    source_section: implementation_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: internal/protocol/main.go:99-126
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    excerpt: Version (1 byte) + MsgType (1 byte) + Length (varies) + Delimiter (1
+      byte) + Data
+  object_value: Binary Protocol
+  note: 'description: Version (1 byte) + MsgType (1 byte) + Length (varies) + Delimiter
+    (1 byte) + Data; location: internal/protocol/main.go:99-126'
+  fact_id: fact::b4d3997bb5dfef8128a5376e
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    source_section: implementation_patterns[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: internal/client/main.go:211-231, internal/server/main.go:449-463
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    excerpt: Bidirectional heartbeats with read deadline extension
+  object_value: Heartbeat Mechanism
+  note: 'description: Bidirectional heartbeats with read deadline extension; location:
+    internal/client/main.go:211-231, internal/server/main.go:449-463'
+  fact_id: fact::bc703848b7ff1a4aca42f757
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    source_section: implementation_patterns[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: internal/server/main.go:171-246
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    excerpt: HTTP request serialized to bytes for tunnel transport
+  object_value: Request Serialization
+  note: 'description: HTTP request serialized to bytes for tunnel transport; location:
+    internal/server/main.go:171-246'
+  fact_id: fact::33cd3527bef1b083d5100309
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    source_section: implementation_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: internal/server/main.go:248-257
+    source_file: ssh_repos/knowledge/deep/mmar.yaml
+    excerpt: Random ID generation with reserved subdomain exclusion (admin, stats)
+  object_value: Subdomain Generation
+  note: 'description: Random ID generation with reserved subdomain exclusion (admin,
+    stats); location: internal/server/main.go:248-257'
+  fact_id: fact::c4b2ebb2443d1dd8c506a988

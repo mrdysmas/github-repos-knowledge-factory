@@ -1,0 +1,267 @@
+name: khoj
+node_id: repo::khoj-ai/khoj
+github_full_name: khoj-ai/khoj
+html_url: https://github.com/khoj-ai/khoj
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep_facts/khoj.yaml
+  as_of: '2026-02-23'
+  extractor_version: ws6-deep-integrator-v1
+facts:
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    source_section: architecture.components[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.components[4]
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    excerpt: Agent Framework
+  object_value: Agent Framework
+  note: Computer/browser automation agents
+  fact_id: fact::42191d325944bbbd9548de52
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    source_section: architecture.components[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.components[2]
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    excerpt: Content Processors
+  object_value: Content Processors
+  note: Document parsing for various formats
+  fact_id: fact::aad79725c42391afc1c0339a
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    source_section: architecture.components[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.components[3]
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    excerpt: Conversation
+  object_value: Conversation
+  note: Multi-LLM chat handlers
+  fact_id: fact::076d11d54014b5ab2792a670
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    source_section: architecture.components[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.components[1]
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    excerpt: Django ORM
+  object_value: Django ORM
+  note: Database models, migrations, admin interface
+  fact_id: fact::fa0747b5eeb858488973dd3e
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    source_section: architecture.components[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.components[0]
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    excerpt: FastAPI Routes
+  object_value: FastAPI Routes
+  note: API endpoints for chat, search, content management
+  fact_id: fact::0015c5480361474f0d4e9e2b
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    excerpt: 401 errors on API calls
+  object_value: 401 errors on API calls
+  note: 'cause: Invalid bearer token format or expired token; solution: Verify bearer
+    token format: "Bearer <token>" Try --anonymous-mode for testing.'
+  fact_id: fact::75baabd6f8b701ddedba8541
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    excerpt: Embeddings fail, search returns empty
+  object_value: Embeddings fail, search returns empty
+  note: 'cause: SearchModelConfig not properly configured; solution: Verify SearchModelConfig
+    has valid embedding model. Check model path or API credentials.'
+  fact_id: fact::e175523316b23f5439c96cfe
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    excerpt: Migration failures, connection refused
+  object_value: Migration failures, connection refused
+  note: 'cause: PostgreSQL not running or pgvector not installed; solution: Check
+    PostgreSQL status, ensure pgvector extension is available: python manage.py showmigrations'
+  fact_id: fact::9e1073c8ff14cb09722424a8
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    excerpt: Search doesn't find documents
+  object_value: Search doesn't find documents
+  note: 'cause: Content processor failed or not configured; solution: Check file permissions
+    and formats. Verify content source configuration.'
+  fact_id: fact::88e26012ab82e51e8d10efd3
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    source_section: code_patterns[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: code_patterns[3]
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    excerpt: Abstract base class for agents with tool calling. Context compression
+      for long conversations. Trajectory tracking and summarization.
+  object_value: Agent Framework
+  note: 'description: Abstract base class for agents with tool calling. Context compression
+    for long conversations. Trajectory tracking and summarization.'
+  fact_id: fact::0ee4011f67eb5d5ecc14e890
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    source_section: code_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: code_patterns[1]
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    excerpt: "Each processor inherits from TextToEntries base class. Process: extract\
+      \ entries \u2192 split tokens \u2192 update embeddings. Returns counts of new/deleted\
+      \ embeddings."
+  object_value: Content Processors
+  note: "description: Each processor inherits from TextToEntries base class. Process:\
+    \ extract entries \u2192 split tokens \u2192 update embeddings. Returns counts\
+    \ of new/deleted embeddings."
+  fact_id: fact::bcec7b448b30e0bbc1883a32
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    source_section: code_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: code_patterns[0]
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    excerpt: Django initializes first for ORM access, then FastAPI app created. Django
+      ASGI mounted at /server path. FastAPI handles web routes while Django manages
+      data layer.
+  object_value: Django+FastAPI Hybrid
+  note: 'description: Django initializes first for ORM access, then FastAPI app created.
+    Django ASGI mounted at /server path. FastAPI handles web routes while Django manages
+    data layer.'
+  fact_id: fact::fee7aab86305f9cde3a47e9f
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    source_section: code_patterns[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: code_patterns[4]
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    excerpt: Supports local (SentenceTransformers), OpenAI API, HuggingFace. pgvector
+      for PostgreSQL vector storage.
+  object_value: Embeddings + Search
+  note: 'description: Supports local (SentenceTransformers), OpenAI API, HuggingFace.
+    pgvector for PostgreSQL vector storage.'
+  fact_id: fact::156a1518789a90cbb09c2585
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    source_section: code_patterns[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: code_patterns[2]
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    excerpt: Abstraction layer for multiple LLM providers. Handles context management,
+      token counting. Implements retry with exponential backoff.
+  object_value: Multi-LLM Chat
+  note: 'description: Abstraction layer for multiple LLM providers. Handles context
+    management, token counting. Implements retry with exponential backoff.'
+  fact_id: fact::60dc5f3175aa93d2586b0ff9

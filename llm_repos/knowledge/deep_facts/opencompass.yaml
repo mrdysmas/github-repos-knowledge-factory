@@ -1,0 +1,467 @@
+name: opencompass
+node_id: repo::open-compass/opencompass
+github_full_name: open-compass/opencompass
+html_url: https://github.com/open-compass/opencompass
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep_facts/opencompass.yaml
+  as_of: '2026-02-23'
+  extractor_version: ws6-deep-integrator-v1
+facts:
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    source_section: configuration[7]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[7]
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    excerpt: datasets[].abbr
+  object_value: datasets[].abbr
+  note: 'type: str; default: required; Dataset abbreviation for results'
+  fact_id: fact::41dea2a706dfa6b830ebc6c4
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    source_section: configuration[9]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[9]
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    excerpt: datasets[].reader_cfg.test_range
+  object_value: datasets[].reader_cfg.test_range
+  note: 'type: str; default: [:]; Test subset range (e.g., ''[0:64]'' for first 64
+    samples)'
+  fact_id: fact::a6019bbb7fc239fcb56847a6
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    source_section: configuration[8]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[8]
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    excerpt: datasets[].type
+  object_value: datasets[].type
+  note: 'type: class; default: required; Dataset loader class'
+  fact_id: fact::88469c03e1c1ed8018d53978
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    source_section: configuration[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[2]
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    excerpt: models[].abbr
+  object_value: models[].abbr
+  note: 'type: str; default: required; Short name for results display'
+  fact_id: fact::41d285232941c2db297dae3d
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    source_section: configuration[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[4]
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    excerpt: models[].batch_size
+  object_value: models[].batch_size
+  note: 'type: int; Batch size for inference'
+  fact_id: fact::ddb5427ea98e82c385e4a540
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    source_section: configuration[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[3]
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    excerpt: models[].max_out_len
+  object_value: models[].max_out_len
+  note: 'type: int; Maximum output token length'
+  fact_id: fact::b9cdb1cd30cb3dc9cd761849
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    source_section: configuration[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[6]
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    excerpt: models[].model_kwargs
+  object_value: models[].model_kwargs
+  note: 'type: dict; Additional model arguments (trust_remote_code, etc.)'
+  fact_id: fact::a2999a214373c8af974f72de
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    source_section: configuration[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1]
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    excerpt: models[].path
+  object_value: models[].path
+  note: 'type: str; default: required; HuggingFace model ID or local path'
+  fact_id: fact::9aac6569251e936bfc79a15e
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    source_section: configuration[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[5]
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    excerpt: models[].run_cfg.num_gpus
+  object_value: models[].run_cfg.num_gpus
+  note: 'type: int; Number of GPUs required'
+  fact_id: fact::8316b0abde1cbd3c585dd056
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    source_section: configuration[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0]
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    excerpt: models[].type
+  object_value: models[].type
+  note: 'type: class; default: required; Model class (HuggingFacewithChatTemplate,
+    VLLMwithChatTemplate, etc.)'
+  fact_id: fact::80967d6bcca7d684bca463b2
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    source_section: configuration[10]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[10]
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    excerpt: work_dir
+  object_value: work_dir
+  note: 'type: str; default: ./outputs/; Output directory for results'
+  fact_id: fact::7cef8607913f7389a6f02aa2
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    excerpt: CUDA out of memory
+  object_value: CUDA out of memory
+  note: 'solution: - Reduce batch_size in model config - Reduce max_out_len - Use
+    smaller model variant - Enable batch_padding=false in some configs - Use vLLM
+    or LMDeploy backends for memory efficiency'
+  fact_id: fact::081408c8c586f38809363d6a
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    excerpt: Missing datasets
+  object_value: Missing datasets
+  note: 'solution: - Install full package: pip install "opencompass[full]" - Check
+    dataset config path - Some datasets require manual download'
+  fact_id: fact::a67724af938276d224b8c989
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    excerpt: Model loading errors
+  object_value: Model loading errors
+  note: 'solution: - Add trust_remote_code=true to model_kwargs - Verify model path
+    is correct - Check for required auth tokens (HF_TOKEN) - Ensure model supports
+    the task type'
+  fact_id: fact::0a424047b2fb3f067e3448a6
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    excerpt: Slow evaluation
+  object_value: Slow evaluation
+  note: 'solution: - Use vLLM (-a vllm) or LMDeploy (-a lmdeploy) backend - Increase
+    batch_size if memory allows - Use --max-num-worker for parallel evaluation - Reduce
+    test_range for quick validation'
+  fact_id: fact::7365f15e30ef99cbdae916fd
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    source_section: code_patterns[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: opencompass/configs/datasets/demo/demo_gsm8k_chat_gen.py
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    excerpt: Dataset configuration specifying test range and evaluation settings
+  object_value: Dataset Config with Reader
+  note: 'description: Dataset configuration specifying test range and evaluation settings;
+    location: opencompass/configs/datasets/demo/demo_gsm8k_chat_gen.py'
+  fact_id: fact::13ca0b3ccdda1bfa39bd6bf6
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    source_section: code_patterns[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: examples/eval_chat_demo.py
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    excerpt: Typical structure combining models, datasets, and summarizers
+  object_value: Full Evaluation Config Pattern
+  note: 'description: Typical structure combining models, datasets, and summarizers;
+    location: examples/eval_chat_demo.py'
+  fact_id: fact::708c90201e2349f14df3a75c
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    source_section: code_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: opencompass/configs/models/qwen2_5/hf_qwen2_5_7b_instruct.py
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    excerpt: Standard configuration for evaluating HuggingFace models with chat templates
+  object_value: HuggingFace Model Config
+  note: 'description: Standard configuration for evaluating HuggingFace models with
+    chat templates; location: opencompass/configs/models/qwen2_5/hf_qwen2_5_7b_instruct.py'
+  fact_id: fact::a466d4167f90e44620891a57
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    source_section: code_patterns[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: opencompass/configs/summarizers/example.py
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    excerpt: Configuration for aggregating and presenting evaluation results
+  object_value: Summarizer Config
+  note: 'description: Configuration for aggregating and presenting evaluation results;
+    location: opencompass/configs/summarizers/example.py'
+  fact_id: fact::05a42903ae6356c1e7b09460
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    source_section: code_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: opencompass/configs/models/qwen2_5/vllm_qwen2_5_7b_instruct.py
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    excerpt: Configuration for accelerated inference with vLLM backend
+  object_value: VLLM Model Config
+  note: 'description: Configuration for accelerated inference with vLLM backend; location:
+    opencompass/configs/models/qwen2_5/vllm_qwen2_5_7b_instruct.py'
+  fact_id: fact::c832bcae35fbe544b4cb6a44
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    source_section: common_tasks[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[4]
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    excerpt: Custom config file
+  object_value: Custom config file
+  note: Run evaluation from Python config file
+  fact_id: fact::162c8a6bad5a1f16bfa3a19f
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    source_section: common_tasks[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[3]
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    excerpt: Distributed evaluation
+  object_value: Distributed evaluation
+  note: Parallel evaluation across multiple workers
+  fact_id: fact::ae80c0af1ab9ad3d8e594009
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    source_section: common_tasks[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[1]
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    excerpt: Evaluate with vLLM acceleration
+  object_value: Evaluate with vLLM acceleration
+  note: Use vLLM backend for faster inference
+  fact_id: fact::265a739a278edbfcf0851f5f
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    source_section: common_tasks[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[5]
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    excerpt: Limit evaluation samples
+  object_value: Limit evaluation samples
+  note: Evaluate only first N samples for quick testing
+  fact_id: fact::243a168bfee29e6abd74ad9a
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    source_section: common_tasks[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[2]
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    excerpt: Multiple models and datasets
+  object_value: Multiple models and datasets
+  note: Evaluate multiple models across multiple benchmarks
+  fact_id: fact::53745dc6560257d9c269bc2a
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    source_section: common_tasks[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[0]
+    source_file: llm_repos/knowledge/deep/opencompass.yaml
+    excerpt: Quick demo evaluation
+  object_value: Quick demo evaluation
+  note: Run quick test on small model with demo dataset
+  fact_id: fact::6686f526973a8e84f78d3ce8

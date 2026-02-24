@@ -1,0 +1,455 @@
+name: langchain
+node_id: repo::langchain-ai/langchain
+github_full_name: langchain-ai/langchain
+html_url: https://github.com/langchain-ai/langchain
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep_facts/langchain.yaml
+  as_of: '2026-02-23'
+  extractor_version: ws6-deep-integrator-v1
+facts:
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    source_section: configuration[1].options[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[4]
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    excerpt: api_key
+  object_value: api_key
+  note: 'default: env OPENAI_API_KEY; API key or env variable'
+  fact_id: fact::04802897ce2d2871fff6af5a
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    source_section: configuration[2].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[2].options[2]
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    excerpt: callbacks
+  object_value: callbacks
+  note: 'default: []; Callback handlers for tracing'
+  fact_id: fact::5d408ea3ff858ef0df775dcc
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    source_section: configuration[0].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[1]
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    excerpt: langchain-core
+  object_value: langchain-core
+  note: 'default: >=1.2.5; Core abstractions dependency'
+  fact_id: fact::6d3876cde5329c354ded85db
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    source_section: configuration[0].options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[3]
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    excerpt: langsmith
+  object_value: langsmith
+  note: 'default: >=0.1.17; Tracing and observability'
+  fact_id: fact::c093d5709a59c4e57fe1d56c
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    source_section: configuration[2].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[2].options[0]
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    excerpt: max_concurrency
+  object_value: max_concurrency
+  note: 'default: null; Max parallel executions in batch'
+  fact_id: fact::4f40aac7e49f2b8d05df2490
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    source_section: configuration[1].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[2]
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    excerpt: max_tokens
+  object_value: max_tokens
+  note: 'default: null; Max output tokens'
+  fact_id: fact::fdd11761215b44d33c49a457
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    source_section: configuration[1].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[0]
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    excerpt: model
+  object_value: model
+  note: 'default: gpt-3.5-turbo; OpenAI model name'
+  fact_id: fact::2fcfc7f377f14f664dcb82ab
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    source_section: configuration[0].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[2]
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    excerpt: pydantic
+  object_value: pydantic
+  note: 'default: >=2.7.4; Data validation'
+  fact_id: fact::155f03dbd545963524a97ade
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    source_section: configuration[0].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[0]
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    excerpt: python_requires
+  object_value: python_requires
+  note: 'default: >=3.10; Python version support (3.10-3.14)'
+  fact_id: fact::22bda5b724dfe890892953e4
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    source_section: configuration[2].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[2].options[1]
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    excerpt: return_exceptions
+  object_value: return_exceptions
+  note: 'default: false; Return exceptions instead of raising'
+  fact_id: fact::d5f8971101303ca1fd6061c9
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    source_section: configuration[1].options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[3]
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    excerpt: streaming
+  object_value: streaming
+  note: 'default: false; Enable streaming responses'
+  fact_id: fact::9a71f39136f581d4ea210e08
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    source_section: configuration[1].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[1]
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    excerpt: temperature
+  object_value: temperature
+  note: 'default: 0.7; Sampling randomness (0-2)'
+  fact_id: fact::373b6c30c4712d7e2ea08231
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    excerpt: Pydantic validation errors
+  object_value: Pydantic validation errors
+  note: 'cause: LangChain v0.2+ requires Pydantic v2; fix: Upgrade pydantic>=2.7.4,
+    update model definitions to use model_config'
+  fact_id: fact::ca01d8e46e1c86f52a843c68
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    excerpt: Runnable sequence fails with type mismatch
+  object_value: Runnable sequence fails with type mismatch
+  note: 'cause: Output of one runnable doesn''t match input schema of next; fix: Add
+    RunnablePassthrough.assign to transform/add keys, or use RunnableLambda for adaptation'
+  fact_id: fact::34505b0583064633a33aecd0
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    excerpt: Streaming not working
+  object_value: Streaming not working
+  note: 'cause: Not using stream() method or callbacks not set up; fix: Use chain.stream(input)
+    instead of invoke(), or set streaming=True on LLM'
+  fact_id: fact::2eeed88a807b7460bb2f3e81
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    excerpt: Tool not being called by agent
+  object_value: Tool not being called by agent
+  note: 'cause: Tool description unclear or LLM doesn''t know when to use it; fix:
+    Improve docstring with specific examples of when to use the tool'
+  fact_id: fact::66235014cd2b9aba7fd0a6a9
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    source_section: code_patterns[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: libs/core/langchain_core/agents.py
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    excerpt: Agent execution loop with tool calls and observations
+  object_value: Agent Action Schema
+  note: 'description: Agent execution loop with tool calls and observations; location:
+    libs/core/langchain_core/agents.py'
+  fact_id: fact::6facdba03f93982887b3aa7f
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    source_section: code_patterns[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: libs/core/langchain_core/retrievers.py
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    excerpt: Custom retriever by implementing _get_relevant_documents
+  object_value: BaseRetriever Implementation
+  note: 'description: Custom retriever by implementing _get_relevant_documents; location:
+    libs/core/langchain_core/retrievers.py'
+  fact_id: fact::11c3ad9ece58acdef766e9c3
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    source_section: code_patterns[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: libs/partners/openai/langchain_openai/chat_models/base.py
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    excerpt: LLM integration with structured output and tool binding
+  object_value: ChatOpenAI with Tool Calling
+  note: 'description: LLM integration with structured output and tool binding; location:
+    libs/partners/openai/langchain_openai/chat_models/base.py'
+  fact_id: fact::625cf7d1698f0eab56b430fe
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    source_section: code_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: libs/core/langchain_core/runnables/base.py
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    excerpt: Compose chains using pipe operator for sequential execution
+  object_value: Runnable LCEL Chain
+  note: 'description: Compose chains using pipe operator for sequential execution;
+    location: libs/core/langchain_core/runnables/base.py'
+  fact_id: fact::4355b06feccbc17cab07ba19
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    source_section: code_patterns[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: libs/core/langchain_core/runnables/branch.py
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    excerpt: Route inputs to different chains based on condition evaluation
+  object_value: RunnableBranch Conditional Routing
+  note: 'description: Route inputs to different chains based on condition evaluation;
+    location: libs/core/langchain_core/runnables/branch.py'
+  fact_id: fact::72ff389beba8b74dc0b091e6
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    source_section: code_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: libs/core/langchain_core/runnables/passthrough.py
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    excerpt: Preserve input while adding computed fields for RAG context injection
+  object_value: RunnablePassthrough with Assign
+  note: 'description: Preserve input while adding computed fields for RAG context
+    injection; location: libs/core/langchain_core/runnables/passthrough.py'
+  fact_id: fact::4cf974277944341bd983c14d
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    source_section: common_tasks[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[0]
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    excerpt: Build RAG Pipeline
+  object_value: Build RAG Pipeline
+  note: 'Load documents: docs = PyPDFLoader(''file.pdf'').load(), Split text: splits
+    = RecursiveCharacterTextSplitter(chunk_size=1000).split_documents(docs), Create
+    embeddings: vectorstore = FAISS.from_documents(splits, embeddings), Build chain:
+    rag = ({''context'': retriever, ''question'':...'
+  fact_id: fact::636074fa0f9abb8629fe9ea9
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    source_section: common_tasks[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[1]
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    excerpt: Create Custom Tool
+  object_value: Create Custom Tool
+  note: 'Define function with @tool decorator, Add docstring (used as tool description
+    for LLM), Type hints required for input schema, Bind to LLM: llm.bind_tools([my_tool]);
+    Docstring becomes tool description - make it descriptive, Complex types need Pydantic
+    models for schema'
+  fact_id: fact::d0a2b66e6765878046159686
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    source_section: common_tasks[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[2]
+    source_file: llm_repos/knowledge/deep/langchain.yaml
+    excerpt: Run Tests
+  object_value: Run Tests
+  note: 'uv sync --all-groups # Install all deps, make test # Unit tests only, uv
+    run --group test pytest tests/unit_tests/ -v; Set LANGCHAIN_TRACING_V2=false to
+    disable tracing in tests, Integration tests require API keys - use unit tests
+    for CI'
+  fact_id: fact::e894efa163c6b974aafd1ede

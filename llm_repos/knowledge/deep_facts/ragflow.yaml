@@ -1,0 +1,638 @@
+name: ragflow
+node_id: repo::infiniflow/ragflow
+github_full_name: infiniflow/ragflow
+html_url: https://github.com/infiniflow/ragflow
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep_facts/ragflow.yaml
+  as_of: '2026-02-23'
+  extractor_version: ws6-deep-integrator-v1
+facts:
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    source_section: configuration[4].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[4].options[0]
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    excerpt: CHAT
+  object_value: CHAT
+  note: Text generation
+  fact_id: fact::220f67f2cdf03abea78d3079
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    source_section: configuration[2].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[2].options[0]
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    excerpt: DOC_ENGINE
+  object_value: DOC_ENGINE
+  note: 'default: es; Document store: es, infinity, opensearch'
+  fact_id: fact::9ac7c6c2dcadc4249fae596a
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    source_section: configuration[4].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[4].options[1]
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    excerpt: EMBEDDING
+  object_value: EMBEDDING
+  note: Text embeddings
+  fact_id: fact::fd43e25da80ee9805795d074
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    source_section: configuration[4].options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[4].options[3]
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    excerpt: IMAGE2TEXT
+  object_value: IMAGE2TEXT
+  note: Vision models
+  fact_id: fact::c22a76031fabc65a4b1dcb3f
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    source_section: configuration[4].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[4].options[2]
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    excerpt: RERANK
+  object_value: RERANK
+  note: Result reranking
+  fact_id: fact::e472af744b81fb34c356e2f3
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    source_section: configuration[4].options[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[4].options[4]
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    excerpt: SPEECH2TEXT
+  object_value: SPEECH2TEXT
+  note: Speech recognition
+  fact_id: fact::375935f1f82cec2bce7d5eb6
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    source_section: configuration[4].options[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[4].options[5]
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    excerpt: TTS
+  object_value: TTS
+  note: Text-to-speech
+  fact_id: fact::0e0f3ce3f808b44fec19b7f3
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    source_section: configuration[1].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[0]
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    excerpt: deepdoc
+  object_value: deepdoc
+  note: 'default: default; OCR-based with layout analysis'
+  fact_id: fact::0a0fed1643613f857a771b99
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    source_section: configuration[1].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[2]
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    excerpt: docling
+  object_value: docling
+  note: IBM Docling parser
+  fact_id: fact::a00e6cef33f4c551651cde87
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    source_section: configuration[0].options[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[5]
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    excerpt: es.hosts
+  object_value: es.hosts
+  note: 'default: http://es01:9200; Elasticsearch hosts'
+  fact_id: fact::2b8a1dac5bf6e22da35a96e2
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    source_section: configuration[1].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[1]
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    excerpt: mineru
+  object_value: mineru
+  note: MinerU PDF parser
+  fact_id: fact::776884c1e943d0b90120afff
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    source_section: configuration[0].options[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[4]
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    excerpt: minio.host
+  object_value: minio.host
+  note: 'default: minio:9000; MinIO object storage'
+  fact_id: fact::5a79abb157791edc97dc9029
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    source_section: configuration[0].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[2]
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    excerpt: mysql.host
+  object_value: mysql.host
+  note: 'default: mysql; MySQL host'
+  fact_id: fact::c5bca899f8893205d046389b
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    source_section: configuration[0].options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[3]
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    excerpt: mysql.port
+  object_value: mysql.port
+  note: 'default: 3306; MySQL port'
+  fact_id: fact::59ae6aff6b9a306d8cd748b7
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    source_section: configuration[1].options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[3]
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    excerpt: paddleocr
+  object_value: paddleocr
+  note: PaddleOCR integration
+  fact_id: fact::881a4e020f5f22ae51a69ec7
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    source_section: configuration[1].options[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[4]
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    excerpt: plaintext
+  object_value: plaintext
+  note: Plain text or vision model
+  fact_id: fact::a0efe651ba0bf60fd86e9216
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    source_section: configuration[0].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[0]
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    excerpt: ragflow.host
+  object_value: ragflow.host
+  note: 'default: 0.0.0.0; Server bind address'
+  fact_id: fact::652c5306f9ddcb4e8a67f19d
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    source_section: configuration[0].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[1]
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    excerpt: ragflow.http_port
+  object_value: ragflow.http_port
+  note: 'default: 9380; API server port'
+  fact_id: fact::529fb8064b993324ceb4586a
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    source_section: configuration[0].options[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[6]
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    excerpt: redis.host
+  object_value: redis.host
+  note: 'default: redis:6379; Redis host'
+  fact_id: fact::1309ca402cdb35fcd526eb08
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    source_section: configuration[3].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[3].options[0]
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    excerpt: similarity_threshold
+  object_value: similarity_threshold
+  note: 'default: 0.1; Vector similarity threshold'
+  fact_id: fact::c55adf829cfc6e7ad48ab672
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    source_section: configuration[3].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[3].options[2]
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    excerpt: top_k
+  object_value: top_k
+  note: 'default: 1024; Vector search candidates'
+  fact_id: fact::99d9d432ad4c5cad7da88521
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    source_section: configuration[3].options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[3].options[3]
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    excerpt: top_n
+  object_value: top_n
+  note: 'default: 8; Final results after rerank'
+  fact_id: fact::f4c1383ffc7559b25ddfbe02
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    source_section: configuration[3].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[3].options[1]
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    excerpt: vector_similarity_weight
+  object_value: vector_similarity_weight
+  note: 'default: 0.95; Weight for vector vs text (5% text)'
+  fact_id: fact::f969ec03847c73c8d91504ad
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    excerpt: Elasticsearch connection refused
+  object_value: Elasticsearch connection refused
+  note: 'cause: ES not ready or wrong host; fix: Wait for ES health check, verify
+    ES_HOST in .env matches docker service name'
+  fact_id: fact::6bddc08759d3b749374e6130
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    excerpt: Empty search results
+  object_value: Empty search results
+  note: 'cause: Similarity threshold too high or embedding mismatch; fix: Lower similarity_threshold
+    (default 0.1), check embedding model matches'
+  fact_id: fact::330bfb7339d7704e5610092b
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    excerpt: GPU not detected in container
+  object_value: GPU not detected in container
+  note: 'cause: Missing nvidia-docker or profile not activated; fix: Use --profile
+    gpu flag, verify nvidia-smi works on host'
+  fact_id: fact::f44dc40df62dc86e6f0bde2b
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    excerpt: PDF parsing fails or times out
+  object_value: PDF parsing fails or times out
+  note: 'cause: Large files or insufficient memory; fix: Increase QUART_RESPONSE_TIMEOUT,
+    reduce zoomin parameter, use simpler parser'
+  fact_id: fact::75cd9da3fb1f04cce18065b5
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    source_section: code_patterns[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api/apps/chunk_app.py
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    excerpt: Create chunks with tokenization and embedding
+  object_value: Chunk Management with Embedding
+  note: 'description: Create chunks with tokenization and embedding; location: api/apps/chunk_app.py'
+  fact_id: fact::1e31d662cc0f1bac43dff7c6
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    source_section: code_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api/apps/document_app.py
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    excerpt: File upload with knowledge base association
+  object_value: Document Upload and Parsing
+  note: 'description: File upload with knowledge base association; location: api/apps/document_app.py'
+  fact_id: fact::87a1a5998dec402e9190e74a
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    source_section: code_patterns[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: rag/nlp/search.py
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    excerpt: Fulltext + vector search with weighted fusion
+  object_value: Hybrid Search with Fusion
+  note: 'description: Fulltext + vector search with weighted fusion; location: rag/nlp/search.py'
+  fact_id: fact::112b35490706bffae9948224
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    source_section: code_patterns[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: rag/llm/chat_model.py
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    excerpt: OpenAI-compatible client with exponential backoff
+  object_value: LLM Chat with Retry
+  note: 'description: OpenAI-compatible client with exponential backoff; location:
+    rag/llm/chat_model.py'
+  fact_id: fact::6600c45af1180ee099ad144a
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    source_section: code_patterns[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: deepdoc/parser/pdf_parser.py
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    excerpt: OCR + layout analysis + table extraction pipeline
+  object_value: PDF Parser (DeepDoc)
+  note: 'description: OCR + layout analysis + table extraction pipeline; location:
+    deepdoc/parser/pdf_parser.py'
+  fact_id: fact::2d15b5ef2531a99f96b6c92a
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    source_section: code_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api/apps/__init__.py
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    excerpt: Flask-like async API with CORS and OpenAPI
+  object_value: Quart Async API Setup
+  note: 'description: Flask-like async API with CORS and OpenAPI; location: api/apps/__init__.py'
+  fact_id: fact::065edc217b1c05d02714a4ef
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    source_section: common_tasks[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[2]
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    excerpt: Configure Custom LLM
+  object_value: Configure Custom LLM
+  note: 'Settings > Model Providers > Add, Select type: OpenAI-compatible, Ollama,
+    etc., Set base_url and api_key, Test connection before saving, Set as default
+    for chat/embedding/rerank; Ollama: use http://host.docker.internal:11434 from
+    container, Custom models need correct embedding...'
+  fact_id: fact::fe5c092d99c063275c4e6452
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    source_section: common_tasks[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[1]
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    excerpt: Create Knowledge Base and Ingest
+  object_value: Create Knowledge Base and Ingest
+  note: 'Create KB: select embedding model, parser type, Upload files: drag-drop or
+    API, Run parsing: triggers automatically or manually, Monitor progress in document
+    list, Test retrieval in chat interface; Large PDFs may timeout - increase QUART_RESPONSE_TIMEOUT,
+    Parser choice affects...'
+  fact_id: fact::20672f704e5830357fa4537f
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    source_section: common_tasks[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[0]
+    source_file: llm_repos/knowledge/deep/ragflow.yaml
+    excerpt: Deploy with Docker Compose
+  object_value: Deploy with Docker Compose
+  note: 'cd docker && cp .env.example .env, Edit .env: set passwords, ports, docker
+    compose -f docker-compose.yml up -d, Access UI at http://localhost:80, Configure
+    LLM in Settings > Model Providers; First start downloads Docker images - can take
+    10+ minutes, GPU profile requires nvidi...'
+  fact_id: fact::9452c66d860166a7d31f51cf

@@ -1,0 +1,93 @@
+name: maxkb
+node_id: repo::1panel-dev/maxkb
+github_full_name: 1panel-dev/maxkb
+html_url: https://github.com/1panel-dev/maxkb
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep_facts/maxkb.yaml
+  as_of: '2026-02-23'
+  extractor_version: ws6-deep-integrator-v1
+facts:
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    source_section: configuration.environment_variables[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.environment_variables[0]
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    excerpt: DATABASE_URL
+  object_value: DATABASE_URL
+  fact_id: fact::5fdc45d580bb6a862d25d0e1
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    source_section: configuration.environment_variables[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.environment_variables[1]
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    excerpt: REDIS_URL
+  object_value: REDIS_URL
+  fact_id: fact::e77185802c498dd94864326a
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    source_section: configuration.environment_variables[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.environment_variables[2]
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    excerpt: SECRET_KEY
+  object_value: SECRET_KEY
+  fact_id: fact::b34a3b2d3e40868cfcbb6f9f
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    source_section: configuration.celery_data_path
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.celery_data_path
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    excerpt: celery_data_path
+  object_value: celery_data_path
+  note: 'default: /data/celery_task; configuration default for celery_data_path'
+  fact_id: fact::660bca919afc3afcc5303eb2
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    source_section: configuration.config_path
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.config_path
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    excerpt: config_path
+  object_value: config_path
+  note: 'default: /opt/maxkb/conf; configuration default for config_path'
+  fact_id: fact::25d60bd46d9778f69e5319a3

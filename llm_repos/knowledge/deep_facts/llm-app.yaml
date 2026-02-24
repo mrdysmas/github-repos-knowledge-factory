@@ -1,0 +1,503 @@
+name: llm-app
+node_id: repo::pathwaycom/llm-app
+github_full_name: pathwaycom/llm-app
+html_url: https://github.com/pathwaycom/llm-app
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep_facts/llm-app.yaml
+  as_of: '2026-02-23'
+  extractor_version: ws6-deep-integrator-v1
+facts:
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    source_section: configuration[0].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[1]
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    excerpt: LiteLLMChat (Ollama)
+  object_value: LiteLLMChat (Ollama)
+  note: 'default: ollama/mistral; Local Ollama model'
+  fact_id: fact::5f400d7331ba9dd5c590ade8
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    source_section: configuration[4].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[4].options[0]
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    excerpt: OPENAI_API_KEY
+  object_value: OPENAI_API_KEY
+  note: 'default: required for cloud; OpenAI API key'
+  fact_id: fact::a85a39dcd8c05ce5d378561a
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    source_section: configuration[0].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[0]
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    excerpt: OpenAIChat
+  object_value: OpenAIChat
+  note: 'default: gpt-4.1-mini; OpenAI chat model (requires API key)'
+  fact_id: fact::04325b2070c36c43a95b1e5b
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    source_section: configuration[1].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[0]
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    excerpt: OpenAIEmbedder
+  object_value: OpenAIEmbedder
+  note: 'default: text-embedding-3-small; OpenAI embeddings (cloud)'
+  fact_id: fact::73e5451a40bf8af39133818f
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    source_section: configuration[4].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[4].options[1]
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    excerpt: PATHWAY_LICENSE_KEY
+  object_value: PATHWAY_LICENSE_KEY
+  note: 'default: optional; Pathway enterprise license'
+  fact_id: fact::70ddf97cf69500d9df4462e4
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    source_section: configuration[1].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[1]
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    excerpt: SentenceTransformerEmbedder
+  object_value: SentenceTransformerEmbedder
+  note: 'default: avsolatorio/GIST-small-Embedding-v0; Local embeddings (no API)'
+  fact_id: fact::0bb438dab68016f88757d35b
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    source_section: configuration[0].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[2]
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    excerpt: api_base
+  object_value: api_base
+  note: 'default: required for Ollama; http://localhost:11434 or http://host.docker.internal:11434'
+  fact_id: fact::44637773bb064a1c2b4ca911
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    source_section: configuration[3].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[3].options[0]
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    excerpt: host
+  object_value: host
+  note: 'default: 0.0.0.0; Server bind address'
+  fact_id: fact::be4caec840ed568bbfa96576
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    source_section: configuration[3].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[3].options[2]
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    excerpt: persistence_mode
+  object_value: persistence_mode
+  note: 'default: UDF_CACHING; Cache strategy'
+  fact_id: fact::0e7a854617d3d6bed69a6d30
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    source_section: configuration[3].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[3].options[1]
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    excerpt: port
+  object_value: port
+  note: 'default: 8000; Server port'
+  fact_id: fact::fdaba542413aca29ded13716
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    source_section: configuration[2].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[2].options[0]
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    excerpt: pw.io.fs.read
+  object_value: pw.io.fs.read
+  note: 'default: required; Local filesystem source'
+  fact_id: fact::d2fe61bf8518a7c17de7a1b8
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    source_section: configuration[2].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[2].options[1]
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    excerpt: pw.io.gdrive.read
+  object_value: pw.io.gdrive.read
+  note: 'default: optional; Google Drive with OAuth credentials'
+  fact_id: fact::f4f2b7c4bdf74b92921e4364
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    source_section: configuration[2].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[2].options[2]
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    excerpt: pw.xpacks.connectors.sharepoint.read
+  object_value: pw.xpacks.connectors.sharepoint.read
+  note: 'default: optional; SharePoint (requires license)'
+  fact_id: fact::9609d10d27f45f50b534e192
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    excerpt: API authentication or rate limit errors
+  object_value: API authentication or rate limit errors
+  note: 'cause: Invalid API keys or quota exceeded; fix: echo $OPENAI_API_KEY # Add
+    retry_strategy to config: retry_strategy: !pw.udfs.ExponentialBackoffRetryStrategy
+    max_retries: 6'
+  fact_id: fact::f6b1351c895f8c541fc4fa86
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    excerpt: Can't connect from Docker host
+  object_value: Can't connect from Docker host
+  note: 'cause: Network configuration issues; fix: # Use host network services: app:
+    network_mode: host'
+  fact_id: fact::e0f3fd4da7cf361d56d9f12a
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    excerpt: Connection timeouts or refused connections
+  object_value: Connection timeouts or refused connections
+  note: 'cause: Service not running or port conflicts; fix: ps aux | grep pathway
+    lsof -i :8000 # Try different port in app.yaml'
+  fact_id: fact::8e7da270b619a3e8c3cbb174
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    excerpt: Documents not being indexed
+  object_value: Documents not being indexed
+  note: 'cause: File permissions or format issues; fix: ls -la data/ file data/*.pdf
+    # Check logs for parser errors'
+  fact_id: fact::a1d54af7bc4cc030442867cd
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    source_section: code_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: templates/question_answering_rag/README.md
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    excerpt: Question answering with context retrieval
+  object_value: Basic RAG Query
+  note: 'description: Question answering with context retrieval; location: templates/question_answering_rag/README.md'
+  fact_id: fact::f2007806ea583c2faae407ec
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    source_section: code_patterns[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: templates/question_answering_rag/docker-compose.yml
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    excerpt: Containerized deployment with volume mounting
+  object_value: Docker Deployment
+  note: 'description: Containerized deployment with volume mounting; location: templates/question_answering_rag/docker-compose.yml'
+  fact_id: fact::347218216faf28dda8f2d0dd
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    source_section: code_patterns[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: templates/question_answering_rag/app.py
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    excerpt: RESTful endpoints for RAG operations
+  object_value: HTTP API Server
+  note: 'description: RESTful endpoints for RAG operations; location: templates/question_answering_rag/app.py'
+  fact_id: fact::04db7858a8627cd39dccead1
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    source_section: code_patterns[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: templates/private_rag/app.yaml
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    excerpt: Use local Sentence Transformers without API calls
+  object_value: Local Embedding Model
+  note: 'description: Use local Sentence Transformers without API calls; location:
+    templates/private_rag/app.yaml'
+  fact_id: fact::b9c32b0b6c19c6183bba4029
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    source_section: code_patterns[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: templates/private_rag/app.yaml
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    excerpt: Connect to local Ollama for private RAG
+  object_value: Ollama LLM Integration
+  note: 'description: Connect to local Ollama for private RAG; location: templates/private_rag/app.yaml'
+  fact_id: fact::89e4fce6e334fb2fd2ec111c
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    source_section: code_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: templates/question_answering_rag/app.yaml
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    excerpt: Automatically index documents with live updates
+  object_value: Real-time Document Indexing
+  note: 'description: Automatically index documents with live updates; location: templates/question_answering_rag/app.yaml'
+  fact_id: fact::713e196338dbcf7a73edfa8f
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    source_section: common_tasks[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[2]
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    excerpt: Configure Google Drive source
+  object_value: Configure Google Drive source
+  note: 'Create service account credentials JSON, Set DRIVE_ID environment variable,
+    Configure refresh_interval: 30, Specify file_name_pattern filters; Needs proper
+    OAuth setup, File size limits may apply'
+  fact_id: fact::ce99bc91396799c353829f83
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    source_section: common_tasks[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[1]
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    excerpt: Connect to Ollama for local LLM
+  object_value: Connect to Ollama for local LLM
+  note: 'Install Ollama: curl -fsSL https://ollama.com/install.sh | sh, Start: ollama
+    serve, Pull model: ollama run mistral, Use private_rag template, Set api_base:
+    http://localhost:11434; Use host.docker.internal:11434 for Docker on Mac/Windows,
+    Ensure Ollama running before Pathway'
+  fact_id: fact::33a0f5332afa67ac70b55624
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    source_section: common_tasks[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[3]
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    excerpt: Deploy with Docker
+  object_value: Deploy with Docker
+  note: 'Build: docker compose build, Run: docker compose up, Access at http://localhost:8000;
+    Mount volumes for data persistence, Port mapping might conflict'
+  fact_id: fact::036da909e171e17bca0d376c
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    source_section: common_tasks[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[4]
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    excerpt: Full private RAG (no external APIs)
+  object_value: Full private RAG (no external APIs)
+  note: Use private_rag template, Set local SentenceTransformer embedder, Configure
+    local Ollama LLM, No external API calls needed; GPU recommended for performance,
+    Local models are slower than cloud
+  fact_id: fact::bcb39ad40c308d7fda54be07
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    source_section: common_tasks[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[0]
+    source_file: llm_repos/knowledge/deep/llm-app.yaml
+    excerpt: Set up basic RAG pipeline
+  object_value: Set up basic RAG pipeline
+  note: 'Choose template: question_answering_rag, Install: pip install -r requirements.txt,
+    Set API key in .env: OPENAI_API_KEY=sk-..., Add documents to data/ folder, Run:
+    python app.py; Ensure data/ directory exists, First indexing takes time'
+  fact_id: fact::3ddd105b11f0a065215ecaa4

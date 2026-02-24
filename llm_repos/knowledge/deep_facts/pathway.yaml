@@ -1,0 +1,279 @@
+name: pathway
+node_id: repo::pathwaycom/pathway
+github_full_name: pathwaycom/pathway
+html_url: https://github.com/pathwaycom/pathway
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep_facts/pathway.yaml
+  as_of: '2026-02-23'
+  extractor_version: ws6-deep-integrator-v1
+facts:
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/pathway.yaml
+    source_section: architecture.components[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.components[5]
+    source_file: llm_repos/knowledge/deep/pathway.yaml
+    excerpt: CLI
+  object_value: CLI
+  note: spawn, run, deployment commands
+  fact_id: fact::fe2e3b4dfb2e4b33f788019d
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/pathway.yaml
+    source_section: architecture.components[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.components[1]
+    source_file: llm_repos/knowledge/deep/pathway.yaml
+    excerpt: IO Connectors
+  object_value: IO Connectors
+  note: 30+ data source/sink connectors
+  fact_id: fact::bb36c10ccf2d4940c9deffc9
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/pathway.yaml
+    source_section: architecture.components[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.components[4]
+    source_file: llm_repos/knowledge/deep/pathway.yaml
+    excerpt: LLM Extensions
+  object_value: LLM Extensions
+  note: OpenAI, Anthropic, Cohere integrations
+  fact_id: fact::721c43b4b14a46510ee8e93a
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/pathway.yaml
+    source_section: architecture.components[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.components[0]
+    source_file: llm_repos/knowledge/deep/pathway.yaml
+    excerpt: Python API
+  object_value: Python API
+  note: Primary user-facing API for data pipelines
+  fact_id: fact::61f4de9b4a90aac4e8fec0ca
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/pathway.yaml
+    source_section: architecture.components[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.components[3]
+    source_file: llm_repos/knowledge/deep/pathway.yaml
+    excerpt: Rust Engine
+  object_value: Rust Engine
+  note: Differential dataflow computation engine
+  fact_id: fact::30ac7a2b03f61ae195a57682
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/pathway.yaml
+    source_section: architecture.components[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.components[2]
+    source_file: llm_repos/knowledge/deep/pathway.yaml
+    excerpt: Standard Library
+  object_value: Standard Library
+  note: graphs, indexing, ml, temporal, stateful
+  fact_id: fact::11ba23cacde7b8c694910f50
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/pathway.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: llm_repos/knowledge/deep/pathway.yaml
+    excerpt: API calls timeout, incomplete responses
+  object_value: API calls timeout, incomplete responses
+  note: 'cause: Large documents, rate limiting; solution: Increase timeout settings.
+    Implement chunking for large documents. Add retry logic with exponential backoff.'
+  fact_id: fact::f27da4847ce2aa3c3142e4b6
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/pathway.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: llm_repos/knowledge/deep/pathway.yaml
+    excerpt: Kafka, Postgres, etc. connection errors
+  object_value: Kafka, Postgres, etc. connection errors
+  note: 'cause: Network configuration or credentials; solution: Verify connection
+    string and credentials. Check firewall rules and network access. Test with simple
+    Python client first.'
+  fact_id: fact::4fba6192d5c8c2c6a9cb5703
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/pathway.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: llm_repos/knowledge/deep/pathway.yaml
+    excerpt: Pipeline crashes, memory warnings
+  object_value: Pipeline crashes, memory warnings
+  note: 'cause: Large data volume, insufficient heap; solution: Reduce batch size,
+    increase PW_THREADS. Enable persistence to offload state. Consider data partitioning.'
+  fact_id: fact::6aef7ca791b4e595f2757e60
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/pathway.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: llm_repos/knowledge/deep/pathway.yaml
+    excerpt: Updates take longer than expected
+  object_value: Updates take longer than expected
+  note: 'cause: Not leveraging incremental computation; solution: Ensure using streaming
+    connectors. Check that pw.run() is called once. Review table operations for re-computation.'
+  fact_id: fact::aae26ca42e89b213341050d4
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/pathway.yaml
+    source_section: code_patterns[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: code_patterns[4]
+    source_file: llm_repos/knowledge/deep/pathway.yaml
+    excerpt: Multi-process deployment with scaling support. Exit codes for downscale
+      (10) and upscale (12). Worker coordination via environment variables.
+  object_value: CLI Spawn Command
+  note: 'description: Multi-process deployment with scaling support. Exit codes for
+    downscale (10) and upscale (12). Worker coordination via environment variables.'
+  fact_id: fact::c703529f910963c5ff0a0a3b
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/pathway.yaml
+    source_section: code_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: code_patterns[1]
+    source_file: llm_repos/knowledge/deep/pathway.yaml
+    excerpt: Unified API for batch and streaming sources. Connectors handle change
+      data capture (CDC). Airbyte integration provides 300+ additional sources.
+  object_value: IO Connectors
+  note: 'description: Unified API for batch and streaming sources. Connectors handle
+    change data capture (CDC). Airbyte integration provides 300+ additional sources.'
+  fact_id: fact::2b6a1a41e2e135e555f4baa1
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/pathway.yaml
+    source_section: code_patterns[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: code_patterns[2]
+    source_file: llm_repos/knowledge/deep/pathway.yaml
+    excerpt: Built-in LLM integrations for RAG pipelines. Real-time document processing
+      and embedding. Supports function calling and tool use.
+  object_value: LLM Extensions (xpacks)
+  note: 'description: Built-in LLM integrations for RAG pipelines. Real-time document
+    processing and embedding. Supports function calling and tool use.'
+  fact_id: fact::3c2b8b16f75229f60c7a7d03
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/pathway.yaml
+    source_section: code_patterns[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: code_patterns[3]
+    source_file: llm_repos/knowledge/deep/pathway.yaml
+    excerpt: Standard Library Modules
+  object_value: Standard Library Modules
+  fact_id: fact::a476fe0ba12c5ffcbb820da4
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/pathway.yaml
+    source_section: code_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: code_patterns[0]
+    source_file: llm_repos/knowledge/deep/pathway.yaml
+    excerpt: Data represented as Tables with typed schemas. Operations are lazily
+      evaluated until pw.run(). Supports incremental updates via differential dataflow.
+  object_value: Table-based Dataflow
+  note: 'description: Data represented as Tables with typed schemas. Operations are
+    lazily evaluated until pw.run(). Supports incremental updates via differential
+    dataflow.'
+  fact_id: fact::c8174e5ac7d32c0eedc096f0

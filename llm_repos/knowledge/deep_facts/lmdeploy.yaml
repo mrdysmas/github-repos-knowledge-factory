@@ -1,0 +1,79 @@
+name: lmdeploy
+node_id: repo::internlm/lmdeploy
+github_full_name: internlm/lmdeploy
+html_url: https://github.com/internlm/lmdeploy
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep_facts/lmdeploy.yaml
+  as_of: '2026-02-23'
+  extractor_version: ws6-deep-integrator-v1
+facts:
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.7
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/lmdeploy.yaml
+    source_section: environment_variables[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: environment_variables[1]
+    source_file: llm_repos/knowledge/deep/lmdeploy.yaml
+    excerpt: CUDA_VISIBLE_DEVICES
+  object_value: CUDA_VISIBLE_DEVICES
+  note: GPU device selection
+  fact_id: fact::d9e3ca115d9c735df4b53763
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.7
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/lmdeploy.yaml
+    source_section: environment_variables[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: environment_variables[0]
+    source_file: llm_repos/knowledge/deep/lmdeploy.yaml
+    excerpt: LMDEPLOY_TARGET_DEVICE
+  object_value: LMDEPLOY_TARGET_DEVICE
+  note: 'Target device (cuda, ascend); default: cuda'
+  fact_id: fact::aef9917f54651d51ac90572d
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.7
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/lmdeploy.yaml
+    source_section: environment_variables[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: environment_variables[3]
+    source_file: llm_repos/knowledge/deep/lmdeploy.yaml
+    excerpt: LMDEPLOY_USE_MODELSCOPE
+  object_value: LMDEPLOY_USE_MODELSCOPE
+  note: 'Enable ModelScope model loading; default: false'
+  fact_id: fact::9fb46d47f870da0e07c92905
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.7
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/lmdeploy.yaml
+    source_section: environment_variables[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: environment_variables[2]
+    source_file: llm_repos/knowledge/deep/lmdeploy.yaml
+    excerpt: TM_LOG_LEVEL
+  object_value: TM_LOG_LEVEL
+  note: 'TurboMind log level (DEBUG, INFO, WARNING, ERROR); default: INFO'
+  fact_id: fact::ae9dc24950914a6aaf596b32

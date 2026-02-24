@@ -1,0 +1,75 @@
+name: mindsdb
+node_id: repo::mindsdb/mindsdb
+github_full_name: mindsdb/mindsdb
+html_url: https://github.com/mindsdb/mindsdb
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep_facts/mindsdb.yaml
+  as_of: '2026-02-23'
+  extractor_version: ws6-deep-integrator-v1
+facts:
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mindsdb.yaml
+    source_section: api_protocols[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_protocols[0]
+    source_file: llm_repos/knowledge/deep/mindsdb.yaml
+    excerpt: A2A (Agent-to-Agent)
+  object_value: A2A (Agent-to-Agent)
+  fact_id: fact::dc72e5405fdd05eb90148d19
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mindsdb.yaml
+    source_section: api_protocols[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_protocols[1]
+    source_file: llm_repos/knowledge/deep/mindsdb.yaml
+    excerpt: HTTP/REST
+  object_value: HTTP/REST
+  fact_id: fact::ec548ad55a4482e4e9d095f9
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mindsdb.yaml
+    source_section: api_protocols[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_protocols[2]
+    source_file: llm_repos/knowledge/deep/mindsdb.yaml
+    excerpt: MCP (Model Context Protocol)
+  object_value: MCP (Model Context Protocol)
+  fact_id: fact::801ce5d9e96a185333228d9b
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mindsdb.yaml
+    source_section: api_protocols[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_protocols[3]
+    source_file: llm_repos/knowledge/deep/mindsdb.yaml
+    excerpt: MySQL wire protocol
+  object_value: MySQL wire protocol
+  fact_id: fact::5da01d78daaa5fc3f0f48082

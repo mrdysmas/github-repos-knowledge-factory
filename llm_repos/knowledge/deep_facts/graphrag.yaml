@@ -1,0 +1,498 @@
+name: graphrag
+node_id: repo::microsoft/graphrag
+github_full_name: microsoft/graphrag
+html_url: https://github.com/microsoft/graphrag
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep_facts/graphrag.yaml
+  as_of: '2026-02-23'
+  extractor_version: ws6-deep-integrator-v1
+facts:
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    source_section: configuration[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[4]
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    excerpt: chunking.encoding_model
+  object_value: chunking.encoding_model
+  note: 'type: str; default: o200k_base; Tokenizer encoding model'
+  fact_id: fact::ce20c0b60b06488c82ba18a4
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    source_section: configuration[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[3]
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    excerpt: chunking.overlap
+  object_value: chunking.overlap
+  note: 'type: int; Token overlap between chunks'
+  fact_id: fact::c954237b079084792d271f7e
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    source_section: configuration[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[2]
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    excerpt: chunking.size
+  object_value: chunking.size
+  note: 'type: int; Token count per chunk'
+  fact_id: fact::1207cd072d8d3d24c47cf615
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    source_section: configuration[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0]
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    excerpt: completion_models
+  object_value: completion_models
+  note: 'type: dict; LLM configurations keyed by model ID'
+  fact_id: fact::8f7848b274bd1c3ae1442cde
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    source_section: configuration[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[6]
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    excerpt: concurrent_requests
+  object_value: concurrent_requests
+  note: 'type: int; Number of concurrent LLM requests'
+  fact_id: fact::54299afb493e882d78da093c
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    source_section: configuration[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[5]
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    excerpt: embed_text.batch_size
+  object_value: embed_text.batch_size
+  note: 'type: int; Embedding batch size'
+  fact_id: fact::860ceee47096636d24a8d0b2
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    source_section: configuration[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1]
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    excerpt: embedding_models
+  object_value: embedding_models
+  note: 'type: dict; Embedding model configurations'
+  fact_id: fact::5b9c0e76bd116e6e148fd7cb
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    source_section: configuration[11]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[11]
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    excerpt: global_search.max_context_tokens
+  object_value: global_search.max_context_tokens
+  note: 'type: int; Max tokens for global search context'
+  fact_id: fact::b86c45d62118371ee9493613
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    source_section: configuration[7]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[7]
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    excerpt: input_storage.base_dir
+  object_value: input_storage.base_dir
+  note: 'type: str; default: input; Directory containing input documents'
+  fact_id: fact::bb1aef8b7a702d3873ac22e2
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    source_section: configuration[10]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[10]
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    excerpt: local_search.max_context_tokens
+  object_value: local_search.max_context_tokens
+  note: 'type: int; Max tokens for local search context'
+  fact_id: fact::78f2ac6e93050f263a6cbf53
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    source_section: configuration[8]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[8]
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    excerpt: output_storage.base_dir
+  object_value: output_storage.base_dir
+  note: 'type: str; default: output; Directory for index outputs'
+  fact_id: fact::819b864bde84d071ca5c21a7
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    source_section: configuration[9]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[9]
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    excerpt: vector_store.type
+  object_value: vector_store.type
+  note: 'type: str; default: LanceDB; Vector store type (LanceDB, etc.)'
+  fact_id: fact::83a3ef4e41a4815d3d7a03ce
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    excerpt: API rate limits
+  object_value: API rate limits
+  note: 'solution: - Reduce concurrent_requests in config - Lower embed_text.batch_size
+    - Enable caching (default) to avoid re-processing - Consider using Azure OpenAI
+    with higher rate limits'
+  fact_id: fact::b93d349e52fd277b887c3435
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    excerpt: Empty or missing results
+  object_value: Empty or missing results
+  note: 'solution: - Verify input/ directory contains documents - Check API key is
+    set correctly - Ensure output/ directory exists with parquet files - Verify vector_store.db_uri
+    path is accessible'
+  fact_id: fact::4a01c645e873c57618c2edb6
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    excerpt: Out of memory during indexing
+  object_value: Out of memory during indexing
+  note: 'solution: - Reduce chunking.size - Lower batch sizes for embeddings - Process
+    documents in smaller batches - Use streaming mode if available'
+  fact_id: fact::daaef0d7b67bc85fd5679841
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    excerpt: Slow indexing
+  object_value: Slow indexing
+  note: 'solution: - Start with small document sets for testing - Use caching to resume
+    interrupted runs - Increase concurrent_requests if rate limits allow - Check input
+    document sizes - may need chunking adjustment'
+  fact_id: fact::07925cbc20fdfef638d63eff
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    source_section: code_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: packages/graphrag/graphrag/cli/main.py
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    excerpt: Typer-based CLI with init, index, query, update, prompt-tune commands
+  object_value: CLI Main Entry Point
+  note: 'description: Typer-based CLI with init, index, query, update, prompt-tune
+    commands; location: packages/graphrag/graphrag/cli/main.py'
+  fact_id: fact::9b94a234e3c1f8a5eccb488e
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    source_section: code_patterns[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: packages/graphrag/graphrag/config/defaults.py
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    excerpt: Default settings for chunking, embeddings, search parameters
+  object_value: Default Configuration Values
+  note: 'description: Default settings for chunking, embeddings, search parameters;
+    location: packages/graphrag/graphrag/config/defaults.py'
+  fact_id: fact::a5054ca52cae729dcb64cd46
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    source_section: code_patterns[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: packages/graphrag/graphrag/config/models/graph_rag_config.py
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    excerpt: Main Pydantic configuration class defining all indexing and search parameters
+  object_value: GraphRAG Configuration Model
+  note: 'description: Main Pydantic configuration class defining all indexing and
+    search parameters; location: packages/graphrag/graphrag/config/models/graph_rag_config.py'
+  fact_id: fact::9f6c0314a73cde886a2a2ae3
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    source_section: code_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: packages/graphrag/graphrag/cli/main.py
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    excerpt: Different search algorithms for querying the knowledge graph
+  object_value: Query Methods
+  note: 'description: Different search algorithms for querying the knowledge graph;
+    location: packages/graphrag/graphrag/cli/main.py'
+  fact_id: fact::5838d22fb853de5506f1bfe6
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    source_section: common_tasks[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[1]
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    excerpt: Build index
+  object_value: Build index
+  note: Run full indexing pipeline on input documents
+  fact_id: fact::5c69172ae0493305d100e364
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    source_section: common_tasks[7]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[7]
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    excerpt: Dry run
+  object_value: Dry run
+  note: Validate configuration without running LLM steps
+  fact_id: fact::a9619c98309d0826c915d6b9
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    source_section: common_tasks[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[6]
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    excerpt: Generate custom prompts
+  object_value: Generate custom prompts
+  note: Auto-generate domain-specific prompts from data
+  fact_id: fact::ea3f1a0aa7e1ffb6b701a37f
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    source_section: common_tasks[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[0]
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    excerpt: Initialize new project
+  object_value: Initialize new project
+  note: Create project directory with default settings.yaml
+  fact_id: fact::c9be3cee714d936f34090bbd
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    source_section: common_tasks[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[4]
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    excerpt: Query DRIFT search
+  object_value: Query DRIFT search
+  note: DRIFT search for multi-hop reasoning
+  fact_id: fact::e0c996624bad08555c0ba73e
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    source_section: common_tasks[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[3]
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    excerpt: Query global search
+  object_value: Query global search
+  note: Global search using community summaries
+  fact_id: fact::020c856cd3124ec3b8ef5bab
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    source_section: common_tasks[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[2]
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    excerpt: Query local search
+  object_value: Query local search
+  note: Local graph-based search focused on relevant entities
+  fact_id: fact::8206ca00bf050719e1e24957
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-23'
+  provenance:
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    source_section: common_tasks[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[5]
+    source_file: llm_repos/knowledge/deep/graphrag.yaml
+    excerpt: Update existing index
+  object_value: Update existing index
+  note: Incremental index update for new documents
+  fact_id: fact::ed0edae1e58fba45f0ad4181
