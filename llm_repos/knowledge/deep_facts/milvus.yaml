@@ -9,6 +9,74 @@ provenance:
   as_of: '2026-02-25'
   extractor_version: ws6-deep-integrator-v1
 facts:
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/milvus.yaml
+    source_section: languages[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: languages[1].line[0]
+    source_file: llm_repos/knowledge/deep/milvus.yaml
+    excerpt: C++
+  object_value: C++
+  note: language ecosystem
+  fact_id: fact::2d8a8f5ea5b427baa5a34d6f
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.66
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/milvus.yaml
+    source_section: primary_language.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: primary_language.line[0]
+    source_file: llm_repos/knowledge/deep/milvus.yaml
+    excerpt: Go
+  object_value: Go
+  note: primary language
+  fact_id: fact::4dbf931e8914573a59c9cce0
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/milvus.yaml
+    source_section: languages[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: languages[0].line[0]
+    source_file: llm_repos/knowledge/deep/milvus.yaml
+    excerpt: Go
+  object_value: Go
+  note: language ecosystem
+  fact_id: fact::fcc2d3187f25c4ce7dee9d1b
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/milvus.yaml
+    source_section: languages[2].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: languages[2].line[0]
+    source_file: llm_repos/knowledge/deep/milvus.yaml
+    excerpt: Python
+  object_value: Python
+  note: language ecosystem
+  fact_id: fact::b2503118f827591c5b2266d3
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
@@ -471,6 +539,40 @@ facts:
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
+  confidence: 0.7
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/milvus.yaml
+    source_section: ports.grpc
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: ports.grpc
+    source_file: llm_repos/knowledge/deep/milvus.yaml
+    excerpt: grpc=19530
+  object_value: grpc
+  note: 'port: 19530'
+  fact_id: fact::c33c864deac16547825b8e81
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.7
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/milvus.yaml
+    source_section: ports.metrics
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: ports.metrics
+    source_file: llm_repos/knowledge/deep/milvus.yaml
+    excerpt: metrics=9091
+  object_value: metrics
+  note: 'port: 9091'
+  fact_id: fact::b80c81a780c2f08ac9bf5c2e
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
   confidence: 0.72
   as_of: '2026-02-25'
   provenance:
@@ -519,6 +621,57 @@ facts:
   object_value: proxy.port
   note: 'default: 19530; Client connection port'
   fact_id: fact::dd9ea6d613ee2b5a1a9186e6
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.59
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/milvus.yaml
+    source_section: related_repos[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: related_repos[0].line[0]
+    source_file: llm_repos/knowledge/deep/milvus.yaml
+    excerpt: langchain
+  object_value: langchain
+  note: related repository
+  fact_id: fact::3efa03d5d4f3013dae31e3ac
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.59
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/milvus.yaml
+    source_section: related_repos[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: related_repos[1].line[0]
+    source_file: llm_repos/knowledge/deep/milvus.yaml
+    excerpt: llama_index
+  object_value: llama_index
+  note: related repository
+  fact_id: fact::11c788aff110272c27bd303d
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.59
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/milvus.yaml
+    source_section: related_repos[2].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: related_repos[2].line[0]
+    source_file: llm_repos/knowledge/deep/milvus.yaml
+    excerpt: ragflow
+  object_value: ragflow
+  note: related repository
+  fact_id: fact::77bbe68cdd3120079990ae68
 - fact_type: failure_mode
   predicate: has_failure_mode
   object_kind: issue

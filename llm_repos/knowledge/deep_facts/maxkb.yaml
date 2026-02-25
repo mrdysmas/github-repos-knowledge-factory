@@ -137,6 +137,23 @@ facts:
     excerpt: POST /api/v1/provider/{id}/model
   object_value: POST /api/v1/provider/{id}/model
   fact_id: fact::34a0d583f9b9ae45617859fd
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.6
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    source_section: type.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: type.line[0]
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    excerpt: application_platform
+  object_value: application_platform
+  note: repository type classification
+  fact_id: fact::61c77c1feffd3f4884312c47
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
