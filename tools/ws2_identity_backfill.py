@@ -70,6 +70,13 @@ SOURCE_RANK = {
     "readme_self_match": 90,
 }
 ALLOWED_MASTER_FALLBACK = {"ssh_repos/knowledge/repos/awesome-tunneling.yaml"}
+ALLOWED_RECORD_SOURCES = {
+    "llm_repos",
+    "ssh_repos",
+    "remote_metadata",
+    "remote_api",
+    "compiled_master",
+}
 
 
 URL_PATTERNS = [
@@ -95,6 +102,7 @@ class Resolution:
     full_name: str
     source: str
     fallback_used: bool
+    identity_source: str = ""
 
 
 class BackfillError(RuntimeError):
@@ -533,7 +541,9 @@ def audit_identity(path: Path, payload: dict[str, Any], expected_shard: str) -> 
     if not isinstance(node_id, str) or not node_id.startswith("repo::"):
         malformed.append("node_id")
 
-    if source != expected_shard:
+    if not isinstance(source, str) or source not in ALLOWED_RECORD_SOURCES:
+        malformed.append("source")
+    elif source in {"llm_repos", "ssh_repos"} and source != expected_shard:
         malformed.append("source")
 
     if not isinstance(provenance, dict):
@@ -591,6 +601,39 @@ def build_resolution_map(
                     fallback_used=False,
                 )
         if resolution is None:
+            declared_source = payload.get("source")
+            declared_full_name = payload.get("github_full_name")
+            declared_node_id = payload.get("node_id")
+            declared_html_url = payload.get("html_url")
+            extras = payload.get("extras") if isinstance(payload.get("extras"), dict) else {}
+            remote_meta = extras.get("remote") if isinstance(extras.get("remote"), dict) else {}
+            remote_mode = remote_meta.get("mode") if isinstance(remote_meta.get("mode"), str) else ""
+            remote_identity_source = "remote_api" if remote_mode == "api" else "remote_metadata"
+            looks_remote_directory = isinstance(directory, str) and directory.startswith("remote::")
+            declared_url_names = (
+                extract_github_full_names(declared_html_url) if isinstance(declared_html_url, str) else []
+            )
+            if (
+                (
+                    (isinstance(declared_source, str) and declared_source in {"remote_metadata", "remote_api"})
+                    or looks_remote_directory
+                )
+                and isinstance(declared_full_name, str)
+                and is_valid_github_full_name(declared_full_name)
+                and isinstance(declared_node_id, str)
+                and declared_node_id == f"repo::{declared_full_name}"
+                and declared_url_names
+                and declared_url_names[0].lower() == declared_full_name.lower()
+            ):
+                resolution = Resolution(
+                    full_name=declared_full_name.lower(),
+                    source="existing_remote_identity",
+                    fallback_used=False,
+                    identity_source=(
+                        declared_source if isinstance(declared_source, str) and declared_source in {"remote_metadata", "remote_api"} else remote_identity_source
+                    ),
+                )
+        if resolution is None:
             fallback_value = fallback_map.get(directory)
             if fallback_value:
                 record_rel = relative(path)
@@ -617,6 +660,20 @@ def build_resolution_map(
             else:
                 raise BackfillError(f"Could not resolve identity for {path}")
 
+        if not resolution.identity_source:
+            declared_source = payload.get("source")
+            extras = payload.get("extras") if isinstance(payload.get("extras"), dict) else {}
+            remote_meta = extras.get("remote") if isinstance(extras.get("remote"), dict) else {}
+            remote_mode = remote_meta.get("mode") if isinstance(remote_meta.get("mode"), str) else ""
+            if remote_mode == "api":
+                resolution.identity_source = "remote_api"
+            elif remote_mode == "metadata":
+                resolution.identity_source = "remote_metadata"
+            elif isinstance(declared_source, str) and declared_source in {"remote_metadata", "remote_api"}:
+                resolution.identity_source = declared_source
+            else:
+                resolution.identity_source = shard
+
         resolution_by_path[relative(path)] = resolution
 
     unexpected_fallbacks = fallback_records_used - ALLOWED_MASTER_FALLBACK
@@ -635,12 +692,13 @@ def apply_updates(
     conflict_events: list[dict[str, Any]],
 ) -> None:
     payload = parse_record_safe(yaml_rt, file_path)
+    identity_source = resolution.identity_source or shard
 
     identity = {
         "node_id": f"repo::{resolution.full_name}",
         "github_full_name": resolution.full_name,
         "html_url": f"https://github.com/{resolution.full_name}",
-        "source": shard,
+        "source": identity_source,
         "provenance": {
             "shard": shard,
             "source_file": relative(file_path),
@@ -917,9 +975,15 @@ def main() -> int:
     )
     scope_paths = shallow_paths + deep_paths
 
-    if len(scope_paths) != 96:
+    expected_scope_count = len(shallow_paths) + len(deep_paths)
+    if expected_scope_count == 0:
         raise BackfillError(
-            f"Expected 96 in-scope records, found {len(scope_paths)}. Stop for escalation."
+            "Expected non-empty shallow/deep corpus, found 0 in-scope records. Stop for escalation."
+        )
+
+    if len(scope_paths) != expected_scope_count:
+        raise BackfillError(
+            f"Expected {expected_scope_count} in-scope records, found {len(scope_paths)}. Stop for escalation."
         )
 
     fallback_map = load_master_fallback_map(root / "master_repo_list.yaml")

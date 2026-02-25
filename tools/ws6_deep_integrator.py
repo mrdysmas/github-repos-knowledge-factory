@@ -177,20 +177,99 @@ def is_command_like(value: str) -> bool:
     return first in {
         "python3",
         "python",
+        "pip",
+        "pip3",
+        "poetry",
         "go",
         "cargo",
         "npm",
         "pnpm",
         "yarn",
         "make",
+        "cmake",
         "docker",
         "kubectl",
         "git",
         "uv",
         "pytest",
+        "bash",
+        "sh",
+        "ls",
+        "cd",
+        "grep",
+        "curl",
+        "wget",
+        "opencompass",
+        "graphrag",
+        "llamafactory-cli",
+        "torchrun",
         "llama-cli",
         "llama-server",
     }
+
+
+def is_cli_line(value: str) -> bool:
+    text = value.strip()
+    if not text:
+        return False
+    if is_command_like(text):
+        return True
+    if text.startswith(("#", "|")):
+        return False
+    if text.upper().startswith(("GET ", "POST ", "PUT ", "PATCH ", "DELETE ", "HEAD ", "OPTIONS ")):
+        return False
+    first = text.split()[0].strip()
+    return first.endswith(("-cli", "_cli"))
+
+
+def is_api_route_like(value: str) -> bool:
+    text = value.strip()
+    if not text:
+        return False
+    if text.startswith(("/", "http://", "https://")):
+        return True
+    upper = text.upper()
+    for method in ("GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"):
+        if upper.startswith(f"{method} /") or upper.startswith(f"{method} HTTP"):
+            return True
+    return False
+
+
+def normalized_lines(value: str) -> list[str]:
+    out: list[str] = []
+    for raw in value.splitlines():
+        line = compact_whitespace(raw)
+        if not line:
+            continue
+        if line in {"```", "```bash", "```sh", "```shell", "```zsh"}:
+            continue
+        if line.startswith("|") and line.endswith("|"):
+            continue
+        if set(line.replace("|", "").replace("-", "").replace(":", "").replace(" ", "")) == set():
+            continue
+        out.append(line)
+    return out
+
+
+def iter_text_nodes(section: Any, base_ref: str) -> list[tuple[str, str]]:
+    out: list[tuple[str, str]] = []
+
+    def _walk(node: Any, ref: str) -> None:
+        if isinstance(node, str):
+            text = node.strip()
+            if text:
+                out.append((ref, text))
+            return
+        if isinstance(node, list):
+            for idx, item in enumerate(node):
+                _walk(item, f"{ref}[{idx}]")
+            return
+        if isinstance(node, dict):
+            for key in sorted(node.keys(), key=lambda item: str(item)):
+                _walk(node[key], f"{ref}.{key}")
+
+    _walk(section, base_ref)
+    return out
 
 
 def parse_as_of(value: Any) -> datetime | None:
@@ -1069,6 +1148,306 @@ def extract_task_facts(section: Any, source_file: str, as_of: str, base_ref: str
     return facts
 
 
+def extract_testing_facts(section: Any, source_file: str, as_of: str) -> list[dict[str, Any]]:
+    facts: list[dict[str, Any]] = []
+    seen_tasks: set[str] = set()
+    seen_patterns: set[str] = set()
+
+    for section_ref, text in iter_text_nodes(section, "testing"):
+        for line_idx, line in enumerate(normalized_lines(text)):
+            line_ref = f"{section_ref}.line[{line_idx}]"
+            if is_cli_line(line):
+                task_key = line.lower()
+                if task_key in seen_tasks:
+                    continue
+                seen_tasks.add(task_key)
+                facts.append(
+                    make_fact(
+                        fact_type="operational_task",
+                        predicate="supports_task",
+                        object_kind="command",
+                        object_value=line,
+                        note="testing command",
+                        confidence=0.67,
+                        as_of=as_of,
+                        source_file=source_file,
+                        source_section=line_ref,
+                        extraction_mode="narrative",
+                        evidence=make_evidence(source_file, line_ref, line),
+                    )
+                )
+
+    payload = ensure_dict(section)
+    concept_keys = {"framework", "structure", "coverage", "coverage_areas", "test_patterns"}
+    for key in sorted(payload.keys()):
+        if key not in concept_keys:
+            continue
+        value = payload[key]
+        entries: list[tuple[str, str]] = []
+        if isinstance(value, str):
+            entries.append((f"testing.{key}", value))
+        elif isinstance(value, list):
+            for idx, item in enumerate(value):
+                text = ensure_string(item)
+                if text:
+                    entries.append((f"testing.{key}[{idx}]", text))
+        elif isinstance(value, dict):
+            for sub_key in sorted(value.keys(), key=lambda item: str(item)):
+                text = ensure_string(value[sub_key])
+                if text:
+                    entries.append((f"testing.{key}.{sub_key}", text))
+
+        for section_ref, text in entries:
+            for line_idx, line in enumerate(normalized_lines(text)):
+                if is_cli_line(line):
+                    continue
+                pattern_key = line.lower()
+                if pattern_key in seen_patterns:
+                    continue
+                seen_patterns.add(pattern_key)
+                line_ref = f"{section_ref}.line[{line_idx}]"
+                facts.append(
+                    make_fact(
+                        fact_type="implementation_pattern",
+                        predicate="implements_pattern",
+                        object_kind="concept",
+                        object_value=line,
+                        note=f"testing metadata: {key}",
+                        confidence=0.64,
+                        as_of=as_of,
+                        source_file=source_file,
+                        source_section=line_ref,
+                        extraction_mode="narrative",
+                        evidence=make_evidence(source_file, line_ref, line),
+                    )
+                )
+
+    return facts
+
+
+def extract_quick_reference_facts(section: Any, source_file: str, as_of: str) -> list[dict[str, Any]]:
+    facts: list[dict[str, Any]] = []
+
+    rows = section if isinstance(section, list) else [section]
+    for idx, row in enumerate(rows):
+        row_ref = f"quick_reference[{idx}]"
+        topic = ""
+        values: list[str] = []
+
+        if isinstance(row, dict):
+            topic = ensure_string(row.get("topic")) or ensure_string(row.get("name"))
+            for key in ("content", "command", "syntax"):
+                text = ensure_string(row.get(key))
+                if text:
+                    values.append(text)
+            if not values:
+                for _, text in iter_text_nodes(row, row_ref):
+                    values.append(text)
+        else:
+            text = ensure_string(row)
+            if text:
+                values.append(text)
+
+        emitted = False
+        for text in values:
+            for line_idx, line in enumerate(normalized_lines(text)):
+                if not is_cli_line(line):
+                    continue
+                emitted = True
+                section_ref = f"{row_ref}.line[{line_idx}]"
+                note = f"topic: {topic}" if topic else ""
+                facts.append(
+                    make_fact(
+                        fact_type="operational_task",
+                        predicate="supports_task",
+                        object_kind="command",
+                        object_value=line,
+                        note=note,
+                        confidence=0.67,
+                        as_of=as_of,
+                        source_file=source_file,
+                        source_section=section_ref,
+                        extraction_mode="narrative",
+                        evidence=make_evidence(source_file, section_ref, line),
+                    )
+                )
+
+        if emitted:
+            continue
+
+        fallback = topic
+        if not fallback:
+            for text in values:
+                for line in normalized_lines(text):
+                    fallback = line
+                    break
+                if fallback:
+                    break
+        if not fallback:
+            continue
+
+        note = "quick reference topic"
+        facts.append(
+            make_fact(
+                fact_type="operational_task",
+                predicate="supports_task",
+                object_kind="text",
+                object_value=fallback,
+                note=note,
+                confidence=0.58,
+                as_of=as_of,
+                source_file=source_file,
+                source_section=row_ref,
+                extraction_mode="narrative",
+                evidence=make_evidence(source_file, row_ref, fallback),
+            )
+        )
+
+    return facts
+
+
+def extract_endpoint_like_facts(section: Any, source_file: str, as_of: str, base_ref: str) -> list[dict[str, Any]]:
+    facts: list[dict[str, Any]] = []
+    route_keys = ("path", "endpoint", "route", "url")
+    note_keys = ("method", "methods", "purpose", "description")
+
+    def _emit(route: str, section_ref: str, note: str) -> None:
+        route_clean = route.strip()
+        if not route_clean or not is_api_route_like(route_clean):
+            return
+        facts.append(
+            make_fact(
+                fact_type="api_endpoint",
+                predicate="exposes_api_endpoint",
+                object_kind="api_route",
+                object_value=route_clean,
+                note=note,
+                confidence=0.73,
+                as_of=as_of,
+                source_file=source_file,
+                source_section=section_ref,
+                extraction_mode="narrative",
+                evidence=make_evidence(source_file, section_ref, route_clean),
+            )
+        )
+
+    def _walk(node: Any, ref: str) -> None:
+        if isinstance(node, str):
+            if is_api_route_like(node):
+                _emit(node, ref, "")
+            return
+
+        if isinstance(node, list):
+            for idx, item in enumerate(node):
+                _walk(item, f"{ref}[{idx}]")
+            return
+
+        if not isinstance(node, dict):
+            return
+
+        route = ""
+        for route_key in route_keys:
+            route = ensure_string(node.get(route_key))
+            if route:
+                break
+        note = normalize_note_parts([ensure_string(node.get(key)) for key in note_keys])
+        if route:
+            _emit(route, ref, note)
+
+        skip_keys = set(route_keys) | set(note_keys) | {"name", "service", "operations"}
+        for key in sorted(node.keys(), key=lambda item: str(item)):
+            if key in skip_keys:
+                continue
+            value = node[key]
+            if isinstance(value, (dict, list, str)):
+                _walk(value, f"{ref}.{key}")
+
+    _walk(section, base_ref)
+    return facts
+
+
+def extract_api_structure_facts(section: Any, source_file: str, as_of: str) -> list[dict[str, Any]]:
+    return extract_endpoint_like_facts(section, source_file, as_of, "api_structure")
+
+
+def extract_integrations_facts(section: Any, source_file: str, as_of: str) -> list[dict[str, Any]]:
+    facts: list[dict[str, Any]] = []
+    seen_concepts: set[str] = set()
+
+    payload = ensure_dict(section)
+    if not payload:
+        payload = {"items": section}
+
+    for key in sorted(payload.keys(), key=lambda item: str(item)):
+        value = payload[key]
+        key_text = ensure_string(key)
+        section_ref = f"integrations.{key_text}"
+        lowered = key_text.lower()
+
+        if any(token in lowered for token in ("endpoint", "api", "webhook", "route")):
+            facts.extend(extract_endpoint_like_facts(value, source_file, as_of, section_ref))
+            continue
+
+        for text_ref, text in iter_text_nodes(value, section_ref):
+            for line_idx, line in enumerate(normalized_lines(text)):
+                if is_cli_line(line) or is_api_route_like(line):
+                    continue
+                concept_key = line.lower()
+                if concept_key in seen_concepts:
+                    continue
+                seen_concepts.add(concept_key)
+                line_ref = f"{text_ref}.line[{line_idx}]"
+                facts.append(
+                    make_fact(
+                        fact_type="extension_point",
+                        predicate="has_extension_point",
+                        object_kind="concept",
+                        object_value=line,
+                        note=f"integration group: {key_text}",
+                        confidence=0.64,
+                        as_of=as_of,
+                        source_file=source_file,
+                        source_section=line_ref,
+                        extraction_mode="narrative",
+                        evidence=make_evidence(source_file, line_ref, line),
+                    )
+                )
+
+    return facts
+
+
+def extract_tech_stack_facts(section: Any, source_file: str, as_of: str, base_ref: str) -> list[dict[str, Any]]:
+    facts: list[dict[str, Any]] = []
+    seen_components: set[str] = set()
+
+    for section_ref, text in iter_text_nodes(section, base_ref):
+        for line_idx, line in enumerate(normalized_lines(text)):
+            if is_cli_line(line) or is_api_route_like(line):
+                continue
+            component_key = line.lower()
+            if component_key in seen_components:
+                continue
+            seen_components.add(component_key)
+            line_ref = f"{section_ref}.line[{line_idx}]"
+            facts.append(
+                make_fact(
+                    fact_type="component",
+                    predicate="has_component",
+                    object_kind="concept",
+                    object_value=line,
+                    note=f"technology stack ({base_ref})",
+                    confidence=0.61,
+                    as_of=as_of,
+                    source_file=source_file,
+                    source_section=line_ref,
+                    extraction_mode="narrative",
+                    evidence=make_evidence(source_file, line_ref, line),
+                )
+            )
+
+    return facts
+
+
 def extract_failure_mode_facts(section: Any, source_file: str, as_of: str) -> list[dict[str, Any]]:
     rows = ensure_list_of_dicts(section)
     facts: list[dict[str, Any]] = []
@@ -1453,6 +1832,12 @@ def extract_narrative_facts(
         "commands": lambda v, s, a: extract_task_facts(v, s, a, "commands"),
         "cli_commands": lambda v, s, a: extract_task_facts(v, s, a, "cli_commands"),
         "procedures": lambda v, s, a: extract_task_facts(v, s, a, "procedures"),
+        "testing": extract_testing_facts,
+        "quick_reference": extract_quick_reference_facts,
+        "integrations": extract_integrations_facts,
+        "tech_stack": lambda v, s, a: extract_tech_stack_facts(v, s, a, "tech_stack"),
+        "technology_stack": lambda v, s, a: extract_tech_stack_facts(v, s, a, "technology_stack"),
+        "api_structure": extract_api_structure_facts,
     }
 
     facts: list[dict[str, Any]] = []

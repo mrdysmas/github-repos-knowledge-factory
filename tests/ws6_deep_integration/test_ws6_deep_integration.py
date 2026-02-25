@@ -351,6 +351,113 @@ class WS6DeepIntegrationTests(unittest.TestCase):
             self.assertIn("draft_precedence_override", dropped_reasons)
             self.assertIn("duplicate_derived_merged", dropped_reasons)
 
+    def test_new_section_extractors_map_testing_quick_reference_and_integration_family(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            workspace = self._make_workspace(Path(tmp_dir))
+
+            deep_payload = {
+                "name": "demo-repo",
+                "node_id": "repo::example/demo-repo",
+                "github_full_name": "example/demo-repo",
+                "html_url": "https://github.com/example/demo-repo",
+                "source": "llm_repos",
+                "provenance": {
+                    "shard": "llm_repos",
+                    "source_file": "llm_repos/knowledge/deep/demo-repo.yaml",
+                    "as_of": "2026-02-24",
+                },
+                "testing": {
+                    "framework": "pytest",
+                    "coverage_areas": ["unit", "integration"],
+                    "example": "pytest -q tests/ws6_deep_integration",
+                },
+                "quick_reference": [
+                    {"topic": "Run tests", "content": "pytest -q tests/ws6_deep_integration"},
+                    {"topic": "Docs", "content": "Read docs for setup"},
+                ],
+                "integrations": {
+                    "api_endpoints": [
+                        {"path": "/api/v1/chat", "method": "POST", "description": "chat endpoint"},
+                    ],
+                    "providers": ["OpenAI", "Anthropic"],
+                },
+                "tech_stack": ["Python", "FastAPI"],
+                "technology_stack": {"vector_db": ["Qdrant"]},
+                "api_structure": {
+                    "chat": {
+                        "path": "/api/v1/chat",
+                        "operations": ["create"],
+                    }
+                },
+            }
+            self._write_yaml(workspace / "llm_repos" / "knowledge" / "deep" / "demo-repo.yaml", deep_payload)
+
+            result = self._run_ws6(workspace)
+            self.assertEqual(result.returncode, 0, msg=result.stdout + "\n" + result.stderr)
+
+            deep_facts = yaml.safe_load(
+                (workspace / "llm_repos" / "knowledge" / "deep_facts" / "demo-repo.yaml").read_text(encoding="utf-8")
+            )
+            facts = deep_facts.get("facts", [])
+
+            testing_commands = [
+                fact
+                for fact in facts
+                if fact.get("provenance", {}).get("source_section", "").startswith("testing.")
+                and fact.get("fact_type") == "operational_task"
+                and fact.get("predicate") == "supports_task"
+                and fact.get("object_kind") == "command"
+            ]
+            self.assertTrue(testing_commands)
+
+            testing_patterns = [
+                fact
+                for fact in facts
+                if fact.get("provenance", {}).get("source_section", "").startswith("testing.")
+                and fact.get("fact_type") == "implementation_pattern"
+                and fact.get("predicate") == "implements_pattern"
+                and fact.get("object_kind") == "concept"
+            ]
+            self.assertTrue(testing_patterns)
+
+            api_routes = [
+                fact
+                for fact in facts
+                if fact.get("fact_type") == "api_endpoint"
+                and fact.get("predicate") == "exposes_api_endpoint"
+                and fact.get("object_kind") == "api_route"
+            ]
+            self.assertTrue(any(fact.get("object_value") == "/api/v1/chat" for fact in api_routes))
+
+            components = [
+                fact
+                for fact in facts
+                if fact.get("fact_type") == "component"
+                and fact.get("predicate") == "has_component"
+                and fact.get("object_kind") == "concept"
+            ]
+            self.assertTrue(any(fact.get("object_value") == "Python" for fact in components))
+
+            mismatch = yaml.safe_load(
+                (workspace / "reports" / "ws6_deep_integration" / "mismatch_report.yaml").read_text(encoding="utf-8")
+            )
+            unmapped_sections = {
+                row.get("section")
+                for row in mismatch.get("non_blocking_findings", [])
+                if row.get("reason") == "unmapped_section"
+            }
+            self.assertFalse(
+                {
+                    "testing",
+                    "quick_reference",
+                    "integrations",
+                    "tech_stack",
+                    "technology_stack",
+                    "api_structure",
+                }
+                & unmapped_sections
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

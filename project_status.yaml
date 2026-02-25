@@ -1,5 +1,5 @@
 version: 1
-as_of_utc: "2026-02-25T16:22:54Z"
+as_of_utc: "2026-02-25T20:13:00Z"
 
 naming_legend:
   WS: "Workstream (pipeline lane/stage, e.g., WS1-WS6)"
@@ -144,7 +144,7 @@ todo:
     - id: "F"
       topic: "Intake lifecycle + clone prune workflow"
       status: "IN_PROGRESS"
-      note: "Pilot clone set lifecycle/provenance + domain_hint records are now shallow-canonicalized through WS5/WS4; deep priorities are set for langgenius/dify (10), FlowiseAI/Flowise (9), pydantic/pydantic-ai (9), and qdrant/qdrant (8). Next: execute deep follow-ups and apply prune policy after follow-up gating."
+      note: "Pilot clone set lifecycle/provenance + domain_hint records are now shallow-canonicalized through WS5/WS4; deep priorities are set for langgenius/dify (10), FlowiseAI/Flowise (9), pydantic/pydantic-ai (9), and qdrant/qdrant (8). WS6 deep narratives are now materialized for all 4 priority repos, deep_facts increased to 1863, and unmapped_sections_count remains 72 (target<=113 met)."
     - id: "G"
       topic: "Hard enforcement for intake queue sync"
       status: "COMPLETE"
@@ -157,7 +157,7 @@ todo:
 next_agent_handoff:
   if_user_asks: "What now? What should we work on?"
   answer:
-    current_focus: "Deep follow-up execution for prioritized pilot repos"
+    current_focus: "Post-priority WS6 coverage gap burn-down and read-model/query bridge"
     read_first:
       - "project_status.yaml"
       - "upcoming_progress_tracker.yaml"
@@ -175,7 +175,7 @@ next_agent_handoff:
       - "master_graph_merge_progress.yaml"
     immediate_next_step:
       id: "INTAKE-2"
-      objective: "WS6 v1 + intake hard enforcement are complete; execute pilot deep follow-ups for prioritized repos."
+      objective: "Priority pilot deep follow-up is complete; continue WS6 coverage-gap burn-down for remaining unmapped sections."
       first_commands:
         - "python3 tools/check_intake_queue_sync.py --workspace-root ."
         - "python3 tools/query_master.py stats"

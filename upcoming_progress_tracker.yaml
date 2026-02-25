@@ -1,5 +1,5 @@
 version: 1
-as_of_utc: "2026-02-25T16:22:54Z"
+as_of_utc: "2026-02-25T20:13:00Z"
 
 naming_legend:
   WS: "Workstream (pipeline lane/stage, e.g., WS1-WS6)"
@@ -77,10 +77,10 @@ key_metrics:
     actual: 10
   - name: "deep_facts_materialized"
     target: 1
-    actual: 1350
+    actual: 1863
   - name: "unmapped_sections_count"
     target: 0
-    actual: 123
+    actual: 72
   - name: "pilot_repos_deep_prioritized"
     target: 3
     actual: 4
@@ -122,6 +122,7 @@ results:
     - ".githooks/pre-commit + tools/install_git_hooks.sh (versioned local commit-time queue sync gate)"
     - ".github/workflows/intake-queue-sync.yml + tools/enforce_intake_queue_sync.sh (CI queue sync gate)"
     - "inputs/intake/pilot_batch.yaml deep_priority set for langgenius/dify (10), FlowiseAI/Flowise (9), pydantic/pydantic-ai (9), qdrant/qdrant (8)"
+    - "llm_repos/knowledge/deep/{langgenius__dify,flowiseai__flowise,pydantic__pydantic-ai,qdrant__qdrant}.yaml (priority deep narratives materialized)"
   validation_runs:
     - "./tools/install_git_hooks.sh => PASS (core.hooksPath=.githooks)"
     - "./.githooks/pre-commit => FAIL expected block (INTAKE_QUEUE_SYNC: FAIL queue file missing; remediation commands printed)"
@@ -146,20 +147,28 @@ results:
     - "python3 tools/query_master.py stats => repos=60 nodes=74 edges=152 deep_facts=1350"
     - "python3 tools/ws6_deep_integrator.py --workspace-root . --reports-dir reports/ws6_deep_integration --materialize-spec reports/ws6_deep_integration/spec.yaml --run-validation-suite => PASS (validation_mode=full_validation_run validation_steps_executed=7 validation_steps_failed=0 ws6_gate_ready=true gate_ready=true)"
     - "pilot deep-priority checkpoint => PASS (4 repos prioritized with explicit section-target reasons; baseline unmapped_sections_count=123 target<=113)"
+    - "python3 tools/check_intake_queue_sync.py --workspace-root . => PASS (2026-02-25T20:01Z)"
+    - "python3 tools/ws2_identity_backfill.py --workspace-root . => PASS (records=112 fallback_mappings=1 conflict_overrides=0)"
+    - "python3 tools/ws6_deep_integrator.py --workspace-root . --reports-dir reports/ws6_deep_integration --materialize-spec reports/ws6_deep_integration/spec.yaml --run-validation-suite => PASS (deep_narrative_files=52 repos_materialized=49 facts_materialized=1863 unmapped_sections_count=72 blocking_mismatches=0 gate_ready=true)"
+    - "python3 tools/query_master.py stats => repos=60 nodes=74 edges=152 deep_facts=1863"
+    - "python3 -m unittest discover -s tests/ws6_deep_integration -p test_*.py => PASS (4 tests)"
+    - "python3 -m unittest discover -s tests/intake_queue_sync -p test_*.py => PASS (1 test)"
   completion_status: null
   issues_encountered:
     - "Initial WS4 compile reported duplicate repo node IDs (cloudflared/tailscale) after an incorrect manifest default shard. Resolved by restoring WS5 default shard and cleaning accidental llm duplicate records before re-running gates."
+    - "WS2 had stale hardcoded scope guard (expected 96) and strict local-resolution assumptions; resolved by deriving scope dynamically and supporting remote identity reuse for remote-mode records."
 
 findings: |
   INTAKE-PILOT-1 shallow execution remains complete and stable. WS6 v1 now also
-  materializes canonical deep facts (1350) into shard-level deep_facts outputs
+  materializes canonical deep facts (1863) into shard-level deep_facts outputs
   plus master_deep_facts.yaml, with strict unknown_predicate blocking to prevent
   silent schema drift. This is the classic contract-first canonicalization
   pattern: strict schema gates keep draft narratives from silently mutating the
   top-level graph semantics. validation_runs semantics are now explicit:
   required_commands is plan-only, and execution_results is recorder-backed with
-  no PENDING_EXECUTION states. Pilot deep follow-up is now explicitly queued by
-  priority score to burn down recurring unmapped section families.
+  no PENDING_EXECUTION states. Priority pilot deep narratives are now present
+  for langgenius/dify, FlowiseAI/Flowise, pydantic/pydantic-ai, and qdrant/qdrant,
+  and each repo materializes canonical deep facts through WS6.
 
 decision_rule: |
   IF M1+M2+M3+M4 all complete and acceptance criteria are met:
