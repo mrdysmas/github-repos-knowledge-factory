@@ -1,5 +1,5 @@
 version: 1
-as_of_utc: "2026-02-25T16:03:07Z"
+as_of_utc: "2026-02-25T16:22:54Z"
 
 naming_legend:
   WS: "Workstream (pipeline lane/stage, e.g., WS1-WS6)"
@@ -81,6 +81,9 @@ key_metrics:
   - name: "unmapped_sections_count"
     target: 0
     actual: 123
+  - name: "pilot_repos_deep_prioritized"
+    target: 3
+    actual: 4
   - name: "queue_sync_gate_pass_rate"
     target: "100%"
     actual: "100%"
@@ -93,6 +96,7 @@ execution_checklist:
   - "[x] Enforce strict domain_hint alias canonicalization in intake preflight gate."
   - "[x] Run shallow-first intake and route outputs through WS5 -> WS4."
   - "[x] Implement WS6 materialization output and validator gate."
+  - "[x] Prioritize at least 3 pilot repos for deep follow-up with explicit reasons."
   - "[ ] Extend query contract to read deep facts from canonical level."
   - "[x] Add commit-time intake sync enforcement."
   - "[ ] Update project_status.yaml and this tracker at each checkpoint."
@@ -117,6 +121,7 @@ results:
     - "tools/check_intake_queue_sync.py strict domain_hint alias canonicalization gate"
     - ".githooks/pre-commit + tools/install_git_hooks.sh (versioned local commit-time queue sync gate)"
     - ".github/workflows/intake-queue-sync.yml + tools/enforce_intake_queue_sync.sh (CI queue sync gate)"
+    - "inputs/intake/pilot_batch.yaml deep_priority set for langgenius/dify (10), FlowiseAI/Flowise (9), pydantic/pydantic-ai (9), qdrant/qdrant (8)"
   validation_runs:
     - "./tools/install_git_hooks.sh => PASS (core.hooksPath=.githooks)"
     - "./.githooks/pre-commit => FAIL expected block (INTAKE_QUEUE_SYNC: FAIL queue file missing; remediation commands printed)"
@@ -140,6 +145,7 @@ results:
     - "python3 tools/ws4_master_compiler.py --workspace-root . --master-index master_index.yaml --master-graph master_graph.yaml --reports-dir reports/ws4_master_build => PASS (gate_ready true)"
     - "python3 tools/query_master.py stats => repos=60 nodes=74 edges=152 deep_facts=1350"
     - "python3 tools/ws6_deep_integrator.py --workspace-root . --reports-dir reports/ws6_deep_integration --materialize-spec reports/ws6_deep_integration/spec.yaml --run-validation-suite => PASS (validation_mode=full_validation_run validation_steps_executed=7 validation_steps_failed=0 ws6_gate_ready=true gate_ready=true)"
+    - "pilot deep-priority checkpoint => PASS (4 repos prioritized with explicit section-target reasons; baseline unmapped_sections_count=123 target<=113)"
   completion_status: null
   issues_encountered:
     - "Initial WS4 compile reported duplicate repo node IDs (cloudflared/tailscale) after an incorrect manifest default shard. Resolved by restoring WS5 default shard and cleaning accidental llm duplicate records before re-running gates."
@@ -152,7 +158,8 @@ findings: |
   pattern: strict schema gates keep draft narratives from silently mutating the
   top-level graph semantics. validation_runs semantics are now explicit:
   required_commands is plan-only, and execution_results is recorder-backed with
-  no PENDING_EXECUTION states.
+  no PENDING_EXECUTION states. Pilot deep follow-up is now explicitly queued by
+  priority score to burn down recurring unmapped section families.
 
 decision_rule: |
   IF M1+M2+M3+M4 all complete and acceptance criteria are met:

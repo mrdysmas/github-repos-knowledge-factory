@@ -1,5 +1,5 @@
 version: 1
-as_of_utc: "2026-02-25T16:03:07Z"
+as_of_utc: "2026-02-25T16:22:54Z"
 
 naming_legend:
   WS: "Workstream (pipeline lane/stage, e.g., WS1-WS6)"
@@ -144,7 +144,7 @@ todo:
     - id: "F"
       topic: "Intake lifecycle + clone prune workflow"
       status: "IN_PROGRESS"
-      note: "Pilot clone set lifecycle/provenance + domain_hint records are now shallow-canonicalized through WS5/WS4, and shallow artifact paths are written to inputs/intake/pilot_batch.yaml. Next: prioritize deep candidates and apply prune policy after follow-up gating."
+      note: "Pilot clone set lifecycle/provenance + domain_hint records are now shallow-canonicalized through WS5/WS4; deep priorities are set for langgenius/dify (10), FlowiseAI/Flowise (9), pydantic/pydantic-ai (9), and qdrant/qdrant (8). Next: execute deep follow-ups and apply prune policy after follow-up gating."
     - id: "G"
       topic: "Hard enforcement for intake queue sync"
       status: "COMPLETE"
@@ -157,7 +157,7 @@ todo:
 next_agent_handoff:
   if_user_asks: "What now? What should we work on?"
   answer:
-    current_focus: "Intake hard enforcement + deep-candidate prioritization"
+    current_focus: "Deep follow-up execution for prioritized pilot repos"
     read_first:
       - "project_status.yaml"
       - "upcoming_progress_tracker.yaml"
@@ -175,7 +175,7 @@ next_agent_handoff:
       - "master_graph_merge_progress.yaml"
     immediate_next_step:
       id: "INTAKE-2"
-      objective: "WS6 v1 + intake hard enforcement are complete; prioritize pilot deep follow-ups."
+      objective: "WS6 v1 + intake hard enforcement are complete; execute pilot deep follow-ups for prioritized repos."
       first_commands:
         - "python3 tools/check_intake_queue_sync.py --workspace-root ."
         - "python3 tools/query_master.py stats"
@@ -184,7 +184,7 @@ next_agent_handoff:
         - "Use inputs/intake/pilot_batch.yaml as source of truth for pilot repo lifecycle and provenance."
         - "Maintain domain_hint metadata for pilot/new intake records; do not treat domain_hint as shard routing input yet."
         - "Add net-new candidates only via tools/add_repo_candidate.py (not manual queue edits)."
-        - "Mark top deep candidates with explicit priority reasons and queue deep follow-up."
+        - "Execute deep follow-up in priority order: langgenius/dify, FlowiseAI/Flowise, pydantic/pydantic-ai, then qdrant/qdrant."
       parallel_step:
         id: "M4-1"
         objective: "COMPLETED 2026-02-25: commit-time check_intake_queue_sync enforcement."
@@ -194,6 +194,7 @@ next_agent_handoff:
         - "Intake pilot repos are lifecycle-tracked with source_commit + provenance metadata."
         - "Shallow outputs for pilot repos are canonicalized through WS5/WS4."
         - "At least 3 pilot repos are flagged as deep candidates with explicit priority reasons."
+        - "WS6 unmapped_sections_count is reduced from baseline 123 to <=113 after prioritized follow-ups."
         - "WS6 materialization remains stable on rerun (writes_changed=0) and query stats keep deep_facts > 0."
         - "WS6 validation_runs.yaml keeps required_commands as plan-only and records real execution outcomes under execution_results."
     recommendation_on_new_data:
