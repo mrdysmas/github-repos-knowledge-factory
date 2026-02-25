@@ -30,6 +30,12 @@ def drop_generated_at(payload: dict[str, Any]) -> dict[str, Any]:
     return out
 
 
+def print_remediation() -> None:
+    print("REMEDIATION:")
+    print("python3 tools/check_intake_queue_sync.py --workspace-root . --fix")
+    print("python3 tools/check_intake_queue_sync.py --workspace-root .")
+
+
 def _validate_domain_hints(
     workspace_root: Path,
     intake_manifest_rel: str,
@@ -315,16 +321,20 @@ def main() -> int:
                     print("DOMAIN_HINT_VALIDATION: PASS")
                     print(f"domain_hint_allowed_values: {allowed_count}")
                     print(f"domain_hint_records_checked: {checked_records}")
-                    return 0 if queue_ok else 2
 
-        print("DOMAIN_HINT_VALIDATION: FAIL")
-        for error in hint_errors:
-            print(f"- {error}")
-        if args.fix and alias_fix_errors:
-            for error in alias_fix_errors:
+        if not hints_ok:
+            print("DOMAIN_HINT_VALIDATION: FAIL")
+            for error in hint_errors:
                 print(f"- {error}")
+            if args.fix and alias_fix_errors:
+                for error in alias_fix_errors:
+                    print(f"- {error}")
 
-    return 0 if (queue_ok and hints_ok) else 2
+    if queue_ok and hints_ok:
+        return 0
+
+    print_remediation()
+    return 2
 
 
 if __name__ == "__main__":

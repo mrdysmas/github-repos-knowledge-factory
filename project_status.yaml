@@ -1,5 +1,5 @@
 version: 1
-as_of_utc: "2026-02-24T21:43:04Z"
+as_of_utc: "2026-02-25T16:03:07Z"
 
 naming_legend:
   WS: "Workstream (pipeline lane/stage, e.g., WS1-WS6)"
@@ -68,6 +68,14 @@ canonical:
     queue: "inputs/intake/intake_queue.yaml"
     queue_generator: "tools/build_intake_queue_from_master_repo_list.py"
     queue_sync_gate: "tools/check_intake_queue_sync.py"
+    queue_sync_enforcement:
+      local_commit:
+        installer: "tools/install_git_hooks.sh"
+        hooks_path: ".githooks"
+        pre_commit_hook: ".githooks/pre-commit"
+      ci:
+        workflow: ".github/workflows/intake-queue-sync.yml"
+      shared_gate_script: "tools/enforce_intake_queue_sync.sh"
     add_candidate_command: "tools/add_repo_candidate.py"
     prune_policy: "inputs/intake/prune_policy.yaml"
     intake_directory: "intake_repos/"
@@ -139,8 +147,8 @@ todo:
       note: "Pilot clone set lifecycle/provenance + domain_hint records are now shallow-canonicalized through WS5/WS4, and shallow artifact paths are written to inputs/intake/pilot_batch.yaml. Next: prioritize deep candidates and apply prune policy after follow-up gating."
     - id: "G"
       topic: "Hard enforcement for intake queue sync"
-      status: "PENDING"
-      note: "Add commit-time enforcement (pre-commit or equivalent) that blocks changes when tools/check_intake_queue_sync.py fails."
+      status: "COMPLETE"
+      note: "Implemented versioned local pre-commit gate (.githooks via tools/install_git_hooks.sh) plus CI workflow gate (.github/workflows/intake-queue-sync.yml), both enforcing tools/check_intake_queue_sync.py."
     - id: "H"
       topic: "Forward execution tracker maintenance"
       status: "IN_PROGRESS"
@@ -167,7 +175,7 @@ next_agent_handoff:
       - "master_graph_merge_progress.yaml"
     immediate_next_step:
       id: "INTAKE-2"
-      objective: "WS6 v1 is complete; enforce commit-time intake sync and prioritize pilot deep follow-ups."
+      objective: "WS6 v1 + intake hard enforcement are complete; prioritize pilot deep follow-ups."
       first_commands:
         - "python3 tools/check_intake_queue_sync.py --workspace-root ."
         - "python3 tools/query_master.py stats"
@@ -179,7 +187,7 @@ next_agent_handoff:
         - "Mark top deep candidates with explicit priority reasons and queue deep follow-up."
       parallel_step:
         id: "M4-1"
-        objective: "Add commit-time check_intake_queue_sync enforcement."
+        objective: "COMPLETED 2026-02-25: commit-time check_intake_queue_sync enforcement."
       done_when:
         - "Queue sync gate passes via tools/check_intake_queue_sync.py."
         - "inputs/intake/intake_queue.yaml is refreshed and used as source backlog."

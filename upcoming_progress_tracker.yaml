@@ -1,5 +1,5 @@
 version: 1
-as_of_utc: "2026-02-24T21:43:04Z"
+as_of_utc: "2026-02-25T16:03:07Z"
 
 naming_legend:
   WS: "Workstream (pipeline lane/stage, e.g., WS1-WS6)"
@@ -56,7 +56,8 @@ milestones:
       - "At least one end-to-end query example is documented in status artifacts."
   - id: "M4"
     name: "Intake hard enforcement"
-    status: "PENDING"
+    status: "COMPLETE"
+    completed_at_utc: "2026-02-25T16:03:07Z"
     done_when:
       - "A commit-time gate blocks when tools/check_intake_queue_sync.py fails."
       - "New candidates are added only via tools/add_repo_candidate.py."
@@ -93,7 +94,7 @@ execution_checklist:
   - "[x] Run shallow-first intake and route outputs through WS5 -> WS4."
   - "[x] Implement WS6 materialization output and validator gate."
   - "[ ] Extend query contract to read deep facts from canonical level."
-  - "[ ] Add commit-time intake sync enforcement."
+  - "[x] Add commit-time intake sync enforcement."
   - "[ ] Update project_status.yaml and this tracker at each checkpoint."
 
 risks:
@@ -114,7 +115,13 @@ results:
     - "inputs/ws5/ws5_input_manifest.yaml (pilot rows merged onto canonical WS5 input path)"
     - "docs/decisions/intake_shard_routing_decision.md (two-shard hold decision + expansion trigger)"
     - "tools/check_intake_queue_sync.py strict domain_hint alias canonicalization gate"
+    - ".githooks/pre-commit + tools/install_git_hooks.sh (versioned local commit-time queue sync gate)"
+    - ".github/workflows/intake-queue-sync.yml + tools/enforce_intake_queue_sync.sh (CI queue sync gate)"
   validation_runs:
+    - "./tools/install_git_hooks.sh => PASS (core.hooksPath=.githooks)"
+    - "./.githooks/pre-commit => FAIL expected block (INTAKE_QUEUE_SYNC: FAIL queue file missing; remediation commands printed)"
+    - "python3 tools/check_intake_queue_sync.py --workspace-root . --fix => FIXED (2026-02-25T16:02:02Z queued_count=57 already_canonical_count=58)"
+    - "python3 tools/check_intake_queue_sync.py --workspace-root . => PASS (2026-02-25T16:02:45Z queued_count=57 already_canonical_count=58)"
     - "python3 tools/check_intake_queue_sync.py --workspace-root . => PASS (2026-02-24T19:46:56Z)"
     - "python3 tools/check_intake_queue_sync.py --workspace-root . --fix => FIXED (queued_count=57, already_canonical_count=58)"
     - "python3 tools/check_intake_queue_sync.py --workspace-root . => PASS (queued_count=57, already_canonical_count=58)"
