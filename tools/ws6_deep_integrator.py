@@ -733,6 +733,16 @@ def collect_protocol_names(value: Any) -> list[str]:
     return out
 
 
+def split_inline_terms(text: str) -> list[str]:
+    compact = compact_whitespace(text)
+    if not compact:
+        return []
+    if "," not in compact:
+        return [compact]
+    terms = [part.strip() for part in compact.split(",")]
+    return [term for term in terms if term]
+
+
 def extract_architecture_facts(section: Any, source_file: str, as_of: str) -> list[dict[str, Any]]:
     facts: list[dict[str, Any]] = []
     payload = ensure_dict(section)
@@ -1448,6 +1458,232 @@ def extract_tech_stack_facts(section: Any, source_file: str, as_of: str, base_re
     return facts
 
 
+def extract_repo_type_facts(section: Any, source_file: str, as_of: str) -> list[dict[str, Any]]:
+    facts: list[dict[str, Any]] = []
+    seen_types: set[str] = set()
+
+    for section_ref, text in iter_text_nodes(section, "type"):
+        for line_idx, line in enumerate(normalized_lines(text)):
+            for term in split_inline_terms(line):
+                if is_cli_line(term) or is_api_route_like(term):
+                    continue
+                type_key = term.lower()
+                if type_key in seen_types:
+                    continue
+                seen_types.add(type_key)
+                line_ref = f"{section_ref}.line[{line_idx}]"
+                facts.append(
+                    make_fact(
+                        fact_type="component",
+                        predicate="has_component",
+                        object_kind="concept",
+                        object_value=term,
+                        note="repository type classification",
+                        confidence=0.6,
+                        as_of=as_of,
+                        source_file=source_file,
+                        source_section=line_ref,
+                        extraction_mode="narrative",
+                        evidence=make_evidence(source_file, line_ref, term),
+                    )
+                )
+
+    return facts
+
+
+def extract_primary_language_facts(section: Any, source_file: str, as_of: str) -> list[dict[str, Any]]:
+    facts: list[dict[str, Any]] = []
+    seen_languages: set[str] = set()
+
+    for section_ref, text in iter_text_nodes(section, "primary_language"):
+        for line_idx, line in enumerate(normalized_lines(text)):
+            for term in split_inline_terms(line):
+                if is_cli_line(term) or is_api_route_like(term):
+                    continue
+                lang_key = term.lower()
+                if lang_key in seen_languages:
+                    continue
+                seen_languages.add(lang_key)
+                line_ref = f"{section_ref}.line[{line_idx}]"
+                facts.append(
+                    make_fact(
+                        fact_type="component",
+                        predicate="has_component",
+                        object_kind="concept",
+                        object_value=term,
+                        note="primary language",
+                        confidence=0.66,
+                        as_of=as_of,
+                        source_file=source_file,
+                        source_section=line_ref,
+                        extraction_mode="narrative",
+                        evidence=make_evidence(source_file, line_ref, term),
+                    )
+                )
+
+    return facts
+
+
+def extract_languages_facts(section: Any, source_file: str, as_of: str) -> list[dict[str, Any]]:
+    facts: list[dict[str, Any]] = []
+    seen_languages: set[str] = set()
+
+    for section_ref, text in iter_text_nodes(section, "languages"):
+        for line_idx, line in enumerate(normalized_lines(text)):
+            for term in split_inline_terms(line):
+                if is_cli_line(term) or is_api_route_like(term):
+                    continue
+                lang_key = term.lower()
+                if lang_key in seen_languages:
+                    continue
+                seen_languages.add(lang_key)
+                line_ref = f"{section_ref}.line[{line_idx}]"
+                facts.append(
+                    make_fact(
+                        fact_type="component",
+                        predicate="has_component",
+                        object_kind="concept",
+                        object_value=term,
+                        note="language ecosystem",
+                        confidence=0.61,
+                        as_of=as_of,
+                        source_file=source_file,
+                        source_section=line_ref,
+                        extraction_mode="narrative",
+                        evidence=make_evidence(source_file, line_ref, term),
+                    )
+                )
+
+    return facts
+
+
+def format_port_value(value: Any) -> str:
+    if isinstance(value, int):
+        return str(value)
+    if isinstance(value, float) and value.is_integer():
+        return str(int(value))
+    if isinstance(value, float):
+        return str(value)
+    return ensure_string(value)
+
+
+def extract_ports_facts(section: Any, source_file: str, as_of: str) -> list[dict[str, Any]]:
+    facts: list[dict[str, Any]] = []
+    seen_keys: set[str] = set()
+
+    if isinstance(section, dict):
+        for key, value in sorted(section.items(), key=lambda item: str(item[0])):
+            port_name = ensure_string(key)
+            port_value = ""
+            if isinstance(value, dict):
+                port_value = format_port_value(value.get("port") or value.get("value") or value.get("number"))
+                if not port_name:
+                    port_name = ensure_string(value.get("name")) or ensure_string(value.get("service"))
+            elif isinstance(value, list):
+                continue
+            else:
+                port_value = format_port_value(value)
+
+            if not port_name:
+                port_name = "port"
+            port_value = port_value.strip()
+            if not port_value:
+                continue
+
+            key_token = f"{port_name.lower()}::{port_value}"
+            if key_token in seen_keys:
+                continue
+            seen_keys.add(key_token)
+
+            section_ref = f"ports.{port_name}" if port_name != "port" else "ports"
+            facts.append(
+                make_fact(
+                    fact_type="config_option",
+                    predicate="has_config_option",
+                    object_kind="config_key",
+                    object_value=port_name,
+                    note=f"port: {port_value}",
+                    confidence=0.7,
+                    as_of=as_of,
+                    source_file=source_file,
+                    source_section=section_ref,
+                    extraction_mode="narrative",
+                    evidence=make_evidence(source_file, section_ref, f"{port_name}={port_value}"),
+                )
+            )
+
+    elif isinstance(section, list):
+        for idx, row in enumerate(section):
+            port_name = ""
+            port_value = ""
+            if isinstance(row, dict):
+                port_name = ensure_string(row.get("name")) or ensure_string(row.get("service")) or ensure_string(
+                    row.get("protocol")
+                )
+                port_value = format_port_value(row.get("port") or row.get("value") or row.get("number"))
+            else:
+                port_value = format_port_value(row)
+            if not port_value.strip():
+                continue
+            if not port_name:
+                port_name = f"port_{idx + 1}"
+            key_token = f"{port_name.lower()}::{port_value.strip()}"
+            if key_token in seen_keys:
+                continue
+            seen_keys.add(key_token)
+            section_ref = f"ports[{idx}]"
+            facts.append(
+                make_fact(
+                    fact_type="config_option",
+                    predicate="has_config_option",
+                    object_kind="config_key",
+                    object_value=port_name,
+                    note=f"port: {port_value.strip()}",
+                    confidence=0.68,
+                    as_of=as_of,
+                    source_file=source_file,
+                    source_section=section_ref,
+                    extraction_mode="narrative",
+                    evidence=make_evidence(source_file, section_ref, f"{port_name}={port_value.strip()}"),
+                )
+            )
+
+    return facts
+
+
+def extract_related_repos_facts(section: Any, source_file: str, as_of: str) -> list[dict[str, Any]]:
+    facts: list[dict[str, Any]] = []
+    seen_values: set[str] = set()
+
+    for section_ref, text in iter_text_nodes(section, "related_repos"):
+        for line_idx, line in enumerate(normalized_lines(text)):
+            for term in split_inline_terms(line):
+                if is_cli_line(term) or is_api_route_like(term):
+                    continue
+                rel_key = term.lower()
+                if rel_key in seen_values:
+                    continue
+                seen_values.add(rel_key)
+                line_ref = f"{section_ref}.line[{line_idx}]"
+                facts.append(
+                    make_fact(
+                        fact_type="extension_point",
+                        predicate="has_extension_point",
+                        object_kind="concept",
+                        object_value=term,
+                        note="related repository",
+                        confidence=0.59,
+                        as_of=as_of,
+                        source_file=source_file,
+                        source_section=line_ref,
+                        extraction_mode="narrative",
+                        evidence=make_evidence(source_file, line_ref, term),
+                    )
+                )
+
+    return facts
+
+
 def extract_failure_mode_facts(section: Any, source_file: str, as_of: str) -> list[dict[str, Any]]:
     rows = ensure_list_of_dicts(section)
     facts: list[dict[str, Any]] = []
@@ -1817,6 +2053,11 @@ def extract_narrative_facts(
 
     extractor_map: dict[str, Callable[[Any, str, str], list[dict[str, Any]]]] = {
         "architecture": extract_architecture_facts,
+        "type": extract_repo_type_facts,
+        "primary_language": extract_primary_language_facts,
+        "languages": extract_languages_facts,
+        "ports": extract_ports_facts,
+        "related_repos": extract_related_repos_facts,
         "code_patterns": lambda v, s, a: extract_pattern_rows(v, source_file=s, as_of=a, section_name="code_patterns"),
         "implementation_patterns": lambda v, s, a: extract_pattern_rows(v, source_file=s, as_of=a, section_name="implementation_patterns"),
         "configuration": extract_configuration_facts,

@@ -458,6 +458,106 @@ class WS6DeepIntegrationTests(unittest.TestCase):
                 & unmapped_sections
             )
 
+    def test_new_section_extractors_map_languages_related_type_primary_language_and_ports(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            workspace = self._make_workspace(Path(tmp_dir))
+
+            deep_payload = {
+                "name": "demo-repo",
+                "node_id": "repo::example/demo-repo",
+                "github_full_name": "example/demo-repo",
+                "html_url": "https://github.com/example/demo-repo",
+                "source": "llm_repos",
+                "provenance": {
+                    "shard": "llm_repos",
+                    "source_file": "llm_repos/knowledge/deep/demo-repo.yaml",
+                    "as_of": "2026-02-24",
+                },
+                "type": "application_platform",
+                "primary_language": "Go",
+                "languages": ["Python", "Rust"],
+                "ports": {"grpc": 19530, "metrics": 9091},
+                "related_repos": ["langchain", "llama_index"],
+            }
+            self._write_yaml(workspace / "llm_repos" / "knowledge" / "deep" / "demo-repo.yaml", deep_payload)
+
+            result = self._run_ws6(workspace)
+            self.assertEqual(result.returncode, 0, msg=result.stdout + "\n" + result.stderr)
+
+            deep_facts = yaml.safe_load(
+                (workspace / "llm_repos" / "knowledge" / "deep_facts" / "demo-repo.yaml").read_text(encoding="utf-8")
+            )
+            facts = deep_facts.get("facts", [])
+
+            repo_type_facts = [
+                fact
+                for fact in facts
+                if fact.get("provenance", {}).get("source_section", "").startswith("type.")
+                and fact.get("fact_type") == "component"
+                and fact.get("predicate") == "has_component"
+                and fact.get("object_kind") == "concept"
+                and fact.get("object_value") == "application_platform"
+            ]
+            self.assertTrue(repo_type_facts)
+
+            primary_language_facts = [
+                fact
+                for fact in facts
+                if fact.get("provenance", {}).get("source_section", "").startswith("primary_language.")
+                and fact.get("fact_type") == "component"
+                and fact.get("predicate") == "has_component"
+                and fact.get("object_kind") == "concept"
+                and fact.get("object_value") == "Go"
+            ]
+            self.assertTrue(primary_language_facts)
+
+            language_facts = [
+                fact
+                for fact in facts
+                if fact.get("provenance", {}).get("source_section", "").startswith("languages")
+                and fact.get("fact_type") == "component"
+                and fact.get("predicate") == "has_component"
+                and fact.get("object_kind") == "concept"
+                and fact.get("object_value") in {"Python", "Rust"}
+            ]
+            self.assertEqual({fact.get("object_value") for fact in language_facts}, {"Python", "Rust"})
+
+            port_facts = [
+                fact
+                for fact in facts
+                if fact.get("provenance", {}).get("source_section", "").startswith("ports")
+                and fact.get("fact_type") == "config_option"
+                and fact.get("predicate") == "has_config_option"
+                and fact.get("object_kind") == "config_key"
+                and fact.get("object_value") in {"grpc", "metrics"}
+            ]
+            self.assertEqual({fact.get("object_value") for fact in port_facts}, {"grpc", "metrics"})
+            self.assertTrue(any("19530" in fact.get("note", "") for fact in port_facts))
+            self.assertTrue(any("9091" in fact.get("note", "") for fact in port_facts))
+
+            related_repo_facts = [
+                fact
+                for fact in facts
+                if fact.get("provenance", {}).get("source_section", "").startswith("related_repos")
+                and fact.get("fact_type") == "extension_point"
+                and fact.get("predicate") == "has_extension_point"
+                and fact.get("object_kind") == "concept"
+                and fact.get("object_value") in {"langchain", "llama_index"}
+            ]
+            self.assertEqual({fact.get("object_value") for fact in related_repo_facts}, {"langchain", "llama_index"})
+
+            mismatch = yaml.safe_load(
+                (workspace / "reports" / "ws6_deep_integration" / "mismatch_report.yaml").read_text(encoding="utf-8")
+            )
+            unmapped_sections = {
+                row.get("section")
+                for row in mismatch.get("non_blocking_findings", [])
+                if row.get("reason") == "unmapped_section"
+            }
+            self.assertFalse(
+                {"languages", "related_repos", "type", "primary_language", "ports"} & unmapped_sections
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

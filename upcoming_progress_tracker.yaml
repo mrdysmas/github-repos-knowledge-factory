@@ -170,6 +170,61 @@ findings: |
   for langgenius/dify, FlowiseAI/Flowise, pydantic/pydantic-ai, and qdrant/qdrant,
   and each repo materializes canonical deep facts through WS6.
 
+executor_context_capture:
+  ws2_change_rationale:
+    - "Removed stale hardcoded WS2 scope guard (96) and switched to dynamic scope derived from current repos+deep corpus."
+    - "WS2 now preserves/derives remote source semantics (remote_metadata/remote_api) for remote-mode records instead of coercing shard source values."
+    - "This prevents false WS1/WS4 failures when deep/shallow source parity is checked."
+  ws6_ranked_backlog:
+    baseline_unmapped_sections_count: 72
+    ranked_sections:
+      - section: languages
+        count: 4
+      - section: related_repos
+        count: 4
+      - section: type
+        count: 3
+      - section: primary_language
+        count: 3
+      - section: ports
+        count: 3
+      - section: key_features
+        count: 3
+      - section: content_coverage
+        count: 3
+      - section: key_sections
+        count: 3
+      - section: cross_references
+        count: 3
+      - section: key_files
+        count: 2
+      - section: cli_arguments
+        count: 2
+      - section: core_modules
+        count: 2
+      - section: sdk_usage
+        count: 2
+      - section: supplementary_files
+        count: 2
+    quick_win_estimates:
+      top_9_sections_reduction: 29
+      top_14_sections_reduction: 39
+      long_tail_remaining_after_top_14: 33
+  next_run_baseline:
+    deep_facts: 1863
+    unmapped_sections_count: 72
+    required_commands:
+      - "python3 tools/check_intake_queue_sync.py --workspace-root ."
+      - "python3 tools/ws2_identity_backfill.py --workspace-root ."
+      - "python3 tools/ws6_deep_integrator.py --workspace-root . --reports-dir reports/ws6_deep_integration --materialize-spec reports/ws6_deep_integration/spec.yaml --run-validation-suite"
+      - "python3 tools/query_master.py stats"
+      - "python3 -m unittest discover -s tests/ws6_deep_integration -p 'test_*.py'"
+      - "python3 -m unittest discover -s tests/intake_queue_sync -p 'test_*.py'"
+    post_run_checks:
+      - "reports/ws6_deep_integration/validation_runs.yaml => gate_ready=true + validation_suite_passed=true"
+      - "reports/ws6_deep_integration/coverage.yaml => unmapped_sections_count compared against baseline 72"
+      - "tools/query_master.py stats => deep_facts compared against baseline 1863"
+
 decision_rule: |
   IF M1+M2+M3+M4 all complete and acceptance criteria are met:
     -> Mark phase COMPLETE and scale intake beyond pilot
