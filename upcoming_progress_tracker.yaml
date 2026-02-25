@@ -221,9 +221,10 @@ executor_context_capture:
       - "python3 -m unittest discover -s tests/ws6_deep_integration -p 'test_*.py'"
       - "python3 -m unittest discover -s tests/intake_queue_sync -p 'test_*.py'"
     post_run_checks:
+      - "Use required_commands exactly as listed; do not substitute pseudo-command aliases."
       - "reports/ws6_deep_integration/validation_runs.yaml => gate_ready=true + validation_suite_passed=true"
       - "reports/ws6_deep_integration/coverage.yaml => unmapped_sections_count compared against baseline 72"
-      - "tools/query_master.py stats => deep_facts compared against baseline 1863"
+      - "python3 tools/query_master.py stats => deep_facts compared against baseline 1863"
 
 decision_rule: |
   IF M1+M2+M3+M4 all complete and acceptance criteria are met:

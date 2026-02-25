@@ -31,3 +31,8 @@ Required preflight before intake work:
 
 Required command to add a new candidate:
 - `python3 tools/add_repo_candidate.py --workspace-root . --github-url https://github.com/<owner>/<repo>`
+
+## Runbook Command Policy
+
+- Any `required_commands` or `first_commands` entries in status/runbook artifacts must be directly executable from repo root.
+- Do not use pseudo-command aliases (example: `spec.yaml --run-validation-suite`); use canonical interpreter-prefixed commands (example: `python3 tools/ws6_deep_integrator.py ...`).

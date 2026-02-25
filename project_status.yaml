@@ -181,6 +181,7 @@ next_agent_handoff:
         - "python3 tools/query_master.py stats"
         - "python3 tools/ws6_deep_integrator.py --workspace-root . --reports-dir reports/ws6_deep_integration --materialize-spec reports/ws6_deep_integration/spec.yaml --run-validation-suite"
       operator_actions:
+        - "Use the exact executable command forms listed under first_commands; do not use pseudo-command aliases."
         - "Use inputs/intake/pilot_batch.yaml as source of truth for pilot repo lifecycle and provenance."
         - "Maintain domain_hint metadata for pilot/new intake records; do not treat domain_hint as shard routing input yet."
         - "Add net-new candidates only via tools/add_repo_candidate.py (not manual queue edits)."
