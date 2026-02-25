@@ -6,14 +6,14 @@ source: ssh_repos
 provenance:
   shard: ssh_repos
   source_file: ssh_repos/knowledge/deep_facts/streisand.yaml
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   extractor_version: ws6-deep-integrator-v1
 facts:
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: architecture.key_abstractions[1]
@@ -25,12 +25,12 @@ facts:
     excerpt: Creates cloud instance, sets up inventory, waits for boot
   object_value: Genesis Role
   note: Creates cloud instance, sets up inventory, waits for boot
-  fact_id: fact::a4658f6019328a09bc3cf3f2
+  fact_id: fact::967f2d9d27cb792224f9f43a
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: architecture.key_abstractions[0]
@@ -42,12 +42,12 @@ facts:
     excerpt: Cloud-specific YAML with region selection, credential prompts
   object_value: Provider Playbook
   note: Cloud-specific YAML with region selection, credential prompts
-  fact_id: fact::63e115c669e6af3f31f9f9bf
+  fact_id: fact::5dcb77e8559ff977acddb6ff
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: architecture.key_abstractions[3]
@@ -59,12 +59,12 @@ facts:
     excerpt: User-customizable settings in ~/.streisand/site.yml
   object_value: Site Configuration
   note: User-customizable settings in ~/.streisand/site.yml
-  fact_id: fact::5c86b47a33ba4a7457d9c505
+  fact_id: fact::2b0796c72a56921bafff849c
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: architecture.key_abstractions[2]
@@ -76,12 +76,12 @@ facts:
     excerpt: Installs and configures specific VPN protocol
   object_value: VPN Role
   note: Installs and configures specific VPN protocol
-  fact_id: fact::953ca1d5455750f19cb0f41a
+  fact_id: fact::99664a78e29efe0ac2fbdbcc
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: architecture.module_breakdown[1]
@@ -94,12 +94,12 @@ facts:
   object_value: playbooks/roles/*-genesis
   note: 'responsibility: Cloud provider provisioning (AWS, Azure, DO, GCE, Linode,
     Rackspace); key_files: playbooks/roles/genesis-digitalocean/'
-  fact_id: fact::2396f04882649847932dba4d
+  fact_id: fact::e4b29ed96348bf5efaf39830
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: architecture.module_breakdown[7]
@@ -111,12 +111,12 @@ facts:
     excerpt: HTTPS web server for gateway
   object_value: playbooks/roles/nginx
   note: 'responsibility: HTTPS web server for gateway; key_files: playbooks/roles/nginx/'
-  fact_id: fact::b3d11ca7bd6f7b3d321099e3
+  fact_id: fact::12b970610965a67bfaaa18db
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: architecture.module_breakdown[2]
@@ -129,12 +129,12 @@ facts:
   object_value: playbooks/roles/openvpn
   note: 'responsibility: OpenVPN with TCP/UDP, multiple ports, stunnel support; key_files:
     playbooks/roles/openvpn/'
-  fact_id: fact::6271947fd202bb4f3448bf8c
+  fact_id: fact::d37224cc01d49501726bfbd7
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: architecture.module_breakdown[4]
@@ -147,12 +147,12 @@ facts:
   object_value: playbooks/roles/shadowsocks
   note: 'responsibility: Shadowsocks proxy with chacha20-ietf-poly1305; key_files:
     playbooks/roles/shadowsocks/'
-  fact_id: fact::acbbf5f67fb1d377344c6e81
+  fact_id: fact::49fc0c58ca568512b1af37c9
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: architecture.module_breakdown[8]
@@ -164,12 +164,12 @@ facts:
     excerpt: SSL/TLS multiplexer for protocol hiding
   object_value: playbooks/roles/sslh
   note: 'responsibility: SSL/TLS multiplexer for protocol hiding; key_files: playbooks/roles/sslh/'
-  fact_id: fact::01db508e89120b05187e206c
+  fact_id: fact::2f21faa3d911908469905403
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: architecture.module_breakdown[6]
@@ -181,12 +181,12 @@ facts:
     excerpt: Documentation web interface generation
   object_value: playbooks/roles/streisand-gateway
   note: 'responsibility: Documentation web interface generation; key_files: playbooks/roles/streisand-gateway/'
-  fact_id: fact::459136b32474c68750377742
+  fact_id: fact::e218c94acb228f3083d6225f
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: architecture.module_breakdown[5]
@@ -198,12 +198,12 @@ facts:
     excerpt: Tor bridge with obfs4 (disabled by default)
   object_value: playbooks/roles/tor-bridge
   note: 'responsibility: Tor bridge with obfs4 (disabled by default); key_files: playbooks/roles/tor-bridge/'
-  fact_id: fact::97b69df611d2608015fc8c68
+  fact_id: fact::a79a3b0972eaa692e688fb34
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: architecture.module_breakdown[3]
@@ -215,12 +215,12 @@ facts:
     excerpt: WireGuard VPN configuration
   object_value: playbooks/roles/wireguard
   note: 'responsibility: WireGuard VPN configuration; key_files: playbooks/roles/wireguard/'
-  fact_id: fact::00649aa1cacc2c6621633d4f
+  fact_id: fact::c82eba08c4158f232825530e
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: architecture.module_breakdown[0]
@@ -233,12 +233,12 @@ facts:
   object_value: playbooks/streisand.yml
   note: 'responsibility: Master playbook orchestrating all role imports; key_files:
     playbooks/streisand.yml'
-  fact_id: fact::ae162bc55aecde034fc38565
+  fact_id: fact::591039e38e7b6f3836923e7f
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: configuration.file
@@ -250,12 +250,12 @@ facts:
     excerpt: file
   object_value: file
   note: 'default: global_vars/default-site.yml; configuration default for file'
-  fact_id: fact::c6fe2b7f48ad7c1a15c39255
+  fact_id: fact::6837e1f45dcef9b20cc5d6ba
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: configuration.options[1]
@@ -267,12 +267,12 @@ facts:
     excerpt: streisand_ad_blocking_enabled
   object_value: streisand_ad_blocking_enabled
   note: 'type: bool; Enable DNS-based ad blocking'
-  fact_id: fact::08f74db98f4bb3257228e602
+  fact_id: fact::0a884d9b8e1805da2fa45d5f
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: configuration.options[2]
@@ -284,12 +284,12 @@ facts:
     excerpt: streisand_openconnect_enabled
   object_value: streisand_openconnect_enabled
   note: 'type: bool; Enable Cisco AnyConnect VPN'
-  fact_id: fact::dbffe9a38242c613be28c406
+  fact_id: fact::8727196bc4569b71a371afa2
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: configuration.options[3]
@@ -301,12 +301,12 @@ facts:
     excerpt: streisand_openvpn_enabled
   object_value: streisand_openvpn_enabled
   note: 'type: bool; Enable OpenVPN'
-  fact_id: fact::d7199db178e7a73a68b5d5a7
+  fact_id: fact::14b997b0120da65879f39ad4
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: configuration.options[4]
@@ -318,12 +318,12 @@ facts:
     excerpt: streisand_shadowsocks_enabled
   object_value: streisand_shadowsocks_enabled
   note: 'type: bool; Enable Shadowsocks proxy'
-  fact_id: fact::5e250f2ccfc0bdbddc1e6881
+  fact_id: fact::96982657623e99a49aa9004e
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: configuration.options[7]
@@ -335,12 +335,12 @@ facts:
     excerpt: streisand_stunnel_enabled
   object_value: streisand_stunnel_enabled
   note: 'type: bool; Enable TLS wrapper for OpenVPN'
-  fact_id: fact::4bb87eae7f97100242897764
+  fact_id: fact::87aae7093b2c642f07885a74
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: configuration.options[6]
@@ -352,12 +352,12 @@ facts:
     excerpt: streisand_tor_enabled
   object_value: streisand_tor_enabled
   note: 'type: bool; Enable Tor bridge'
-  fact_id: fact::56dfbab81bdbd2d527901cd9
+  fact_id: fact::e07199e7edb07ffeb1bd592f
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: configuration.options[5]
@@ -369,12 +369,12 @@ facts:
     excerpt: streisand_wireguard_enabled
   object_value: streisand_wireguard_enabled
   note: 'type: bool; Enable WireGuard VPN'
-  fact_id: fact::a388c98f368580e726c71fac
+  fact_id: fact::191e979d35db6560fdae6142
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: configuration.options[8]
@@ -386,12 +386,12 @@ facts:
     excerpt: upstream_dns_servers
   object_value: upstream_dns_servers
   note: 'type: list; Upstream DNS servers'
-  fact_id: fact::f6d36fa6ead323e69ae124c9
+  fact_id: fact::f4f07e829c6d6c94390ad30b
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: configuration.options[0]
@@ -403,12 +403,12 @@ facts:
     excerpt: vpn_clients
   object_value: vpn_clients
   note: 'type: int; Number of client profiles to generate'
-  fact_id: fact::b0831ecf5f43f4e63f352fd5
+  fact_id: fact::392255c6d1a104d75be8615b
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: extension_points[1]
@@ -420,12 +420,12 @@ facts:
     excerpt: global_vars/default-site.yml
   object_value: global_vars/default-site.yml
   note: 'streisand_{protocol}_enabled: yes; Service enablement variable'
-  fact_id: fact::6a35ef61c414195fd2b51478
+  fact_id: fact::c7e3033a40fa2117f41014e1
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: extension_points[4]
@@ -437,30 +437,12 @@ facts:
     excerpt: playbooks/customize.yml
   object_value: playbooks/customize.yml
   note: Add vars_prompt for new configuration options; Customization prompts
-  fact_id: fact::aa26f9c00703a50bee080833
+  fact_id: fact::c4c25c093f0ce0c950f10aad
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-23'
-  provenance:
-    source_file: ssh_repos/knowledge/deep/streisand.yaml
-    source_section: extension_points[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: extension_points[0]
-    source_file: ssh_repos/knowledge/deep/streisand.yaml
-    excerpt: playbooks/roles/
-  object_value: playbooks/roles/
-  note: Create role with tasks/, defaults/, templates/, docs.yml, mirror.yml; New
-    VPN protocol role (create new subdirectory)
-  fact_id: fact::71369555ceee24e965698701
-- fact_type: extension_point
-  predicate: has_extension_point
-  object_kind: path
-  confidence: 0.71
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: extension_points[3]
@@ -473,12 +455,30 @@ facts:
   object_value: playbooks/roles/
   note: Implement genesis pattern with provider-specific API calls; New cloud provider
     genesis role
-  fact_id: fact::9b89b24281ee49e12e938d3b
+  fact_id: fact::1b1f18be50a8129d4ce751bd
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/streisand.yaml
+    source_section: extension_points[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[0]
+    source_file: ssh_repos/knowledge/deep/streisand.yaml
+    excerpt: playbooks/roles/
+  object_value: playbooks/roles/
+  note: Create role with tasks/, defaults/, templates/, docs.yml, mirror.yml; New
+    VPN protocol role (create new subdirectory)
+  fact_id: fact::6c35e86d0d69d4a87080d905
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: path
+  confidence: 0.71
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: extension_points[2]
@@ -490,12 +490,29 @@ facts:
     excerpt: playbooks/streisand.yml
   object_value: playbooks/streisand.yml
   note: '- role: {protocol} when: streisand_{protocol}_enabled; Role import'
-  fact_id: fact::8160109a80b02f9bc278026b
+  fact_id: fact::4f4b414ade459836fca03264
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/streisand.yaml
+    source_section: testing.framework.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.framework.line[0]
+    source_file: ssh_repos/knowledge/deep/streisand.yaml
+    excerpt: Ansible check mode, manual testing
+  object_value: Ansible check mode, manual testing
+  note: 'testing metadata: framework'
+  fact_id: fact::66e4c6f61f9075b5afa2fbe2
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: implementation_patterns[3]
@@ -507,12 +524,29 @@ facts:
     excerpt: Random client names, profile files, QR codes
   object_value: Client Profile Generation
   note: 'description: Random client names, profile files, QR codes; location: playbooks/roles/openvpn/tasks/docs.yml'
-  fact_id: fact::810ae2c73e3e3b729c9f6e1b
+  fact_id: fact::ba9d245aa92f522671fdcaca
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/streisand.yaml
+    source_section: testing.coverage.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage.line[0]
+    source_file: ssh_repos/knowledge/deep/streisand.yaml
+    excerpt: Client configuration validation, gateway connectivity tests
+  object_value: Client configuration validation, gateway connectivity tests
+  note: 'testing metadata: coverage'
+  fact_id: fact::61b7240dbdcc5842bf0e69ea
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: implementation_patterns[0]
@@ -525,12 +559,12 @@ facts:
   object_value: Conditional Role Enablement
   note: 'description: Services enabled/disabled via when: streisand_*_enabled; location:
     playbooks/streisand.yml'
-  fact_id: fact::6cda09972b4e48ee25df9d47
+  fact_id: fact::03cc849542d6f663ad0eb782
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: implementation_patterns[4]
@@ -543,12 +577,12 @@ facts:
   object_value: Gateway Documentation
   note: 'description: i18n-docs generates HTML docs in multiple languages; location:
     playbooks/roles/i18n-docs/'
-  fact_id: fact::c6ea449d3e7ab6bc99ab69e6
+  fact_id: fact::f1a31e92e15e951269559ea1
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: implementation_patterns[1]
@@ -561,12 +595,12 @@ facts:
   object_value: Genesis Pattern
   note: 'description: All providers follow same pattern: SSH key, create instance,
     wait, inventory; location: playbooks/roles/genesis-digitalocean/tasks/main.yml'
-  fact_id: fact::0d99911bf21aa5519c5cb100
+  fact_id: fact::9974625723d48e2c98b0a66d
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: implementation_patterns[2]
@@ -579,12 +613,29 @@ facts:
   object_value: Jinja2 Configuration Templates
   note: 'description: Service configs generated from templates with variable substitution;
     location: playbooks/roles/openvpn/templates/'
-  fact_id: fact::60b601028002a1154677e14b
+  fact_id: fact::1b1b5655a4633a32fe93f39d
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/streisand.yaml
+    source_section: testing.structure.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.structure.line[0]
+    source_file: ssh_repos/knowledge/deep/streisand.yaml
+    excerpt: playbooks/roles/test-client/
+  object_value: playbooks/roles/test-client/
+  note: 'testing metadata: structure'
+  fact_id: fact::042e3dea538f9eb169a29f40
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: vpn_protocols[0]
@@ -595,12 +646,12 @@ facts:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     excerpt: 443 (sslh)
   object_value: 443 (sslh)
-  fact_id: fact::562925959c626da2826fd24f
+  fact_id: fact::9510ebd1275528c75b35bc09
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: vpn_protocols[1]
@@ -611,12 +662,12 @@ facts:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     excerpt: '51820'
   object_value: '51820'
-  fact_id: fact::0702ee29b08f80196bac195a
+  fact_id: fact::0ea9009a1d05264be62f3d6b
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: vpn_protocols[2]
@@ -627,12 +678,12 @@ facts:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     excerpt: 636/8757 TCP/UDP
   object_value: 636/8757 TCP/UDP
-  fact_id: fact::619ac36518c291824197a656
+  fact_id: fact::f509944edd9f8eb5166e166d
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: vpn_protocols[3]
@@ -643,12 +694,12 @@ facts:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     excerpt: '8530'
   object_value: '8530'
-  fact_id: fact::bb4b0c3003ed5fa093b01a37
+  fact_id: fact::1e37e2fb5b8391d05a2b99b1
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: vpn_protocols[4]
@@ -659,12 +710,12 @@ facts:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     excerpt: '8888'
   object_value: '8888'
-  fact_id: fact::fe62fe577abfbe784dea1788
+  fact_id: fact::2e19dba7d9e9bd12b7252fcb
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: vpn_protocols[5]
@@ -675,12 +726,12 @@ facts:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     excerpt: AES-256-CBC
   object_value: AES-256-CBC
-  fact_id: fact::78a4191270d47671637d58fe
+  fact_id: fact::ed9fb132087d3cb6d3dfa2d8
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: vpn_protocols[6]
@@ -691,12 +742,12 @@ facts:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     excerpt: AES-256-GCM
   object_value: AES-256-GCM
-  fact_id: fact::c4950dd10760453d2796924e
+  fact_id: fact::5cc6c010f79526c6936b7673
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: vpn_protocols[7]
@@ -707,12 +758,12 @@ facts:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     excerpt: Cloudflared
   object_value: Cloudflared
-  fact_id: fact::2cdb732be4ac6145d0fe8c5e
+  fact_id: fact::2cbd3ff51df395de41e79e0c
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: vpn_protocols[8]
@@ -723,12 +774,12 @@ facts:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     excerpt: DNS-over-HTTPS
   object_value: DNS-over-HTTPS
-  fact_id: fact::0020ecf5cc903fd9e56c5330
+  fact_id: fact::f45d9120dab751cbaa090e00
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: vpn_protocols[9]
@@ -739,12 +790,12 @@ facts:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     excerpt: HTTP proxy
   object_value: HTTP proxy
-  fact_id: fact::e22770cb4779ce7104f11e30
+  fact_id: fact::9c3a5fb487be2bbb089f9658
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: vpn_protocols[10]
@@ -755,12 +806,12 @@ facts:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     excerpt: OpenConnect
   object_value: OpenConnect
-  fact_id: fact::4daafb1d6f6d3c65107cbe77
+  fact_id: fact::da9fc5d8f4d3aefea680c5e1
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: vpn_protocols[11]
@@ -771,12 +822,12 @@ facts:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     excerpt: OpenVPN
   object_value: OpenVPN
-  fact_id: fact::9c848d90fb6f880c1b303efa
+  fact_id: fact::65ed16937546792cc3e3b361
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: vpn_protocols[12]
@@ -787,12 +838,12 @@ facts:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     excerpt: SOCKS proxy
   object_value: SOCKS proxy
-  fact_id: fact::91e678e97274072039b89ded
+  fact_id: fact::b7702c79482592d1f6a2e3f6
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: vpn_protocols[13]
@@ -803,12 +854,12 @@ facts:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     excerpt: SSH Forward
   object_value: SSH Forward
-  fact_id: fact::9bda38cb1da0a59a574b4385
+  fact_id: fact::01e5a49da9af1af31aef7a2e
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: vpn_protocols[14]
@@ -819,12 +870,12 @@ facts:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     excerpt: Shadowsocks
   object_value: Shadowsocks
-  fact_id: fact::64a2f9eeb275f29be824f04b
+  fact_id: fact::f5aacf5ce952bcba159cb698
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: vpn_protocols[15]
@@ -835,12 +886,12 @@ facts:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     excerpt: TinyProxy
   object_value: TinyProxy
-  fact_id: fact::08a37af86f9999ddb6355d30
+  fact_id: fact::aec83de440e8ce00541db7a1
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: vpn_protocols[16]
@@ -851,12 +902,12 @@ facts:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     excerpt: Tor Bridge
   object_value: Tor Bridge
-  fact_id: fact::f39e984fa5ba57868f8f24e1
+  fact_id: fact::e08481183a1adcb6e7e7eb49
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: vpn_protocols[17]
@@ -867,12 +918,12 @@ facts:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     excerpt: WireGuard
   object_value: WireGuard
-  fact_id: fact::16b8958a25e1ce199c0362e3
+  fact_id: fact::1f32862e8cd4321fd09c1cbb
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: vpn_protocols[18]
@@ -883,12 +934,12 @@ facts:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     excerpt: chacha20-ietf-poly1305
   object_value: chacha20-ietf-poly1305
-  fact_id: fact::154070704f5e8100e9832ef3
+  fact_id: fact::11e0ece0c6644563c07e8eb2
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: vpn_protocols[19]
@@ -899,12 +950,12 @@ facts:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     excerpt: client.mobileconfig
   object_value: client.mobileconfig
-  fact_id: fact::4aa2405dca58098390a4f1e3
+  fact_id: fact::9311432b1b9d7623742fdbbd
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: vpn_protocols[20]
@@ -915,12 +966,12 @@ facts:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     excerpt: cloudflared
   object_value: cloudflared
-  fact_id: fact::0e6375e0485842479da375f7
+  fact_id: fact::067a07e8882b0c698a189a2d
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: vpn_protocols[21]
@@ -931,12 +982,12 @@ facts:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     excerpt: disabled
   object_value: disabled
-  fact_id: fact::5079923311896b2b8ba038c5
+  fact_id: fact::316509c7fb7fde8a88417b4f
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: vpn_protocols[22]
@@ -947,12 +998,12 @@ facts:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     excerpt: openconnect
   object_value: openconnect
-  fact_id: fact::aa92ab89345b4fce9950b3d2
+  fact_id: fact::a9984df149b58931ecdee03a
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: vpn_protocols[23]
@@ -963,12 +1014,12 @@ facts:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     excerpt: openvpn
   object_value: openvpn
-  fact_id: fact::aee1b0d32a744c9afa71d669
+  fact_id: fact::965c0e898b9a2273acf1c3c0
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: vpn_protocols[24]
@@ -979,12 +1030,12 @@ facts:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     excerpt: shadowsocks
   object_value: shadowsocks
-  fact_id: fact::401d14d17f363d0c10acc695
+  fact_id: fact::0356297f43ad578c9e951978
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: vpn_protocols[25]
@@ -995,12 +1046,12 @@ facts:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     excerpt: ssh-forward
   object_value: ssh-forward
-  fact_id: fact::3dfb6e8e9d6221520b6590d5
+  fact_id: fact::39808d30100c72a717a168b3
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: vpn_protocols[26]
@@ -1011,12 +1062,12 @@ facts:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     excerpt: tinyproxy
   object_value: tinyproxy
-  fact_id: fact::68bfa96cf45f71c025465c59
+  fact_id: fact::181e8d73026ade23e20f8480
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: vpn_protocols[27]
@@ -1027,12 +1078,12 @@ facts:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     excerpt: tor-bridge
   object_value: tor-bridge
-  fact_id: fact::0d8ddb3492e784d5bf726d83
+  fact_id: fact::6aca892f69a146d223c64590
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     source_section: vpn_protocols[28]
@@ -1043,4 +1094,4 @@ facts:
     source_file: ssh_repos/knowledge/deep/streisand.yaml
     excerpt: wireguard
   object_value: wireguard
-  fact_id: fact::ba69faf16d06c56b2f984620
+  fact_id: fact::a32764dbae411c6703671f1a

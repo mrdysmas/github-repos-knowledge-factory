@@ -6,23 +6,22 @@ source: remote_metadata
 provenance:
   shard: llm_repos
   source_file: llm_repos/knowledge/repos/pydantic__pydantic-ai.yaml
-  as_of: '2026-02-24T19:46:56Z'
+  as_of: '2026-02-25'
 directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/pydantic__pydantic-ai
 category: agent_framework
-summary: Shallow intake pilot canonicalization for pydantic/pydantic-ai in agent framework
-  domain.
+summary: Shallow intake pilot canonicalization for pydantic/pydantic-ai in agent framework domain.
 core_concepts:
-- agent framework capabilities
-- pydantic-ai repository architecture
+  - agent framework capabilities
+  - pydantic-ai repository architecture
 key_entry_points:
-- README.md
-- pyproject.toml
-- docs/
+  - README.md
+  - pyproject.toml
+  - docs/
 build_run:
   language: python
   build: python -m pip install -e .
   test: pytest
-local_cache_dir: null
+local_cache_dir:
 extras:
   intake:
     pilot_batch_id: INTAKE-PILOT-1

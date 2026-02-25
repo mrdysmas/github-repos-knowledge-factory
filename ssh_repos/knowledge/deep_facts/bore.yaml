@@ -6,14 +6,14 @@ source: ssh_repos
 provenance:
   shard: ssh_repos
   source_file: ssh_repos/knowledge/deep_facts/bore.yaml
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   extractor_version: ws6-deep-integrator-v1
 facts:
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/bore.yaml
     source_section: architecture.key_abstractions[1]
@@ -25,12 +25,12 @@ facts:
     excerpt: HMAC-SHA256 challenge-response authentication
   object_value: Authenticator
   note: HMAC-SHA256 challenge-response authentication
-  fact_id: fact::780ff6838f14f1d121d12639
+  fact_id: fact::89dd9debfaf2b34f7a7be074
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/bore.yaml
     source_section: architecture.key_abstractions[2]
@@ -42,12 +42,12 @@ facts:
     excerpt: Concurrent map for pending connections on server
   object_value: DashMap<Uuid, TcpStream>
   note: Concurrent map for pending connections on server
-  fact_id: fact::f4634de2a66ac9a532951756
+  fact_id: fact::66988b7ebfb8ed50f557d378
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/bore.yaml
     source_section: architecture.key_abstractions[0]
@@ -59,12 +59,12 @@ facts:
     excerpt: Null-delimited JSON framing for control messages
   object_value: Delimited<T>
   note: Null-delimited JSON framing for control messages
-  fact_id: fact::5ca113063f2114c1c4d27c07
+  fact_id: fact::2f4e1b599068108428e96215
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/bore.yaml
     source_section: architecture.module_breakdown[3]
@@ -77,12 +77,12 @@ facts:
   object_value: src/auth.rs
   note: 'responsibility: HMAC authentication using SHA256 challenge-response; key_files:
     src/auth.rs'
-  fact_id: fact::8d21ce0444428f208418a188
+  fact_id: fact::cdd5fb37f310f83199e9d451
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/bore.yaml
     source_section: architecture.module_breakdown[0]
@@ -96,12 +96,12 @@ facts:
   object_value: src/client.rs
   note: 'responsibility: Client implementation - establishes control connection, handles
     incoming connections; key_files: src/client.rs'
-  fact_id: fact::7b01f3842439224d9c8e33b3
+  fact_id: fact::6549489f229bef76f343814a
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/bore.yaml
     source_section: architecture.module_breakdown[4]
@@ -113,12 +113,12 @@ facts:
     excerpt: CLI entry point with clap subcommands
   object_value: src/main.rs
   note: 'responsibility: CLI entry point with clap subcommands; key_files: src/main.rs'
-  fact_id: fact::b0cdb567a479758ffe70f536
+  fact_id: fact::418ea8a837b31eb18a89de89
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/bore.yaml
     source_section: architecture.module_breakdown[1]
@@ -132,12 +132,12 @@ facts:
   object_value: src/server.rs
   note: 'responsibility: Server implementation - accepts clients, manages port allocation,
     proxies connections; key_files: src/server.rs'
-  fact_id: fact::70b819749067aae25127a6a0
+  fact_id: fact::ebd9c609214566adf998f8bc
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/bore.yaml
     source_section: architecture.module_breakdown[2]
@@ -150,12 +150,12 @@ facts:
   object_value: src/shared.rs
   note: 'responsibility: Protocol definitions - message types, delimited codec, constants;
     key_files: src/shared.rs'
-  fact_id: fact::4411ffad060792a52f590e8a
+  fact_id: fact::01a1cd77fc4648f33551674d
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/bore.yaml
     source_section: configuration.options[8]
@@ -167,12 +167,12 @@ facts:
     excerpt: bind_addr
   object_value: bind_addr
   note: 'type: IpAddr; default: 0.0.0.0; Address to bind control port'
-  fact_id: fact::fb696b57195046491b61f16b
+  fact_id: fact::1183783903d72976b65e1112
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/bore.yaml
     source_section: configuration.file
@@ -184,12 +184,12 @@ facts:
     excerpt: file
   object_value: file
   note: 'default: CLI flags only (no config file); configuration default for file'
-  fact_id: fact::956a1bf3db8478e89a50b5d9
+  fact_id: fact::6098faefc1ab1dbe435854cd
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/bore.yaml
     source_section: configuration.options[1]
@@ -201,12 +201,12 @@ facts:
     excerpt: local_host
   object_value: local_host
   note: 'type: String; default: localhost; Local host to bind'
-  fact_id: fact::bc15ec79e9888a5ab9ae14d1
+  fact_id: fact::b7ae23dc3c2334d492524512
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/bore.yaml
     source_section: configuration.options[0]
@@ -218,12 +218,12 @@ facts:
     excerpt: local_port
   object_value: local_port
   note: 'type: u16; default: required; Local port to expose'
-  fact_id: fact::b27f2c87e7a63ed86c2e9cab
+  fact_id: fact::38d2b521abfd9c6071fb3c24
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/bore.yaml
     source_section: configuration.options[6]
@@ -235,12 +235,12 @@ facts:
     excerpt: max_port
   object_value: max_port
   note: 'type: u16; Maximum port in allocation range'
-  fact_id: fact::423189f4914e55ada9ed994a
+  fact_id: fact::57d93a36515d9c1dbbc4957e
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/bore.yaml
     source_section: configuration.options[5]
@@ -252,12 +252,12 @@ facts:
     excerpt: min_port
   object_value: min_port
   note: 'type: u16; Minimum port in allocation range'
-  fact_id: fact::b5982c43483717c0ad24e92d
+  fact_id: fact::19c184fb8d32364f629fc8c1
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/bore.yaml
     source_section: configuration.options[3]
@@ -269,12 +269,12 @@ facts:
     excerpt: port
   object_value: port
   note: 'type: u16; Requested remote port (0 for auto-assign)'
-  fact_id: fact::42e51a1a56ca1e95cbf9b064
+  fact_id: fact::930a0bb6c145413bb3fd0ecb
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/bore.yaml
     source_section: configuration.options[4]
@@ -286,12 +286,12 @@ facts:
     excerpt: secret
   object_value: secret
   note: 'type: Option<String>; default: None; Authentication secret'
-  fact_id: fact::39c0381208b87542f9b41534
+  fact_id: fact::494e4ec02f0571d92eee65b2
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/bore.yaml
     source_section: configuration.options[7]
@@ -303,12 +303,12 @@ facts:
     excerpt: secret
   object_value: secret
   note: 'type: Option<String>; default: None; Required authentication secret'
-  fact_id: fact::cf3b8abbd8ddc7f99143d444
+  fact_id: fact::51541cc7fc930a8213c7478d
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/bore.yaml
     source_section: configuration.options[2]
@@ -320,12 +320,12 @@ facts:
     excerpt: to
   object_value: to
   note: 'type: String; default: required; Remote server address'
-  fact_id: fact::1a8f2e3dba865724570c32de
+  fact_id: fact::8a9fb81cf44b37e4e2da5a16
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/bore.yaml
     source_section: api_surface.public_functions[5]
@@ -337,12 +337,12 @@ facts:
     excerpt: Authenticator::new
   object_value: Authenticator::new
   note: 'Create authenticator from secret; pub fn new(secret: &str) -> Self; src/auth.rs:16'
-  fact_id: fact::01733b3c1a86dc8a40ece7c8
+  fact_id: fact::3c2e73cf1c30a2b6ea242e1d
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/bore.yaml
     source_section: api_surface.public_functions[6]
@@ -355,12 +355,12 @@ facts:
   object_value: Authenticator::validate
   note: 'Validate HMAC response; pub fn validate(&self, challenge: &Uuid, tag: &str)
     -> bool; src/auth.rs:40'
-  fact_id: fact::a6eda543dcb7ab76dbabed4c
+  fact_id: fact::fa6f938d4929afd99d24a074
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/bore.yaml
     source_section: api_surface.public_functions[1]
@@ -373,12 +373,12 @@ facts:
   object_value: Client::listen
   note: Start listening for server messages and handle connections; pub async fn listen(self)
     -> Result<()>; src/client.rs:62-119
-  fact_id: fact::6a073f46ef65e6bdb38e353d
+  fact_id: fact::55a62ce6d89ae88b66a9a145
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/bore.yaml
     source_section: api_surface.public_functions[0]
@@ -392,12 +392,12 @@ facts:
   note: 'Create client and establish control connection; pub async fn new(to: &str,
     local_port: u16, local_host: &str, port: u16, secret: Option<&str>) -> Result<Self>;
     src/client.rs:36-60'
-  fact_id: fact::27cd8c930e74db8c7c57b911
+  fact_id: fact::de2abb4e7906336e563715a8
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/bore.yaml
     source_section: api_surface.public_functions[2]
@@ -409,12 +409,12 @@ facts:
     excerpt: Client::remote_port
   object_value: Client::remote_port
   note: Get the assigned remote port; pub fn remote_port(&self) -> u16; src/client.rs:58
-  fact_id: fact::1e23a83dd619aadf4042ebdc
+  fact_id: fact::5e50d6486bf2c565bbb617f6
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/bore.yaml
     source_section: api_surface.public_functions[4]
@@ -427,12 +427,12 @@ facts:
   object_value: Server::listen
   note: Start accepting control connections; pub async fn listen(self) -> Result<()>;
     src/server.rs:67-187
-  fact_id: fact::4bfb737617ae8125b25fe15a
+  fact_id: fact::9caba8f9d36967d0e366936d
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/bore.yaml
     source_section: api_surface.public_functions[3]
@@ -445,12 +445,12 @@ facts:
   object_value: Server::new
   note: 'Create server with port range and optional auth; pub fn new(port_range: RangeInclusive<u16>,
     secret: Option<&str>) -> Self; src/server.rs:59'
-  fact_id: fact::a99a9ff89e464d1c381a7524
+  fact_id: fact::8e50b57a21bddd8348b267b1
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.71
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/bore.yaml
     source_section: extension_points[3]
@@ -462,12 +462,12 @@ facts:
     excerpt: Transport layer
   object_value: Transport layer
   note: Replace with WebSockets, QUIC, or add TLS; TCP replacement
-  fact_id: fact::3598ebb09b7ac82906542860
+  fact_id: fact::94408a449fd1f49e0a7b5a0b
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/bore.yaml
     source_section: extension_points[1]
@@ -479,12 +479,12 @@ facts:
     excerpt: src/auth.rs:12
   object_value: src/auth.rs:12
   note: Replace with different authentication scheme; Authenticator struct
-  fact_id: fact::529e341ea90b336c9880bded
+  fact_id: fact::d480470ad1ba56f4052930ca
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/bore.yaml
     source_section: extension_points[2]
@@ -496,12 +496,12 @@ facts:
     excerpt: src/server.rs:107-115
   object_value: src/server.rs:107-115
   note: Override random selection with reservation system; Port allocation algorithm
-  fact_id: fact::4c539fa0d2be2bfc755cc200
+  fact_id: fact::b439817dab4e571107c2803a
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/bore.yaml
     source_section: extension_points[0]
@@ -514,12 +514,12 @@ facts:
   object_value: src/shared.rs:24-53
   note: Add new message types for protocol extensions; ClientMessage/ServerMessage
     enums
-  fact_id: fact::e0ec2c3d0c33b03e0f480618
+  fact_id: fact::c37e96fe9a95b4f61e4677e7
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/bore.yaml
     source_section: implementation_patterns[0]
@@ -533,12 +533,46 @@ facts:
   object_value: Async Tokio Runtime
   note: 'description: tokio::spawn for concurrent connection handling, copy_bidirectional
     for data transfer; location: src/client.rs:88, src/server.rs:67'
-  fact_id: fact::d795953062bdd00132655a57
+  fact_id: fact::64bffc0a0cf7595193756984
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/bore.yaml
+    source_section: testing.coverage_areas[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[1].line[0]
+    source_file: ssh_repos/knowledge/deep/bore.yaml
+    excerpt: Authentication mismatch scenarios
+  object_value: Authentication mismatch scenarios
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::48358aa199a8651eace6c6ed
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/bore.yaml
+    source_section: testing.coverage_areas[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[0].line[0]
+    source_file: ssh_repos/knowledge/deep/bore.yaml
+    excerpt: Basic proxy with/without secrets
+  object_value: Basic proxy with/without secrets
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::36f89e011394082fe7052b82
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/bore.yaml
     source_section: implementation_patterns[3]
@@ -551,12 +585,12 @@ facts:
   object_value: Bidirectional Copy
   note: 'description: tokio::io::copy_bidirectional for efficient byte forwarding;
     location: src/client.rs:116, src/server.rs:178'
-  fact_id: fact::1365e67ec74388a5b8be948d
+  fact_id: fact::d8621d1a8098897e2f0c330f
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/bore.yaml
     source_section: implementation_patterns[4]
@@ -569,12 +603,12 @@ facts:
   object_value: Connection Timeout
   note: 'description: 10-second timeout for pending connections before cleanup; location:
     src/server.rs:162-166'
-  fact_id: fact::19b30ada8a0e8f733f105563
+  fact_id: fact::a6bc8f6806275ee81389235e
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/bore.yaml
     source_section: implementation_patterns[2]
@@ -588,12 +622,63 @@ facts:
   object_value: HMAC Challenge-Response
   note: 'description: Server sends UUID challenge, client responds with HMAC-SHA256(secret,
     challenge); location: src/auth.rs:22-48'
-  fact_id: fact::e7a90913d02159171e53973a
+  fact_id: fact::97b49983beb74a8afe934a9f
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/bore.yaml
+    source_section: testing.coverage_areas[4].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[4].line[0]
+    source_file: ssh_repos/knowledge/deep/bore.yaml
+    excerpt: Half-closed TCP stream handling
+  object_value: Half-closed TCP stream handling
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::42196553587e8bce48a3ffa3
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/bore.yaml
+    source_section: testing.coverage_areas[2].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[2].line[0]
+    source_file: ssh_repos/knowledge/deep/bore.yaml
+    excerpt: Invalid address handling
+  object_value: Invalid address handling
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::5c792b9d072bdf3338ad9dc0
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/bore.yaml
+    source_section: testing.coverage_areas[3].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[3].line[0]
+    source_file: ssh_repos/knowledge/deep/bore.yaml
+    excerpt: Long frame attack prevention (1MB limit)
+  object_value: Long frame attack prevention (1MB limit)
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::f17a2d24fbbace3dae98d3ef
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/bore.yaml
     source_section: implementation_patterns[1]
@@ -606,4 +691,89 @@ facts:
   object_value: Null-Delimited JSON Framing
   note: 'description: Messages framed with null byte for clean separation over TCP;
     location: src/shared.rs:65-99'
-  fact_id: fact::9fa8c7211796d80854fc1c2d
+  fact_id: fact::fdfc26d061c816d30770dab4
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/bore.yaml
+    source_section: testing.test_patterns[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.test_patterns[0].line[0]
+    source_file: ssh_repos/knowledge/deep/bore.yaml
+    excerpt: SERIAL_GUARD mutex for serial test execution
+  object_value: SERIAL_GUARD mutex for serial test execution
+  note: 'testing metadata: test_patterns'
+  fact_id: fact::701d94e30c00aee47cfc8e6f
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/bore.yaml
+    source_section: testing.test_patterns[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.test_patterns[1].line[0]
+    source_file: ssh_repos/knowledge/deep/bore.yaml
+    excerpt: rstest for parameterized tests
+  object_value: rstest for parameterized tests
+  note: 'testing metadata: test_patterns'
+  fact_id: fact::9ff6b0c14edaa531f6261f70
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/bore.yaml
+    source_section: testing.structure.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.structure.line[0]
+    source_file: ssh_repos/knowledge/deep/bore.yaml
+    excerpt: tests/e2e_test.rs, tests/auth_test.rs
+  object_value: tests/e2e_test.rs, tests/auth_test.rs
+  note: 'testing metadata: structure'
+  fact_id: fact::36c1ab2fd962c4d58ad03ea2
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/bore.yaml
+    source_section: testing.test_patterns[2].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.test_patterns[2].line[0]
+    source_file: ssh_repos/knowledge/deep/bore.yaml
+    excerpt: tokio::io::duplex for controlled test environment
+  object_value: tokio::io::duplex for controlled test environment
+  note: 'testing metadata: test_patterns'
+  fact_id: fact::150146754b8edfeec6917c4f
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/bore.yaml
+    source_section: testing.framework.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.framework.line[0]
+    source_file: ssh_repos/knowledge/deep/bore.yaml
+    excerpt: tokio::test, rstest for parameterization
+  object_value: tokio::test, rstest for parameterization
+  note: 'testing metadata: framework'
+  fact_id: fact::82083689b46c4ffcc9b330b7

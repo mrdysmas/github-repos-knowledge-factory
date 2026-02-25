@@ -6,14 +6,14 @@ source: ssh_repos
 provenance:
   shard: ssh_repos
   source_file: ssh_repos/knowledge/deep_facts/netmask.yaml
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   extractor_version: ws6-deep-integrator-v1
 facts:
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/netmask.yaml
     source_section: architecture.key_abstractions[1]
@@ -25,12 +25,12 @@ facts:
     excerpt: Client tunnel implementation with TCP/UDP forwarding
   object_value: NetmaskClient
   note: Client tunnel implementation with TCP/UDP forwarding
-  fact_id: fact::3e5faaf88420b1a0cd4d6264
+  fact_id: fact::ec27f2a476dd4b8d8a5ef151
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/netmask.yaml
     source_section: architecture.key_abstractions[3]
@@ -42,12 +42,12 @@ facts:
     excerpt: Rolling key encryption system
   object_value: NetmaskEncryption
   note: Rolling key encryption system
-  fact_id: fact::13aaacf17ca7dd58a7b108e9
+  fact_id: fact::4605a3047cd5388bffa78d05
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/netmask.yaml
     source_section: architecture.key_abstractions[0]
@@ -60,12 +60,12 @@ facts:
       networking
   object_value: NetmaskServer
   note: Main server class handling connections, TCP/UDP protocols, dual-stack networking
-  fact_id: fact::4bcc3b4801e3399f3993c804
+  fact_id: fact::4574d34ff3a30b4ad8355734
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/netmask.yaml
     source_section: architecture.key_abstractions[2]
@@ -77,12 +77,12 @@ facts:
     excerpt: Base class for packet encryption/decryption
   object_value: ProtocolHandler
   note: Base class for packet encryption/decryption
-  fact_id: fact::88a3c62d164fd2d518350958
+  fact_id: fact::6d591ac042ad753b28ff2352
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/netmask.yaml
     source_section: architecture.module_breakdown[2]
@@ -95,12 +95,12 @@ facts:
   object_value: client/main.py
   note: 'responsibility: NetmaskClient class with TCP/UDP forwarding threads and connection
     management; key_files: netmask/client/main.py'
-  fact_id: fact::e48f79d76cc76a866121994b
+  fact_id: fact::41ed3de9d43ba4a9c09fe3e2
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/netmask.yaml
     source_section: architecture.module_breakdown[3]
@@ -114,12 +114,12 @@ facts:
   object_value: impl/packets.py
   note: 'responsibility: ProtocolHandler base class for packet serialization/deserialization
     with encryption; key_files: netmask/impl/packets.py'
-  fact_id: fact::bc78690b0e41dff759ca474f
+  fact_id: fact::1e979608b9cbd515e3deed42
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/netmask.yaml
     source_section: architecture.module_breakdown[0]
@@ -132,12 +132,12 @@ facts:
   object_value: netmasks.py / netmaskc.py
   note: 'responsibility: CLI entry points for server and client; key_files: netmask/netmasks.py,
     netmask/netmaskc.py'
-  fact_id: fact::6a36a324b4a3061ce5ae8e24
+  fact_id: fact::ab23699a5a070cf4db09a949
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/netmask.yaml
     source_section: architecture.module_breakdown[1]
@@ -151,12 +151,12 @@ facts:
   object_value: server/main.py
   note: 'responsibility: NetmaskServer class handling TCP/UDP listeners, client connections,
     tunnel management; key_files: netmask/server/main.py'
-  fact_id: fact::6ab68e2147db1898e6b5c63c
+  fact_id: fact::dcf7903434694f46341eda51
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/netmask.yaml
     source_section: architecture.module_breakdown[4]
@@ -169,12 +169,12 @@ facts:
   object_value: utils/encryption.py
   note: 'responsibility: NetmaskEncryption class implementing rolling key XOR cipher;
     key_files: netmask/utils/encryption.py'
-  fact_id: fact::0b8d29cbb7ad3d05e4afbb52
+  fact_id: fact::de9196dae89fbb9743919c4d
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/netmask.yaml
     source_section: configuration.options[4]
@@ -186,12 +186,12 @@ facts:
     excerpt: bindMode
   object_value: bindMode
   note: 'type: string; default: required; Protocol mode (tcp/udp)'
-  fact_id: fact::b84f95388eb72bbd723bfe97
+  fact_id: fact::b24278cba56416e45340eb67
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/netmask.yaml
     source_section: configuration.file
@@ -203,12 +203,12 @@ facts:
     excerpt: file
   object_value: file
   note: 'default: CLI arguments (argparse); configuration default for file'
-  fact_id: fact::efd06e4bfbdb7b569f850325
+  fact_id: fact::608a809ed094e1d8eb7cde80
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/netmask.yaml
     source_section: configuration.options[5]
@@ -220,12 +220,12 @@ facts:
     excerpt: ipVersion
   object_value: ipVersion
   note: 'type: int; default: required; IP version (4 or 6)'
-  fact_id: fact::934c2ab7c5b449cb0546103f
+  fact_id: fact::1bc1d22aff454b6ffd0f7c8b
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/netmask.yaml
     source_section: configuration.options[3]
@@ -237,12 +237,12 @@ facts:
     excerpt: key
   object_value: key
   note: 'type: string; default: 0; Communication key for encryption'
-  fact_id: fact::f216e9fd132d8cd0cd79cbd1
+  fact_id: fact::5bf77299a96a64e38eaba180
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/netmask.yaml
     source_section: configuration.options[0]
@@ -254,12 +254,12 @@ facts:
     excerpt: listener4
   object_value: listener4
   note: 'type: string; default: required; IPv4 listener IP (0.0.0.0 or -)'
-  fact_id: fact::796a87f83108d8ddefff6510
+  fact_id: fact::dd4141e1644ddebdc18922cf
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/netmask.yaml
     source_section: configuration.options[1]
@@ -271,12 +271,12 @@ facts:
     excerpt: listener6
   object_value: listener6
   note: 'type: string; default: required; IPv6 listener IP (:: or -)'
-  fact_id: fact::49573d1035cb302213899ba0
+  fact_id: fact::2316b0a172ba973d1f907ebc
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/netmask.yaml
     source_section: configuration.options[6]
@@ -288,12 +288,12 @@ facts:
     excerpt: nogui
   object_value: nogui
   note: 'type: bool; Disable terminal GUI'
-  fact_id: fact::be6ace503e7fc4cacdeac2ff
+  fact_id: fact::76e932639a762a49411a6518
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/netmask.yaml
     source_section: configuration.options[2]
@@ -305,12 +305,12 @@ facts:
     excerpt: port
   object_value: port
   note: 'type: int; Server listening port'
-  fact_id: fact::e0c047f4eb83f684ae8c63de
+  fact_id: fact::0b545ee00de332942173c0c8
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/netmask.yaml
     source_section: api_surface.public_functions[1]
@@ -322,12 +322,12 @@ facts:
     excerpt: NetmaskClient.connect
   object_value: NetmaskClient.connect
   note: Establish connection to server; def connect(self, host, port); netmask/client/main.py
-  fact_id: fact::5be36e231480ef8ec28e3d36
+  fact_id: fact::f14b5348e23d5570fe278d70
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/netmask.yaml
     source_section: api_surface.public_functions[0]
@@ -340,12 +340,12 @@ facts:
   object_value: NetmaskServer.start
   note: Start server with dual-stack listeners; def start(self, ipv4host, ipv6host,
     port); netmask/server/main.py
-  fact_id: fact::a59d16cf34088f18dcdc441a
+  fact_id: fact::0b8096a897fda594bdf2f824
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/netmask.yaml
     source_section: api_surface.public_functions[3]
@@ -357,12 +357,12 @@ facts:
     excerpt: ProtocolHandler.recvPacket
   object_value: ProtocolHandler.recvPacket
   note: Receive and decrypt packet; def recvPacket(self, expectedPacket); netmask/impl/packets.py
-  fact_id: fact::c9141d195f2bcc50387f29f9
+  fact_id: fact::e114080accbc649929e8e9c6
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/netmask.yaml
     source_section: api_surface.public_functions[2]
@@ -374,12 +374,12 @@ facts:
     excerpt: ProtocolHandler.sendPacket
   object_value: ProtocolHandler.sendPacket
   note: Send encrypted packet; def sendPacket(self, packet); netmask/impl/packets.py
-  fact_id: fact::f7d44c8b639b3da0e8d36123
+  fact_id: fact::7e891037018728ef6a75df6d
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/netmask.yaml
     source_section: extension_points[2]
@@ -391,12 +391,12 @@ facts:
     excerpt: netmask/client/main.py
   object_value: netmask/client/main.py
   note: Subclass for custom terminal UI styles; NetmaskClientGUI
-  fact_id: fact::a8d2d5fd67b828866add01f5
+  fact_id: fact::de710ba96d2c7dce98dcb762
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/netmask.yaml
     source_section: extension_points[0]
@@ -408,12 +408,12 @@ facts:
     excerpt: netmask/impl/packets.py
   object_value: netmask/impl/packets.py
   note: Override for custom connection termination logic; terminateConnection()
-  fact_id: fact::a91c1e7b54221f3e2cac0b45
+  fact_id: fact::c60203e0d0dedb8dea33fc71
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/netmask.yaml
     source_section: extension_points[4]
@@ -425,12 +425,12 @@ facts:
     excerpt: netmask/impl/packets.py
   object_value: netmask/impl/packets.py
   note: Add new packet types for protocol extensions; packetList dictionary
-  fact_id: fact::fbd3819cc79cacbc3fc14a44
+  fact_id: fact::daa96172ecf472255db8e2e9
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/netmask.yaml
     source_section: extension_points[3]
@@ -442,12 +442,12 @@ facts:
     excerpt: netmask/server/main.py
   object_value: netmask/server/main.py
   note: Extend for additional authentication; ServerConnection.connectionHandler()
-  fact_id: fact::2539944b9f6b15ceee22b817
+  fact_id: fact::b8b1e0e6cc2128da1cb7fdba
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/netmask.yaml
     source_section: extension_points[1]
@@ -459,12 +459,12 @@ facts:
     excerpt: netmask/utils/encryption.py
   object_value: netmask/utils/encryption.py
   note: Replace with different cipher algorithms; NetmaskEncryption class
-  fact_id: fact::de3d533ddd6f7de70b7c36fe
+  fact_id: fact::7a89fb2c4c917ddbf66b02d8
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/netmask.yaml
     source_section: implementation_patterns[1]
@@ -478,12 +478,12 @@ facts:
   object_value: Async TCP Handler
   note: 'description: AsyncTCPWrapper bridges sync/async gap with bidirectional forwarding
     via asyncio.gather; location: netmask/server/main.py'
-  fact_id: fact::c5da2ada58fd72d85baf5c86
+  fact_id: fact::92101510c5b5ecdffafca353
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/netmask.yaml
     source_section: implementation_patterns[3]
@@ -496,12 +496,63 @@ facts:
   object_value: Dual-Stack IPv4/IPv6
   note: 'description: IPv6 socket with IPV6_V6ONLY=0 for simultaneous IPv4/IPv6 binding;
     location: netmask/server/main.py'
-  fact_id: fact::04457455161dd05dc6b9244d
+  fact_id: fact::6a7bc8e21249392b67b1fe76
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/netmask.yaml
+    source_section: testing.coverage.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage.line[0]
+    source_file: ssh_repos/knowledge/deep/netmask.yaml
+    excerpt: N/A
+  object_value: N/A
+  note: 'testing metadata: coverage'
+  fact_id: fact::bff59c4037457291570e2baa
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/netmask.yaml
+    source_section: testing.structure.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.structure.line[0]
+    source_file: ssh_repos/knowledge/deep/netmask.yaml
+    excerpt: No tests included
+  object_value: No tests included
+  note: 'testing metadata: structure'
+  fact_id: fact::747b235da94a87fefb0d81cc
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/netmask.yaml
+    source_section: testing.framework.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.framework.line[0]
+    source_file: ssh_repos/knowledge/deep/netmask.yaml
+    excerpt: None
+  object_value: None
+  note: 'testing metadata: framework'
+  fact_id: fact::c021ee2865692f50d93b2e7e
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/netmask.yaml
     source_section: implementation_patterns[4]
@@ -514,12 +565,12 @@ facts:
   object_value: Proof-of-Encryption Handshake
   note: 'description: Challenge-response with SHA-256 hash validation before tunnel
     establishment; location: netmask/impl/packets.py'
-  fact_id: fact::a943294af99f8855f8f5693d
+  fact_id: fact::c16354ff60beec4673e0ed6b
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/netmask.yaml
     source_section: implementation_patterns[0]
@@ -532,12 +583,12 @@ facts:
   object_value: Rolling Key Encryption
   note: 'description: SHA-256 rolling keys change per packet with Shake-256 XOR encryption;
     location: netmask/utils/encryption.py'
-  fact_id: fact::0a6709de71560d6ded2dccae
+  fact_id: fact::b4c1a8a4d4787007873558e4
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/netmask.yaml
     source_section: implementation_patterns[2]
@@ -550,4 +601,4 @@ facts:
   object_value: UDP Datagram Handler
   note: 'description: Connectionless protocol with address-based client tracking and
     buffering; location: netmask/server/main.py'
-  fact_id: fact::7348011eb460cf54ce11c3fe
+  fact_id: fact::392b3f645096b1b799d00e04

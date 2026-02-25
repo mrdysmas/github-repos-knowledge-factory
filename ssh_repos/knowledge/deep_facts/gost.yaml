@@ -6,14 +6,14 @@ source: ssh_repos
 provenance:
   shard: ssh_repos
   source_file: ssh_repos/knowledge/deep_facts/gost.yaml
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   extractor_version: ws6-deep-integrator-v1
 facts:
 - fact_type: api_endpoint
   predicate: exposes_api_endpoint
   object_kind: api_route
   confidence: 0.8
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: api_surface.rest_endpoints[1]
@@ -25,12 +25,12 @@ facts:
     excerpt: /api/chains
   object_value: /api/chains
   note: Chain inspection
-  fact_id: fact::6be41ac661e2c755931b66a2
+  fact_id: fact::2044c3b37f78f1f8fe295772
 - fact_type: api_endpoint
   predicate: exposes_api_endpoint
   object_kind: api_route
   confidence: 0.8
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: api_surface.rest_endpoints[0]
@@ -42,12 +42,12 @@ facts:
     excerpt: /api/services
   object_value: /api/services
   note: Service management
-  fact_id: fact::8f8425a5e0febe25640b9ca3
+  fact_id: fact::4a8b05924ee0b317c5d7c893
 - fact_type: api_endpoint
   predicate: exposes_api_endpoint
   object_kind: api_route
   confidence: 0.8
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: api_surface.rest_endpoints[2]
@@ -59,12 +59,12 @@ facts:
     excerpt: /metrics
   object_value: /metrics
   note: Prometheus metrics
-  fact_id: fact::00c1f39cbf2ba6f8b48cda24
+  fact_id: fact::e33f2bfc507b6c5a72fe2448
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: architecture.key_abstractions[1]
@@ -76,12 +76,12 @@ facts:
     excerpt: Multi-hop forwarding pipeline with selection strategy
   object_value: Chain
   note: Multi-hop forwarding pipeline with selection strategy
-  fact_id: fact::66502f1b0cfff8df5b1d62d0
+  fact_id: fact::cebf615b55f82db73279ab93
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: architecture.key_abstractions[2]
@@ -93,12 +93,12 @@ facts:
     excerpt: Single relay level with multiple Nodes for failover
   object_value: Hop
   note: Single relay level with multiple Nodes for failover
-  fact_id: fact::29b5cab652c8e071df54ce00
+  fact_id: fact::e5a1fd418b59a7dbfa7a6f95
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: architecture.key_abstractions[3]
@@ -110,12 +110,12 @@ facts:
     excerpt: Endpoint with Connector (inbound protocol) + Dialer (outbound protocol)
   object_value: Node
   note: Endpoint with Connector (inbound protocol) + Dialer (outbound protocol)
-  fact_id: fact::6addaeef141faa1b656c4789
+  fact_id: fact::3dce52e19264310c3afe5579
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: architecture.key_abstractions[4]
@@ -127,12 +127,12 @@ facts:
     excerpt: DI container for services, authers, connectors, dialers, handlers, listeners
   object_value: Registry
   note: DI container for services, authers, connectors, dialers, handlers, listeners
-  fact_id: fact::cf01ae548d9cf2b6a3f7e1da
+  fact_id: fact::5a380d8af9ab0d57d848c698
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: architecture.key_abstractions[0]
@@ -144,12 +144,12 @@ facts:
     excerpt: Top-level container with Listener + Handler + optional Chain
   object_value: Service
   note: Top-level container with Listener + Handler + optional Chain
-  fact_id: fact::4de9ecbcf23d73f20aeaef44
+  fact_id: fact::59d580899852bca2ff1f1c65
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: architecture.module_breakdown[0]
@@ -162,12 +162,12 @@ facts:
   object_value: cmd/gost/main.go
   note: 'responsibility: Entry point - SIGHUP hot-reload, multi-process support via
     -- separator; key_files: cmd/gost/main.go'
-  fact_id: fact::92ae7531121635a408adb2c7
+  fact_id: fact::d315584af33237edb1a46fb4
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: architecture.module_breakdown[1]
@@ -180,12 +180,12 @@ facts:
   object_value: cmd/gost/program.go
   note: 'responsibility: Service lifecycle - Init/Start/Stop/Reload orchestration;
     key_files: cmd/gost/program.go'
-  fact_id: fact::be5ff36913a42c833e117baa
+  fact_id: fact::1313d0ded2f64b606fb52e8c
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: architecture.module_breakdown[2]
@@ -198,12 +198,12 @@ facts:
   object_value: cmd/gost/register.go
   note: 'responsibility: Protocol registration via blank imports with init() functions;
     key_files: cmd/gost/register.go'
-  fact_id: fact::a6834bfb326e2851196554f5
+  fact_id: fact::449f0c794d9b78389cc1467b
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: architecture.module_breakdown[3]
@@ -216,12 +216,12 @@ facts:
   object_value: github.com/go-gost/core
   note: 'responsibility: Core interfaces - service definitions, registries, base types;
     key_files: cmd/gost/register.go'
-  fact_id: fact::e2afc03855f62f46c27351db
+  fact_id: fact::eed22c7858ea7999c7240fa0
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: architecture.module_breakdown[4]
@@ -234,12 +234,12 @@ facts:
   object_value: github.com/go-gost/x
   note: 'responsibility: Protocol implementations - 40+ connectors/dialers/handlers/listeners;
     key_files: cmd/gost/register.go'
-  fact_id: fact::0c0f9b0e695e107ada6e1609
+  fact_id: fact::0935be81fcf34272a913d128
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: configuration.options[11]
@@ -251,12 +251,12 @@ facts:
     excerpt: api.addr
   object_value: api.addr
   note: 'type: string; REST API address'
-  fact_id: fact::dd412d470c286ff9bd72d847
+  fact_id: fact::b4d5257d151e8d09d55a43ce
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: configuration.options[12]
@@ -268,12 +268,12 @@ facts:
     excerpt: api.pathPrefix
   object_value: api.pathPrefix
   note: 'type: string; default: /api; API path prefix'
-  fact_id: fact::c93d28fc59b83f724fde6850
+  fact_id: fact::adf8634e901aa371441c7cf9
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: configuration.options[8]
@@ -285,12 +285,12 @@ facts:
     excerpt: chains[].hops[].nodes[].addr
   object_value: chains[].hops[].nodes[].addr
   note: 'type: string; default: required; Node address'
-  fact_id: fact::7b1bf897e8685679db07a5ce
+  fact_id: fact::814a61a70ab60fca5adc993c
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: configuration.options[9]
@@ -302,12 +302,12 @@ facts:
     excerpt: chains[].hops[].nodes[].connector.type
   object_value: chains[].hops[].nodes[].connector.type
   note: 'type: string; default: required; Inbound protocol (socks5, http, ss, etc.)'
-  fact_id: fact::3059994e1d8e8627204e02e9
+  fact_id: fact::7336834e155995327274791d
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: configuration.options[10]
@@ -320,12 +320,12 @@ facts:
   object_value: chains[].hops[].nodes[].dialer.type
   note: 'type: string; default: required; Outbound protocol (tcp, tls, quic, kcp,
     etc.)'
-  fact_id: fact::50037141e86186696cc4f4a6
+  fact_id: fact::c968c07ac3fddd0ebaed5b36
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: configuration.options[6]
@@ -337,12 +337,12 @@ facts:
     excerpt: chains[].name
   object_value: chains[].name
   note: 'type: string; default: required; Chain identifier'
-  fact_id: fact::9837c1779b41d38d0c5def08
+  fact_id: fact::32b7c12adb256cc46b53767c
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: configuration.options[7]
@@ -354,12 +354,12 @@ facts:
     excerpt: chains[].selector.strategy
   object_value: chains[].selector.strategy
   note: 'type: string; default: round; round/rand/leastconn/custom'
-  fact_id: fact::5772300486469474f8181de7
+  fact_id: fact::3551898595a06431ae97d1d0
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: configuration.file
@@ -371,12 +371,12 @@ facts:
     excerpt: file
   object_value: file
   note: 'default: YAML format (gost.yml); configuration default for file'
-  fact_id: fact::117ab91d6fc4a7692d5474b8
+  fact_id: fact::3acd1dcbb916250ece10ef9e
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: configuration.options[13]
@@ -388,12 +388,12 @@ facts:
     excerpt: metrics.addr
   object_value: metrics.addr
   note: 'type: string; Prometheus metrics address'
-  fact_id: fact::f7e88d57eefcf79adb9ea96d
+  fact_id: fact::0a7ea5503128331943209429
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: configuration.options[14]
@@ -405,12 +405,12 @@ facts:
     excerpt: metrics.path
   object_value: metrics.path
   note: 'type: string; default: /metrics; Metrics endpoint path'
-  fact_id: fact::735654cf0e315aa931795024
+  fact_id: fact::c157b469fd9caa8f948a8a08
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: configuration.options[1]
@@ -422,12 +422,12 @@ facts:
     excerpt: services[].addr
   object_value: services[].addr
   note: 'type: string; default: required; Listen address (e.g., ":8080")'
-  fact_id: fact::17b43502a6b577e2917abfa0
+  fact_id: fact::48edbe4c2bd3b1ff1f4b56e9
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: configuration.options[5]
@@ -439,12 +439,12 @@ facts:
     excerpt: services[].handler.auth
   object_value: services[].handler.auth
   note: 'type: AuthConfig; default: None; Basic authentication'
-  fact_id: fact::f17b551c7cc254d94093985e
+  fact_id: fact::7a66b484ecdefb5711b2dde6
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: configuration.options[4]
@@ -456,12 +456,12 @@ facts:
     excerpt: services[].handler.chain
   object_value: services[].handler.chain
   note: 'type: string; Forwarding chain reference'
-  fact_id: fact::deed119863e96129b3601d1b
+  fact_id: fact::043db83e71c18934f97c7ab7
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: configuration.options[2]
@@ -473,12 +473,12 @@ facts:
     excerpt: services[].handler.type
   object_value: services[].handler.type
   note: 'type: string; default: required; Handler type (http, socks, relay, dns, etc.)'
-  fact_id: fact::25130f93391de7a9d435bd1d
+  fact_id: fact::3ef08c9d97877fb294b05c98
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: configuration.options[3]
@@ -490,12 +490,12 @@ facts:
     excerpt: services[].listener.type
   object_value: services[].listener.type
   note: 'type: string; default: tcp; Listener type (tcp, tls, ws, quic, etc.)'
-  fact_id: fact::3cdf9a277487bd59c195dfe3
+  fact_id: fact::7403248e455baa0386ab7e7b
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: configuration.options[0]
@@ -507,12 +507,12 @@ facts:
     excerpt: services[].name
   object_value: services[].name
   note: 'type: string; default: required; Service identifier'
-  fact_id: fact::a0710d82a8c209114b80bc59
+  fact_id: fact::d1d5452b32b0645ef34d3de3
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: api_surface.public_functions[0]
@@ -524,12 +524,12 @@ facts:
     excerpt: main
   object_value: main
   note: CLI entry point; func main(); cmd/gost/main.go:106
-  fact_id: fact::0565c38894395df953a2cb35
+  fact_id: fact::eda08b685876fd573b41020d
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: api_surface.public_functions[1]
@@ -541,12 +541,12 @@ facts:
     excerpt: program.Init
   object_value: program.Init
   note: Initialize service; func (p *program) Init(env svc.Environment) error; cmd/gost/program.go:35
-  fact_id: fact::97c6b86573b735a580f8d0a7
+  fact_id: fact::3cbe7eb023ad8b62bd40740a
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: api_surface.public_functions[4]
@@ -558,12 +558,12 @@ facts:
     excerpt: program.Reload
   object_value: program.Reload
   note: Hot reload configuration; func (p *program) Reload() error; cmd/gost/program.go:192
-  fact_id: fact::75f4fb892a5a0c927f9d9419
+  fact_id: fact::9fa046cb2673ba6238612a2a
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: api_surface.public_functions[2]
@@ -575,12 +575,12 @@ facts:
     excerpt: program.Start
   object_value: program.Start
   note: Start all registered services; func (p *program) Start() error; cmd/gost/program.go:49
-  fact_id: fact::a5338c2d28ecbd0de189920a
+  fact_id: fact::ae17c81fab4c7bcc01c1dcef
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: api_surface.public_functions[3]
@@ -592,66 +592,12 @@ facts:
     excerpt: program.Stop
   object_value: program.Stop
   note: Graceful shutdown; func (p *program) Stop() error; cmd/gost/program.go:166
-  fact_id: fact::c9c629ae5a45697b35483e19
+  fact_id: fact::3c6fffe4b8e2b4d2c21b93fb
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-23'
-  provenance:
-    source_file: ssh_repos/knowledge/deep/gost.yaml
-    source_section: extension_points[1]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: extension_points[1]
-    source_file: ssh_repos/knowledge/deep/gost.yaml
-    excerpt: cmd/gost/register.go
-  object_value: cmd/gost/register.go
-  note: Register new outbound protocol (e.g., QUIC variant); Dialer interface (from
-    go-gost/core)
-  fact_id: fact::4222ad45bdc2c2d9af829a49
-- fact_type: extension_point
-  predicate: has_extension_point
-  object_kind: path
-  confidence: 0.71
-  as_of: '2026-02-23'
-  provenance:
-    source_file: ssh_repos/knowledge/deep/gost.yaml
-    source_section: extension_points[3]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: extension_points[3]
-    source_file: ssh_repos/knowledge/deep/gost.yaml
-    excerpt: cmd/gost/register.go
-  object_value: cmd/gost/register.go
-  note: Register new listener type (e.g., custom transport); Listener interface (from
-    go-gost/core)
-  fact_id: fact::4232f7b3ad0650f44be8c94d
-- fact_type: extension_point
-  predicate: has_extension_point
-  object_kind: path
-  confidence: 0.71
-  as_of: '2026-02-23'
-  provenance:
-    source_file: ssh_repos/knowledge/deep/gost.yaml
-    source_section: extension_points[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: extension_points[0]
-    source_file: ssh_repos/knowledge/deep/gost.yaml
-    excerpt: cmd/gost/register.go
-  object_value: cmd/gost/register.go
-  note: Register new inbound protocol (e.g., custom proxy); Connector interface (from
-    go-gost/core)
-  fact_id: fact::c388c3fce1975d753eded58b
-- fact_type: extension_point
-  predicate: has_extension_point
-  object_kind: path
-  confidence: 0.71
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: extension_points[2]
@@ -664,12 +610,66 @@ facts:
   object_value: cmd/gost/register.go
   note: Register new request handler (e.g., custom routing); Handler interface (from
     go-gost/core)
-  fact_id: fact::c7e3c1ea3a42964be801b9d9
+  fact_id: fact::24bacd589e1af6ddafe25126
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/gost.yaml
+    source_section: extension_points[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[3]
+    source_file: ssh_repos/knowledge/deep/gost.yaml
+    excerpt: cmd/gost/register.go
+  object_value: cmd/gost/register.go
+  note: Register new listener type (e.g., custom transport); Listener interface (from
+    go-gost/core)
+  fact_id: fact::4cc0f85e28f0fc459d54af44
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: path
+  confidence: 0.71
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/gost.yaml
+    source_section: extension_points[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[1]
+    source_file: ssh_repos/knowledge/deep/gost.yaml
+    excerpt: cmd/gost/register.go
+  object_value: cmd/gost/register.go
+  note: Register new outbound protocol (e.g., QUIC variant); Dialer interface (from
+    go-gost/core)
+  fact_id: fact::72ea510746e5ed5bda708733
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: path
+  confidence: 0.71
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/gost.yaml
+    source_section: extension_points[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[0]
+    source_file: ssh_repos/knowledge/deep/gost.yaml
+    excerpt: cmd/gost/register.go
+  object_value: cmd/gost/register.go
+  note: Register new inbound protocol (e.g., custom proxy); Connector interface (from
+    go-gost/core)
+  fact_id: fact::7748a29bc5d4b0477cc4bdd4
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: path
+  confidence: 0.71
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: extension_points[4]
@@ -681,12 +681,29 @@ facts:
     excerpt: cmd/gost/register.go
   object_value: cmd/gost/register.go
   note: Add _ "your-module/connector" to register custom protocol; Blank import section
-  fact_id: fact::dade7c98c5a851eed3f90be4
+  fact_id: fact::e226627c7bfb62d564cb845d
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/gost.yaml
+    source_section: testing.structure.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.structure.line[0]
+    source_file: ssh_repos/knowledge/deep/gost.yaml
+    excerpt: '*_test.go files alongside source'
+  object_value: '*_test.go files alongside source'
+  note: 'testing metadata: structure'
+  fact_id: fact::2b8a4d7b22cc7c7ae5668bc0
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: implementation_patterns[3]
@@ -698,12 +715,80 @@ facts:
     excerpt: round/rand/leastconn/custom for node selection
   object_value: Chain Selection Strategy
   note: 'description: round/rand/leastconn/custom for node selection; location: cmd/gost/program.go'
-  fact_id: fact::142901ca18c81524416c10a0
+  fact_id: fact::5b547c57be2ebe833ecb4979
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/gost.yaml
+    source_section: testing.coverage_areas[2].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[2].line[0]
+    source_file: ssh_repos/knowledge/deep/gost.yaml
+    excerpt: Chain selection
+  object_value: Chain selection
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::ce2d4eb86f63eb7550eabd6a
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/gost.yaml
+    source_section: testing.coverage_areas[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[0].line[0]
+    source_file: ssh_repos/knowledge/deep/gost.yaml
+    excerpt: Configuration parsing
+  object_value: Configuration parsing
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::9b81217e030748605e5f560a
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/gost.yaml
+    source_section: testing.framework.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.framework.line[0]
+    source_file: ssh_repos/knowledge/deep/gost.yaml
+    excerpt: Go testing, testify
+  object_value: Go testing, testify
+  note: 'testing metadata: framework'
+  fact_id: fact::dac380a2a8cce92aad1600a9
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/gost.yaml
+    source_section: testing.test_patterns[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.test_patterns[1].line[0]
+    source_file: ssh_repos/knowledge/deep/gost.yaml
+    excerpt: Mock interfaces for testing
+  object_value: Mock interfaces for testing
+  note: 'testing metadata: test_patterns'
+  fact_id: fact::87366ed0d0103efbd76c7777
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: implementation_patterns[4]
@@ -716,12 +801,29 @@ facts:
   object_value: Multi-Process Mode
   note: 'description: Split on --, workers coordinated via _GOST_ID env var; location:
     cmd/gost/main.go:106'
-  fact_id: fact::b5b14346e7613f48725464a3
+  fact_id: fact::1222d2115a5bb3b8c3f21091
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/gost.yaml
+    source_section: testing.coverage_areas[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[1].line[0]
+    source_file: ssh_repos/knowledge/deep/gost.yaml
+    excerpt: Protocol implementations
+  object_value: Protocol implementations
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::4872a9126b7faeb62c19e9ba
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: implementation_patterns[0]
@@ -734,12 +836,12 @@ facts:
   object_value: Registry-based DI
   note: 'description: Components registered by type, retrieved by name; location:
     cmd/gost/program.go:80'
-  fact_id: fact::6e4fb0f8d11acd245ceaf98e
+  fact_id: fact::f398f3a2ad8919d754be907a
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: implementation_patterns[2]
@@ -752,12 +854,29 @@ facts:
   object_value: Service Lifecycle Interface
   note: 'description: Init/Start/Stop/Reload methods for managed services; location:
     cmd/gost/program.go:35-194'
-  fact_id: fact::2564d599f768da7e13441382
+  fact_id: fact::443ca7e9001f00be76dc0636
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/gost.yaml
+    source_section: testing.test_patterns[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.test_patterns[0].line[0]
+    source_file: ssh_repos/knowledge/deep/gost.yaml
+    excerpt: Table-driven tests
+  object_value: Table-driven tests
+  note: 'testing metadata: test_patterns'
+  fact_id: fact::9371ede3e3ca5e93a43da204
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/gost.yaml
     source_section: implementation_patterns[1]
@@ -769,4 +888,4 @@ facts:
     excerpt: Protocols self-register via blank imports
   object_value: init() Registration
   note: 'description: Protocols self-register via blank imports; location: cmd/gost/register.go'
-  fact_id: fact::c6032b676b205582344e7622
+  fact_id: fact::427b1b679fde1ddf0a48b958

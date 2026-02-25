@@ -6,14 +6,14 @@ source: ssh_repos
 provenance:
   shard: ssh_repos
   source_file: ssh_repos/knowledge/deep_facts/sshuttle.yaml
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   extractor_version: ws6-deep-integrator-v1
 facts:
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: architecture.key_abstractions[0]
@@ -25,12 +25,12 @@ facts:
     excerpt: Firewall backend interface - common API for iptables/nft/pf/ipfw/WinDivert
   object_value: BaseMethod
   note: Firewall backend interface - common API for iptables/nft/pf/ipfw/WinDivert
-  fact_id: fact::de0d3f1134f9ad9c299d2d25
+  fact_id: fact::7e268acb3663fbf18ab589e3
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: architecture.key_abstractions[1]
@@ -42,12 +42,12 @@ facts:
     excerpt: Multiplexer for multiple channels over single SSH connection
   object_value: Mux
   note: Multiplexer for multiple channels over single SSH connection
-  fact_id: fact::5bac39acd1ccda31f82d1368
+  fact_id: fact::db2aea55411bf22badf4a71b
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: architecture.key_abstractions[2]
@@ -59,12 +59,12 @@ facts:
     excerpt: Channel handler for TCP/UDP traffic
   object_value: Proxy
   note: Channel handler for TCP/UDP traffic
-  fact_id: fact::22b6543babea3c0ece546795
+  fact_id: fact::5785b7c5b65652f1ce638c5e
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: architecture.key_abstractions[3]
@@ -76,12 +76,12 @@ facts:
     excerpt: Socket wrapper with SO_ORIGINAL_DST for true destination
   object_value: SockWrapper
   note: Socket wrapper with SO_ORIGINAL_DST for true destination
-  fact_id: fact::027cc51d55f5c5bef3def5ae
+  fact_id: fact::4c285a4dd986250d0e11e106
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: architecture.module_breakdown[1]
@@ -94,12 +94,12 @@ facts:
   object_value: sshuttle/client.py
   note: 'responsibility: Client logic - SSH connection, firewall management, traffic
     proxying; key_files: sshuttle/client.py'
-  fact_id: fact::d1e78975c9823ed131198dd9
+  fact_id: fact::58d9edeee48de18405948c59
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: architecture.module_breakdown[0]
@@ -112,12 +112,12 @@ facts:
   object_value: sshuttle/cmdline.py
   note: 'responsibility: CLI entry point - argument parsing, mode routing; key_files:
     sshuttle/cmdline.py'
-  fact_id: fact::5c81674641b33fbcb2713bba
+  fact_id: fact::8d4025c057bbe10cc1f1377e
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: architecture.module_breakdown[3]
@@ -130,12 +130,12 @@ facts:
   object_value: sshuttle/firewall.py
   note: 'responsibility: Firewall subprocess - privileged process for routing rules;
     key_files: sshuttle/firewall.py'
-  fact_id: fact::4c6998aaa891681a7dd7e532
+  fact_id: fact::4c23752b318a51f128a57411
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: architecture.module_breakdown[6]
@@ -148,12 +148,12 @@ facts:
   object_value: sshuttle/hostwatch.py
   note: 'responsibility: Host monitoring - watches /etc/hosts changes; key_files:
     sshuttle/hostwatch.py'
-  fact_id: fact::ba26040f558121f49b0cc064
+  fact_id: fact::99f67419b1734e13b09def96
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: architecture.module_breakdown[5]
@@ -166,12 +166,12 @@ facts:
   object_value: sshuttle/methods/
   note: 'responsibility: Firewall backends - nat/nft/pf/ipfw/windivert implementations;
     key_files: sshuttle/methods/__init__.py, sshuttle/methods/nat.py, sshuttle/methods/pf.py'
-  fact_id: fact::8e945d23a72d3c665eecc899
+  fact_id: fact::5669706767c3a5b0449bb2f4
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: architecture.module_breakdown[2]
@@ -184,12 +184,12 @@ facts:
   object_value: sshuttle/server.py
   note: 'responsibility: Server-side - runs on remote host via SSH, handles proxied
     connections; key_files: sshuttle/server.py'
-  fact_id: fact::2565781f121be3eb899c3690
+  fact_id: fact::3aeebd74fb5de94294634e19
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: architecture.module_breakdown[4]
@@ -202,12 +202,12 @@ facts:
   object_value: sshuttle/ssnet.py
   note: 'responsibility: Network protocol - Mux/Proxy classes, command protocol; key_files:
     sshuttle/ssnet.py'
-  fact_id: fact::a4c77b9f8e35e027cbf81db0
+  fact_id: fact::75556d6de8432ae0ef028518
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: configuration.options[2]
@@ -219,12 +219,12 @@ facts:
     excerpt: --dns
   object_value: --dns
   note: 'type: bool; Route DNS queries through tunnel'
-  fact_id: fact::ddc3c6d02c69594cfcbe5336
+  fact_id: fact::bb8cc4f429b4a8f0d2624c37
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: configuration.options[5]
@@ -236,12 +236,12 @@ facts:
     excerpt: --exclude
   object_value: --exclude
   note: 'type: list[string]; Subnets to exclude from tunneling'
-  fact_id: fact::79cfe291e055f13e6ae1b5a2
+  fact_id: fact::1d8a85ad5ca9341576906bc6
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: configuration.options[4]
@@ -253,12 +253,12 @@ facts:
     excerpt: --method
   object_value: --method
   note: 'type: string; default: auto; Firewall method (auto/nat/nft/pf/ipfw)'
-  fact_id: fact::14cec1af4fb359ef6452b411
+  fact_id: fact::6ce9a05993259bf2b5cb13d1
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: configuration.options[3]
@@ -270,12 +270,12 @@ facts:
     excerpt: --ns-hosts
   object_value: --ns-hosts
   note: 'type: list[string]; DNS servers to use'
-  fact_id: fact::ea577d1dc96bf2db14a5ae40
+  fact_id: fact::7cf9e9d1da0e3173dba48694
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: configuration.options[8]
@@ -287,12 +287,12 @@ facts:
     excerpt: --python
   object_value: --python
   note: 'type: string; default: auto; Python path on remote'
-  fact_id: fact::359c2132e7325a4bbe335aad
+  fact_id: fact::f6783d23d58dc353dbd4fa6f
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: configuration.options[11]
@@ -304,12 +304,12 @@ facts:
     excerpt: --syslog
   object_value: --syslog
   note: 'type: bool; Send logs to syslog'
-  fact_id: fact::cb1ebe06764a4b906d6440b8
+  fact_id: fact::c5f5874b9d73cb4864070863
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: configuration.options[7]
@@ -321,12 +321,12 @@ facts:
     excerpt: -e/--ssh-cmd
   object_value: -e/--ssh-cmd
   note: 'type: string; default: ssh; SSH command to use'
-  fact_id: fact::cab4699f27bda689465e58a9
+  fact_id: fact::b8032120a370040093b3f0cd
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: configuration.options[9]
@@ -338,12 +338,12 @@ facts:
     excerpt: -l/--listen
   object_value: -l/--listen
   note: 'type: string; default: auto; Local listen address'
-  fact_id: fact::1555a6d67233a8e47c6e2c4d
+  fact_id: fact::3e8e3516a1b956acc1787f33
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: configuration.options[0]
@@ -355,12 +355,12 @@ facts:
     excerpt: -r/--remote
   object_value: -r/--remote
   note: 'type: string; default: required; Remote host (user@hostname)'
-  fact_id: fact::d56a8dec485aa0e84cb70663
+  fact_id: fact::67380b877fc848781b07cb90
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: configuration.options[10]
@@ -372,12 +372,12 @@ facts:
     excerpt: -v/--verbose
   object_value: -v/--verbose
   note: 'type: int; Verbosity level'
-  fact_id: fact::d4454834c978a5734745e3e4
+  fact_id: fact::dd783303c1174f11b125e520
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: configuration.options[6]
@@ -389,12 +389,12 @@ facts:
     excerpt: -x/--exclude-from-auto
   object_value: -x/--exclude-from-auto
   note: 'type: bool; Exclude remote host''s network'
-  fact_id: fact::6aef5f238ef48573414db50b
+  fact_id: fact::821341a2fb4b70e6f569df84
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: configuration.file
@@ -406,12 +406,12 @@ facts:
     excerpt: file
   object_value: file
   note: 'default: CLI flags only (no config file); configuration default for file'
-  fact_id: fact::68926ecc8a0c852b8df6cd8a
+  fact_id: fact::ca3ae8b5d612f9a770892227
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: configuration.options[1]
@@ -423,12 +423,12 @@ facts:
     excerpt: subnet
   object_value: subnet
   note: 'type: list[string]; default: required; Subnets to route (e.g., 0/0, 10.0.0.0/8)'
-  fact_id: fact::012c8d99769e040b5af0113f
+  fact_id: fact::54900ddbf4ecbec0e9c535f4
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: api_surface.public_functions[1]
@@ -440,12 +440,12 @@ facts:
     excerpt: client.main
   object_value: client.main
   note: 'Client implementation; def main(rhost: str, rport: int, ...) -> None; sshuttle/client.py:100+'
-  fact_id: fact::ce1e1f722a9d1f5add684101
+  fact_id: fact::c240dd40779157cad54312cf
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: api_surface.public_functions[0]
@@ -457,12 +457,12 @@ facts:
     excerpt: cmdline.main
   object_value: cmdline.main
   note: CLI entry point; def main() -> None; sshuttle/cmdline.py:17
-  fact_id: fact::f54a8584fd3612020ba30621
+  fact_id: fact::6709756de3f0af040a1c96d2
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: api_surface.public_functions[3]
@@ -474,12 +474,12 @@ facts:
     excerpt: firewall.main
   object_value: firewall.main
   note: 'Firewall subprocess; def main(method_name: str, ...) -> None; sshuttle/firewall.py:25'
-  fact_id: fact::af36fb0167cfbd2347fd643f
+  fact_id: fact::c13992f357fed4b91f7d1ba0
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: api_surface.public_functions[4]
@@ -491,12 +491,12 @@ facts:
     excerpt: methods.get_method
   object_value: methods.get_method
   note: 'Load firewall backend; def get_method(name: str) -> BaseMethod; sshuttle/methods/__init__.py:109'
-  fact_id: fact::64fc8e627bb6dcaef0abbc75
+  fact_id: fact::a6bd607a684d34f9da135f4f
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: api_surface.public_functions[2]
@@ -508,12 +508,12 @@ facts:
     excerpt: server.main
   object_value: server.main
   note: Server-side entry (runs on remote); def main() -> None; sshuttle/server.py:1
-  fact_id: fact::6aeba0ba5c874cdd995d1b4e
+  fact_id: fact::3e8f5158992e80451f417b65
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: extension_points[2]
@@ -525,12 +525,12 @@ facts:
     excerpt: sshuttle/client.py
   object_value: sshuttle/client.py
   note: Support alternative transports (WebSocket, QUIC); Client connection logic
-  fact_id: fact::f7d8249952a08d9f888b7f6e
+  fact_id: fact::92b32416d958a51ad4dcea80
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: extension_points[0]
@@ -542,12 +542,12 @@ facts:
     excerpt: sshuttle/methods/__init__.py:109
   object_value: sshuttle/methods/__init__.py:109
   note: Implement for new platforms (e.g., custom firewall); BaseMethod interface
-  fact_id: fact::c2692c344fdde08cbd5e03ae
+  fact_id: fact::9dad2d65f0898b6110227a55
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: extension_points[3]
@@ -559,12 +559,12 @@ facts:
     excerpt: sshuttle/server.py
   object_value: sshuttle/server.py
   note: Add custom routing or filtering logic; Server request handling
-  fact_id: fact::39ab51a66a9074d400ade796
+  fact_id: fact::a715d297d336baff5cf7d981
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: extension_points[1]
@@ -576,12 +576,12 @@ facts:
     excerpt: sshuttle/ssnet.py
   object_value: sshuttle/ssnet.py
   note: Add new channel types for different protocols; Mux/Proxy classes
-  fact_id: fact::24a340c12f63bb674bc80de1
+  fact_id: fact::dad469c52c53be5b57d0342d
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: implementation_patterns[3]
@@ -593,12 +593,29 @@ facts:
     excerpt: SS prefix, channel ID, command type, length
   object_value: Binary Protocol with 8-byte Headers
   note: 'description: SS prefix, channel ID, command type, length; location: sshuttle/ssnet.py'
-  fact_id: fact::dd262fee22ea9be3c376aa63
+  fact_id: fact::f714e39e261238d52275c41c
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/sshuttle.yaml
+    source_section: testing.coverage_areas[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[0].line[0]
+    source_file: ssh_repos/knowledge/deep/sshuttle.yaml
+    excerpt: Configuration parsing
+  object_value: Configuration parsing
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::e6adec72ffb8f6e92378cb5c
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: implementation_patterns[0]
@@ -611,12 +628,12 @@ facts:
   object_value: Firewall Method Interface
   note: 'description: BaseMethod with setup/restore/route methods for each platform;
     location: sshuttle/methods/__init__.py:109'
-  fact_id: fact::9f8cba5bac65f1d2df50138a
+  fact_id: fact::7a15ad6d73fbb07c4212a883
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: implementation_patterns[4]
@@ -629,12 +646,80 @@ facts:
   object_value: Firewall Subprocess
   note: 'description: Separate privileged process for rule manipulation; location:
     sshuttle/firewall.py:25'
-  fact_id: fact::0cb42424c8bef647ee461863
+  fact_id: fact::743db4095efbe6895fe6ab8d
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/sshuttle.yaml
+    source_section: testing.coverage_areas[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[1].line[0]
+    source_file: ssh_repos/knowledge/deep/sshuttle.yaml
+    excerpt: Firewall method selection
+  object_value: Firewall method selection
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::0a7b336c795efba7e68bd5d2
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/sshuttle.yaml
+    source_section: testing.test_patterns[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.test_patterns[0].line[0]
+    source_file: ssh_repos/knowledge/deep/sshuttle.yaml
+    excerpt: Fixtures for mock firewall methods
+  object_value: Fixtures for mock firewall methods
+  note: 'testing metadata: test_patterns'
+  fact_id: fact::490734a29e7475249f01c87d
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/sshuttle.yaml
+    source_section: testing.coverage_areas[3].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[3].line[0]
+    source_file: ssh_repos/knowledge/deep/sshuttle.yaml
+    excerpt: Host watch functionality
+  object_value: Host watch functionality
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::5812ab9c6f51a32587db0568
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/sshuttle.yaml
+    source_section: testing.test_patterns[2].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.test_patterns[2].line[0]
+    source_file: ssh_repos/knowledge/deep/sshuttle.yaml
+    excerpt: Integration tests with mock SSH
+  object_value: Integration tests with mock SSH
+  note: 'testing metadata: test_patterns'
+  fact_id: fact::8dd3dab4bca09355e48790d7
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: implementation_patterns[2]
@@ -647,12 +732,46 @@ facts:
   object_value: Module Transfer
   note: 'description: Server code packaged as zlib modules, sent via SSH stdin; location:
     sshuttle/client.py'
-  fact_id: fact::a7dd9ad5f8c7338107dae0b2
+  fact_id: fact::0f1c6ddcb4e40bc344e47a38
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/sshuttle.yaml
+    source_section: testing.test_patterns[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.test_patterns[1].line[0]
+    source_file: ssh_repos/knowledge/deep/sshuttle.yaml
+    excerpt: Parametrized tests for different platforms
+  object_value: Parametrized tests for different platforms
+  note: 'testing metadata: test_patterns'
+  fact_id: fact::2953ec5a39378e44291d8098
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/sshuttle.yaml
+    source_section: testing.coverage_areas[2].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[2].line[0]
+    source_file: ssh_repos/knowledge/deep/sshuttle.yaml
+    excerpt: Protocol encoding/decoding
+  object_value: Protocol encoding/decoding
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::9c229aa343abf39103e95420
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/sshuttle.yaml
     source_section: implementation_patterns[1]
@@ -665,4 +784,38 @@ facts:
   object_value: TCP-over-TCP Avoidance
   note: 'description: SO_ORIGINAL_DST socket option to discover true destination;
     location: sshuttle/client.py:100+'
-  fact_id: fact::c09611fc6e050c253c80a629
+  fact_id: fact::cd6b209243b0e52f405984f0
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/sshuttle.yaml
+    source_section: testing.structure.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.structure.line[0]
+    source_file: ssh_repos/knowledge/deep/sshuttle.yaml
+    excerpt: tests/ directory
+  object_value: tests/ directory
+  note: 'testing metadata: structure'
+  fact_id: fact::34a7c9678337625131f90018
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.67
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/sshuttle.yaml
+    source_section: testing.framework.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.framework.line[0]
+    source_file: ssh_repos/knowledge/deep/sshuttle.yaml
+    excerpt: pytest with coverage
+  object_value: pytest with coverage
+  note: testing command
+  fact_id: fact::09e509789f5ce9aede5c549d

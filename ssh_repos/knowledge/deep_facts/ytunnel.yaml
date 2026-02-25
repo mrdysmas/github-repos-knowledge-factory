@@ -6,14 +6,14 @@ source: ssh_repos
 provenance:
   shard: ssh_repos
   source_file: ssh_repos/knowledge/deep_facts/ytunnel.yaml
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   extractor_version: ws6-deep-integrator-v1
 facts:
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: architecture.key_abstractions[0]
@@ -25,12 +25,12 @@ facts:
     excerpt: Multi-account configuration with selected_account and accounts list
   object_value: Config
   note: Multi-account configuration with selected_account and accounts list
-  fact_id: fact::eb0d7dd9d4ebc6d7adcfb2f4
+  fact_id: fact::b5417e436dbd967b749940a9
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: architecture.key_abstractions[1]
@@ -42,12 +42,12 @@ facts:
     excerpt: Tunnel metadata including name, account, target, zone, enabled status
   object_value: PersistentTunnel
   note: Tunnel metadata including name, account, target, zone, enabled status
-  fact_id: fact::02b63a5a1f8d3347f6425818
+  fact_id: fact::c69f8f0efa1d2589e5f22580
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: architecture.key_abstractions[3]
@@ -59,12 +59,12 @@ facts:
     excerpt: Prometheus metrics including requests, errors, edge locations
   object_value: TunnelMetrics
   note: Prometheus metrics including requests, errors, edge locations
-  fact_id: fact::f3340f33e42b175629b1035e
+  fact_id: fact::a9f457e0567fe2f8d8a51ae7
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: architecture.key_abstractions[2]
@@ -76,12 +76,12 @@ facts:
     excerpt: Running/Stopped/Error status enum
   object_value: TunnelStatus
   note: Running/Stopped/Error status enum
-  fact_id: fact::d1a949514d4eb31583ecc330
+  fact_id: fact::1072924f3e6d9a4cb666e1c7
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: architecture.module_breakdown[1]
@@ -93,12 +93,12 @@ facts:
     excerpt: CLI command definitions using clap
   object_value: src/cli.rs
   note: 'responsibility: CLI command definitions using clap; key_files: src/cli.rs'
-  fact_id: fact::826525cf9214c896545ea4cf
+  fact_id: fact::5fe21ffda6b2e1a014afd5f0
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: architecture.module_breakdown[4]
@@ -111,12 +111,12 @@ facts:
   object_value: src/cloudflare.rs
   note: 'responsibility: Cloudflare API client for tunnels and DNS management; key_files:
     src/cloudflare.rs'
-  fact_id: fact::30d6b86c9eaff56a9ddac294
+  fact_id: fact::5b84da090d20bef52bbc62ff
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: architecture.module_breakdown[2]
@@ -129,12 +129,12 @@ facts:
   object_value: src/config.rs
   note: 'responsibility: Multi-account configuration management with legacy format
     migration; key_files: src/config.rs'
-  fact_id: fact::c7d9f6be81db800a13c92926
+  fact_id: fact::03346fc69925c80bdfda665d
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: architecture.module_breakdown[5]
@@ -147,12 +147,12 @@ facts:
   object_value: src/daemon.rs
   note: 'responsibility: Platform-specific service management (launchd/systemd); key_files:
     src/daemon.rs'
-  fact_id: fact::7c657f944bfcbd42e0d0187c
+  fact_id: fact::f72d3e05e47dd1235e6e2ff3
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: architecture.module_breakdown[0]
@@ -166,12 +166,12 @@ facts:
   object_value: src/main.rs
   note: 'responsibility: Entry point - parses CLI args, dispatches to command handlers
     or opens TUI; key_files: src/main.rs'
-  fact_id: fact::09ecefa026ea13d96fc90378
+  fact_id: fact::18d969613198f5c716d68e26
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: architecture.module_breakdown[7]
@@ -183,12 +183,12 @@ facts:
     excerpt: Prometheus metrics parsing and collection
   object_value: src/metrics.rs
   note: 'responsibility: Prometheus metrics parsing and collection; key_files: src/metrics.rs'
-  fact_id: fact::3876f11a3e206e04705e6f44
+  fact_id: fact::8197207d8b86e0e742be1baa
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: architecture.module_breakdown[3]
@@ -201,12 +201,12 @@ facts:
   object_value: src/state.rs
   note: 'responsibility: Persistent tunnel state and metadata storage; key_files:
     src/state.rs'
-  fact_id: fact::e1b2eab7aa1aa44ff2d1641b
+  fact_id: fact::8eb1b8524e54da8b96a8ae3e
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: architecture.module_breakdown[8]
@@ -219,12 +219,12 @@ facts:
   object_value: src/tui/
   note: 'responsibility: Terminal UI with ratatui; key_files: src/tui/mod.rs, src/tui/app.rs,
     src/tui/ui.rs'
-  fact_id: fact::3033ce6913335620b8bf4e8a
+  fact_id: fact::936b5118d61eaf116893343d
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: architecture.module_breakdown[6]
@@ -237,12 +237,12 @@ facts:
   object_value: src/tunnel.rs
   note: 'responsibility: Ephemeral tunnel runner with process spawning; key_files:
     src/tunnel.rs'
-  fact_id: fact::4165728f5793bf1f4f6de6b7
+  fact_id: fact::3f2e8c3baa4017c941dd2b75
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: configuration.options[3]
@@ -254,12 +254,12 @@ facts:
     excerpt: accounts[].account_id
   object_value: accounts[].account_id
   note: 'type: String; Cloudflare account ID'
-  fact_id: fact::3bbedda3027cd21eae041a82
+  fact_id: fact::eb211359e479b9d3addc6757
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: configuration.options[2]
@@ -271,12 +271,12 @@ facts:
     excerpt: accounts[].api_token
   object_value: accounts[].api_token
   note: 'type: String; Cloudflare API token'
-  fact_id: fact::25cff8daff09a809cba41ef5
+  fact_id: fact::3ace025537e49ab916c98411
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: configuration.options[4]
@@ -288,12 +288,12 @@ facts:
     excerpt: accounts[].default_zone_id
   object_value: accounts[].default_zone_id
   note: 'type: String; Default zone for tunnels'
-  fact_id: fact::7110c9fe1bdc4fcc4c87283c
+  fact_id: fact::3f8e9503054269365814547a
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: configuration.options[5]
@@ -305,12 +305,12 @@ facts:
     excerpt: accounts[].default_zone_name
   object_value: accounts[].default_zone_name
   note: 'type: String; Default zone domain name'
-  fact_id: fact::ba00fe7a412fab22f23d4d53
+  fact_id: fact::9ebeeb60f7a79a31b6fb6e45
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: configuration.options[1]
@@ -322,12 +322,12 @@ facts:
     excerpt: accounts[].name
   object_value: accounts[].name
   note: 'type: String; Account identifier'
-  fact_id: fact::59b20b4a680a0176e82f5a15
+  fact_id: fact::de15cc6999b5a9601a05caf4
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: configuration.tunnel_options[4]
@@ -339,12 +339,12 @@ facts:
     excerpt: auto_start
   object_value: auto_start
   note: 'type: bool; Start on login (RunAtLoad)'
-  fact_id: fact::373dc78613c751f9fa29006a
+  fact_id: fact::54913ea9d9f9a9dc11c790c0
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: configuration.tunnel_options[3]
@@ -356,12 +356,12 @@ facts:
     excerpt: enabled
   object_value: enabled
   note: 'type: bool; Whether tunnel is active'
-  fact_id: fact::b74c58774268a3c68fa50bf6
+  fact_id: fact::d4745a0becab956d43e004bb
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: configuration.file
@@ -373,12 +373,12 @@ facts:
     excerpt: file
   object_value: file
   note: 'default: TOML format (~/.config/ytunnel/); configuration default for file'
-  fact_id: fact::322569aade1918c965c2e2d8
+  fact_id: fact::598fee903e20e86857435d25
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: configuration.tunnel_options[2]
@@ -390,12 +390,12 @@ facts:
     excerpt: hostname
   object_value: hostname
   note: 'type: String; Public hostname for tunnel'
-  fact_id: fact::8673ef7cc0fef783f190b407
+  fact_id: fact::478750b250b9a31ad3022387
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: configuration.tunnel_options[5]
@@ -407,12 +407,12 @@ facts:
     excerpt: metrics_port
   object_value: metrics_port
   note: 'type: u16; Prometheus metrics endpoint port'
-  fact_id: fact::931f935541103a4f93d46ce4
+  fact_id: fact::0a8a319cfc65b90f06253f64
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: configuration.tunnel_options[0]
@@ -424,12 +424,12 @@ facts:
     excerpt: name
   object_value: name
   note: 'type: String; Tunnel identifier'
-  fact_id: fact::0d5ff62b23b1a604d9b20555
+  fact_id: fact::cc0e653090a16fd2da1b6111
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: configuration.options[0]
@@ -441,12 +441,12 @@ facts:
     excerpt: selected_account
   object_value: selected_account
   note: 'type: String; Currently selected account name'
-  fact_id: fact::4ad93fbff5cbd4162a5fea70
+  fact_id: fact::2243e3497a7c382296e63094
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: configuration.tunnel_options[1]
@@ -458,12 +458,12 @@ facts:
     excerpt: target
   object_value: target
   note: 'type: String; Local address to forward (e.g., localhost:3000)'
-  fact_id: fact::458a1144e2b8ce86a6340094
+  fact_id: fact::3237ecaa7086148af7e53fcc
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: api_surface.public_functions[2]
@@ -475,12 +475,12 @@ facts:
     excerpt: cloudflare::Client
   object_value: cloudflare::Client
   note: Cloudflare API operations; pub struct Client { ... }; src/cloudflare.rs
-  fact_id: fact::bb88765f2a2e0a6dcb0a3c0b
+  fact_id: fact::d08f762a31c15a932f50c599
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: api_surface.public_functions[0]
@@ -492,12 +492,12 @@ facts:
     excerpt: config::load_config
   object_value: config::load_config
   note: Load account configuration; pub fn load_config() -> Result<Config>; src/config.rs
-  fact_id: fact::b0a9bef4f7e32b755088a4a1
+  fact_id: fact::8de0651a4031032cdcd8c560
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: api_surface.public_functions[3]
@@ -510,12 +510,12 @@ facts:
   object_value: daemon::start_daemon
   note: Control background services; pub async fn start_daemon(...) -> Result<()>;
     src/daemon.rs
-  fact_id: fact::68860a6806828cf6469ccfa1
+  fact_id: fact::ad652b6ad6e0105f16e7356d
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: api_surface.public_functions[4]
@@ -528,12 +528,12 @@ facts:
   object_value: metrics::TunnelMetrics::fetch
   note: 'Fetch tunnel metrics; pub async fn fetch(port: u16) -> Result<TunnelMetrics>;
     src/metrics.rs'
-  fact_id: fact::20a2c54a674cb6f062d90460
+  fact_id: fact::4cf3aa4890ad624f9e164439
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: api_surface.public_functions[1]
@@ -545,12 +545,12 @@ facts:
     excerpt: state::TunnelState::load
   object_value: state::TunnelState::load
   note: Load tunnel state; pub fn load() -> Result<TunnelState>; src/state.rs
-  fact_id: fact::9f56af7cd7c9075e9af2c666
+  fact_id: fact::eb9f026004a8d891ab9eb159
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: api_surface.public_functions[5]
@@ -563,12 +563,12 @@ facts:
   object_value: tui::run_tui
   note: 'Main interactive dashboard; pub async fn run_tui(account: String) -> Result<()>;
     src/tui/mod.rs'
-  fact_id: fact::0a1fdc39b605da74396f0842
+  fact_id: fact::0922de2c4eae77cf48eb2c59
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: extension_points[0]
@@ -580,12 +580,12 @@ facts:
     excerpt: src/cloudflare.rs
   object_value: src/cloudflare.rs
   note: Custom ingress rules, certificate management; Cloudflare API integration
-  fact_id: fact::07016d7867570fb09d2bc0f6
+  fact_id: fact::a679d250bb097b45b0f53da5
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: extension_points[4]
@@ -597,12 +597,12 @@ facts:
     excerpt: src/config.rs
   object_value: src/config.rs
   note: Environment variables, configuration profiles; Configuration management
-  fact_id: fact::48fdfc0b6a17bf977fba49c2
+  fact_id: fact::c3da81aead985cf54568bcbd
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: extension_points[1]
@@ -614,12 +614,12 @@ facts:
     excerpt: src/daemon.rs
   object_value: src/daemon.rs
   note: Health checks, auto-restart policies, resource limits; Daemon management
-  fact_id: fact::d178188340c8cbef486e79cf
+  fact_id: fact::b1691119ef388ade58c1a364
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: extension_points[2]
@@ -631,12 +631,12 @@ facts:
     excerpt: src/metrics.rs
   object_value: src/metrics.rs
   note: Custom metrics, alerts, historical data storage; Metrics collection
-  fact_id: fact::c96eb68f870a15b901b1880d
+  fact_id: fact::335311a5a4753077d741eaf9
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: extension_points[3]
@@ -648,12 +648,29 @@ facts:
     excerpt: src/tui/app.rs
   object_value: src/tui/app.rs
   note: Custom dashboard widgets, additional views; TUI App state
-  fact_id: fact::26e4fb38b37307728b78db9b
+  fact_id: fact::9acc1f2ee1903504bb4e86c2
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/ytunnel.yaml
+    source_section: testing.framework.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.framework.line[0]
+    source_file: ssh_repos/knowledge/deep/ytunnel.yaml
+    excerpt: Built-in Rust tests with
+  object_value: Built-in Rust tests with
+  note: 'testing metadata: framework'
+  fact_id: fact::06b3ad59ccb9a58ed578bbda
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: implementation_patterns[1]
@@ -665,12 +682,63 @@ facts:
     excerpt: Match on CLI commands to dispatch handlers
   object_value: Command Layer
   note: 'description: Match on CLI commands to dispatch handlers; location: src/main.rs:22-85'
-  fact_id: fact::6efcfaf65e7a996b3a31dac9
+  fact_id: fact::40bc78c830e9b787c0e5c0a0
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/ytunnel.yaml
+    source_section: testing.coverage_areas[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[1].line[0]
+    source_file: ssh_repos/knowledge/deep/ytunnel.yaml
+    excerpt: Configuration format migration
+  object_value: Configuration format migration
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::bfc318d4d1676d14a3bc2a69
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/ytunnel.yaml
+    source_section: testing.coverage_areas[2].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[2].line[0]
+    source_file: ssh_repos/knowledge/deep/ytunnel.yaml
+    excerpt: Error handling paths
+  object_value: Error handling paths
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::3993490b6f8031ca40ea254f
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/ytunnel.yaml
+    source_section: testing.structure.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.structure.line[0]
+    source_file: ssh_repos/knowledge/deep/ytunnel.yaml
+    excerpt: Inline tests in modules
+  object_value: Inline tests in modules
+  note: 'testing metadata: structure'
+  fact_id: fact::db0aebf4a4686c4e971c2f56
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: implementation_patterns[4]
@@ -683,12 +751,29 @@ facts:
   object_value: Metrics Port Assignment
   note: 'description: Hash-based port calculation in 21000-21999 range; location:
     src/metrics.rs'
-  fact_id: fact::62c1f8f27efc5b73017c5f0b
+  fact_id: fact::f17321fa2a739ee13763f815
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/ytunnel.yaml
+    source_section: testing.coverage_areas[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[0].line[0]
+    source_file: ssh_repos/knowledge/deep/ytunnel.yaml
+    excerpt: Metrics parsing (src/metrics.rs:134-164)
+  object_value: Metrics parsing (src/metrics.rs:134-164)
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::6983ec1f8896bdacd1226dcd
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: implementation_patterns[2]
@@ -701,12 +786,12 @@ facts:
   object_value: Platform Abstraction
   note: 'description: Conditional compilation for macOS launchd vs Linux systemd;
     location: src/daemon.rs:13-657'
-  fact_id: fact::d1ffceacf98a311be2650a14
+  fact_id: fact::e0c9e12d64eada9c5bcee70a
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: implementation_patterns[3]
@@ -719,12 +804,12 @@ facts:
   object_value: State Migration
   note: 'description: Graceful handling of configuration format changes; location:
     src/config.rs:133-156'
-  fact_id: fact::8b27c54ee4ee4fd3ccef8df5
+  fact_id: fact::999a6dd07dc2a7179ea13719
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: ssh_repos/knowledge/deep/ytunnel.yaml
     source_section: implementation_patterns[0]
@@ -737,4 +822,4 @@ facts:
   object_value: Two-Mode Persistence
   note: 'description: Ephemeral (ytunnel run) vs persistent (ytunnel add) with different
     lifecycles; location: src/main.rs:22-85'
-  fact_id: fact::c2c3c2861fe394817f00f1c4
+  fact_id: fact::61defd00587f66da16a9ecba

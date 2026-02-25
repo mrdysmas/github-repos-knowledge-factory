@@ -6,14 +6,142 @@ source: llm_repos
 provenance:
   shard: llm_repos
   source_file: llm_repos/knowledge/deep_facts/maxkb.yaml
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   extractor_version: ws6-deep-integrator-v1
 facts:
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    source_section: api_structure.endpoints.application[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_structure.endpoints.application[1]
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    excerpt: GET /api/v1/application/{id}
+  object_value: GET /api/v1/application/{id}
+  fact_id: fact::528ec3bcdcd77fd5a52eed4e
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    source_section: api_structure.endpoints.knowledge[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_structure.endpoints.knowledge[1]
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    excerpt: GET /api/v1/knowledge/{id}
+  object_value: GET /api/v1/knowledge/{id}
+  fact_id: fact::1f3a8c4042d69aca8acd6b7c
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    source_section: api_structure.endpoints.models[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_structure.endpoints.models[0]
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    excerpt: GET /api/v1/provider
+  object_value: GET /api/v1/provider
+  fact_id: fact::60949e49898423418209d0d6
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    source_section: api_structure.endpoints.application[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_structure.endpoints.application[0]
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    excerpt: POST /api/v1/application
+  object_value: POST /api/v1/application
+  fact_id: fact::3d7ee95284db23f7293468a4
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    source_section: api_structure.endpoints.application[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_structure.endpoints.application[2]
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    excerpt: POST /api/v1/application/{id}/chat
+  object_value: POST /api/v1/application/{id}/chat
+  fact_id: fact::f68f47f7002dbcb923729149
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    source_section: api_structure.endpoints.knowledge[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_structure.endpoints.knowledge[0]
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    excerpt: POST /api/v1/knowledge
+  object_value: POST /api/v1/knowledge
+  fact_id: fact::e7674c158a9be01e209ce561
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    source_section: api_structure.endpoints.knowledge[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_structure.endpoints.knowledge[2]
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    excerpt: POST /api/v1/knowledge/{id}/document
+  object_value: POST /api/v1/knowledge/{id}/document
+  fact_id: fact::e7e08b0842c5024e20f6a3ac
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    source_section: api_structure.endpoints.models[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_structure.endpoints.models[1]
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    excerpt: POST /api/v1/provider/{id}/model
+  object_value: POST /api/v1/provider/{id}/model
+  fact_id: fact::34a0d583f9b9ae45617859fd
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: llm_repos/knowledge/deep/maxkb.yaml
     source_section: configuration.environment_variables[0]
@@ -24,12 +152,12 @@ facts:
     source_file: llm_repos/knowledge/deep/maxkb.yaml
     excerpt: DATABASE_URL
   object_value: DATABASE_URL
-  fact_id: fact::5fdc45d580bb6a862d25d0e1
+  fact_id: fact::e53b8f8eab2609b2c736018c
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: llm_repos/knowledge/deep/maxkb.yaml
     source_section: configuration.environment_variables[1]
@@ -40,12 +168,12 @@ facts:
     source_file: llm_repos/knowledge/deep/maxkb.yaml
     excerpt: REDIS_URL
   object_value: REDIS_URL
-  fact_id: fact::e77185802c498dd94864326a
+  fact_id: fact::824000d5a05a034d5bdfad3a
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: llm_repos/knowledge/deep/maxkb.yaml
     source_section: configuration.environment_variables[2]
@@ -56,12 +184,12 @@ facts:
     source_file: llm_repos/knowledge/deep/maxkb.yaml
     excerpt: SECRET_KEY
   object_value: SECRET_KEY
-  fact_id: fact::b34a3b2d3e40868cfcbb6f9f
+  fact_id: fact::42a3a539fb7b7964ef8e28da
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: llm_repos/knowledge/deep/maxkb.yaml
     source_section: configuration.celery_data_path
@@ -73,12 +201,12 @@ facts:
     excerpt: celery_data_path
   object_value: celery_data_path
   note: 'default: /data/celery_task; configuration default for celery_data_path'
-  fact_id: fact::660bca919afc3afcc5303eb2
+  fact_id: fact::d0ddb3ba019f7508d90aa692
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-23'
+  as_of: '2026-02-25'
   provenance:
     source_file: llm_repos/knowledge/deep/maxkb.yaml
     source_section: configuration.config_path
@@ -90,4 +218,4 @@ facts:
     excerpt: config_path
   object_value: config_path
   note: 'default: /opt/maxkb/conf; configuration default for config_path'
-  fact_id: fact::25d60bd46d9778f69e5319a3
+  fact_id: fact::3744d9b68b8eb8d022aa32c0
