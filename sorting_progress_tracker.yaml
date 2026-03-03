@@ -1,0 +1,80 @@
+version: 1
+as_of_utc: "2026-03-03T20:57:29Z"
+
+phase:
+  number: "1"
+  name: "Post-WS6 Sorting Reconciliation"
+  status: "COMPLETE"
+  workflow: "PENDING -> IN_PROGRESS -> CHECKPOINT_1 -> CHECKPOINT_2 -> COMPLETE"
+  date_initiated: "2026-03-03"
+  date_started: "2026-03-03"
+  date_completed: "2026-03-03"
+
+objective: |
+  Reconcile stale status fields after WS6 batch-2, make milestone/decision
+  state explicit, and remove runbook ambiguity about executable command forms.
+
+dependencies:
+  - "reports/ws6_deep_integration/{coverage,mismatch_report,validation_runs}.yaml"
+  - "upcoming_progress_tracker.yaml"
+  - "project_status.yaml"
+
+success_criteria:
+  - "Tracked metrics match latest canonical report values (deep_facts=1908, unmapped_sections_count=55)."
+  - "M3 closure is explicit and supported by query bridge evidence."
+  - "Next execution mode is explicitly recorded (no A/B ambiguity in handoff docs)."
+  - "Runbooks require directly executable commands (no pseudo-command aliases)."
+
+metrics:
+  - name: "stale_metric_fields"
+    target: 0
+    actual: 0
+  - name: "milestone_state_ambiguities"
+    target: 0
+    actual: 0
+  - name: "execution_mode_ambiguities"
+    target: 0
+    actual: 0
+  - name: "remaining_open_sorting_items"
+    target: "<=1"
+    actual: 1
+
+execution_checklist:
+  - "[x] Capture latest WS6/report/query metrics from canonical artifacts."
+  - "[x] Reconcile upcoming_progress_tracker.yaml with current metrics and milestone status."
+  - "[x] Reconcile project_status.yaml handoff focus and next-step intent."
+  - "[x] Record explicit decision and remaining open item(s)."
+
+results:
+  files_updated:
+    - "upcoming_progress_tracker.yaml"
+    - "project_status.yaml"
+    - "sorting_progress_tracker.yaml"
+  evidence_commands:
+    - "python3 tools/query_master.py stats => deep_facts=1908"
+    - "python3 tools/query_master.py repo --id flowiseai/flowise => node_id=repo::flowiseai/flowise"
+    - "python3 tools/query_master.py facts --id flowiseai/flowise --predicate exposes_api_endpoint => facts=9"
+    - "python3 tools/check_intake_queue_sync.py --workspace-root . => PASS"
+  completion_status: "COMPLETE"
+
+findings: |
+  The project matched a status-drift pattern: execution had advanced, but
+  tracker/handoff text lagged behind. Reconciliation closed that gap, set M3 to
+  COMPLETE with explicit query evidence, and selected Phase 2 calibration batch
+  execution as the next mode. The only open sorting item is the WS6 long-tail
+  unmapped backlog (55 non-blocking sections).
+
+remaining_open_items:
+  - item: "WS6 non-blocking long-tail unmapped sections"
+    status: "OPEN"
+    owner_lane: "Phase 2 parallel debt lane"
+    note: "Keep non-blocking; reduce opportunistically while running calibration batch."
+
+decision_rule: |
+  IF all reconciliation criteria are met:
+    -> Mark reconciliation complete and proceed with Phase 2 execution
+  IF any critical status mismatch remains:
+    -> Keep reconciliation open and block new execution until corrected
+
+decision: "RECONCILIATION_COMPLETE_PROCEED_PHASE_2"
+next_phase: "Phase 2 - Scale intake throughput and calibration batch execution"

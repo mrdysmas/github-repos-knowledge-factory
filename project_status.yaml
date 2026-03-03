@@ -1,5 +1,5 @@
 version: 1
-as_of_utc: "2026-02-25T20:13:00Z"
+as_of_utc: "2026-03-03T20:57:29Z"
 
 naming_legend:
   WS: "Workstream (pipeline lane/stage, e.g., WS1-WS6)"
@@ -143,8 +143,8 @@ todo:
       note: "WS6 v1 now materializes canonical deep facts with strict unknown_predicate blocking, deterministic fact IDs/order, per-repo coverage counts, mismatch reporting, stable rerun (writes_changed=0), and validation_runs semantics split (required_commands=PLANNED contract + execution_results recorder with no PENDING states)."
     - id: "F"
       topic: "Intake lifecycle + clone prune workflow"
-      status: "IN_PROGRESS"
-      note: "Pilot clone set lifecycle/provenance + domain_hint records are now shallow-canonicalized through WS5/WS4; deep priorities are set for langgenius/dify (10), FlowiseAI/Flowise (9), pydantic/pydantic-ai (9), and qdrant/qdrant (8). WS6 deep narratives are now materialized for all 4 priority repos, deep_facts increased to 1863, and unmapped_sections_count remains 72 (target<=113 met)."
+      status: "COMPLETE"
+      note: "Pilot clone lifecycle/provenance + domain_hint records are shallow-canonicalized through WS5/WS4; priority deep follow-up is complete for langgenius/dify, FlowiseAI/Flowise, pydantic/pydantic-ai, and qdrant/qdrant. WS6 now reports deep_facts=1908 and unmapped_sections_count=55, with the top-5 target sections (languages, related_repos, type, primary_language, ports) reduced to 0 outstanding."
     - id: "G"
       topic: "Hard enforcement for intake queue sync"
       status: "COMPLETE"
@@ -157,7 +157,7 @@ todo:
 next_agent_handoff:
   if_user_asks: "What now? What should we work on?"
   answer:
-    current_focus: "Post-priority WS6 coverage gap burn-down and read-model/query bridge"
+    current_focus: "Phase 2 intake calibration batch execution (with WS6 long-tail tracked as non-blocking debt)"
     read_first:
       - "project_status.yaml"
       - "upcoming_progress_tracker.yaml"
@@ -174,29 +174,28 @@ next_agent_handoff:
       - "inputs/intake/prune_policy.yaml"
       - "master_graph_merge_progress.yaml"
     immediate_next_step:
-      id: "INTAKE-2"
-      objective: "Priority pilot deep follow-up is complete; continue WS6 coverage-gap burn-down for remaining unmapped sections."
+      id: "PHASE2-CALIBRATION-1"
+      objective: "Run an 8-12 repo calibration batch outside current llm/ssh concentration while preserving strict queue/gate discipline."
       first_commands:
         - "python3 tools/check_intake_queue_sync.py --workspace-root ."
         - "python3 tools/query_master.py stats"
+        - "python3 tools/ws5_remote_ingestion.py --workspace-root . --input inputs/ws5/ws5_input_manifest.yaml"
+        - "python3 tools/ws4_master_compiler.py --workspace-root ."
         - "python3 tools/ws6_deep_integrator.py --workspace-root . --reports-dir reports/ws6_deep_integration --materialize-spec reports/ws6_deep_integration/spec.yaml --run-validation-suite"
       operator_actions:
         - "Use the exact executable command forms listed under first_commands; do not use pseudo-command aliases."
-        - "Use inputs/intake/pilot_batch.yaml as source of truth for pilot repo lifecycle and provenance."
-        - "Maintain domain_hint metadata for pilot/new intake records; do not treat domain_hint as shard routing input yet."
+        - "Use inputs/intake/intake_queue.yaml as source of truth for calibration candidate ordering."
+        - "Maintain domain_hint metadata for new intake records; do not treat domain_hint as shard routing input yet."
         - "Add net-new candidates only via tools/add_repo_candidate.py (not manual queue edits)."
-        - "Execute deep follow-up in priority order: langgenius/dify, FlowiseAI/Flowise, pydantic/pydantic-ai, then qdrant/qdrant."
+        - "Select 8-12 calibration repos that diversify beyond current llm/ssh concentration before optional deep follow-up."
       parallel_step:
         id: "M4-1"
         objective: "COMPLETED 2026-02-25: commit-time check_intake_queue_sync enforcement."
       done_when:
         - "Queue sync gate passes via tools/check_intake_queue_sync.py."
-        - "inputs/intake/intake_queue.yaml is refreshed and used as source backlog."
-        - "Intake pilot repos are lifecycle-tracked with source_commit + provenance metadata."
-        - "Shallow outputs for pilot repos are canonicalized through WS5/WS4."
-        - "At least 3 pilot repos are flagged as deep candidates with explicit priority reasons."
-        - "WS6 unmapped_sections_count is reduced from baseline 123 to <=113 after prioritized follow-ups."
-        - "WS6 materialization remains stable on rerun (writes_changed=0) and query stats keep deep_facts > 0."
+        - "Calibration batch includes 8-12 repos with provenance metadata and canonical shard routing fields."
+        - "Calibration repos are canonicalized through WS5/WS4 with gate_ready=true."
+        - "Post-calibration WS6 run records deep_facts and unmapped_sections_count deltas in upcoming_progress_tracker.yaml."
         - "WS6 validation_runs.yaml keeps required_commands as plan-only and records real execution outcomes under execution_results."
     recommendation_on_new_data:
       summary: "Current llm+ssh deep corpus is enough for WS6 v1; run a short intake calibration batch before freezing v1.1."

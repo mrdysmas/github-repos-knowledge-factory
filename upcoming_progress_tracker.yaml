@@ -1,5 +1,5 @@
 version: 1
-as_of_utc: "2026-02-25T20:13:00Z"
+as_of_utc: "2026-03-03T20:57:29Z"
 
 naming_legend:
   WS: "Workstream (pipeline lane/stage, e.g., WS1-WS6)"
@@ -8,11 +8,11 @@ naming_legend:
 phase:
   number: "1"
   name: "Intake Pilot + WS6 Deep Integration"
-  status: "IN_PROGRESS"
+  status: "COMPLETE"
   workflow: "PENDING -> IN_PROGRESS -> CHECKPOINT_1 -> CHECKPOINT_2 -> COMPLETE"
   date_initiated: "2026-02-24"
   date_started: "2026-02-24"
-  date_completed: null
+  date_completed: "2026-03-03"
 
 objective: |
   Convert the queue-driven intake setup into repeatable canonical outputs while
@@ -50,7 +50,8 @@ milestones:
       - "Materialized output validates against contracts/ws1/deep_fact.schema.yaml."
   - id: "M3"
     name: "Canonical query bridge"
-    status: "IN_PROGRESS"
+    status: "COMPLETE"
+    completed_at_utc: "2026-03-03T20:57:29Z"
     done_when:
       - "tools/query_master.py can surface deep facts by repo/node from canonical outputs."
       - "At least one end-to-end query example is documented in status artifacts."
@@ -77,10 +78,10 @@ key_metrics:
     actual: 10
   - name: "deep_facts_materialized"
     target: 1
-    actual: 1863
+    actual: 1908
   - name: "unmapped_sections_count"
     target: 0
-    actual: 72
+    actual: 55
   - name: "pilot_repos_deep_prioritized"
     target: 3
     actual: 4
@@ -97,9 +98,9 @@ execution_checklist:
   - "[x] Run shallow-first intake and route outputs through WS5 -> WS4."
   - "[x] Implement WS6 materialization output and validator gate."
   - "[x] Prioritize at least 3 pilot repos for deep follow-up with explicit reasons."
-  - "[ ] Extend query contract to read deep facts from canonical level."
+  - "[x] Extend query contract to read deep facts from canonical level."
   - "[x] Add commit-time intake sync enforcement."
-  - "[ ] Update project_status.yaml and this tracker at each checkpoint."
+  - "[x] Update project_status.yaml and this tracker at each checkpoint."
 
 risks:
   - description: "Schema drift between deep repo YAML and canonical deep_fact contract."
@@ -153,22 +154,62 @@ results:
     - "python3 tools/query_master.py stats => repos=60 nodes=74 edges=152 deep_facts=1863"
     - "python3 -m unittest discover -s tests/ws6_deep_integration -p test_*.py => PASS (4 tests)"
     - "python3 -m unittest discover -s tests/intake_queue_sync -p test_*.py => PASS (1 test)"
-  completion_status: null
+    - "python3 tools/check_intake_queue_sync.py --workspace-root . => PASS (2026-03-03T20:59:07Z queued_count=57 already_canonical_count=58)"
+    - "python3 tools/ws6_deep_integrator.py --workspace-root . --reports-dir reports/ws6_deep_integration --materialize-spec reports/ws6_deep_integration/spec.yaml --run-validation-suite => PASS (deep_narrative_files=52 repos_materialized=50 facts_materialized=1908 unmapped_sections_count=55 blocking_mismatches=0 gate_ready=true)"
+    - "python3 tools/query_master.py stats => repos=60 nodes=74 edges=152 deep_facts=1908"
+    - "python3 tools/query_master.py repo --id flowiseai/flowise => PASS (node_id=repo::flowiseai/flowise)"
+    - "python3 tools/query_master.py facts --id flowiseai/flowise --predicate exposes_api_endpoint => PASS (facts=9)"
+    - "python3 -m unittest discover -s tests/ws6_deep_integration -p 'test_*.py' => PASS (5 tests)"
+    - "python3 -m unittest discover -s tests/intake_queue_sync -p 'test_*.py' => PASS (1 test)"
+  latest_snapshot:
+    captured_at_utc: "2026-03-03T20:57:29Z"
+    rationale: "Single-source handoff summary for latest verified state; historical runs remain under validation_runs."
+    canonical_commands:
+      - "python3 tools/check_intake_queue_sync.py --workspace-root ."
+      - "python3 tools/ws2_identity_backfill.py --workspace-root ."
+      - "python3 tools/ws6_deep_integrator.py --workspace-root . --reports-dir reports/ws6_deep_integration --materialize-spec reports/ws6_deep_integration/spec.yaml --run-validation-suite"
+      - "python3 tools/query_master.py stats"
+      - "python3 -m unittest discover -s tests/ws6_deep_integration -p 'test_*.py'"
+      - "python3 -m unittest discover -s tests/intake_queue_sync -p 'test_*.py'"
+    gates:
+      intake_queue_sync: "PASS"
+      ws6_validation_gate_ready: true
+      ws6_validation_suite_passed: true
+      ws6_execution_mode: "full_validation_run"
+      ws6_blocking_mismatches_count: 0
+    metrics:
+      deep_facts: 1908
+      unmapped_sections_count: 55
+      non_blocking_mismatches_count: 55
+      previous_batch_baseline_deep_facts: 1863
+      previous_batch_baseline_unmapped_sections_count: 72
+    target_section_status:
+      languages: 0
+      related_repos: 0
+      type: 0
+      primary_language: 0
+      ports: 0
+    deltas_vs_previous_batch_baseline:
+      deep_facts_delta: 45
+      unmapped_sections_delta: -17
+  completion_status: "COMPLETE"
   issues_encountered:
     - "Initial WS4 compile reported duplicate repo node IDs (cloudflared/tailscale) after an incorrect manifest default shard. Resolved by restoring WS5 default shard and cleaning accidental llm duplicate records before re-running gates."
     - "WS2 had stale hardcoded scope guard (expected 96) and strict local-resolution assumptions; resolved by deriving scope dynamically and supporting remote identity reuse for remote-mode records."
 
 findings: |
   INTAKE-PILOT-1 shallow execution remains complete and stable. WS6 v1 now also
-  materializes canonical deep facts (1863) into shard-level deep_facts outputs
+  materializes canonical deep facts (1908) into shard-level deep_facts outputs
   plus master_deep_facts.yaml, with strict unknown_predicate blocking to prevent
   silent schema drift. This is the classic contract-first canonicalization
   pattern: strict schema gates keep draft narratives from silently mutating the
   top-level graph semantics. validation_runs semantics are now explicit:
   required_commands is plan-only, and execution_results is recorder-backed with
-  no PENDING_EXECUTION states. Priority pilot deep narratives are now present
-  for langgenius/dify, FlowiseAI/Flowise, pydantic/pydantic-ai, and qdrant/qdrant,
-  and each repo materializes canonical deep facts through WS6.
+  no PENDING_EXECUTION states. Batch-2 extractor coverage reduced unmapped
+  sections from 72 to 55 and fully burned down the five target sections
+  (languages, related_repos, type, primary_language, ports) to 0 outstanding
+  findings. Query bridge evidence is now documented with both repo resolution
+  and predicate-filtered facts retrieval via tools/query_master.py.
 
 executor_context_capture:
   ws2_change_rationale:
@@ -211,8 +252,8 @@ executor_context_capture:
       top_14_sections_reduction: 39
       long_tail_remaining_after_top_14: 33
   next_run_baseline:
-    deep_facts: 1863
-    unmapped_sections_count: 72
+    deep_facts: 1908
+    unmapped_sections_count: 55
     required_commands:
       - "python3 tools/check_intake_queue_sync.py --workspace-root ."
       - "python3 tools/ws2_identity_backfill.py --workspace-root ."
@@ -223,8 +264,22 @@ executor_context_capture:
     post_run_checks:
       - "Use required_commands exactly as listed; do not substitute pseudo-command aliases."
       - "reports/ws6_deep_integration/validation_runs.yaml => gate_ready=true + validation_suite_passed=true"
-      - "reports/ws6_deep_integration/coverage.yaml => unmapped_sections_count compared against baseline 72"
-      - "python3 tools/query_master.py stats => deep_facts compared against baseline 1863"
+      - "reports/ws6_deep_integration/coverage.yaml => unmapped_sections_count compared against baseline 55"
+      - "python3 tools/query_master.py stats => deep_facts compared against baseline 1908"
+
+sorting_backlog:
+  - item: "Status/metrics reconciliation across trackers and reports"
+    status: "RESOLVED"
+    evidence: "upcoming_progress_tracker.yaml + project_status.yaml refreshed to deep_facts=1908 and unmapped_sections_count=55."
+  - item: "M3 query bridge closure"
+    status: "RESOLVED"
+    evidence: "Documented query_master.py repo + facts end-to-end evidence; milestone moved to COMPLETE."
+  - item: "Next execution mode ambiguity (A: WS6 burn-down vs B: Phase 2 calibration)"
+    status: "RESOLVED"
+    evidence: "Decision recorded to proceed to Phase 2 calibration batch while tracking WS6 long-tail as non-blocking debt."
+  - item: "WS6 long-tail unmapped sections (55)"
+    status: "OPEN"
+    evidence: "Non-blocking backlog remains; keep as scoped debt lane during Phase 2 intake calibration."
 
 decision_rule: |
   IF M1+M2+M3+M4 all complete and acceptance criteria are met:
@@ -234,5 +289,5 @@ decision_rule: |
   IF queue enforcement fails at any point:
     -> Stop intake expansion until sync/add gates are restored
 
-decision: null
+decision: "PHASE_1_COMPLETE_PROCEED_PHASE_2_CALIBRATION"
 next_phase: "Phase 2 - Scale intake throughput and calibration batch execution"
