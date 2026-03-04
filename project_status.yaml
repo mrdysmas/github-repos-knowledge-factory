@@ -115,7 +115,7 @@ canonical:
       - "llm_repos/knowledge/validate.py"
       - "ssh_repos/knowledge/validate.py"
     compile: "tools/ws4_master_compiler.py"
-  execution_tracker: "upcoming_progress_tracker.yaml"
+  execution_tracker: "phase_2_progress_tracker.yaml"
 
 non_canonical:
   kgraph_repos:
@@ -152,7 +152,7 @@ todo:
     - id: "H"
       topic: "Forward execution tracker maintenance"
       status: "IN_PROGRESS"
-      note: "Use upcoming_progress_tracker.yaml as checkpoint source of truth for M1-M4 progress and metrics."
+      note: "Use phase_2_progress_tracker.yaml as checkpoint source of truth for Phase 2 progress and metrics."
 
 next_agent_handoff:
   if_user_asks: "What now? What should we work on?"
@@ -161,7 +161,6 @@ next_agent_handoff:
     sequencing_rule: "Phase 2A must complete before Phase 2B starts."
     read_first:
       - "project_status.yaml"
-      - "upcoming_progress_tracker.yaml"
       - "phase_2_progress_tracker.yaml"
       - "contracts/ws1/deep_fact.schema.yaml"
       - "tools/ws6_deep_integrator.py"
@@ -196,7 +195,7 @@ next_agent_handoff:
         - "unmapped_sections_count drops by at least 20 from baseline 55."
         - "deep_facts increases above baseline 1908."
         - "WS6 and intake_queue_sync test suites pass."
-        - "Phase 2A metrics are recorded under results.phase_2a in upcoming_progress_tracker.yaml."
+        - "Phase 2A metrics are recorded under results.phase_2a in phase_2_progress_tracker.yaml."
         - "WS6 validation_runs.yaml keeps required_commands as plan-only and records real execution outcomes under execution_results."
     recommendation_on_new_data:
       summary: "Phase 2B calibration remains planned, but is explicitly gated behind successful Phase 2A extractor cleanup."
@@ -205,7 +204,7 @@ next_agent_handoff:
 
 status_docs:
   current: "project_status.yaml"
-  execution_tracker: "upcoming_progress_tracker.yaml"
+  execution_tracker: "phase_2_progress_tracker.yaml"
   phase_2_tracker: "phase_2_progress_tracker.yaml"
   historical: "master_graph_merge_progress.yaml"
   decisions:

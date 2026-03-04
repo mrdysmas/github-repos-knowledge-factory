@@ -82,7 +82,7 @@ stage_2a:
     - "unmapped_sections_count <= 35 (drop of at least 20 from baseline 55)."
     - "deep_facts > 1908."
     - "WS6 and intake_queue_sync test suites pass."
-    - "Metrics are recorded in upcoming_progress_tracker.yaml under results.phase_2a."
+    - "Metrics are recorded in phase_2_progress_tracker.yaml under results.phase_2a."
 
 stage_2b:
   name: "Calibration Batch"
@@ -123,7 +123,7 @@ stage_2b:
     - "blocking_mismatches=0 and unknown_predicates=0 after full run."
     - "query_master.py returns consistent repo and facts outputs for calibration repos."
     - "New unmapped sections, if any, are explicitly counted and recorded."
-    - "Metrics snapshot captured in upcoming_progress_tracker.yaml."
+    - "Metrics snapshot captured in phase_2_progress_tracker.yaml."
     - "project_status.yaml handoff updated for Phase 3."
 
 acceptance_criteria:
@@ -152,7 +152,7 @@ execution_checklist:
   - "[ ] Stage 2A cycle 1: implement 1-2 section extractors and validate."
   - "[ ] Stage 2A cycle 2: implement next 1-2 section extractors and validate."
   - "[ ] Stage 2A cycle N: complete all 9 target section extractors with iterative validations."
-  - "[ ] Verify Phase 2A done_when and record results.phase_2a in upcoming_progress_tracker.yaml."
+  - "[ ] Verify Phase 2A done_when and record results.phase_2a in phase_2_progress_tracker.yaml."
   - "[ ] Start Stage 2B only after Phase 2A complete gate is recorded."
   - "[ ] Execute calibration batch through WS5 -> WS4 -> WS6 with required gates."
   - "[ ] Record Phase 2B metrics and update project_status.yaml handoff toward Phase 3."
