@@ -31,7 +31,7 @@ sequencing_rule: "Phase 2A must complete before Phase 2B begins."
 
 stage_2a:
   name: "Extractor Coverage Cleanup"
-  status: "PENDING"
+  status: "COMPLETE"
   objective: "Close top known unmapped section types in existing corpus and prove repeatable extractor expansion workflow."
   baseline:
     deep_facts: 1908
@@ -134,13 +134,13 @@ acceptance_criteria:
 key_metrics:
   - name: "phase_2a_unmapped_sections_delta"
     target: "<= -20"
-    actual: null
+    actual: -22
   - name: "phase_2a_deep_facts_delta"
     target: "> 0"
-    actual: null
+    actual: 111
   - name: "phase_2a_blocking_mismatches_count"
     target: 0
-    actual: null
+    actual: 0
   - name: "phase_2b_calibration_repo_count"
     target: "8-12"
     actual: null
@@ -158,7 +158,46 @@ execution_checklist:
   - "[ ] Record Phase 2B metrics and update project_status.yaml handoff toward Phase 3."
 
 results:
-  phase_2a: null
+  phase_2a:
+    status: "COMPLETE"
+    completed_at_utc: "2026-03-04T06:01:00Z"
+    cycle_3_baseline:
+      deep_facts: 1969
+      unmapped_sections_count: 42
+    final_metrics:
+      deep_facts: 2019
+      unmapped_sections_count: 33
+      blocking_mismatches_count: 0
+      unknown_predicates_count: 0
+      gate_ready: true
+    stage_2a_deltas_from_baseline:
+      deep_facts: 111
+      unmapped_sections_count: -22
+    cycle_3_deltas:
+      deep_facts: 50
+      unmapped_sections_count: -9
+    target_extractors_covered:
+      - key_features
+      - content_coverage
+      - key_sections
+      - cross_references
+      - key_files
+      - cli_arguments
+      - core_modules
+      - sdk_usage
+      - supplementary_files
+    gates:
+      check_intake_queue_sync: "PASS"
+      ws6_deep_integrator_validation: "PASS"
+      query_master_stats: "PASS"
+      ws6_test_suite: "PASS"
+      intake_queue_sync_test_suite: "PASS"
+    done_when_checks:
+      extractors_added_for_all_9_targets: true
+      ws6_gate_ready_blocking_zero_unknown_zero: true
+      unmapped_sections_lte_35: true
+      deep_facts_gt_1908: true
+      required_tests_pass: true
   phase_2b: null
   completion_status: null
   issues_encountered: []

@@ -923,6 +923,144 @@ def extract_key_features_facts(section: Any, source_file: str, as_of: str) -> li
     return facts
 
 
+def extract_key_sections_facts(section: Any, source_file: str, as_of: str) -> list[dict[str, Any]]:
+    facts: list[dict[str, Any]] = []
+    seen_names: set[str] = set()
+
+    rows = section if isinstance(section, list) else [section]
+    for idx, row in enumerate(rows):
+        name = ""
+        summary = ""
+        location = ""
+
+        if isinstance(row, dict):
+            name = ensure_string(row.get("name")) or ensure_string(row.get("title"))
+            summary = ensure_string(row.get("summary")) or ensure_string(row.get("description"))
+            location = ensure_string(row.get("location"))
+        elif isinstance(row, str):
+            name = compact_whitespace(row)
+
+        if not name:
+            continue
+
+        dedupe_key = name.lower()
+        if dedupe_key in seen_names:
+            continue
+        seen_names.add(dedupe_key)
+
+        section_ref = f"key_sections[{idx}]"
+        facts.append(
+            make_fact(
+                fact_type="component",
+                predicate="has_component",
+                object_kind="concept",
+                object_value=name,
+                note=summary,
+                confidence=0.69,
+                as_of=as_of,
+                source_file=source_file,
+                source_section=section_ref,
+                extraction_mode="narrative",
+                evidence=make_evidence(source_file, location or section_ref, summary or name),
+            )
+        )
+
+    return facts
+
+
+def extract_content_coverage_facts(section: Any, source_file: str, as_of: str) -> list[dict[str, Any]]:
+    payload = ensure_dict(section)
+    rows = ensure_list_of_dicts(payload.get("topics"))
+    facts: list[dict[str, Any]] = []
+    seen_topics: set[str] = set()
+
+    for idx, row in enumerate(rows):
+        topic = ensure_string(row.get("name"))
+        if not topic:
+            continue
+
+        dedupe_key = topic.lower()
+        if dedupe_key in seen_topics:
+            continue
+        seen_topics.add(dedupe_key)
+
+        depth = ensure_string(row.get("depth"))
+        resources_value = row.get("resources")
+        resources = ""
+        if isinstance(resources_value, (str, int, float, bool)):
+            resources = str(resources_value).strip()
+
+        note_parts: list[str] = []
+        if depth:
+            note_parts.append(f"depth: {depth}")
+        if resources:
+            note_parts.append(f"resources: {resources}")
+        note = ", ".join(note_parts)
+
+        section_ref = f"content_coverage.topics[{idx}]"
+        facts.append(
+            make_fact(
+                fact_type="component",
+                predicate="has_component",
+                object_kind="concept",
+                object_value=topic,
+                note=note,
+                confidence=0.69,
+                as_of=as_of,
+                source_file=source_file,
+                source_section=section_ref,
+                extraction_mode="narrative",
+                evidence=make_evidence(source_file, section_ref, note or topic),
+            )
+        )
+
+    return facts
+
+
+def extract_cross_references_facts(section: Any, source_file: str, as_of: str) -> list[dict[str, Any]]:
+    payload = ensure_dict(section)
+    external_rows = payload.get("external")
+    if not isinstance(external_rows, list):
+        return []
+
+    facts: list[dict[str, Any]] = []
+    seen_tools: set[str] = set()
+
+    for idx, row in enumerate(external_rows):
+        tool = ""
+        if isinstance(row, str):
+            tool = sanitize_external_tool_name(row)
+        elif isinstance(row, dict):
+            tool = sanitize_external_tool_name(ensure_string(row.get("name")) or ensure_string(row.get("tool")))
+
+        if not tool:
+            continue
+
+        dedupe_key = tool.lower()
+        if dedupe_key in seen_tools:
+            continue
+        seen_tools.add(dedupe_key)
+
+        section_ref = f"cross_references.external[{idx}]"
+        fact = make_fact(
+            fact_type="extension_point",
+            predicate="has_extension_point",
+            object_kind="external_tool",
+            object_value=tool,
+            object_node_id=f"external_tool::{tool}",
+            confidence=0.69,
+            as_of=as_of,
+            source_file=source_file,
+            source_section=section_ref,
+            extraction_mode="narrative",
+            evidence=make_evidence(source_file, section_ref, tool),
+        )
+        fact["object_value"] = tool
+        facts.append(fact)
+
+    return facts
+
+
 def extract_key_files_facts(section: Any, source_file: str, as_of: str) -> list[dict[str, Any]]:
     facts: list[dict[str, Any]] = []
     seen_paths: set[str] = set()
@@ -2375,6 +2513,9 @@ def extract_narrative_facts(
     extractor_map: dict[str, Callable[[Any, str, str], list[dict[str, Any]]]] = {
         "architecture": extract_architecture_facts,
         "key_features": extract_key_features_facts,
+        "key_sections": extract_key_sections_facts,
+        "content_coverage": extract_content_coverage_facts,
+        "cross_references": extract_cross_references_facts,
         "key_files": extract_key_files_facts,
         "cli_arguments": extract_cli_argument_facts,
         "core_modules": extract_core_modules_facts,
