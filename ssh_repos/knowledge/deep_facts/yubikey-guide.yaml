@@ -9,6 +9,142 @@ provenance:
   as_of: '2026-02-25'
   extractor_version: ws6-deep-integrator-v1
 facts:
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/yubikey-guide.yaml
+    source_section: supplementary_files[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supplementary_files[0]
+    source_file: ssh_repos/knowledge/deep/yubikey-guide.yaml
+    excerpt: SECENV.md
+  object_value: SECENV.md
+  note: Secure environment setup for Alpine Linux/Raspberry Pi
+  fact_id: fact::9b0d8c516ba8501946401ead
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/yubikey-guide.yaml
+    source_section: supplementary_files[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supplementary_files[2]
+    source_file: ssh_repos/knowledge/deep/yubikey-guide.yaml
+    excerpt: config/gpg-agent.conf
+  object_value: config/gpg-agent.conf
+  note: '[config] GPG agent configuration for SSH support'
+  fact_id: fact::8925ca6f1ebac0ba4745fa99
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/yubikey-guide.yaml
+    source_section: supplementary_files[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supplementary_files[1]
+    source_file: ssh_repos/knowledge/deep/yubikey-guide.yaml
+    excerpt: config/gpg.conf
+  object_value: config/gpg.conf
+  note: '[config] GnuPG client configuration'
+  fact_id: fact::118e9300ac99e92568739c4e
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/yubikey-guide.yaml
+    source_section: supplementary_files[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supplementary_files[3]
+    source_file: ssh_repos/knowledge/deep/yubikey-guide.yaml
+    excerpt: scripts/generate.sh
+  object_value: scripts/generate.sh
+  note: '[script] Automated key generation script'
+  fact_id: fact::64fb3d078676874ac2a4dbe9
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/yubikey-guide.yaml
+    source_section: supplementary_files[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supplementary_files[4]
+    source_file: ssh_repos/knowledge/deep/yubikey-guide.yaml
+    excerpt: scripts/reset-yubikey
+  object_value: scripts/reset-yubikey
+  note: '[script] Factory reset YubiKey'
+  fact_id: fact::512c77ce3c6e193818b5ecd3
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/yubikey-guide.yaml
+    source_section: supplementary_files[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supplementary_files[5]
+    source_file: ssh_repos/knowledge/deep/yubikey-guide.yaml
+    excerpt: scripts/switch-to-backup-yubikey
+  object_value: scripts/switch-to-backup-yubikey
+  note: '[script] Switch to backup YubiKey'
+  fact_id: fact::e3d782c9f46923eb7f0da59b
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/yubikey-guide.yaml
+    source_section: supplementary_files[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supplementary_files[6]
+    source_file: ssh_repos/knowledge/deep/yubikey-guide.yaml
+    excerpt: templates/passphrase.html
+  object_value: templates/passphrase.html
+  note: '[template] HTML template for passphrase storage'
+  fact_id: fact::6e3fe1cc6ce44f4bb1c04924
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/yubikey-guide.yaml
+    source_section: supplementary_files[7]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supplementary_files[7]
+    source_file: ssh_repos/knowledge/deep/yubikey-guide.yaml
+    excerpt: templates/passphrase.txt
+  object_value: templates/passphrase.txt
+  note: '[template] Text template for passphrase storage'
+  fact_id: fact::6327dcefbb13e3623e82a486
 - fact_type: operational_task
   predicate: supports_task
   object_kind: text

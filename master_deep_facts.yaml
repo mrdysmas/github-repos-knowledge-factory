@@ -2,8 +2,8 @@ artifact_type: ws6_master_deep_facts
 generated_at_utc: '2026-02-25T00:00:00Z'
 contract_version: 1.0.0-ws6-draft
 summary:
-  total_facts: 1946
-  repos_with_facts: 50
+  total_facts: 1969
+  repos_with_facts: 51
   source_shards:
   - llm_repos
   - ssh_repos
@@ -188,6 +188,26 @@ facts:
   fact_type: component
   predicate: has_component
   object_kind: path
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    source_section: core_modules.application
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.application
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    excerpt: apps/application/
+  object_value: apps/application/
+  note: Application configuration
+  fact_id: fact::061c2340bf4bfbbd05f71e22
+- node_id: repo::1panel-dev/maxkb
+  github_full_name: 1panel-dev/maxkb
+  name: maxkb
+  fact_type: component
+  predicate: has_component
+  object_kind: path
   confidence: 0.72
   as_of: '2026-02-25'
   provenance:
@@ -228,6 +248,46 @@ facts:
   fact_type: component
   predicate: has_component
   object_kind: path
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    source_section: core_modules.chat
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.chat
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    excerpt: apps/chat/
+  object_value: apps/chat/
+  note: Conversation handling
+  fact_id: fact::eb516016c6353d2d8668d55e
+- node_id: repo::1panel-dev/maxkb
+  github_full_name: 1panel-dev/maxkb
+  name: maxkb
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    source_section: core_modules.knowledge
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.knowledge
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    excerpt: apps/knowledge/
+  object_value: apps/knowledge/
+  note: Knowledge base management
+  fact_id: fact::94fa736ebd8fdefd248e0dbc
+- node_id: repo::1panel-dev/maxkb
+  github_full_name: 1panel-dev/maxkb
+  name: maxkb
+  fact_type: component
+  predicate: has_component
+  object_kind: path
   confidence: 0.72
   as_of: '2026-02-25'
   provenance:
@@ -248,6 +308,26 @@ facts:
   fact_type: component
   predicate: has_component
   object_kind: path
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    source_section: core_modules.models_provider
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.models_provider
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    excerpt: apps/models_provider/
+  object_value: apps/models_provider/
+  note: LLM provider management
+  fact_id: fact::1ea103d64a5c3c4a56971796
+- node_id: repo::1panel-dev/maxkb
+  github_full_name: 1panel-dev/maxkb
+  name: maxkb
+  fact_type: component
+  predicate: has_component
+  object_kind: path
   confidence: 0.72
   as_of: '2026-02-25'
   provenance:
@@ -262,6 +342,66 @@ facts:
   object_value: apps/models_provider/
   note: LLM provider integrations
   fact_id: fact::db15611fa66b0048857fe7c0
+- node_id: repo::1panel-dev/maxkb
+  github_full_name: 1panel-dev/maxkb
+  name: maxkb
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    source_section: core_modules.opa
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.opa
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    excerpt: apps/opa/
+  object_value: apps/opa/
+  note: Open Policy Agent integration
+  fact_id: fact::81c59b0c33fd170420030c67
+- node_id: repo::1panel-dev/maxkb
+  github_full_name: 1panel-dev/maxkb
+  name: maxkb
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    source_section: core_modules.setting
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.setting
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    excerpt: apps/setting/
+  object_value: apps/setting/
+  note: System configuration
+  fact_id: fact::4c3379ca1536557b9268daa9
+- node_id: repo::1panel-dev/maxkb
+  github_full_name: 1panel-dev/maxkb
+  name: maxkb
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    source_section: core_modules.tools
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.tools
+    source_file: llm_repos/knowledge/deep/maxkb.yaml
+    excerpt: apps/tools/
+  object_value: apps/tools/
+  note: Custom tools and integrations
+  fact_id: fact::00e744b3a313d8d5be4bdee7
 - node_id: repo::1panel-dev/maxkb
   github_full_name: 1panel-dev/maxkb
   name: maxkb
@@ -3527,6 +3667,166 @@ facts:
 - node_id: repo::drduh/yubikey-guide
   github_full_name: drduh/yubikey-guide
   name: yubikey-guide
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/yubikey-guide.yaml
+    source_section: supplementary_files[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supplementary_files[0]
+    source_file: ssh_repos/knowledge/deep/yubikey-guide.yaml
+    excerpt: SECENV.md
+  object_value: SECENV.md
+  note: Secure environment setup for Alpine Linux/Raspberry Pi
+  fact_id: fact::9b0d8c516ba8501946401ead
+- node_id: repo::drduh/yubikey-guide
+  github_full_name: drduh/yubikey-guide
+  name: yubikey-guide
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/yubikey-guide.yaml
+    source_section: supplementary_files[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supplementary_files[2]
+    source_file: ssh_repos/knowledge/deep/yubikey-guide.yaml
+    excerpt: config/gpg-agent.conf
+  object_value: config/gpg-agent.conf
+  note: '[config] GPG agent configuration for SSH support'
+  fact_id: fact::8925ca6f1ebac0ba4745fa99
+- node_id: repo::drduh/yubikey-guide
+  github_full_name: drduh/yubikey-guide
+  name: yubikey-guide
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/yubikey-guide.yaml
+    source_section: supplementary_files[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supplementary_files[1]
+    source_file: ssh_repos/knowledge/deep/yubikey-guide.yaml
+    excerpt: config/gpg.conf
+  object_value: config/gpg.conf
+  note: '[config] GnuPG client configuration'
+  fact_id: fact::118e9300ac99e92568739c4e
+- node_id: repo::drduh/yubikey-guide
+  github_full_name: drduh/yubikey-guide
+  name: yubikey-guide
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/yubikey-guide.yaml
+    source_section: supplementary_files[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supplementary_files[3]
+    source_file: ssh_repos/knowledge/deep/yubikey-guide.yaml
+    excerpt: scripts/generate.sh
+  object_value: scripts/generate.sh
+  note: '[script] Automated key generation script'
+  fact_id: fact::64fb3d078676874ac2a4dbe9
+- node_id: repo::drduh/yubikey-guide
+  github_full_name: drduh/yubikey-guide
+  name: yubikey-guide
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/yubikey-guide.yaml
+    source_section: supplementary_files[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supplementary_files[4]
+    source_file: ssh_repos/knowledge/deep/yubikey-guide.yaml
+    excerpt: scripts/reset-yubikey
+  object_value: scripts/reset-yubikey
+  note: '[script] Factory reset YubiKey'
+  fact_id: fact::512c77ce3c6e193818b5ecd3
+- node_id: repo::drduh/yubikey-guide
+  github_full_name: drduh/yubikey-guide
+  name: yubikey-guide
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/yubikey-guide.yaml
+    source_section: supplementary_files[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supplementary_files[5]
+    source_file: ssh_repos/knowledge/deep/yubikey-guide.yaml
+    excerpt: scripts/switch-to-backup-yubikey
+  object_value: scripts/switch-to-backup-yubikey
+  note: '[script] Switch to backup YubiKey'
+  fact_id: fact::e3d782c9f46923eb7f0da59b
+- node_id: repo::drduh/yubikey-guide
+  github_full_name: drduh/yubikey-guide
+  name: yubikey-guide
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/yubikey-guide.yaml
+    source_section: supplementary_files[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supplementary_files[6]
+    source_file: ssh_repos/knowledge/deep/yubikey-guide.yaml
+    excerpt: templates/passphrase.html
+  object_value: templates/passphrase.html
+  note: '[template] HTML template for passphrase storage'
+  fact_id: fact::6e3fe1cc6ce44f4bb1c04924
+- node_id: repo::drduh/yubikey-guide
+  github_full_name: drduh/yubikey-guide
+  name: yubikey-guide
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/yubikey-guide.yaml
+    source_section: supplementary_files[7]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supplementary_files[7]
+    source_file: ssh_repos/knowledge/deep/yubikey-guide.yaml
+    excerpt: templates/passphrase.txt
+  object_value: templates/passphrase.txt
+  note: '[template] Text template for passphrase storage'
+  fact_id: fact::6327dcefbb13e3623e82a486
+- node_id: repo::drduh/yubikey-guide
+  github_full_name: drduh/yubikey-guide
+  name: yubikey-guide
   fact_type: operational_task
   predicate: supports_task
   object_kind: text
@@ -4636,6 +4936,88 @@ facts:
 - node_id: repo::emcie-co/parlant
   github_full_name: emcie-co/parlant
   name: parlant
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    source_section: core_modules.adapters
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.adapters
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    excerpt: src/parlant/adapters/
+  object_value: src/parlant/adapters/
+  note: 'Infrastructure adapters (LLM, vector DB, tracing). Submodules: llm, db, tracing,
+    vector_db'
+  fact_id: fact::edbdc4f3b15dd58b56f328b7
+- node_id: repo::emcie-co/parlant
+  github_full_name: emcie-co/parlant
+  name: parlant
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    source_section: core_modules.api
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.api
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    excerpt: src/parlant/api/
+  object_value: src/parlant/api/
+  note: REST API endpoints and schemas
+  fact_id: fact::c85dd038ab88be0294d087fe
+- node_id: repo::emcie-co/parlant
+  github_full_name: emcie-co/parlant
+  name: parlant
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    source_section: core_modules.client
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.client
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    excerpt: src/parlant/client/
+  object_value: src/parlant/client/
+  note: Python client SDK
+  fact_id: fact::803db35163fd2c422fbe67e5
+- node_id: repo::emcie-co/parlant
+  github_full_name: emcie-co/parlant
+  name: parlant
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    source_section: core_modules.core
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.core
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    excerpt: src/parlant/core/
+  object_value: src/parlant/core/
+  note: 'Domain logic - agents, sessions, guidelines, journeys. Submodules: agents,
+    sessions, guidelines, journeys, events, tools, glossary, canned_responses'
+  fact_id: fact::723f3f6aedd220bdb58dd064
+- node_id: repo::emcie-co/parlant
+  github_full_name: emcie-co/parlant
+  name: parlant
   fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
@@ -4693,6 +5075,27 @@ facts:
   object_value: mem0
   note: related repository
   fact_id: fact::92efc41af5588912b5431316
+- node_id: repo::emcie-co/parlant
+  github_full_name: emcie-co/parlant
+  name: parlant
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: external_tool
+  confidence: 0.7
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    source_section: sdk_usage.client_init
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: sdk_usage.client_init
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    excerpt: from parlant import Client
+  object_node_id: external_tool::parlant
+  note: Client Init SDK; from parlant import Client
+  object_value: parlant
+  fact_id: fact::1b5f30194bf6e31f80b1fb10
 - node_id: repo::emcie-co/parlant
   github_full_name: emcie-co/parlant
   name: parlant
@@ -19058,6 +19461,46 @@ facts:
   object_value: cp *.txt ./myproject/input/
   note: quick reference topic
   fact_id: fact::951211cf28a53d887bfedf9c
+- node_id: repo::mikeroyal/self-hosting-guide
+  github_full_name: mikeroyal/self-hosting-guide
+  name: self-hosting-guide
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/self-hosting-guide.yaml
+    source_section: supplementary_files[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supplementary_files[0]
+    source_file: ssh_repos/knowledge/deep/self-hosting-guide.yaml
+    excerpt: CONTRIBUTING.md
+  object_value: CONTRIBUTING.md
+  note: Contribution guidelines
+  fact_id: fact::96246ff8a14fcb955699c19a
+- node_id: repo::mikeroyal/self-hosting-guide
+  github_full_name: mikeroyal/self-hosting-guide
+  name: self-hosting-guide
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/self-hosting-guide.yaml
+    source_section: supplementary_files[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supplementary_files[1]
+    source_file: ssh_repos/knowledge/deep/self-hosting-guide.yaml
+    excerpt: Getting Started with Self-Hosting.dockerfile
+  object_value: Getting Started  with Self-Hosting.dockerfile
+  note: Starter Docker configuration
+  fact_id: fact::7f9bd74d14fc29facd6946be
 - node_id: repo::milvus-io/milvus
   github_full_name: milvus-io/milvus
   name: milvus
@@ -19933,6 +20376,27 @@ facts:
   object_value: ragflow
   note: related repository
   fact_id: fact::77bbe68cdd3120079990ae68
+- node_id: repo::milvus-io/milvus
+  github_full_name: milvus-io/milvus
+  name: milvus
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: external_tool
+  confidence: 0.7
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/milvus.yaml
+    source_section: sdk_usage.python
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: sdk_usage.python
+    source_file: llm_repos/knowledge/deep/milvus.yaml
+    excerpt: from pymilvus import MilvusClient
+  object_node_id: external_tool::pymilvus
+  note: Python SDK; from pymilvus import MilvusClient
+  object_value: pymilvus
+  fact_id: fact::e26720e1ab4f1258d6d3cf1f
 - node_id: repo::milvus-io/milvus
   github_full_name: milvus-io/milvus
   name: milvus

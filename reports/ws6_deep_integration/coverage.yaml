@@ -5,24 +5,23 @@ input_scope:
   deep_narrative_files_total: 52
   deep_fact_draft_files_total: 0
   repos_with_any_deep_inputs: 52
-  repos_materialized: 50
+  repos_materialized: 51
 metrics:
-  facts_materialized_total: 1946
+  facts_materialized_total: 1969
   facts_with_evidence_pct: 100.0
   confidence_bounds_valid_pct: 100.0
   draft_overrides_count: 0
   derived_dedupe_merges_count: 0
-  unmapped_sections_count: 48
+  unmapped_sections_count: 42
   unmapped_sections_by_repo:
-    repo::1panel-dev/maxkb: 5
+    repo::1panel-dev/maxkb: 4
     repo::anderspitman/awesome-tunneling: 4
     repo::dair-ai/prompt-engineering-guide: 4
     repo::datawhalechina/self-llm: 4
-    repo::drduh/yubikey-guide: 5
-    repo::emcie-co/parlant: 4
+    repo::drduh/yubikey-guide: 4
+    repo::emcie-co/parlant: 2
     repo::internlm/lmdeploy: 6
-    repo::mikeroyal/self-hosting-guide: 4
-    repo::milvus-io/milvus: 1
+    repo::mikeroyal/self-hosting-guide: 3
     repo::mindsdb/mindsdb: 1
     repo::mintplex-labs/anything-llm: 1
     repo::nexaai/nexa-sdk: 4
@@ -34,14 +33,14 @@ metrics:
     shard: llm_repos
     narrative_files: 1
     draft_files: 0
-    narrative_facts_raw: 22
+    narrative_facts_raw: 29
     draft_facts_raw: 0
-    derived_facts_after_dedupe: 22
+    derived_facts_after_dedupe: 29
     draft_overrides: 0
     evidence_merges: 0
-    facts_emitted: 22
+    facts_emitted: 29
     blocked_facts: 0
-    unmapped_sections_count: 5
+    unmapped_sections_count: 4
   - node_id: repo::anderspitman/awesome-tunneling
     github_full_name: anderspitman/awesome-tunneling
     shard: ssh_repos
@@ -112,14 +111,14 @@ metrics:
     shard: ssh_repos
     narrative_files: 1
     draft_files: 0
-    narrative_facts_raw: 4
+    narrative_facts_raw: 12
     draft_facts_raw: 0
-    derived_facts_after_dedupe: 4
+    derived_facts_after_dedupe: 12
     draft_overrides: 0
     evidence_merges: 0
-    facts_emitted: 4
+    facts_emitted: 12
     blocked_facts: 0
-    unmapped_sections_count: 5
+    unmapped_sections_count: 4
   - node_id: repo::ekzhang/bore
     github_full_name: ekzhang/bore
     shard: ssh_repos
@@ -138,14 +137,14 @@ metrics:
     shard: llm_repos
     narrative_files: 1
     draft_files: 0
-    narrative_facts_raw: 11
+    narrative_facts_raw: 16
     draft_facts_raw: 0
-    derived_facts_after_dedupe: 11
+    derived_facts_after_dedupe: 16
     draft_overrides: 0
     evidence_merges: 0
-    facts_emitted: 11
+    facts_emitted: 16
     blocked_facts: 0
-    unmapped_sections_count: 4
+    unmapped_sections_count: 2
   - node_id: repo::fatedier/frp
     github_full_name: fatedier/frp
     shard: ssh_repos
@@ -385,27 +384,27 @@ metrics:
     shard: ssh_repos
     narrative_files: 1
     draft_files: 0
-    narrative_facts_raw: 0
+    narrative_facts_raw: 2
     draft_facts_raw: 0
-    derived_facts_after_dedupe: 0
+    derived_facts_after_dedupe: 2
     draft_overrides: 0
     evidence_merges: 0
-    facts_emitted: 0
+    facts_emitted: 2
     blocked_facts: 0
-    unmapped_sections_count: 4
+    unmapped_sections_count: 3
   - node_id: repo::milvus-io/milvus
     github_full_name: milvus-io/milvus
     shard: llm_repos
     narrative_files: 1
     draft_files: 0
-    narrative_facts_raw: 63
+    narrative_facts_raw: 64
     draft_facts_raw: 0
-    derived_facts_after_dedupe: 63
+    derived_facts_after_dedupe: 64
     draft_overrides: 0
     evidence_merges: 0
-    facts_emitted: 63
+    facts_emitted: 64
     blocked_facts: 0
-    unmapped_sections_count: 1
+    unmapped_sections_count: 0
   - node_id: repo::mindsdb/mindsdb
     github_full_name: mindsdb/mindsdb
     shard: llm_repos
@@ -749,6 +748,7 @@ actions:
   - ssh_repos/knowledge/deep_facts/netmask.yaml
   - ssh_repos/knowledge/deep_facts/pangolin.yaml
   - ssh_repos/knowledge/deep_facts/rathole.yaml
+  - ssh_repos/knowledge/deep_facts/self-hosting-guide.yaml
   - ssh_repos/knowledge/deep_facts/sshuttle.yaml
   - ssh_repos/knowledge/deep_facts/streisand.yaml
   - ssh_repos/knowledge/deep_facts/teleport.yaml
@@ -768,7 +768,7 @@ gate_bools:
   execution_results_pending_zero: true
   ws6_hash_stable: true
 gate_metrics:
-  unmapped_sections_count: 48
+  unmapped_sections_count: 42
 execution_mode: full_validation_run
 ws6_gate_ready: true
 gate_ready: true

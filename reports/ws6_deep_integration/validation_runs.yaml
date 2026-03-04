@@ -54,8 +54,8 @@ execution_results:
     first_class
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-04T05:32:53Z'
-  duration_ms: 521
+  ran_at_utc: '2026-03-04T05:43:12Z'
+  duration_ms: 527
   observation: exit_code=0; ws1_contract_status_pass=true
   output_tail: "stdout_tail:\nexternal_node_policy: first_class\n\nPASS checks:\n\
     \  - Contract version aligned across WS1 artifacts: 1.0.0-ws1\n  - Source enums\
@@ -70,8 +70,8 @@ execution_results:
   command: python3 tools/trust_gates.py llm_repos/knowledge --production
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-04T05:32:53Z'
-  duration_ms: 331
+  ran_at_utc: '2026-03-04T05:43:13Z'
+  duration_ms: 336
   observation: exit_code=0; overall_pass=true; ready_state_allowed_true=true
   output_tail: 'stdout_tail:
 
@@ -92,8 +92,8 @@ execution_results:
   command: python3 tools/trust_gates.py ssh_repos/knowledge --production
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-04T05:32:53Z'
-  duration_ms: 244
+  ran_at_utc: '2026-03-04T05:43:13Z'
+  duration_ms: 247
   observation: exit_code=0; overall_pass=true; ready_state_allowed_true=true
   output_tail: 'stdout_tail:
 
@@ -115,16 +115,16 @@ execution_results:
     --materialize-spec reports/ws6_deep_integration/spec.yaml
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-04T05:32:52Z'
+  ran_at_utc: '2026-03-04T05:43:12Z'
   duration_ms: 0
-  observation: ws6_gate_ready=true blocking_mismatches=0 facts_materialized=1946
+  observation: ws6_gate_ready=true blocking_mismatches=0 facts_materialized=1969
 - step: 5
   command: python3 tools/ws4_master_compiler.py --workspace-root . --master-index
     master_index.yaml --master-graph master_graph.yaml --reports-dir reports/ws4_master_build
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-04T05:32:58Z'
-  duration_ms: 4613
+  ran_at_utc: '2026-03-04T05:43:18Z'
+  duration_ms: 4661
   observation: exit_code=0; ws4_gate_ready=true
   output_tail: 'stdout_tail:
 
@@ -153,11 +153,11 @@ execution_results:
   command: python3 tools/query_master.py stats
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-04T05:32:59Z'
-  duration_ms: 1577
-  observation: exit_code=0; deep_facts=1946
+  ran_at_utc: '2026-03-04T05:43:19Z'
+  duration_ms: 1602
+  observation: exit_code=0; deep_facts=1969
   output_tail: "stdout_tail:\nartifact_type: master_query_stats\ncounts:\n  repos:\
-    \ 60\n  nodes: 74\n  edges: 152\n  deep_facts: 1946\nsources:\n  master_index:\
+    \ 60\n  nodes: 74\n  edges: 152\n  deep_facts: 1969\nsources:\n  master_index:\
     \ /Users/szilaa/scripts/ext_sources/github_repos/master_index.yaml\n  master_graph:\
     \ /Users/szilaa/scripts/ext_sources/github_repos/master_graph.yaml\n  master_deep_facts:\
     \ /Users/szilaa/scripts/ext_sources/github_repos/master_deep_facts.yaml"
@@ -165,7 +165,7 @@ execution_results:
   command: Re-run WS6 command with identical input and verify output hashes unchanged
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-04T05:32:52Z'
+  ran_at_utc: '2026-03-04T05:43:12Z'
   duration_ms: 0
   observation: hash_stability=true
 artifact_hashes:
@@ -183,15 +183,15 @@ artifact_hashes:
   llm_repos/knowledge/deep_facts/llamafactory.yaml: 52cea0a2af8a8682d5114b34eccc55d2486d81b2fe842a8ca3df0472ded26946
   llm_repos/knowledge/deep_facts/llm-app.yaml: 470f53ae7cb2d79cdf0d0b5de2b297762c515e94e94c11f837ad47eace0157f5
   llm_repos/knowledge/deep_facts/lmdeploy.yaml: d056e48d4f8074b9898f605ab36c2a87754bacdf08e0a2ac8ebb39386c33ae12
-  llm_repos/knowledge/deep_facts/maxkb.yaml: 677d31d3a9008effe07c114c662ba17227ea72137ba1f6c03a28bd538fed1f60
+  llm_repos/knowledge/deep_facts/maxkb.yaml: 7cf4ffcbfa7e7efc5d96761288fcc8adc672521ac84ccc7880cbee245e7e51cb
   llm_repos/knowledge/deep_facts/mem0.yaml: 9f11958c615b866d5c08ff0239112752a72fc0a172444073e462394806b1b975
-  llm_repos/knowledge/deep_facts/milvus.yaml: d0082fbadba93650c276578514956b1a97a58452f95c32e3833cf2bce59c79a9
+  llm_repos/knowledge/deep_facts/milvus.yaml: 6ce3b369b47462113a4ffe095f084b93d311c7dbb2ace777dd3c226d0860c7a7
   llm_repos/knowledge/deep_facts/mindsdb.yaml: 8431e8d275c70adc20db61204bb10c005bfdb2d78dcc6a81257e41661b121ac5
   llm_repos/knowledge/deep_facts/nexa_sdk.yaml: 2c198743c1398d859e11b534c16b6042301499ec698867e5534ce0e2d6e0bb51
   llm_repos/knowledge/deep_facts/ollama.yaml: b1a1f30cfac2cbc2adfd430d9c6cac1e7365c383757a882982c99bc0e32a4c4a
   llm_repos/knowledge/deep_facts/open_webui.yaml: 0551d36ebf2bcfc798973bb17d96a0320cd969ab8db592e8f2f01a935064d254
   llm_repos/knowledge/deep_facts/opencompass.yaml: 19d1df0603845713d84123c7d80a132651a02304c8c3e69a926bed77dcab5b10
-  llm_repos/knowledge/deep_facts/parlant.yaml: 1ee60b32f5cddca068716b8bb36121eb93795d843d42e34976f4f27d124a5cd8
+  llm_repos/knowledge/deep_facts/parlant.yaml: 43fb215ed075af584bb248b4cf7fd080df94709d7f8ab8e13b5861639d063059
   llm_repos/knowledge/deep_facts/pathway.yaml: a5bb2a5cce8c53cbb0f778dbea7c191f1eb90bc45a2c688229ebc55b876747d8
   llm_repos/knowledge/deep_facts/pydantic__pydantic-ai.yaml: c4c5ada6ba90df245f346bf064decd08dfd0af65a90443d94e1be130bfde18a9
   llm_repos/knowledge/deep_facts/qdrant__qdrant.yaml: 1b5d3f9798d8095f4f48c0fedb96b223f0be6483965a4a7b0c1e6f3f38fe53d2
@@ -199,9 +199,9 @@ artifact_hashes:
   llm_repos/knowledge/deep_facts/self-llm.yaml: 4a38c38a6ea84ced3460952819f21bb6a8ce6a8f173d91f8a4d2bedf7a2b1bcd
   llm_repos/knowledge/deep_facts/vllm.yaml: 282b36b0287f0c6133a91ed2772fed5828ec2b6a1f6f9ee6b3e5788e3898b3c3
   llm_repos/knowledge/deep_facts/xinference.yaml: 72434db0e2bf4377ece0cd73f188afb47672c53ce56da12e110ae61ab8ce5af3
-  master_deep_facts.yaml: 164884275e42502045795d3576bf47fb4b5670d3a6a65994757caf3884d0be80
-  reports/ws6_deep_integration/coverage.yaml: 85b2d8149c3e361b7d6093c3e6a847b5fd59bc5404d23476e63a7fcea1a3fc00
-  reports/ws6_deep_integration/mismatch_report.yaml: 8f905cc452804e745dc1b472ec32b67a4128653993aa198f071061f07a0c626d
+  master_deep_facts.yaml: aea123f499dd8d1c4b9d2422c6fdb3c7d44afec05933ce107158114f03975b06
+  reports/ws6_deep_integration/coverage.yaml: 172cff136cd880acec1bcb4a3cae07864db83cbfc027ddc99ec02a498847dfc9
+  reports/ws6_deep_integration/mismatch_report.yaml: d5948b1ee87337d7ed286b2f2b5fa8639813c380fb413a9536b88078ef33d947
   ssh_repos/knowledge/deep_facts/bore.yaml: d486181741dfb74e58c10aff4696525d27eed40fb9afbee53510cce33162b43a
   ssh_repos/knowledge/deep_facts/frp.yaml: 9bc23a7d0993eaf28645d57e3f7df6658e7a3a46bb0bff7af400eb6abbdca7a4
   ssh_repos/knowledge/deep_facts/gost.yaml: 48c82f43a614dfa8c575f03fe27e933beb8af36b277deae62e400c485a987e81
@@ -214,6 +214,7 @@ artifact_hashes:
   ssh_repos/knowledge/deep_facts/netmask.yaml: d61ffb4ddca00cd114164842e60e123c5dd3299ab5cc04f2ff53a22179252f55
   ssh_repos/knowledge/deep_facts/pangolin.yaml: 4c2704aefa3b13edb6138efb8855a4432776bb2641016b6f9f032550ae1e2cb7
   ssh_repos/knowledge/deep_facts/rathole.yaml: a2c8cf32fe4567c97296ac2620bf9891a965aa3575cff0332c068215841fd7ce
+  ssh_repos/knowledge/deep_facts/self-hosting-guide.yaml: cc45f6843bcab19fc3b625d3c34ab273cb28ffc75eaaa06dde5b6c884929c8ec
   ssh_repos/knowledge/deep_facts/sshuttle.yaml: 828795d6738087f78aea4f137ef9859ae05ed3ece5de964ee20b2fce98ba2497
   ssh_repos/knowledge/deep_facts/streisand.yaml: c444ff0f5a82c75b72c2eb1875c9d5c6215e071bfd364a172a54c072d8104f88
   ssh_repos/knowledge/deep_facts/teleport.yaml: e86abc579d26489b2775d75aed687bfb7f7a3606a44d9907a168c7e0b92728f0
@@ -221,7 +222,7 @@ artifact_hashes:
   ssh_repos/knowledge/deep_facts/vgrok.yaml: f32169f0ffaf75d0d2151f2b6adb040f76e3c1b2e428d3cd4234be2dbcf7e383
   ssh_repos/knowledge/deep_facts/xtermjs.yaml: a083b237cdaabb0c798235759108565a0b2cea94603cf52ca15f989a200c412d
   ssh_repos/knowledge/deep_facts/ytunnel.yaml: 877675e6408c3c0f677f66c08edeb424e4091477a6c1971002b388d1a44d93e4
-  ssh_repos/knowledge/deep_facts/yubikey-guide.yaml: 2a8097b7f7e60ed230b7b64cf92491d49a9049a602b51054ad99cd5f0e1297ef
+  ssh_repos/knowledge/deep_facts/yubikey-guide.yaml: 4df9675d2e11b34104e006ecfcf21feb6aee5325d9233738ea5a38201c15bfd4
 gate_bools:
   deep_facts_parseable: true
   deep_fact_identity_coverage_100pct: true
@@ -232,7 +233,7 @@ gate_bools:
   execution_results_pending_zero: true
   ws6_hash_stable: true
 gate_metrics:
-  unmapped_sections_count: 48
+  unmapped_sections_count: 42
 ws6_gate_ready: true
 validation_suite_complete: true
 validation_suite_passed: true

@@ -752,6 +752,24 @@ facts:
   object_value: ragflow
   note: related repository
   fact_id: fact::77bbe68cdd3120079990ae68
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: external_tool
+  confidence: 0.7
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/milvus.yaml
+    source_section: sdk_usage.python
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: sdk_usage.python
+    source_file: llm_repos/knowledge/deep/milvus.yaml
+    excerpt: from pymilvus import MilvusClient
+  object_node_id: external_tool::pymilvus
+  note: Python SDK; from pymilvus import MilvusClient
+  object_value: pymilvus
+  fact_id: fact::e26720e1ab4f1258d6d3cf1f
 - fact_type: failure_mode
   predicate: has_failure_mode
   object_kind: issue

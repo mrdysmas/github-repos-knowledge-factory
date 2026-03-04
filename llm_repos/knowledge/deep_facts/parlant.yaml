@@ -121,6 +121,76 @@ facts:
     excerpt: /tools
   object_value: /tools
   fact_id: fact::e33c92dc17eb1675047db5a0
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    source_section: core_modules.adapters
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.adapters
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    excerpt: src/parlant/adapters/
+  object_value: src/parlant/adapters/
+  note: 'Infrastructure adapters (LLM, vector DB, tracing). Submodules: llm, db, tracing,
+    vector_db'
+  fact_id: fact::edbdc4f3b15dd58b56f328b7
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    source_section: core_modules.api
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.api
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    excerpt: src/parlant/api/
+  object_value: src/parlant/api/
+  note: REST API endpoints and schemas
+  fact_id: fact::c85dd038ab88be0294d087fe
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    source_section: core_modules.client
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.client
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    excerpt: src/parlant/client/
+  object_value: src/parlant/client/
+  note: Python client SDK
+  fact_id: fact::803db35163fd2c422fbe67e5
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    source_section: core_modules.core
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.core
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    excerpt: src/parlant/core/
+  object_value: src/parlant/core/
+  note: 'Domain logic - agents, sessions, guidelines, journeys. Submodules: agents,
+    sessions, guidelines, journeys, events, tools, glossary, canned_responses'
+  fact_id: fact::723f3f6aedd220bdb58dd064
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
@@ -172,6 +242,24 @@ facts:
   object_value: mem0
   note: related repository
   fact_id: fact::92efc41af5588912b5431316
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: external_tool
+  confidence: 0.7
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    source_section: sdk_usage.client_init
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: sdk_usage.client_init
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    excerpt: from parlant import Client
+  object_node_id: external_tool::parlant
+  note: Client Init SDK; from parlant import Client
+  object_value: parlant
+  fact_id: fact::1b5f30194bf6e31f80b1fb10
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept

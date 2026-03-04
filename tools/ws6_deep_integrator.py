@@ -743,6 +743,48 @@ def split_inline_terms(text: str) -> list[str]:
     return [term for term in terms if term]
 
 
+def sanitize_external_tool_name(value: str) -> str:
+    candidate = value.strip().strip("'\"`")
+    if not candidate:
+        return ""
+    while candidate and candidate[-1] in ",.;:)":
+        candidate = candidate[:-1]
+    for marker in ("[", "==", ">=", "<=", "~=", "!=", "<", ">", "@"):
+        if marker in candidate:
+            candidate = candidate.split(marker, 1)[0]
+    cleaned = "".join(ch for ch in candidate if ch.isalnum() or ch in "._-")
+    return cleaned.strip("._-")
+
+
+def infer_external_tool_from_text(value: str) -> str:
+    lines = normalized_lines(value)
+    for line in lines:
+        tokens = line.split()
+        if not tokens:
+            continue
+
+        for idx, token in enumerate(tokens[:-1]):
+            lowered = token.lower()
+            if lowered in {"install", "add"}:
+                inferred = sanitize_external_tool_name(tokens[idx + 1])
+                if inferred:
+                    return inferred
+
+        lowered_line = line.lower()
+        if lowered_line.startswith("from ") and " import " in lowered_line:
+            module = line[5:].split(" import ", 1)[0].strip()
+            inferred = sanitize_external_tool_name(module.split(".", 1)[0])
+            if inferred:
+                return inferred
+        if lowered_line.startswith("import "):
+            module = line[7:].split(" as ", 1)[0].split(",", 1)[0].strip()
+            inferred = sanitize_external_tool_name(module.split(".", 1)[0])
+            if inferred:
+                return inferred
+
+    return ""
+
+
 def extract_architecture_facts(section: Any, source_file: str, as_of: str) -> list[dict[str, Any]]:
     facts: list[dict[str, Any]] = []
     payload = ensure_dict(section)
@@ -965,6 +1007,152 @@ def extract_cli_argument_facts(section: Any, source_file: str, as_of: str) -> li
                 source_section=section_ref,
                 extraction_mode="narrative",
                 evidence=make_evidence(source_file, section_ref, flag),
+            )
+        )
+
+    return facts
+
+
+def extract_core_modules_facts(section: Any, source_file: str, as_of: str) -> list[dict[str, Any]]:
+    payload = ensure_dict(section)
+    facts: list[dict[str, Any]] = []
+    seen_paths: set[str] = set()
+
+    for module_key in sorted(payload.keys(), key=lambda item: str(item)):
+        row = ensure_dict(payload.get(module_key))
+        path_value = ensure_string(row.get("path"))
+        if not path_value:
+            continue
+
+        dedupe_key = path_value.lower()
+        if dedupe_key in seen_paths:
+            continue
+        seen_paths.add(dedupe_key)
+
+        description = ensure_string(row.get("description"))
+        submodules = ensure_string_list(row.get("submodules"))
+
+        note = description
+        if submodules:
+            joined = ", ".join(submodules)
+            note = f"{description.rstrip('.')}." if description else ""
+            note = f"{note} Submodules: {joined}".strip()
+
+        section_ref = f"core_modules.{module_key}"
+        facts.append(
+            make_fact(
+                fact_type="component",
+                predicate="has_component",
+                object_kind="path",
+                object_value=path_value,
+                note=note,
+                confidence=0.74,
+                as_of=as_of,
+                source_file=source_file,
+                source_section=section_ref,
+                extraction_mode="narrative",
+                evidence=make_evidence(source_file, section_ref, path_value),
+            )
+        )
+
+    return facts
+
+
+def extract_sdk_usage_facts(section: Any, source_file: str, as_of: str) -> list[dict[str, Any]]:
+    payload = ensure_dict(section)
+    facts: list[dict[str, Any]] = []
+    seen_tools: set[str] = set()
+
+    for key in sorted(payload.keys(), key=lambda item: str(item)):
+        value = payload[key]
+        key_text = ensure_string(key)
+        section_ref = f"sdk_usage.{key_text}" if key_text else "sdk_usage"
+
+        package = ""
+        summary_line = ""
+
+        if isinstance(value, dict):
+            package = ensure_string(value.get("package"))
+            example = ensure_string(value.get("example"))
+            if example:
+                example_lines = normalized_lines(example)
+                if example_lines:
+                    summary_line = example_lines[0]
+            if not package and example:
+                package = infer_external_tool_from_text(example)
+        elif isinstance(value, str):
+            text_lines = normalized_lines(value)
+            if text_lines:
+                summary_line = text_lines[0]
+            package = infer_external_tool_from_text(value)
+
+        package = sanitize_external_tool_name(package)
+        if not package:
+            continue
+
+        tool_key = package.lower()
+        if tool_key in seen_tools:
+            continue
+        seen_tools.add(tool_key)
+
+        label = key_text.replace("_", " ").strip().title() if key_text else "SDK"
+        note = normalize_note_parts([f"{label} SDK", summary_line])
+
+        fact = make_fact(
+            fact_type="extension_point",
+            predicate="has_extension_point",
+            object_kind="external_tool",
+            object_value=package,
+            object_node_id=f"external_tool::{package}",
+            note=note,
+            confidence=0.7,
+            as_of=as_of,
+            source_file=source_file,
+            source_section=section_ref,
+            extraction_mode="narrative",
+            evidence=make_evidence(source_file, section_ref, summary_line or package),
+        )
+        fact["object_value"] = package
+        facts.append(fact)
+
+    return facts
+
+
+def extract_supplementary_files_facts(section: Any, source_file: str, as_of: str) -> list[dict[str, Any]]:
+    rows = ensure_list_of_dicts(section)
+    facts: list[dict[str, Any]] = []
+    seen_paths: set[str] = set()
+
+    for idx, row in enumerate(rows):
+        path_value = ensure_string(row.get("path")) or ensure_string(row.get("file"))
+        if not path_value:
+            continue
+
+        path_key = path_value.lower()
+        if path_key in seen_paths:
+            continue
+        seen_paths.add(path_key)
+
+        purpose = ensure_string(row.get("purpose")) or ensure_string(row.get("description"))
+        file_type = ensure_string(row.get("type"))
+        note = f"[{file_type}] {purpose}".strip() if file_type and purpose else purpose
+        if file_type and not purpose:
+            note = f"[{file_type}]"
+
+        section_ref = f"supplementary_files[{idx}]"
+        facts.append(
+            make_fact(
+                fact_type="component",
+                predicate="has_component",
+                object_kind="path",
+                object_value=path_value,
+                note=note,
+                confidence=0.72,
+                as_of=as_of,
+                source_file=source_file,
+                source_section=section_ref,
+                extraction_mode="narrative",
+                evidence=make_evidence(source_file, section_ref, path_value),
             )
         )
 
@@ -2189,6 +2377,9 @@ def extract_narrative_facts(
         "key_features": extract_key_features_facts,
         "key_files": extract_key_files_facts,
         "cli_arguments": extract_cli_argument_facts,
+        "core_modules": extract_core_modules_facts,
+        "sdk_usage": extract_sdk_usage_facts,
+        "supplementary_files": extract_supplementary_files_facts,
         "type": extract_repo_type_facts,
         "primary_language": extract_primary_language_facts,
         "languages": extract_languages_facts,
