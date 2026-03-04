@@ -16,6 +16,7 @@ Default mode is execution and supervision, not exploration.
 - Historical phase tracker and evidence narrative: `master_graph_merge_progress.yaml`.
 - Canonical generated artifacts: `master_index.yaml` and `master_graph.yaml`.
 - Canonical update path: `inputs/ws5/ws5_input_manifest.yaml` -> `tools/ws5_remote_ingestion.py` -> WS1/trust/shard gates -> `tools/ws4_master_compiler.py`.
+- Deep narrative output contract: `contracts/deep_narrative_contract.md` (governs all WS6-compatible deep YAML production).
 - `kgraph-repos` is non-canonical (draft/raw discovery only) and must be mapped through WS1/WS5 pipeline before master compile.
 
 ## Intake Enforcement
