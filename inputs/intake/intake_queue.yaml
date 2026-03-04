@@ -1,6 +1,6 @@
 artifact_type: intake_repo_queue
 contract_version: 1.0.0-intake
-generated_at_utc: '2026-03-04T16:04:35Z'
+generated_at_utc: '2026-03-04T16:42:20Z'
 source:
   catalog_file: master_repo_list.yaml
   master_index_file: master_index.yaml
@@ -10,8 +10,8 @@ summary:
   source_rows_missing_github_url: 5
   source_rows_invalid_full_name: 0
   deduped_entries_total: 117
-  already_canonical_count: 63
-  queued_count: 54
+  already_canonical_count: 67
+  queued_count: 50
 policies:
   scan_mode_default: shallow_first
   clone_strategy: clone_on_demand
@@ -160,9 +160,9 @@ entries:
 - queue_id: intake::borgbackup/borg
   github_full_name: borgbackup/borg
   html_url: https://github.com/borgbackup/borg
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - uncat_repos
@@ -202,9 +202,9 @@ entries:
 - queue_id: intake::capistrano/capistrano
   github_full_name: capistrano/capistrano
   html_url: https://github.com/capistrano/capistrano
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - uncat_repos
@@ -471,9 +471,9 @@ entries:
 - queue_id: intake::gohugoio/hugo
   github_full_name: gohugoio/hugo
   html_url: https://github.com/gohugoio/hugo
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: ssh_repos
   source_categories:
   - go_repos
@@ -1354,9 +1354,9 @@ entries:
 - queue_id: intake::spotify/annoy
   github_full_name: spotify/annoy
   html_url: https://github.com/spotify/annoy
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - vector_db

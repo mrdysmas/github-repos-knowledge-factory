@@ -1,6 +1,6 @@
 version: '1.0'
 generated: 2026-02-21
-total_repos: 29
+total_repos: 33
 categories:
   tunneling:
     description: Reverse tunneling and port forwarding tools
@@ -67,6 +67,22 @@ categories:
     description: 'Remote-ingested category: snippet_collection'
     repos:
     - 1loc
+  deployment_automation:
+    description: 'Remote-ingested category: deployment_automation'
+    repos:
+    - capistrano
+  nearest_neighbor_search:
+    description: 'Remote-ingested category: nearest_neighbor_search'
+    repos:
+    - annoy
+  backup_tool:
+    description: 'Remote-ingested category: backup_tool'
+    repos:
+    - borg
+  static_site_generator:
+    description: 'Remote-ingested category: static_site_generator'
+    repos:
+    - hugo
 repos:
   awesome-tunneling:
     category: documentation
@@ -217,6 +233,30 @@ repos:
     summary: Phase 2B calibration intake for phuocng/1loc. Markdown-heavy snippet
       collection with nontraditional source layout.
     language: javascript
+  capistrano:
+    category: deployment_automation
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/uncat_repos/capistrano-master
+    summary: Phase 2B SB2 intake for capistrano/capistrano. Ruby deployment automation
+      framework built around SSHKit and Rake tasks.
+    language: ruby
+  annoy:
+    category: nearest_neighbor_search
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/vector_db/annoy-main
+    summary: Phase 2B SB2 intake for spotify/annoy. Approximate nearest-neighbor library
+      in C++ with Python bindings.
+    language: cpp
+  borg:
+    category: backup_tool
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/uncat_repos/borg-master
+    summary: Phase 2B SB2 intake for borgbackup/borg. Deduplicating backup tool with
+      Python CLI and native acceleration modules.
+    language: python
+  hugo:
+    category: static_site_generator
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/go_repos/hugo-master
+    summary: Phase 2B SB2 intake for gohugoio/hugo. Static site generator in Go with
+      templating, content pipeline, and modules.
+    language: go
 languages:
   rust:
   - bore

@@ -1,0 +1,202 @@
+name: capistrano
+node_id: repo::capistrano/capistrano
+github_full_name: capistrano/capistrano
+html_url: https://github.com/capistrano/capistrano
+source: remote_metadata
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/deep/capistrano__capistrano.yaml
+  as_of: '2026-03-04'
+directory: /Users/szilaa/scripts/ext_sources/github_repos/uncat_repos/capistrano-master
+category: deployment_automation
+primary_language: ruby
+languages:
+- ruby
+- rake
+- markdown
+tech_stack:
+- Ruby
+- Rake task system
+- SSHKit backend execution
+- Airbrussh formatter
+architecture:
+  module_breakdown:
+  - module: bin/cap
+    responsibility: Executable shim that boots Capistrano application.
+    key_files:
+    - bin/cap
+  - module: lib/capistrano/application.rb
+    responsibility: Custom Rake application, CLI option handling, and stage/task routing.
+    key_files:
+    - lib/capistrano/application.rb
+  - module: lib/capistrano/configuration.rb
+    responsibility: Central configuration store, server role registry, backend setup, and plugin installation.
+    key_files:
+    - lib/capistrano/configuration.rb
+  - module: lib/capistrano/dsl.rb
+    responsibility: End-user DSL surface (on, invoke, task helpers, filters).
+    key_files:
+    - lib/capistrano/dsl.rb
+  - module: lib/capistrano/tasks/deploy.rake
+    responsibility: Core deployment workflow tasks (check, symlink, cleanup, rollback hooks).
+    key_files:
+    - lib/capistrano/tasks/deploy.rake
+  - module: lib/capistrano/scm/*.rb
+    responsibility: SCM adapters and resolver logic (git, svn, hg).
+    key_files:
+    - lib/capistrano/scm/git.rb
+    - lib/capistrano/scm_resolver.rb
+  components:
+  - name: stage-aware task execution
+    description: Top-level tasks are automatically prefixed with selected deployment stage.
+  - name: role/host filter pipeline
+    description: Command-line and config filters limit execution to selected hosts/roles.
+  - name: plugin installer
+    description: Plugins register defaults, hooks, and tasks into deployment lifecycle.
+  data_flow: |
+    1. cap starts Capistrano::Application (Rake subclass).
+    2. CLI options and top-level task are parsed; stage is inferred and prepended.
+    3. Defaults and stage config files are loaded from Capfile/deploy.rb/stage files.
+    4. Backend (SSHKit) and SCM plugin are configured.
+    5. Deployment tasks run across filtered hosts/roles.
+  key_abstractions:
+  - name: Capistrano::Configuration
+    purpose: Single source of runtime variables, servers, backend, and filters.
+  - name: Capistrano::DSL
+    purpose: Task authoring helpers and execution model over remote hosts.
+  - name: Capistrano::Plugin
+    purpose: Extensibility contract for defaults/hooks/tasks.
+key_features:
+- Stage-based deployments (production, staging, etc.) with per-stage config files.
+- Parallel SSH task execution via SSHKit coordinators.
+- Role and host filtering from CLI and config.
+- Plugin system for SCM and deployment ecosystem extensions.
+- Built-in dry-run and config-variable inspection modes.
+implementation_patterns:
+- pattern: Rake application subclassing
+  description: Capistrano customizes task loading and option parsing by subclassing Rake::Application.
+  location: lib/capistrano/application.rb
+  file: lib/capistrano/application.rb
+- pattern: DSL-driven orchestration
+  description: Deployment logic is represented as composable tasks and hooks through Ruby DSL.
+  location: lib/capistrano/dsl.rb
+  file: lib/capistrano/dsl.rb
+- pattern: Backend abstraction over SSH
+  description: SSHKit backend selected/configured at runtime from config values.
+  location: lib/capistrano/configuration.rb
+  file: lib/capistrano/configuration.rb
+- pattern: Immutable load defaults guard
+  description: Prevents late plugin loading mistakes in deploy.rb/stage files.
+  location: lib/capistrano/immutable_task.rb
+  file: lib/capistrano/immutable_task.rb
+configuration:
+  options:
+  - key: application
+    default: required by user template
+    description: Deployment application name used in paths and labels.
+  - key: repo_url
+    default: required by user template
+    description: SCM repository URL.
+  - key: deploy_to
+    default: /var/www/#{application}
+    description: Remote root deployment path.
+  - key: branch
+    default: master
+    description: SCM branch/revision selection.
+  - key: linked_files
+    default: []
+    description: Files symlinked from shared path into each release.
+  - key: linked_dirs
+    default: []
+    description: Directories symlinked from shared path into each release.
+  - key: keep_releases
+    default: '5'
+    description: Release retention count for cleanup.
+  - key: format
+    default: airbrussh
+    description: Output formatter.
+  - key: log_level
+    default: debug
+    description: SSHKit output verbosity.
+  - key: pty
+    default: false
+    description: Enable PTY allocation for remote commands.
+cli_arguments:
+- flag: --dry-run
+  description: Simulate task execution without running remote actions.
+- flag: --roles
+  description: Restrict run to matching server roles.
+- flag: --hosts
+  description: Restrict run to specific host list.
+- flag: --print-config-variables
+  description: Print resolved variables before deploy tasks.
+- flag: -T
+  description: Show available tasks.
+- flag: -V
+  description: Show Capistrano and Rake versions.
+cli_commands:
+- command: bundle exec cap install
+  description: Generate Capfile/deploy templates in project.
+- command: bundle exec cap -T
+  description: List tasks.
+- command: bundle exec cap production deploy
+  description: Execute deploy for production stage.
+- command: bundle exec cap production deploy --dry-run
+  description: Simulate production deploy.
+- command: bundle exec cap production deploy --prereqs
+  description: List task prerequisites for deploy.
+api_surface:
+  public_functions:
+  - name: Capistrano::Application#run
+    purpose: Boots custom rake application lifecycle.
+    location: lib/capistrano/application.rb
+  - name: Capistrano::Configuration#configure_backend
+    purpose: Applies backend/output/ssh options to SSHKit.
+    location: lib/capistrano/configuration.rb
+  - name: Capistrano::DSL#on
+    purpose: Execute block over filtered host coordinator.
+    location: lib/capistrano/dsl.rb
+  - name: Capistrano::Configuration#install_plugin
+    purpose: Register plugin defaults/hooks/tasks.
+    location: lib/capistrano/configuration.rb
+testing:
+  framework: RSpec test suite (bundle exec rspec) plus task-level behavior checks.
+  key_test_files:
+  - spec/
+  coverage_areas:
+  - DSL behavior and filters
+  - plugin/scm resolution
+  - task execution and stage loading
+key_files:
+- path: bin/cap
+  description: Executable entrypoint.
+- path: lib/capistrano/application.rb
+  description: CLI and app runtime wiring.
+- path: lib/capistrano/configuration.rb
+  description: Core config + backend integration.
+- path: lib/capistrano/dsl.rb
+  description: Deployment DSL methods.
+- path: lib/capistrano/defaults.rb
+  description: Default variable set and validations.
+- path: lib/capistrano/tasks/deploy.rake
+  description: Canonical deploy lifecycle tasks.
+- path: lib/capistrano/templates/deploy.rb.erb
+  description: Generated project-level deploy template.
+- path: README.md
+  description: User-oriented workflow and command examples.
+core_modules:
+  app_runtime:
+    path: lib/capistrano/application.rb
+    description: Capistrano-specific Rake application.
+  config_runtime:
+    path: lib/capistrano/configuration.rb
+    description: Variable/host/backend orchestration.
+  dsl_layer:
+    path: lib/capistrano/dsl.rb
+    description: Task authoring surface.
+  deploy_tasks:
+    path: lib/capistrano/tasks/deploy.rake
+    description: Deployment pipeline tasks.
+  scm_layer:
+    path: lib/capistrano/scm/
+    description: SCM integrations.

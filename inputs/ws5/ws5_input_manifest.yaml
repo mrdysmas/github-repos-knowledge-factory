@@ -620,3 +620,160 @@ repos:
     source_commit: 14b481cf60dff1620ab1bb99a43b1f68068cdd9b
     default_branch: master
     observed_at_utc: '2026-03-04T15:54:38Z'
+- name: capistrano
+  github_full_name: capistrano/capistrano
+  html_url: https://github.com/capistrano/capistrano
+  target_shard: ssh_repos
+  source: remote_metadata
+  category: deployment_automation
+  summary: >
+    Phase 2B SB2 intake for capistrano/capistrano.
+    Ruby deployment automation framework built around SSHKit and Rake tasks.
+  core_concepts:
+  - ruby deployment automation
+  - rake task orchestration
+  key_entry_points:
+  - README.md
+  - lib/
+  - exe/cap
+  build_run:
+    language: ruby
+    build: bundle exec rake build
+    test: bundle exec rspec
+  as_of: '2026-03-04T16:29:45Z'
+  local_cache_dir: null
+  directory: /Users/szilaa/scripts/ext_sources/github_repos/uncat_repos/capistrano-master
+  file_stem: capistrano__capistrano
+  remote:
+    provider: github
+    mode: metadata
+    endpoint: /repos/capistrano/capistrano
+    fetched_at_utc: '2026-03-04T16:29:45Z'
+  intake:
+    pilot_batch_id: PHASE-2B-SB2
+    repo_id: repo::capistrano/capistrano
+    queue_id: intake::capistrano/capistrano
+    intake_path: /Users/szilaa/scripts/ext_sources/github_repos/uncat_repos/capistrano-master
+    domain_hint: deployment_automation
+    source_mode: local_clone
+    source_commit: dfe3133012d7d7d4fcd3f34d2790bcaeb4e8c334
+    default_branch: master
+    observed_at_utc: '2026-03-04T16:29:45Z'
+- name: annoy
+  github_full_name: spotify/annoy
+  html_url: https://github.com/spotify/annoy
+  target_shard: ssh_repos
+  source: remote_metadata
+  category: nearest_neighbor_search
+  summary: >
+    Phase 2B SB2 intake for spotify/annoy.
+    Approximate nearest-neighbor library in C++ with Python bindings.
+  core_concepts:
+  - approximate nearest-neighbor indexing
+  - python bindings over native core
+  key_entry_points:
+  - README.rst
+  - src/
+  - setup.py
+  build_run:
+    language: cpp
+    build: python3 setup.py build
+    test: python3 -m pytest
+  as_of: '2026-03-04T16:29:45Z'
+  local_cache_dir: null
+  directory: /Users/szilaa/scripts/ext_sources/github_repos/vector_db/annoy-main
+  file_stem: spotify__annoy
+  remote:
+    provider: github
+    mode: metadata
+    endpoint: /repos/spotify/annoy
+    fetched_at_utc: '2026-03-04T16:29:45Z'
+  intake:
+    pilot_batch_id: PHASE-2B-SB2
+    repo_id: repo::spotify/annoy
+    queue_id: intake::spotify/annoy
+    intake_path: /Users/szilaa/scripts/ext_sources/github_repos/vector_db/annoy-main
+    domain_hint: nearest_neighbor_search
+    source_mode: local_clone
+    source_commit: 379f744667aba6b40ba3db8a07678df173a88f74
+    default_branch: main
+    observed_at_utc: '2026-03-04T16:29:45Z'
+- name: borg
+  github_full_name: borgbackup/borg
+  html_url: https://github.com/borgbackup/borg
+  target_shard: ssh_repos
+  source: remote_metadata
+  category: backup_tool
+  summary: >
+    Phase 2B SB2 intake for borgbackup/borg.
+    Deduplicating backup tool with Python CLI and native acceleration modules.
+  core_concepts:
+  - deduplicated encrypted backups
+  - archive and repository management
+  key_entry_points:
+  - README.rst
+  - src/borg
+  - docs/
+  build_run:
+    language: python
+    build: python3 -m build
+    test: python3 -m pytest
+  as_of: '2026-03-04T16:29:45Z'
+  local_cache_dir: null
+  directory: /Users/szilaa/scripts/ext_sources/github_repos/uncat_repos/borg-master
+  file_stem: borgbackup__borg
+  remote:
+    provider: github
+    mode: metadata
+    endpoint: /repos/borgbackup/borg
+    fetched_at_utc: '2026-03-04T16:29:45Z'
+  intake:
+    pilot_batch_id: PHASE-2B-SB2
+    repo_id: repo::borgbackup/borg
+    queue_id: intake::borgbackup/borg
+    intake_path: /Users/szilaa/scripts/ext_sources/github_repos/uncat_repos/borg-master
+    domain_hint: backup_tool
+    source_mode: local_clone
+    source_commit: 1c05ab32dbe84af0031eaf74c6424b56efc88aab
+    default_branch: master
+    observed_at_utc: '2026-03-04T16:29:45Z'
+- name: hugo
+  github_full_name: gohugoio/hugo
+  html_url: https://github.com/gohugoio/hugo
+  target_shard: ssh_repos
+  source: remote_metadata
+  category: static_site_generator
+  summary: >
+    Phase 2B SB2 intake for gohugoio/hugo.
+    Static site generator in Go with templating, content pipeline, and modules.
+  core_concepts:
+  - static site generation
+  - go-based content pipeline
+  key_entry_points:
+  - README.md
+  - main.go
+  - commands/
+  - hugolib/
+  build_run:
+    language: go
+    build: go build ./...
+    test: go test ./...
+  as_of: '2026-03-04T16:29:45Z'
+  local_cache_dir: null
+  directory: /Users/szilaa/scripts/ext_sources/github_repos/go_repos/hugo-master
+  file_stem: gohugoio__hugo
+  remote:
+    provider: github
+    mode: metadata
+    endpoint: /repos/gohugoio/hugo
+    fetched_at_utc: '2026-03-04T16:29:45Z'
+  intake:
+    pilot_batch_id: PHASE-2B-SB2
+    repo_id: repo::gohugoio/hugo
+    queue_id: intake::gohugoio/hugo
+    intake_path: /Users/szilaa/scripts/ext_sources/github_repos/go_repos/hugo-master
+    domain_hint: static_site_generator
+    source_mode: local_clone
+    source_commit: d4f2122dea17736e8deef30b40872c0e6894c88f
+    default_branch: master
+    observed_at_utc: '2026-03-04T16:29:45Z'

@@ -1,0 +1,45 @@
+name: annoy
+node_id: repo::spotify/annoy
+github_full_name: spotify/annoy
+html_url: https://github.com/spotify/annoy
+source: remote_metadata
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/repos/spotify__annoy.yaml
+  as_of: '2026-03-04T16:29:45Z'
+directory: /Users/szilaa/scripts/ext_sources/github_repos/vector_db/annoy-main
+category: nearest_neighbor_search
+summary: Phase 2B SB2 intake for spotify/annoy. Approximate nearest-neighbor library
+  in C++ with Python bindings.
+core_concepts:
+- approximate nearest-neighbor indexing
+- python bindings over native core
+key_entry_points:
+- README.rst
+- src/
+- setup.py
+build_run:
+  language: cpp
+  build: python3 setup.py build
+  test: python3 -m pytest
+local_cache_dir: null
+extras:
+  intake:
+    pilot_batch_id: PHASE-2B-SB2
+    repo_id: repo::spotify/annoy
+    queue_id: intake::spotify/annoy
+    intake_path: /Users/szilaa/scripts/ext_sources/github_repos/vector_db/annoy-main
+    domain_hint: nearest_neighbor_search
+    source_mode: local_clone
+    source_commit: 379f744667aba6b40ba3db8a07678df173a88f74
+    default_branch: main
+    observed_at_utc: '2026-03-04T16:29:45Z'
+  remote:
+    provider: github
+    mode: metadata
+    endpoint: /repos/spotify/annoy
+    fetched_at_utc: '2026-03-04T16:29:45Z'
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
