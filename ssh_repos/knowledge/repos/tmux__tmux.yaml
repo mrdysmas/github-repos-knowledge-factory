@@ -1,0 +1,44 @@
+name: tmux
+node_id: repo::tmux/tmux
+github_full_name: tmux/tmux
+html_url: https://github.com/tmux/tmux
+source: remote_metadata
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/repos/tmux__tmux.yaml
+  as_of: '2026-03-04T15:54:38Z'
+directory: /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/tmux-master
+category: terminal_multiplexer
+summary: Phase 2B calibration intake for tmux/tmux. Terminal multiplexer, C codebase,
+  man-page documentation.
+core_concepts:
+- terminal multiplexer
+- tmux architecture
+key_entry_points:
+- README
+- tmux.1
+build_run:
+  language: c
+  build: ./configure && make
+  test: make check
+local_cache_dir: null
+extras:
+  intake:
+    pilot_batch_id: PHASE-2B-SB1
+    repo_id: repo::tmux/tmux
+    queue_id: intake::tmux/tmux
+    intake_path: /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/tmux-master
+    domain_hint: terminal_multiplexer
+    source_mode: local_clone
+    source_commit: d32088b58a18db15d2a6297858c3ec4e412e2aaa
+    default_branch: master
+    observed_at_utc: '2026-03-04T15:54:38Z'
+  remote:
+    provider: github
+    mode: metadata
+    endpoint: /repos/tmux/tmux
+    fetched_at_utc: '2026-03-04T15:54:38Z'
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false

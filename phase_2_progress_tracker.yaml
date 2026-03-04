@@ -1,10 +1,10 @@
 version: 1
-as_of_utc: "2026-03-04T05:10:20Z"
+as_of_utc: "2026-03-04T16:06:26Z"
 
 phase:
   number: "2"
   name: "Sequential Extractor Coverage Then Calibration"
-  status: "PENDING"
+  status: "STAGE_2B"
   workflow: "PENDING -> STAGE_2A -> STAGE_2A_COMPLETE -> STAGE_2B -> COMPLETE"
   date_initiated: "2026-03-04"
   date_started: null
@@ -86,7 +86,7 @@ stage_2a:
 
 stage_2b:
   name: "Calibration Batch"
-  status: "PENDING"
+  status: "IN_PROGRESS"
   objective: "Stress-test structural diversity handling on 8-12 new repos after Phase 2A completion."
   scope:
     repo_count_target: "8-12"
@@ -143,10 +143,10 @@ key_metrics:
     actual: 0
   - name: "phase_2b_calibration_repo_count"
     target: "8-12"
-    actual: null
+    actual: 5
   - name: "phase_2b_blocking_mismatches_count"
     target: 0
-    actual: null
+    actual: 0
 
 execution_checklist:
   - "[ ] Stage 2A cycle 1: implement 1-2 section extractors and validate."
@@ -198,9 +198,64 @@ results:
       unmapped_sections_lte_35: true
       deep_facts_gt_1908: true
       required_tests_pass: true
-  phase_2b: null
-  completion_status: null
-  issues_encountered: []
+  phase_2b:
+    status: "IN_PROGRESS"
+    sb1:
+      batch_id: "PHASE-2B-SB1"
+      status: "COMPLETE"
+      completed_at_utc: "2026-03-04T16:06:26Z"
+      repos_ingested_count: 5
+      repos:
+        - tmux/tmux
+        - pgvector/pgvector
+        - wez/wezterm
+        - xqsit94/glm
+        - phuocng/1loc
+      metrics_snapshot:
+        deep_facts:
+          before: 2019
+          after: 2019
+          delta: 0
+        unmapped_sections_count:
+          before: 33
+          after: 33
+          delta: 0
+          new_unmapped_sections: 0
+        ws6_validation:
+          blocking_mismatches_count: 0
+          unknown_predicates_count: 0
+      per_repo_deep_fact_counts:
+        tmux/tmux: 0
+        pgvector/pgvector: 0
+        wez/wezterm: 0
+        xqsit94/glm: 0
+        phuocng/1loc: 0
+      analysis_runtime:
+        agent: "codex"
+        model: "gpt-5"
+        model_version: null
+        run_id: null
+      query_master_repo_presence:
+        - tmux/tmux
+        - pgvector/pgvector
+        - wez/wezterm
+        - xqsit94/glm
+        - phuocng/1loc
+      gates:
+        check_intake_queue_sync: "PASS"
+        ws1_contract_validator_first_class: "PASS"
+        trust_gates_llm: "PASS"
+        trust_gates_ssh: "PASS"
+        ws6_deep_integrator_validation: "PASS"
+        query_master_stats: "PASS"
+        ws6_test_suite: "PASS"
+        intake_queue_sync_test_suite: "PASS"
+      notes:
+        - "Queue sync required --fix reconciliation because SB1 repos became canonical during intake."
+        - "All five SB1 repos currently have zero deep facts; recorded as a valid calibration finding."
+  completion_status: "IN_PROGRESS"
+  issues_encountered:
+    - "Resolved pre-existing Flowise deep/shallow html_url casing mismatch before WS4 resume."
 
 findings: ""
 

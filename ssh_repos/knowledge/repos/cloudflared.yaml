@@ -6,21 +6,22 @@ source: remote_metadata
 provenance:
   shard: ssh_repos
   source_file: ssh_repos/knowledge/repos/cloudflared.yaml
-  as_of: '2026-02-25'
+  as_of: '2026-02-24'
 directory: remote::cloudflare/cloudflared
 category: network_infrastructure
-summary: Cloudflare Tunnel client for exposing private services through Cloudflare Zero Trust.
+summary: Cloudflare Tunnel client for exposing private services through Cloudflare
+  Zero Trust.
 core_concepts:
-  - Cloudflare Tunnel client
-  - Zero Trust service exposure
+- Cloudflare Tunnel client
+- Zero Trust service exposure
 key_entry_points:
-  - cmd/cloudflared
-  - README.md
+- cmd/cloudflared
+- README.md
 build_run:
   language: go
   build: go build ./cmd/cloudflared
   test: go test ./...
-local_cache_dir:
+local_cache_dir: null
 extras:
   remote:
     provider: github

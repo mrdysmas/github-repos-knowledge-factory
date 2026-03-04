@@ -1,6 +1,6 @@
 artifact_type: intake_repo_queue
 contract_version: 1.0.0-intake
-generated_at_utc: '2026-03-04T15:09:15Z'
+generated_at_utc: '2026-03-04T16:04:35Z'
 source:
   catalog_file: master_repo_list.yaml
   master_index_file: master_index.yaml
@@ -10,8 +10,8 @@ summary:
   source_rows_missing_github_url: 5
   source_rows_invalid_full_name: 0
   deduped_entries_total: 117
-  already_canonical_count: 58
-  queued_count: 59
+  already_canonical_count: 63
+  queued_count: 54
 policies:
   scan_mode_default: shallow_first
   clone_strategy: clone_on_demand
@@ -1118,9 +1118,9 @@ entries:
 - queue_id: intake::pgvector/pgvector
   github_full_name: pgvector/pgvector
   html_url: https://github.com/pgvector/pgvector
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - vector_db
@@ -1132,9 +1132,9 @@ entries:
 - queue_id: intake::phuocng/1loc
   github_full_name: phuocng/1loc
   html_url: https://github.com/phuocng/1loc
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - uncat_repos
@@ -1480,9 +1480,9 @@ entries:
 - queue_id: intake::tmux/tmux
   github_full_name: tmux/tmux
   html_url: https://github.com/tmux/tmux
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - cli_repos
@@ -1536,9 +1536,9 @@ entries:
 - queue_id: intake::wez/wezterm
   github_full_name: wez/wezterm
   html_url: https://github.com/wez/wezterm
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - cli_repos
@@ -1564,9 +1564,9 @@ entries:
 - queue_id: intake::xqsit94/glm
   github_full_name: xqsit94/glm
   html_url: https://github.com/xqsit94/glm
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - cli_repos

@@ -1,20 +1,21 @@
 artifact_type: ws4_master_index
-generated_at_utc: '2026-02-25T00:00:00Z'
+generated_at_utc: '2026-03-04T15:54:38Z'
 contract_version: 1.0.0-ws1
 metadata:
   source_shards:
   - llm_repos
   - ssh_repos
-  total_repos: 60
+  total_repos: 65
   repo_counts_by_shard:
     llm_repos: 36
-    ssh_repos: 24
+    ssh_repos: 29
   category_counts:
     agent_cli: 2
     agent_framework: 1
     agent_frameworks: 3
     agent_orchestration: 1
     agent_platform: 1
+    cli_wrapper: 1
     data_pipelines: 2
     documentation: 4
     educational: 2
@@ -23,8 +24,12 @@ metadata:
     inference_serving: 6
     network_infrastructure: 2
     network_utils: 1
+    postgres_extension: 1
     rag_frameworks: 6
     remote_access: 2
+    snippet_collection: 1
+    terminal_emulator: 1
+    terminal_multiplexer: 1
     terminal_ui: 1
     tunneling: 9
     ui_tools: 4
@@ -200,7 +205,7 @@ repos:
   provenance:
     shard: merged
     source_file: llm_repos/knowledge/repos/anthropics__claude-code.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-02-24T19:46:56Z'
   local_cache_dir: null
   extras:
     directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/anthropics__claude-code
@@ -322,7 +327,7 @@ repos:
   provenance:
     shard: merged
     source_file: ssh_repos/knowledge/repos/cloudflared.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-02-24'
   local_cache_dir: null
   extras:
     directory: remote::cloudflare/cloudflared
@@ -899,7 +904,7 @@ repos:
         etc.) for client-server communication
 - node_id: repo::flowiseai/flowise
   github_full_name: flowiseai/flowise
-  html_url: https://github.com/flowiseai/flowise
+  html_url: https://github.com/FlowiseAI/Flowise
   source: compiled_master
   name: Flowise
   category: workflow_builder
@@ -918,7 +923,7 @@ repos:
   provenance:
     shard: merged
     source_file: llm_repos/knowledge/repos/flowiseai__flowise.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-02-24T19:46:56Z'
   local_cache_dir: null
   extras:
     directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/FlowiseAI__Flowise
@@ -1104,7 +1109,7 @@ repos:
   provenance:
     shard: merged
     source_file: llm_repos/knowledge/repos/gin-gonic__gin.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-02-24T19:46:56Z'
   local_cache_dir: null
   extras:
     directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/gin-gonic__gin
@@ -2062,7 +2067,7 @@ repos:
   provenance:
     shard: merged
     source_file: llm_repos/knowledge/repos/lancedb__lancedb.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-02-24T19:46:56Z'
   local_cache_dir: null
   extras:
     directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/lancedb__lancedb
@@ -2227,7 +2232,7 @@ repos:
   provenance:
     shard: merged
     source_file: llm_repos/knowledge/repos/langgenius__dify.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-02-24T19:46:56Z'
   local_cache_dir: null
   extras:
     directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/langgenius__dify
@@ -3301,7 +3306,7 @@ repos:
   provenance:
     shard: merged
     source_file: llm_repos/knowledge/repos/openai__codex.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-02-24T19:46:56Z'
   local_cache_dir: null
   extras:
     directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/openai__codex
@@ -3496,6 +3501,95 @@ repos:
     - Live RAG with document updates
     - Event-driven alerting
     - Streaming analytics
+- node_id: repo::pgvector/pgvector
+  github_full_name: pgvector/pgvector
+  html_url: https://github.com/pgvector/pgvector
+  source: compiled_master
+  name: pgvector
+  category: postgres_extension
+  summary: Phase 2B calibration intake for pgvector/pgvector. PostgreSQL extension
+    in C with SQL migration scripts.
+  core_concepts:
+  - postgres extension
+  - vector similarity search
+  key_entry_points:
+  - README.md
+  - src/
+  - sql/
+  build_run:
+    language: c
+    build: make
+    test: make installcheck
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/pgvector__pgvector.yaml
+    as_of: '2026-03-04T15:54:38Z'
+  local_cache_dir: null
+  extras:
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/vector_db/pgvector-master
+    intake:
+      pilot_batch_id: PHASE-2B-SB1
+      repo_id: repo::pgvector/pgvector
+      queue_id: intake::pgvector/pgvector
+      intake_path: /Users/szilaa/scripts/ext_sources/github_repos/vector_db/pgvector-master
+      domain_hint: vector_database
+      source_mode: local_clone
+      source_commit: 17916cad00ee580b05372768d6ff84b61442166a
+      default_branch: master
+      observed_at_utc: '2026-03-04T15:54:38Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/pgvector/pgvector
+      fetched_at_utc: '2026-03-04T15:54:38Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
+- node_id: repo::phuocng/1loc
+  github_full_name: phuocng/1loc
+  html_url: https://github.com/phuocng/1loc
+  source: compiled_master
+  name: 1loc
+  category: snippet_collection
+  summary: Phase 2B calibration intake for phuocng/1loc. Markdown-heavy snippet collection
+    with nontraditional source layout.
+  core_concepts:
+  - utility snippet library
+  - markdown-first repository structure
+  key_entry_points:
+  - README.md
+  - contents/
+  build_run:
+    language: javascript
+    build: n/a
+    test: n/a
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/phuocng__1loc.yaml
+    as_of: '2026-03-04T15:54:38Z'
+  local_cache_dir: null
+  extras:
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/uncat_repos/1loc-master
+    intake:
+      pilot_batch_id: PHASE-2B-SB1
+      repo_id: repo::phuocng/1loc
+      queue_id: intake::phuocng/1loc
+      intake_path: /Users/szilaa/scripts/ext_sources/github_repos/uncat_repos/1loc-master
+      domain_hint: snippet_collection
+      source_mode: local_clone
+      source_commit: 14b481cf60dff1620ab1bb99a43b1f68068cdd9b
+      default_branch: master
+      observed_at_utc: '2026-03-04T15:54:38Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/phuocng/1loc
+      fetched_at_utc: '2026-03-04T15:54:38Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
 - node_id: repo::pydantic/pydantic-ai
   github_full_name: pydantic/pydantic-ai
   html_url: https://github.com/pydantic/pydantic-ai
@@ -3518,7 +3612,7 @@ repos:
   provenance:
     shard: merged
     source_file: llm_repos/knowledge/repos/pydantic__pydantic-ai.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-02-24T19:46:56Z'
   local_cache_dir: null
   extras:
     directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/pydantic__pydantic-ai
@@ -3564,7 +3658,7 @@ repos:
   provenance:
     shard: merged
     source_file: llm_repos/knowledge/repos/qdrant__qdrant.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-02-24T19:46:56Z'
   local_cache_dir: null
   extras:
     directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/qdrant__qdrant
@@ -3818,7 +3912,7 @@ repos:
   provenance:
     shard: merged
     source_file: llm_repos/knowledge/repos/ruvnet__claude-flow.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-02-24T19:46:56Z'
   local_cache_dir: null
   extras:
     directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/ruvnet__claude-flow
@@ -4243,7 +4337,7 @@ repos:
   provenance:
     shard: merged
     source_file: ssh_repos/knowledge/repos/tailscale.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-02-24'
   local_cache_dir: null
   extras:
     directory: remote::tailscale/tailscale
@@ -4252,6 +4346,50 @@ repos:
       mode: api
       endpoint: /repos/tailscale/tailscale
       fetched_at_utc: '2026-02-23T03:20:00Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
+- node_id: repo::tmux/tmux
+  github_full_name: tmux/tmux
+  html_url: https://github.com/tmux/tmux
+  source: compiled_master
+  name: tmux
+  category: terminal_multiplexer
+  summary: Phase 2B calibration intake for tmux/tmux. Terminal multiplexer, C codebase,
+    man-page documentation.
+  core_concepts:
+  - terminal multiplexer
+  - tmux architecture
+  key_entry_points:
+  - README
+  - tmux.1
+  build_run:
+    language: c
+    build: ./configure && make
+    test: make check
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/tmux__tmux.yaml
+    as_of: '2026-03-04T15:54:38Z'
+  local_cache_dir: null
+  extras:
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/tmux-master
+    intake:
+      pilot_batch_id: PHASE-2B-SB1
+      repo_id: repo::tmux/tmux
+      queue_id: intake::tmux/tmux
+      intake_path: /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/tmux-master
+      domain_hint: terminal_multiplexer
+      source_mode: local_clone
+      source_commit: d32088b58a18db15d2a6297858c3ec4e412e2aaa
+      default_branch: master
+      observed_at_utc: '2026-03-04T15:54:38Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/tmux/tmux
+      fetched_at_utc: '2026-03-04T15:54:38Z'
       refresh:
         precedence: api_wins_readme_for_missing_required_fields
         fallback_source: readme_fallback
@@ -4386,7 +4524,7 @@ repos:
   provenance:
     shard: merged
     source_file: llm_repos/knowledge/repos/weaviate__weaviate.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-02-24T19:46:56Z'
   local_cache_dir: null
   extras:
     directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/weaviate__weaviate
@@ -4405,6 +4543,51 @@ repos:
       mode: metadata
       endpoint: /repos/weaviate/weaviate
       fetched_at_utc: '2026-02-24T19:46:56Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
+- node_id: repo::wez/wezterm
+  github_full_name: wez/wezterm
+  html_url: https://github.com/wez/wezterm
+  source: compiled_master
+  name: wezterm
+  category: terminal_emulator
+  summary: Phase 2B calibration intake for wez/wezterm. Rust monorepo with multi-crate
+    Cargo workspace and terminal tooling.
+  core_concepts:
+  - rust workspace
+  - terminal emulator architecture
+  key_entry_points:
+  - README.md
+  - Cargo.toml
+  - docs/
+  build_run:
+    language: rust
+    build: cargo build --workspace
+    test: cargo test --workspace
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/wez__wezterm.yaml
+    as_of: '2026-03-04T15:54:38Z'
+  local_cache_dir: null
+  extras:
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/wezterm-main
+    intake:
+      pilot_batch_id: PHASE-2B-SB1
+      repo_id: repo::wez/wezterm
+      queue_id: intake::wez/wezterm
+      intake_path: /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/wezterm-main
+      domain_hint: terminal_emulator
+      source_mode: local_clone
+      source_commit: 05343b387085842b434d267f91b6b0ec157e4331
+      default_branch: main
+      observed_at_utc: '2026-03-04T15:54:38Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/wez/wezterm
+      fetched_at_utc: '2026-03-04T15:54:38Z'
       refresh:
         precedence: api_wins_readme_for_missing_required_fields
         fallback_source: readme_fallback
@@ -4510,6 +4693,51 @@ repos:
     - Audio models (ASR, TTS)
     - Multimodal models (VLM)
     - Rerank models
+- node_id: repo::xqsit94/glm
+  github_full_name: xqsit94/glm
+  html_url: https://github.com/xqsit94/glm
+  source: compiled_master
+  name: glm
+  category: cli_wrapper
+  summary: Phase 2B calibration intake for xqsit94/glm. Small Go CLI wrapper project
+    with lightweight module structure.
+  core_concepts:
+  - go cli tooling
+  - command wrapper workflow
+  key_entry_points:
+  - README.md
+  - main.go
+  - cmd/
+  build_run:
+    language: go
+    build: go build ./...
+    test: go test ./...
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/xqsit94__glm.yaml
+    as_of: '2026-03-04T15:54:38Z'
+  local_cache_dir: null
+  extras:
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/glm-main
+    intake:
+      pilot_batch_id: PHASE-2B-SB1
+      repo_id: repo::xqsit94/glm
+      queue_id: intake::xqsit94/glm
+      intake_path: /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/glm-main
+      domain_hint: cli_tooling
+      source_mode: local_clone
+      source_commit: af55de41132b3524569c9b3f609341f65b7d2881
+      default_branch: main
+      observed_at_utc: '2026-03-04T15:54:38Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/xqsit94/glm
+      fetched_at_utc: '2026-03-04T15:54:38Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
 - node_id: repo::xtermjs/xterm.js
   github_full_name: xtermjs/xterm.js
   html_url: https://github.com/xtermjs/xterm.js

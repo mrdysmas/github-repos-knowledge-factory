@@ -427,3 +427,196 @@ repos:
     source_commit: 81dba468722f41347ed74ee66e9c1781d72f68a5
     default_branch: master
     observed_at_utc: '2026-02-24T19:46:56Z'
+- name: tmux
+  github_full_name: tmux/tmux
+  html_url: https://github.com/tmux/tmux
+  target_shard: ssh_repos
+  source: remote_metadata
+  category: terminal_multiplexer
+  summary: >
+    Phase 2B calibration intake for tmux/tmux.
+    Terminal multiplexer, C codebase, man-page documentation.
+  core_concepts:
+  - terminal multiplexer
+  - tmux architecture
+  key_entry_points:
+  - README
+  - tmux.1
+  build_run:
+    language: c
+    build: ./configure && make
+    test: make check
+  as_of: '2026-03-04T15:54:38Z'
+  local_cache_dir: null
+  directory: /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/tmux-master
+  file_stem: tmux__tmux
+  remote:
+    provider: github
+    mode: metadata
+    endpoint: /repos/tmux/tmux
+    fetched_at_utc: '2026-03-04T15:54:38Z'
+  intake:
+    pilot_batch_id: PHASE-2B-SB1
+    repo_id: repo::tmux/tmux
+    queue_id: intake::tmux/tmux
+    intake_path: /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/tmux-master
+    domain_hint: terminal_multiplexer
+    source_mode: local_clone
+    source_commit: d32088b58a18db15d2a6297858c3ec4e412e2aaa
+    default_branch: master
+    observed_at_utc: '2026-03-04T15:54:38Z'
+- name: pgvector
+  github_full_name: pgvector/pgvector
+  html_url: https://github.com/pgvector/pgvector
+  target_shard: ssh_repos
+  source: remote_metadata
+  category: postgres_extension
+  summary: >
+    Phase 2B calibration intake for pgvector/pgvector.
+    PostgreSQL extension in C with SQL migration scripts.
+  core_concepts:
+  - postgres extension
+  - vector similarity search
+  key_entry_points:
+  - README.md
+  - src/
+  - sql/
+  build_run:
+    language: c
+    build: make
+    test: make installcheck
+  as_of: '2026-03-04T15:54:38Z'
+  local_cache_dir: null
+  directory: /Users/szilaa/scripts/ext_sources/github_repos/vector_db/pgvector-master
+  file_stem: pgvector__pgvector
+  remote:
+    provider: github
+    mode: metadata
+    endpoint: /repos/pgvector/pgvector
+    fetched_at_utc: '2026-03-04T15:54:38Z'
+  intake:
+    pilot_batch_id: PHASE-2B-SB1
+    repo_id: repo::pgvector/pgvector
+    queue_id: intake::pgvector/pgvector
+    intake_path: /Users/szilaa/scripts/ext_sources/github_repos/vector_db/pgvector-master
+    domain_hint: vector_database
+    source_mode: local_clone
+    source_commit: 17916cad00ee580b05372768d6ff84b61442166a
+    default_branch: master
+    observed_at_utc: '2026-03-04T15:54:38Z'
+- name: wezterm
+  github_full_name: wez/wezterm
+  html_url: https://github.com/wez/wezterm
+  target_shard: ssh_repos
+  source: remote_metadata
+  category: terminal_emulator
+  summary: >
+    Phase 2B calibration intake for wez/wezterm.
+    Rust monorepo with multi-crate Cargo workspace and terminal tooling.
+  core_concepts:
+  - rust workspace
+  - terminal emulator architecture
+  key_entry_points:
+  - README.md
+  - Cargo.toml
+  - docs/
+  build_run:
+    language: rust
+    build: cargo build --workspace
+    test: cargo test --workspace
+  as_of: '2026-03-04T15:54:38Z'
+  local_cache_dir: null
+  directory: /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/wezterm-main
+  file_stem: wez__wezterm
+  remote:
+    provider: github
+    mode: metadata
+    endpoint: /repos/wez/wezterm
+    fetched_at_utc: '2026-03-04T15:54:38Z'
+  intake:
+    pilot_batch_id: PHASE-2B-SB1
+    repo_id: repo::wez/wezterm
+    queue_id: intake::wez/wezterm
+    intake_path: /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/wezterm-main
+    domain_hint: terminal_emulator
+    source_mode: local_clone
+    source_commit: 05343b387085842b434d267f91b6b0ec157e4331
+    default_branch: main
+    observed_at_utc: '2026-03-04T15:54:38Z'
+- name: glm
+  github_full_name: xqsit94/glm
+  html_url: https://github.com/xqsit94/glm
+  target_shard: ssh_repos
+  source: remote_metadata
+  category: cli_wrapper
+  summary: >
+    Phase 2B calibration intake for xqsit94/glm.
+    Small Go CLI wrapper project with lightweight module structure.
+  core_concepts:
+  - go cli tooling
+  - command wrapper workflow
+  key_entry_points:
+  - README.md
+  - main.go
+  - cmd/
+  build_run:
+    language: go
+    build: go build ./...
+    test: go test ./...
+  as_of: '2026-03-04T15:54:38Z'
+  local_cache_dir: null
+  directory: /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/glm-main
+  file_stem: xqsit94__glm
+  remote:
+    provider: github
+    mode: metadata
+    endpoint: /repos/xqsit94/glm
+    fetched_at_utc: '2026-03-04T15:54:38Z'
+  intake:
+    pilot_batch_id: PHASE-2B-SB1
+    repo_id: repo::xqsit94/glm
+    queue_id: intake::xqsit94/glm
+    intake_path: /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/glm-main
+    domain_hint: cli_tooling
+    source_mode: local_clone
+    source_commit: af55de41132b3524569c9b3f609341f65b7d2881
+    default_branch: main
+    observed_at_utc: '2026-03-04T15:54:38Z'
+- name: 1loc
+  github_full_name: phuocng/1loc
+  html_url: https://github.com/phuocng/1loc
+  target_shard: ssh_repos
+  source: remote_metadata
+  category: snippet_collection
+  summary: >
+    Phase 2B calibration intake for phuocng/1loc.
+    Markdown-heavy snippet collection with nontraditional source layout.
+  core_concepts:
+  - utility snippet library
+  - markdown-first repository structure
+  key_entry_points:
+  - README.md
+  - contents/
+  build_run:
+    language: javascript
+    build: n/a
+    test: n/a
+  as_of: '2026-03-04T15:54:38Z'
+  local_cache_dir: null
+  directory: /Users/szilaa/scripts/ext_sources/github_repos/uncat_repos/1loc-master
+  file_stem: phuocng__1loc
+  remote:
+    provider: github
+    mode: metadata
+    endpoint: /repos/phuocng/1loc
+    fetched_at_utc: '2026-03-04T15:54:38Z'
+  intake:
+    pilot_batch_id: PHASE-2B-SB1
+    repo_id: repo::phuocng/1loc
+    queue_id: intake::phuocng/1loc
+    intake_path: /Users/szilaa/scripts/ext_sources/github_repos/uncat_repos/1loc-master
+    domain_hint: snippet_collection
+    source_mode: local_clone
+    source_commit: 14b481cf60dff1620ab1bb99a43b1f68068cdd9b
+    default_branch: master
+    observed_at_utc: '2026-03-04T15:54:38Z'

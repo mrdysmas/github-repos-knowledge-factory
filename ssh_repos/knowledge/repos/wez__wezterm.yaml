@@ -1,0 +1,45 @@
+name: wezterm
+node_id: repo::wez/wezterm
+github_full_name: wez/wezterm
+html_url: https://github.com/wez/wezterm
+source: remote_metadata
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/repos/wez__wezterm.yaml
+  as_of: '2026-03-04T15:54:38Z'
+directory: /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/wezterm-main
+category: terminal_emulator
+summary: Phase 2B calibration intake for wez/wezterm. Rust monorepo with multi-crate
+  Cargo workspace and terminal tooling.
+core_concepts:
+- rust workspace
+- terminal emulator architecture
+key_entry_points:
+- README.md
+- Cargo.toml
+- docs/
+build_run:
+  language: rust
+  build: cargo build --workspace
+  test: cargo test --workspace
+local_cache_dir: null
+extras:
+  intake:
+    pilot_batch_id: PHASE-2B-SB1
+    repo_id: repo::wez/wezterm
+    queue_id: intake::wez/wezterm
+    intake_path: /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/wezterm-main
+    domain_hint: terminal_emulator
+    source_mode: local_clone
+    source_commit: 05343b387085842b434d267f91b6b0ec157e4331
+    default_branch: main
+    observed_at_utc: '2026-03-04T15:54:38Z'
+  remote:
+    provider: github
+    mode: metadata
+    endpoint: /repos/wez/wezterm
+    fetched_at_utc: '2026-03-04T15:54:38Z'
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
