@@ -1,0 +1,79 @@
+version: 1
+as_of_utc: "2026-03-04T23:18:55Z"
+
+phase:
+  number: "3"
+  name: "SQLite Read Model and Query Migration"
+  status: "M1_IN_PROGRESS"
+  workflow: "M1_IN_PROGRESS -> M1_COMPLETE -> M2_IN_PROGRESS -> M2_COMPLETE -> M3_IN_PROGRESS -> M3_COMPLETE -> M4_IN_PROGRESS -> COMPLETE"
+  date_initiated: "2026-03-04"
+  date_started: "2026-03-04"
+  date_completed: null
+
+objective: |
+  Build a SQLite read model materialized from canonical YAML as a first-class
+  compile stage. Migrate query_master.py to read from it. Unlock graph edge
+  queries and cross-repo lookups.
+
+milestones:
+  m1:
+    name: "Foundation — Materializer Tool"
+    status: "IN_PROGRESS"
+    deliverables:
+      - "tools/ws7_read_model_compiler.py"
+      - "knowledge.db (gitignored)"
+      - "reports/ws7_read_model/compile_log.yaml"
+      - ".gitignore updated"
+    done_when:
+      - "Tool runs: python3 tools/ws7_read_model_compiler.py --workspace-root ."
+      - "All four validation gates pass"
+      - "knowledge.db is produced and gitignored"
+      - "Compile stdout follows token-lean contract"
+      - "Verbose log written to reports/ws7_read_model/compile_log.yaml"
+    date_started: "2026-03-04"
+    date_completed: null
+
+  m2:
+    name: "Query Migration"
+    status: "NOT_STARTED"
+    deliverables:
+      - "query_master.py reads from SQLite"
+      - "--source flag for backward compatibility"
+    done_when:
+      - "All 5 commands produce identical output from --source yaml and --source sqlite"
+      - "Default source is sqlite"
+      - "Performance measurably faster"
+    date_started: null
+    date_completed: null
+
+  m3:
+    name: "Query Expansion"
+    status: "NOT_STARTED"
+    deliverables:
+      - "At least 3 new query commands"
+      - "Graph edges queryable"
+    done_when:
+      - "At least 3 new commands implemented and tested"
+      - "Graph edges queryable through at least one command"
+    date_started: null
+    date_completed: null
+
+  m4:
+    name: "Pipeline Integration and Docs"
+    status: "NOT_STARTED"
+    deliverables:
+      - "AGENTS.md updated with WS7"
+      - "project_status.yaml updated"
+    done_when:
+      - "WS7 listed in non-negotiable gates"
+      - "AGENTS.md references read model"
+      - "project_status.yaml documents WS7"
+    date_started: null
+    date_completed: null
+
+non_negotiable_gates:
+  - "Snapshot consistency (or explicit --force override)"
+  - "Row-count parity between YAML sources and SQLite tables"
+  - "Zero orphan edges"
+  - "Representative query parity"
+  - "Deterministic rebuild"

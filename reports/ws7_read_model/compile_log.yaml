@@ -1,0 +1,78 @@
+compile_run:
+  started_at_utc: '2026-03-04T23:20:05Z'
+  finished_at_utc: '2026-03-04T23:20:08Z'
+  duration_ms: 2130
+  result: ok
+  force_flag: true
+source_files:
+  index:
+    path: master_index.yaml
+    sha256: c693ff3003c161dd3f73e3e0670979bfc2e69596dee1cd9b033971c668bc4394
+    generated_at_utc: '2026-03-04T17:12:53Z'
+    repo_count: 73
+  graph:
+    path: master_graph.yaml
+    sha256: d3e12e8567ed3705fc33743ac9866a72de24ef9741d69566170e22c091ed2b76
+    generated_at_utc: '2026-03-04T17:12:53Z'
+    node_count: 87
+    edge_count: 152
+  facts:
+    path: master_deep_facts.yaml
+    sha256: 86bf20f61f717b6a7358e7012c36e4eb45a80f74c775e7caeb093c7086a54fac
+    generated_at_utc: '2026-03-04T00:00:00Z'
+    fact_count: 2921
+gates:
+  snapshot_consistency:
+    status: skipped (--force)
+    detail: index(ts=2026-03-04T17:12:53Z,sha256=c693ff3003c161dd3f73e3e0670979bfc2e69596dee1cd9b033971c668bc4394),
+      graph(ts=2026-03-04T17:12:53Z,sha256=d3e12e8567ed3705fc33743ac9866a72de24ef9741d69566170e22c091ed2b76),
+      facts(ts=2026-03-04T00:00:00Z,sha256=86bf20f61f717b6a7358e7012c36e4eb45a80f74c775e7caeb093c7086a54fac),
+      max_delta_seconds=61973
+  row_count_parity:
+    status: pass
+    expected:
+      repos: 73
+      nodes: 87
+      edges: 152
+      facts: 2921
+    actual:
+      repos: 73
+      nodes: 87
+      edges: 152
+      facts: 2921
+  orphan_edge_detection:
+    status: pass
+    orphan_count: 0
+    orphans: []
+  query_parity:
+    status: pass
+    checks:
+    - check: repos_count
+      status: pass
+      expected: 73
+      actual: 73
+    - check: first_repo_lookup
+      status: pass
+      node_id: repo::1panel-dev/maxkb
+      expected_name: maxkb
+      actual_name: maxkb
+    - check: first_edge_src_lookup
+      status: pass
+      src_id: repo::1panel-dev/maxkb
+      rows: 4
+    - check: first_fact_node_lookup
+      status: pass
+      node_id: repo::1panel-dev/maxkb
+      rows: 29
+  deterministic_rebuild:
+    status: pass
+    detail: all compared tables match
+output:
+  path: knowledge.db
+  size_bytes: 4296704
+  table_counts:
+    repos: 73
+    nodes: 87
+    edges: 152
+    facts: 2921
+    compile_metadata: 1
