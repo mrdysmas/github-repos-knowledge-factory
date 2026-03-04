@@ -192,6 +192,37 @@ results:
     deltas_vs_previous_batch_baseline:
       deep_facts_delta: 45
       unmapped_sections_delta: -17
+  phase_2a:
+    status: "PENDING"
+    objective: "Close top nine unmapped section types before any new intake execution."
+    baseline:
+      deep_facts: 1908
+      unmapped_sections_count: 55
+    target_section_types:
+      - "key_features"
+      - "content_coverage"
+      - "key_sections"
+      - "cross_references"
+      - "key_files"
+      - "cli_arguments"
+      - "core_modules"
+      - "sdk_usage"
+      - "supplementary_files"
+    done_when:
+      - "Extractors for all nine target section types are implemented."
+      - "WS6 validation gate remains clean (gate_ready=true, blocking_mismatches=0, unknown_predicates=0)."
+      - "unmapped_sections_count drops by at least 20 from baseline 55."
+      - "deep_facts increases above baseline 1908."
+      - "WS6 and intake_queue_sync test suites pass."
+    run_history: []
+  phase_2b:
+    status: "BLOCKED_ON_PHASE_2A"
+    objective: "Run 8-12 structurally diverse calibration repos only after Phase 2A completion."
+    done_when:
+      - "8-12 calibration repos canonicalized end-to-end via WS5 -> WS4 -> WS6."
+      - "blocking_mismatches=0 and unknown_predicates=0 after full run."
+      - "query_master.py returns consistent repo/facts outputs for calibration repos."
+    run_history: []
   completion_status: "COMPLETE"
   issues_encountered:
     - "Initial WS4 compile reported duplicate repo node IDs (cloudflared/tailscale) after an incorrect manifest default shard. Resolved by restoring WS5 default shard and cleaning accidental llm duplicate records before re-running gates."
@@ -276,10 +307,10 @@ sorting_backlog:
     evidence: "Documented query_master.py repo + facts end-to-end evidence; milestone moved to COMPLETE."
   - item: "Next execution mode ambiguity (A: WS6 burn-down vs B: Phase 2 calibration)"
     status: "RESOLVED"
-    evidence: "Decision recorded to proceed to Phase 2 calibration batch while tracking WS6 long-tail as non-blocking debt."
+    evidence: "Decision updated to sequential Phase 2 execution: complete Phase 2A extractor cleanup before Phase 2B calibration."
   - item: "WS6 long-tail unmapped sections (55)"
     status: "OPEN"
-    evidence: "Non-blocking backlog remains; keep as scoped debt lane during Phase 2 intake calibration."
+    evidence: "Backlog remains open and is now primary scope for Phase 2A (before calibration intake begins)."
 
 decision_rule: |
   IF M1+M2+M3+M4 all complete and acceptance criteria are met:
@@ -289,5 +320,5 @@ decision_rule: |
   IF queue enforcement fails at any point:
     -> Stop intake expansion until sync/add gates are restored
 
-decision: "PHASE_1_COMPLETE_PROCEED_PHASE_2_CALIBRATION"
+decision: "PHASE_1_COMPLETE_PROCEED_PHASE_2A_THEN_2B"
 next_phase: "Phase 2 - Scale intake throughput and calibration batch execution"
