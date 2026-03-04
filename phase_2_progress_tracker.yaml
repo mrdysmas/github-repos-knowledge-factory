@@ -86,7 +86,7 @@ stage_2a:
 
 stage_2b:
   name: "Calibration Batch"
-  status: "IN_PROGRESS"
+  status: "COMPLETE"
   objective: "Stress-test structural diversity handling on 8-12 new repos after Phase 2A completion."
   scope:
     repo_count_target: "8-12"
@@ -143,7 +143,7 @@ key_metrics:
     actual: 0
   - name: "phase_2b_calibration_repo_count"
     target: "8-12"
-    actual: 9
+    actual: 13
   - name: "phase_2b_blocking_mismatches_count"
     target: 0
     actual: 0
@@ -199,7 +199,8 @@ results:
       deep_facts_gt_1908: true
       required_tests_pass: true
   phase_2b:
-    status: "IN_PROGRESS"
+    status: "COMPLETE"
+    completed_at_utc: "2026-03-04T17:24:11Z"
     sb1:
       batch_id: "PHASE-2B-SB1"
       status: "COMPLETE"
@@ -311,7 +312,65 @@ results:
       notes:
         - "Queue sync required --fix reconciliation because SB2 repos became canonical during intake."
         - "WS1 contract required deep/shallow source alignment; deep narratives are source=remote_metadata to match shallow canonical records."
-  completion_status: "IN_PROGRESS"
+    sb3:
+      batch_id: "PHASE-2B-SB3"
+      status: "COMPLETE"
+      completed_at_utc: "2026-03-04T17:24:11Z"
+      repos_ingested_count: 4
+      repos:
+        - sharkdp/bat
+        - sharkdp/fd
+        - thephpleague/fractal
+        - puppeteer/puppeteer
+      metrics_snapshot:
+        deep_facts:
+          before: 2582
+          after: 2921
+          delta: 339
+        unmapped_sections_count:
+          before: 33
+          after: 33
+          delta: 0
+        ws6_validation:
+          blocking_mismatches_count: 0
+          unknown_predicates_count: 0
+          gate_ready: true
+      per_repo_deep_fact_counts:
+        sharkdp/bat: 91
+        sharkdp/fd: 81
+        thephpleague/fractal: 73
+        puppeteer/puppeteer: 94
+      analysis_runtime:
+        agent: "codex"
+        model: "gpt-5"
+        model_version: null
+        run_id: null
+      gates:
+        check_intake_queue_sync: "PASS"
+        ws1_contract_validator_first_class: "PASS"
+        trust_gates_llm: "PASS"
+        trust_gates_ssh: "PASS"
+        ws6_deep_integrator_validation: "PASS"
+        query_master_stats: "PASS"
+        ws6_test_suite: "PASS"
+        intake_queue_sync_test_suite: "PASS"
+      notes:
+        - "Queue sync required --fix reconciliation because SB3 repos became canonical during intake."
+        - "Configured fractal and puppeteer clone paths were missing locally; both were cloned into the configured directories before intake."
+    final_metrics:
+      repos_in_corpus: 73
+      deep_facts: 2921
+      unmapped_sections_count: 33
+      gates:
+        check_intake_queue_sync: "PASS"
+        ws1_contract_validator_first_class: "PASS"
+        trust_gates_llm: "PASS"
+        trust_gates_ssh: "PASS"
+        ws6_deep_integrator_validation: "PASS"
+        query_master_stats: "PASS"
+        ws6_test_suite: "PASS"
+        intake_queue_sync_test_suite: "PASS"
+  completion_status: "STAGE_2B_COMPLETE"
   issues_encountered:
     - "Resolved pre-existing Flowise deep/shallow html_url casing mismatch before WS4 resume."
 

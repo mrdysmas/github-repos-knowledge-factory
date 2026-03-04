@@ -1,6 +1,6 @@
 artifact_type: intake_repo_queue
 contract_version: 1.0.0-intake
-generated_at_utc: '2026-03-04T16:42:20Z'
+generated_at_utc: '2026-03-04T17:22:51Z'
 source:
   catalog_file: master_repo_list.yaml
   master_index_file: master_index.yaml
@@ -10,8 +10,8 @@ summary:
   source_rows_missing_github_url: 5
   source_rows_invalid_full_name: 0
   deduped_entries_total: 117
-  already_canonical_count: 67
-  queued_count: 50
+  already_canonical_count: 71
+  queued_count: 46
 policies:
   scan_mode_default: shallow_first
   clone_strategy: clone_on_demand
@@ -1146,9 +1146,9 @@ entries:
 - queue_id: intake::puppeteer/puppeteer
   github_full_name: puppeteer/puppeteer
   html_url: https://github.com/puppeteer/puppeteer
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - uncat_repos
@@ -1272,9 +1272,9 @@ entries:
 - queue_id: intake::sharkdp/bat
   github_full_name: sharkdp/bat
   html_url: https://github.com/sharkdp/bat
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - uncat_repos
@@ -1285,9 +1285,9 @@ entries:
 - queue_id: intake::sharkdp/fd
   github_full_name: sharkdp/fd
   html_url: https://github.com/sharkdp/fd
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - uncat_repos
@@ -1466,9 +1466,9 @@ entries:
 - queue_id: intake::thephpleague/fractal
   github_full_name: thephpleague/fractal
   html_url: https://github.com/thephpleague/fractal
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - structured_outputs

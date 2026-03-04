@@ -1,14 +1,14 @@
 artifact_type: ws4_master_index
-generated_at_utc: '2026-03-04T16:29:45Z'
+generated_at_utc: '2026-03-04T17:12:53Z'
 contract_version: 1.0.0-ws1
 metadata:
   source_shards:
   - llm_repos
   - ssh_repos
-  total_repos: 69
+  total_repos: 73
   repo_counts_by_shard:
     llm_repos: 36
-    ssh_repos: 33
+    ssh_repos: 37
   category_counts:
     agent_cli: 2
     agent_framework: 1
@@ -16,8 +16,11 @@ metadata:
     agent_orchestration: 1
     agent_platform: 1
     backup_tool: 1
+    browser_automation: 1
+    cli_tool: 2
     cli_wrapper: 1
     data_pipelines: 2
+    data_transformation: 1
     deployment_automation: 1
     documentation: 4
     educational: 2
@@ -3730,6 +3733,51 @@ repos:
         precedence: api_wins_readme_for_missing_required_fields
         fallback_source: readme_fallback
         fallback_used: false
+- node_id: repo::puppeteer/puppeteer
+  github_full_name: puppeteer/puppeteer
+  html_url: https://github.com/puppeteer/puppeteer
+  source: compiled_master
+  name: puppeteer
+  category: browser_automation
+  summary: Phase 2B SB3 intake for puppeteer/puppeteer. TypeScript browser automation
+    monorepo for Chrome and Firefox control.
+  core_concepts:
+  - programmable browser automation
+  - monorepo package architecture
+  key_entry_points:
+  - README.md
+  - packages/
+  - docs/
+  build_run:
+    language: typescript
+    build: npm run build
+    test: npm test
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/puppeteer__puppeteer.yaml
+    as_of: '2026-03-04T17:12:53Z'
+  local_cache_dir: null
+  extras:
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/uncat_repos/puppeteer-main
+    intake:
+      pilot_batch_id: PHASE-2B-SB3
+      repo_id: repo::puppeteer/puppeteer
+      queue_id: intake::puppeteer/puppeteer
+      intake_path: /Users/szilaa/scripts/ext_sources/github_repos/uncat_repos/puppeteer-main
+      domain_hint: browser_automation
+      source_mode: local_clone
+      source_commit: d3356fac46478974c5b88ba2b26b26954cb741ff
+      default_branch: main
+      observed_at_utc: '2026-03-04T17:12:53Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/puppeteer/puppeteer
+      fetched_at_utc: '2026-03-04T17:12:53Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
 - node_id: repo::pydantic/pydantic-ai
   github_full_name: pydantic/pydantic-ai
   html_url: https://github.com/pydantic/pydantic-ai
@@ -4071,6 +4119,96 @@ repos:
       mode: metadata
       endpoint: /repos/ruvnet/claude-flow
       fetched_at_utc: '2026-02-24T19:46:56Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
+- node_id: repo::sharkdp/bat
+  github_full_name: sharkdp/bat
+  html_url: https://github.com/sharkdp/bat
+  source: compiled_master
+  name: bat
+  category: cli_tool
+  summary: Phase 2B SB3 intake for sharkdp/bat. Rust CLI cat clone with syntax highlighting,
+    paging, and theme support.
+  core_concepts:
+  - syntax-highlighted file viewing
+  - pager-integrated CLI output
+  key_entry_points:
+  - README.md
+  - src/
+  - assets/
+  build_run:
+    language: rust
+    build: cargo build --release
+    test: cargo test
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/sharkdp__bat.yaml
+    as_of: '2026-03-04T17:12:53Z'
+  local_cache_dir: null
+  extras:
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/sharkdp__bat
+    intake:
+      pilot_batch_id: PHASE-2B-SB3
+      repo_id: repo::sharkdp/bat
+      queue_id: intake::sharkdp/bat
+      intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/sharkdp__bat
+      domain_hint: cli_tooling
+      source_mode: local_clone
+      source_commit: cc5f782d28a8e6156b8ebd3346b0a7f7c49256e2
+      default_branch: master
+      observed_at_utc: '2026-03-04T17:12:53Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/sharkdp/bat
+      fetched_at_utc: '2026-03-04T17:12:53Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
+- node_id: repo::sharkdp/fd
+  github_full_name: sharkdp/fd
+  html_url: https://github.com/sharkdp/fd
+  source: compiled_master
+  name: fd
+  category: cli_tool
+  summary: Phase 2B SB3 intake for sharkdp/fd. Rust CLI find alternative with fast
+    filesystem traversal and smart defaults.
+  core_concepts:
+  - fast recursive file search
+  - ignore-aware traversal patterns
+  key_entry_points:
+  - README.md
+  - src/
+  - doc/
+  build_run:
+    language: rust
+    build: cargo build --release
+    test: cargo test
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/sharkdp__fd.yaml
+    as_of: '2026-03-04T17:12:53Z'
+  local_cache_dir: null
+  extras:
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/sharkdp__fd
+    intake:
+      pilot_batch_id: PHASE-2B-SB3
+      repo_id: repo::sharkdp/fd
+      queue_id: intake::sharkdp/fd
+      intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/sharkdp__fd
+      domain_hint: cli_tooling
+      source_mode: local_clone
+      source_commit: c60d0076db720529ba4df167f6130297f4469d11
+      default_branch: master
+      observed_at_utc: '2026-03-04T17:12:53Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/sharkdp/fd
+      fetched_at_utc: '2026-03-04T17:12:53Z'
       refresh:
         precedence: api_wins_readme_for_missing_required_fields
         fallback_source: readme_fallback
@@ -4531,6 +4669,51 @@ repos:
       mode: api
       endpoint: /repos/tailscale/tailscale
       fetched_at_utc: '2026-02-23T03:20:00Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
+- node_id: repo::thephpleague/fractal
+  github_full_name: thephpleague/fractal
+  html_url: https://github.com/thephpleague/fractal
+  source: compiled_master
+  name: fractal
+  category: data_transformation
+  summary: Phase 2B SB3 intake for thephpleague/fractal. PHP data transformation library
+    centered on resources, transformers, and serializers.
+  core_concepts:
+  - resource transformer pattern
+  - serializer-driven output shaping
+  key_entry_points:
+  - README.md
+  - src/
+  - composer.json
+  build_run:
+    language: php
+    build: composer install --no-interaction
+    test: vendor/bin/phpunit
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/thephpleague__fractal.yaml
+    as_of: '2026-03-04T17:12:53Z'
+  local_cache_dir: null
+  extras:
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/structured_outputs/fractal-master
+    intake:
+      pilot_batch_id: PHASE-2B-SB3
+      repo_id: repo::thephpleague/fractal
+      queue_id: intake::thephpleague/fractal
+      intake_path: /Users/szilaa/scripts/ext_sources/github_repos/structured_outputs/fractal-master
+      domain_hint: data_transformation
+      source_mode: local_clone
+      source_commit: 9e817358dc451dfdcf656d6757f0c04e92dea0e8
+      default_branch: master
+      observed_at_utc: '2026-03-04T17:12:53Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/thephpleague/fractal
+      fetched_at_utc: '2026-03-04T17:12:53Z'
       refresh:
         precedence: api_wins_readme_for_missing_required_fields
         fallback_source: readme_fallback

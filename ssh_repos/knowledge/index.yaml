@@ -1,6 +1,6 @@
 version: '1.0'
 generated: 2026-02-21
-total_repos: 33
+total_repos: 37
 categories:
   tunneling:
     description: Reverse tunneling and port forwarding tools
@@ -83,6 +83,19 @@ categories:
     description: 'Remote-ingested category: static_site_generator'
     repos:
     - hugo
+  cli_tool:
+    description: 'Remote-ingested category: cli_tool'
+    repos:
+    - bat
+    - fd
+  data_transformation:
+    description: 'Remote-ingested category: data_transformation'
+    repos:
+    - fractal
+  browser_automation:
+    description: 'Remote-ingested category: browser_automation'
+    repos:
+    - puppeteer
 repos:
   awesome-tunneling:
     category: documentation
@@ -257,6 +270,30 @@ repos:
     summary: Phase 2B SB2 intake for gohugoio/hugo. Static site generator in Go with
       templating, content pipeline, and modules.
     language: go
+  bat:
+    category: cli_tool
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/sharkdp__bat
+    summary: Phase 2B SB3 intake for sharkdp/bat. Rust CLI cat clone with syntax highlighting,
+      paging, and theme support.
+    language: rust
+  fd:
+    category: cli_tool
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/sharkdp__fd
+    summary: Phase 2B SB3 intake for sharkdp/fd. Rust CLI find alternative with fast
+      filesystem traversal and smart defaults.
+    language: rust
+  fractal:
+    category: data_transformation
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/structured_outputs/fractal-master
+    summary: Phase 2B SB3 intake for thephpleague/fractal. PHP data transformation
+      library centered on resources, transformers, and serializers.
+    language: php
+  puppeteer:
+    category: browser_automation
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/uncat_repos/puppeteer-main
+    summary: Phase 2B SB3 intake for puppeteer/puppeteer. TypeScript browser automation
+      monorepo for Chrome and Firefox control.
+    language: typescript
 languages:
   rust:
   - bore

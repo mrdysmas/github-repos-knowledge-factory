@@ -1,0 +1,45 @@
+name: fd
+node_id: repo::sharkdp/fd
+github_full_name: sharkdp/fd
+html_url: https://github.com/sharkdp/fd
+source: remote_metadata
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/repos/sharkdp__fd.yaml
+  as_of: '2026-03-04T17:12:53Z'
+directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/sharkdp__fd
+category: cli_tool
+summary: Phase 2B SB3 intake for sharkdp/fd. Rust CLI find alternative with fast filesystem
+  traversal and smart defaults.
+core_concepts:
+- fast recursive file search
+- ignore-aware traversal patterns
+key_entry_points:
+- README.md
+- src/
+- doc/
+build_run:
+  language: rust
+  build: cargo build --release
+  test: cargo test
+local_cache_dir: null
+extras:
+  intake:
+    pilot_batch_id: PHASE-2B-SB3
+    repo_id: repo::sharkdp/fd
+    queue_id: intake::sharkdp/fd
+    intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/sharkdp__fd
+    domain_hint: cli_tooling
+    source_mode: local_clone
+    source_commit: c60d0076db720529ba4df167f6130297f4469d11
+    default_branch: master
+    observed_at_utc: '2026-03-04T17:12:53Z'
+  remote:
+    provider: github
+    mode: metadata
+    endpoint: /repos/sharkdp/fd
+    fetched_at_utc: '2026-03-04T17:12:53Z'
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false

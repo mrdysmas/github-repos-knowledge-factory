@@ -1,0 +1,275 @@
+name: puppeteer
+node_id: repo::puppeteer/puppeteer
+github_full_name: puppeteer/puppeteer
+html_url: https://github.com/puppeteer/puppeteer
+source: remote_metadata
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/deep/puppeteer__puppeteer.yaml
+  as_of: '2026-03-04'
+directory: /Users/szilaa/scripts/ext_sources/github_repos/uncat_repos/puppeteer-main
+category: browser_automation
+primary_language: typescript
+languages:
+- typescript
+- javascript
+- markdown
+tech_stack:
+- TypeScript monorepo
+- Node.js runtime
+- Chrome DevTools Protocol (CDP)
+- WebDriver BiDi protocol support
+- RxJS-based async event pipelines
+- "@puppeteer/browsers browser download/management"
+architecture:
+  module_breakdown:
+  - module: packages/puppeteer/src
+    responsibility: Full package entrypoint exposing launch/connect and configuration defaults.
+    key_files:
+    - packages/puppeteer/src/puppeteer.ts
+    - packages/puppeteer/src/getConfiguration.ts
+  - module: packages/puppeteer-core/src/api
+    responsibility: Public API surfaces (Browser, BrowserContext, Page, ElementHandle, Frame).
+    key_files:
+    - packages/puppeteer-core/src/api/Browser.ts
+    - packages/puppeteer-core/src/api/Page.ts
+    - packages/puppeteer-core/src/api/ElementHandle.ts
+    - packages/puppeteer-core/src/api/Frame.ts
+  - module: packages/puppeteer-core/src/node
+    responsibility: Browser launch/connect and process management for Node environments.
+    key_files:
+    - packages/puppeteer-core/src/node/PuppeteerNode.ts
+    - packages/puppeteer-core/src/node/BrowserLauncher.ts
+    - packages/puppeteer-core/src/node/LaunchOptions.ts
+  - module: packages/puppeteer-core/src/cdp and src/bidi
+    responsibility: Protocol-specific implementations for CDP and WebDriver BiDi transports.
+    key_files:
+    - packages/puppeteer-core/src/cdp/
+    - packages/puppeteer-core/src/bidi/
+  - module: packages/browsers/src
+    responsibility: Browser binary resolution, downloads, channels, and installation helpers.
+    key_files:
+    - packages/browsers/src/
+  - module: docs/api and docs/guides
+    responsibility: API reference and usage guide content aligned with exported public surface.
+    key_files:
+    - docs/api/index.md
+    - docs/guides/getting-started.md
+  components:
+  - name: launcher/connect layer
+    description: Creates browser processes or attaches to existing browser endpoints.
+  - name: context/page object graph
+    description: Browser, BrowserContext, and Page objects model runtime automation state.
+  - name: protocol adapter layer
+    description: CDP and BiDi backends implement shared API contracts.
+  - name: DOM handle layer
+    description: ElementHandle and JSHandle wrap remote browser objects and execution contexts.
+  data_flow: |
+    1. `puppeteer` package builds a PuppeteerNode instance with resolved config.
+    2. `launch()` or `connect()` returns a Browser abstraction.
+    3. Browser creates BrowserContext and Page instances.
+    4. Page methods delegate to Frame/protocol sessions for navigation, evaluation, and input.
+    5. Results are returned as JS values, handles, screenshots, PDFs, or protocol-backed events.
+  key_abstractions:
+  - name: PuppeteerNode
+    purpose: Node-specific launcher/connect facade.
+  - name: Browser
+    purpose: Session-level automation object representing connected browser instance.
+  - name: BrowserContext
+    purpose: Isolated context for cookies/storage/permissions and scoped pages.
+  - name: Page
+    purpose: Primary automation surface for navigation, interaction, and execution.
+  - name: ElementHandle
+    purpose: Handle to DOM element for direct interaction and scoped queries.
+key_features:
+- Browser launch and remote attach workflows (launch and connect).
+- Multi-context isolation with per-context pages, cookies, and permissions.
+- High-level page automation (navigation, selectors, evaluation, input, waiting).
+- Rendering and export workflows (screenshots and PDF generation).
+- Dual protocol architecture supporting CDP and WebDriver BiDi backends.
+code_patterns:
+- pattern: facade over protocol backends
+  description: Public API classes delegate behavior to CDP or BiDi implementations.
+  location: packages/puppeteer-core/src/api, src/cdp, src/bidi
+  file: packages/puppeteer-core/src/api/Page.ts
+- pattern: monorepo split between full and core packages
+  description: puppeteer wraps puppeteer-core with configuration and browser provisioning defaults.
+  location: packages/puppeteer/src/puppeteer.ts
+  file: packages/puppeteer/src/puppeteer.ts
+- pattern: generated API-doc parity
+  description: API docs in docs/api reflect exported class and method contracts.
+  location: docs/api/
+  file: docs/api/index.md
+- pattern: event-driven async orchestration
+  description: Uses observable/event streams for protocol events and wait conditions.
+  location: packages/puppeteer-core/src/api/Page.ts
+  file: packages/puppeteer-core/src/api/Page.ts
+implementation_patterns:
+- pattern: launch/connect configuration layering
+  description: Combines config file and PUPPETEER_* environment settings into runtime config.
+  location: packages/puppeteer/src/getConfiguration.ts
+  file: packages/puppeteer/src/getConfiguration.ts
+- pattern: frame-delegated page actions
+  description: Many Page actions (goto/click/type/waitForSelector) delegate to mainFrame methods.
+  location: packages/puppeteer-core/src/api/Page.ts
+  file: packages/puppeteer-core/src/api/Page.ts
+- pattern: explicit protocol type option
+  description: Connect options expose protocol selection (cdp or webDriverBiDi).
+  location: packages/puppeteer-core/src/common/ConnectOptions.ts
+  file: packages/puppeteer-core/src/common/ConnectOptions.ts
+- pattern: typed launch option contract
+  description: LaunchOptions define browser process arguments, executable resolution, and headless mode.
+  location: packages/puppeteer-core/src/node/LaunchOptions.ts
+  file: packages/puppeteer-core/src/node/LaunchOptions.ts
+configuration:
+  options:
+  - key: launch.headless
+    default: true
+    description: Controls headless mode (true or shell variant).
+  - key: launch.executablePath
+    default: bundled browser resolution
+    description: Overrides browser binary path.
+  - key: launch.channel
+    default: chrome stable mapping
+    description: Selects installed Chrome channel.
+  - key: launch.args
+    default: puppeteer default args
+    description: Additional browser process arguments.
+  - key: launch.userDataDir
+    default: temporary profile
+    description: Persistent browser profile directory.
+  - key: connect.defaultViewport
+    default: "{width: 800, height: 600}"
+    description: Per-page viewport applied at attach/launch.
+  - key: connect.protocol
+    default: runtime-dependent (cdp for Chrome launch/connect)
+    description: Protocol backend selection.
+  - key: connect.slowMo
+    default: none
+    description: Adds delay to operations for debugging.
+  - key: connect.protocolTimeout
+    default: 180000
+    description: Timeout for individual protocol calls.
+  - key: connect.browserWSEndpoint / browserURL
+    default: none
+    description: Endpoint selection when attaching to existing browser.
+environment:
+- name: PUPPETEER_BROWSER
+  description: Chooses default browser (chrome or firefox) for configuration.
+- name: PUPPETEER_EXECUTABLE_PATH
+  description: Overrides executable path and implies skip-download behavior.
+- name: PUPPETEER_SKIP_DOWNLOAD
+  description: Disables managed browser downloads.
+- name: PUPPETEER_CACHE_DIR
+  description: Overrides browser cache directory location.
+- name: PUPPETEER_TMP_DIR
+  description: Sets temporary directory used by Puppeteer.
+- name: PUPPETEER_LOGLEVEL
+  description: Controls log level (warn, error, or silent).
+- name: PUPPETEER_CHROME_VERSION
+  description: Pins managed Chrome version.
+- name: PUPPETEER_CHROME_DOWNLOAD_BASE_URL
+  description: Overrides Chrome download host.
+- name: PUPPETEER_FIREFOX_VERSION
+  description: Pins managed Firefox version.
+- name: PUPPETEER_FIREFOX_DOWNLOAD_BASE_URL
+  description: Overrides Firefox download host.
+api_surface:
+  public_functions:
+  - name: puppeteer.launch
+    purpose: Launches a browser process and returns Browser instance.
+    location: packages/puppeteer/src/puppeteer.ts
+  - name: puppeteer.connect
+    purpose: Attaches to existing browser endpoint.
+    location: packages/puppeteer/src/puppeteer.ts
+  - name: Browser.newPage
+    purpose: Opens new page in default browser context.
+    location: packages/puppeteer-core/src/api/Browser.ts
+  - name: Browser.createBrowserContext
+    purpose: Creates isolated browser context for scoped sessions.
+    location: packages/puppeteer-core/src/api/Browser.ts
+  - name: Browser.close
+    purpose: Closes browser process/session.
+    location: packages/puppeteer-core/src/api/Browser.ts
+  - name: Browser.disconnect
+    purpose: Disconnects client without closing browser process.
+    location: packages/puppeteer-core/src/api/Browser.ts
+  - name: BrowserContext.newPage
+    purpose: Opens new page within specific context.
+    location: packages/puppeteer-core/src/api/BrowserContext.ts
+  - name: Page.goto
+    purpose: Navigates page/frame to URL and waits per options.
+    location: packages/puppeteer-core/src/api/Page.ts
+  - name: Page.waitForSelector
+    purpose: Waits for selector with visibility/timeout controls.
+    location: packages/puppeteer-core/src/api/Page.ts
+  - name: Page.evaluate
+    purpose: Executes JavaScript in page context and returns result.
+    location: packages/puppeteer-core/src/api/Page.ts
+  - name: Page.click
+    purpose: Clicks a selector on the page.
+    location: packages/puppeteer-core/src/api/Page.ts
+  - name: Page.type
+    purpose: Types text into selected input element.
+    location: packages/puppeteer-core/src/api/Page.ts
+  - name: Page.screenshot
+    purpose: Captures page screenshot with options.
+    location: packages/puppeteer-core/src/api/Page.ts
+  - name: Page.pdf
+    purpose: Generates PDF output from page content.
+    location: packages/puppeteer-core/src/api/Page.ts
+  - name: ElementHandle.click
+    purpose: Clicks concrete DOM element handle.
+    location: packages/puppeteer-core/src/api/ElementHandle.ts
+  - name: ElementHandle.type
+    purpose: Types text into focused element handle.
+    location: packages/puppeteer-core/src/api/ElementHandle.ts
+  - name: ElementHandle.screenshot
+    purpose: Captures screenshot of element bounding box.
+    location: packages/puppeteer-core/src/api/ElementHandle.ts
+testing:
+  framework: Monorepo test suites with integration tests and type tests.
+  key_test_files:
+  - test/
+  - test-d/
+  - packages/puppeteer-core/test/
+  coverage_areas:
+  - launch/connect and protocol compatibility
+  - page automation and selector/evaluation behavior
+  - screenshot/pdf rendering workflows
+  - browser context isolation and target lifecycle
+key_files:
+- path: packages/puppeteer/src/puppeteer.ts
+  description: Public package exports for launch/connect entrypoints.
+- path: packages/puppeteer/src/getConfiguration.ts
+  description: Environment/config-file resolution for runtime settings.
+- path: packages/puppeteer-core/src/api/Browser.ts
+  description: Browser API contract.
+- path: packages/puppeteer-core/src/api/Page.ts
+  description: Core page automation API methods.
+- path: packages/puppeteer-core/src/api/ElementHandle.ts
+  description: Element-level interaction APIs.
+- path: packages/puppeteer-core/src/node/LaunchOptions.ts
+  description: Launch options type contract.
+- path: packages/puppeteer-core/src/common/ConnectOptions.ts
+  description: Connect options and protocol settings.
+- path: docs/api/index.md
+  description: Generated/maintained API reference index.
+- path: README.md
+  description: Quickstart usage and installation guidance.
+core_modules:
+  package_entry_layer:
+    path: packages/puppeteer/src/
+    description: Full package defaults and export surface.
+  core_api_layer:
+    path: packages/puppeteer-core/src/api/
+    description: Browser/page/handle public abstractions.
+  node_runtime_layer:
+    path: packages/puppeteer-core/src/node/
+    description: Browser process launch/connect internals.
+  protocol_layer:
+    path: packages/puppeteer-core/src/cdp/ and packages/puppeteer-core/src/bidi/
+    description: Protocol-specific transport/implementation backends.
+  browser_binary_layer:
+    path: packages/browsers/
+    description: Browser download and binary management utilities.
