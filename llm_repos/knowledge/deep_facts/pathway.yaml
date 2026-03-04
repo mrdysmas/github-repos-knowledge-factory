@@ -196,6 +196,57 @@ facts:
   object_value: maturin (Python-Rust binding)
   note: technology stack (tech_stack)
   fact_id: fact::cd421ce598f2c8bd5a7e9ae7
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: command
+  confidence: 0.7
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/pathway.yaml
+    source_section: cli_arguments[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_arguments[0]
+    source_file: llm_repos/knowledge/deep/pathway.yaml
+    excerpt: spawn
+  object_value: spawn
+  note: Run with monitoring dashboard
+  fact_id: fact::398eb13fe92e93aa7346c1f9
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: command
+  confidence: 0.7
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/pathway.yaml
+    source_section: cli_arguments[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_arguments[2]
+    source_file: llm_repos/knowledge/deep/pathway.yaml
+    excerpt: spawn --processes
+  object_value: spawn --processes
+  note: Set process count
+  fact_id: fact::cb7b711e6ede7b7a837e0aa8
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: command
+  confidence: 0.7
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/pathway.yaml
+    source_section: cli_arguments[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_arguments[1]
+    source_file: llm_repos/knowledge/deep/pathway.yaml
+    excerpt: spawn --threads
+  object_value: spawn --threads
+  note: Set worker threads
+  fact_id: fact::e549f569c5c8c603d0e0d4bc
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept

@@ -7,28 +7,26 @@ input_scope:
   repos_with_any_deep_inputs: 52
   repos_materialized: 50
 metrics:
-  facts_materialized_total: 1908
+  facts_materialized_total: 1946
   facts_with_evidence_pct: 100.0
   confidence_bounds_valid_pct: 100.0
   draft_overrides_count: 0
   derived_dedupe_merges_count: 0
-  unmapped_sections_count: 55
+  unmapped_sections_count: 48
   unmapped_sections_by_repo:
-    repo::1panel-dev/maxkb: 6
+    repo::1panel-dev/maxkb: 5
     repo::anderspitman/awesome-tunneling: 4
     repo::dair-ai/prompt-engineering-guide: 4
     repo::datawhalechina/self-llm: 4
     repo::drduh/yubikey-guide: 5
     repo::emcie-co/parlant: 4
     repo::internlm/lmdeploy: 6
-    repo::khoj-ai/khoj: 1
     repo::mikeroyal/self-hosting-guide: 4
-    repo::milvus-io/milvus: 2
-    repo::mindsdb/mindsdb: 2
+    repo::milvus-io/milvus: 1
+    repo::mindsdb/mindsdb: 1
     repo::mintplex-labs/anything-llm: 1
-    repo::nexaai/nexa-sdk: 5
-    repo::pathwaycom/pathway: 1
-    repo::shubhamsaboo/awesome-llm-apps: 5
+    repo::nexaai/nexa-sdk: 4
+    repo::shubhamsaboo/awesome-llm-apps: 4
     repo::streisandeffect/streisand: 1
   per_repo:
   - node_id: repo::1panel-dev/maxkb
@@ -36,14 +34,14 @@ metrics:
     shard: llm_repos
     narrative_files: 1
     draft_files: 0
-    narrative_facts_raw: 14
+    narrative_facts_raw: 22
     draft_facts_raw: 0
-    derived_facts_after_dedupe: 14
+    derived_facts_after_dedupe: 22
     draft_overrides: 0
     evidence_merges: 0
-    facts_emitted: 14
+    facts_emitted: 22
     blocked_facts: 0
-    unmapped_sections_count: 6
+    unmapped_sections_count: 5
   - node_id: repo::anderspitman/awesome-tunneling
     github_full_name: anderspitman/awesome-tunneling
     shard: ssh_repos
@@ -322,14 +320,14 @@ metrics:
     shard: llm_repos
     narrative_files: 1
     draft_files: 0
-    narrative_facts_raw: 28
+    narrative_facts_raw: 37
     draft_facts_raw: 0
-    derived_facts_after_dedupe: 28
+    derived_facts_after_dedupe: 37
     draft_overrides: 0
     evidence_merges: 0
-    facts_emitted: 28
+    facts_emitted: 37
     blocked_facts: 0
-    unmapped_sections_count: 1
+    unmapped_sections_count: 0
   - node_id: repo::langchain-ai/langchain
     github_full_name: langchain-ai/langchain
     shard: llm_repos
@@ -400,27 +398,27 @@ metrics:
     shard: llm_repos
     narrative_files: 1
     draft_files: 0
-    narrative_facts_raw: 58
+    narrative_facts_raw: 63
     draft_facts_raw: 0
-    derived_facts_after_dedupe: 58
+    derived_facts_after_dedupe: 63
     draft_overrides: 0
     evidence_merges: 0
-    facts_emitted: 58
+    facts_emitted: 63
     blocked_facts: 0
-    unmapped_sections_count: 2
+    unmapped_sections_count: 1
   - node_id: repo::mindsdb/mindsdb
     github_full_name: mindsdb/mindsdb
     shard: llm_repos
     narrative_files: 1
     draft_files: 0
-    narrative_facts_raw: 13
+    narrative_facts_raw: 18
     draft_facts_raw: 0
-    derived_facts_after_dedupe: 13
+    derived_facts_after_dedupe: 18
     draft_overrides: 0
     evidence_merges: 0
-    facts_emitted: 13
+    facts_emitted: 18
     blocked_facts: 0
-    unmapped_sections_count: 2
+    unmapped_sections_count: 1
   - node_id: repo::mintplex-labs/anything-llm
     github_full_name: mintplex-labs/anything-llm
     shard: llm_repos
@@ -452,14 +450,14 @@ metrics:
     shard: llm_repos
     narrative_files: 1
     draft_files: 0
-    narrative_facts_raw: 7
+    narrative_facts_raw: 12
     draft_facts_raw: 0
-    derived_facts_after_dedupe: 7
+    derived_facts_after_dedupe: 12
     draft_overrides: 0
     evidence_merges: 0
-    facts_emitted: 7
+    facts_emitted: 12
     blocked_facts: 0
-    unmapped_sections_count: 5
+    unmapped_sections_count: 4
   - node_id: repo::ollama/ollama
     github_full_name: ollama/ollama
     shard: llm_repos
@@ -517,14 +515,14 @@ metrics:
     shard: llm_repos
     narrative_files: 1
     draft_files: 0
-    narrative_facts_raw: 56
+    narrative_facts_raw: 59
     draft_facts_raw: 0
-    derived_facts_after_dedupe: 56
+    derived_facts_after_dedupe: 59
     draft_overrides: 0
     evidence_merges: 0
-    facts_emitted: 56
+    facts_emitted: 59
     blocked_facts: 0
-    unmapped_sections_count: 1
+    unmapped_sections_count: 0
   - node_id: repo::pydantic/pydantic-ai
     github_full_name: pydantic/pydantic-ai
     shard: llm_repos
@@ -582,14 +580,14 @@ metrics:
     shard: llm_repos
     narrative_files: 1
     draft_files: 0
-    narrative_facts_raw: 21
+    narrative_facts_raw: 24
     draft_facts_raw: 0
-    derived_facts_after_dedupe: 21
+    derived_facts_after_dedupe: 24
     draft_overrides: 0
     evidence_merges: 0
-    facts_emitted: 21
+    facts_emitted: 24
     blocked_facts: 0
-    unmapped_sections_count: 5
+    unmapped_sections_count: 4
   - node_id: repo::slackhq/nebula
     github_full_name: slackhq/nebula
     shard: ssh_repos
@@ -770,7 +768,7 @@ gate_bools:
   execution_results_pending_zero: true
   ws6_hash_stable: true
 gate_metrics:
-  unmapped_sections_count: 55
+  unmapped_sections_count: 48
 execution_mode: full_validation_run
 ws6_gate_ready: true
 gate_ready: true

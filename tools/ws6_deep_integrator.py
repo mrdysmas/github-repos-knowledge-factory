@@ -838,6 +838,139 @@ def extract_architecture_facts(section: Any, source_file: str, as_of: str) -> li
     return facts
 
 
+def extract_key_features_facts(section: Any, source_file: str, as_of: str) -> list[dict[str, Any]]:
+    facts: list[dict[str, Any]] = []
+    seen_features: set[str] = set()
+
+    rows = section if isinstance(section, list) else [section]
+    for idx, row in enumerate(rows):
+        feature = ""
+        note = ""
+
+        if isinstance(row, str):
+            feature = compact_whitespace(row)
+        elif isinstance(row, dict):
+            feature = ensure_string(row.get("feature")) or ensure_string(row.get("name"))
+            note = ensure_string(row.get("description"))
+
+        if not feature:
+            continue
+
+        feature_key = feature.lower()
+        if feature_key in seen_features:
+            continue
+        seen_features.add(feature_key)
+
+        section_ref = f"key_features[{idx}]"
+        facts.append(
+            make_fact(
+                fact_type="component",
+                predicate="has_component",
+                object_kind="concept",
+                object_value=feature,
+                note=note,
+                confidence=0.67,
+                as_of=as_of,
+                source_file=source_file,
+                source_section=section_ref,
+                extraction_mode="narrative",
+                evidence=make_evidence(source_file, section_ref, feature),
+            )
+        )
+
+    return facts
+
+
+def extract_key_files_facts(section: Any, source_file: str, as_of: str) -> list[dict[str, Any]]:
+    facts: list[dict[str, Any]] = []
+    seen_paths: set[str] = set()
+
+    rows = section if isinstance(section, list) else [section]
+    for idx, row in enumerate(rows):
+        path_value = ""
+        note = ""
+
+        if isinstance(row, dict):
+            path_value = ensure_string(row.get("path")) or ensure_string(row.get("file"))
+            note = ensure_string(row.get("description"))
+        elif isinstance(row, str):
+            path_value = compact_whitespace(row)
+
+        if not path_value:
+            continue
+
+        path_key = path_value.lower()
+        if path_key in seen_paths:
+            continue
+        seen_paths.add(path_key)
+
+        section_ref = f"key_files[{idx}]"
+        facts.append(
+            make_fact(
+                fact_type="component",
+                predicate="has_component",
+                object_kind="path",
+                object_value=path_value,
+                note=note,
+                confidence=0.72,
+                as_of=as_of,
+                source_file=source_file,
+                source_section=section_ref,
+                extraction_mode="narrative",
+                evidence=make_evidence(source_file, section_ref, path_value),
+            )
+        )
+
+    return facts
+
+
+def extract_cli_argument_facts(section: Any, source_file: str, as_of: str) -> list[dict[str, Any]]:
+    rows = ensure_list_of_dicts(section)
+    facts: list[dict[str, Any]] = []
+    seen_flags: set[str] = set()
+
+    for idx, row in enumerate(rows):
+        flag = ensure_string(row.get("flag")) or ensure_string(row.get("name"))
+        if not flag:
+            continue
+
+        flag_key = flag.lower()
+        if flag_key in seen_flags:
+            continue
+        seen_flags.add(flag_key)
+
+        default_value = row.get("default")
+        default_text = ""
+        if isinstance(default_value, (str, int, float, bool)):
+            default_text = str(default_value).strip()
+
+        note = normalize_note_parts(
+            [
+                ensure_string(row.get("description")),
+                f"default: {default_text}" if default_text else "",
+            ]
+        )
+
+        section_ref = f"cli_arguments[{idx}]"
+        facts.append(
+            make_fact(
+                fact_type="config_option",
+                predicate="has_config_option",
+                object_kind="command",
+                object_value=flag,
+                note=note,
+                confidence=0.7,
+                as_of=as_of,
+                source_file=source_file,
+                source_section=section_ref,
+                extraction_mode="narrative",
+                evidence=make_evidence(source_file, section_ref, flag),
+            )
+        )
+
+    return facts
+
+
 def extract_pattern_rows(
     section: Any,
     *,
@@ -2053,6 +2186,9 @@ def extract_narrative_facts(
 
     extractor_map: dict[str, Callable[[Any, str, str], list[dict[str, Any]]]] = {
         "architecture": extract_architecture_facts,
+        "key_features": extract_key_features_facts,
+        "key_files": extract_key_files_facts,
+        "cli_arguments": extract_cli_argument_facts,
         "type": extract_repo_type_facts,
         "primary_language": extract_primary_language_facts,
         "languages": extract_languages_facts,

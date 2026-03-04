@@ -230,6 +230,159 @@ facts:
   object_value: pgvector
   note: technology stack (tech_stack)
   fact_id: fact::9ffa0c955ec5df0248848dcd
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: command
+  confidence: 0.7
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    source_section: cli_arguments[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_arguments[4]
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    excerpt: --anonymous-mode
+  object_value: --anonymous-mode
+  note: 'Single user mode, no auth required; default: false'
+  fact_id: fact::4ffc0ab75bf917de24acf8b4
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: command
+  confidence: 0.7
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    source_section: cli_arguments[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_arguments[0]
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    excerpt: --host
+  object_value: --host
+  note: 'Server bind address; default: 127.0.0.1'
+  fact_id: fact::9d903ce5eb4946d5e89cfca3
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: command
+  confidence: 0.7
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    source_section: cli_arguments[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_arguments[2]
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    excerpt: --log-file
+  object_value: --log-file
+  note: 'Log file path; default: ~/.khoj/khoj.log'
+  fact_id: fact::76ce04b178a0f07211550d30
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: command
+  confidence: 0.7
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    source_section: cli_arguments[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_arguments[5]
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    excerpt: --non-interactive
+  object_value: --non-interactive
+  note: 'Skip interactive prompts; default: false'
+  fact_id: fact::0692ab09c94d23e8004a5b72
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: command
+  confidence: 0.7
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    source_section: cli_arguments[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_arguments[1]
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    excerpt: --port
+  object_value: --port
+  note: 'Server port; default: 42110'
+  fact_id: fact::db18e9ea9b445ca5843c8dd6
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: command
+  confidence: 0.7
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    source_section: cli_arguments[8]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_arguments[8]
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    excerpt: --socket
+  object_value: --socket
+  note: UNIX socket path
+  fact_id: fact::e65819f032075786c287d439
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: command
+  confidence: 0.7
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    source_section: cli_arguments[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_arguments[6]
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    excerpt: --sslcert
+  object_value: --sslcert
+  note: SSL certificate path
+  fact_id: fact::fb7983dd7e53729326968ae6
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: command
+  confidence: 0.7
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    source_section: cli_arguments[7]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_arguments[7]
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    excerpt: --sslkey
+  object_value: --sslkey
+  note: SSL key path
+  fact_id: fact::64b642998c43aa1988d23671
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: command
+  confidence: 0.7
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    source_section: cli_arguments[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_arguments[3]
+    source_file: llm_repos/knowledge/deep/khoj.yaml
+    excerpt: --verbose
+  object_value: --verbose
+  note: 'Verbosity level; default: 0'
+  fact_id: fact::9acfc30975908e3ae1b7da4a
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
