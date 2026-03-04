@@ -1,5 +1,5 @@
 version: 1
-as_of_utc: "2026-03-03T20:57:29Z"
+as_of_utc: "2026-03-04T15:45:32Z"
 
 naming_legend:
   WS: "Workstream (pipeline lane/stage, e.g., WS1-WS6)"
@@ -78,10 +78,10 @@ key_metrics:
     actual: 10
   - name: "deep_facts_materialized"
     target: 1
-    actual: 1908
+    actual: 2019
   - name: "unmapped_sections_count"
     target: 0
-    actual: 55
+    actual: 33
   - name: "pilot_repos_deep_prioritized"
     target: 3
     actual: 4
@@ -162,11 +162,10 @@ results:
     - "python3 -m unittest discover -s tests/ws6_deep_integration -p 'test_*.py' => PASS (5 tests)"
     - "python3 -m unittest discover -s tests/intake_queue_sync -p 'test_*.py' => PASS (1 test)"
   latest_snapshot:
-    captured_at_utc: "2026-03-03T20:57:29Z"
+    captured_at_utc: "2026-03-04T15:34:55Z"
     rationale: "Single-source handoff summary for latest verified state; historical runs remain under validation_runs."
     canonical_commands:
       - "python3 tools/check_intake_queue_sync.py --workspace-root ."
-      - "python3 tools/ws2_identity_backfill.py --workspace-root ."
       - "python3 tools/ws6_deep_integrator.py --workspace-root . --reports-dir reports/ws6_deep_integration --materialize-spec reports/ws6_deep_integration/spec.yaml --run-validation-suite"
       - "python3 tools/query_master.py stats"
       - "python3 -m unittest discover -s tests/ws6_deep_integration -p 'test_*.py'"
@@ -177,23 +176,26 @@ results:
       ws6_validation_suite_passed: true
       ws6_execution_mode: "full_validation_run"
       ws6_blocking_mismatches_count: 0
+      ws6_unknown_predicates_count: 0
+      intake_queue_sync_queued_count: 59
     metrics:
-      deep_facts: 1908
-      unmapped_sections_count: 55
-      non_blocking_mismatches_count: 55
-      previous_batch_baseline_deep_facts: 1863
-      previous_batch_baseline_unmapped_sections_count: 72
+      deep_facts: 2019
+      unmapped_sections_count: 33
+      non_blocking_mismatches_count: 33
+      phase_2a_baseline_deep_facts: 1908
+      phase_2a_baseline_unmapped_sections_count: 55
     target_section_status:
       languages: 0
       related_repos: 0
       type: 0
       primary_language: 0
       ports: 0
-    deltas_vs_previous_batch_baseline:
-      deep_facts_delta: 45
-      unmapped_sections_delta: -17
+    deltas_vs_phase_2a_baseline:
+      deep_facts_delta: 111
+      unmapped_sections_delta: -22
   phase_2a:
-    status: "PENDING"
+    status: "COMPLETE"
+    completed_at_utc: "2026-03-04T06:01:00Z"
     objective: "Close top nine unmapped section types before any new intake execution."
     baseline:
       deep_facts: 1908
@@ -214,14 +216,64 @@ results:
       - "unmapped_sections_count drops by at least 20 from baseline 55."
       - "deep_facts increases above baseline 1908."
       - "WS6 and intake_queue_sync test suites pass."
-    run_history: []
+    run_history:
+      - run_id: "phase2a-cycle3-final"
+        completed_at_utc: "2026-03-04T06:01:00Z"
+        deep_facts_before: 1969
+        deep_facts_after: 2019
+        unmapped_before: 42
+        unmapped_after: 33
+        blocking_mismatches_count: 0
+        unknown_predicates_count: 0
+        gates_passed: true
   phase_2b:
-    status: "BLOCKED_ON_PHASE_2A"
-    objective: "Run 8-12 structurally diverse calibration repos only after Phase 2A completion."
+    status: "IN_PROGRESS"
+    objective: "Run Sub-batch 1 (5 repos) through WS5 -> WS4 -> WS6, then stop for supervisor review before SB2."
+    baseline_before_sb1:
+      deep_facts: 2019
+      unmapped_sections_count: 33
+      blocking_mismatches_count: 0
+      unknown_predicates_count: 0
+    sb1_repo_set:
+      - github_full_name: "tmux/tmux"
+        local_clone_path: "/Users/szilaa/scripts/ext_sources/github_repos/cli_repos/tmux-master"
+        structural_shape: "C project with man-page docs and autotools build."
+      - github_full_name: "pgvector/pgvector"
+        local_clone_path: "/Users/szilaa/scripts/ext_sources/github_repos/vector_db/pgvector-master"
+        structural_shape: "Postgres C extension with compact SQL-heavy layout."
+      - github_full_name: "wez/wezterm"
+        local_clone_path: "/Users/szilaa/scripts/ext_sources/github_repos/cli_repos/wezterm-main"
+        structural_shape: "Rust monorepo with multi-crate Cargo workspace."
+      - github_full_name: "xqsit94/glm"
+        local_clone_path: "/Users/szilaa/scripts/ext_sources/github_repos/cli_repos/glm-main"
+        structural_shape: "Tiny Go CLI wrapper under 1000 LOC."
+      - github_full_name: "phuocng/1loc"
+        local_clone_path: "/Users/szilaa/scripts/ext_sources/github_repos/uncat_repos/1loc-master"
+        structural_shape: "Markdown/MDX snippets repo with unusual structure."
     done_when:
-      - "8-12 calibration repos canonicalized end-to-end via WS5 -> WS4 -> WS6."
+      - "All 5 SB1 repos are ingested through WS5 -> WS4 -> WS6."
       - "blocking_mismatches=0 and unknown_predicates=0 after full run."
-      - "query_master.py returns consistent repo/facts outputs for calibration repos."
+      - "query_master.py stats output is consistent and includes the 5 SB1 repos."
+      - "New unmapped sections (if any) are counted and recorded."
+      - "results.phase_2b captures before/after deep_facts + unmapped_sections, per-repo deep fact counts, and analysis_runtime."
+      - "Execution stops after SB1; do not start SB2 without supervisor approval."
+    judgment_call_guidance:
+      - "Zero or near-zero deep facts for tiny/unusual repos is valid; record it as a finding."
+      - "If WS6 extraction crashes on a new YAML shape, capture error output and escalate; do not patch extractor mid-run."
+      - "If queue sync fails after manifest changes, reconcile intake queue status fields and rerun."
+      - "Do not modify contracts/ws1/*."
+    analysis_runtime:
+      status: "PENDING_CAPTURE"
+      fields_required:
+        - "agent"
+        - "model"
+        - "model_version"
+        - "run_id"
+      template:
+        agent: "codex"
+        model: null
+        model_version: null
+        run_id: null
     run_history: []
   completion_status: "COMPLETE"
   issues_encountered:
@@ -230,17 +282,16 @@ results:
 
 findings: |
   INTAKE-PILOT-1 shallow execution remains complete and stable. WS6 v1 now also
-  materializes canonical deep facts (1908) into shard-level deep_facts outputs
+  materializes canonical deep facts (2019) into shard-level deep_facts outputs
   plus master_deep_facts.yaml, with strict unknown_predicate blocking to prevent
   silent schema drift. This is the classic contract-first canonicalization
   pattern: strict schema gates keep draft narratives from silently mutating the
   top-level graph semantics. validation_runs semantics are now explicit:
   required_commands is plan-only, and execution_results is recorder-backed with
-  no PENDING_EXECUTION states. Batch-2 extractor coverage reduced unmapped
-  sections from 72 to 55 and fully burned down the five target sections
-  (languages, related_repos, type, primary_language, ports) to 0 outstanding
-  findings. Query bridge evidence is now documented with both repo resolution
-  and predicate-filtered facts retrieval via tools/query_master.py.
+  no PENDING_EXECUTION states. Phase 2A is complete: the nine target extractor
+  section types were implemented, deep_facts increased from 1908 to 2019, and
+  unmapped_sections_count dropped from 55 to 33 with blocking and unknown
+  predicate counts at 0. Phase 2B SB1 is now the active supervised run.
 
 executor_context_capture:
   ws2_change_rationale:
@@ -283,11 +334,15 @@ executor_context_capture:
       top_14_sections_reduction: 39
       long_tail_remaining_after_top_14: 33
   next_run_baseline:
-    deep_facts: 1908
-    unmapped_sections_count: 55
+    deep_facts: 2019
+    unmapped_sections_count: 33
     required_commands:
       - "python3 tools/check_intake_queue_sync.py --workspace-root ."
-      - "python3 tools/ws2_identity_backfill.py --workspace-root ."
+      - "python3 tools/ws5_remote_ingestion.py --workspace-root . --input inputs/ws5/ws5_input_manifest.yaml"
+      - "python3 tools/ws4_master_compiler.py --workspace-root ."
+      - "python3 tools/ws1_contract_validator.py --workspace-root . --external-node-policy first_class"
+      - "python3 tools/trust_gates.py llm_repos/knowledge --production"
+      - "python3 tools/trust_gates.py ssh_repos/knowledge --production"
       - "python3 tools/ws6_deep_integrator.py --workspace-root . --reports-dir reports/ws6_deep_integration --materialize-spec reports/ws6_deep_integration/spec.yaml --run-validation-suite"
       - "python3 tools/query_master.py stats"
       - "python3 -m unittest discover -s tests/ws6_deep_integration -p 'test_*.py'"
@@ -295,22 +350,22 @@ executor_context_capture:
     post_run_checks:
       - "Use required_commands exactly as listed; do not substitute pseudo-command aliases."
       - "reports/ws6_deep_integration/validation_runs.yaml => gate_ready=true + validation_suite_passed=true"
-      - "reports/ws6_deep_integration/coverage.yaml => unmapped_sections_count compared against baseline 55"
-      - "python3 tools/query_master.py stats => deep_facts compared against baseline 1908"
+      - "reports/ws6_deep_integration/coverage.yaml => unmapped_sections_count compared against baseline 33"
+      - "python3 tools/query_master.py stats => deep_facts compared against baseline 2019"
 
 sorting_backlog:
   - item: "Status/metrics reconciliation across trackers and reports"
     status: "RESOLVED"
-    evidence: "upcoming_progress_tracker.yaml + project_status.yaml refreshed to deep_facts=1908 and unmapped_sections_count=55."
+    evidence: "Trackers refreshed through Phase 2A completion (deep_facts=2019, unmapped_sections_count=33)."
   - item: "M3 query bridge closure"
     status: "RESOLVED"
     evidence: "Documented query_master.py repo + facts end-to-end evidence; milestone moved to COMPLETE."
   - item: "Next execution mode ambiguity (A: WS6 burn-down vs B: Phase 2 calibration)"
     status: "RESOLVED"
     evidence: "Decision updated to sequential Phase 2 execution: complete Phase 2A extractor cleanup before Phase 2B calibration."
-  - item: "WS6 long-tail unmapped sections (55)"
+  - item: "WS6 long-tail unmapped sections (33)"
     status: "OPEN"
-    evidence: "Backlog remains open and is now primary scope for Phase 2A (before calibration intake begins)."
+    evidence: "Backlog now stands at 33 and carries as monitored debt during Phase 2B calibration."
 
 decision_rule: |
   IF M1+M2+M3+M4 all complete and acceptance criteria are met:
@@ -320,5 +375,5 @@ decision_rule: |
   IF queue enforcement fails at any point:
     -> Stop intake expansion until sync/add gates are restored
 
-decision: "PHASE_1_COMPLETE_PROCEED_PHASE_2A_THEN_2B"
+decision: "PHASE_2A_COMPLETE_PROCEED_PHASE_2B_SB1"
 next_phase: "Phase 2 - Scale intake throughput and calibration batch execution"
