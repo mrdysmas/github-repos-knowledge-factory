@@ -1,7 +1,7 @@
 metadata:
   created: 2026-02-20
   purpose: Quick reference for LLM-related repositories
-  total_repos: 36
+  total_repos: 48
 categories:
   rag_frameworks:
     description: RAG, orchestration, and LLM application frameworks
@@ -92,6 +92,15 @@ categories:
     - name: codex
       summary: Shallow intake pilot canonicalization for openai/codex in agent cli
         domain.
+    - name: copilot-cli
+      summary: Phase 4 Corpus Expansion P4-B1 intake for github/copilot-cli. Agent
+        CLI repository routed explicitly to llm_repos.
+    - name: kimi-cli
+      summary: Phase 4 Corpus Expansion P4-B1 intake for MoonshotAI/kimi-cli. Agent
+        CLI repository routed explicitly to llm_repos.
+    - name: opencode
+      summary: Phase 4 Corpus Expansion P4-B1 intake for anomalyco/opencode. Agent
+        CLI repository routed explicitly to llm_repos.
   agent_platform:
     description: 'Remote-ingested category: agent_platform'
     repos:
@@ -113,21 +122,48 @@ categories:
     - name: qdrant
       summary: Shallow intake pilot canonicalization for qdrant/qdrant in vector database
         domain.
+    - name: usearch
+      summary: Phase 4 Corpus Expansion P4-B1 intake for unum-cloud/usearch. Vector
+        database repository routed explicitly to llm_repos.
+    - name: vectordbbench
+      summary: Phase 4 Corpus Expansion P4-B1 intake for zilliztech/VectorDBBench.
+        Vector database repository routed explicitly to llm_repos.
+    - name: voyager
+      summary: Phase 4 Corpus Expansion P4-B1 intake for spotify/voyager. Vector database
+        repository routed explicitly to llm_repos.
     - name: weaviate
       summary: Shallow intake pilot canonicalization for weaviate/weaviate in vector
         database domain.
   agent_framework:
     description: 'Remote-ingested category: agent_framework'
     repos:
+    - name: agent-skills
+      summary: Phase 4 Corpus Expansion P4-B1 intake for anysiteio/agent-skills. Agent
+        framework repository routed explicitly to llm_repos.
+    - name: awesome-claude-skills
+      summary: Phase 4 Corpus Expansion P4-B1 intake for ComposioHQ/awesome-claude-skills.
+        Agent framework repository routed explicitly to llm_repos.
+    - name: instructor
+      summary: Phase 4 Corpus Expansion P4-B1 intake for instructor-ai/instructor.
+        Agent framework repository routed explicitly to llm_repos.
+    - name: llguidance
+      summary: Phase 4 Corpus Expansion P4-B1 intake for microsoft/llguidance. Agent
+        framework repository routed explicitly to llm_repos.
     - name: pydantic-ai
       summary: Shallow intake pilot canonicalization for pydantic/pydantic-ai in agent
         framework domain.
+    - name: skills
+      summary: Phase 4 Corpus Expansion P4-B1 intake for anthropics/skills. Agent
+        framework repository routed explicitly to llm_repos.
   agent_orchestration:
     description: 'Remote-ingested category: agent_orchestration'
     repos:
     - name: claude-flow
       summary: Shallow intake pilot canonicalization for ruvnet/claude-flow in agent
         orchestration domain.
+    - name: mini-agent
+      summary: Phase 4 Corpus Expansion P4-B1 intake for MiniMax-AI/Mini-Agent. Agent
+        orchestration repository routed explicitly to llm_repos.
   web_framework:
     description: 'Remote-ingested category: web_framework'
     repos:
@@ -135,9 +171,15 @@ categories:
       summary: Shallow intake pilot canonicalization for gin-gonic/gin in web framework
         domain.
 repos_alpha:
+- name: agent-skills
+  category: agent_framework
+  file: repos/anysiteio__agent-skills.yaml
 - name: anything_llm
   category: ui_tools
   file: repos/anything_llm.yaml
+- name: awesome-claude-skills
+  category: agent_framework
+  file: repos/composiohq__awesome-claude-skills.yaml
 - name: awesome-llm-apps
   category: rag_frameworks
   file: repos/awesome-llm-apps.yaml
@@ -150,6 +192,9 @@ repos_alpha:
 - name: codex
   category: agent_cli
   file: repos/openai__codex.yaml
+- name: copilot-cli
+  category: agent_cli
+  file: repos/github__copilot-cli.yaml
 - name: dify
   category: agent_platform
   file: repos/langgenius__dify.yaml
@@ -162,12 +207,18 @@ repos_alpha:
 - name: graphrag
   category: rag_frameworks
   file: repos/graphrag.yaml
+- name: instructor
+  category: agent_framework
+  file: repos/instructor-ai__instructor.yaml
 - name: JeecgBoot
   category: ui_tools
   file: repos/JeecgBoot.yaml
 - name: khoj
   category: agent_frameworks
   file: repos/khoj.yaml
+- name: kimi-cli
+  category: agent_cli
+  file: repos/moonshotai__kimi-cli.yaml
 - name: lancedb
   category: vector_database
   file: repos/lancedb__lancedb.yaml
@@ -183,6 +234,9 @@ repos_alpha:
 - name: llamafactory
   category: fine_tuning
   file: repos/llamafactory.yaml
+- name: llguidance
+  category: agent_framework
+  file: repos/microsoft__llguidance.yaml
 - name: llm-app
   category: rag_frameworks
   file: repos/llm-app.yaml
@@ -201,6 +255,9 @@ repos_alpha:
 - name: mindsdb
   category: data_pipelines
   file: repos/mindsdb.yaml
+- name: mini-agent
+  category: agent_orchestration
+  file: repos/minimax-ai__mini-agent.yaml
 - name: nexa_sdk
   category: inference_serving
   file: repos/nexa_sdk.yaml
@@ -210,6 +267,9 @@ repos_alpha:
 - name: open_webui
   category: ui_tools
   file: repos/open_webui.yaml
+- name: opencode
+  category: agent_cli
+  file: repos/anomalyco__opencode.yaml
 - name: opencompass
   category: evaluation
   file: repos/opencompass.yaml
@@ -234,9 +294,21 @@ repos_alpha:
 - name: self-llm
   category: educational
   file: repos/self-llm.yaml
+- name: skills
+  category: agent_framework
+  file: repos/anthropics__skills.yaml
+- name: usearch
+  category: vector_database
+  file: repos/unum-cloud__usearch.yaml
+- name: vectordbbench
+  category: vector_database
+  file: repos/zilliztech__vectordbbench.yaml
 - name: vllm
   category: inference_serving
   file: repos/vllm.yaml
+- name: voyager
+  category: vector_database
+  file: repos/spotify__voyager.yaml
 - name: weaviate
   category: vector_database
   file: repos/weaviate__weaviate.yaml

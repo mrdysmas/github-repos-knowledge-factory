@@ -1,6 +1,6 @@
 artifact_type: intake_repo_queue
 contract_version: 1.0.0-intake
-generated_at_utc: '2026-03-04T17:22:51Z'
+generated_at_utc: '2026-03-05T04:21:21Z'
 source:
   catalog_file: master_repo_list.yaml
   master_index_file: master_index.yaml
@@ -10,8 +10,8 @@ summary:
   source_rows_missing_github_url: 5
   source_rows_invalid_full_name: 0
   deduped_entries_total: 117
-  already_canonical_count: 71
-  queued_count: 46
+  already_canonical_count: 83
+  queued_count: 34
 policies:
   scan_mode_default: shallow_first
   clone_strategy: clone_on_demand
@@ -62,9 +62,9 @@ entries:
 - queue_id: intake::anomalyco/opencode
   github_full_name: anomalyco/opencode
   html_url: https://github.com/anomalyco/opencode
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - cli_repos
@@ -104,9 +104,9 @@ entries:
 - queue_id: intake::anthropics/skills
   github_full_name: anthropics/skills
   html_url: https://github.com/anthropics/skills
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - skills_repos
@@ -118,9 +118,9 @@ entries:
 - queue_id: intake::anysiteio/agent-skills
   github_full_name: anysiteio/agent-skills
   html_url: https://github.com/anysiteio/agent-skills
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - skills_repos
@@ -241,12 +241,12 @@ entries:
   needs_review_count: 0
   source_row_indexes:
   - 64
-- queue_id: intake::ComposioHQ/awesome-claude-skills
-  github_full_name: ComposioHQ/awesome-claude-skills
+- queue_id: intake::composiohq/awesome-claude-skills
+  github_full_name: composiohq/awesome-claude-skills
   html_url: https://github.com/ComposioHQ/awesome-claude-skills
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - skills_repos
@@ -443,9 +443,9 @@ entries:
 - queue_id: intake::github/copilot-cli
   github_full_name: github/copilot-cli
   html_url: https://github.com/github/copilot-cli
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - cli_repos
@@ -597,9 +597,9 @@ entries:
 - queue_id: intake::instructor-ai/instructor
   github_full_name: instructor-ai/instructor
   html_url: https://github.com/instructor-ai/instructor
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - structured_outputs
@@ -821,9 +821,9 @@ entries:
 - queue_id: intake::microsoft/llguidance
   github_full_name: microsoft/llguidance
   html_url: https://github.com/microsoft/llguidance
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - structured_outputs
@@ -874,12 +874,12 @@ entries:
   needs_review_count: 0
   source_row_indexes:
   - 112
-- queue_id: intake::MiniMax-AI/Mini-Agent
-  github_full_name: MiniMax-AI/Mini-Agent
+- queue_id: intake::minimax-ai/mini-agent
+  github_full_name: minimax-ai/mini-agent
   html_url: https://github.com/MiniMax-AI/Mini-Agent
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - workflow_repos
@@ -930,12 +930,12 @@ entries:
   needs_review_count: 0
   source_row_indexes:
   - 81
-- queue_id: intake::MoonshotAI/kimi-cli
-  github_full_name: MoonshotAI/kimi-cli
+- queue_id: intake::moonshotai/kimi-cli
+  github_full_name: moonshotai/kimi-cli
   html_url: https://github.com/MoonshotAI/kimi-cli
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - cli_repos
@@ -1368,9 +1368,9 @@ entries:
 - queue_id: intake::spotify/voyager
   github_full_name: spotify/voyager
   html_url: https://github.com/spotify/voyager
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - vector_db
@@ -1494,9 +1494,9 @@ entries:
 - queue_id: intake::unum-cloud/usearch
   github_full_name: unum-cloud/usearch
   html_url: https://github.com/unum-cloud/usearch
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - vector_db
@@ -1645,12 +1645,12 @@ entries:
   needs_review_count: 0
   source_row_indexes:
   - 83
-- queue_id: intake::zilliztech/VectorDBBench
-  github_full_name: zilliztech/VectorDBBench
+- queue_id: intake::zilliztech/vectordbbench
+  github_full_name: zilliztech/vectordbbench
   html_url: https://github.com/zilliztech/VectorDBBench
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - vector_db
