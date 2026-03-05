@@ -87,10 +87,20 @@ def ensure_list_of_dicts(value: Any) -> list[dict[str, Any]]:
     return out
 
 
-def build_repo_lookup(repos: list[dict[str, Any]]) -> tuple[dict[str, dict[str, Any]], dict[str, str], dict[str, str]]:
+def build_repo_lookup(
+    repos: list[dict[str, Any]],
+) -> tuple[
+    dict[str, dict[str, Any]],
+    dict[str, str],
+    dict[str, str],
+    dict[str, str],
+    dict[str, str],
+]:
     by_node_id: dict[str, dict[str, Any]] = {}
     by_name: dict[str, str] = {}
     by_full_name: dict[str, str] = {}
+    by_name_ci: dict[str, str] = {}
+    by_full_name_ci: dict[str, str] = {}
 
     for repo in repos:
         node_id = str(repo.get("node_id") or "").strip()
@@ -101,19 +111,33 @@ def build_repo_lookup(repos: list[dict[str, Any]]) -> tuple[dict[str, dict[str, 
         by_node_id[node_id] = repo
         if name:
             by_name[name] = node_id
+            by_name_ci.setdefault(name.casefold(), node_id)
         if full_name:
             by_full_name[full_name] = node_id
+            by_full_name_ci.setdefault(full_name.casefold(), node_id)
 
-    return by_node_id, by_name, by_full_name
+    return by_node_id, by_name, by_full_name, by_name_ci, by_full_name_ci
 
 
-def resolve_repo_node_id(identifier: str, by_node_id: dict[str, dict[str, Any]], by_name: dict[str, str], by_full_name: dict[str, str]) -> str | None:
+def resolve_repo_node_id(
+    identifier: str,
+    by_node_id: dict[str, dict[str, Any]],
+    by_name: dict[str, str],
+    by_full_name: dict[str, str],
+    by_name_ci: dict[str, str],
+    by_full_name_ci: dict[str, str],
+) -> str | None:
     if identifier in by_node_id:
         return identifier
     if identifier in by_name:
         return by_name[identifier]
     if identifier in by_full_name:
         return by_full_name[identifier]
+    identifier_ci = identifier.casefold()
+    if identifier_ci in by_name_ci:
+        return by_name_ci[identifier_ci]
+    if identifier_ci in by_full_name_ci:
+        return by_full_name_ci[identifier_ci]
     return None
 
 
@@ -135,7 +159,7 @@ def load_master_artifacts(workspace_root: Path, master_index_path: str, master_g
     edges = ensure_list_of_dicts(graph_payload.get("edges"))
     deep_facts = ensure_list_of_dicts(deep_payload.get("facts"))
 
-    by_node_id, by_name, by_full_name = build_repo_lookup(repos)
+    by_node_id, by_name, by_full_name, by_name_ci, by_full_name_ci = build_repo_lookup(repos)
     return {
         "index_path": index_path.as_posix(),
         "graph_path": graph_path.as_posix(),
@@ -148,6 +172,8 @@ def load_master_artifacts(workspace_root: Path, master_index_path: str, master_g
             "by_node_id": by_node_id,
             "by_name": by_name,
             "by_full_name": by_full_name,
+            "by_name_ci": by_name_ci,
+            "by_full_name_ci": by_full_name_ci,
         },
     }
 
@@ -202,6 +228,8 @@ def command_repo(payload: dict[str, Any], identifier: str) -> tuple[int, dict[st
         lookup["by_node_id"],
         lookup["by_name"],
         lookup["by_full_name"],
+        lookup["by_name_ci"],
+        lookup["by_full_name_ci"],
     )
     if node_id is None:
         return 2, {"error": f"Repo identifier not found: {identifier}"}
@@ -221,6 +249,8 @@ def command_neighbors(
         lookup["by_node_id"],
         lookup["by_name"],
         lookup["by_full_name"],
+        lookup["by_name_ci"],
+        lookup["by_full_name_ci"],
     )
     if node_id is None:
         return 2, {"error": f"Repo identifier not found: {identifier}"}
@@ -266,6 +296,8 @@ def command_facts(payload: dict[str, Any], identifier: str, predicate: str) -> t
         lookup["by_node_id"],
         lookup["by_name"],
         lookup["by_full_name"],
+        lookup["by_name_ci"],
+        lookup["by_full_name_ci"],
     )
     if node_id is None:
         return 2, {"error": f"Repo identifier not found: {identifier}"}
@@ -309,15 +341,41 @@ def command_stats_sqlite(conn: sqlite3.Connection, db_path: str) -> dict[str, An
     }
 
 
-def command_repo_sqlite(conn: sqlite3.Connection, identifier: str) -> tuple[int, dict[str, Any]]:
+def resolve_repo_node_id_sqlite(conn: sqlite3.Connection, identifier: str) -> str | None:
     row = conn.execute(
-        "SELECT raw_yaml FROM repos WHERE node_id = ? OR name = ? OR github_full_name = ?",
-        (identifier, identifier, identifier),
+        "SELECT node_id FROM repos WHERE node_id = ?",
+        (identifier,),
+    ).fetchone()
+    if row is not None:
+        return row[0]
+
+    row = conn.execute(
+        "SELECT node_id "
+        "FROM repos "
+        "WHERE name = ? COLLATE NOCASE OR github_full_name = ? COLLATE NOCASE "
+        "ORDER BY node_id "
+        "LIMIT 1",
+        (identifier, identifier),
+    ).fetchone()
+    if row is not None:
+        return row[0]
+
+    return None
+
+
+def command_repo_sqlite(conn: sqlite3.Connection, identifier: str) -> tuple[int, dict[str, Any]]:
+    node_id = resolve_repo_node_id_sqlite(conn, identifier)
+    if node_id is None:
+        return 2, {"error": f"Repo identifier not found: {identifier}"}
+
+    row = conn.execute(
+        "SELECT raw_yaml FROM repos WHERE node_id = ?",
+        (node_id,),
     ).fetchone()
     if row is None:
         return 2, {"error": f"Repo identifier not found: {identifier}"}
     repo = json.loads(row[0])
-    node_id = repo.get("node_id", identifier)
+    node_id = repo.get("node_id", node_id)
     return 0, {"artifact_type": "master_query_repo", "node_id": node_id, "repo": repo}
 
 
@@ -327,13 +385,9 @@ def command_neighbors_sqlite(
     direction: str,
     relation: str,
 ) -> tuple[int, dict[str, Any]]:
-    resolved = conn.execute(
-        "SELECT node_id FROM repos WHERE node_id = ? OR name = ? OR github_full_name = ?",
-        (identifier, identifier, identifier),
-    ).fetchone()
-    if resolved is None:
+    node_id = resolve_repo_node_id_sqlite(conn, identifier)
+    if node_id is None:
         return 2, {"error": f"Repo identifier not found: {identifier}"}
-    node_id = resolved[0]
 
     conditions = []
     params: list[str] = []
@@ -382,13 +436,9 @@ def command_facts_sqlite(
     identifier: str,
     predicate: str,
 ) -> tuple[int, dict[str, Any]]:
-    resolved = conn.execute(
-        "SELECT node_id FROM repos WHERE node_id = ? OR name = ? OR github_full_name = ?",
-        (identifier, identifier, identifier),
-    ).fetchone()
-    if resolved is None:
+    node_id = resolve_repo_node_id_sqlite(conn, identifier)
+    if node_id is None:
         return 2, {"error": f"Repo identifier not found: {identifier}"}
-    node_id = resolved[0]
 
     total = conn.execute("SELECT COUNT(*) FROM facts").fetchone()[0]
     if total == 0:
@@ -531,13 +581,9 @@ def command_graph_sqlite(
     relation: str,
     direction: str,
 ) -> tuple[int, dict[str, Any]]:
-    resolved = conn.execute(
-        "SELECT node_id FROM repos WHERE node_id = ? OR name = ? OR github_full_name = ?",
-        (identifier, identifier, identifier),
-    ).fetchone()
-    if resolved is None:
+    start_id = resolve_repo_node_id_sqlite(conn, identifier)
+    if start_id is None:
         return 2, {"error": f"Repo identifier not found: {identifier}"}
-    start_id = resolved[0]
 
     visited = {start_id}
     current_frontier = {start_id}

@@ -3549,7 +3549,7 @@ def materialize(
         },
         {
             "step": 6,
-            "command": "python3 tools/query_master.py stats",
+            "command": "python3 tools/query_master.py --source yaml stats",
             "expectation": "deep_facts > 0",
         },
         {
@@ -3685,7 +3685,7 @@ def materialize(
                 "--reports-dir",
                 "reports/ws4_master_build",
             ],
-            6: ["python3", "tools/query_master.py", "stats"],
+            6: ["python3", "tools/query_master.py", "--source", "yaml", "stats"],
         }
 
         for step in (1, 2, 3, 5, 6):

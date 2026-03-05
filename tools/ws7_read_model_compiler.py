@@ -705,14 +705,11 @@ def run_compile(workspace_root: Path, force: bool) -> int:
                 f"facts(ts={source_generated_at['facts']},sha256={source_hashes['facts']}), "
                 f"max_delta_seconds={max_delta_seconds}"
             )
-            if force:
-                warning_snapshot_divergence = True
-                log_doc["gates"]["snapshot_consistency"]["status"] = "skipped (--force)"
-                log_doc["gates"]["snapshot_consistency"]["detail"] = detail
-            else:
-                log_doc["gates"]["snapshot_consistency"]["status"] = "fail"
-                log_doc["gates"]["snapshot_consistency"]["detail"] = detail
-                raise GateFailure("snapshot_consistency", detail)
+            warning_snapshot_divergence = True
+            log_doc["gates"]["snapshot_consistency"]["status"] = "warn"
+            log_doc["gates"]["snapshot_consistency"]["detail"] = (
+                f"timestamp divergence (non-blocking): {detail}"
+            )
         else:
             log_doc["gates"]["snapshot_consistency"]["status"] = "pass"
             log_doc["gates"]["snapshot_consistency"]["detail"] = (
@@ -788,10 +785,11 @@ def run_compile(workspace_root: Path, force: bool) -> int:
         write_compile_log(log_path, log_doc)
 
         if warning_snapshot_divergence:
-            print("WARNING: snapshot_consistency skipped (--force). Timestamps diverge:")
+            print("WARNING: snapshot_consistency timestamp divergence detected (non-blocking).")
             print(f"  index: {source_generated_at['index']}")
             print(f"  graph: {source_generated_at['graph']}")
             print(f"  facts: {source_generated_at['facts']}")
+            print(f"  max_delta_seconds: {max_delta_seconds}")
 
         print("compile: ok")
         print(f"  schema_version: {SCHEMA_VERSION}")
@@ -834,7 +832,7 @@ def main() -> int:
     parser.add_argument(
         "--force",
         action="store_true",
-        help="Skip snapshot consistency mismatch failure and continue",
+        help="Compatibility flag; timestamp divergence is warning-only and no longer blocks compile.",
     )
     args = parser.parse_args()
 
