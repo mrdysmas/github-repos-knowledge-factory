@@ -1,0 +1,66 @@
+PROMPT_AUDIT_HEADER:
+  template_version: "p4-prompt-audit-v3"
+  template_owner: "phase4-supervisor"
+  template_change_control:
+    parent_template_version: "p4-prompt-audit-v2"
+    last_changed_utc: "<YYYY-MM-DDTHH:MM:SSZ>"
+    last_changed_by: "<agent_or_human_id>"
+    change_reason: "Add numeric thresholds, pinned context hashes, and explicit change-control fields."
+    changelog_ref: "<commit_or_doc_ref>"
+
+  run_identity:
+    prompt_id: "<P4-BX>"
+    run_class: "<hybrid_repeatability_validation|deep_only|shallow_only>"
+    primary_intent: "<one sentence>"
+
+  immutable_context:
+    workspace_root: "/Users/szilaa/scripts/ext_sources/github_repos"
+    branch: "codex/phase-2b-sb2"
+    phase4_tracker_sha1: "b939f13f5b08d57b54d1f455442a3edaff61d89d"
+    rubric_sha1: "115f0adbe29786e5fd6a04898d5a51f7df23ad8d"
+    prior_prompt_sha1:
+      p4_b2: "c21d8cb4b3e28e814401011ff3e2dc8c69f52a6a"
+      p4_b2_deep: "73c1a74775ce13d21510ea410f7a9120519d2269"
+      p4_b3: "b73ad7c9a6279e1a02a907632dedb7a909ed74d3"
+    self_prompt_sha1: "<fill_after_prompt_finalized>"
+
+  target_lock:
+    shallow_target_count: <N_shallow>
+    deep_target_count: <N_deep>
+    shallow_targets_sha1: "<sha1_of_locked_shallow_target_list>"
+    deep_targets_sha1: "<sha1_of_locked_deep_target_list>"
+    lock_timestamp_utc: "<YYYY-MM-DDTHH:MM:SSZ>"
+
+  hard_gates:
+    - "Queue sync PASS pre and post."
+    - "All WS1/trust/validate/WS6/WS7 blocking gates PASS."
+    - "WS7 strict-first mandatory; --force only for snapshot/timestamp-only failure."
+    - "Executor report accepted only if rubric evidence is complete."
+    - "Commit scope must match whitelist-only rule."
+
+  numeric_thresholds:
+    queued_count_delta_expected: "<usually -N_shallow>"
+    already_canonical_delta_expected: "<usually +N_shallow>"
+    deep_facts_delta_min: 1
+    deep_target_deep_files_required: "<usually == N_deep>"
+    deep_target_fact_files_required: "<usually == N_deep>"
+    deep_targets_with_facts_min: "<usually == N_deep>"
+    per_target_fact_min: 1
+
+  evidence_requirements:
+    require_hash_stability_statement: true
+    require_freshness_disclosure: true
+    require_gate_table: true
+    require_full_changed_files_list: true
+
+  known_failure_modes:
+    - "Prompt/hash drift mid-run."
+    - "Strict WS7 skipped or --force used prematurely."
+    - "Deep lane executed but deep_facts delta stays flat."
+    - "Manifest/queue drift or shard misrouting."
+    - "Mixed-intent commit contamination."
+
+  acceptance_policy:
+    reject_if_any_hard_gate_missing: true
+    reject_if_numeric_thresholds_not_met: true
+    reject_if_evidence_incomplete: true
