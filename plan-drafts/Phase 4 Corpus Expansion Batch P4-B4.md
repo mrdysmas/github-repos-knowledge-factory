@@ -150,7 +150,7 @@ PRE-FLIGHT (must pass):
    - `plan-drafts/Phase 4 Corpus Expansion Batch P4-B2.md`
    - `plan-drafts/Phase 4 Corpus Expansion Batch P4-B2-Deep.md`
    - `plan-drafts/Phase 4 Corpus Expansion Batch P4-B3.md`
-   - this prompt file (`plan-drafts/Phase 4 Corpus Expansion Batch P4-B4.md`)
+   - authoritative prompt hash from lock artifact (`reports/phase4/prompt_locks/P4-B4.lock.yaml`, field: `prompt.sha1`)
 
 IMPLEMENTATION ORDER:
 1) Prepare manifest rows for shallow targets with explicit shard/category/source fields.
@@ -211,7 +211,7 @@ FINAL REPORT FORMAT:
 3) Evidence hash block:
    - SHA1 for `phase_4_progress_tracker.yaml`
    - SHA1 for prior prompts (`P4-B2`, `P4-B2-Deep`, `P4-B3`)
-   - SHA1 for active prompt (`P4-B4`)
+   - active prompt hash from lock artifact (`reports/phase4/prompt_locks/P4-B4.lock.yaml` -> `prompt.sha1`)
    - Hash stability statement (stable or drifted)
 4) Deep lane table:
    - `github_full_name`, deep file, deep_facts file, fact count, status
