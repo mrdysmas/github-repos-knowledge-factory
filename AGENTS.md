@@ -1,3 +1,8 @@
+## Execution Clarity
+
+- When the user says they are confused or says "assume nothing," lead with exactly one concrete next action and one verification check before offering alternatives.
+- Before giving operational guidance in any ambiguous context, disambiguate the target using a unique identifier and current state signal (for example: absolute path, active branch, commit SHA, environment name, or file hash).
+
 ## Scope Control
 
 Default mode is execution and supervision, not exploration.
