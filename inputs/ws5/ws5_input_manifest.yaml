@@ -2,428 +2,160 @@ artifact_type: ws5_remote_ingestion_input_manifest
 contract_version: 1.0.0-ws1
 defaults:
   target_shard: ssh_repos
-  as_of: '2026-02-24'
+  as_of: '2026-03-05'
   source: remote_metadata
 repos:
-- name: cloudflared
-  github_full_name: cloudflare/cloudflared
-  html_url: https://github.com/cloudflare/cloudflared
-  source: remote_metadata
-  category: network_infrastructure
-  summary: Cloudflare Tunnel client for exposing private services through Cloudflare
-    Zero Trust.
-  core_concepts:
-  - Cloudflare Tunnel client
-  - Zero Trust service exposure
-  key_entry_points:
-  - cmd/cloudflared
-  - README.md
-  build_run:
-    language: go
-    build: go build ./cmd/cloudflared
-    test: go test ./...
-  local_cache_dir: null
-  remote:
-    provider: github
-    mode: metadata
-    endpoint: /repos/cloudflare/cloudflared
-    fetched_at_utc: '2026-02-23T03:20:00Z'
-- name: tailscale
-  github_full_name: tailscale/tailscale
-  html_url: https://github.com/tailscale/tailscale
-  source: remote_api
-  category: vpn_mesh
-  summary: WireGuard-based mesh networking platform with identity-aware connectivity
-    controls.
-  core_concepts:
-  - Mesh VPN over WireGuard
-  - Identity-aware network access
-  key_entry_points:
-  - cmd/tailscale
-  - cmd/tailscaled
-  build_run:
-    language: go
-    build: go build ./cmd/tailscale ./cmd/tailscaled
-    test: go test ./...
-  local_cache_dir: null
-  remote:
-    provider: github
-    mode: api
-    endpoint: /repos/tailscale/tailscale
-    fetched_at_utc: '2026-02-23T03:20:00Z'
-- name: claude-code
-  github_full_name: anthropics/claude-code
-  html_url: https://github.com/anthropics/claude-code
+- name: awesome-go
+  github_full_name: avelino/awesome-go
+  html_url: https://github.com/avelino/awesome-go
   target_shard: llm_repos
   source: remote_metadata
-  category: agent_cli
-  summary: Shallow intake pilot canonicalization for anthropics/claude-code in agent
-    cli domain.
+  category: documentation
+  summary: Phase 4 B3 shallow intake for avelino/awesome-go as a curated Go ecosystem reference index.
   core_concepts:
-  - agent cli capabilities
-  - claude-code repository architecture
+  - curated Go project catalog
+  - discoverability for Go tooling and libraries
   key_entry_points:
   - README.md
+  - CONTRIBUTING.md
   build_run:
-    language: mixed
-    build: See upstream README for project build steps.
-  as_of: '2026-02-24T19:46:56Z'
+    language: markdown
+    build: No build step required for curated list repository.
+    test: No automated test suite in this repository.
+  as_of: '2026-03-05T05:30:00Z'
   local_cache_dir: null
-  directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/anthropics__claude-code
-  file_stem: anthropics__claude-code
-  remote:
-    provider: github
-    mode: metadata
-    endpoint: /repos/anthropics/claude-code
-    fetched_at_utc: '2026-02-24T19:46:56Z'
-  intake:
-    pilot_batch_id: INTAKE-PILOT-1
-    repo_id: repo::anthropics/claude-code
-    queue_id: intake::anthropics/claude-code
-    intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/anthropics__claude-code
-    domain_hint: agent_cli
-    source_mode: local_clone
-    source_commit: 8f0fe03e5687b10134d400c10240071523ace5c5
-    default_branch: main
-    observed_at_utc: '2026-02-24T19:46:56Z'
-- name: codex
-  github_full_name: openai/codex
-  html_url: https://github.com/openai/codex
+- name: wetty
+  github_full_name: butlerx/wetty
+  html_url: https://github.com/butlerx/wetty
   target_shard: llm_repos
   source: remote_metadata
-  category: agent_cli
-  summary: Shallow intake pilot canonicalization for openai/codex in agent cli domain.
+  category: remote_access
+  summary: Phase 4 B3 shallow intake for butlerx/wetty as a browser-accessible terminal over SSH utility.
   core_concepts:
-  - agent cli capabilities
-  - codex repository architecture
+  - web terminal access
+  - SSH proxy workflow
   key_entry_points:
   - README.md
-  - package.json
-  - docs/
-  build_run:
-    language: javascript
-    build: npm run build
-    test: npm test
-  as_of: '2026-02-24T19:46:56Z'
-  local_cache_dir: null
-  directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/openai__codex
-  file_stem: openai__codex
-  remote:
-    provider: github
-    mode: metadata
-    endpoint: /repos/openai/codex
-    fetched_at_utc: '2026-02-24T19:46:56Z'
-  intake:
-    pilot_batch_id: INTAKE-PILOT-1
-    repo_id: repo::openai/codex
-    queue_id: intake::openai/codex
-    intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/openai__codex
-    domain_hint: agent_cli
-    source_mode: local_clone
-    source_commit: 97d0068658a61df999fe545f06c13a69cda19e86
-    default_branch: main
-    observed_at_utc: '2026-02-24T19:46:56Z'
-- name: dify
-  github_full_name: langgenius/dify
-  html_url: https://github.com/langgenius/dify
-  target_shard: llm_repos
-  source: remote_metadata
-  category: agent_platform
-  summary: Shallow intake pilot canonicalization for langgenius/dify in agent platform
-    domain.
-  core_concepts:
-  - agent platform capabilities
-  - dify repository architecture
-  key_entry_points:
-  - README.md
-  - api/
-  - docs/
-  build_run:
-    language: mixed
-    build: See upstream README for project build steps.
-  as_of: '2026-02-24T19:46:56Z'
-  local_cache_dir: null
-  directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/langgenius__dify
-  file_stem: langgenius__dify
-  remote:
-    provider: github
-    mode: metadata
-    endpoint: /repos/langgenius/dify
-    fetched_at_utc: '2026-02-24T19:46:56Z'
-  intake:
-    pilot_batch_id: INTAKE-PILOT-1
-    repo_id: repo::langgenius/dify
-    queue_id: intake::langgenius/dify
-    intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/langgenius__dify
-    domain_hint: agent_platform
-    source_mode: local_clone
-    source_commit: beea1acd9214576ffc79ce76d2cfbd1987e7c8a3
-    default_branch: main
-    observed_at_utc: '2026-02-24T19:46:56Z'
-- name: Flowise
-  github_full_name: FlowiseAI/Flowise
-  html_url: https://github.com/FlowiseAI/Flowise
-  target_shard: llm_repos
-  source: remote_metadata
-  category: workflow_builder
-  summary: Shallow intake pilot canonicalization for flowiseai/flowise in workflow
-    builder domain.
-  core_concepts:
-  - workflow builder capabilities
-  - flowise repository architecture
-  key_entry_points:
-  - README.md
-  - package.json
-  build_run:
-    language: javascript
-    build: npm run build
-    test: npm test
-  as_of: '2026-02-24T19:46:56Z'
-  local_cache_dir: null
-  directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/FlowiseAI__Flowise
-  file_stem: flowiseai__flowise
-  remote:
-    provider: github
-    mode: metadata
-    endpoint: /repos/flowiseai/flowise
-    fetched_at_utc: '2026-02-24T19:46:56Z'
-  intake:
-    pilot_batch_id: INTAKE-PILOT-1
-    repo_id: repo::FlowiseAI/Flowise
-    queue_id: intake::FlowiseAI/Flowise
-    intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/FlowiseAI__Flowise
-    domain_hint: workflow_builder
-    source_mode: local_clone
-    source_commit: 917e02eb36736fcbfaa4bef9342e217c5d4a9840
-    default_branch: main
-    observed_at_utc: '2026-02-24T19:46:56Z'
-- name: qdrant
-  github_full_name: qdrant/qdrant
-  html_url: https://github.com/qdrant/qdrant
-  target_shard: llm_repos
-  source: remote_metadata
-  category: vector_database
-  summary: Shallow intake pilot canonicalization for qdrant/qdrant in vector database
-    domain.
-  core_concepts:
-  - vector database capabilities
-  - qdrant repository architecture
-  key_entry_points:
-  - README.md
-  - Cargo.toml
   - src/
-  - docs/
   build_run:
-    language: rust
-    build: cargo build
-    test: cargo test
-  as_of: '2026-02-24T19:46:56Z'
-  local_cache_dir: null
-  directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/qdrant__qdrant
-  file_stem: qdrant__qdrant
-  remote:
-    provider: github
-    mode: metadata
-    endpoint: /repos/qdrant/qdrant
-    fetched_at_utc: '2026-02-24T19:46:56Z'
-  intake:
-    pilot_batch_id: INTAKE-PILOT-1
-    repo_id: repo::qdrant/qdrant
-    queue_id: intake::qdrant/qdrant
-    intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/qdrant__qdrant
-    domain_hint: vector_database
-    source_mode: local_clone
-    source_commit: 09f87abbd8215031609988f3b0e220b739db2d9a
-    default_branch: master
-    observed_at_utc: '2026-02-24T19:46:56Z'
-- name: weaviate
-  github_full_name: weaviate/weaviate
-  html_url: https://github.com/weaviate/weaviate
-  target_shard: llm_repos
-  source: remote_metadata
-  category: vector_database
-  summary: Shallow intake pilot canonicalization for weaviate/weaviate in vector database
-    domain.
-  core_concepts:
-  - vector database capabilities
-  - weaviate repository architecture
-  key_entry_points:
-  - README.md
-  - go.mod
-  - pyproject.toml
-  - cmd/
-  build_run:
-    language: go
-    build: go build ./...
-    test: go test ./...
-  as_of: '2026-02-24T19:46:56Z'
-  local_cache_dir: null
-  directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/weaviate__weaviate
-  file_stem: weaviate__weaviate
-  remote:
-    provider: github
-    mode: metadata
-    endpoint: /repos/weaviate/weaviate
-    fetched_at_utc: '2026-02-24T19:46:56Z'
-  intake:
-    pilot_batch_id: INTAKE-PILOT-1
-    repo_id: repo::weaviate/weaviate
-    queue_id: intake::weaviate/weaviate
-    intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/weaviate__weaviate
-    domain_hint: vector_database
-    source_mode: local_clone
-    source_commit: a1de69b10383114595613810acc662bfb4b2e1d4
-    default_branch: main
-    observed_at_utc: '2026-02-24T19:46:56Z'
-- name: lancedb
-  github_full_name: lancedb/lancedb
-  html_url: https://github.com/lancedb/lancedb
-  target_shard: llm_repos
-  source: remote_metadata
-  category: vector_database
-  summary: Shallow intake pilot canonicalization for lancedb/lancedb in vector database
-    domain.
-  core_concepts:
-  - vector database capabilities
-  - lancedb repository architecture
-  key_entry_points:
-  - README.md
-  - Cargo.toml
-  - docs/
-  build_run:
-    language: rust
-    build: cargo build
-    test: cargo test
-  as_of: '2026-02-24T19:46:56Z'
-  local_cache_dir: null
-  directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/lancedb__lancedb
-  file_stem: lancedb__lancedb
-  remote:
-    provider: github
-    mode: metadata
-    endpoint: /repos/lancedb/lancedb
-    fetched_at_utc: '2026-02-24T19:46:56Z'
-  intake:
-    pilot_batch_id: INTAKE-PILOT-1
-    repo_id: repo::lancedb/lancedb
-    queue_id: intake::lancedb/lancedb
-    intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/lancedb__lancedb
-    domain_hint: vector_database
-    source_mode: local_clone
-    source_commit: 0d3fc7860a5975238786cbc27c3a6047434568df
-    default_branch: main
-    observed_at_utc: '2026-02-24T19:46:56Z'
-- name: pydantic-ai
-  github_full_name: pydantic/pydantic-ai
-  html_url: https://github.com/pydantic/pydantic-ai
-  target_shard: llm_repos
-  source: remote_metadata
-  category: agent_framework
-  summary: Shallow intake pilot canonicalization for pydantic/pydantic-ai in agent
-    framework domain.
-  core_concepts:
-  - agent framework capabilities
-  - pydantic-ai repository architecture
-  key_entry_points:
-  - README.md
-  - pyproject.toml
-  - docs/
-  build_run:
-    language: python
-    build: python -m pip install -e .
-    test: pytest
-  as_of: '2026-02-24T19:46:56Z'
-  local_cache_dir: null
-  directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/pydantic__pydantic-ai
-  file_stem: pydantic__pydantic-ai
-  remote:
-    provider: github
-    mode: metadata
-    endpoint: /repos/pydantic/pydantic-ai
-    fetched_at_utc: '2026-02-24T19:46:56Z'
-  intake:
-    pilot_batch_id: INTAKE-PILOT-1
-    repo_id: repo::pydantic/pydantic-ai
-    queue_id: intake::pydantic/pydantic-ai
-    intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/pydantic__pydantic-ai
-    domain_hint: agent_framework
-    source_mode: local_clone
-    source_commit: bc7f6a28c14c960d9b90a27cfc7985f640f29744
-    default_branch: main
-    observed_at_utc: '2026-02-24T19:46:56Z'
-- name: claude-flow
-  github_full_name: ruvnet/claude-flow
-  html_url: https://github.com/ruvnet/claude-flow
-  target_shard: llm_repos
-  source: remote_metadata
-  category: agent_orchestration
-  summary: Shallow intake pilot canonicalization for ruvnet/claude-flow in agent orchestration
-    domain.
-  core_concepts:
-  - agent orchestration capabilities
-  - claude-flow repository architecture
-  key_entry_points:
-  - README.md
-  - package.json
-  - docs/
-  build_run:
-    language: javascript
+    language: typescript
     build: npm run build
     test: npm test
-  as_of: '2026-02-24T19:46:56Z'
+  as_of: '2026-03-05T05:30:00Z'
   local_cache_dir: null
-  directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/ruvnet__claude-flow
-  file_stem: ruvnet__claude-flow
-  remote:
-    provider: github
-    mode: metadata
-    endpoint: /repos/ruvnet/claude-flow
-    fetched_at_utc: '2026-02-24T19:46:56Z'
-  intake:
-    pilot_batch_id: INTAKE-PILOT-1
-    repo_id: repo::ruvnet/claude-flow
-    queue_id: intake::ruvnet/claude-flow
-    intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/ruvnet__claude-flow
-    domain_hint: agent_orchestration
-    source_mode: local_clone
-    source_commit: 7416506d2726906350cc3bed21ea6b43928c7340
-    default_branch: main
-    observed_at_utc: '2026-02-24T19:46:56Z'
-- name: gin
-  github_full_name: gin-gonic/gin
-  html_url: https://github.com/gin-gonic/gin
+- name: oh-my-opencode
+  github_full_name: code-yeongyu/oh-my-opencode
+  html_url: https://github.com/code-yeongyu/oh-my-opencode
   target_shard: llm_repos
   source: remote_metadata
-  category: web_framework
-  summary: Shallow intake pilot canonicalization for gin-gonic/gin in web framework
-    domain.
+  category: agent_cli
+  summary: Phase 4 B3 shallow intake for code-yeongyu/oh-my-opencode as an extension pack around agent CLI workflows.
   core_concepts:
-  - web framework capabilities
-  - gin repository architecture
+  - agent cli customization
+  - extension and prompt packaging
   key_entry_points:
   - README.md
-  - go.mod
   - docs/
   build_run:
-    language: go
-    build: go build ./...
-    test: go test ./...
-  as_of: '2026-02-24T19:46:56Z'
+    language: mixed
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  as_of: '2026-03-05T05:30:00Z'
   local_cache_dir: null
-  directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/gin-gonic__gin
-  file_stem: gin-gonic__gin
-  remote:
-    provider: github
-    mode: metadata
-    endpoint: /repos/gin-gonic/gin
-    fetched_at_utc: '2026-02-24T19:46:56Z'
-  intake:
-    pilot_batch_id: INTAKE-PILOT-1
-    repo_id: repo::gin-gonic/gin
-    queue_id: intake::gin-gonic/gin
-    intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/gin-gonic__gin
-    domain_hint: web_framework
-    source_mode: local_clone
-    source_commit: 81dba468722f41347ed74ee66e9c1781d72f68a5
-    default_branch: master
-    observed_at_utc: '2026-02-24T19:46:56Z'
+- name: ralph-claude-code
+  github_full_name: frankbria/ralph-claude-code
+  html_url: https://github.com/frankbria/ralph-claude-code
+  target_shard: llm_repos
+  source: remote_metadata
+  category: agent_cli
+  summary: Phase 4 B3 shallow intake for frankbria/ralph-claude-code as a Claude Code workflow companion utility.
+  core_concepts:
+  - claude code workflow automation
+  - task orchestration helpers
+  key_entry_points:
+  - README.md
+  - src/
+  build_run:
+    language: mixed
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  as_of: '2026-03-05T05:30:00Z'
+  local_cache_dir: null
+- name: smile
+  github_full_name: haifengl/smile
+  html_url: https://github.com/haifengl/smile
+  target_shard: llm_repos
+  source: remote_metadata
+  category: machine_learning
+  summary: Phase 4 B3 shallow intake for haifengl/smile as a JVM machine learning and data mining toolkit.
+  core_concepts:
+  - statistical learning algorithms
+  - JVM data science tooling
+  key_entry_points:
+  - README.md
+  - scala/
+  - core/
+  build_run:
+    language: java
+    build: ./gradlew build
+    test: ./gradlew test
+  as_of: '2026-03-05T05:30:00Z'
+  local_cache_dir: null
+- name: felony
+  github_full_name: henryboldi/felony
+  html_url: https://github.com/henryboldi/felony
+  target_shard: llm_repos
+  source: remote_metadata
+  category: agent_cli
+  summary: Phase 4 B3 shallow intake for henryboldi/felony as a command-line utility in the agent tooling ecosystem.
+  core_concepts:
+  - command-line developer workflow
+  - terminal-first automation helpers
+  key_entry_points:
+  - README.md
+  - src/
+  build_run:
+    language: mixed
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  as_of: '2026-03-05T05:30:00Z'
+  local_cache_dir: null
+- name: java-design-patterns
+  github_full_name: iluwatar/java-design-patterns
+  html_url: https://github.com/iluwatar/java-design-patterns
+  target_shard: llm_repos
+  source: remote_metadata
+  category: documentation
+  summary: Phase 4 B3 shallow intake for iluwatar/java-design-patterns as a reference implementation catalog of software design patterns.
+  core_concepts:
+  - design pattern exemplars
+  - Java architecture references
+  key_entry_points:
+  - README.md
+  - java-design-patterns/
+  build_run:
+    language: java
+    build: mvn -q package
+    test: mvn -q test
+  as_of: '2026-03-05T05:30:00Z'
+  local_cache_dir: null
+- name: infinity
+  github_full_name: infiniflow/infinity
+  html_url: https://github.com/infiniflow/infinity
+  target_shard: llm_repos
+  source: remote_metadata
+  category: vector_database
+  summary: Phase 4 B3 shallow intake for infiniflow/infinity as an AI-native database for vector and hybrid retrieval workloads.
+  core_concepts:
+  - vector indexing and retrieval
+  - hybrid search infrastructure
+  key_entry_points:
+  - README.md
+  - src/
+  - python/
+  build_run:
+    language: mixed
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  as_of: '2026-03-05T05:30:00Z'
+  local_cache_dir: null

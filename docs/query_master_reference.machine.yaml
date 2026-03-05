@@ -1,0 +1,553 @@
+artifact_type: query_master_reference_machine
+reference_version: 1.0.0
+generated_from:
+  cli_script: tools/query_master.py
+  cli_contract_version: 1.2.0
+  human_reference: docs/query_master_reference.md
+  validated_on: "2026-03-05"
+  validation_basis: live_cli_runs_against_knowledge_db
+
+global:
+  default_source: sqlite
+  source_options:
+    - sqlite
+    - yaml
+  global_flags:
+    - name: --workspace-root
+      required: false
+      default: "."
+      type: path
+      applies_to_commands: all
+      description: Workspace root used to resolve knowledge.db and YAML artifacts.
+    - name: --source
+      required: false
+      default: sqlite
+      type: enum
+      choices:
+        - sqlite
+        - yaml
+      applies_to_commands: all
+      description: Data source mode.
+    - name: --master-index
+      required: false
+      default: master_index.yaml
+      type: path
+      applies_to_commands: yaml_mode_only
+      description: YAML mode index path.
+    - name: --master-graph
+      required: false
+      default: master_graph.yaml
+      type: path
+      applies_to_commands: yaml_mode_only
+      description: YAML mode graph path.
+    - name: --master-deep-facts
+      required: false
+      default: master_deep_facts.yaml
+      type: path
+      applies_to_commands: yaml_mode_only
+      description: YAML mode deep-facts path.
+  timing_trailer:
+    sqlite_mode: "# query_ms: <int>"
+    yaml_mode: null
+    exception:
+      command: contract
+      includes_timing: false
+
+identifier_resolution:
+  accepted_forms:
+    - node_id
+    - name
+    - github_full_name
+  priority:
+    - node_id
+    - name
+    - github_full_name
+  examples:
+    node_id: repo::fatedier/frp
+    name: maxkb
+    github_full_name: 1panel-dev/maxkb
+  sqlite_mode_note: SQLite lookup checks all three columns in one query; rely on corpus-level uniqueness.
+
+data_sources:
+  sqlite:
+    db_path_template: "{workspace_root}/knowledge.db"
+    available_commands:
+      - contract
+      - stats
+      - repo
+      - neighbors
+      - facts
+      - search
+      - pattern
+      - graph
+      - aggregate
+    stale_read_protection:
+      enabled: true
+      checks:
+        - file: master_index.yaml
+          metadata_hash_column: source_index_hash
+        - file: master_graph.yaml
+          metadata_hash_column: source_graph_hash
+        - file: master_deep_facts.yaml
+          metadata_hash_column: source_facts_hash
+      metadata_table: compile_metadata
+  yaml:
+    files:
+      - "{workspace_root}/master_index.yaml"
+      - "{workspace_root}/master_graph.yaml"
+      - "{workspace_root}/master_deep_facts.yaml (optional)"
+    available_commands:
+      - contract
+      - stats
+      - repo
+      - neighbors
+      - facts
+
+command_order:
+  - contract
+  - stats
+  - repo
+  - neighbors
+  - facts
+  - search
+  - pattern
+  - graph
+  - aggregate
+
+commands:
+  contract:
+    purpose: Show CLI contract and command map.
+    usage: "python3 tools/query_master.py [global_flags] contract"
+    supported_sources:
+      - sqlite
+      - yaml
+    arguments: []
+    output:
+      artifact_type: master_query_cli_contract
+      required_keys:
+        - artifact_type
+        - version
+        - commands
+        - identifier_resolution_order
+        - default_paths
+        - source_options
+        - default_source
+    exits:
+      success: 0
+      error: []
+
+  stats:
+    purpose: Return top-level corpus counts.
+    usage: "python3 tools/query_master.py [global_flags] stats"
+    supported_sources:
+      - sqlite
+      - yaml
+    arguments: []
+    output:
+      artifact_type: master_query_stats
+      required_keys:
+        - artifact_type
+        - counts
+        - sources
+      counts_keys:
+        - repos
+        - nodes
+        - edges
+        - deep_facts
+    exits:
+      success: 0
+      error:
+        - 1
+
+  repo:
+    purpose: Resolve repo identifier and return canonical repo row.
+    usage: "python3 tools/query_master.py [global_flags] repo --id <identifier>"
+    supported_sources:
+      - sqlite
+      - yaml
+    arguments:
+      - name: --id
+        required: true
+        default: null
+        type: string
+        description: node_id, name, or github_full_name
+    output:
+      artifact_type: master_query_repo
+      required_keys:
+        - artifact_type
+        - node_id
+        - repo
+      error_shape:
+        required_keys:
+          - error
+    exits:
+      success: 0
+      not_found: 2
+
+  neighbors:
+    purpose: List inbound/outbound/bidirectional graph edges for a repo.
+    usage: "python3 tools/query_master.py [global_flags] neighbors --id <identifier> [--direction in|out|both] [--relation <relation>]"
+    supported_sources:
+      - sqlite
+      - yaml
+    arguments:
+      - name: --id
+        required: true
+        default: null
+        type: string
+      - name: --direction
+        required: false
+        default: both
+        type: enum
+        choices:
+          - in
+          - out
+          - both
+      - name: --relation
+        required: false
+        default: ""
+        type: string
+        semantics: exact_match
+    output:
+      artifact_type: master_query_neighbors
+      required_keys:
+        - artifact_type
+        - node_id
+        - direction
+        - relation_filter
+        - edges
+      edge_sort_order:
+        - src_id
+        - dst_kind
+        - dst_id
+        - relation
+      edge_keys_common:
+        - src_id
+        - dst_id
+        - relation
+      edge_keys_yaml_rich:
+        - dst_kind
+        - as_of
+        - provenance
+        - note
+    exits:
+      success: 0
+      not_found: 2
+
+  facts:
+    purpose: Return deep facts for a repo, optionally filtered by predicate.
+    usage: "python3 tools/query_master.py [global_flags] facts --id <identifier> [--predicate <predicate>]"
+    supported_sources:
+      - sqlite
+      - yaml
+    arguments:
+      - name: --id
+        required: true
+        default: null
+        type: string
+      - name: --predicate
+        required: false
+        default: ""
+        type: string
+        semantics: exact_match
+    output:
+      artifact_type: master_query_facts
+      required_keys:
+        - artifact_type
+        - node_id
+        - predicate_filter
+        - facts
+      fact_sort_order:
+        - predicate
+        - fact_id
+      fact_keys_common:
+        - fact_id
+        - node_id
+        - predicate
+        - object_kind
+        - object_value
+    exits:
+      success: 0
+      not_found: 2
+      no_deep_facts: 2
+
+  search:
+    purpose: Case-insensitive substring search over fact object_value and/or note.
+    usage: "python3 tools/query_master.py [global_flags] search --term <substring> [--field object_value|note|both] [--limit <n>]"
+    supported_sources:
+      - sqlite
+    arguments:
+      - name: --term
+        required: true
+        default: null
+        type: string
+      - name: --field
+        required: false
+        default: both
+        type: enum
+        choices:
+          - object_value
+          - note
+          - both
+      - name: --limit
+        required: false
+        default: 50
+        type: integer
+        min: 1
+    output:
+      artifact_type: master_query_search
+      required_keys:
+        - artifact_type
+        - term
+        - field
+        - limit
+        - result_count
+        - results
+      result_sort_order:
+        - node_id
+        - predicate
+        - fact_id
+      match_semantics: SQL_LIKE_COLLATE_NOCASE
+    exits:
+      success: 0
+      sqlite_required_error: 1
+
+  pattern:
+    purpose: Cross-repo pattern match for one exact predicate with optional value filter.
+    usage: "python3 tools/query_master.py [global_flags] pattern --predicate <predicate> [--value <substring>] [--limit <n>]"
+    supported_sources:
+      - sqlite
+    arguments:
+      - name: --predicate
+        required: true
+        default: null
+        type: string
+        semantics: exact_match
+      - name: --value
+        required: false
+        default: ""
+        type: string
+        semantics: substring_case_insensitive
+      - name: --limit
+        required: false
+        default: 50
+        type: integer
+        min: 1
+    output:
+      artifact_type: master_query_pattern
+      required_keys:
+        - artifact_type
+        - predicate
+        - value_filter
+        - limit
+        - result_count
+        - results
+      row_keys:
+        - node_id
+        - name
+        - category
+        - object_value
+        - object_kind
+      sql_behavior: DISTINCT_rows_joined_to_repos
+    exits:
+      success: 0
+      sqlite_required_error: 1
+
+  graph:
+    purpose: Multi-hop graph traversal from a starting repo.
+    usage: "python3 tools/query_master.py [global_flags] graph --id <identifier> [--hops 1|2|3] [--relation <relation>] [--direction in|out|both]"
+    supported_sources:
+      - sqlite
+    arguments:
+      - name: --id
+        required: true
+        default: null
+        type: string
+      - name: --hops
+        required: false
+        default: 1
+        type: enum
+        choices:
+          - 1
+          - 2
+          - 3
+      - name: --relation
+        required: false
+        default: ""
+        type: string
+        semantics: exact_match
+      - name: --direction
+        required: false
+        default: both
+        type: enum
+        choices:
+          - in
+          - out
+          - both
+    output:
+      artifact_type: master_query_graph
+      required_keys:
+        - artifact_type
+        - start_id
+        - hops
+        - direction
+        - relation_filter
+        - nodes_reached
+        - edges_traversed
+        - traversal_layers
+        - nodes
+        - edges
+      traversal_layers_keys:
+        - hop
+        - edges_found
+        - new_nodes
+      edge_keys:
+        - src_id
+        - dst_id
+        - relation
+        - note
+        - hop
+      dedup_rule:
+        scope: per_hop
+        key:
+          - src_id
+          - dst_id
+          - relation
+    exits:
+      success: 0
+      not_found: 2
+      sqlite_required_error: 1
+
+  aggregate:
+    purpose: Return top groups for corpus-level dimensions.
+    usage: "python3 tools/query_master.py [global_flags] aggregate --group-by predicate|fact_type|object_kind|category|relation [--top <n>]"
+    supported_sources:
+      - sqlite
+    arguments:
+      - name: --group-by
+        required: true
+        default: null
+        type: enum
+        choices:
+          - predicate
+          - fact_type
+          - object_kind
+          - category
+          - relation
+      - name: --top
+        required: false
+        default: 20
+        type: integer
+        min: 1
+    output:
+      artifact_type: master_query_aggregate
+      required_keys:
+        - artifact_type
+        - group_by
+        - top
+        - total_groups
+        - groups
+      group_row_keys_default:
+        - key
+        - count
+      group_row_keys_category:
+        - key
+        - count
+        - fact_count
+    exits:
+      success: 0
+      sqlite_required_error: 1
+
+error_signatures:
+  - key: knowledge_db_missing
+    exit_code: 1
+    starts_with: "ERROR: knowledge.db not found."
+    recommended_fix: "python3 tools/ws7_read_model_compiler.py --workspace-root ."
+  - key: knowledge_db_stale
+    exit_code: 1
+    starts_with: "ERROR: knowledge.db is stale"
+    recommended_fix: "python3 tools/ws7_read_model_compiler.py --workspace-root ."
+  - key: sqlite_only_command_in_yaml_mode
+    exit_code: 1
+    pattern: "^ERROR: '(search|pattern|graph|aggregate)' requires --source sqlite\\."
+    recommended_fix: "python3 tools/ws7_read_model_compiler.py --workspace-root ."
+  - key: repo_identifier_not_found
+    exit_code: 2
+    pattern: "^error: 'Repo identifier not found: .+'$"
+  - key: deep_facts_missing
+    exit_code: 2
+    starts_with: "error: No deep facts found."
+    recommended_fix: "Generate WS6 deep facts first, then rerun WS7 compiler."
+
+parsing_hints:
+  output_format: yaml_document
+  sqlite_mode_trailer:
+    present: true
+    parse_as_comment: true
+    pattern: "^# query_ms: [0-9]+$"
+  robust_agent_strategy:
+    - read final line
+    - if final line matches query_ms pattern, strip it before YAML parse
+    - parse remaining output as YAML
+
+workflow_recipes:
+  - name: repo_profile_and_relationships
+    intent: Understand what one repo does and how it connects.
+    steps:
+      - "python3 tools/query_master.py repo --id <repo>"
+      - "python3 tools/query_master.py neighbors --id <repo>"
+      - "python3 tools/query_master.py facts --id <repo> --predicate exposes_api_endpoint"
+  - name: protocol_or_config_discovery
+    intent: Find repos sharing a protocol or configuration pattern.
+    steps:
+      - "python3 tools/query_master.py pattern --predicate uses_protocol"
+      - "python3 tools/query_master.py pattern --predicate has_config_option --value <term>"
+      - "python3 tools/query_master.py search --term <term>"
+  - name: neighborhood_expansion
+    intent: Explore graph neighborhood progressively.
+    steps:
+      - "python3 tools/query_master.py graph --id <repo> --hops 1"
+      - "python3 tools/query_master.py graph --id <repo> --hops 2"
+      - "python3 tools/query_master.py graph --id <repo> --hops 3"
+  - name: corpus_snapshot
+    intent: Get high-level corpus shape.
+    steps:
+      - "python3 tools/query_master.py stats"
+      - "python3 tools/query_master.py aggregate --group-by category --top 5"
+      - "python3 tools/query_master.py aggregate --group-by predicate"
+
+pipeline_context:
+  role: read_model_query_layer
+  prerequisite_compile:
+    command: "python3 tools/ws7_read_model_compiler.py --workspace-root . --force"
+    output_artifact: knowledge.db
+    artifact_type: derived_gitignored
+  canonical_path:
+    - inputs/ws5/ws5_input_manifest.yaml
+    - tools/ws5_remote_ingestion.py
+    - WS1/trust/shard gates
+    - tools/ws4_master_compiler.py
+    - tools/ws7_read_model_compiler.py
+    - tools/query_master.py
+
+observed_snapshot:
+  counts:
+    repos: 73
+    nodes: 87
+    edges: 152
+    deep_facts: 2921
+  representative_aggregates:
+    predicate_top:
+      - key: has_component
+        count: 893
+      - key: has_config_option
+        count: 722
+      - key: implements_pattern
+        count: 454
+    relation_top:
+      - key: integrates_with
+        count: 56
+      - key: alternative_to
+        count: 41
+      - key: related_to
+        count: 23

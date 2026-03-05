@@ -1,0 +1,221 @@
+name: pydantic
+node_id: repo::pydantic/pydantic
+github_full_name: pydantic/pydantic
+html_url: https://github.com/pydantic/pydantic
+source: remote_metadata
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep/pydantic__pydantic.yaml
+  as_of: '2026-03-05'
+directory: remote::pydantic/pydantic
+category: structured_outputs
+
+architecture:
+  module_breakdown:
+    - module: pydantic/main.py
+      responsibility: "Defines BaseModel runtime behavior and dynamic model creation entrypoints."
+      key_files:
+        - pydantic/main.py
+        - pydantic/_internal/_model_construction.py
+    - module: pydantic/type_adapter.py
+      responsibility: "Builds validation and serialization adapters for arbitrary Python types."
+      key_files:
+        - pydantic/type_adapter.py
+        - pydantic/_internal/_generate_schema.py
+    - module: pydantic/json_schema.py
+      responsibility: "Converts core schemas into JSON Schema representations."
+      key_files:
+        - pydantic/json_schema.py
+    - module: pydantic/_internal
+      responsibility: "Implements schema generation, config handling, and model internals."
+      key_files:
+        - pydantic/_internal/_generate_schema.py
+        - pydantic/_internal/_fields.py
+        - pydantic/_internal/_serializers.py
+    - module: pydantic/plugin
+      responsibility: "Provides plugin hooks around schema validation internals."
+      key_files:
+        - pydantic/plugin/_schema_validator.py
+  key_abstractions:
+    - name: BaseModel
+      purpose: "Primary typed model abstraction with validation and serialization APIs."
+    - name: TypeAdapter
+      purpose: "Type-level validator and serializer for non-model Python types."
+    - name: RootModel
+      purpose: "Single-root-field model form for wrapped values."
+    - name: ConfigDict
+      purpose: "Typed configuration surface for model behavior."
+
+code_patterns:
+  - pattern: "Dynamic export routing through module __getattr__"
+    description: "Top-level symbols are resolved lazily to keep imports organized while preserving public API."
+    location: pydantic/__init__.py
+  - pattern: "Metaclass-driven model assembly"
+    description: "Model class creation routes through internal construction helpers to build fields and core schema artifacts."
+    location: pydantic/_internal/_model_construction.py
+  - pattern: "Core schema bridge to pydantic-core"
+    description: "Python-side schema generation is compiled into pydantic-core validators and serializers."
+    location: pydantic/_internal/_generate_schema.py
+  - pattern: "Decorator wrapping for callable validation"
+    description: "validate_call decorates callables with argument and return validation plumbing."
+    location: pydantic/validate_call_decorator.py
+
+implementation_patterns:
+  - pattern: "Strict-vs-lax validation modes"
+    description: "Validation pathways are parameterized by strictness and extra handling semantics."
+    location: pydantic/main.py
+  - pattern: "Alias-aware field reconstruction"
+    description: "Alias metadata and field mapping logic are reused across validation and serialization flows."
+    location: pydantic/aliases.py
+  - pattern: "Schema-first serialization"
+    description: "Serialization behavior derives from generated schema metadata instead of ad hoc per-field logic."
+    location: pydantic/_internal/_serializers.py
+
+core_modules:
+  model_runtime:
+    path: pydantic/main.py
+    description: "BaseModel definitions and model lifecycle methods."
+    submodules:
+      - pydantic/root_model.py
+      - pydantic/fields.py
+  type_adaptation:
+    path: pydantic/type_adapter.py
+    description: "TypeAdapter implementation for arbitrary type validation and dumps."
+    submodules:
+      - pydantic/_internal/_namespace_utils.py
+      - pydantic/_internal/_typing_extra.py
+  schema_generation:
+    path: pydantic/json_schema.py
+    description: "JSON Schema generation and schema mode handling."
+    submodules:
+      - pydantic/_internal/_generate_schema.py
+  internals:
+    path: pydantic/_internal
+    description: "Private engine modules for config, fields, decorators, and serializers."
+
+key_features:
+  - feature: "Type-hint driven validation"
+    description: "Model fields and adapters are derived from Python type annotations."
+  - feature: "Schema-based serialization"
+    description: "Model and adapter outputs are serialized through compiled schema serializers."
+  - feature: "Runtime model creation"
+    description: "create_model builds model classes dynamically from field definitions."
+  - feature: "Decorator-based callable validation"
+    description: "validate_call validates function inputs and outputs using generated schemas."
+  - feature: "JSON Schema export"
+    description: "Model and type schemas can be exported for downstream tooling and docs."
+
+key_files:
+  - path: pyproject.toml
+    description: "Build metadata, runtime dependencies, and dev tool configuration."
+  - path: Makefile
+    description: "Canonical development, lint, test, and docs commands."
+  - path: pydantic/__init__.py
+    description: "Public API export surface and compatibility indirection."
+  - path: pydantic/main.py
+    description: "BaseModel and create_model implementation."
+  - path: pydantic/type_adapter.py
+    description: "TypeAdapter runtime implementation."
+  - path: pydantic/json_schema.py
+    description: "JSON Schema generation pipeline."
+
+configuration:
+  - name: package_constraints
+    options:
+      - key: requires-python
+        default: ">=3.9"
+        description: "Declared minimum Python version in project metadata."
+      - key: pydantic-core
+        default: "2.42.0"
+        description: "Pinned core runtime version in project dependencies."
+      - key: typing-extensions
+        default: ">=4.14.1"
+        description: "Runtime typing compatibility dependency."
+  - name: pytest_configuration
+    options:
+      - key: testpaths
+        default: "tests"
+        description: "Default pytest discovery root."
+      - key: xfail_strict
+        default: "true"
+        description: "Strict handling for expected-failure tests."
+  - name: linting_configuration
+    options:
+      - key: line-length
+        default: "120"
+        description: "Ruff line-length limit."
+      - key: target-version
+        default: "py39"
+        description: "Ruff target Python version."
+
+testing:
+  framework: pytest
+  structure: "Repository test suite spans tests/, tests/mypy, and tests/typechecking."
+  coverage_areas:
+    - "Model validation and serialization behavior"
+    - "JSON schema output behavior"
+    - "Type-checker integration for mypy and pyright"
+  test_patterns:
+    - "uv run coverage run -m pytest --durations=10 --parallel-threads 1"
+    - "uv run coverage run -m pytest tests/mypy --test-mypy"
+    - "uv run bash -c 'cd tests/typechecking && pyright -p pyproject.toml'"
+
+integrations:
+  runtime:
+    - pydantic-core
+    - typing-extensions
+    - annotated-types
+    - typing-inspection
+  ecosystem:
+    - pydantic-settings
+    - pydantic-extra-types
+  docs_tooling:
+    - mkdocs
+    - mkdocstrings-python
+
+quick_reference:
+  - topic: "Install development environment"
+    command: "make install"
+  - topic: "Run core test suite"
+    command: "make test"
+  - topic: "Run lint suite"
+    command: "make lint"
+  - topic: "Build docs"
+    command: "make docs"
+
+commands:
+  - name: "make install"
+    description: "Install workspace dependencies and pre-commit hooks."
+    usage: "make install"
+  - name: "make test"
+    description: "Run pytest suite with coverage instrumentation."
+    usage: "make test"
+  - name: "make lint"
+    description: "Run python and rust lint tasks."
+    usage: "make lint"
+  - name: "make docs"
+    description: "Build documentation in strict mode."
+    usage: "make docs"
+
+api_surface:
+  public_functions:
+    - name: BaseModel
+      purpose: "Base class for typed data models."
+      signature: "class BaseModel"
+      location: pydantic/main.py
+    - name: create_model
+      purpose: "Create model classes dynamically at runtime."
+      signature: "def create_model(...)"
+      location: pydantic/main.py
+    - name: RootModel
+      purpose: "Represent models with a single root field."
+      signature: "class RootModel"
+      location: pydantic/root_model.py
+    - name: TypeAdapter
+      purpose: "Validate and serialize arbitrary Python types without a model class."
+      signature: "class TypeAdapter"
+      location: pydantic/type_adapter.py
+    - name: validate_call
+      purpose: "Decorator that validates callable inputs and outputs."
+      signature: "def validate_call(...)"
+      location: pydantic/validate_call_decorator.py

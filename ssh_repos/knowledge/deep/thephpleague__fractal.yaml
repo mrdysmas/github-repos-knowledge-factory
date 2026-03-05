@@ -1,0 +1,228 @@
+name: fractal
+node_id: repo::thephpleague/fractal
+github_full_name: thephpleague/fractal
+html_url: https://github.com/thephpleague/fractal
+source: remote_metadata
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/deep/thephpleague__fractal.yaml
+  as_of: '2026-03-04'
+directory: /Users/szilaa/scripts/ext_sources/github_repos/structured_outputs/fractal-master
+category: data_transformation
+primary_language: php
+languages:
+- php
+- markdown
+- xml
+tech_stack:
+- PHP 7.4+ library
+- Composer package management
+- PSR-4 namespace structure
+- Serializer strategy pattern
+- PHPUnit test suite
+architecture:
+  module_breakdown:
+  - module: src/Manager.php
+    responsibility: Entry API for include/exclude/fieldset parsing and root scope creation.
+    key_files:
+    - src/Manager.php
+  - module: src/Scope.php and src/ScopeFactory.php
+    responsibility: Builds scope graph and executes transformation/serialization pipeline.
+    key_files:
+    - src/Scope.php
+    - src/ScopeFactory.php
+  - module: src/TransformerAbstract.php
+    responsibility: Base transformer contract for core transform logic and include handling.
+    key_files:
+    - src/TransformerAbstract.php
+  - module: src/Resource/
+    responsibility: Resource wrappers for item/collection/primitive/null payloads plus metadata.
+    key_files:
+    - src/Resource/ResourceAbstract.php
+    - src/Resource/Item.php
+    - src/Resource/Collection.php
+    - src/Resource/Primitive.php
+  - module: src/Serializer/
+    responsibility: Output envelope strategies (Array/DataArray/JsonApi and interface contract).
+    key_files:
+    - src/Serializer/Serializer.php
+    - src/Serializer/SerializerAbstract.php
+    - src/Serializer/ArraySerializer.php
+    - src/Serializer/DataArraySerializer.php
+    - src/Serializer/JsonApiSerializer.php
+  - module: src/Pagination/
+    responsibility: Paginator adapters for framework-specific pagination implementations.
+    key_files:
+    - src/Pagination/PaginatorInterface.php
+    - src/Pagination/DoctrinePaginatorAdapter.php
+    - src/Pagination/IlluminatePaginatorAdapter.php
+  components:
+  - name: include/exclude parser
+    description: Parses requested relationship paths, params, and exclusion rules.
+  - name: transformer execution core
+    description: Applies transform methods and include methods within current scope context.
+  - name: serializer strategy layer
+    description: Shapes transformed output into array/data/jsonapi envelopes.
+  - name: pagination adapter layer
+    description: Normalizes paginator metadata across external pagination providers.
+  data_flow: |
+    1. Manager parses includes/excludes/fieldsets and stores request context.
+    2. Manager.createData builds root Scope for a ResourceInterface payload.
+    3. Scope executes transformer logic and resolves child include scopes.
+    4. Serializer implementation wraps data, includes, and meta/pagination values.
+    5. Scope outputs normalized array or JSON representation via toArray()/toJson().
+  key_abstractions:
+  - name: Manager
+    purpose: Primary orchestration API for request shaping and scope creation.
+  - name: Scope
+    purpose: Context object that tracks hierarchy and runs transformation.
+  - name: TransformerAbstract
+    purpose: Base class for user-defined transformers and include methods.
+  - name: ResourceInterface
+    purpose: Common resource contract for item/collection/primitive wrappers.
+  - name: Serializer
+    purpose: Strategy contract for final output envelope format.
+key_features:
+- Separation between domain models and serialized API response schema.
+- Include graph support with scoped relationships and include parameters.
+- Fieldset and exclusion support for response shape control.
+- Pluggable serializers including Array, DataArray, and JSON:API.
+- Pagination integration through adapter interfaces for multiple ecosystems.
+code_patterns:
+- pattern: transformer pattern with include methods
+  description: User transformers expose `transform()` plus `includeX()` methods for nested resources.
+  location: src/TransformerAbstract.php
+  file: src/TransformerAbstract.php
+- pattern: scope-based traversal
+  description: Each transformed node runs in a Scope with parent/child identifiers.
+  location: src/Scope.php
+  file: src/Scope.php
+- pattern: serializer strategy selection
+  description: Manager delegates output envelope shape to configured Serializer implementation.
+  location: src/Manager.php and src/Serializer/
+  file: src/Manager.php
+- pattern: resource wrapper abstraction
+  description: Item/Collection/Primitive wrappers carry data, transformer, meta, and keys.
+  location: src/Resource/ResourceAbstract.php
+  file: src/Resource/ResourceAbstract.php
+implementation_patterns:
+- pattern: include recursion limiting
+  description: Include paths are trimmed to configured recursion limit to bound traversal depth.
+  location: src/Manager.php
+  file: src/Manager.php
+- pattern: include param parsing by modifier syntax
+  description: Parses `include:modifier(param|param)` style include modifiers into ParamBag.
+  location: src/Manager.php
+  file: src/Manager.php
+- pattern: scope-aware include filtering
+  description: Scope checks requested/excluded include segments relative to parent chain.
+  location: src/Scope.php
+  file: src/Scope.php
+- pattern: serializer hook chain
+  description: Serializer methods can merge includes, inject metadata, and post-filter includes.
+  location: src/Serializer/SerializerAbstract.php and src/Serializer/JsonApiSerializer.php
+  file: src/Serializer/SerializerAbstract.php
+configuration:
+  options:
+  - key: Manager::parseIncludes
+    default: no requested includes
+    description: Selects relationship paths and include params.
+  - key: Manager::parseExcludes
+    default: no excludes
+    description: Removes specific includes from output traversal.
+  - key: Manager::parseFieldsets
+    default: no field restrictions
+    description: Restricts fields per resource type.
+  - key: Manager::setRecursionLimit
+    default: '10'
+    description: Caps include nesting depth.
+  - key: Manager::setSerializer
+    default: DataArraySerializer
+    description: Chooses output serializer implementation.
+api_surface:
+  public_functions:
+  - name: League\Fractal\Manager::createData
+    purpose: Creates root or child scope for a resource transformation run.
+    location: src/Manager.php
+  - name: League\Fractal\Manager::parseIncludes
+    purpose: Parses requested include paths and include parameters.
+    location: src/Manager.php
+  - name: League\Fractal\Manager::parseExcludes
+    purpose: Parses include exclusions.
+    location: src/Manager.php
+  - name: League\Fractal\Manager::parseFieldsets
+    purpose: Parses per-resource field selection constraints.
+    location: src/Manager.php
+  - name: League\Fractal\Manager::setRecursionLimit
+    purpose: Sets include recursion depth cap.
+    location: src/Manager.php
+  - name: League\Fractal\Manager::setSerializer
+    purpose: Sets serializer strategy for output format.
+    location: src/Manager.php
+  - name: League\Fractal\Scope::toArray
+    purpose: Executes transformation and returns serialized array output.
+    location: src/Scope.php
+  - name: League\Fractal\Scope::toJson
+    purpose: Returns JSON output generated from scope data.
+    location: src/Scope.php
+  - name: League\Fractal\Resource\ResourceInterface::setData
+    purpose: Updates wrapped resource data payload.
+    location: src/Resource/ResourceInterface.php
+  - name: League\Fractal\Resource\ResourceInterface::setTransformer
+    purpose: Assigns transformer callable/object for resource.
+    location: src/Resource/ResourceInterface.php
+  - name: League\Fractal\Serializer\Serializer::collection
+    purpose: Serializes collection payload envelope.
+    location: src/Serializer/Serializer.php
+  - name: League\Fractal\Serializer\Serializer::item
+    purpose: Serializes item payload envelope.
+    location: src/Serializer/Serializer.php
+testing:
+  framework: PHPUnit suite with static-analysis configs (phpstan and psalm).
+  key_test_files:
+  - test/ManagerTest.php
+  - test/ScopeTest.php
+  - test/TransformerAbstractTest.php
+  - test/Serializer/*.php
+  - test/Pagination/*.php
+  coverage_areas:
+  - include/exclude parsing behavior
+  - serializer output formats
+  - scope transformation and metadata handling
+  - pagination adapter behavior
+key_files:
+- path: src/Manager.php
+  description: Main orchestration API for transformation requests.
+- path: src/Scope.php
+  description: Scope graph execution and serialization logic.
+- path: src/TransformerAbstract.php
+  description: Base transformer with include lifecycle helpers.
+- path: src/Resource/ResourceAbstract.php
+  description: Base resource wrapper implementation.
+- path: src/Serializer/Serializer.php
+  description: Serializer interface contract.
+- path: src/Serializer/JsonApiSerializer.php
+  description: JSON:API serializer implementation.
+- path: src/Pagination/PaginatorInterface.php
+  description: Pagination adapter contract.
+- path: composer.json
+  description: Package metadata and dependency definitions.
+core_modules:
+  manager_layer:
+    path: src/Manager.php
+    description: User-facing orchestration and configuration.
+  scope_layer:
+    path: src/Scope.php
+    description: Hierarchical execution context.
+  transformer_layer:
+    path: src/TransformerAbstract.php
+    description: Custom transformation extensibility base.
+  resource_layer:
+    path: src/Resource/
+    description: Resource wrappers and metadata carriers.
+  serializer_layer:
+    path: src/Serializer/
+    description: Output format strategies.
+  pagination_layer:
+    path: src/Pagination/
+    description: Framework pagination adapters.

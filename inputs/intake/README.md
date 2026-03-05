@@ -48,3 +48,9 @@ It also enforces alias normalization via `classification_strategy.domain_hint.al
 5. Run shallow-first canonicalization flow.
 6. Mark top deep candidates and apply deep scan on demand.
 7. Apply prune policy to remove clones after extraction when safe.
+
+For Phase 4 batch execution (full end-to-end), run in this order:
+`tools/ws5_remote_ingestion.py` -> `tools/ws4_master_compiler.py` ->
+`tools/ws6_deep_integrator.py --run-validation-suite` ->
+`tools/ws7_read_model_compiler.py` (strict first; use `--force` only for
+snapshot/timestamp-only mismatch).

@@ -1,0 +1,244 @@
+version: 1
+as_of_utc: "2026-03-05T16:43:50Z"
+
+phase:
+  number: "4"
+  name: "Corpus Expansion and Stabilization"
+  status: "IN_PROGRESS"
+  workflow: "B1_COMPLETE -> STABILIZATION_COMPLETE -> B2_COMPLETE -> B3_COMPLETE_ACCEPT_WITH_NOTES -> B4_PLANNED -> TEMPLATE_STANDARDIZED"
+  date_initiated: "2026-03-05"
+  date_started: "2026-03-05"
+  date_completed: null
+
+objective: |
+  Standardize a reliable, repeatable prompt-driven workflow for end-to-end
+  ingestion through WS5 -> WS4 -> WS6 -> WS7, including deep narrative
+  generation that materializes new deep facts.
+
+definition_of_done:
+  - "Two consecutive batch runs complete under strict-first WS7 policy with no blocking integrity gate regressions."
+  - "Batch reports include required freshness disclosure fields every run."
+  - "At least one dedicated deep sub-batch passes a hard deep gate (batch deep_facts delta > 0)."
+  - "Standardized Phase 4 batch prompt template is approved and referenced in project_status.yaml."
+
+baseline:
+  queued_count: 46
+  already_canonical_count: 71
+  query_master:
+    repos: 73
+    nodes: 87
+    edges: 152
+    deep_facts: 2921
+
+current:
+  queued_count: 14
+  already_canonical_count: 103
+  query_master:
+    repos: 105
+    nodes: 119
+    edges: 152
+    deep_facts: 3418
+  deltas_vs_baseline:
+    queued_count: -32
+    already_canonical_count: 32
+    repos: 32
+    nodes: 32
+    edges: 0
+    deep_facts: 497
+  freshness:
+    master_index_generated_at_utc: "2026-03-05T05:30:00Z"
+    master_graph_generated_at_utc: "2026-03-05T05:30:00Z"
+    master_deep_facts_generated_at_utc: "2026-03-05T00:00:00Z"
+    ws7_snapshot_status: "warn"
+    ws7_force_used: false
+
+policy_controls:
+  ws7_gate_classes:
+    blocking:
+      - "row_count_parity"
+      - "orphan_edge_detection"
+      - "query_parity"
+      - "deterministic_rebuild"
+    warning_only:
+      - "snapshot_consistency (timestamp divergence)"
+  ws6_validation_source: "python3 tools/query_master.py --source yaml stats"
+  ws7_force_rule: "Use --force only when strict WS7 fails solely on snapshot/timestamp consistency."
+  run_order:
+    - "tools/ws5_remote_ingestion.py"
+    - "tools/ws4_master_compiler.py"
+    - "tools/ws6_deep_integrator.py --run-validation-suite"
+    - "tools/ws7_read_model_compiler.py (strict first)"
+  required_freshness_disclosure:
+    - "master_index.generated_at_utc"
+    - "master_graph.generated_at_utc"
+    - "master_deep_facts.generated_at_utc"
+    - "deep_facts delta vs baseline"
+    - "WS7 strict result + snapshot gate status (pass/warn) + fallback usage"
+  deep_run_acceptance:
+    - "Every targeted repo has a deep narrative file in {shard}/knowledge/deep/<file_stem>.yaml."
+    - "Every targeted repo has a materialized deep_facts file in {shard}/knowledge/deep_facts/<file_stem>.yaml."
+    - "Batch-level query_master deep_facts delta must be > 0 (hard gate)."
+  next_prompt_fix_required:
+    - "Preflight must baseline WS6 unmapped-section count before execution."
+    - "Final report must disclose unmapped-section before/after delta (soft-quality evidence)."
+  re_escalate_snapshot_to_blocking_when:
+    - "Snapshot divergence repeatedly causes incorrect query interpretation in practice."
+    - "Deep-facts regeneration cadence is tightened such that timestamp alignment is expected by design."
+
+milestones:
+  m1:
+    name: "Batch B1 Execution"
+    status: "COMPLETE"
+    deliverables:
+      - "12 repos ingested into canonical shard"
+      - "Queue sync and pipeline gate evidence captured"
+    outcome: "SHALLOW_COMPLETE"
+    notes:
+      - "Throughput target met (+12 canonical repos), but edges/deep_facts deltas remained zero."
+      - "Revealed stabilization needs: mixed-case identifier lookup, WS6 stale-DB coupling, WS7 snapshot over-blocking."
+    date_started: "2026-03-05"
+    date_completed: "2026-03-05"
+
+  m2:
+    name: "Stabilization Patch Set"
+    status: "COMPLETE"
+    deliverables:
+      - "tools/query_master.py (case-insensitive identifier resolution)"
+      - "tools/ws6_deep_integrator.py (validation decoupled from DB freshness)"
+      - "tools/ws7_read_model_compiler.py (snapshot divergence warning-only)"
+    done_when:
+      - "Mixed-case repo identifier checks pass for repo/neighbors/facts/graph."
+      - "WS6 validation runs without requiring freshly rebuilt SQLite."
+      - "WS7 strict compile warns (not fails) on timestamp-only snapshot divergence."
+    date_started: "2026-03-05"
+    date_completed: "2026-03-05"
+
+  m3:
+    name: "Batch B2 Policy Validation Run"
+    status: "COMPLETE"
+    deliverables:
+      - "B2 batch report with full gate outcomes and freshness disclosure"
+      - "Evidence that strict-first WS7 policy operates without integrity regressions"
+    outcome: "SHALLOW_COMPLETE_POLICY_PASS"
+    notes:
+      - "Counts moved as expected (queued -12, canonical +12), with repos/nodes +12."
+      - "No blockers/fallbacks; WS7 strict run passed with snapshot warning and no --force."
+      - "Deep lane unchanged (edges/deep_facts delta = 0), requiring targeted deep sub-batch."
+    plan_ref: "plan-drafts/Phase 4 Corpus Expansion Batch P4-B2.md"
+    date_started: "2026-03-05"
+    date_completed: "2026-03-05"
+
+  m4:
+    name: "Batch B2-Deep Sub-batch (4 repos)"
+    status: "COMPLETE"
+    deliverables:
+      - "4 deep narratives produced from source code under llm_repos/knowledge/deep"
+      - "4 deep_facts files materialized via WS6"
+      - "B2-Deep report with hard deep-gate evidence"
+    done_when:
+      - "All targeted deep files and deep_facts files exist."
+      - "query_master stats deep_facts increases (> 0 delta vs B2 baseline)."
+      - "WS7 strict run passes blocking gates (snapshot warn allowed)."
+    plan_ref: "plan-drafts/Phase 4 Corpus Expansion Batch P4-B2-Deep.md"
+    date_started: "2026-03-05"
+    date_completed: "2026-03-05"
+
+  m5:
+    name: "Batch B3 Repeatability + Template Standardization Decision"
+    status: "IN_PROGRESS"
+    deliverables:
+      - "Second consecutive hardened-policy batch report"
+      - "Go/No-Go recommendation to standardize prompt template"
+    done_when:
+      - "Second consecutive run completes without blocking gate regressions."
+      - "Freshness disclosure and fallback discipline are consistently observed."
+      - "Template standardization recommendation recorded in project_status.yaml."
+    notes:
+      - "B3 executed as HYBRID (8 shallow + 4 deep) and accepted with notes."
+      - "Hard gates all passed; deep_facts delta was +204 (3214 -> 3418)."
+      - "Before standardizing template, next batch prompt must baseline unmapped-section count in preflight."
+    date_started: "2026-03-05"
+    date_completed: null
+
+batches:
+  b1:
+    status: "COMPLETE"
+    repo_count: 12
+    strict_ws7_runs: 2
+    ws7_force_runs: 2
+    ws7_force_reason: "snapshot_consistency timestamp divergence"
+    deep_success: false
+    notes:
+      - "Repos/nodes increased; edges/deep_facts unchanged."
+      - "Used to derive stabilization policy and patch set."
+  b2:
+    status: "COMPLETE"
+    repo_count: 12
+    strict_ws7_runs: 1
+    ws7_force_runs: 0
+    ws7_snapshot_status: "warn"
+    ws7_snapshot_max_delta_seconds: 105529
+    deep_success: false
+    policy_success: true
+    notes:
+      - "queue: 34 -> 22, already_canonical: 83 -> 95"
+      - "repos: 85 -> 97, nodes: 99 -> 111, edges/deep_facts unchanged"
+      - "No blocker and no fallback usage"
+    commit_ref: "e8bdff4"
+  b2_deep:
+    status: "COMPLETE"
+    repo_count_target: 4
+    target_repos:
+      - "pydantic/pydantic"
+      - "pydantic/pydantic-core"
+      - "pydantic/pydantic-settings"
+      - "dottxt-ai/outlines"
+    plan_ref: "plan-drafts/Phase 4 Corpus Expansion Batch P4-B2-Deep.md"
+  b3:
+    status: "COMPLETE_ACCEPT_WITH_NOTES"
+    repo_count_target: 12
+    shallow_repo_count: 8
+    deep_repo_count: 4
+    objective: "Confirm repeatability of hardened policy and deep-lane gating before standardizing prompt template."
+    mode_recommendation_used: "HYBRID"
+    ws7_strict_runs: 1
+    ws7_force_runs: 0
+    ws7_snapshot_status: "warn"
+    deep_success: true
+    policy_success: true
+    acceptance_decision: "ACCEPT_WITH_NOTES"
+    notes:
+      - "queue: 22 -> 14, already_canonical: 95 -> 103"
+      - "repos: 97 -> 105, nodes: 111 -> 119, edges unchanged"
+      - "deep_facts: 3214 -> 3418 (+204), hard deep gate passed"
+      - "Soft-gap: unmapped-section before/after was not baselined in preflight"
+      - "One non-whitelist pre-existing untracked draft file was excluded from execution scope"
+  b4:
+    status: "PLANNED"
+    objective: "Run next batch with explicit preflight unmapped-section baseline and before/after disclosure."
+    prompt_ref: "plan-drafts/Phase 4 Corpus Expansion Batch P4-B4.md"
+    prompt_lock_ref: "reports/phase4/prompt_locks/P4-B4.lock.yaml"
+    prompt_hash_source: "external_lock_file"
+    prompt_sha1: "563c1828bd924d44485163a8942f74853d686470"
+    required_prompt_fix:
+      - "Capture unmapped-section baseline in preflight. (applied in P4-B4)"
+      - "Report unmapped-section delta in final evidence block. (applied in P4-B4)"
+
+open_threads:
+  - "Execute B4 and validate unmapped-section before/after disclosure is present in final report."
+  - "Case-insensitive collision handling if two repos differ only by case."
+  - "Keep batch evidence commits scoped; separate hygiene/doc edits from ingestion outputs."
+
+evidence_refs:
+  - "project_status.yaml"
+  - "phase_4_progress_tracker.yaml"
+  - "plan-drafts/Phase 4 Corpus Expansion Batch P4-B2.md"
+  - "plan-drafts/Phase 4 Corpus Expansion Batch P4-B2-Deep.md"
+  - "plan-drafts/Phase 4 Corpus Expansion Batch P4-B3.md"
+  - "plan-drafts/Phase 4 Corpus Expansion Batch P4-B4.md"
+  - "plan-drafts/Phase 4 Executor Report Review Rubric.md"
+  - "reports/phase4/prompt_locks/P4-B4.lock.yaml"
+  - "reports/ws4_master_build/validation_runs.yaml"
+  - "reports/ws5_remote_ingestion/validation_runs.yaml"
+  - "reports/ws6_deep_integration/validation_runs.yaml"
+  - "reports/ws7_read_model/compile_log.yaml"

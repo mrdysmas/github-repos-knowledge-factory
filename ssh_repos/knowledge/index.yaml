@@ -1,6 +1,6 @@
 version: '1.0'
 generated: 2026-02-21
-total_repos: 24
+total_repos: 37
 categories:
   tunneling:
     description: Reverse tunneling and port forwarding tools
@@ -47,6 +47,55 @@ categories:
     - hiddify-app
     - awesome-tunneling
     - yubikey-guide
+  terminal_multiplexer:
+    description: 'Remote-ingested category: terminal_multiplexer'
+    repos:
+    - tmux
+  postgres_extension:
+    description: 'Remote-ingested category: postgres_extension'
+    repos:
+    - pgvector
+  terminal_emulator:
+    description: 'Remote-ingested category: terminal_emulator'
+    repos:
+    - wezterm
+  cli_wrapper:
+    description: 'Remote-ingested category: cli_wrapper'
+    repos:
+    - glm
+  snippet_collection:
+    description: 'Remote-ingested category: snippet_collection'
+    repos:
+    - 1loc
+  deployment_automation:
+    description: 'Remote-ingested category: deployment_automation'
+    repos:
+    - capistrano
+  nearest_neighbor_search:
+    description: 'Remote-ingested category: nearest_neighbor_search'
+    repos:
+    - annoy
+  backup_tool:
+    description: 'Remote-ingested category: backup_tool'
+    repos:
+    - borg
+  static_site_generator:
+    description: 'Remote-ingested category: static_site_generator'
+    repos:
+    - hugo
+  cli_tool:
+    description: 'Remote-ingested category: cli_tool'
+    repos:
+    - bat
+    - fd
+  data_transformation:
+    description: 'Remote-ingested category: data_transformation'
+    repos:
+    - fractal
+  browser_automation:
+    description: 'Remote-ingested category: browser_automation'
+    repos:
+    - puppeteer
 repos:
   awesome-tunneling:
     category: documentation
@@ -167,6 +216,84 @@ repos:
     summary: WireGuard-based mesh networking platform with identity-aware connectivity
       controls.
     language: go
+  tmux:
+    category: terminal_multiplexer
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/tmux-master
+    summary: Phase 2B calibration intake for tmux/tmux. Terminal multiplexer, C codebase,
+      man-page documentation.
+    language: c
+  pgvector:
+    category: postgres_extension
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/vector_db/pgvector-master
+    summary: Phase 2B calibration intake for pgvector/pgvector. PostgreSQL extension
+      in C with SQL migration scripts.
+    language: c
+  wezterm:
+    category: terminal_emulator
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/wezterm-main
+    summary: Phase 2B calibration intake for wez/wezterm. Rust monorepo with multi-crate
+      Cargo workspace and terminal tooling.
+    language: rust
+  glm:
+    category: cli_wrapper
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/glm-main
+    summary: Phase 2B calibration intake for xqsit94/glm. Small Go CLI wrapper project
+      with lightweight module structure.
+    language: go
+  1loc:
+    category: snippet_collection
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/uncat_repos/1loc-master
+    summary: Phase 2B calibration intake for phuocng/1loc. Markdown-heavy snippet
+      collection with nontraditional source layout.
+    language: javascript
+  capistrano:
+    category: deployment_automation
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/uncat_repos/capistrano-master
+    summary: Phase 2B SB2 intake for capistrano/capistrano. Ruby deployment automation
+      framework built around SSHKit and Rake tasks.
+    language: ruby
+  annoy:
+    category: nearest_neighbor_search
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/vector_db/annoy-main
+    summary: Phase 2B SB2 intake for spotify/annoy. Approximate nearest-neighbor library
+      in C++ with Python bindings.
+    language: cpp
+  borg:
+    category: backup_tool
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/uncat_repos/borg-master
+    summary: Phase 2B SB2 intake for borgbackup/borg. Deduplicating backup tool with
+      Python CLI and native acceleration modules.
+    language: python
+  hugo:
+    category: static_site_generator
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/go_repos/hugo-master
+    summary: Phase 2B SB2 intake for gohugoio/hugo. Static site generator in Go with
+      templating, content pipeline, and modules.
+    language: go
+  bat:
+    category: cli_tool
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/sharkdp__bat
+    summary: Phase 2B SB3 intake for sharkdp/bat. Rust CLI cat clone with syntax highlighting,
+      paging, and theme support.
+    language: rust
+  fd:
+    category: cli_tool
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/sharkdp__fd
+    summary: Phase 2B SB3 intake for sharkdp/fd. Rust CLI find alternative with fast
+      filesystem traversal and smart defaults.
+    language: rust
+  fractal:
+    category: data_transformation
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/structured_outputs/fractal-master
+    summary: Phase 2B SB3 intake for thephpleague/fractal. PHP data transformation
+      library centered on resources, transformers, and serializers.
+    language: php
+  puppeteer:
+    category: browser_automation
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/uncat_repos/puppeteer-main
+    summary: Phase 2B SB3 intake for puppeteer/puppeteer. TypeScript browser automation
+      monorepo for Chrome and Firefox control.
+    language: typescript
 languages:
   rust:
   - bore

@@ -1,0 +1,245 @@
+name: bat
+node_id: repo::sharkdp/bat
+github_full_name: sharkdp/bat
+html_url: https://github.com/sharkdp/bat
+source: remote_metadata
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/deep/sharkdp__bat.yaml
+  as_of: '2026-03-04'
+directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/sharkdp__bat
+category: cli_tool
+primary_language: rust
+languages:
+- rust
+- markdown
+- toml
+tech_stack:
+- Rust
+- clap argument parser
+- syntect syntax and theme engine
+- terminal paging via less or builtin pager
+- bat PrettyPrinter library API
+architecture:
+  module_breakdown:
+  - module: src/bin/bat/main.rs
+    responsibility: CLI entrypoint, subcommand routing, and controller execution.
+    key_files:
+    - src/bin/bat/main.rs
+  - module: src/bin/bat/clap_app.rs
+    responsibility: Defines full CLI argument schema and option help text.
+    key_files:
+    - src/bin/bat/clap_app.rs
+  - module: src/bin/bat/app.rs
+    responsibility: Merges CLI/config/env options and builds runtime Config.
+    key_files:
+    - src/bin/bat/app.rs
+    - src/bin/bat/config.rs
+  - module: src/assets/ and src/assets.rs
+    responsibility: Loads and manages syntax definitions and themes from cache or embedded assets.
+    key_files:
+    - src/assets.rs
+    - src/assets/
+  - module: src/controller.rs and src/printer.rs
+    responsibility: Runs rendering pipeline, line processing, and highlighting output.
+    key_files:
+    - src/controller.rs
+    - src/printer.rs
+  - module: src/output.rs and src/pager.rs
+    responsibility: Handles pager selection, fallback logic, and interactive output behavior.
+    key_files:
+    - src/output.rs
+    - src/pager.rs
+  components:
+  - name: option resolution layer
+    description: Combines config file, environment variables, and command-line flags.
+  - name: highlighting assets layer
+    description: Provides syntax and theme sets for rendering code and text.
+  - name: render and paging layer
+    description: Streams formatted output directly or through chosen pager.
+  data_flow: |
+    1. CLI args are parsed by clap definitions in clap_app.rs.
+    2. app.rs merges args with config file and BAT_* environment overrides.
+    3. main.rs builds bat::Config and resolves input files/stdin.
+    4. Controller and printer modules apply syntax detection, styling, and line transforms.
+    5. output.rs chooses stdout, external pager, or builtin pager and emits result.
+  key_abstractions:
+  - name: Config
+    purpose: Unified runtime options for rendering, paging, themes, and formatting.
+  - name: HighlightingAssets
+    purpose: Loaded syntax and theme bundle used by controller/printer pipeline.
+  - name: Controller
+    purpose: Coordinates parsing, formatting, and output for all inputs.
+  - name: PrettyPrinter
+    purpose: Public library facade for embedding bat-style rendering in Rust code.
+key_features:
+- Syntax-highlighted viewing for many languages with theme selection.
+- Flexible output styles (`--style`, `--plain`, decorations, line numbers, diffs).
+- Pager-aware behavior with automatic, always, and never paging modes.
+- File-type to language mapping via `--map-syntax` and custom assets.
+- Config file and environment variable driven defaults for CLI workflows.
+cli_arguments:
+- flag: --style
+  description: Controls output components (numbers, header, grid, changes, etc.).
+- flag: --theme
+  description: Selects highlighting theme for rendered output.
+- flag: --theme-dark / --theme-light
+  description: Sets color-scheme-aware dark and light themes.
+- flag: --paging
+  description: Selects paging mode (`auto`, `always`, `never`).
+- flag: --language
+  description: Forces language for syntax highlighting.
+- flag: --line-range
+  description: Restricts rendering to selected line ranges.
+- flag: --map-syntax
+  description: Maps filename glob patterns to language names.
+- flag: --list-themes
+  description: Prints available themes (with preview support).
+- flag: --list-languages
+  description: Prints known syntaxes/languages and extensions.
+- flag: --config-file
+  description: Prints active config file path.
+- flag: --generate-config-file
+  description: Generates default user config content.
+- flag: --diagnostic
+  description: Prints troubleshooting diagnostics for runtime environment.
+cli_commands:
+- command: bat <file>
+  description: Render file with syntax highlighting and style decorations.
+- command: bat --list-themes
+  description: List available themes.
+- command: bat --list-languages
+  description: List available syntax language mappings.
+- command: bat --generate-config-file
+  description: Create default config file in config directory.
+- command: bat cache --build
+  description: Build cache assets from custom syntax/theme sources.
+implementation_patterns:
+- pattern: layered option precedence
+  description: CLI flags override env values, which override config-file defaults.
+  location: src/bin/bat/app.rs and src/bin/bat/config.rs
+  file: src/bin/bat/app.rs
+- pattern: asset source fallback
+  description: Uses custom cache assets when available, otherwise embedded binary assets.
+  location: src/assets.rs and src/bin/bat/assets.rs
+  file: src/assets.rs
+- pattern: pager safety and fallback
+  description: Resolves BAT_PAGER/PAGER, blocks recursive self-paging, and falls back to stdout.
+  location: src/pager.rs and src/output.rs
+  file: src/output.rs
+- pattern: terminal-aware rendering
+  description: Adjusts color/paging/help output behavior for interactive vs piped modes.
+  location: src/bin/bat/app.rs and src/bin/bat/main.rs
+  file: src/bin/bat/app.rs
+configuration:
+  options:
+  - key: config file path
+    default: "$XDG_CONFIG_HOME/bat/config (or BAT_CONFIG_PATH override)"
+    description: Default option source loaded before CLI args.
+  - key: --theme
+    default: auto-selected default theme
+    description: Highlighting theme selection.
+  - key: --style
+    default: built-in default style
+    description: Style component composition for output layout.
+  - key: --paging
+    default: auto
+    description: Paging behavior for terminal output.
+  - key: --pager
+    default: less (or builtin/none based on config)
+    description: External pager command override.
+  - key: --map-syntax
+    default: none
+    description: Custom file-pattern to language mappings.
+environment:
+- name: BAT_CONFIG_PATH
+  description: Overrides default config file location.
+- name: BAT_OPTS
+  description: Injects option string parsed as default CLI arguments.
+- name: BAT_THEME
+  description: Sets default theme.
+- name: BAT_THEME_DARK
+  description: Sets default theme for dark color scheme.
+- name: BAT_THEME_LIGHT
+  description: Sets default theme for light color scheme.
+- name: BAT_STYLE
+  description: Sets default style components.
+- name: BAT_PAGER
+  description: Overrides pager command for bat.
+- name: BAT_PAGING
+  description: Sets paging mode from environment.
+- name: PAGER
+  description: Fallback pager when BAT_PAGER is unset.
+- name: NO_COLOR
+  description: Disables colorized output when set.
+api_surface:
+  public_functions:
+  - name: bat::PrettyPrinter::new
+    purpose: Creates configurable pretty-printer instance for embedding.
+    location: src/pretty_printer.rs
+  - name: bat::PrettyPrinter::input_file
+    purpose: Adds file path input to print pipeline.
+    location: src/pretty_printer.rs
+  - name: bat::PrettyPrinter::input_from_bytes
+    purpose: Adds in-memory bytes input for rendering.
+    location: src/pretty_printer.rs
+  - name: bat::PrettyPrinter::language
+    purpose: Overrides language detection for highlighting.
+    location: src/pretty_printer.rs
+  - name: bat::PrettyPrinter::theme
+    purpose: Chooses highlighting theme programmatically.
+    location: src/pretty_printer.rs
+  - name: bat::PrettyPrinter::paging_mode
+    purpose: Selects pager behavior for output.
+    location: src/pretty_printer.rs
+  - name: bat::PrettyPrinter::pager
+    purpose: Sets explicit pager command.
+    location: src/pretty_printer.rs
+  - name: bat::PrettyPrinter::print
+    purpose: Executes render pipeline and writes output.
+    location: src/pretty_printer.rs
+testing:
+  framework: Rust unit and integration tests via cargo test.
+  key_test_files:
+  - tests/
+  - src/bin/bat/config.rs (unit tests)
+  coverage_areas:
+  - config/env parsing and precedence
+  - rendering behavior and style options
+  - CLI behavior and pager integration
+  - assets and syntax mapping workflows
+key_files:
+- path: src/bin/bat/main.rs
+  description: CLI command execution and top-level control flow.
+- path: src/bin/bat/clap_app.rs
+  description: Full argument declarations and help text.
+- path: src/bin/bat/app.rs
+  description: Option resolution and Config construction.
+- path: src/bin/bat/config.rs
+  description: Config-file loading and BAT_* env option mapping.
+- path: src/assets.rs
+  description: Syntax/theme asset loading and lookup.
+- path: src/controller.rs
+  description: Core rendering orchestration.
+- path: src/printer.rs
+  description: Syntax-highlighted line printing.
+- path: src/output.rs
+  description: Output target and pager execution.
+- path: README.md
+  description: CLI usage, configuration, and customization docs.
+core_modules:
+  cli_layer:
+    path: src/bin/bat/
+    description: User-facing command parsing and runtime setup.
+  config_layer:
+    path: src/bin/bat/config.rs
+    description: Config file and environment-based defaults.
+  assets_layer:
+    path: src/assets.rs
+    description: Highlighting language/theme data model.
+  rendering_layer:
+    path: src/controller.rs
+    description: End-to-end rendering pipeline coordination.
+  output_layer:
+    path: src/output.rs
+    description: Terminal/pager output transport.

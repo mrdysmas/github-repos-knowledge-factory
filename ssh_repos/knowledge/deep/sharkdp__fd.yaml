@@ -1,0 +1,211 @@
+name: fd
+node_id: repo::sharkdp/fd
+github_full_name: sharkdp/fd
+html_url: https://github.com/sharkdp/fd
+source: remote_metadata
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/deep/sharkdp__fd.yaml
+  as_of: '2026-03-04'
+directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/sharkdp__fd
+category: cli_tool
+primary_language: rust
+languages:
+- rust
+- markdown
+- toml
+tech_stack:
+- Rust
+- clap argument parser
+- ignore crate for recursive filesystem traversal
+- regex and globset pattern matching
+- crossbeam-channel worker coordination
+- lscolors terminal color formatting
+architecture:
+  module_breakdown:
+  - module: src/main.rs
+    responsibility: Entrypoint, option parsing, pattern compilation, and run orchestration.
+    key_files:
+    - src/main.rs
+  - module: src/cli.rs
+    responsibility: Defines full command-line contract and option semantics.
+    key_files:
+    - src/cli.rs
+  - module: src/walk.rs
+    responsibility: Builds ignore-based parallel walker, applies filters, buffers/streams results.
+    key_files:
+    - src/walk.rs
+  - module: src/filter/
+    responsibility: Filetype, size, time, and ownership filtering logic.
+    key_files:
+    - src/filter/
+  - module: src/exec/
+    responsibility: Handles `--exec` and `--exec-batch` command generation/execution.
+    key_files:
+    - src/exec/mod.rs
+  - module: src/output.rs and src/fmt/
+    responsibility: Formats and prints entries, including list-details and path formatting.
+    key_files:
+    - src/output.rs
+    - src/fmt/
+  components:
+  - name: pattern compiler
+    description: Converts regex/glob/fixed-string inputs into matchable regex set(s).
+  - name: parallel traversal engine
+    description: Uses ignore::WalkParallel with configurable thread count and ignore rules.
+  - name: result receiver pipeline
+    description: Buffers short runs for sorted output, then streams for long scans.
+  - name: command execution worker pool
+    description: Runs external commands per result or in batches with configurable parallelism.
+  data_flow: |
+    1. fd parses Opts from CLI and validates search paths/base directory.
+    2. Pattern strings are converted to regex/glob/fixed-string matchers.
+    3. Config is assembled (ignore rules, depth limits, filters, output mode, exec mode).
+    4. walk.rs configures ignore::WalkBuilder and starts parallel filesystem scan.
+    5. Matches are printed, or fed into --exec/--exec-batch workers, until completion/max-results.
+  key_abstractions:
+  - name: Opts
+    purpose: Canonical CLI option structure parsed by clap.
+  - name: Config
+    purpose: Runtime search and output configuration consumed by scanning pipeline.
+  - name: WorkerState
+    purpose: Coordinates sender/receiver threads and shutdown/interrupt behavior.
+  - name: DirEntry
+    purpose: Normalized representation of found filesystem entries.
+  - name: CommandSet
+    purpose: Prepared external command templates for `--exec` workflows.
+key_features:
+- Fast recursive file discovery with smart defaults.
+- Honors `.gitignore`, `.fdignore`, and custom ignore files.
+- Multiple matching modes (regex, glob, fixed-string, smart-case).
+- Rich filtering (type, extension, size, time, depth, hidden/ignored controls).
+- Built-in parallel command execution via `--exec` and `--exec-batch`.
+cli_arguments:
+- flag: "[pattern] [path...]"
+  description: Positional search pattern and one or more root paths.
+- flag: --type / -t
+  description: Restricts results to selected file types (file, dir, symlink, executable, etc.).
+- flag: --extension / -e
+  description: Filters results by file extension.
+- flag: --glob / -g
+  description: Uses glob matching instead of regex.
+- flag: --fixed-strings / -F
+  description: Treats pattern as a literal string.
+- flag: --hidden / -H
+  description: Includes hidden files and directories.
+- flag: --no-ignore / -I
+  description: Disables ignore-file filtering.
+- flag: --exclude / -E
+  description: Excludes entries matching provided glob patterns.
+- flag: --max-depth / -d
+  description: Limits recursion depth.
+- flag: --min-depth
+  description: Emits matches only at or below specified depth.
+- flag: --full-path / -p
+  description: Matches against full absolute path instead of filename only.
+- flag: --exec / -x
+  description: Executes command for each result (parallel by default).
+- flag: --exec-batch / -X
+  description: Executes command once with all results as arguments.
+- flag: --threads / -j
+  description: Sets search and exec worker concurrency.
+- flag: --list-details / -l
+  description: Emits ls-like long listing output.
+- flag: --base-directory
+  description: Changes working directory before evaluating paths/patterns.
+cli_commands:
+- command: fd <pattern> <path>
+  description: Core recursive search command.
+- command: fd -e <ext> <path>
+  description: Extension-filtered search.
+- command: fd -tf
+  description: File-only search.
+- command: fd -x <cmd>
+  description: Per-result external command execution.
+- command: fd -X <cmd>
+  description: Batch external command execution.
+implementation_patterns:
+- pattern: parallel walker over ignore crate
+  description: Uses WalkBuilder/WalkParallel with ignore rules and overrides for speed.
+  location: src/walk.rs
+  file: src/walk.rs
+- pattern: receiver buffering to preserve sortability for short runs
+  description: Buffers early results, then switches to streaming mode after threshold/deadline.
+  location: src/walk.rs
+  file: src/walk.rs
+- pattern: configurable command execution modes
+  description: Distinct pipelines for per-entry and batched command invocation.
+  location: src/exec/mod.rs and src/walk.rs
+  file: src/exec/mod.rs
+- pattern: smart-case and mode-aware pattern compilation
+  description: Builds regex behavior from case flags and pattern content.
+  location: src/main.rs
+  file: src/main.rs
+configuration:
+  options:
+  - key: ignore behavior
+    default: respect `.gitignore` and `.fdignore`
+    description: Tuned via `--no-ignore`, `--no-ignore-vcs`, and related flags.
+  - key: recursion depth
+    default: unlimited
+    description: Controlled with `--max-depth` and `--min-depth`.
+  - key: color output
+    default: auto
+    description: Controlled with `--color` and terminal capability checks.
+  - key: search concurrency
+    default: number of available CPUs (capped in implementation)
+    description: Controlled by `--threads`.
+  - key: output format
+    default: path-per-line
+    description: Can switch to detailed listing with `--list-details`.
+environment:
+- name: LS_COLORS
+  description: Controls color styling for result output.
+- name: NO_COLOR
+  description: Disables color output when set.
+- name: TERM
+  description: Used for terminal capability detection on some platforms.
+- name: MSYSTEM
+  description: Used for platform-specific path handling behavior in filesystem helpers.
+testing:
+  framework: Rust unit and integration tests via cargo test.
+  key_test_files:
+  - tests/
+  - src/cli.rs (argument parsing tests)
+  - src/main.rs (config/pattern behavior tests)
+  coverage_areas:
+  - CLI parsing and argument conflicts
+  - ignore and traversal behavior
+  - exec/exec-batch command generation
+  - filtering, output formatting, and edge cases
+key_files:
+- path: src/main.rs
+  description: Top-level execution flow and config building.
+- path: src/cli.rs
+  description: Public CLI option model and help docs.
+- path: src/walk.rs
+  description: Parallel traversal, filtering, and result handling.
+- path: src/exec/mod.rs
+  description: External command execution engine.
+- path: src/output.rs
+  description: Entry printing and stream formatting.
+- path: src/filter/
+  description: Search-time filter predicates.
+- path: README.md
+  description: User-facing command examples and option reference.
+core_modules:
+  cli_layer:
+    path: src/cli.rs
+    description: CLI contract and parsing.
+  orchestration_layer:
+    path: src/main.rs
+    description: Search setup and pipeline initialization.
+  traversal_layer:
+    path: src/walk.rs
+    description: Parallel walk and result transport.
+  execution_layer:
+    path: src/exec/
+    description: External command templating and execution.
+  filtering_layer:
+    path: src/filter/
+    description: File metadata and type/time/size filtering.

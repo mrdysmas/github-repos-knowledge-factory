@@ -1,0 +1,846 @@
+name: codex
+node_id: repo::openai/codex
+github_full_name: openai/codex
+html_url: https://github.com/openai/codex
+source: remote_metadata
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep_facts/openai__codex.yaml
+  as_of: '2026-02-24T19:46:56Z'
+  extractor_version: ws6-deep-integrator-v1
+facts:
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.72
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: architecture.components[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.components[0]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: CLI shell entrypoint
+  object_value: CLI shell entrypoint
+  note: Interactive terminal-first interface for running Codex tasks locally.
+  fact_id: fact::c4f3a74ea4862da0f003621f
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: key_features[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[2]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: IDE and desktop integration entrypoints
+  object_value: IDE and desktop integration entrypoints
+  note: Documents usage in IDE contexts and app mode alongside terminal usage.
+  fact_id: fact::488fbef11472757b8c235e4b
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: key_features[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[0]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: Local terminal coding agent
+  object_value: Local terminal coding agent
+  note: Provides interactive coding assistance directly in terminal workflows.
+  fact_id: fact::3c06e97c0ec7ce07495f76bd
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: key_features[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[1]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: Multi-install distribution
+  object_value: Multi-install distribution
+  note: Supports npm, Homebrew, and release binary installation flows.
+  fact_id: fact::3aa9f25ed5028437b06d6154
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: architecture.key_abstractions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[1]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: Normalizes model backends and execution capabilities behind stable interfaces.
+  object_value: Provider-agnostic runtime adapters
+  note: Normalizes model backends and execution capabilities behind stable interfaces.
+  fact_id: fact::4193dca1b764d697baa9a835
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.72
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: architecture.components[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.components[1]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: Sandbox and execution bridge
+  object_value: Sandbox and execution bridge
+  note: Coordinates local command execution and filesystem interaction from agent
+    actions.
+  fact_id: fact::b33dfb4fb081e3e19be9a4b9
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: architecture.key_abstractions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[0]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: Maintains model interaction state and tool execution boundaries across
+      commands.
+  object_value: Session lifecycle orchestration
+  note: Maintains model interaction state and tool execution boundaries across commands.
+  fact_id: fact::e06d78f460026378f468dc10
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: key_features[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[3]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: Tool-augmented execution loop
+  object_value: Tool-augmented execution loop
+  note: Agent actions can call shell tooling and repository operations under configured
+    policies.
+  fact_id: fact::0c87abe88b62e2e4895c1458
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.78
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: architecture.module_breakdown[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[0]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: Terminal UX, command parsing, and user-facing agent loop entrypoints.
+  object_value: codex-cli
+  note: 'responsibility: Terminal UX, command parsing, and user-facing agent loop
+    entrypoints.; key_files: codex-cli/, package.json'
+  fact_id: fact::66d85a60b56699e4cc7fbc91
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.78
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: architecture.module_breakdown[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[1]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: Rust runtime and core orchestration layers for agent execution and tool
+      interaction.
+  object_value: codex-rs
+  note: 'responsibility: Rust runtime and core orchestration layers for agent execution
+    and tool interaction.; key_files: codex-rs/, codex-rs/core/'
+  fact_id: fact::f6cf6c30197735fb24ff970f
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.78
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: architecture.module_breakdown[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[2]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: Shared SDK utilities for integrations and embedding Codex workflows.
+  object_value: sdk
+  note: 'responsibility: Shared SDK utilities for integrations and embedding Codex
+    workflows.; key_files: sdk/'
+  fact_id: fact::5c7186678317f5ecbb1868e3
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: key_files[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[0]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: README.md
+  object_value: README.md
+  note: Primary usage, install, and navigation guide for Codex CLI.
+  fact_id: fact::5e611a4309d231a57fdbc555
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: core_modules.cli_surface
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.cli_surface
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: codex-cli
+  object_value: codex-cli
+  note: 'User command interface and interactive terminal behaviors. Submodules: codex-cli/src'
+  fact_id: fact::7d7344f091ab72bf86ae5d00
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: key_files[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[2]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: codex-cli/
+  object_value: codex-cli/
+  note: CLI-facing project code.
+  fact_id: fact::a298bc4dbc7938ffb3cde431
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: core_modules.runtime_core
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.runtime_core
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: codex-rs
+  object_value: codex-rs
+  note: 'Core runtime, tool integration, and orchestration internals. Submodules:
+    codex-rs/core, codex-rs/sandbox'
+  fact_id: fact::91fc07219ab15f5820df90a6
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: key_files[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[3]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: codex-rs/
+  object_value: codex-rs/
+  note: Runtime and orchestration implementation.
+  fact_id: fact::58e183fe6553bbb7f9bb60f3
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: core_modules.docs_and_guides
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.docs_and_guides
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: docs
+  object_value: docs
+  note: Installation, usage, and contribution documentation.
+  fact_id: fact::b7ab7d2cb9f93645d2920119
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: key_files[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[4]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: docs/
+  object_value: docs/
+  note: Official operational and contributor documentation.
+  fact_id: fact::8aee7a8533c145081f8dd726
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: key_files[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[1]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: package.json
+  object_value: package.json
+  note: JavaScript package metadata and top-level scripts.
+  fact_id: fact::9e712f15ad93ef1c997beed6
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: configuration[0].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[0]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: approval_policy
+  object_value: approval_policy
+  note: 'default: interactive; Controls when privileged operations require explicit
+    approval.'
+  fact_id: fact::3822a2a6ea617297a21f9913
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: configuration[0].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[2]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: model_provider
+  object_value: model_provider
+  note: 'default: openai; Selects the backend model provider for agent inference.'
+  fact_id: fact::9d54925915f0915c16b9a690
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: configuration[1].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[0]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: package_manager
+  object_value: package_manager
+  note: 'default: npm; Standard JavaScript distribution channel for CLI installation.'
+  fact_id: fact::19f5c8029684e63ce21bf042
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: configuration[0].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[1]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: sandbox_mode
+  object_value: sandbox_mode
+  note: 'default: workspace_write; Governs filesystem access boundaries for tool execution.'
+  fact_id: fact::9bc7ec5d2ecce2c78b6d7651
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: integrations.package_ecosystem[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.package_ecosystem[1].line[0]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: Homebrew
+  object_value: Homebrew
+  note: 'integration group: package_ecosystem'
+  fact_id: fact::0aa0e4224b11792e3a47129b
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: integrations.developer_surfaces[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.developer_surfaces[0].line[0]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: IDE extensions and embedded workflows
+  object_value: IDE extensions and embedded workflows
+  note: 'integration group: developer_surfaces'
+  fact_id: fact::4fe6b0255c290908a7421253
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: integrations.model_providers[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.model_providers[0].line[0]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: OpenAI platform APIs
+  object_value: OpenAI platform APIs
+  note: 'integration group: model_providers'
+  fact_id: fact::9605df9c6aacbc57e0f15d6e
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: api_surface.public_functions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[0]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: codex CLI command surface
+  object_value: codex CLI command surface
+  note: Entry contract for terminal invocation and interactive workflow control.;
+    codex <command>; codex-cli/
+  fact_id: fact::b6fe66634b1c4b03d755c7a3
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: api_surface.public_functions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[1]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: runtime orchestration core
+  object_value: runtime orchestration core
+  note: Coordinates agent planning, tool dispatch, and execution policy checks.; internal
+    runtime interfaces; codex-rs/
+  fact_id: fact::523543eef331b5b95dcfc1a4
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: testing.coverage_areas[2].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[2].line[0]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: Build and release packaging checks
+  object_value: Build and release packaging checks
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::d9109b2a23aae582241ee6f7
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: testing.coverage_areas[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[0].line[0]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: CLI command handling and interaction state
+  object_value: CLI command handling and interaction state
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::a6a1a1c3c3d9c502ea388035
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: implementation_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: codex-cli/
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: Frontend command parsing is decoupled from lower-level execution and
+      state management.
+  object_value: CLI plus runtime layering
+  note: 'description: Frontend command parsing is decoupled from lower-level execution
+    and state management.; location: codex-cli/'
+  fact_id: fact::c9e5fb9c44d17b55101251c6
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: code_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: codex-cli/
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: User prompts route through a command loop that can invoke tools and shell
+      actions.
+  object_value: Command-driven task loop
+  note: 'description: User prompts route through a command loop that can invoke tools
+    and shell actions.; location: codex-cli/'
+  fact_id: fact::f461e7ff6c4a0e463fc53259
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: implementation_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: codex-rs/
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: JavaScript package surfaces integrate with Rust-heavy runtime components.
+  object_value: Cross-language integration boundary
+  note: 'description: JavaScript package surfaces integrate with Rust-heavy runtime
+    components.; location: codex-rs/'
+  fact_id: fact::bd85a9fa35ea28abec6e396a
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: code_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: pnpm-workspace.yaml
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: CLI surface, Rust core, SDK, and shell MCP components are kept in separate
+      packages.
+  object_value: Multi-package monorepo split by responsibility
+  note: 'description: CLI surface, Rust core, SDK, and shell MCP components are kept
+    in separate packages.; location: pnpm-workspace.yaml'
+  fact_id: fact::3d4e330d467d88a7f27bad58
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: code_patterns[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: codex-rs/
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: Runtime constraints and approval modes gate file/system operations.
+  object_value: Policy-gated execution
+  note: 'description: Runtime constraints and approval modes gate file/system operations.;
+    location: codex-rs/'
+  fact_id: fact::120b6d24f3fa1a417ae28d42
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: testing.coverage_areas[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[1].line[0]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: Runtime tool execution boundaries
+  object_value: Runtime tool execution boundaries
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::c8a474a5c5ea664780575e1e
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: testing.structure.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.structure.line[0]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: Rust and JavaScript workspace tests are organized by package.
+  object_value: Rust and JavaScript workspace tests are organized by package.
+  note: 'testing metadata: structure'
+  fact_id: fact::0a549c49582acd186bd301d9
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: testing.framework.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.framework.line[0]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: mixed
+  object_value: mixed
+  note: 'testing metadata: framework'
+  fact_id: fact::41525099c2100160a62780cf
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: commands[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[3]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: brew install --cask codex
+  object_value: brew install --cask codex
+  note: Install Codex through Homebrew cask.
+  fact_id: fact::3fed5826d326da2283252485
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.67
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: quick_reference[3].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: quick_reference[3].line[0]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: cargo build
+  object_value: cargo build
+  note: 'topic: Build Rust workspace'
+  fact_id: fact::28f1691fa93be74fc6f4d81b
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.67
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: testing.test_patterns[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.test_patterns[1].line[0]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: cargo test
+  object_value: cargo test
+  note: testing command
+  fact_id: fact::a49e81d3ea63a80a2101643d
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: commands[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[2]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: npm install -g @openai/codex
+  object_value: npm install -g @openai/codex
+  note: Install Codex globally through npm.
+  fact_id: fact::9f5c0f3a49256f7f713720cc
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.67
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: quick_reference[2].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: quick_reference[2].line[0]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: pnpm build
+  object_value: pnpm build
+  note: 'topic: Build JavaScript workspace'
+  fact_id: fact::209fba879d6256fb4ae3a03a
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.67
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: testing.test_patterns[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.test_patterns[0].line[0]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: pnpm test
+  object_value: pnpm test
+  note: testing command
+  fact_id: fact::ff16b71574cc3aab968ba952
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.58
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: quick_reference[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: quick_reference[1]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: Launch app mode
+  object_value: Launch app mode
+  note: quick reference topic
+  fact_id: fact::e8a673ed73f312ae7cc2d72e
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.58
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: quick_reference[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: quick_reference[0]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: Start interactive session
+  object_value: Start interactive session
+  note: quick reference topic
+  fact_id: fact::4d3826d618d4dacc0a209411
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: commands[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[0]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: codex
+  object_value: codex
+  note: Launch interactive Codex CLI session.
+  fact_id: fact::d8378c3b274828ffa487d1f4
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-05'
+  provenance:
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    source_section: commands[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[1]
+    source_file: llm_repos/knowledge/deep/openai__codex.yaml
+    excerpt: codex app
+  object_value: codex app
+  note: Start Codex desktop app mode.
+  fact_id: fact::bb7408e2f19f260d4149102a

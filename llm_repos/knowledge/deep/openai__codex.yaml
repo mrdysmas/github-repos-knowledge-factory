@@ -1,0 +1,168 @@
+name: codex
+node_id: repo::openai/codex
+github_full_name: openai/codex
+html_url: https://github.com/openai/codex
+source: remote_metadata
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep/openai__codex.yaml
+  as_of: '2026-03-05'
+directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/openai__codex
+category: agent_cli
+
+architecture:
+  module_breakdown:
+  - module: codex-cli
+    responsibility: Terminal UX, command parsing, and user-facing agent loop entrypoints.
+    key_files:
+    - codex-cli/
+    - package.json
+  - module: codex-rs
+    responsibility: Rust runtime and core orchestration layers for agent execution and tool interaction.
+    key_files:
+    - codex-rs/
+    - codex-rs/core/
+  - module: sdk
+    responsibility: Shared SDK utilities for integrations and embedding Codex workflows.
+    key_files:
+    - sdk/
+  key_abstractions:
+  - name: Session lifecycle orchestration
+    purpose: Maintains model interaction state and tool execution boundaries across commands.
+  - name: Provider-agnostic runtime adapters
+    purpose: Normalizes model backends and execution capabilities behind stable interfaces.
+  components:
+  - name: CLI shell entrypoint
+    description: Interactive terminal-first interface for running Codex tasks locally.
+  - name: Sandbox and execution bridge
+    description: Coordinates local command execution and filesystem interaction from agent actions.
+
+code_patterns:
+- pattern: Multi-package monorepo split by responsibility
+  description: CLI surface, Rust core, SDK, and shell MCP components are kept in separate packages.
+  location: pnpm-workspace.yaml
+- pattern: Command-driven task loop
+  description: User prompts route through a command loop that can invoke tools and shell actions.
+  location: codex-cli/
+- pattern: Policy-gated execution
+  description: Runtime constraints and approval modes gate file/system operations.
+  location: codex-rs/
+
+implementation_patterns:
+- pattern: CLI plus runtime layering
+  description: Frontend command parsing is decoupled from lower-level execution and state management.
+  location: codex-cli/
+- pattern: Cross-language integration boundary
+  description: JavaScript package surfaces integrate with Rust-heavy runtime components.
+  location: codex-rs/
+
+core_modules:
+  cli_surface:
+    path: codex-cli
+    description: User command interface and interactive terminal behaviors.
+    submodules:
+    - codex-cli/src
+  runtime_core:
+    path: codex-rs
+    description: Core runtime, tool integration, and orchestration internals.
+    submodules:
+    - codex-rs/core
+    - codex-rs/sandbox
+  docs_and_guides:
+    path: docs
+    description: Installation, usage, and contribution documentation.
+
+key_features:
+- feature: Local terminal coding agent
+  description: Provides interactive coding assistance directly in terminal workflows.
+- feature: Multi-install distribution
+  description: Supports npm, Homebrew, and release binary installation flows.
+- feature: IDE and desktop integration entrypoints
+  description: Documents usage in IDE contexts and app mode alongside terminal usage.
+- feature: Tool-augmented execution loop
+  description: Agent actions can call shell tooling and repository operations under configured policies.
+
+key_files:
+- path: README.md
+  description: Primary usage, install, and navigation guide for Codex CLI.
+- path: package.json
+  description: JavaScript package metadata and top-level scripts.
+- path: codex-cli/
+  description: CLI-facing project code.
+- path: codex-rs/
+  description: Runtime and orchestration implementation.
+- path: docs/
+  description: Official operational and contributor documentation.
+
+configuration:
+- name: runtime_defaults
+  options:
+  - key: approval_policy
+    default: interactive
+    description: Controls when privileged operations require explicit approval.
+  - key: sandbox_mode
+    default: workspace_write
+    description: Governs filesystem access boundaries for tool execution.
+  - key: model_provider
+    default: openai
+    description: Selects the backend model provider for agent inference.
+- name: packaging
+  options:
+  - key: package_manager
+    default: npm
+    description: Standard JavaScript distribution channel for CLI installation.
+
+commands:
+- name: codex
+  description: Launch interactive Codex CLI session.
+  usage: codex
+- name: codex app
+  description: Start Codex desktop app mode.
+  usage: codex app
+- name: npm install -g @openai/codex
+  description: Install Codex globally through npm.
+  usage: npm install -g @openai/codex
+- name: brew install --cask codex
+  description: Install Codex through Homebrew cask.
+  usage: brew install --cask codex
+
+testing:
+  framework: mixed
+  structure: Rust and JavaScript workspace tests are organized by package.
+  coverage_areas:
+  - CLI command handling and interaction state
+  - Runtime tool execution boundaries
+  - Build and release packaging checks
+  test_patterns:
+  - pnpm test
+  - cargo test
+
+integrations:
+  model_providers:
+  - OpenAI platform APIs
+  developer_surfaces:
+  - IDE extensions and embedded workflows
+  package_ecosystem:
+  - npm
+  - Homebrew
+
+quick_reference:
+- topic: Start interactive session
+  command: codex
+- topic: Launch app mode
+  command: codex app
+- topic: Build JavaScript workspace
+  command: pnpm build
+- topic: Build Rust workspace
+  command: cargo build
+
+api_surface:
+  public_functions:
+  - name: codex CLI command surface
+    purpose: Entry contract for terminal invocation and interactive workflow control.
+    signature: codex <command>
+    location: codex-cli/
+  - name: runtime orchestration core
+    purpose: Coordinates agent planning, tool dispatch, and execution policy checks.
+    signature: internal runtime interfaces
+    location: codex-rs/

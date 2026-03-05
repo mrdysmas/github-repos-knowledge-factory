@@ -6,23 +6,24 @@ source: remote_metadata
 provenance:
   shard: llm_repos
   source_file: llm_repos/knowledge/repos/weaviate__weaviate.yaml
-  as_of: '2026-02-25'
+  as_of: '2026-02-24T19:46:56Z'
 directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/weaviate__weaviate
 category: vector_database
-summary: Shallow intake pilot canonicalization for weaviate/weaviate in vector database domain.
+summary: Shallow intake pilot canonicalization for weaviate/weaviate in vector database
+  domain.
 core_concepts:
-  - vector database capabilities
-  - weaviate repository architecture
+- vector database capabilities
+- weaviate repository architecture
 key_entry_points:
-  - README.md
-  - go.mod
-  - pyproject.toml
-  - cmd/
+- README.md
+- go.mod
+- pyproject.toml
+- cmd/
 build_run:
   language: go
   build: go build ./...
   test: go test ./...
-local_cache_dir:
+local_cache_dir: null
 extras:
   intake:
     pilot_batch_id: INTAKE-PILOT-1

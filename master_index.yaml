@@ -1,38 +1,53 @@
 artifact_type: ws4_master_index
-generated_at_utc: '2026-02-25T00:00:00Z'
+generated_at_utc: '2026-03-05T05:30:00Z'
 contract_version: 1.0.0-ws1
 metadata:
   source_shards:
   - llm_repos
   - ssh_repos
-  total_repos: 60
+  total_repos: 105
   repo_counts_by_shard:
-    llm_repos: 36
-    ssh_repos: 24
+    llm_repos: 68
+    ssh_repos: 37
   category_counts:
-    agent_cli: 2
-    agent_framework: 1
+    agent_cli: 8
+    agent_framework: 6
     agent_frameworks: 3
-    agent_orchestration: 1
+    agent_orchestration: 3
     agent_platform: 1
+    backup_tool: 1
+    browser_automation: 1
+    cli_tool: 3
+    cli_wrapper: 1
     data_pipelines: 2
-    documentation: 4
+    data_transformation: 1
+    deployment_automation: 1
+    documentation: 6
     educational: 2
     evaluation: 1
     fine_tuning: 1
     inference_serving: 6
+    machine_learning: 1
+    nearest_neighbor_search: 1
     network_infrastructure: 2
     network_utils: 1
+    office_automation: 2
+    postgres_extension: 1
     rag_frameworks: 6
-    remote_access: 2
+    remote_access: 4
+    snippet_collection: 1
+    static_site_generator: 1
+    structured_outputs: 4
+    terminal_emulator: 1
+    terminal_multiplexer: 1
     terminal_ui: 1
     tunneling: 9
     ui_tools: 4
-    vector_database: 3
+    vector_database: 7
     vector_databases: 1
     vpn_mesh: 5
     web_framework: 1
-    workflow_builder: 1
+    workflow_builder: 4
   compiled_source: compiled_master
 repos:
 - node_id: repo::1panel-dev/maxkb
@@ -135,6 +150,47 @@ repos:
     - Corporate internal knowledge base
     - Academic research assistance
     - Educational chatbots
+- node_id: repo::airtable/airtable.js
+  github_full_name: airtable/airtable.js
+  html_url: https://github.com/airtable/airtable.js
+  source: compiled_master
+  name: airtable.js
+  category: workflow_builder
+  summary: Phase 4 Corpus Expansion P4-B2 intake for airtable/airtable.js. Workflow
+    builder repository routed explicitly to llm_repos.
+  core_concepts:
+  - API client integration
+  - workflow automation data modeling
+  key_entry_points:
+  - README.md
+  - src/
+  build_run:
+    language: javascript
+    build: npm run build
+    test: npm test
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/airtable__airtable.js.yaml
+    as_of: '2026-03-05T05:18:49Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::airtable/airtable.js
+    intake:
+      pilot_batch_id: PHASE-4-P4-B2
+      repo_id: repo::airtable/airtable.js
+      queue_id: intake::airtable/airtable.js
+      domain_hint: workflow_builder
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-05T05:18:49Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/airtable/airtable.js
+      fetched_at_utc: '2026-03-05T05:18:49Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
 - node_id: repo::anderspitman/awesome-tunneling
   github_full_name: anderspitman/awesome-tunneling
   html_url: https://github.com/anderspitman/awesome-tunneling
@@ -181,6 +237,88 @@ repos:
     - path: README.md
       purpose: Main curated list organized by license type (open source, commercial,
         overlay networks)
+- node_id: repo::anomalyco/opencode
+  github_full_name: anomalyco/opencode
+  html_url: https://github.com/anomalyco/opencode
+  source: compiled_master
+  name: opencode
+  category: agent_cli
+  summary: Phase 4 Corpus Expansion P4-B1 intake for anomalyco/opencode. Agent CLI
+    repository routed explicitly to llm_repos.
+  core_concepts:
+  - agent cli workflows
+  - terminal-based coding assistant patterns
+  key_entry_points:
+  - README.md
+  - docs/
+  build_run:
+    language: mixed
+    build: See upstream README for build steps.
+    test: See upstream README for test steps.
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/anomalyco__opencode.yaml
+    as_of: '2026-03-05T04:16:38Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::anomalyco/opencode
+    intake:
+      pilot_batch_id: PHASE-4-P4-B1
+      repo_id: repo::anomalyco/opencode
+      queue_id: intake::anomalyco/opencode
+      domain_hint: agent_cli
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-05T04:16:38Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/anomalyco/opencode
+      fetched_at_utc: '2026-03-05T04:16:38Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
+- node_id: repo::ansible/ansible
+  github_full_name: ansible/ansible
+  html_url: https://github.com/ansible/ansible
+  source: compiled_master
+  name: ansible
+  category: agent_orchestration
+  summary: Phase 4 Corpus Expansion P4-B2 intake for ansible/ansible. Agent orchestration
+    repository routed explicitly to llm_repos.
+  core_concepts:
+  - infrastructure automation playbooks
+  - orchestrated task execution
+  key_entry_points:
+  - README.rst
+  - lib/ansible/
+  build_run:
+    language: python
+    build: python3 -m pip install -e .
+    test: python3 -m pytest
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/ansible__ansible.yaml
+    as_of: '2026-03-05T05:18:49Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::ansible/ansible
+    intake:
+      pilot_batch_id: PHASE-4-P4-B2
+      repo_id: repo::ansible/ansible
+      queue_id: intake::ansible/ansible
+      domain_hint: agent_orchestration
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-05T05:18:49Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/ansible/ansible
+      fetched_at_utc: '2026-03-05T05:18:49Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
 - node_id: repo::anthropics/claude-code
   github_full_name: anthropics/claude-code
   html_url: https://github.com/anthropics/claude-code
@@ -200,7 +338,7 @@ repos:
   provenance:
     shard: merged
     source_file: llm_repos/knowledge/repos/anthropics__claude-code.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-02-24T19:46:56Z'
   local_cache_dir: null
   extras:
     directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/anthropics__claude-code
@@ -219,6 +357,88 @@ repos:
       mode: metadata
       endpoint: /repos/anthropics/claude-code
       fetched_at_utc: '2026-02-24T19:46:56Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
+- node_id: repo::anthropics/skills
+  github_full_name: anthropics/skills
+  html_url: https://github.com/anthropics/skills
+  source: compiled_master
+  name: skills
+  category: agent_framework
+  summary: Phase 4 Corpus Expansion P4-B1 intake for anthropics/skills. Agent framework
+    repository routed explicitly to llm_repos.
+  core_concepts:
+  - reusable agent skills
+  - framework-level capability packaging
+  key_entry_points:
+  - README.md
+  - skills/
+  build_run:
+    language: mixed
+    build: See upstream README for build steps.
+    test: See upstream README for test steps.
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/anthropics__skills.yaml
+    as_of: '2026-03-05T04:16:38Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::anthropics/skills
+    intake:
+      pilot_batch_id: PHASE-4-P4-B1
+      repo_id: repo::anthropics/skills
+      queue_id: intake::anthropics/skills
+      domain_hint: agent_framework
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-05T04:16:38Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/anthropics/skills
+      fetched_at_utc: '2026-03-05T04:16:38Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
+- node_id: repo::anysiteio/agent-skills
+  github_full_name: anysiteio/agent-skills
+  html_url: https://github.com/anysiteio/agent-skills
+  source: compiled_master
+  name: agent-skills
+  category: agent_framework
+  summary: Phase 4 Corpus Expansion P4-B1 intake for anysiteio/agent-skills. Agent
+    framework repository routed explicitly to llm_repos.
+  core_concepts:
+  - reusable agent skills
+  - framework-level capability packaging
+  key_entry_points:
+  - README.md
+  - skills/
+  build_run:
+    language: mixed
+    build: See upstream README for build steps.
+    test: See upstream README for test steps.
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/anysiteio__agent-skills.yaml
+    as_of: '2026-03-05T04:16:38Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::anysiteio/agent-skills
+    intake:
+      pilot_batch_id: PHASE-4-P4-B1
+      repo_id: repo::anysiteio/agent-skills
+      queue_id: intake::anysiteio/agent-skills
+      domain_hint: agent_framework
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-05T04:16:38Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/anysiteio/agent-skills
+      fetched_at_utc: '2026-03-05T04:16:38Z'
       refresh:
         precedence: api_wins_readme_for_missing_required_fields
         fallback_source: readme_fallback
@@ -301,6 +521,195 @@ repos:
         fragmentation
     - path: core/internal/protocol/http.go:1
       purpose: Auth protocol - HTTP header-based authentication exchanged during handshake
+- node_id: repo::avelino/awesome-go
+  github_full_name: avelino/awesome-go
+  html_url: https://github.com/avelino/awesome-go
+  source: compiled_master
+  name: awesome-go
+  category: documentation
+  summary: Phase 4 B3 shallow intake for avelino/awesome-go as a curated Go ecosystem
+    reference index.
+  core_concepts:
+  - curated Go project catalog
+  - discoverability for Go tooling and libraries
+  key_entry_points:
+  - README.md
+  - CONTRIBUTING.md
+  build_run:
+    language: markdown
+    build: No build step required for curated list repository.
+    test: No automated test suite in this repository.
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/awesome-go.yaml
+    as_of: '2026-03-05T05:30:00Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::avelino/awesome-go
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
+- node_id: repo::borgbackup/borg
+  github_full_name: borgbackup/borg
+  html_url: https://github.com/borgbackup/borg
+  source: compiled_master
+  name: borg
+  category: backup_tool
+  summary: Phase 2B SB2 intake for borgbackup/borg. Deduplicating backup tool with
+    Python CLI and native acceleration modules.
+  core_concepts:
+  - deduplicated encrypted backups
+  - archive and repository management
+  key_entry_points:
+  - README.rst
+  - src/borg
+  - docs/
+  build_run:
+    language: python
+    build: python3 -m build
+    test: python3 -m pytest
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/borgbackup__borg.yaml
+    as_of: '2026-03-04T16:29:45Z'
+  local_cache_dir: null
+  extras:
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/uncat_repos/borg-master
+    intake:
+      pilot_batch_id: PHASE-2B-SB2
+      repo_id: repo::borgbackup/borg
+      queue_id: intake::borgbackup/borg
+      intake_path: /Users/szilaa/scripts/ext_sources/github_repos/uncat_repos/borg-master
+      domain_hint: backup_tool
+      source_mode: local_clone
+      source_commit: 1c05ab32dbe84af0031eaf74c6424b56efc88aab
+      default_branch: master
+      observed_at_utc: '2026-03-04T16:29:45Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/borgbackup/borg
+      fetched_at_utc: '2026-03-04T16:29:45Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
+- node_id: repo::brianpetro/obsidian-smart-connections
+  github_full_name: brianpetro/obsidian-smart-connections
+  html_url: https://github.com/brianpetro/obsidian-smart-connections
+  source: compiled_master
+  name: obsidian-smart-connections
+  category: workflow_builder
+  summary: Phase 4 Corpus Expansion P4-B2 intake for brianpetro/obsidian-smart-connections.
+    Workflow builder repository routed explicitly to llm_repos.
+  core_concepts:
+  - knowledge graph note linking
+  - semantic retrieval workflows
+  key_entry_points:
+  - README.md
+  - src/
+  build_run:
+    language: typescript
+    build: npm run build
+    test: npm test
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/brianpetro__obsidian-smart-connections.yaml
+    as_of: '2026-03-05T05:18:49Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::brianpetro/obsidian-smart-connections
+    intake:
+      pilot_batch_id: PHASE-4-P4-B2
+      repo_id: repo::brianpetro/obsidian-smart-connections
+      queue_id: intake::brianpetro/obsidian-smart-connections
+      domain_hint: workflow_builder
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-05T05:18:49Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/brianpetro/obsidian-smart-connections
+      fetched_at_utc: '2026-03-05T05:18:49Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
+- node_id: repo::butlerx/wetty
+  github_full_name: butlerx/wetty
+  html_url: https://github.com/butlerx/wetty
+  source: compiled_master
+  name: wetty
+  category: remote_access
+  summary: Phase 4 B3 shallow intake for butlerx/wetty as a browser-accessible terminal
+    over SSH utility.
+  core_concepts:
+  - web terminal access
+  - SSH proxy workflow
+  key_entry_points:
+  - README.md
+  - src/
+  build_run:
+    language: typescript
+    build: npm run build
+    test: npm test
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/wetty.yaml
+    as_of: '2026-03-05T05:30:00Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::butlerx/wetty
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
+- node_id: repo::capistrano/capistrano
+  github_full_name: capistrano/capistrano
+  html_url: https://github.com/capistrano/capistrano
+  source: compiled_master
+  name: capistrano
+  category: deployment_automation
+  summary: Phase 2B SB2 intake for capistrano/capistrano. Ruby deployment automation
+    framework built around SSHKit and Rake tasks.
+  core_concepts:
+  - ruby deployment automation
+  - rake task orchestration
+  key_entry_points:
+  - README.md
+  - lib/
+  - exe/cap
+  build_run:
+    language: ruby
+    build: bundle exec rake build
+    test: bundle exec rspec
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/capistrano__capistrano.yaml
+    as_of: '2026-03-04T16:29:45Z'
+  local_cache_dir: null
+  extras:
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/uncat_repos/capistrano-master
+    intake:
+      pilot_batch_id: PHASE-2B-SB2
+      repo_id: repo::capistrano/capistrano
+      queue_id: intake::capistrano/capistrano
+      intake_path: /Users/szilaa/scripts/ext_sources/github_repos/uncat_repos/capistrano-master
+      domain_hint: deployment_automation
+      source_mode: local_clone
+      source_commit: dfe3133012d7d7d4fcd3f34d2790bcaeb4e8c334
+      default_branch: master
+      observed_at_utc: '2026-03-04T16:29:45Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/capistrano/capistrano
+      fetched_at_utc: '2026-03-04T16:29:45Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
 - node_id: repo::cloudflare/cloudflared
   github_full_name: cloudflare/cloudflared
   html_url: https://github.com/cloudflare/cloudflared
@@ -322,7 +731,7 @@ repos:
   provenance:
     shard: merged
     source_file: ssh_repos/knowledge/repos/cloudflared.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-02-24'
   local_cache_dir: null
   extras:
     directory: remote::cloudflare/cloudflared
@@ -331,6 +740,158 @@ repos:
       mode: metadata
       endpoint: /repos/cloudflare/cloudflared
       fetched_at_utc: '2026-02-23T03:20:00Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
+- node_id: repo::code-yeongyu/oh-my-opencode
+  github_full_name: code-yeongyu/oh-my-opencode
+  html_url: https://github.com/code-yeongyu/oh-my-opencode
+  source: compiled_master
+  name: oh-my-opencode
+  category: agent_cli
+  summary: Phase 4 B3 shallow intake for code-yeongyu/oh-my-opencode as an extension
+    pack around agent CLI workflows.
+  core_concepts:
+  - agent cli customization
+  - extension and prompt packaging
+  key_entry_points:
+  - README.md
+  - docs/
+  build_run:
+    language: mixed
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/oh-my-opencode.yaml
+    as_of: '2026-03-05T05:30:00Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::code-yeongyu/oh-my-opencode
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
+- node_id: repo::coder/code-server
+  github_full_name: coder/code-server
+  html_url: https://github.com/coder/code-server
+  source: compiled_master
+  name: code-server
+  category: remote_access
+  summary: Phase 4 Corpus Expansion P4-B2 intake for coder/code-server. Remote access
+    repository routed explicitly to llm_repos.
+  core_concepts:
+  - browser-based development environment
+  - remote workspace access
+  key_entry_points:
+  - README.md
+  - src/
+  build_run:
+    language: typescript
+    build: npm run build
+    test: npm test
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/coder__code-server.yaml
+    as_of: '2026-03-05T05:18:49Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::coder/code-server
+    intake:
+      pilot_batch_id: PHASE-4-P4-B2
+      repo_id: repo::coder/code-server
+      queue_id: intake::coder/code-server
+      domain_hint: remote_access
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-05T05:18:49Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/coder/code-server
+      fetched_at_utc: '2026-03-05T05:18:49Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
+- node_id: repo::composiohq/awesome-claude-skills
+  github_full_name: composiohq/awesome-claude-skills
+  html_url: https://github.com/ComposioHQ/awesome-claude-skills
+  source: compiled_master
+  name: awesome-claude-skills
+  category: agent_framework
+  summary: Phase 4 Corpus Expansion P4-B1 intake for ComposioHQ/awesome-claude-skills.
+    Agent framework repository routed explicitly to llm_repos.
+  core_concepts:
+  - curated agent skill patterns
+  - framework-level skill ecosystem mapping
+  key_entry_points:
+  - README.md
+  - docs/
+  build_run:
+    language: mixed
+    build: See upstream README for build steps.
+    test: See upstream README for test steps.
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/composiohq__awesome-claude-skills.yaml
+    as_of: '2026-03-05T04:16:38Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::composiohq/awesome-claude-skills
+    intake:
+      pilot_batch_id: PHASE-4-P4-B1
+      repo_id: repo::ComposioHQ/awesome-claude-skills
+      queue_id: intake::ComposioHQ/awesome-claude-skills
+      domain_hint: agent_framework
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-05T04:16:38Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/composiohq/awesome-claude-skills
+      fetched_at_utc: '2026-03-05T04:16:38Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  html_url: https://github.com/containers/podman
+  source: compiled_master
+  name: podman
+  category: cli_tool
+  summary: Phase 4 Corpus Expansion P4-B2 intake for containers/podman. CLI tool repository
+    routed explicitly to llm_repos.
+  core_concepts:
+  - container runtime CLI workflows
+  - daemonless container management
+  key_entry_points:
+  - README.md
+  - cmd/podman/
+  build_run:
+    language: go
+    build: make
+    test: make test
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/containers__podman.yaml
+    as_of: '2026-03-05T05:18:49Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::containers/podman
+    intake:
+      pilot_batch_id: PHASE-4-P4-B2
+      repo_id: repo::containers/podman
+      queue_id: intake::containers/podman
+      domain_hint: cli_tool
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-05T05:18:49Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/containers/podman
+      fetched_at_utc: '2026-03-05T05:18:49Z'
       refresh:
         precedence: api_wins_readme_for_missing_required_fields
         fallback_source: readme_fallback
@@ -537,6 +1098,47 @@ repos:
       purpose: Index of all tutorials
     - path: llm-universe-main/
       purpose: Core learning materials and code examples
+- node_id: repo::dottxt-ai/outlines
+  github_full_name: dottxt-ai/outlines
+  html_url: https://github.com/dottxt-ai/outlines
+  source: compiled_master
+  name: outlines
+  category: structured_outputs
+  summary: Phase 4 Corpus Expansion P4-B2 intake for dottxt-ai/outlines. Structured
+    outputs repository routed explicitly to llm_repos.
+  core_concepts:
+  - constrained generation
+  - typed structured output extraction
+  key_entry_points:
+  - README.md
+  - outlines/
+  build_run:
+    language: python
+    build: python3 -m pip install -e .
+    test: python3 -m pytest
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/dottxt-ai__outlines.yaml
+    as_of: '2026-03-05T05:18:49Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::dottxt-ai/outlines
+    intake:
+      pilot_batch_id: PHASE-4-P4-B2
+      repo_id: repo::dottxt-ai/outlines
+      queue_id: intake::dottxt-ai/outlines
+      domain_hint: structured_outputs
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-05T05:18:49Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/dottxt-ai/outlines
+      fetched_at_utc: '2026-03-05T05:18:49Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
 - node_id: repo::drduh/yubikey-guide
   github_full_name: drduh/yubikey-guide
   html_url: https://github.com/drduh/yubikey-guide
@@ -899,7 +1501,7 @@ repos:
         etc.) for client-server communication
 - node_id: repo::flowiseai/flowise
   github_full_name: flowiseai/flowise
-  html_url: https://github.com/flowiseai/flowise
+  html_url: https://github.com/FlowiseAI/Flowise
   source: compiled_master
   name: Flowise
   category: workflow_builder
@@ -918,7 +1520,7 @@ repos:
   provenance:
     shard: merged
     source_file: llm_repos/knowledge/repos/flowiseai__flowise.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-02-24T19:46:56Z'
   local_cache_dir: null
   extras:
     directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/FlowiseAI__Flowise
@@ -1005,6 +1607,35 @@ repos:
         dynamic routing
     - path: src/app/
       purpose: Next.js App Router pages for the web dashboard
+- node_id: repo::frankbria/ralph-claude-code
+  github_full_name: frankbria/ralph-claude-code
+  html_url: https://github.com/frankbria/ralph-claude-code
+  source: compiled_master
+  name: ralph-claude-code
+  category: agent_cli
+  summary: Phase 4 B3 shallow intake for frankbria/ralph-claude-code as a Claude Code
+    workflow companion utility.
+  core_concepts:
+  - claude code workflow automation
+  - task orchestration helpers
+  key_entry_points:
+  - README.md
+  - src/
+  build_run:
+    language: mixed
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/ralph-claude-code.yaml
+    as_of: '2026-03-05T05:30:00Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::frankbria/ralph-claude-code
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::ggml-org/llama.cpp
   github_full_name: ggml-org/llama.cpp
   html_url: https://github.com/ggml-org/llama.cpp
@@ -1104,7 +1735,7 @@ repos:
   provenance:
     shard: merged
     source_file: llm_repos/knowledge/repos/gin-gonic__gin.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-02-24T19:46:56Z'
   local_cache_dir: null
   extras:
     directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/gin-gonic__gin
@@ -1123,6 +1754,47 @@ repos:
       mode: metadata
       endpoint: /repos/gin-gonic/gin
       fetched_at_utc: '2026-02-24T19:46:56Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
+- node_id: repo::github/copilot-cli
+  github_full_name: github/copilot-cli
+  html_url: https://github.com/github/copilot-cli
+  source: compiled_master
+  name: copilot-cli
+  category: agent_cli
+  summary: Phase 4 Corpus Expansion P4-B1 intake for github/copilot-cli. Agent CLI
+    repository routed explicitly to llm_repos.
+  core_concepts:
+  - agent cli workflows
+  - command-line code assistance
+  key_entry_points:
+  - README.md
+  - docs/
+  build_run:
+    language: mixed
+    build: See upstream README for build steps.
+    test: See upstream README for test steps.
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/github__copilot-cli.yaml
+    as_of: '2026-03-05T04:16:38Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::github/copilot-cli
+    intake:
+      pilot_batch_id: PHASE-4-P4-B1
+      repo_id: repo::github/copilot-cli
+      queue_id: intake::github/copilot-cli
+      domain_hint: agent_cli
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-05T04:16:38Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/github/copilot-cli
+      fetched_at_utc: '2026-03-05T04:16:38Z'
       refresh:
         precedence: api_wins_readme_for_missing_required_fields
         fallback_source: readme_fallback
@@ -1181,6 +1853,52 @@ repos:
     - path: cmd/gost/register.go:1
       purpose: Blank imports that register all available connectors, dialers, handlers,
         and listeners via init() functions.
+- node_id: repo::gohugoio/hugo
+  github_full_name: gohugoio/hugo
+  html_url: https://github.com/gohugoio/hugo
+  source: compiled_master
+  name: hugo
+  category: static_site_generator
+  summary: Phase 2B SB2 intake for gohugoio/hugo. Static site generator in Go with
+    templating, content pipeline, and modules.
+  core_concepts:
+  - static site generation
+  - go-based content pipeline
+  key_entry_points:
+  - README.md
+  - main.go
+  - commands/
+  - hugolib/
+  build_run:
+    language: go
+    build: go build ./...
+    test: go test ./...
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/gohugoio__hugo.yaml
+    as_of: '2026-03-04T16:29:45Z'
+  local_cache_dir: null
+  extras:
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/go_repos/hugo-master
+    intake:
+      pilot_batch_id: PHASE-2B-SB2
+      repo_id: repo::gohugoio/hugo
+      queue_id: intake::gohugoio/hugo
+      intake_path: /Users/szilaa/scripts/ext_sources/github_repos/go_repos/hugo-master
+      domain_hint: static_site_generator
+      source_mode: local_clone
+      source_commit: d4f2122dea17736e8deef30b40872c0e6894c88f
+      default_branch: master
+      observed_at_utc: '2026-03-04T16:29:45Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/gohugoio/hugo
+      fetched_at_utc: '2026-03-04T16:29:45Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
 - node_id: repo::gravitational/teleport
   github_full_name: gravitational/teleport
   html_url: https://github.com/gravitational/teleport
@@ -1302,6 +2020,65 @@ repos:
       purpose: tsh client entry point - user CLI for connecting to Teleport clusters
     - path: tool/tctl/main.go:32
       purpose: tctl admin tool - cluster management, user provisioning, configuration
+- node_id: repo::haifengl/smile
+  github_full_name: haifengl/smile
+  html_url: https://github.com/haifengl/smile
+  source: compiled_master
+  name: smile
+  category: machine_learning
+  summary: Phase 4 B3 shallow intake for haifengl/smile as a JVM machine learning
+    and data mining toolkit.
+  core_concepts:
+  - statistical learning algorithms
+  - JVM data science tooling
+  key_entry_points:
+  - README.md
+  - scala/
+  - core/
+  build_run:
+    language: java
+    build: ./gradlew build
+    test: ./gradlew test
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/smile.yaml
+    as_of: '2026-03-05T05:30:00Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::haifengl/smile
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
+- node_id: repo::henryboldi/felony
+  github_full_name: henryboldi/felony
+  html_url: https://github.com/henryboldi/felony
+  source: compiled_master
+  name: felony
+  category: agent_cli
+  summary: Phase 4 B3 shallow intake for henryboldi/felony as a command-line utility
+    in the agent tooling ecosystem.
+  core_concepts:
+  - command-line developer workflow
+  - terminal-first automation helpers
+  key_entry_points:
+  - README.md
+  - src/
+  build_run:
+    language: mixed
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/felony.yaml
+    as_of: '2026-03-05T05:30:00Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::henryboldi/felony
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::hiddify/hiddify-app
   github_full_name: hiddify/hiddify-app
   html_url: https://github.com/hiddify/hiddify-app
@@ -1498,6 +2275,65 @@ repos:
     - LoRA (Low-Rank Adaptation)
     - QLoRA (Quantized LoRA)
     - DoRA (Weight-Decomposed Low-Rank Adaptation)
+- node_id: repo::iluwatar/java-design-patterns
+  github_full_name: iluwatar/java-design-patterns
+  html_url: https://github.com/iluwatar/java-design-patterns
+  source: compiled_master
+  name: java-design-patterns
+  category: documentation
+  summary: Phase 4 B3 shallow intake for iluwatar/java-design-patterns as a reference
+    implementation catalog of software design patterns.
+  core_concepts:
+  - design pattern exemplars
+  - Java architecture references
+  key_entry_points:
+  - README.md
+  - java-design-patterns/
+  build_run:
+    language: java
+    build: mvn -q package
+    test: mvn -q test
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/java-design-patterns.yaml
+    as_of: '2026-03-05T05:30:00Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::iluwatar/java-design-patterns
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
+- node_id: repo::infiniflow/infinity
+  github_full_name: infiniflow/infinity
+  html_url: https://github.com/infiniflow/infinity
+  source: compiled_master
+  name: infinity
+  category: vector_database
+  summary: Phase 4 B3 shallow intake for infiniflow/infinity as an AI-native database
+    for vector and hybrid retrieval workloads.
+  core_concepts:
+  - vector indexing and retrieval
+  - hybrid search infrastructure
+  key_entry_points:
+  - README.md
+  - src/
+  - python/
+  build_run:
+    language: mixed
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/infinity.yaml
+    as_of: '2026-03-05T05:30:00Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::infiniflow/infinity
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::infiniflow/ragflow
   github_full_name: infiniflow/ragflow
   html_url: https://github.com/infiniflow/ragflow
@@ -1627,6 +2463,47 @@ repos:
       purpose: Agent components and tools
     - path: web/
       purpose: React/TypeScript frontend (UmiJS)
+- node_id: repo::instructor-ai/instructor
+  github_full_name: instructor-ai/instructor
+  html_url: https://github.com/instructor-ai/instructor
+  source: compiled_master
+  name: instructor
+  category: agent_framework
+  summary: Phase 4 Corpus Expansion P4-B1 intake for instructor-ai/instructor. Agent
+    framework repository routed explicitly to llm_repos.
+  core_concepts:
+  - structured llm output tooling
+  - framework adapters for agent workflows
+  key_entry_points:
+  - README.md
+  - docs/
+  build_run:
+    language: mixed
+    build: See upstream README for build steps.
+    test: See upstream README for test steps.
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/instructor-ai__instructor.yaml
+    as_of: '2026-03-05T04:16:38Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::instructor-ai/instructor
+    intake:
+      pilot_batch_id: PHASE-4-P4-B1
+      repo_id: repo::instructor-ai/instructor
+      queue_id: intake::instructor-ai/instructor
+      domain_hint: agent_framework
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-05T04:16:38Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/instructor-ai/instructor
+      fetched_at_utc: '2026-03-05T04:16:38Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
 - node_id: repo::internlm/lmdeploy
   github_full_name: internlm/lmdeploy
   html_url: https://github.com/internlm/lmdeploy
@@ -2040,6 +2917,47 @@ repos:
     - Research assistant
     - Document chat
     - Automated newsletters/notifications
+- node_id: repo::krosebrook/archdesigner
+  github_full_name: krosebrook/archdesigner
+  html_url: https://github.com/Krosebrook/archdesigner
+  source: compiled_master
+  name: archdesigner
+  category: workflow_builder
+  summary: Phase 4 Corpus Expansion P4-B2 intake for Krosebrook/archdesigner. Workflow
+    builder repository routed explicitly to llm_repos.
+  core_concepts:
+  - architecture workflow design
+  - structured planning artifacts
+  key_entry_points:
+  - README.md
+  - docs/
+  build_run:
+    language: mixed
+    build: See upstream README for build steps.
+    test: See upstream README for test steps.
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/krosebrook__archdesigner.yaml
+    as_of: '2026-03-05T05:18:49Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::krosebrook/archdesigner
+    intake:
+      pilot_batch_id: PHASE-4-P4-B2
+      repo_id: repo::Krosebrook/archdesigner
+      queue_id: intake::Krosebrook/archdesigner
+      domain_hint: workflow_builder
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-05T05:18:49Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/krosebrook/archdesigner
+      fetched_at_utc: '2026-03-05T05:18:49Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
 - node_id: repo::lancedb/lancedb
   github_full_name: lancedb/lancedb
   html_url: https://github.com/lancedb/lancedb
@@ -2062,7 +2980,7 @@ repos:
   provenance:
     shard: merged
     source_file: llm_repos/knowledge/repos/lancedb__lancedb.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-02-24T19:46:56Z'
   local_cache_dir: null
   extras:
     directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/lancedb__lancedb
@@ -2227,7 +3145,7 @@ repos:
   provenance:
     shard: merged
     source_file: llm_repos/knowledge/repos/langgenius__dify.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-02-24T19:46:56Z'
   local_cache_dir: null
   extras:
     directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/langgenius__dify
@@ -2449,6 +3367,47 @@ repos:
       description: Reason about entire corpus using community summaries
     - name: DRIFT Search
       description: Dynamic reasoning with inference and flow tracking
+- node_id: repo::microsoft/llguidance
+  github_full_name: microsoft/llguidance
+  html_url: https://github.com/microsoft/llguidance
+  source: compiled_master
+  name: llguidance
+  category: agent_framework
+  summary: Phase 4 Corpus Expansion P4-B1 intake for microsoft/llguidance. Agent framework
+    repository routed explicitly to llm_repos.
+  core_concepts:
+  - constrained generation guidance
+  - framework support for agent output control
+  key_entry_points:
+  - README.md
+  - docs/
+  build_run:
+    language: mixed
+    build: See upstream README for build steps.
+    test: See upstream README for test steps.
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/microsoft__llguidance.yaml
+    as_of: '2026-03-05T04:16:38Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::microsoft/llguidance
+    intake:
+      pilot_batch_id: PHASE-4-P4-B1
+      repo_id: repo::microsoft/llguidance
+      queue_id: intake::microsoft/llguidance
+      domain_hint: agent_framework
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-05T04:16:38Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/microsoft/llguidance
+      fetched_at_utc: '2026-03-05T04:16:38Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
 - node_id: repo::mikeroyal/self-hosting-guide
   github_full_name: mikeroyal/self-hosting-guide
   html_url: https://github.com/mikeroyal/self-hosting-guide
@@ -2702,6 +3661,47 @@ repos:
     - AI agents over federated data
     - Knowledge base from multiple sources
     - Real-time data Q&A
+- node_id: repo::minimax-ai/mini-agent
+  github_full_name: minimax-ai/mini-agent
+  html_url: https://github.com/MiniMax-AI/Mini-Agent
+  source: compiled_master
+  name: mini-agent
+  category: agent_orchestration
+  summary: Phase 4 Corpus Expansion P4-B1 intake for MiniMax-AI/Mini-Agent. Agent
+    orchestration repository routed explicitly to llm_repos.
+  core_concepts:
+  - multi-agent orchestration
+  - agent runtime coordination patterns
+  key_entry_points:
+  - README.md
+  - examples/
+  build_run:
+    language: mixed
+    build: See upstream README for build steps.
+    test: See upstream README for test steps.
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/minimax-ai__mini-agent.yaml
+    as_of: '2026-03-05T04:16:38Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::minimax-ai/mini-agent
+    intake:
+      pilot_batch_id: PHASE-4-P4-B1
+      repo_id: repo::MiniMax-AI/Mini-Agent
+      queue_id: intake::MiniMax-AI/Mini-Agent
+      domain_hint: agent_orchestration
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-05T04:16:38Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/minimax-ai/mini-agent
+      fetched_at_utc: '2026-03-05T04:16:38Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
 - node_id: repo::mintplex-labs/anything-llm
   github_full_name: mintplex-labs/anything-llm
   html_url: https://github.com/mintplex-labs/anything-llm
@@ -2892,6 +3892,47 @@ repos:
     - path: lib/socket-relays.js:63
       purpose: Inbound relay handling; accepts remote connection requests and bridges
         to local TCP sockets
+- node_id: repo::moonshotai/kimi-cli
+  github_full_name: moonshotai/kimi-cli
+  html_url: https://github.com/MoonshotAI/kimi-cli
+  source: compiled_master
+  name: kimi-cli
+  category: agent_cli
+  summary: Phase 4 Corpus Expansion P4-B1 intake for MoonshotAI/kimi-cli. Agent CLI
+    repository routed explicitly to llm_repos.
+  core_concepts:
+  - agent cli workflows
+  - command-line llm tooling
+  key_entry_points:
+  - README.md
+  - docs/
+  build_run:
+    language: mixed
+    build: See upstream README for build steps.
+    test: See upstream README for test steps.
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/moonshotai__kimi-cli.yaml
+    as_of: '2026-03-05T04:16:38Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::moonshotai/kimi-cli
+    intake:
+      pilot_batch_id: PHASE-4-P4-B1
+      repo_id: repo::MoonshotAI/kimi-cli
+      queue_id: intake::MoonshotAI/kimi-cli
+      domain_hint: agent_cli
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-05T04:16:38Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/moonshotai/kimi-cli
+      fetched_at_utc: '2026-03-05T04:16:38Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
 - node_id: repo::nexaai/nexa-sdk
   github_full_name: nexaai/nexa-sdk
   html_url: https://github.com/nexaai/nexa-sdk
@@ -3301,7 +4342,7 @@ repos:
   provenance:
     shard: merged
     source_file: llm_repos/knowledge/repos/openai__codex.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-02-24T19:46:56Z'
   local_cache_dir: null
   extras:
     directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/openai__codex
@@ -3320,6 +4361,47 @@ repos:
       mode: metadata
       endpoint: /repos/openai/codex
       fetched_at_utc: '2026-02-24T19:46:56Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
+- node_id: repo::paddlepaddle/paddleocr
+  github_full_name: paddlepaddle/paddleocr
+  html_url: https://github.com/PaddlePaddle/PaddleOCR
+  source: compiled_master
+  name: PaddleOCR
+  category: office_automation
+  summary: Phase 4 Corpus Expansion P4-B2 intake for PaddlePaddle/PaddleOCR. Office
+    automation repository routed explicitly to llm_repos.
+  core_concepts:
+  - optical character recognition pipeline
+  - document understanding workflows
+  key_entry_points:
+  - README.md
+  - ppocr/
+  build_run:
+    language: python
+    build: python3 -m pip install -e .
+    test: python3 -m pytest
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/paddlepaddle__paddleocr.yaml
+    as_of: '2026-03-05T05:18:49Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::paddlepaddle/paddleocr
+    intake:
+      pilot_batch_id: PHASE-4-P4-B2
+      repo_id: repo::PaddlePaddle/PaddleOCR
+      queue_id: intake::PaddlePaddle/PaddleOCR
+      domain_hint: office_automation
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-05T05:18:49Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/paddlepaddle/paddleocr
+      fetched_at_utc: '2026-03-05T05:18:49Z'
       refresh:
         precedence: api_wins_readme_for_missing_required_fields
         fallback_source: readme_fallback
@@ -3496,6 +4578,181 @@ repos:
     - Live RAG with document updates
     - Event-driven alerting
     - Streaming analytics
+- node_id: repo::pgvector/pgvector
+  github_full_name: pgvector/pgvector
+  html_url: https://github.com/pgvector/pgvector
+  source: compiled_master
+  name: pgvector
+  category: postgres_extension
+  summary: Phase 2B calibration intake for pgvector/pgvector. PostgreSQL extension
+    in C with SQL migration scripts.
+  core_concepts:
+  - postgres extension
+  - vector similarity search
+  key_entry_points:
+  - README.md
+  - src/
+  - sql/
+  build_run:
+    language: c
+    build: make
+    test: make installcheck
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/pgvector__pgvector.yaml
+    as_of: '2026-03-04T15:54:38Z'
+  local_cache_dir: null
+  extras:
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/vector_db/pgvector-master
+    intake:
+      pilot_batch_id: PHASE-2B-SB1
+      repo_id: repo::pgvector/pgvector
+      queue_id: intake::pgvector/pgvector
+      intake_path: /Users/szilaa/scripts/ext_sources/github_repos/vector_db/pgvector-master
+      domain_hint: vector_database
+      source_mode: local_clone
+      source_commit: 17916cad00ee580b05372768d6ff84b61442166a
+      default_branch: master
+      observed_at_utc: '2026-03-04T15:54:38Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/pgvector/pgvector
+      fetched_at_utc: '2026-03-04T15:54:38Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
+- node_id: repo::phuocng/1loc
+  github_full_name: phuocng/1loc
+  html_url: https://github.com/phuocng/1loc
+  source: compiled_master
+  name: 1loc
+  category: snippet_collection
+  summary: Phase 2B calibration intake for phuocng/1loc. Markdown-heavy snippet collection
+    with nontraditional source layout.
+  core_concepts:
+  - utility snippet library
+  - markdown-first repository structure
+  key_entry_points:
+  - README.md
+  - contents/
+  build_run:
+    language: javascript
+    build: n/a
+    test: n/a
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/phuocng__1loc.yaml
+    as_of: '2026-03-04T15:54:38Z'
+  local_cache_dir: null
+  extras:
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/uncat_repos/1loc-master
+    intake:
+      pilot_batch_id: PHASE-2B-SB1
+      repo_id: repo::phuocng/1loc
+      queue_id: intake::phuocng/1loc
+      intake_path: /Users/szilaa/scripts/ext_sources/github_repos/uncat_repos/1loc-master
+      domain_hint: snippet_collection
+      source_mode: local_clone
+      source_commit: 14b481cf60dff1620ab1bb99a43b1f68068cdd9b
+      default_branch: master
+      observed_at_utc: '2026-03-04T15:54:38Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/phuocng/1loc
+      fetched_at_utc: '2026-03-04T15:54:38Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
+- node_id: repo::puppeteer/puppeteer
+  github_full_name: puppeteer/puppeteer
+  html_url: https://github.com/puppeteer/puppeteer
+  source: compiled_master
+  name: puppeteer
+  category: browser_automation
+  summary: Phase 2B SB3 intake for puppeteer/puppeteer. TypeScript browser automation
+    monorepo for Chrome and Firefox control.
+  core_concepts:
+  - programmable browser automation
+  - monorepo package architecture
+  key_entry_points:
+  - README.md
+  - packages/
+  - docs/
+  build_run:
+    language: typescript
+    build: npm run build
+    test: npm test
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/puppeteer__puppeteer.yaml
+    as_of: '2026-03-04T17:12:53Z'
+  local_cache_dir: null
+  extras:
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/uncat_repos/puppeteer-main
+    intake:
+      pilot_batch_id: PHASE-2B-SB3
+      repo_id: repo::puppeteer/puppeteer
+      queue_id: intake::puppeteer/puppeteer
+      intake_path: /Users/szilaa/scripts/ext_sources/github_repos/uncat_repos/puppeteer-main
+      domain_hint: browser_automation
+      source_mode: local_clone
+      source_commit: d3356fac46478974c5b88ba2b26b26954cb741ff
+      default_branch: main
+      observed_at_utc: '2026-03-04T17:12:53Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/puppeteer/puppeteer
+      fetched_at_utc: '2026-03-04T17:12:53Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
+- node_id: repo::pydantic/pydantic
+  github_full_name: pydantic/pydantic
+  html_url: https://github.com/pydantic/pydantic
+  source: compiled_master
+  name: pydantic
+  category: structured_outputs
+  summary: Phase 4 Corpus Expansion P4-B2 intake for pydantic/pydantic. Structured
+    outputs repository routed explicitly to llm_repos.
+  core_concepts:
+  - runtime data validation
+  - typed model serialization
+  key_entry_points:
+  - README.md
+  - pydantic/
+  build_run:
+    language: python
+    build: python3 -m pip install -e .
+    test: python3 -m pytest
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/pydantic__pydantic.yaml
+    as_of: '2026-03-05T05:18:49Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::pydantic/pydantic
+    intake:
+      pilot_batch_id: PHASE-4-P4-B2
+      repo_id: repo::pydantic/pydantic
+      queue_id: intake::pydantic/pydantic
+      domain_hint: structured_outputs
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-05T05:18:49Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/pydantic/pydantic
+      fetched_at_utc: '2026-03-05T05:18:49Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
 - node_id: repo::pydantic/pydantic-ai
   github_full_name: pydantic/pydantic-ai
   html_url: https://github.com/pydantic/pydantic-ai
@@ -3518,7 +4775,7 @@ repos:
   provenance:
     shard: merged
     source_file: llm_repos/knowledge/repos/pydantic__pydantic-ai.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-02-24T19:46:56Z'
   local_cache_dir: null
   extras:
     directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/pydantic__pydantic-ai
@@ -3537,6 +4794,88 @@ repos:
       mode: metadata
       endpoint: /repos/pydantic/pydantic-ai
       fetched_at_utc: '2026-02-24T19:46:56Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
+- node_id: repo::pydantic/pydantic-core
+  github_full_name: pydantic/pydantic-core
+  html_url: https://github.com/pydantic/pydantic-core
+  source: compiled_master
+  name: pydantic-core
+  category: structured_outputs
+  summary: Phase 4 Corpus Expansion P4-B2 intake for pydantic/pydantic-core. Structured
+    outputs repository routed explicitly to llm_repos.
+  core_concepts:
+  - rust validation engine
+  - python binding performance paths
+  key_entry_points:
+  - README.md
+  - src/
+  build_run:
+    language: rust
+    build: maturin develop
+    test: python3 -m pytest
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/pydantic__pydantic-core.yaml
+    as_of: '2026-03-05T05:18:49Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::pydantic/pydantic-core
+    intake:
+      pilot_batch_id: PHASE-4-P4-B2
+      repo_id: repo::pydantic/pydantic-core
+      queue_id: intake::pydantic/pydantic-core
+      domain_hint: structured_outputs
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-05T05:18:49Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/pydantic/pydantic-core
+      fetched_at_utc: '2026-03-05T05:18:49Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
+- node_id: repo::pydantic/pydantic-settings
+  github_full_name: pydantic/pydantic-settings
+  html_url: https://github.com/pydantic/pydantic-settings
+  source: compiled_master
+  name: pydantic-settings
+  category: structured_outputs
+  summary: Phase 4 Corpus Expansion P4-B2 intake for pydantic/pydantic-settings. Structured
+    outputs repository routed explicitly to llm_repos.
+  core_concepts:
+  - environment configuration models
+  - typed settings management
+  key_entry_points:
+  - README.md
+  - pydantic_settings/
+  build_run:
+    language: python
+    build: python3 -m pip install -e .
+    test: python3 -m pytest
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/pydantic__pydantic-settings.yaml
+    as_of: '2026-03-05T05:18:49Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::pydantic/pydantic-settings
+    intake:
+      pilot_batch_id: PHASE-4-P4-B2
+      repo_id: repo::pydantic/pydantic-settings
+      queue_id: intake::pydantic/pydantic-settings
+      domain_hint: structured_outputs
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-05T05:18:49Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/pydantic/pydantic-settings
+      fetched_at_utc: '2026-03-05T05:18:49Z'
       refresh:
         precedence: api_wins_readme_for_missing_required_fields
         fallback_source: readme_fallback
@@ -3564,7 +4903,7 @@ repos:
   provenance:
     shard: merged
     source_file: llm_repos/knowledge/repos/qdrant__qdrant.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-02-24T19:46:56Z'
   local_cache_dir: null
   extras:
     directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/qdrant__qdrant
@@ -3818,7 +5157,7 @@ repos:
   provenance:
     shard: merged
     source_file: llm_repos/knowledge/repos/ruvnet__claude-flow.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-02-24T19:46:56Z'
   local_cache_dir: null
   extras:
     directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/ruvnet__claude-flow
@@ -3837,6 +5176,96 @@ repos:
       mode: metadata
       endpoint: /repos/ruvnet/claude-flow
       fetched_at_utc: '2026-02-24T19:46:56Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
+- node_id: repo::sharkdp/bat
+  github_full_name: sharkdp/bat
+  html_url: https://github.com/sharkdp/bat
+  source: compiled_master
+  name: bat
+  category: cli_tool
+  summary: Phase 2B SB3 intake for sharkdp/bat. Rust CLI cat clone with syntax highlighting,
+    paging, and theme support.
+  core_concepts:
+  - syntax-highlighted file viewing
+  - pager-integrated CLI output
+  key_entry_points:
+  - README.md
+  - src/
+  - assets/
+  build_run:
+    language: rust
+    build: cargo build --release
+    test: cargo test
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/sharkdp__bat.yaml
+    as_of: '2026-03-04T17:12:53Z'
+  local_cache_dir: null
+  extras:
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/sharkdp__bat
+    intake:
+      pilot_batch_id: PHASE-2B-SB3
+      repo_id: repo::sharkdp/bat
+      queue_id: intake::sharkdp/bat
+      intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/sharkdp__bat
+      domain_hint: cli_tooling
+      source_mode: local_clone
+      source_commit: cc5f782d28a8e6156b8ebd3346b0a7f7c49256e2
+      default_branch: master
+      observed_at_utc: '2026-03-04T17:12:53Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/sharkdp/bat
+      fetched_at_utc: '2026-03-04T17:12:53Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
+- node_id: repo::sharkdp/fd
+  github_full_name: sharkdp/fd
+  html_url: https://github.com/sharkdp/fd
+  source: compiled_master
+  name: fd
+  category: cli_tool
+  summary: Phase 2B SB3 intake for sharkdp/fd. Rust CLI find alternative with fast
+    filesystem traversal and smart defaults.
+  core_concepts:
+  - fast recursive file search
+  - ignore-aware traversal patterns
+  key_entry_points:
+  - README.md
+  - src/
+  - doc/
+  build_run:
+    language: rust
+    build: cargo build --release
+    test: cargo test
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/sharkdp__fd.yaml
+    as_of: '2026-03-04T17:12:53Z'
+  local_cache_dir: null
+  extras:
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/sharkdp__fd
+    intake:
+      pilot_batch_id: PHASE-2B-SB3
+      repo_id: repo::sharkdp/fd
+      queue_id: intake::sharkdp/fd
+      intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/sharkdp__fd
+      domain_hint: cli_tooling
+      source_mode: local_clone
+      source_commit: c60d0076db720529ba4df167f6130297f4469d11
+      default_branch: master
+      observed_at_utc: '2026-03-04T17:12:53Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/sharkdp/fd
+      fetched_at_utc: '2026-03-04T17:12:53Z'
       refresh:
         precedence: api_wins_readme_for_missing_required_fields
         fallback_source: readme_fallback
@@ -4013,6 +5442,92 @@ repos:
         logic
     - path: handshake_manager.go:1
       purpose: Noise Protocol handshake orchestration - manages peer connection establishment
+- node_id: repo::spotify/annoy
+  github_full_name: spotify/annoy
+  html_url: https://github.com/spotify/annoy
+  source: compiled_master
+  name: annoy
+  category: nearest_neighbor_search
+  summary: Phase 2B SB2 intake for spotify/annoy. Approximate nearest-neighbor library
+    in C++ with Python bindings.
+  core_concepts:
+  - approximate nearest-neighbor indexing
+  - python bindings over native core
+  key_entry_points:
+  - README.rst
+  - src/
+  - setup.py
+  build_run:
+    language: cpp
+    build: python3 setup.py build
+    test: python3 -m pytest
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/spotify__annoy.yaml
+    as_of: '2026-03-04T16:29:45Z'
+  local_cache_dir: null
+  extras:
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/vector_db/annoy-main
+    intake:
+      pilot_batch_id: PHASE-2B-SB2
+      repo_id: repo::spotify/annoy
+      queue_id: intake::spotify/annoy
+      intake_path: /Users/szilaa/scripts/ext_sources/github_repos/vector_db/annoy-main
+      domain_hint: nearest_neighbor_search
+      source_mode: local_clone
+      source_commit: 379f744667aba6b40ba3db8a07678df173a88f74
+      default_branch: main
+      observed_at_utc: '2026-03-04T16:29:45Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/spotify/annoy
+      fetched_at_utc: '2026-03-04T16:29:45Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
+- node_id: repo::spotify/voyager
+  github_full_name: spotify/voyager
+  html_url: https://github.com/spotify/voyager
+  source: compiled_master
+  name: voyager
+  category: vector_database
+  summary: Phase 4 Corpus Expansion P4-B1 intake for spotify/voyager. Vector database
+    repository routed explicitly to llm_repos.
+  core_concepts:
+  - approximate nearest-neighbor indexing
+  - vector retrieval infrastructure
+  key_entry_points:
+  - README.md
+  - docs/
+  build_run:
+    language: mixed
+    build: See upstream README for build steps.
+    test: See upstream README for test steps.
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/spotify__voyager.yaml
+    as_of: '2026-03-05T04:16:38Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::spotify/voyager
+    intake:
+      pilot_batch_id: PHASE-4-P4-B1
+      repo_id: repo::spotify/voyager
+      queue_id: intake::spotify/voyager
+      domain_hint: vector_database
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-05T04:16:38Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/spotify/voyager
+      fetched_at_utc: '2026-03-05T04:16:38Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
 - node_id: repo::sshuttle/sshuttle
   github_full_name: sshuttle/sshuttle
   html_url: https://github.com/sshuttle/sshuttle
@@ -4103,6 +5618,47 @@ repos:
         client-server communication
     - path: sshuttle/methods/__init__.py:109
       purpose: Firewall method dispatcher - loads appropriate backend (nat/nft/pf/ipfw/windivert)
+- node_id: repo::stirling-tools/stirling-pdf
+  github_full_name: stirling-tools/stirling-pdf
+  html_url: https://github.com/Stirling-Tools/Stirling-PDF
+  source: compiled_master
+  name: Stirling-PDF
+  category: office_automation
+  summary: Phase 4 Corpus Expansion P4-B2 intake for Stirling-Tools/Stirling-PDF.
+    Office automation repository routed explicitly to llm_repos.
+  core_concepts:
+  - pdf transformation workflows
+  - self-hosted document operations
+  key_entry_points:
+  - README.md
+  - src/
+  build_run:
+    language: java
+    build: ./gradlew build
+    test: ./gradlew test
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/stirling-tools__stirling-pdf.yaml
+    as_of: '2026-03-05T05:18:49Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::stirling-tools/stirling-pdf
+    intake:
+      pilot_batch_id: PHASE-4-P4-B2
+      repo_id: repo::Stirling-Tools/Stirling-PDF
+      queue_id: intake::Stirling-Tools/Stirling-PDF
+      domain_hint: office_automation
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-05T05:18:49Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/stirling-tools/stirling-pdf
+      fetched_at_utc: '2026-03-05T05:18:49Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
 - node_id: repo::streisandeffect/streisand
   github_full_name: streisandeffect/streisand
   html_url: https://github.com/streisandeffect/streisand
@@ -4243,7 +5799,7 @@ repos:
   provenance:
     shard: merged
     source_file: ssh_repos/knowledge/repos/tailscale.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-02-24'
   local_cache_dir: null
   extras:
     directory: remote::tailscale/tailscale
@@ -4252,6 +5808,136 @@ repos:
       mode: api
       endpoint: /repos/tailscale/tailscale
       fetched_at_utc: '2026-02-23T03:20:00Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
+- node_id: repo::thephpleague/fractal
+  github_full_name: thephpleague/fractal
+  html_url: https://github.com/thephpleague/fractal
+  source: compiled_master
+  name: fractal
+  category: data_transformation
+  summary: Phase 2B SB3 intake for thephpleague/fractal. PHP data transformation library
+    centered on resources, transformers, and serializers.
+  core_concepts:
+  - resource transformer pattern
+  - serializer-driven output shaping
+  key_entry_points:
+  - README.md
+  - src/
+  - composer.json
+  build_run:
+    language: php
+    build: composer install --no-interaction
+    test: vendor/bin/phpunit
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/thephpleague__fractal.yaml
+    as_of: '2026-03-04T17:12:53Z'
+  local_cache_dir: null
+  extras:
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/structured_outputs/fractal-master
+    intake:
+      pilot_batch_id: PHASE-2B-SB3
+      repo_id: repo::thephpleague/fractal
+      queue_id: intake::thephpleague/fractal
+      intake_path: /Users/szilaa/scripts/ext_sources/github_repos/structured_outputs/fractal-master
+      domain_hint: data_transformation
+      source_mode: local_clone
+      source_commit: 9e817358dc451dfdcf656d6757f0c04e92dea0e8
+      default_branch: master
+      observed_at_utc: '2026-03-04T17:12:53Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/thephpleague/fractal
+      fetched_at_utc: '2026-03-04T17:12:53Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
+- node_id: repo::tmux/tmux
+  github_full_name: tmux/tmux
+  html_url: https://github.com/tmux/tmux
+  source: compiled_master
+  name: tmux
+  category: terminal_multiplexer
+  summary: Phase 2B calibration intake for tmux/tmux. Terminal multiplexer, C codebase,
+    man-page documentation.
+  core_concepts:
+  - terminal multiplexer
+  - tmux architecture
+  key_entry_points:
+  - README
+  - tmux.1
+  build_run:
+    language: c
+    build: ./configure && make
+    test: make check
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/tmux__tmux.yaml
+    as_of: '2026-03-04T15:54:38Z'
+  local_cache_dir: null
+  extras:
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/tmux-master
+    intake:
+      pilot_batch_id: PHASE-2B-SB1
+      repo_id: repo::tmux/tmux
+      queue_id: intake::tmux/tmux
+      intake_path: /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/tmux-master
+      domain_hint: terminal_multiplexer
+      source_mode: local_clone
+      source_commit: d32088b58a18db15d2a6297858c3ec4e412e2aaa
+      default_branch: master
+      observed_at_utc: '2026-03-04T15:54:38Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/tmux/tmux
+      fetched_at_utc: '2026-03-04T15:54:38Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
+- node_id: repo::unum-cloud/usearch
+  github_full_name: unum-cloud/usearch
+  html_url: https://github.com/unum-cloud/usearch
+  source: compiled_master
+  name: usearch
+  category: vector_database
+  summary: Phase 4 Corpus Expansion P4-B1 intake for unum-cloud/usearch. Vector database
+    repository routed explicitly to llm_repos.
+  core_concepts:
+  - vector similarity search engine
+  - high-performance retrieval primitives
+  key_entry_points:
+  - README.md
+  - docs/
+  build_run:
+    language: mixed
+    build: See upstream README for build steps.
+    test: See upstream README for test steps.
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/unum-cloud__usearch.yaml
+    as_of: '2026-03-05T04:16:38Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::unum-cloud/usearch
+    intake:
+      pilot_batch_id: PHASE-4-P4-B1
+      repo_id: repo::unum-cloud/usearch
+      queue_id: intake::unum-cloud/usearch
+      domain_hint: vector_database
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-05T04:16:38Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/unum-cloud/usearch
+      fetched_at_utc: '2026-03-05T04:16:38Z'
       refresh:
         precedence: api_wins_readme_for_missing_required_fields
         fallback_source: readme_fallback
@@ -4386,7 +6072,7 @@ repos:
   provenance:
     shard: merged
     source_file: llm_repos/knowledge/repos/weaviate__weaviate.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-02-24T19:46:56Z'
   local_cache_dir: null
   extras:
     directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/weaviate__weaviate
@@ -4405,6 +6091,51 @@ repos:
       mode: metadata
       endpoint: /repos/weaviate/weaviate
       fetched_at_utc: '2026-02-24T19:46:56Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
+- node_id: repo::wez/wezterm
+  github_full_name: wez/wezterm
+  html_url: https://github.com/wez/wezterm
+  source: compiled_master
+  name: wezterm
+  category: terminal_emulator
+  summary: Phase 2B calibration intake for wez/wezterm. Rust monorepo with multi-crate
+    Cargo workspace and terminal tooling.
+  core_concepts:
+  - rust workspace
+  - terminal emulator architecture
+  key_entry_points:
+  - README.md
+  - Cargo.toml
+  - docs/
+  build_run:
+    language: rust
+    build: cargo build --workspace
+    test: cargo test --workspace
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/wez__wezterm.yaml
+    as_of: '2026-03-04T15:54:38Z'
+  local_cache_dir: null
+  extras:
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/wezterm-main
+    intake:
+      pilot_batch_id: PHASE-2B-SB1
+      repo_id: repo::wez/wezterm
+      queue_id: intake::wez/wezterm
+      intake_path: /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/wezterm-main
+      domain_hint: terminal_emulator
+      source_mode: local_clone
+      source_commit: 05343b387085842b434d267f91b6b0ec157e4331
+      default_branch: main
+      observed_at_utc: '2026-03-04T15:54:38Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/wez/wezterm
+      fetched_at_utc: '2026-03-04T15:54:38Z'
       refresh:
         precedence: api_wins_readme_for_missing_required_fields
         fallback_source: readme_fallback
@@ -4510,6 +6241,51 @@ repos:
     - Audio models (ASR, TTS)
     - Multimodal models (VLM)
     - Rerank models
+- node_id: repo::xqsit94/glm
+  github_full_name: xqsit94/glm
+  html_url: https://github.com/xqsit94/glm
+  source: compiled_master
+  name: glm
+  category: cli_wrapper
+  summary: Phase 2B calibration intake for xqsit94/glm. Small Go CLI wrapper project
+    with lightweight module structure.
+  core_concepts:
+  - go cli tooling
+  - command wrapper workflow
+  key_entry_points:
+  - README.md
+  - main.go
+  - cmd/
+  build_run:
+    language: go
+    build: go build ./...
+    test: go test ./...
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/xqsit94__glm.yaml
+    as_of: '2026-03-04T15:54:38Z'
+  local_cache_dir: null
+  extras:
+    directory: /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/glm-main
+    intake:
+      pilot_batch_id: PHASE-2B-SB1
+      repo_id: repo::xqsit94/glm
+      queue_id: intake::xqsit94/glm
+      intake_path: /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/glm-main
+      domain_hint: cli_tooling
+      source_mode: local_clone
+      source_commit: af55de41132b3524569c9b3f609341f65b7d2881
+      default_branch: main
+      observed_at_utc: '2026-03-04T15:54:38Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/xqsit94/glm
+      fetched_at_utc: '2026-03-04T15:54:38Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
 - node_id: repo::xtermjs/xterm.js
   github_full_name: xtermjs/xterm.js
   html_url: https://github.com/xtermjs/xterm.js
@@ -4733,3 +6509,44 @@ repos:
     - path: internal/protocol/main.go:77
       purpose: Tunnel struct and message serialization/deserialization - core protocol
         implementation
+- node_id: repo::zilliztech/vectordbbench
+  github_full_name: zilliztech/vectordbbench
+  html_url: https://github.com/zilliztech/VectorDBBench
+  source: compiled_master
+  name: vectordbbench
+  category: vector_database
+  summary: Phase 4 Corpus Expansion P4-B1 intake for zilliztech/VectorDBBench. Vector
+    database repository routed explicitly to llm_repos.
+  core_concepts:
+  - vector database benchmarking
+  - retrieval performance evaluation
+  key_entry_points:
+  - README.md
+  - scripts/
+  build_run:
+    language: mixed
+    build: See upstream README for build steps.
+    test: See upstream README for test steps.
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/zilliztech__vectordbbench.yaml
+    as_of: '2026-03-05T04:16:38Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::zilliztech/vectordbbench
+    intake:
+      pilot_batch_id: PHASE-4-P4-B1
+      repo_id: repo::zilliztech/VectorDBBench
+      queue_id: intake::zilliztech/VectorDBBench
+      domain_hint: vector_database
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-05T04:16:38Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/zilliztech/vectordbbench
+      fetched_at_utc: '2026-03-05T04:16:38Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false

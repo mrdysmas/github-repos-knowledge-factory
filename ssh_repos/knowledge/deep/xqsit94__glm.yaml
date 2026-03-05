@@ -1,0 +1,179 @@
+name: glm
+node_id: repo::xqsit94/glm
+github_full_name: xqsit94/glm
+html_url: https://github.com/xqsit94/glm
+source: remote_metadata
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/deep/xqsit94__glm.yaml
+  as_of: '2026-03-04'
+directory: /Users/szilaa/scripts/ext_sources/github_repos/cli_repos/glm-main
+category: cli_wrapper
+primary_language: go
+languages:
+- go
+- markdown
+tech_stack:
+- Go
+- cobra CLI framework
+- JSON file config under ~/.glm
+architecture:
+  module_breakdown:
+  - module: main.go
+    responsibility: Program entrypoint delegating to root cobra command.
+    key_files:
+    - main.go
+  - module: cmd/
+    responsibility: Command tree (root, token, install, update, deprecated enable/disable).
+    key_files:
+    - cmd/root.go
+    - cmd/token.go
+    - cmd/install.go
+    - cmd/update.go
+  - module: internal/glm/
+    responsibility: Session launch integration that wraps Claude CLI with GLM-specific env vars.
+    key_files:
+    - internal/glm/glm.go
+  - module: internal/token/
+    responsibility: Token storage/retrieval and management helpers.
+    key_files:
+    - internal/token/token.go
+  - module: internal/config/
+    responsibility: Config file read/write for ~/.glm/config.json.
+    key_files:
+    - internal/config/config.go
+  - module: internal/installer/ and internal/updater/
+    responsibility: Claude installation and binary update flows.
+    key_files:
+    - internal/installer/installer.go
+    - internal/updater/updater.go
+  components:
+  - name: root command router
+    description: Parses known flags but forwards unknown flags to downstream Claude command.
+  - name: token manager
+    description: Handles interactive/manual token set/show/clear operations.
+  - name: runtime launcher
+    description: Creates temporary environment to start Claude sessions against GLM endpoint.
+  data_flow: |
+    1. glm enters through main.go and builds cobra command tree.
+    2. Root command resolves model and token from env/config/interactive path.
+    3. Launch command sets temporary env vars and starts Claude process.
+    4. Subcommands (token, install, update) mutate config or local binary state.
+  key_abstractions:
+  - name: unknown flag passthrough
+    purpose: Forward non-GLM flags directly to Claude command invocation.
+  - name: token priority resolution
+    purpose: Resolve auth token from env, config file, or interactive prompt.
+key_features:
+- Wrapper CLI for launching Claude with GLM API endpoint settings.
+- Token lifecycle commands (set, show, clear).
+- Install command for Claude Code bootstrap.
+- Update command with check/force modes.
+- Unknown flag forwarding to preserve compatibility with upstream Claude flags.
+implementation_patterns:
+- pattern: Cobra command composition
+  description: Command/subcommand assembly is centralized in cmd package with RunE handlers.
+  location: cmd/*.go
+  file: cmd/root.go
+- pattern: Unknown flag forwarding
+  description: Root command whitelists known flags and appends unknown ones to downstream args.
+  location: cmd/root.go
+  file: cmd/root.go
+- pattern: Session-scoped configuration
+  description: Environment variables are set for launched process rather than mutating Claude config files.
+  location: README.md and internal/glm/glm.go
+  file: internal/glm/glm.go
+configuration:
+  options:
+  - key: ANTHROPIC_AUTH_TOKEN
+    default: none
+    description: Primary token source, highest priority.
+  - key: ANTHROPIC_BASE_URL
+    default: https://open.bigmodel.cn/api/anthropic
+    description: API base URL used for launched Claude sessions.
+  - key: ANTHROPIC_MODEL
+    default: glm-5
+    description: Selected model for launched session.
+  - key: ~/.glm/config.json
+    default: created on first setup
+    description: Stores token and preferences.
+environment:
+- name: ANTHROPIC_AUTH_TOKEN
+  description: Authentication token for API calls.
+- name: ANTHROPIC_BASE_URL
+  description: Endpoint override for GLM backend.
+- name: ANTHROPIC_MODEL
+  description: Model override for launched session.
+cli_arguments:
+- flag: --model
+  default: glm-5
+  description: Select GLM model for current session.
+- flag: -m
+  default: glm-5
+  description: Shorthand for --model.
+- flag: --yolo
+  default: false
+  description: Skip permission prompts.
+- flag: update --check
+  default: false
+  description: Check for updates without installing.
+- flag: update --force
+  default: false
+  description: Install update without confirmation.
+cli_commands:
+- command: glm
+  description: Launch Claude with GLM settings.
+- command: glm token set
+  description: Persist API token.
+- command: glm token show
+  description: Display masked token.
+- command: glm token clear
+  description: Remove stored token.
+- command: glm install claude
+  description: Install Claude Code.
+- command: glm update
+  description: Update GLM binary.
+api_surface:
+  public_functions:
+  - name: RootCmd
+    purpose: Builds root cobra command and default run behavior.
+    location: cmd/root.go
+  - name: extractUnknownFlags
+    purpose: Collects non-GLM flags to forward downstream.
+    location: cmd/root.go
+  - name: runDefaultAction
+    purpose: Launches default Claude-wrapping execution path.
+    location: cmd/root.go
+testing:
+  framework: Go test via go test ./....
+  key_test_files:
+  - cmd/root_test.go
+  coverage_areas:
+  - unknown flag extraction behavior
+  - root command argument handling
+key_files:
+- path: main.go
+  description: Entrypoint.
+- path: cmd/root.go
+  description: Primary command wiring and launch behavior.
+- path: cmd/token.go
+  description: Token subcommands.
+- path: internal/glm/glm.go
+  description: Claude launch integration.
+- path: internal/config/config.go
+  description: Config persistence logic.
+- path: README.md
+  description: User workflow and command reference.
+core_modules:
+  command_layer:
+    path: cmd/
+    description: Cobra commands and subcommands.
+  session_launcher:
+    path: internal/glm/glm.go
+    description: Runtime env preparation and process launch.
+  token_store:
+    path: internal/token/token.go
+    description: Token management behavior.
+  config_store:
+    path: internal/config/config.go
+    description: Config file IO.

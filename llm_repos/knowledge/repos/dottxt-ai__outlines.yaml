@@ -1,0 +1,41 @@
+name: outlines
+node_id: repo::dottxt-ai/outlines
+github_full_name: dottxt-ai/outlines
+html_url: https://github.com/dottxt-ai/outlines
+source: remote_metadata
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/repos/dottxt-ai__outlines.yaml
+  as_of: '2026-03-05T05:18:49Z'
+directory: remote::dottxt-ai/outlines
+category: structured_outputs
+summary: Phase 4 Corpus Expansion P4-B2 intake for dottxt-ai/outlines. Structured
+  outputs repository routed explicitly to llm_repos.
+core_concepts:
+- constrained generation
+- typed structured output extraction
+key_entry_points:
+- README.md
+- outlines/
+build_run:
+  language: python
+  build: python3 -m pip install -e .
+  test: python3 -m pytest
+local_cache_dir: null
+extras:
+  intake:
+    pilot_batch_id: PHASE-4-P4-B2
+    repo_id: repo::dottxt-ai/outlines
+    queue_id: intake::dottxt-ai/outlines
+    domain_hint: structured_outputs
+    source_mode: remote_metadata
+    observed_at_utc: '2026-03-05T05:18:49Z'
+  remote:
+    provider: github
+    mode: metadata
+    endpoint: /repos/dottxt-ai/outlines
+    fetched_at_utc: '2026-03-05T05:18:49Z'
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false

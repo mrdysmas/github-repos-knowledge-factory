@@ -1,0 +1,45 @@
+name: puppeteer
+node_id: repo::puppeteer/puppeteer
+github_full_name: puppeteer/puppeteer
+html_url: https://github.com/puppeteer/puppeteer
+source: remote_metadata
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/repos/puppeteer__puppeteer.yaml
+  as_of: '2026-03-04T17:12:53Z'
+directory: /Users/szilaa/scripts/ext_sources/github_repos/uncat_repos/puppeteer-main
+category: browser_automation
+summary: Phase 2B SB3 intake for puppeteer/puppeteer. TypeScript browser automation
+  monorepo for Chrome and Firefox control.
+core_concepts:
+- programmable browser automation
+- monorepo package architecture
+key_entry_points:
+- README.md
+- packages/
+- docs/
+build_run:
+  language: typescript
+  build: npm run build
+  test: npm test
+local_cache_dir: null
+extras:
+  intake:
+    pilot_batch_id: PHASE-2B-SB3
+    repo_id: repo::puppeteer/puppeteer
+    queue_id: intake::puppeteer/puppeteer
+    intake_path: /Users/szilaa/scripts/ext_sources/github_repos/uncat_repos/puppeteer-main
+    domain_hint: browser_automation
+    source_mode: local_clone
+    source_commit: d3356fac46478974c5b88ba2b26b26954cb741ff
+    default_branch: main
+    observed_at_utc: '2026-03-04T17:12:53Z'
+  remote:
+    provider: github
+    mode: metadata
+    endpoint: /repos/puppeteer/puppeteer
+    fetched_at_utc: '2026-03-04T17:12:53Z'
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false

@@ -1,0 +1,212 @@
+name: hugo
+node_id: repo::gohugoio/hugo
+github_full_name: gohugoio/hugo
+html_url: https://github.com/gohugoio/hugo
+source: remote_metadata
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/deep/gohugoio__hugo.yaml
+  as_of: '2026-03-04'
+directory: /Users/szilaa/scripts/ext_sources/github_repos/go_repos/hugo-master
+category: static_site_generator
+primary_language: go
+languages:
+- go
+- markdown
+- toml
+- yaml
+tech_stack:
+- Go
+- simplecobra/cobra command framework
+- Goldmark Markdown pipeline
+- Hugo Modules over Go modules
+- Templating and shortcode engine
+architecture:
+  module_breakdown:
+  - module: main.go
+    responsibility: Entrypoint that delegates to CLI command execution package.
+    key_files:
+    - main.go
+  - module: commands/
+    responsibility: CLI commands for build, server, new, mod, deploy, config, and utilities.
+    key_files:
+    - commands/commands.go
+    - commands/server.go
+    - commands/new.go
+    - commands/mod.go
+  - module: hugolib/
+    responsibility: Core site build engine, content pipeline, page model, and output generation.
+    key_files:
+    - hugolib/
+  - module: config/
+    responsibility: Typed config loading/merging including module-aware config phases.
+    key_files:
+    - config/allconfig/load.go
+    - config/allconfig/allconfig.go
+  - module: markup/
+    responsibility: Markdown and rendering configuration (including Goldmark integration).
+    key_files:
+    - markup/
+  - module: tpl/
+    responsibility: Template functions, render hooks, and embedded template behavior.
+    key_files:
+    - tpl/
+  - module: modules/
+    responsibility: Dependency/module collection, mounts, and project composition.
+    key_files:
+    - modules/
+    - commands/mod.go
+  components:
+  - name: build engine
+    description: Converts content + templates + configuration into static output artifacts.
+  - name: live server
+    description: Watches files, triggers incremental rebuilds, and serves generated content.
+  - name: module system
+    description: Reuses content/assets/templates/config across projects via module imports and mounts.
+  data_flow: |
+    1. main.go calls commands.Execute.
+    2. Root command initializes config and command-specific build/runtime options.
+    3. Config loader resolves project config plus module-derived config/mounts.
+    4. hugolib builds site content through markup/template/resource pipelines.
+    5. Outputs are written to publish directory (or memory/disk hybrid in server mode).
+  key_abstractions:
+  - name: HugoSites
+    purpose: In-memory representation of one or more configured sites/languages.
+  - name: modules mounts
+    purpose: Maps module/project directories into content/static/layout paths.
+  - name: command graph
+    purpose: Organized command tree for build/new/server/mod/deploy workflows.
+key_features:
+- Fast static site generation pipeline in Go.
+- Embedded development server with rebuild/watch workflow.
+- Multi-language and module-based composition support.
+- Markdown rendering and templating extensibility.
+- Rich CLI for content/project/theme generation and module management.
+implementation_patterns:
+- pattern: Command composition via simplecobra
+  description: Root command wires many discrete command implementations.
+  location: commands/commands.go
+  file: commands/commands.go
+- pattern: Config loaded in multiple passes
+  description: Config loader merges project and module config before build.
+  location: config/allconfig/load.go
+  file: config/allconfig/load.go
+- pattern: Watch + incremental rebuild loop
+  description: Server command tracks file events and performs targeted rebuilds.
+  location: commands/server.go
+  file: commands/server.go
+- pattern: Module mount remapping
+  description: Module/client code maps source directories into Hugo's component folders.
+  location: config/allconfig/load.go and hugolib/filesystems/basefs.go
+  file: hugolib/filesystems/basefs.go
+configuration:
+  options:
+  - key: baseURL
+    default: required in most deployments
+    description: Canonical base URL for generated links and site metadata.
+  - key: theme
+    default: none
+    description: Active theme/module selection.
+  - key: contentDir
+    default: content
+    description: Source content directory.
+  - key: publishDir
+    default: public
+    description: Output directory for generated site.
+  - key: markup.goldmark
+    default: built-in defaults
+    description: Markdown parser/rendering settings.
+  - key: module
+    default: empty module config
+    description: Hugo module imports/mounts and dependency behavior.
+  - key: buildDrafts
+    default: false
+    description: Include draft content in generated output.
+  - key: buildFuture
+    default: false
+    description: Include future-dated content.
+cli_arguments:
+- flag: hugo server
+  description: Start local server with watch/rebuild.
+- flag: hugo new content
+  description: Create new content file from archetype.
+- flag: hugo new project
+  description: Bootstrap new Hugo project.
+- flag: hugo new theme
+  description: Scaffold new theme.
+- flag: hugo mod
+  description: Manage Hugo module dependencies.
+- flag: --buildDrafts
+  description: Include draft pages in build.
+- flag: --config
+  description: Override or select config values/files.
+cli_commands:
+- command: hugo
+  description: Build static site.
+- command: hugo server
+  description: Development server with rebuild loop.
+- command: hugo new content <path>
+  description: Create new content item.
+- command: hugo new project <path>
+  description: Initialize project scaffold.
+- command: hugo new theme <name>
+  description: Create theme scaffold.
+- command: hugo mod get
+  description: Fetch/update module dependencies.
+api_surface:
+  public_functions:
+  - name: newExec
+    purpose: Wires root command and subcommands.
+    location: commands/commands.go
+  - name: newServerCommand
+    purpose: Constructs server command and trust subcommand.
+    location: commands/server.go
+  - name: newNewCommand
+    purpose: Constructs hugo new command family.
+    location: commands/new.go
+testing:
+  framework: Go unit/integration tests across packages using go test ./....
+  key_test_files:
+  - hugolib/*_test.go
+  - config/allconfig/*_test.go
+  - hugolib/filesystems/*_test.go
+  coverage_areas:
+  - content rendering and URL generation
+  - module mount/config behavior
+  - filesystem layering and server/watch behavior
+key_files:
+- path: main.go
+  description: Entry binary.
+- path: commands/commands.go
+  description: Root CLI wiring.
+- path: commands/server.go
+  description: Server/watch implementation.
+- path: commands/new.go
+  description: Content/project/theme scaffolding commands.
+- path: config/allconfig/load.go
+  description: Config load pipeline including module pass.
+- path: hugolib/
+  description: Core build engine.
+- path: go.mod
+  description: Dependency/module manifest.
+- path: README.md
+  description: Overview and installation/build guidance.
+core_modules:
+  command_layer:
+    path: commands/
+    description: CLI command definitions and runtime command plumbing.
+  build_engine:
+    path: hugolib/
+    description: Core site compilation.
+  config_layer:
+    path: config/
+    description: Settings model and loading.
+  markup_layer:
+    path: markup/
+    description: Markdown/rendering pipeline.
+  template_layer:
+    path: tpl/
+    description: Template and shortcode engine.
+  module_layer:
+    path: modules/
+    description: Module dependency and mount integration.

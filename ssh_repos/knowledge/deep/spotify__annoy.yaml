@@ -1,0 +1,167 @@
+name: annoy
+node_id: repo::spotify/annoy
+github_full_name: spotify/annoy
+html_url: https://github.com/spotify/annoy
+source: remote_metadata
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/deep/spotify__annoy.yaml
+  as_of: '2026-03-04'
+directory: /Users/szilaa/scripts/ext_sources/github_repos/vector_db/annoy-main
+category: nearest_neighbor_search
+primary_language: cpp
+languages:
+- c++
+- python
+- swig
+tech_stack:
+- C++ core ANN library
+- Python extension module
+- Memory-mapped index files
+- Optional multithreaded build mode
+architecture:
+  module_breakdown:
+  - module: src/annoylib.h
+    responsibility: Core index data structures, distance metrics, and tree build/search algorithms.
+    key_files:
+    - src/annoylib.h
+  - module: src/annoymodule.cc
+    responsibility: CPython extension bindings exposing Annoy index API to Python.
+    key_files:
+    - src/annoymodule.cc
+  - module: annoy/__init__.py
+    responsibility: Python-facing wrapper and alias (AnnoyIndex).
+    key_files:
+    - annoy/__init__.py
+    - annoy/__init__.pyi
+  - module: src/mman.h
+    responsibility: mmap compatibility layer for Windows environments.
+    key_files:
+    - src/mman.h
+  - module: setup.py / CMakeLists.txt
+    responsibility: Build configuration and platform-specific compiler flags.
+    key_files:
+    - setup.py
+    - CMakeLists.txt
+  components:
+  - name: ANN forest index
+    description: Random projection tree forest used for approximate nearest-neighbor search.
+  - name: mmap persistence layer
+    description: Index files are persisted and loaded as mmapped read-only data structures.
+  - name: language bindings
+    description: Python extension exposes core C++ functionality to scripting workflows.
+  data_flow: |
+    1. User constructs AnnoyIndex(f, metric) in Python.
+    2. Vectors are inserted via add_item and tree forest built with build(n_trees).
+    3. Index is persisted with save and later reloaded with load (mmap-backed).
+    4. Query APIs (get_nns_by_item / get_nns_by_vector) traverse trees and return neighbors.
+  key_abstractions:
+  - name: AnnoyIndex
+    purpose: Main index object across Python and C++ surface.
+  - name: metric-specific index templates
+    purpose: Compile-time metric behavior (angular, euclidean, manhattan, hamming, dot).
+  - name: on-disk index build
+    purpose: Build index directly in file-backed storage for large datasets.
+key_features:
+- Approximate nearest-neighbor lookup for large embedding/item collections.
+- Multiple metrics including angular, euclidean, manhattan, hamming, and dot.
+- Memory-mapped read-only index sharing across processes.
+- Python-first API with C++ performance core.
+- Optional on-disk build flow for reduced peak RAM usage.
+implementation_patterns:
+- pattern: Header-centric C++ core
+  description: Core ANN logic lives primarily in annoylib.h templates and inline functions.
+  location: src/annoylib.h
+  file: src/annoylib.h
+- pattern: Thin language-binding wrapper
+  description: annoymodule.cc forwards Python calls to underlying metric-specialized index instances.
+  location: src/annoymodule.cc
+  file: src/annoymodule.cc
+- pattern: mmap-first persistence
+  description: Saved index files are loaded with mmap and can be prefaulted for faster early queries.
+  location: README.rst and src/annoylib.h
+  file: README.rst
+- pattern: Platform compatibility shims
+  description: Windows mmap/compile compatibility implemented in dedicated support headers and flags.
+  location: src/mman.h and setup.py
+  file: src/mman.h
+configuration:
+  options:
+  - key: metric
+    default: angular
+    description: Distance metric for index behavior.
+  - key: n_trees
+    default: required by build call
+    description: Number of trees; higher improves recall at cost of build time/size.
+  - key: n_jobs
+    default: -1
+    description: Build thread count (-1 uses all available cores).
+  - key: search_k
+    default: n_trees * n
+    description: Query effort/accuracy tradeoff.
+  - key: prefault
+    default: false
+    description: Prefault mmapped index pages at load/save time.
+api_surface:
+  public_functions:
+  - name: AnnoyIndex
+    purpose: Construct index with vector dimensionality and metric.
+    location: annoy/__init__.pyi
+  - name: add_item
+    purpose: Insert vector for item id.
+    location: annoy/__init__.pyi
+  - name: build
+    purpose: Build forest index with specified tree count.
+    location: annoy/__init__.pyi
+  - name: save
+    purpose: Persist index to disk.
+    location: annoy/__init__.pyi
+  - name: load
+    purpose: Load persisted index via mmap.
+    location: annoy/__init__.pyi
+  - name: get_nns_by_item
+    purpose: Nearest-neighbor query by existing item id.
+    location: annoy/__init__.pyi
+  - name: get_nns_by_vector
+    purpose: Nearest-neighbor query by explicit vector.
+    location: annoy/__init__.pyi
+  - name: on_disk_build
+    purpose: Build directly against file-backed storage.
+    location: annoy/__init__.pyi
+testing:
+  framework: Python/C++ test mix with pytest and repository test fixtures.
+  key_test_files:
+  - test/
+  - tox.ini
+  coverage_areas:
+  - metric correctness
+  - persistence/load behavior
+  - API-level query responses
+key_files:
+- path: src/annoylib.h
+  description: Core ANN algorithms and data model.
+- path: src/annoymodule.cc
+  description: Python extension bindings.
+- path: annoy/__init__.py
+  description: Python wrapper aliasing.
+- path: annoy/__init__.pyi
+  description: Typed Python API surface.
+- path: src/mman.h
+  description: Windows mmap compatibility implementation.
+- path: README.rst
+  description: Usage, tradeoffs, and API docs.
+- path: setup.py
+  description: Build and extension packaging.
+core_modules:
+  index_core:
+    path: src/annoylib.h
+    description: ANN tree structures and search/build implementation.
+  python_binding:
+    path: src/annoymodule.cc
+    description: CPython module bridge.
+  python_api:
+    path: annoy/
+    description: Python-visible package and type hints.
+  build_layer:
+    path: setup.py
+    description: Extension build/packaging orchestration.

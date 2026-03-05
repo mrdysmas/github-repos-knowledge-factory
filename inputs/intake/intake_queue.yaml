@@ -1,6 +1,6 @@
 artifact_type: intake_repo_queue
 contract_version: 1.0.0-intake
-generated_at_utc: '2026-03-04T15:09:15Z'
+generated_at_utc: '2026-03-05T16:12:00Z'
 source:
   catalog_file: master_repo_list.yaml
   master_index_file: master_index.yaml
@@ -10,8 +10,8 @@ summary:
   source_rows_missing_github_url: 5
   source_rows_invalid_full_name: 0
   deduped_entries_total: 117
-  already_canonical_count: 58
-  queued_count: 59
+  already_canonical_count: 103
+  queued_count: 14
 policies:
   scan_mode_default: shallow_first
   clone_strategy: clone_on_demand
@@ -34,9 +34,9 @@ entries:
 - queue_id: intake::airtable/airtable.js
   github_full_name: airtable/airtable.js
   html_url: https://github.com/airtable/airtable.js
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - workflow_repos
@@ -62,9 +62,9 @@ entries:
 - queue_id: intake::anomalyco/opencode
   github_full_name: anomalyco/opencode
   html_url: https://github.com/anomalyco/opencode
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - cli_repos
@@ -76,9 +76,9 @@ entries:
 - queue_id: intake::ansible/ansible
   github_full_name: ansible/ansible
   html_url: https://github.com/ansible/ansible
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - cli_repos
@@ -104,9 +104,9 @@ entries:
 - queue_id: intake::anthropics/skills
   github_full_name: anthropics/skills
   html_url: https://github.com/anthropics/skills
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - skills_repos
@@ -118,9 +118,9 @@ entries:
 - queue_id: intake::anysiteio/agent-skills
   github_full_name: anysiteio/agent-skills
   html_url: https://github.com/anysiteio/agent-skills
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - skills_repos
@@ -146,9 +146,9 @@ entries:
 - queue_id: intake::avelino/awesome-go
   github_full_name: avelino/awesome-go
   html_url: https://github.com/avelino/awesome-go
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - awesome_repos
@@ -160,9 +160,9 @@ entries:
 - queue_id: intake::borgbackup/borg
   github_full_name: borgbackup/borg
   html_url: https://github.com/borgbackup/borg
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - uncat_repos
@@ -174,9 +174,9 @@ entries:
 - queue_id: intake::brianpetro/obsidian-smart-connections
   github_full_name: brianpetro/obsidian-smart-connections
   html_url: https://github.com/brianpetro/obsidian-smart-connections
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - office_repos
@@ -188,9 +188,9 @@ entries:
 - queue_id: intake::butlerx/wetty
   github_full_name: butlerx/wetty
   html_url: https://github.com/butlerx/wetty
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - cli_repos
@@ -202,9 +202,9 @@ entries:
 - queue_id: intake::capistrano/capistrano
   github_full_name: capistrano/capistrano
   html_url: https://github.com/capistrano/capistrano
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - uncat_repos
@@ -216,9 +216,9 @@ entries:
 - queue_id: intake::code-yeongyu/oh-my-opencode
   github_full_name: code-yeongyu/oh-my-opencode
   html_url: https://github.com/code-yeongyu/oh-my-opencode
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - plugin_repos
@@ -230,9 +230,9 @@ entries:
 - queue_id: intake::coder/code-server
   github_full_name: coder/code-server
   html_url: https://github.com/coder/code-server
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - cli_repos
@@ -241,12 +241,12 @@ entries:
   needs_review_count: 0
   source_row_indexes:
   - 64
-- queue_id: intake::ComposioHQ/awesome-claude-skills
-  github_full_name: ComposioHQ/awesome-claude-skills
+- queue_id: intake::composiohq/awesome-claude-skills
+  github_full_name: composiohq/awesome-claude-skills
   html_url: https://github.com/ComposioHQ/awesome-claude-skills
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - skills_repos
@@ -258,9 +258,9 @@ entries:
 - queue_id: intake::containers/podman
   github_full_name: containers/podman
   html_url: https://github.com/containers/podman
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - cli_repos
@@ -300,9 +300,9 @@ entries:
 - queue_id: intake::dottxt-ai/outlines
   github_full_name: dottxt-ai/outlines
   html_url: https://github.com/dottxt-ai/outlines
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - structured_outputs
@@ -401,9 +401,9 @@ entries:
 - queue_id: intake::frankbria/ralph-claude-code
   github_full_name: frankbria/ralph-claude-code
   html_url: https://github.com/frankbria/ralph-claude-code
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - plugin_repos
@@ -443,9 +443,9 @@ entries:
 - queue_id: intake::github/copilot-cli
   github_full_name: github/copilot-cli
   html_url: https://github.com/github/copilot-cli
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - cli_repos
@@ -471,9 +471,9 @@ entries:
 - queue_id: intake::gohugoio/hugo
   github_full_name: gohugoio/hugo
   html_url: https://github.com/gohugoio/hugo
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: ssh_repos
   source_categories:
   - go_repos
@@ -499,9 +499,9 @@ entries:
 - queue_id: intake::haifengl/smile
   github_full_name: haifengl/smile
   html_url: https://github.com/haifengl/smile
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - vector_db
@@ -513,9 +513,9 @@ entries:
 - queue_id: intake::henryboldi/felony
   github_full_name: henryboldi/felony
   html_url: https://github.com/henryboldi/felony
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - uncat_repos
@@ -555,9 +555,9 @@ entries:
 - queue_id: intake::iluwatar/java-design-patterns
   github_full_name: iluwatar/java-design-patterns
   html_url: https://github.com/iluwatar/java-design-patterns
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - awesome_repos
@@ -569,9 +569,9 @@ entries:
 - queue_id: intake::infiniflow/infinity
   github_full_name: infiniflow/infinity
   html_url: https://github.com/infiniflow/infinity
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - vector_db
@@ -597,9 +597,9 @@ entries:
 - queue_id: intake::instructor-ai/instructor
   github_full_name: instructor-ai/instructor
   html_url: https://github.com/instructor-ai/instructor
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - structured_outputs
@@ -706,12 +706,12 @@ entries:
   needs_review_count: 0
   source_row_indexes:
   - 102
-- queue_id: intake::Krosebrook/archdesigner
-  github_full_name: Krosebrook/archdesigner
+- queue_id: intake::krosebrook/archdesigner
+  github_full_name: krosebrook/archdesigner
   html_url: https://github.com/Krosebrook/archdesigner
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - workflow_repos
@@ -821,9 +821,9 @@ entries:
 - queue_id: intake::microsoft/llguidance
   github_full_name: microsoft/llguidance
   html_url: https://github.com/microsoft/llguidance
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - structured_outputs
@@ -874,12 +874,12 @@ entries:
   needs_review_count: 0
   source_row_indexes:
   - 112
-- queue_id: intake::MiniMax-AI/Mini-Agent
-  github_full_name: MiniMax-AI/Mini-Agent
+- queue_id: intake::minimax-ai/mini-agent
+  github_full_name: minimax-ai/mini-agent
   html_url: https://github.com/MiniMax-AI/Mini-Agent
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - workflow_repos
@@ -930,12 +930,12 @@ entries:
   needs_review_count: 0
   source_row_indexes:
   - 81
-- queue_id: intake::MoonshotAI/kimi-cli
-  github_full_name: MoonshotAI/kimi-cli
+- queue_id: intake::moonshotai/kimi-cli
+  github_full_name: moonshotai/kimi-cli
   html_url: https://github.com/MoonshotAI/kimi-cli
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - cli_repos
@@ -1073,12 +1073,12 @@ entries:
   needs_review_count: 0
   source_row_indexes:
   - 65
-- queue_id: intake::PaddlePaddle/PaddleOCR
-  github_full_name: PaddlePaddle/PaddleOCR
+- queue_id: intake::paddlepaddle/paddleocr
+  github_full_name: paddlepaddle/paddleocr
   html_url: https://github.com/PaddlePaddle/PaddleOCR
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - office_repos
@@ -1118,9 +1118,9 @@ entries:
 - queue_id: intake::pgvector/pgvector
   github_full_name: pgvector/pgvector
   html_url: https://github.com/pgvector/pgvector
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - vector_db
@@ -1132,9 +1132,9 @@ entries:
 - queue_id: intake::phuocng/1loc
   github_full_name: phuocng/1loc
   html_url: https://github.com/phuocng/1loc
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - uncat_repos
@@ -1146,9 +1146,9 @@ entries:
 - queue_id: intake::puppeteer/puppeteer
   github_full_name: puppeteer/puppeteer
   html_url: https://github.com/puppeteer/puppeteer
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - uncat_repos
@@ -1160,9 +1160,9 @@ entries:
 - queue_id: intake::pydantic/pydantic
   github_full_name: pydantic/pydantic
   html_url: https://github.com/pydantic/pydantic
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - structured_outputs
@@ -1188,9 +1188,9 @@ entries:
 - queue_id: intake::pydantic/pydantic-core
   github_full_name: pydantic/pydantic-core
   html_url: https://github.com/pydantic/pydantic-core
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - structured_outputs
@@ -1202,9 +1202,9 @@ entries:
 - queue_id: intake::pydantic/pydantic-settings
   github_full_name: pydantic/pydantic-settings
   html_url: https://github.com/pydantic/pydantic-settings
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - structured_outputs
@@ -1272,9 +1272,9 @@ entries:
 - queue_id: intake::sharkdp/bat
   github_full_name: sharkdp/bat
   html_url: https://github.com/sharkdp/bat
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - uncat_repos
@@ -1285,9 +1285,9 @@ entries:
 - queue_id: intake::sharkdp/fd
   github_full_name: sharkdp/fd
   html_url: https://github.com/sharkdp/fd
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - uncat_repos
@@ -1354,9 +1354,9 @@ entries:
 - queue_id: intake::spotify/annoy
   github_full_name: spotify/annoy
   html_url: https://github.com/spotify/annoy
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - vector_db
@@ -1368,9 +1368,9 @@ entries:
 - queue_id: intake::spotify/voyager
   github_full_name: spotify/voyager
   html_url: https://github.com/spotify/voyager
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - vector_db
@@ -1393,12 +1393,12 @@ entries:
   needs_review_count: 0
   source_row_indexes:
   - 89
-- queue_id: intake::Stirling-Tools/Stirling-PDF
-  github_full_name: Stirling-Tools/Stirling-PDF
+- queue_id: intake::stirling-tools/stirling-pdf
+  github_full_name: stirling-tools/stirling-pdf
   html_url: https://github.com/Stirling-Tools/Stirling-PDF
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - office_repos
@@ -1466,9 +1466,9 @@ entries:
 - queue_id: intake::thephpleague/fractal
   github_full_name: thephpleague/fractal
   html_url: https://github.com/thephpleague/fractal
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - structured_outputs
@@ -1480,9 +1480,9 @@ entries:
 - queue_id: intake::tmux/tmux
   github_full_name: tmux/tmux
   html_url: https://github.com/tmux/tmux
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - cli_repos
@@ -1494,9 +1494,9 @@ entries:
 - queue_id: intake::unum-cloud/usearch
   github_full_name: unum-cloud/usearch
   html_url: https://github.com/unum-cloud/usearch
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - vector_db
@@ -1536,9 +1536,9 @@ entries:
 - queue_id: intake::wez/wezterm
   github_full_name: wez/wezterm
   html_url: https://github.com/wez/wezterm
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - cli_repos
@@ -1564,9 +1564,9 @@ entries:
 - queue_id: intake::xqsit94/glm
   github_full_name: xqsit94/glm
   html_url: https://github.com/xqsit94/glm
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - cli_repos
@@ -1645,12 +1645,12 @@ entries:
   needs_review_count: 0
   source_row_indexes:
   - 83
-- queue_id: intake::zilliztech/VectorDBBench
-  github_full_name: zilliztech/VectorDBBench
+- queue_id: intake::zilliztech/vectordbbench
+  github_full_name: zilliztech/vectordbbench
   html_url: https://github.com/zilliztech/VectorDBBench
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - vector_db
