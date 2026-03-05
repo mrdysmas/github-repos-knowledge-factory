@@ -1,5 +1,5 @@
 version: 1
-as_of_utc: "2026-03-05T16:22:18Z"
+as_of_utc: "2026-03-05T16:36:49Z"
 
 phase:
   number: "4"
@@ -216,12 +216,16 @@ batches:
   b4:
     status: "PLANNED"
     objective: "Run next batch with explicit preflight unmapped-section baseline and before/after disclosure."
+    prompt_ref: "plan-drafts/Phase 4 Corpus Expansion Batch P4-B4.md"
+    prompt_lock_ref: "reports/phase4/prompt_locks/P4-B4.lock.yaml"
+    prompt_hash_source: "external_lock_file"
+    prompt_sha1: "8ac72b0b4073f453e3af380a7bc5a9114e31dc04"
     required_prompt_fix:
-      - "Capture unmapped-section baseline in preflight."
-      - "Report unmapped-section delta in final evidence block."
+      - "Capture unmapped-section baseline in preflight. (applied in P4-B4)"
+      - "Report unmapped-section delta in final evidence block. (applied in P4-B4)"
 
 open_threads:
-  - "For B4 prompt: require preflight unmapped-section baseline and explicit before/after disclosure."
+  - "Execute B4 and validate unmapped-section before/after disclosure is present in final report."
   - "Case-insensitive collision handling if two repos differ only by case."
   - "Keep batch evidence commits scoped; separate hygiene/doc edits from ingestion outputs."
 
@@ -231,7 +235,9 @@ evidence_refs:
   - "plan-drafts/Phase 4 Corpus Expansion Batch P4-B2.md"
   - "plan-drafts/Phase 4 Corpus Expansion Batch P4-B2-Deep.md"
   - "plan-drafts/Phase 4 Corpus Expansion Batch P4-B3.md"
+  - "plan-drafts/Phase 4 Corpus Expansion Batch P4-B4.md"
   - "plan-drafts/Phase 4 Executor Report Review Rubric.md"
+  - "reports/phase4/prompt_locks/P4-B4.lock.yaml"
   - "reports/ws4_master_build/validation_runs.yaml"
   - "reports/ws5_remote_ingestion/validation_runs.yaml"
   - "reports/ws6_deep_integration/validation_runs.yaml"
