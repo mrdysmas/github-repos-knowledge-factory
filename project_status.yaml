@@ -1,5 +1,5 @@
 version: 1
-as_of_utc: "2026-03-05T16:22:18Z"
+as_of_utc: "2026-03-05T17:35:17Z"
 
 naming_legend:
   WS: "Workstream (pipeline lane/stage, e.g., WS1-WS7)"
@@ -121,7 +121,7 @@ canonical:
       - "deep_facts delta vs baseline"
       - "WS7 strict result and snapshot status (pass/warn; fallback used or not)"
     standardization_trigger: "Adopt as default prompted workflow after two consecutive batch runs confirm policy behavior and no integrity-gate regressions."
-    standardization_note: "Two consecutive hardened runs passed; next prompt must add unmapped-section preflight baseline + before/after disclosure before template standardization decision."
+    standardization_note: "Two consecutive hardened runs passed (B3, B4). Before template standardization, patch prompt/template to source unmapped-section pre/post from WS6 gate metrics (coverage/validation), not mismatch_report."
   intake_controls:
     manifest: "inputs/intake/intake_manifest.yaml"
     pilot_batch: "inputs/intake/pilot_batch.yaml"
@@ -197,11 +197,11 @@ todo:
     - id: "B"
       topic: "Update workflow"
       status: "IN_PROGRESS"
-      note: "Two consecutive hardened runs now completed (B2 and B3) with no blocking regressions. Remaining item before template standardization: enforce unmapped-section preflight baseline and before/after disclosure in next batch prompt."
+      note: "Two consecutive hardened runs now completed (B3 and B4) with no blocking regressions. Remaining item before template standardization: fix unmapped-section instrumentation source in prompt/template to WS6 gate metrics."
     - id: "C"
       topic: "Quality gates"
       status: "IN_PROGRESS"
-      note: "Gate policy hardened: WS7 integrity checks remain blocking; snapshot timestamp divergence is warning-only with explicit freshness disclosure in batch reports. Next prompt must also baseline/report unmapped-section delta."
+      note: "Gate policy hardened: WS7 integrity checks remain blocking; snapshot timestamp divergence is warning-only with explicit freshness disclosure in batch reports. B4 showed instrumentation mismatch (mismatch_report field absent); next prompt must use coverage/validation gate metrics for unmapped-section delta."
     - id: "D"
       topic: "Query read-model + deep semantic access"
       status: "COMPLETE"
@@ -226,22 +226,22 @@ todo:
 next_agent_handoff:
   if_user_asks: "What now? What should we work on?"
   answer:
-    current_focus: "Phase 4 corpus expansion continues after B3 ACCEPT_WITH_NOTES; next action is B4 prompt update plus execution with explicit unmapped-section baseline disclosure."
+    current_focus: "Phase 4 continues after B4 ACCEPT_WITH_NOTES; immediate action is patching next prompt/template so unmapped-section pre/post is sourced from WS6 gate metrics, then execute B5."
     read_first:
       - "project_status.yaml"
       - "phase_4_progress_tracker.yaml"
-      - "plan-drafts/Phase 4 Corpus Expansion Batch P4-B3.md"
+      - "plan-drafts/Phase 4 Corpus Expansion Batch P4-B4.md"
       - "plan-drafts/Phase 4 Executor Report Review Rubric.md"
       - "tools/query_master.py"
       - "tools/ws6_deep_integrator.py"
       - "tools/ws7_read_model_compiler.py"
     immediate_next_step:
-      id: "P4-B4_PROMPT_UPDATE_AND_EXECUTION"
-      objective: "Patch next batch prompt to baseline unmapped-section count in preflight, then execute with strict-first WS7 and full freshness/quality evidence."
+      id: "P4-B5_PROMPT_TEMPLATE_PATCH_AND_EXECUTION"
+      objective: "Patch next batch prompt/template to read unmapped-section from WS6 gate metrics (coverage/validation), then execute with strict-first WS7 and full evidence."
       first_commands:
         - "python3 tools/check_intake_queue_sync.py --workspace-root ."
         - "python3 tools/query_master.py stats"
-        - "python3 - <<'PY'\nimport yaml\nfrom pathlib import Path\np=Path('reports/ws6_deep_integration/mismatch_report.yaml')\nd=yaml.safe_load(p.read_text()) if p.exists() else {}\nprint('preflight_unmapped_sections_count', d.get('unmapped_sections_count', 'unknown'))\nPY"
+        - "python3 - <<'PY'\nimport yaml\nfrom pathlib import Path\nc=Path('reports/ws6_deep_integration/coverage.yaml')\nv=Path('reports/ws6_deep_integration/validation_runs.yaml')\ncd=yaml.safe_load(c.read_text()) if c.exists() else {}\nvd=yaml.safe_load(v.read_text()) if v.exists() else {}\nprint('preflight_unmapped_sections_count_coverage', (cd.get('metrics') or {}).get('unmapped_sections_count', 'unknown'))\nprint('preflight_unmapped_sections_count_validation', (vd.get('gate_metrics') or {}).get('unmapped_sections_count', 'unknown'))\nPY"
         - "python3 tools/ws5_remote_ingestion.py --workspace-root . --input inputs/ws5/ws5_input_manifest.yaml --reports-dir reports/ws5_remote_ingestion"
         - "python3 tools/ws4_master_compiler.py --workspace-root . --master-index master_index.yaml --master-graph master_graph.yaml --reports-dir reports/ws4_master_build"
         - "python3 tools/ws6_deep_integrator.py --workspace-root . --reports-dir reports/ws6_deep_integration --materialize-spec reports/ws6_deep_integration/spec.yaml --run-validation-suite"
@@ -252,7 +252,7 @@ status_docs:
   execution_tracker: "phase_4_progress_tracker.yaml"
   phase_3_tracker: "phase_3_progress_tracker.yaml"
   phase_2_tracker: "phase_2_progress_tracker.yaml"
-  phase_4_plan: "plan-drafts/Phase 4 Corpus Expansion Batch P4-B3.md"
+  phase_4_plan: "plan-drafts/Phase 4 Corpus Expansion Batch P4-B4.md"
   historical: "master_graph_merge_progress.yaml"
   decisions:
     - "docs/decisions/intake_shard_routing_decision.md"
