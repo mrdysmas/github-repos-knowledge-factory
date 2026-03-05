@@ -155,13 +155,17 @@ def load_master_artifacts(workspace_root: Path, master_index_path: str, master_g
 def command_contract() -> dict[str, Any]:
     return {
         "artifact_type": "master_query_cli_contract",
-        "version": "1.1.0",
+        "version": "1.2.0",
         "commands": {
             "contract": "Show this CLI contract.",
             "stats": "Show top-level counts from master artifacts.",
             "repo": "Resolve repo by node_id/name/github_full_name and return canonical row.",
             "neighbors": "List inbound/outbound edges for a repo with optional relation filter.",
             "facts": "List deep facts for a repo when master_deep_facts.yaml is present.",
+            "search": "Full-text search across fact values and notes (sqlite only).",
+            "pattern": "Cross-repo pattern matching by predicate (sqlite only).",
+            "graph": "Graph traversal from a starting repo (sqlite only).",
+            "aggregate": "Corpus-level statistics by dimension (sqlite only).",
         },
         "identifier_resolution_order": ["node_id", "name", "github_full_name"],
         "default_paths": {
@@ -416,6 +420,294 @@ def command_facts_sqlite(
     }
 
 
+def command_search_sqlite(
+    conn: sqlite3.Connection,
+    term: str,
+    field: str,
+    limit: int,
+) -> tuple[int, dict[str, Any]]:
+    like_pattern = f"%{term}%"
+    if field == "object_value":
+        query = (
+            "SELECT fact_id, node_id, predicate, object_kind, object_value, note "
+            "FROM facts "
+            "WHERE object_value LIKE ? COLLATE NOCASE "
+            "ORDER BY node_id, predicate, fact_id "
+            "LIMIT ?"
+        )
+        params: list[Any] = [like_pattern, limit]
+    elif field == "note":
+        query = (
+            "SELECT fact_id, node_id, predicate, object_kind, object_value, note "
+            "FROM facts "
+            "WHERE note LIKE ? COLLATE NOCASE "
+            "ORDER BY node_id, predicate, fact_id "
+            "LIMIT ?"
+        )
+        params = [like_pattern, limit]
+    else:
+        query = (
+            "SELECT fact_id, node_id, predicate, object_kind, object_value, note "
+            "FROM facts "
+            "WHERE object_value LIKE ? COLLATE NOCASE OR note LIKE ? COLLATE NOCASE "
+            "ORDER BY node_id, predicate, fact_id "
+            "LIMIT ?"
+        )
+        params = [like_pattern, like_pattern, limit]
+
+    rows = conn.execute(query, params).fetchall()
+    results = [
+        {
+            "fact_id": row[0],
+            "node_id": row[1],
+            "predicate": row[2],
+            "object_kind": row[3],
+            "object_value": row[4],
+            "note": row[5],
+        }
+        for row in rows
+    ]
+    return 0, {
+        "artifact_type": "master_query_search",
+        "term": term,
+        "field": field,
+        "limit": limit,
+        "result_count": len(results),
+        "results": results,
+    }
+
+
+def command_pattern_sqlite(
+    conn: sqlite3.Connection,
+    predicate: str,
+    value_filter: str,
+    limit: int,
+) -> tuple[int, dict[str, Any]]:
+    if value_filter:
+        rows = conn.execute(
+            "SELECT DISTINCT r.node_id, r.name, r.category, f.object_value, f.object_kind "
+            "FROM facts f "
+            "JOIN repos r ON f.node_id = r.node_id "
+            "WHERE f.predicate = ? AND f.object_value LIKE ? COLLATE NOCASE "
+            "ORDER BY r.name, f.object_value "
+            "LIMIT ?",
+            (predicate, f"%{value_filter}%", limit),
+        ).fetchall()
+    else:
+        rows = conn.execute(
+            "SELECT DISTINCT r.node_id, r.name, r.category, f.object_value, f.object_kind "
+            "FROM facts f "
+            "JOIN repos r ON f.node_id = r.node_id "
+            "WHERE f.predicate = ? "
+            "ORDER BY r.name, f.object_value "
+            "LIMIT ?",
+            (predicate, limit),
+        ).fetchall()
+
+    results = [
+        {
+            "node_id": row[0],
+            "name": row[1],
+            "category": row[2],
+            "object_value": row[3],
+            "object_kind": row[4],
+        }
+        for row in rows
+    ]
+    return 0, {
+        "artifact_type": "master_query_pattern",
+        "predicate": predicate,
+        "value_filter": value_filter or None,
+        "limit": limit,
+        "result_count": len(results),
+        "results": results,
+    }
+
+
+def command_graph_sqlite(
+    conn: sqlite3.Connection,
+    identifier: str,
+    hops: int,
+    relation: str,
+    direction: str,
+) -> tuple[int, dict[str, Any]]:
+    resolved = conn.execute(
+        "SELECT node_id FROM repos WHERE node_id = ? OR name = ? OR github_full_name = ?",
+        (identifier, identifier, identifier),
+    ).fetchone()
+    if resolved is None:
+        return 2, {"error": f"Repo identifier not found: {identifier}"}
+    start_id = resolved[0]
+
+    visited = {start_id}
+    current_frontier = {start_id}
+    all_edges: list[dict[str, Any]] = []
+    traversal_layers: list[dict[str, int]] = []
+
+    for hop in range(1, hops + 1):
+        next_frontier: set[str] = set()
+        hop_edges: list[dict[str, Any]] = []
+
+        for node_id in current_frontier:
+            conditions = []
+            params: list[str] = []
+
+            if direction == "out":
+                conditions.append("src_id = ?")
+                params.append(node_id)
+            elif direction == "in":
+                conditions.append("dst_id = ?")
+                params.append(node_id)
+            else:
+                conditions.append("(src_id = ? OR dst_id = ?)")
+                params.extend([node_id, node_id])
+
+            if relation:
+                conditions.append("relation = ?")
+                params.append(relation)
+
+            where_clause = " AND ".join(conditions)
+            rows = conn.execute(
+                f"SELECT src_id, dst_id, relation, note FROM edges WHERE {where_clause}",
+                params,
+            ).fetchall()
+
+            for src_id, dst_id, rel, note in rows:
+                neighbor = dst_id if src_id == node_id else src_id
+                edge_record = {
+                    "src_id": src_id,
+                    "dst_id": dst_id,
+                    "relation": rel,
+                    "note": note,
+                    "hop": hop,
+                }
+                hop_edges.append(edge_record)
+                if neighbor not in visited:
+                    next_frontier.add(neighbor)
+
+        seen_edges: set[tuple[str, str, str]] = set()
+        deduped: list[dict[str, Any]] = []
+        for edge in hop_edges:
+            key = (edge["src_id"], edge["dst_id"], edge["relation"])
+            if key in seen_edges:
+                continue
+            seen_edges.add(key)
+            deduped.append(edge)
+
+        deduped.sort(key=lambda edge: (edge["src_id"], edge["dst_id"], edge["relation"]))
+        traversal_layers.append(
+            {
+                "hop": hop,
+                "edges_found": len(deduped),
+                "new_nodes": len(next_frontier),
+            }
+        )
+        all_edges.extend(deduped)
+
+        visited.update(next_frontier)
+        current_frontier = next_frontier
+        if not current_frontier:
+            break
+
+    reached_nodes = sorted(visited - {start_id})
+    node_details: list[dict[str, Any]] = []
+    for node_id in reached_nodes:
+        row = conn.execute(
+            "SELECT node_id, kind, label FROM nodes WHERE node_id = ?",
+            (node_id,),
+        ).fetchone()
+        if row:
+            node_details.append({"node_id": row[0], "kind": row[1], "label": row[2]})
+
+    return 0, {
+        "artifact_type": "master_query_graph",
+        "start_id": start_id,
+        "hops": hops,
+        "direction": direction,
+        "relation_filter": relation or None,
+        "nodes_reached": len(reached_nodes),
+        "edges_traversed": len(all_edges),
+        "traversal_layers": traversal_layers,
+        "nodes": node_details,
+        "edges": all_edges,
+    }
+
+
+def command_aggregate_sqlite(
+    conn: sqlite3.Connection,
+    group_by: str,
+    top: int,
+) -> tuple[int, dict[str, Any]]:
+    if group_by == "category":
+        repo_rows = conn.execute(
+            "SELECT category, COUNT(*) AS repo_count "
+            "FROM repos "
+            "GROUP BY category "
+            "ORDER BY repo_count DESC, category "
+            "LIMIT ?",
+            (top,),
+        ).fetchall()
+        total_groups = conn.execute(
+            "SELECT COUNT(*) FROM (SELECT category FROM repos GROUP BY category)"
+        ).fetchone()[0]
+        fact_rows = conn.execute(
+            "SELECT r.category, COUNT(*) AS fact_count "
+            "FROM facts f "
+            "JOIN repos r ON f.node_id = r.node_id "
+            "GROUP BY r.category"
+        ).fetchall()
+        fact_counts = {row[0]: row[1] for row in fact_rows}
+
+        groups = []
+        for category, repo_count in repo_rows:
+            groups.append(
+                {
+                    "key": category,
+                    "count": repo_count,
+                    "fact_count": fact_counts.get(category, 0),
+                }
+            )
+    elif group_by == "relation":
+        rows = conn.execute(
+            "SELECT relation, COUNT(*) AS count "
+            "FROM edges "
+            "GROUP BY relation "
+            "ORDER BY count DESC, relation "
+            "LIMIT ?",
+            (top,),
+        ).fetchall()
+        total_groups = conn.execute(
+            "SELECT COUNT(*) FROM (SELECT relation FROM edges GROUP BY relation)"
+        ).fetchone()[0]
+        groups = [{"key": row[0], "count": row[1]} for row in rows]
+    else:
+        group_column = {
+            "predicate": "predicate",
+            "fact_type": "fact_type",
+            "object_kind": "object_kind",
+        }[group_by]
+        rows = conn.execute(
+            f"SELECT {group_column}, COUNT(*) AS count "
+            "FROM facts "
+            f"GROUP BY {group_column} "
+            f"ORDER BY count DESC, {group_column} "
+            "LIMIT ?",
+            (top,),
+        ).fetchall()
+        total_groups = conn.execute(
+            f"SELECT COUNT(*) FROM (SELECT {group_column} FROM facts GROUP BY {group_column})"
+        ).fetchone()[0]
+        groups = [{"key": row[0], "count": row[1]} for row in rows]
+
+    return 0, {
+        "artifact_type": "master_query_aggregate",
+        "group_by": group_by,
+        "top": top,
+        "total_groups": total_groups,
+        "groups": groups,
+    }
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Minimal query CLI for canonical master artifacts.")
     parser.add_argument("--workspace-root", default=".", help="Workspace root path.")
@@ -458,6 +750,41 @@ def main() -> int:
     facts_parser.add_argument("--id", required=True, help="Repo identifier: node_id, name, or github_full_name.")
     facts_parser.add_argument("--predicate", default="", help="Optional exact predicate filter.")
 
+    search_parser = subparsers.add_parser("search", help="Full-text search across fact values and notes.")
+    search_parser.add_argument("--term", required=True, help="Search substring (case-insensitive).")
+    search_parser.add_argument(
+        "--field",
+        default="both",
+        choices=["object_value", "note", "both"],
+        help="Column(s) to search.",
+    )
+    search_parser.add_argument("--limit", type=int, default=50, help="Max results.")
+
+    pattern_parser = subparsers.add_parser("pattern", help="Cross-repo pattern matching by predicate.")
+    pattern_parser.add_argument("--predicate", required=True, help="Exact predicate to match.")
+    pattern_parser.add_argument("--value", default="", help="Optional substring filter on object_value.")
+    pattern_parser.add_argument("--limit", type=int, default=50, help="Max results.")
+
+    graph_parser = subparsers.add_parser("graph", help="Graph traversal from a starting repo.")
+    graph_parser.add_argument("--id", required=True, help="Starting repo identifier.")
+    graph_parser.add_argument("--hops", type=int, default=1, choices=[1, 2, 3], help="Traversal depth (1-3).")
+    graph_parser.add_argument("--relation", default="", help="Optional relation filter.")
+    graph_parser.add_argument(
+        "--direction",
+        default="both",
+        choices=["in", "out", "both"],
+        help="Edge direction.",
+    )
+
+    aggregate_parser = subparsers.add_parser("aggregate", help="Corpus-level statistics by dimension.")
+    aggregate_parser.add_argument(
+        "--group-by",
+        required=True,
+        choices=["predicate", "fact_type", "object_kind", "category", "relation"],
+        help="Grouping dimension.",
+    )
+    aggregate_parser.add_argument("--top", type=int, default=20, help="Max groups to return.")
+
     args = parser.parse_args()
 
     if args.command == "contract":
@@ -491,6 +818,14 @@ def main() -> int:
                 code, body = command_neighbors_sqlite(conn, args.id, args.direction, args.relation.strip())
             elif args.command == "facts":
                 code, body = command_facts_sqlite(conn, args.id, args.predicate.strip())
+            elif args.command == "search":
+                code, body = command_search_sqlite(conn, args.term, args.field, args.limit)
+            elif args.command == "pattern":
+                code, body = command_pattern_sqlite(conn, args.predicate, args.value.strip(), args.limit)
+            elif args.command == "graph":
+                code, body = command_graph_sqlite(conn, args.id, args.hops, args.relation.strip(), args.direction)
+            elif args.command == "aggregate":
+                code, body = command_aggregate_sqlite(conn, args.group_by, args.top)
             else:
                 body = {"error": f"Unhandled command: {args.command}"}
                 code = 2
@@ -501,6 +836,11 @@ def main() -> int:
             return code
         finally:
             conn.close()
+
+    if args.command in ("search", "pattern", "graph", "aggregate"):
+        print(f"ERROR: '{args.command}' requires --source sqlite. These commands need the SQLite read model.")
+        print("Run: python3 tools/ws7_read_model_compiler.py --workspace-root .")
+        return 1
 
     payload = load_master_artifacts(
         workspace_root=workspace_root,

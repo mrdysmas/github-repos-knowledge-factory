@@ -1,10 +1,10 @@
 version: 1
-as_of_utc: "2026-03-05T02:30:24Z"
+as_of_utc: "2026-03-05T03:03:36Z"
 
 phase:
   number: "3"
   name: "SQLite Read Model and Query Migration"
-  status: "M2_IN_PROGRESS"
+  status: "M3_IN_PROGRESS"
   workflow: "M1_IN_PROGRESS -> M1_COMPLETE -> M2_IN_PROGRESS -> M2_COMPLETE -> M3_IN_PROGRESS -> M3_COMPLETE -> M4_IN_PROGRESS -> COMPLETE"
   date_initiated: "2026-03-04"
   date_started: "2026-03-04"
@@ -35,7 +35,7 @@ milestones:
 
   m2:
     name: "Query Migration"
-    status: "IN_PROGRESS"
+    status: "COMPLETE"
     deliverables:
       - "query_master.py reads from SQLite"
       - "--source flag for backward compatibility"
@@ -44,18 +44,18 @@ milestones:
       - "Default source is sqlite"
       - "Performance measurably faster"
     date_started: "2026-03-04"
-    date_completed: null
+    date_completed: "2026-03-04"
 
   m3:
     name: "Query Expansion"
-    status: "NOT_STARTED"
+    status: "IN_PROGRESS"
     deliverables:
       - "At least 3 new query commands"
       - "Graph edges queryable"
     done_when:
       - "At least 3 new commands implemented and tested"
       - "Graph edges queryable through at least one command"
-    date_started: null
+    date_started: "2026-03-04"
     date_completed: null
 
   m4:
