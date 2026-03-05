@@ -1,5 +1,5 @@
 version: 1
-as_of_utc: "2026-03-05T17:53:01Z"
+as_of_utc: "2026-03-05T18:05:51Z"
 
 phase:
   number: "4"
@@ -239,15 +239,25 @@ batches:
       - "Prompt-lock gate passed: prompt SHA matched lock + tracker throughout run"
       - "Soft instrumentation gap: pre/post unmapped command read mismatch_report field that is absent (reported 0 -> 0), while WS6 gate metrics indicate unmapped_sections_count=33"
   b5:
-    status: "PLANNED"
-    objective: "Draft and execute B5 using strict-only WS7 semantics and canonical unmapped-section metric sourcing."
-    required_prompt_fix:
-      - "Use reports/ws6_deep_integration/coverage.yaml: metrics.unmapped_sections_count for pre/post baseline."
-      - "Use reports/ws6_deep_integration/validation_runs.yaml: gate_metrics.unmapped_sections_count only as fallback."
-      - "WS7 wording must be strict-only; `--force` is compatibility-only (no-op)."
+    status: "READY_FOR_EXECUTION_GATED"
+    objective: "Execute B5 using strict-only WS7 semantics and canonical unmapped-section metric sourcing."
+    prompt_ref: "plan-drafts/Phase 4 Corpus Expansion Batch P4-B5.md"
+    prompt_lock_ref: "reports/phase4/prompt_locks/P4-B5.lock.yaml"
+    prompt_hash_source: "external_lock_file"
+    prompt_sha1: "b6897b5c72eff82ee2c24dfd4bef76bcc35569d1"
+    repo_count_target: 10
+    shallow_repo_count: 6
+    deep_repo_count: 4
+    mode_recommendation: "HYBRID"
+    execution_guardrail:
+      - "Do not execute B5 while B4 execution artifacts are still dirty/untracked in this worktree."
+      - "Before execution, either commit B4 artifacts intentionally or run B5 in a clean/isolated worktree."
+    prompt_applied_fixes:
+      - "Unmapped metrics: canonical coverage.yaml path with validation_runs fallback."
+      - "WS7 semantics: strict-only; `--force` compatibility no-op only."
 
 open_threads:
-  - "Patch next prompt/template so WS7 is strict-only in wording and unmapped-section pre/post uses WS6 coverage-first with validation fallback, then execute B5."
+  - "Resolve B4 artifact contamination (commit or isolate), then execute B5."
   - "Case-insensitive collision handling if two repos differ only by case."
   - "Keep batch evidence commits scoped; separate hygiene/doc edits from ingestion outputs."
 
@@ -258,8 +268,10 @@ evidence_refs:
   - "plan-drafts/Phase 4 Corpus Expansion Batch P4-B2-Deep.md"
   - "plan-drafts/Phase 4 Corpus Expansion Batch P4-B3.md"
   - "plan-drafts/Phase 4 Corpus Expansion Batch P4-B4.md"
+  - "plan-drafts/Phase 4 Corpus Expansion Batch P4-B5.md"
   - "plan-drafts/Phase 4 Executor Report Review Rubric.md"
   - "reports/phase4/prompt_locks/P4-B4.lock.yaml"
+  - "reports/phase4/prompt_locks/P4-B5.lock.yaml"
   - "reports/ws4_master_build/validation_runs.yaml"
   - "reports/ws5_remote_ingestion/validation_runs.yaml"
   - "reports/ws6_deep_integration/coverage.yaml"
