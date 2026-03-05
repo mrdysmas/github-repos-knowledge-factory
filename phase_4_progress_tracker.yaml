@@ -1,0 +1,160 @@
+version: 1
+as_of_utc: "2026-03-05T05:11:56Z"
+
+phase:
+  number: "4"
+  name: "Corpus Expansion and Stabilization"
+  status: "IN_PROGRESS"
+  workflow: "B1_COMPLETE -> STABILIZATION_COMPLETE -> B2_IN_PROGRESS -> B3_PLANNED -> TEMPLATE_STANDARDIZED"
+  date_initiated: "2026-03-05"
+  date_started: "2026-03-05"
+  date_completed: null
+
+objective: |
+  Standardize a reliable, repeatable prompt-driven batch workflow for end-to-end
+  ingestion through WS5 -> WS4 -> WS6 -> WS7, with deep facts, graph/query
+  integrity, and explicit freshness reporting on every run.
+
+definition_of_done:
+  - "Two consecutive batch runs complete under strict-first WS7 policy with no blocking integrity gate regressions."
+  - "Batch reports include required freshness disclosure fields every run."
+  - "Standardized Phase 4 batch prompt template is approved and referenced in project_status.yaml."
+  - "End-to-end outcomes show deep success (deep_facts and/or edges growth) or explicit, review-approved rationale when deltas are zero."
+
+baseline:
+  queued_count: 46
+  already_canonical_count: 71
+  query_master:
+    repos: 73
+    nodes: 87
+    edges: 152
+    deep_facts: 2921
+
+current:
+  queued_count: 34
+  already_canonical_count: 83
+  query_master:
+    repos: 85
+    nodes: 99
+    edges: 152
+    deep_facts: 2921
+  deltas_vs_baseline:
+    queued_count: -12
+    already_canonical_count: 12
+    repos: 12
+    nodes: 12
+    edges: 0
+    deep_facts: 0
+
+policy_controls:
+  ws7_gate_classes:
+    blocking:
+      - "row_count_parity"
+      - "orphan_edge_detection"
+      - "query_parity"
+      - "deterministic_rebuild"
+    warning_only:
+      - "snapshot_consistency (timestamp divergence)"
+  ws6_validation_source: "python3 tools/query_master.py --source yaml stats"
+  ws7_force_rule: "Use --force only when strict WS7 fails solely on snapshot/timestamp consistency."
+  run_order:
+    - "tools/ws5_remote_ingestion.py"
+    - "tools/ws4_master_compiler.py"
+    - "tools/ws6_deep_integrator.py --run-validation-suite"
+    - "tools/ws7_read_model_compiler.py (strict first)"
+  required_freshness_disclosure:
+    - "master_index.generated_at_utc"
+    - "master_graph.generated_at_utc"
+    - "master_deep_facts.generated_at_utc"
+    - "deep_facts delta vs baseline"
+    - "WS7 strict result + snapshot gate status (pass/warn) + fallback usage"
+  re_escalate_snapshot_to_blocking_when:
+    - "Snapshot divergence repeatedly causes incorrect query interpretation in practice."
+    - "Deep-facts regeneration cadence is tightened such that timestamp alignment is expected by design."
+
+milestones:
+  m1:
+    name: "Batch B1 Execution"
+    status: "COMPLETE"
+    deliverables:
+      - "12 repos ingested into canonical shard"
+      - "Queue sync and pipeline gate evidence captured"
+    outcome: "SHALLOW_COMPLETE"
+    notes:
+      - "Throughput target met (+12 canonical repos), but edges/deep_facts deltas remained zero."
+      - "Revealed stabilization needs: mixed-case identifier lookup, WS6 stale-DB coupling, WS7 snapshot over-blocking."
+    date_started: "2026-03-05"
+    date_completed: "2026-03-05"
+
+  m2:
+    name: "Stabilization Patch Set"
+    status: "COMPLETE"
+    deliverables:
+      - "tools/query_master.py (case-insensitive identifier resolution)"
+      - "tools/ws6_deep_integrator.py (validation decoupled from DB freshness)"
+      - "tools/ws7_read_model_compiler.py (snapshot divergence warning-only)"
+    done_when:
+      - "Mixed-case repo identifier checks pass for repo/neighbors/facts/graph."
+      - "WS6 validation runs without requiring freshly rebuilt SQLite."
+      - "WS7 strict compile warns (not fails) on timestamp-only snapshot divergence."
+    date_started: "2026-03-05"
+    date_completed: "2026-03-05"
+
+  m3:
+    name: "Batch B2 Policy Validation Run"
+    status: "IN_PROGRESS"
+    deliverables:
+      - "B2 batch report with full gate outcomes and freshness disclosure"
+      - "Evidence that strict-first WS7 policy operates without integrity regressions"
+    done_when:
+      - "All blocking gates pass."
+      - "Strict-first WS7 used; fallback usage (if any) is justified."
+      - "Mixed-case identifier regression check passes."
+    plan_ref: "plan-drafts/Phase 4 Corpus Expansion Batch P4-B2.md"
+    date_started: "2026-03-05"
+    date_completed: null
+
+  m4:
+    name: "Batch B3 Repeatability + Template Standardization Decision"
+    status: "PLANNED"
+    deliverables:
+      - "Second consecutive hardened-policy batch report"
+      - "Go/No-Go recommendation to standardize prompt template"
+    done_when:
+      - "Second consecutive run completes without blocking gate regressions."
+      - "Freshness disclosure and fallback discipline are consistently observed."
+      - "Template standardization recommendation recorded in project_status.yaml."
+    date_started: null
+    date_completed: null
+
+batches:
+  b1:
+    status: "COMPLETE"
+    repo_count: 12
+    strict_ws7_runs: 2
+    ws7_force_runs: 2
+    ws7_force_reason: "snapshot_consistency timestamp divergence"
+    deep_success: false
+    notes:
+      - "Repos/nodes increased; edges/deep_facts unchanged."
+      - "Used to derive stabilization policy and patch set."
+  b2:
+    status: "READY_TO_EXECUTE"
+    repo_count_target: 12
+    plan_ref: "plan-drafts/Phase 4 Corpus Expansion Batch P4-B2.md"
+  b3:
+    status: "PLANNED"
+    repo_count_target: "8-12"
+    objective: "Confirm repeatability of hardened policy before standardizing prompt template."
+
+open_threads:
+  - "Deep-success threshold definition per batch (minimum acceptable deep_facts/edges movement vs explicit rationale path)."
+  - "Case-insensitive collision handling if two repos differ only by case."
+  - "When to introduce phase_4 template artifact path as canonical runbook reference."
+
+evidence_refs:
+  - "project_status.yaml"
+  - "plan-drafts/Phase 4 Corpus Expansion Batch P4-B2.md"
+  - "reports/ws4_master_build/validation_runs.yaml"
+  - "reports/ws6_deep_integration/validation_runs.yaml"
+  - "reports/ws7_read_model/compile_log.yaml"

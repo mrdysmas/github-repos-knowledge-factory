@@ -1,17 +1,18 @@
 version: 1
-as_of_utc: "2026-03-05T03:34:16Z"
+as_of_utc: "2026-03-05T05:11:56Z"
 
 naming_legend:
-  WS: "Workstream (pipeline lane/stage, e.g., WS1-WS6)"
+  WS: "Workstream (pipeline lane/stage, e.g., WS1-WS7)"
   M: "Milestone (phase checkpoint, e.g., M1-M4)"
   D: "Decision (governance decision ID, e.g., D1-D5)"
 
 phase:
-  id: "3"
-  name: "SQLite Read Model and Query Migration"
-  status: "COMPLETE"
-  closeout_approved: true
-  closeout_approved_at_utc: "2026-03-05T03:16:01Z"
+  id: "4"
+  name: "Corpus Expansion and Stabilization"
+  status: "IN_PROGRESS"
+  closeout_approved: false
+  closeout_approved_at_utc: null
+  prior_phase_closeout_approved_at_utc: "2026-03-05T03:16:01Z"
 
 workstream_closeouts:
   ws5:
@@ -40,8 +41,9 @@ governance:
       summary: "First-class external nodes."
       status: "RESOLVED"
     D4:
-      summary: "Strict blocking gates."
+      summary: "Split-gate policy: integrity checks block, snapshot timestamp divergence warns."
       status: "RESOLVED"
+      rationale: "Timestamp mismatch can occur with unchanged deep facts; warn to preserve visibility without dead-stopping valid runs."
     D5:
       summary: "Hold two canonical shards (llm_repos/ssh_repos) through pilot; use domain_hint metadata for non-LLM segmentation now."
       status: "RESOLVED"
@@ -93,6 +95,32 @@ canonical:
         - "pattern"
         - "graph"
         - "aggregate"
+  operational_policy:
+    expansion_run_order:
+      - "tools/ws5_remote_ingestion.py"
+      - "tools/ws4_master_compiler.py"
+      - "tools/ws6_deep_integrator.py --run-validation-suite"
+      - "tools/ws7_read_model_compiler.py (strict first)"
+    ws7_gate_classes:
+      blocking:
+        - "row_count_parity"
+        - "orphan_edge_detection"
+        - "query_parity"
+        - "deterministic_rebuild"
+      warning_only:
+        - "snapshot_consistency (timestamp divergence)"
+    ws7_force_policy: "Use --force only when strict WS7 fails solely on snapshot/timestamp consistency."
+    ws7_freshness_escalation_trigger:
+      - "Snapshot divergence repeatedly causes incorrect query interpretations in practice."
+      - "Deep-facts regeneration cadence is tightened such that timestamp alignment is expected by design."
+    ws6_validation_source: "python3 tools/query_master.py --source yaml stats"
+    batch_acceptance_freshness_report:
+      - "master_index.generated_at_utc"
+      - "master_graph.generated_at_utc"
+      - "master_deep_facts.generated_at_utc"
+      - "deep_facts delta vs baseline"
+      - "WS7 strict result and snapshot status (pass/warn; fallback used or not)"
+    standardization_trigger: "Adopt as default prompted workflow after two consecutive batch runs confirm policy behavior and no integrity-gate regressions."
   intake_controls:
     manifest: "inputs/intake/intake_manifest.yaml"
     pilot_batch: "inputs/intake/pilot_batch.yaml"
@@ -140,14 +168,20 @@ canonical:
   growth_path:
     input_manifest: "inputs/ws5/ws5_input_manifest.yaml"
     ingestion: "tools/ws5_remote_ingestion.py"
+    required_order:
+      - "tools/ws5_remote_ingestion.py"
+      - "tools/ws4_master_compiler.py"
+      - "tools/ws6_deep_integrator.py --run-validation-suite"
+      - "tools/ws7_read_model_compiler.py"
     gates:
       - "tools/ws1_contract_validator.py"
       - "tools/trust_gates.py"
       - "llm_repos/knowledge/validate.py"
       - "ssh_repos/knowledge/validate.py"
+      - "tools/ws6_deep_integrator.py --run-validation-suite"
       - "tools/ws7_read_model_compiler.py"
     compile: "tools/ws4_master_compiler.py"
-  execution_tracker: "phase_3_progress_tracker.yaml"
+  execution_tracker: "phase_4_progress_tracker.yaml"
 
 non_canonical:
   kgraph_repos:
@@ -162,9 +196,11 @@ todo:
     - id: "B"
       topic: "Update workflow"
       status: "IN_PROGRESS"
+      note: "Phase 4 runbook now enforces explicit target_shard, strict-first WS7, and conditional --force fallback. Promote to standard after two successful batch runs."
     - id: "C"
       topic: "Quality gates"
-      status: "PENDING"
+      status: "IN_PROGRESS"
+      note: "Gate policy hardened: WS7 integrity checks remain blocking; snapshot timestamp divergence is warning-only with explicit freshness disclosure in batch reports."
     - id: "D"
       topic: "Query read-model + deep semantic access"
       status: "COMPLETE"
@@ -184,31 +220,36 @@ todo:
     - id: "H"
       topic: "Forward execution tracker maintenance"
       status: "IN_PROGRESS"
-      note: "Active tracker: phase_3_progress_tracker.yaml. Phase 2 tracker archived at phase_2_progress_tracker.yaml."
+      note: "Active execution tracker: phase_4_progress_tracker.yaml. Phase 3 tracker retained for closeout history."
 
 next_agent_handoff:
   if_user_asks: "What now? What should we work on?"
   answer:
-    current_focus: "Phase 3 complete. Next: decide between Phase 4 (DuckDB analytics, corpus expansion) or other priorities."
+    current_focus: "Phase 4 corpus expansion in queued batches, while validating WS6/WS7 hardening policy over consecutive runs."
     read_first:
       - "project_status.yaml"
-      - "phase_3_progress_tracker.yaml"
+      - "phase_4_progress_tracker.yaml"
+      - "plan-drafts/Phase 4 Corpus Expansion Batch P4-B2.md"
       - "tools/query_master.py"
+      - "tools/ws6_deep_integrator.py"
       - "tools/ws7_read_model_compiler.py"
     immediate_next_step:
-      id: "POST-PHASE3"
-      objective: "Supervisor decision on next phase direction."
+      id: "P4-B2_EXECUTION"
+      objective: "Execute B2 batch with strict-first WS7 policy and collect freshness evidence for standardization decision."
       first_commands:
-        - "python3 tools/ws7_read_model_compiler.py --workspace-root ."
-        - "python3 tools/ws7_read_model_compiler.py --workspace-root . --force"
+        - "python3 tools/check_intake_queue_sync.py --workspace-root ."
         - "python3 tools/query_master.py stats"
-        - "python3 tools/query_master.py aggregate --group-by category"
-        - "python3 tools/query_master.py graph --id maxkb --hops 2"
+        - "python3 tools/ws5_remote_ingestion.py --workspace-root . --input inputs/ws5/ws5_input_manifest.yaml --reports-dir reports/ws5_remote_ingestion"
+        - "python3 tools/ws4_master_compiler.py --workspace-root . --master-index master_index.yaml --master-graph master_graph.yaml --reports-dir reports/ws4_master_build"
+        - "python3 tools/ws6_deep_integrator.py --workspace-root . --reports-dir reports/ws6_deep_integration --materialize-spec reports/ws6_deep_integration/spec.yaml --run-validation-suite"
+        - "python3 tools/ws7_read_model_compiler.py --workspace-root ."
 
 status_docs:
   current: "project_status.yaml"
-  execution_tracker: "phase_3_progress_tracker.yaml"
+  execution_tracker: "phase_4_progress_tracker.yaml"
+  phase_3_tracker: "phase_3_progress_tracker.yaml"
   phase_2_tracker: "phase_2_progress_tracker.yaml"
+  phase_4_plan: "plan-drafts/Phase 4 Corpus Expansion Batch P4-B2.md"
   historical: "master_graph_merge_progress.yaml"
   decisions:
     - "docs/decisions/intake_shard_routing_decision.md"
