@@ -1,16 +1,16 @@
 artifact_type: ws4_master_index
-generated_at_utc: '2026-03-05T05:18:49Z'
+generated_at_utc: '2026-03-05T05:30:00Z'
 contract_version: 1.0.0-ws1
 metadata:
   source_shards:
   - llm_repos
   - ssh_repos
-  total_repos: 97
+  total_repos: 105
   repo_counts_by_shard:
-    llm_repos: 60
+    llm_repos: 68
     ssh_repos: 37
   category_counts:
-    agent_cli: 5
+    agent_cli: 8
     agent_framework: 6
     agent_frameworks: 3
     agent_orchestration: 3
@@ -22,18 +22,19 @@ metadata:
     data_pipelines: 2
     data_transformation: 1
     deployment_automation: 1
-    documentation: 4
+    documentation: 6
     educational: 2
     evaluation: 1
     fine_tuning: 1
     inference_serving: 6
+    machine_learning: 1
     nearest_neighbor_search: 1
     network_infrastructure: 2
     network_utils: 1
     office_automation: 2
     postgres_extension: 1
     rag_frameworks: 6
-    remote_access: 3
+    remote_access: 4
     snippet_collection: 1
     static_site_generator: 1
     structured_outputs: 4
@@ -42,7 +43,7 @@ metadata:
     terminal_ui: 1
     tunneling: 9
     ui_tools: 4
-    vector_database: 6
+    vector_database: 7
     vector_databases: 1
     vpn_mesh: 5
     web_framework: 1
@@ -520,6 +521,35 @@ repos:
         fragmentation
     - path: core/internal/protocol/http.go:1
       purpose: Auth protocol - HTTP header-based authentication exchanged during handshake
+- node_id: repo::avelino/awesome-go
+  github_full_name: avelino/awesome-go
+  html_url: https://github.com/avelino/awesome-go
+  source: compiled_master
+  name: awesome-go
+  category: documentation
+  summary: Phase 4 B3 shallow intake for avelino/awesome-go as a curated Go ecosystem
+    reference index.
+  core_concepts:
+  - curated Go project catalog
+  - discoverability for Go tooling and libraries
+  key_entry_points:
+  - README.md
+  - CONTRIBUTING.md
+  build_run:
+    language: markdown
+    build: No build step required for curated list repository.
+    test: No automated test suite in this repository.
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/awesome-go.yaml
+    as_of: '2026-03-05T05:30:00Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::avelino/awesome-go
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::borgbackup/borg
   github_full_name: borgbackup/borg
   html_url: https://github.com/borgbackup/borg
@@ -606,6 +636,35 @@ repos:
         precedence: api_wins_readme_for_missing_required_fields
         fallback_source: readme_fallback
         fallback_used: false
+- node_id: repo::butlerx/wetty
+  github_full_name: butlerx/wetty
+  html_url: https://github.com/butlerx/wetty
+  source: compiled_master
+  name: wetty
+  category: remote_access
+  summary: Phase 4 B3 shallow intake for butlerx/wetty as a browser-accessible terminal
+    over SSH utility.
+  core_concepts:
+  - web terminal access
+  - SSH proxy workflow
+  key_entry_points:
+  - README.md
+  - src/
+  build_run:
+    language: typescript
+    build: npm run build
+    test: npm test
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/wetty.yaml
+    as_of: '2026-03-05T05:30:00Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::butlerx/wetty
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::capistrano/capistrano
   github_full_name: capistrano/capistrano
   html_url: https://github.com/capistrano/capistrano
@@ -685,6 +744,35 @@ repos:
         precedence: api_wins_readme_for_missing_required_fields
         fallback_source: readme_fallback
         fallback_used: false
+- node_id: repo::code-yeongyu/oh-my-opencode
+  github_full_name: code-yeongyu/oh-my-opencode
+  html_url: https://github.com/code-yeongyu/oh-my-opencode
+  source: compiled_master
+  name: oh-my-opencode
+  category: agent_cli
+  summary: Phase 4 B3 shallow intake for code-yeongyu/oh-my-opencode as an extension
+    pack around agent CLI workflows.
+  core_concepts:
+  - agent cli customization
+  - extension and prompt packaging
+  key_entry_points:
+  - README.md
+  - docs/
+  build_run:
+    language: mixed
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/oh-my-opencode.yaml
+    as_of: '2026-03-05T05:30:00Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::code-yeongyu/oh-my-opencode
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::coder/code-server
   github_full_name: coder/code-server
   html_url: https://github.com/coder/code-server
@@ -1519,6 +1607,35 @@ repos:
         dynamic routing
     - path: src/app/
       purpose: Next.js App Router pages for the web dashboard
+- node_id: repo::frankbria/ralph-claude-code
+  github_full_name: frankbria/ralph-claude-code
+  html_url: https://github.com/frankbria/ralph-claude-code
+  source: compiled_master
+  name: ralph-claude-code
+  category: agent_cli
+  summary: Phase 4 B3 shallow intake for frankbria/ralph-claude-code as a Claude Code
+    workflow companion utility.
+  core_concepts:
+  - claude code workflow automation
+  - task orchestration helpers
+  key_entry_points:
+  - README.md
+  - src/
+  build_run:
+    language: mixed
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/ralph-claude-code.yaml
+    as_of: '2026-03-05T05:30:00Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::frankbria/ralph-claude-code
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::ggml-org/llama.cpp
   github_full_name: ggml-org/llama.cpp
   html_url: https://github.com/ggml-org/llama.cpp
@@ -1903,6 +2020,65 @@ repos:
       purpose: tsh client entry point - user CLI for connecting to Teleport clusters
     - path: tool/tctl/main.go:32
       purpose: tctl admin tool - cluster management, user provisioning, configuration
+- node_id: repo::haifengl/smile
+  github_full_name: haifengl/smile
+  html_url: https://github.com/haifengl/smile
+  source: compiled_master
+  name: smile
+  category: machine_learning
+  summary: Phase 4 B3 shallow intake for haifengl/smile as a JVM machine learning
+    and data mining toolkit.
+  core_concepts:
+  - statistical learning algorithms
+  - JVM data science tooling
+  key_entry_points:
+  - README.md
+  - scala/
+  - core/
+  build_run:
+    language: java
+    build: ./gradlew build
+    test: ./gradlew test
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/smile.yaml
+    as_of: '2026-03-05T05:30:00Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::haifengl/smile
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
+- node_id: repo::henryboldi/felony
+  github_full_name: henryboldi/felony
+  html_url: https://github.com/henryboldi/felony
+  source: compiled_master
+  name: felony
+  category: agent_cli
+  summary: Phase 4 B3 shallow intake for henryboldi/felony as a command-line utility
+    in the agent tooling ecosystem.
+  core_concepts:
+  - command-line developer workflow
+  - terminal-first automation helpers
+  key_entry_points:
+  - README.md
+  - src/
+  build_run:
+    language: mixed
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/felony.yaml
+    as_of: '2026-03-05T05:30:00Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::henryboldi/felony
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::hiddify/hiddify-app
   github_full_name: hiddify/hiddify-app
   html_url: https://github.com/hiddify/hiddify-app
@@ -2099,6 +2275,65 @@ repos:
     - LoRA (Low-Rank Adaptation)
     - QLoRA (Quantized LoRA)
     - DoRA (Weight-Decomposed Low-Rank Adaptation)
+- node_id: repo::iluwatar/java-design-patterns
+  github_full_name: iluwatar/java-design-patterns
+  html_url: https://github.com/iluwatar/java-design-patterns
+  source: compiled_master
+  name: java-design-patterns
+  category: documentation
+  summary: Phase 4 B3 shallow intake for iluwatar/java-design-patterns as a reference
+    implementation catalog of software design patterns.
+  core_concepts:
+  - design pattern exemplars
+  - Java architecture references
+  key_entry_points:
+  - README.md
+  - java-design-patterns/
+  build_run:
+    language: java
+    build: mvn -q package
+    test: mvn -q test
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/java-design-patterns.yaml
+    as_of: '2026-03-05T05:30:00Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::iluwatar/java-design-patterns
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
+- node_id: repo::infiniflow/infinity
+  github_full_name: infiniflow/infinity
+  html_url: https://github.com/infiniflow/infinity
+  source: compiled_master
+  name: infinity
+  category: vector_database
+  summary: Phase 4 B3 shallow intake for infiniflow/infinity as an AI-native database
+    for vector and hybrid retrieval workloads.
+  core_concepts:
+  - vector indexing and retrieval
+  - hybrid search infrastructure
+  key_entry_points:
+  - README.md
+  - src/
+  - python/
+  build_run:
+    language: mixed
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/infinity.yaml
+    as_of: '2026-03-05T05:30:00Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::infiniflow/infinity
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::infiniflow/ragflow
   github_full_name: infiniflow/ragflow
   html_url: https://github.com/infiniflow/ragflow

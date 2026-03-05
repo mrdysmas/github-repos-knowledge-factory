@@ -1,7 +1,7 @@
 metadata:
   created: 2026-02-20
   purpose: Quick reference for LLM-related repositories
-  total_repos: 60
+  total_repos: 68
 categories:
   rag_frameworks:
     description: RAG, orchestration, and LLM application frameworks
@@ -95,12 +95,21 @@ categories:
     - name: copilot-cli
       summary: Phase 4 Corpus Expansion P4-B1 intake for github/copilot-cli. Agent
         CLI repository routed explicitly to llm_repos.
+    - name: felony
+      summary: Phase 4 B3 shallow intake for henryboldi/felony as a command-line utility
+        in the agent tooling ecosystem.
     - name: kimi-cli
       summary: Phase 4 Corpus Expansion P4-B1 intake for MoonshotAI/kimi-cli. Agent
         CLI repository routed explicitly to llm_repos.
+    - name: oh-my-opencode
+      summary: Phase 4 B3 shallow intake for code-yeongyu/oh-my-opencode as an extension
+        pack around agent CLI workflows.
     - name: opencode
       summary: Phase 4 Corpus Expansion P4-B1 intake for anomalyco/opencode. Agent
         CLI repository routed explicitly to llm_repos.
+    - name: ralph-claude-code
+      summary: Phase 4 B3 shallow intake for frankbria/ralph-claude-code as a Claude
+        Code workflow companion utility.
   agent_platform:
     description: 'Remote-ingested category: agent_platform'
     repos:
@@ -125,6 +134,9 @@ categories:
   vector_database:
     description: 'Remote-ingested category: vector_database'
     repos:
+    - name: infinity
+      summary: Phase 4 B3 shallow intake for infiniflow/infinity as an AI-native database
+        for vector and hybrid retrieval workloads.
     - name: lancedb
       summary: Shallow intake pilot canonicalization for lancedb/lancedb in vector
         database domain.
@@ -188,6 +200,9 @@ categories:
     - name: code-server
       summary: Phase 4 Corpus Expansion P4-B2 intake for coder/code-server. Remote
         access repository routed explicitly to llm_repos.
+    - name: wetty
+      summary: Phase 4 B3 shallow intake for butlerx/wetty as a browser-accessible
+        terminal over SSH utility.
   cli_tool:
     description: 'Remote-ingested category: cli_tool'
     repos:
@@ -218,6 +233,21 @@ categories:
     - name: Stirling-PDF
       summary: Phase 4 Corpus Expansion P4-B2 intake for Stirling-Tools/Stirling-PDF.
         Office automation repository routed explicitly to llm_repos.
+  documentation:
+    description: 'Remote-ingested category: documentation'
+    repos:
+    - name: awesome-go
+      summary: Phase 4 B3 shallow intake for avelino/awesome-go as a curated Go ecosystem
+        reference index.
+    - name: java-design-patterns
+      summary: Phase 4 B3 shallow intake for iluwatar/java-design-patterns as a reference
+        implementation catalog of software design patterns.
+  machine_learning:
+    description: 'Remote-ingested category: machine_learning'
+    repos:
+    - name: smile
+      summary: Phase 4 B3 shallow intake for haifengl/smile as a JVM machine learning
+        and data mining toolkit.
 repos_alpha:
 - name: agent-skills
   category: agent_framework
@@ -237,6 +267,9 @@ repos_alpha:
 - name: awesome-claude-skills
   category: agent_framework
   file: repos/composiohq__awesome-claude-skills.yaml
+- name: awesome-go
+  category: documentation
+  file: repos/awesome-go.yaml
 - name: awesome-llm-apps
   category: rag_frameworks
   file: repos/awesome-llm-apps.yaml
@@ -258,6 +291,9 @@ repos_alpha:
 - name: dify
   category: agent_platform
   file: repos/langgenius__dify.yaml
+- name: felony
+  category: agent_cli
+  file: repos/felony.yaml
 - name: Flowise
   category: workflow_builder
   file: repos/flowiseai__flowise.yaml
@@ -267,9 +303,15 @@ repos_alpha:
 - name: graphrag
   category: rag_frameworks
   file: repos/graphrag.yaml
+- name: infinity
+  category: vector_database
+  file: repos/infinity.yaml
 - name: instructor
   category: agent_framework
   file: repos/instructor-ai__instructor.yaml
+- name: java-design-patterns
+  category: documentation
+  file: repos/java-design-patterns.yaml
 - name: JeecgBoot
   category: ui_tools
   file: repos/JeecgBoot.yaml
@@ -324,6 +366,9 @@ repos_alpha:
 - name: obsidian-smart-connections
   category: workflow_builder
   file: repos/brianpetro__obsidian-smart-connections.yaml
+- name: oh-my-opencode
+  category: agent_cli
+  file: repos/oh-my-opencode.yaml
 - name: ollama
   category: inference_serving
   file: repos/ollama.yaml
@@ -372,12 +417,18 @@ repos_alpha:
 - name: ragflow
   category: rag_frameworks
   file: repos/ragflow.yaml
+- name: ralph-claude-code
+  category: agent_cli
+  file: repos/ralph-claude-code.yaml
 - name: self-llm
   category: educational
   file: repos/self-llm.yaml
 - name: skills
   category: agent_framework
   file: repos/anthropics__skills.yaml
+- name: smile
+  category: machine_learning
+  file: repos/smile.yaml
 - name: Stirling-PDF
   category: office_automation
   file: repos/stirling-tools__stirling-pdf.yaml
@@ -396,6 +447,9 @@ repos_alpha:
 - name: weaviate
   category: vector_database
   file: repos/weaviate__weaviate.yaml
+- name: wetty
+  category: remote_access
+  file: repos/wetty.yaml
 - name: xinference
   category: inference_serving
   file: repos/xinference.yaml

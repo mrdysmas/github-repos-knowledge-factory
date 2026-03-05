@@ -2,12 +2,12 @@ artifact_type: ws6_deep_integration_coverage
 generated_at_utc: '2026-03-05T00:00:00Z'
 contract_version: 1.0.0-ws6-draft
 input_scope:
-  deep_narrative_files_total: 69
+  deep_narrative_files_total: 73
   deep_fact_draft_files_total: 0
-  repos_with_any_deep_inputs: 69
-  repos_materialized: 69
+  repos_with_any_deep_inputs: 73
+  repos_materialized: 73
 metrics:
-  facts_materialized_total: 3214
+  facts_materialized_total: 3418
   facts_with_evidence_pct: 100.0
   confidence_bounds_valid_pct: 100.0
   draft_overrides_count: 0
@@ -53,6 +53,32 @@ metrics:
     facts_emitted: 12
     blocked_facts: 0
     unmapped_sections_count: 1
+  - node_id: repo::ansible/ansible
+    github_full_name: ansible/ansible
+    shard: llm_repos
+    narrative_files: 1
+    draft_files: 0
+    narrative_facts_raw: 49
+    draft_facts_raw: 0
+    derived_facts_after_dedupe: 49
+    draft_overrides: 0
+    evidence_merges: 0
+    facts_emitted: 49
+    blocked_facts: 0
+    unmapped_sections_count: 0
+  - node_id: repo::anthropics/claude-code
+    github_full_name: anthropics/claude-code
+    shard: llm_repos
+    narrative_files: 1
+    draft_files: 0
+    narrative_facts_raw: 49
+    draft_facts_raw: 0
+    derived_facts_after_dedupe: 49
+    draft_overrides: 0
+    evidence_merges: 0
+    facts_emitted: 49
+    blocked_facts: 0
+    unmapped_sections_count: 0
   - node_id: repo::apernet/hysteria
     github_full_name: apernet/hysteria
     shard: ssh_repos
@@ -233,6 +259,19 @@ metrics:
     draft_overrides: 0
     evidence_merges: 0
     facts_emitted: 36
+    blocked_facts: 0
+    unmapped_sections_count: 0
+  - node_id: repo::gin-gonic/gin
+    github_full_name: gin-gonic/gin
+    shard: llm_repos
+    narrative_files: 1
+    draft_files: 0
+    narrative_facts_raw: 58
+    draft_facts_raw: 0
+    derived_facts_after_dedupe: 58
+    draft_overrides: 0
+    evidence_merges: 0
+    facts_emitted: 58
     blocked_facts: 0
     unmapped_sections_count: 0
   - node_id: repo::go-gost/gost
@@ -545,6 +584,19 @@ metrics:
     draft_overrides: 0
     evidence_merges: 0
     facts_emitted: 38
+    blocked_facts: 0
+    unmapped_sections_count: 0
+  - node_id: repo::openai/codex
+    github_full_name: openai/codex
+    shard: llm_repos
+    narrative_files: 1
+    draft_files: 0
+    narrative_facts_raw: 48
+    draft_facts_raw: 0
+    derived_facts_after_dedupe: 48
+    draft_overrides: 0
+    evidence_merges: 0
+    facts_emitted: 48
     blocked_facts: 0
     unmapped_sections_count: 0
   - node_id: repo::pathwaycom/llm-app
@@ -928,10 +980,13 @@ actions:
   materialized_repo_files:
   - llm_repos/knowledge/deep_facts/JeecgBoot.yaml
   - llm_repos/knowledge/deep_facts/Prompt-Engineering-Guide.yaml
+  - llm_repos/knowledge/deep_facts/ansible__ansible.yaml
+  - llm_repos/knowledge/deep_facts/anthropics__claude-code.yaml
   - llm_repos/knowledge/deep_facts/anything_llm.yaml
   - llm_repos/knowledge/deep_facts/awesome-llm-apps.yaml
   - llm_repos/knowledge/deep_facts/dottxt-ai__outlines.yaml
   - llm_repos/knowledge/deep_facts/flowiseai__flowise.yaml
+  - llm_repos/knowledge/deep_facts/gin-gonic__gin.yaml
   - llm_repos/knowledge/deep_facts/graphrag.yaml
   - llm_repos/knowledge/deep_facts/khoj.yaml
   - llm_repos/knowledge/deep_facts/langchain.yaml
@@ -948,6 +1003,7 @@ actions:
   - llm_repos/knowledge/deep_facts/nexa_sdk.yaml
   - llm_repos/knowledge/deep_facts/ollama.yaml
   - llm_repos/knowledge/deep_facts/open_webui.yaml
+  - llm_repos/knowledge/deep_facts/openai__codex.yaml
   - llm_repos/knowledge/deep_facts/opencompass.yaml
   - llm_repos/knowledge/deep_facts/parlant.yaml
   - llm_repos/knowledge/deep_facts/pathway.yaml
