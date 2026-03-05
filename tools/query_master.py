@@ -13,6 +13,10 @@ future generated SQLite/DuckDB read-model.
 from __future__ import annotations
 
 import argparse
+import hashlib
+import json
+import sqlite3
+import time
 from pathlib import Path
 from typing import Any
 
@@ -31,6 +35,46 @@ def dump_yaml(payload: Any) -> str:
         allow_unicode=False,
         default_flow_style=False,
     )
+
+
+def sha256_file(path: Path) -> str:
+    hasher = hashlib.sha256()
+    with path.open("rb") as handle:
+        while True:
+            chunk = handle.read(1024 * 1024)
+            if not chunk:
+                break
+            hasher.update(chunk)
+    return hasher.hexdigest()
+
+
+def check_stale_db(workspace_root: Path, db_path: Path) -> str | None:
+    """Return an error message if knowledge.db is stale, or None if fresh."""
+    conn = sqlite3.connect(db_path)
+    try:
+        row = conn.execute(
+            "SELECT source_index_hash, source_graph_hash, source_facts_hash FROM compile_metadata"
+        ).fetchone()
+        if row is None:
+            return "knowledge.db has no compile_metadata row."
+    finally:
+        conn.close()
+
+    stored_index_hash, stored_graph_hash, stored_facts_hash = row
+
+    checks = [
+        ("master_index.yaml", stored_index_hash),
+        ("master_graph.yaml", stored_graph_hash),
+        ("master_deep_facts.yaml", stored_facts_hash),
+    ]
+    for filename, stored_hash in checks:
+        file_path = workspace_root / filename
+        if not file_path.exists():
+            return f"knowledge.db is stale — {filename} not found."
+        current_hash = sha256_file(file_path)
+        if current_hash != stored_hash:
+            return f"knowledge.db is stale — {filename} has changed since last compile."
+    return None
 
 
 def ensure_list_of_dicts(value: Any) -> list[dict[str, Any]]:
@@ -111,7 +155,7 @@ def load_master_artifacts(workspace_root: Path, master_index_path: str, master_g
 def command_contract() -> dict[str, Any]:
     return {
         "artifact_type": "master_query_cli_contract",
-        "version": "1.0.0",
+        "version": "1.1.0",
         "commands": {
             "contract": "Show this CLI contract.",
             "stats": "Show top-level counts from master artifacts.",
@@ -125,6 +169,8 @@ def command_contract() -> dict[str, Any]:
             "master_graph": "master_graph.yaml",
             "master_deep_facts": "master_deep_facts.yaml",
         },
+        "source_options": ["sqlite", "yaml"],
+        "default_source": "sqlite",
     }
 
 
@@ -246,6 +292,130 @@ def command_facts(payload: dict[str, Any], identifier: str, predicate: str) -> t
     }
 
 
+def command_stats_sqlite(conn: sqlite3.Connection, db_path: str) -> dict[str, Any]:
+    counts: dict[str, int] = {}
+    for table, key in [("repos", "repos"), ("nodes", "nodes"), ("edges", "edges"), ("facts", "deep_facts")]:
+        counts[key] = conn.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0]
+    return {
+        "artifact_type": "master_query_stats",
+        "counts": counts,
+        "sources": {
+            "knowledge_db": db_path,
+        },
+    }
+
+
+def command_repo_sqlite(conn: sqlite3.Connection, identifier: str) -> tuple[int, dict[str, Any]]:
+    row = conn.execute(
+        "SELECT raw_yaml FROM repos WHERE node_id = ? OR name = ? OR github_full_name = ?",
+        (identifier, identifier, identifier),
+    ).fetchone()
+    if row is None:
+        return 2, {"error": f"Repo identifier not found: {identifier}"}
+    repo = json.loads(row[0])
+    node_id = repo.get("node_id", identifier)
+    return 0, {"artifact_type": "master_query_repo", "node_id": node_id, "repo": repo}
+
+
+def command_neighbors_sqlite(
+    conn: sqlite3.Connection,
+    identifier: str,
+    direction: str,
+    relation: str,
+) -> tuple[int, dict[str, Any]]:
+    resolved = conn.execute(
+        "SELECT node_id FROM repos WHERE node_id = ? OR name = ? OR github_full_name = ?",
+        (identifier, identifier, identifier),
+    ).fetchone()
+    if resolved is None:
+        return 2, {"error": f"Repo identifier not found: {identifier}"}
+    node_id = resolved[0]
+
+    conditions = []
+    params: list[str] = []
+
+    if direction == "out":
+        conditions.append("src_id = ?")
+        params.append(node_id)
+    elif direction == "in":
+        conditions.append("dst_id = ?")
+        params.append(node_id)
+    else:
+        conditions.append("(src_id = ? OR dst_id = ?)")
+        params.extend([node_id, node_id])
+
+    if relation:
+        conditions.append("relation = ?")
+        params.append(relation)
+
+    where_clause = " AND ".join(conditions)
+    rows = conn.execute(
+        f"SELECT raw_yaml FROM edges WHERE {where_clause}",
+        params,
+    ).fetchall()
+
+    edges = [json.loads(row[0]) for row in rows]
+    edges.sort(
+        key=lambda row: (
+            str(row.get("src_id") or ""),
+            str(row.get("dst_kind") or ""),
+            str(row.get("dst_id") or ""),
+            str(row.get("relation") or ""),
+        )
+    )
+
+    return 0, {
+        "artifact_type": "master_query_neighbors",
+        "node_id": node_id,
+        "direction": direction,
+        "relation_filter": relation or None,
+        "edges": edges,
+    }
+
+
+def command_facts_sqlite(
+    conn: sqlite3.Connection,
+    identifier: str,
+    predicate: str,
+) -> tuple[int, dict[str, Any]]:
+    resolved = conn.execute(
+        "SELECT node_id FROM repos WHERE node_id = ? OR name = ? OR github_full_name = ?",
+        (identifier, identifier, identifier),
+    ).fetchone()
+    if resolved is None:
+        return 2, {"error": f"Repo identifier not found: {identifier}"}
+    node_id = resolved[0]
+
+    total = conn.execute("SELECT COUNT(*) FROM facts").fetchone()[0]
+    if total == 0:
+        return 2, {
+            "error": "No deep facts found. Expected master_deep_facts.yaml with top-level 'facts' list.",
+            "hint": "Generate WS6 deep facts first.",
+        }
+
+    conditions = ["node_id = ?"]
+    params: list[str] = [node_id]
+    if predicate:
+        conditions.append("predicate = ?")
+        params.append(predicate)
+
+    where_clause = " AND ".join(conditions)
+    rows = conn.execute(
+        f"SELECT raw_yaml FROM facts WHERE {where_clause}",
+        params,
+    ).fetchall()
+
+    facts = [json.loads(row[0]) for row in rows]
+    facts.sort(key=lambda row: (str(row.get("predicate") or ""), str(row.get("fact_id") or "")))
+
+    return 0, {
+        "artifact_type": "master_query_facts",
+        "node_id": node_id,
+        "predicate_filter": predicate or None,
+        "facts": facts,
+    }
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Minimal query CLI for canonical master artifacts.")
     parser.add_argument("--workspace-root", default=".", help="Workspace root path.")
@@ -255,6 +425,12 @@ def main() -> int:
         "--master-deep-facts",
         default="master_deep_facts.yaml",
         help="Path to master deep facts YAML.",
+    )
+    parser.add_argument(
+        "--source",
+        default="sqlite",
+        choices=["sqlite", "yaml"],
+        help="Data source: sqlite (default, reads knowledge.db) or yaml (legacy, loads YAML files).",
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
 
@@ -289,6 +465,43 @@ def main() -> int:
         return 0
 
     workspace_root = Path(args.workspace_root).resolve()
+
+    if args.source == "sqlite":
+        db_path = workspace_root / "knowledge.db"
+        if not db_path.exists():
+            print("ERROR: knowledge.db not found. Run: python3 tools/ws7_read_model_compiler.py --workspace-root .")
+            return 1
+
+        stale_error = check_stale_db(workspace_root, db_path)
+        if stale_error:
+            print(f"ERROR: {stale_error}")
+            print("Run: python3 tools/ws7_read_model_compiler.py --workspace-root .")
+            return 1
+
+        conn = sqlite3.connect(db_path)
+        try:
+            start_time = time.monotonic()
+
+            if args.command == "stats":
+                body = command_stats_sqlite(conn, db_path.as_posix())
+                code = 0
+            elif args.command == "repo":
+                code, body = command_repo_sqlite(conn, args.id)
+            elif args.command == "neighbors":
+                code, body = command_neighbors_sqlite(conn, args.id, args.direction, args.relation.strip())
+            elif args.command == "facts":
+                code, body = command_facts_sqlite(conn, args.id, args.predicate.strip())
+            else:
+                body = {"error": f"Unhandled command: {args.command}"}
+                code = 2
+
+            elapsed_ms = int((time.monotonic() - start_time) * 1000)
+            print(dump_yaml(body).rstrip())
+            print(f"# query_ms: {elapsed_ms}")
+            return code
+        finally:
+            conn.close()
+
     payload = load_master_artifacts(
         workspace_root=workspace_root,
         master_index_path=args.master_index,

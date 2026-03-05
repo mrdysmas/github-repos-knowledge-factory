@@ -18,7 +18,7 @@ from typing import Any
 
 import yaml
 
-SCHEMA_VERSION = "1.0.0"
+SCHEMA_VERSION = "1.1.0"
 INDEX_FILE = "master_index.yaml"
 GRAPH_FILE = "master_graph.yaml"
 FACTS_FILE = "master_deep_facts.yaml"
@@ -188,7 +188,8 @@ def create_schema(conn: sqlite3.Connection) -> None:
           dst_kind TEXT,
           relation TEXT NOT NULL,
           note TEXT,
-          as_of TEXT
+          as_of TEXT,
+          raw_yaml TEXT NOT NULL
         );
 
         CREATE INDEX idx_edges_src_id ON edges(src_id);
@@ -298,8 +299,8 @@ def populate_database(
 
             conn.executemany(
                 """
-                INSERT INTO edges (src_id, dst_id, dst_kind, relation, note, as_of)
-                VALUES (?, ?, ?, ?, ?, ?)
+                INSERT INTO edges (src_id, dst_id, dst_kind, relation, note, as_of, raw_yaml)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
                 """,
                 [
                     (
@@ -309,6 +310,7 @@ def populate_database(
                         edge.get("relation"),
                         edge.get("note"),
                         edge.get("as_of"),
+                        json_dump(edge),
                     )
                     for edge in edges
                 ],
