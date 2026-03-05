@@ -39,7 +39,7 @@ required_commands:
   status: PLANNED
   exit_code: null
 - step: 6
-  command: python3 tools/query_master.py stats
+  command: python3 tools/query_master.py --source yaml stats
   expectation: deep_facts > 0
   status: PLANNED
   exit_code: null
@@ -54,14 +54,14 @@ execution_results:
     first_class
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-05T04:21:00Z'
-  duration_ms: 637
+  ran_at_utc: '2026-03-05T05:20:56Z'
+  duration_ms: 649
   observation: exit_code=0; ws1_contract_status_pass=true
   output_tail: "stdout_tail:\nexternal_node_policy: first_class\n\nPASS checks:\n\
     \  - Contract version aligned across WS1 artifacts: 1.0.0-ws1\n  - Source enums\
     \ aligned and remote-first ready: ['compiled_master', 'llm_repos', 'remote_api',\
     \ 'remote_metadata', 'ssh_repos']\n  - Shallow/deep identity contract OK for llm_repos:\
-    \ shallow=48 deep=30 local_deep_coverage=100%\n  - Shallow/deep identity contract\
+    \ shallow=60 deep=30 local_deep_coverage=100%\n  - Shallow/deep identity contract\
     \ OK for ssh_repos: shallow=37 deep=35 local_deep_coverage=100%\n  - Relation\
     \ mapping coverage OK: unique=12/12 rows=14/14\n  - External node policy mode\
     \ selected: first_class\n  - Edge/node consistency OK for policy 'first_class'\
@@ -70,8 +70,8 @@ execution_results:
   command: python3 tools/trust_gates.py llm_repos/knowledge --production
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-05T04:21:01Z'
-  duration_ms: 346
+  ran_at_utc: '2026-03-05T05:20:56Z'
+  duration_ms: 365
   observation: exit_code=0; overall_pass=true; ready_state_allowed_true=true
   output_tail: 'stdout_tail:
 
@@ -92,7 +92,7 @@ execution_results:
   command: python3 tools/trust_gates.py ssh_repos/knowledge --production
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-05T04:21:01Z'
+  ran_at_utc: '2026-03-05T05:20:56Z'
   duration_ms: 350
   observation: exit_code=0; overall_pass=true; ready_state_allowed_true=true
   output_tail: 'stdout_tail:
@@ -115,7 +115,7 @@ execution_results:
     --materialize-spec reports/ws6_deep_integration/spec.yaml
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-05T04:21:00Z'
+  ran_at_utc: '2026-03-05T05:20:55Z'
   duration_ms: 0
   observation: ws6_gate_ready=true blocking_mismatches=0 facts_materialized=2921
 - step: 5
@@ -123,8 +123,8 @@ execution_results:
     master_index.yaml --master-graph master_graph.yaml --reports-dir reports/ws4_master_build
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-05T04:21:07Z'
-  duration_ms: 5543
+  ran_at_utc: '2026-03-05T05:21:02Z'
+  duration_ms: 5753
   observation: exit_code=0; ws4_gate_ready=true
   output_tail: 'stdout_tail:
 
@@ -138,7 +138,7 @@ execution_results:
 
     reports_dir: /Users/szilaa/scripts/ext_sources/github_repos/reports/ws4_master_build
 
-    generated_at_utc: 2026-03-05T04:16:38Z
+    generated_at_utc: 2026-03-05T05:18:49Z
 
     gate_ready: true
 
@@ -150,20 +150,22 @@ execution_results:
 
     compile_errors: 0'
 - step: 6
-  command: python3 tools/query_master.py stats
+  command: python3 tools/query_master.py --source yaml stats
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-05T04:21:07Z'
-  duration_ms: 53
+  ran_at_utc: '2026-03-05T05:21:04Z'
+  duration_ms: 2105
   observation: exit_code=0; deep_facts=2921
   output_tail: "stdout_tail:\nartifact_type: master_query_stats\ncounts:\n  repos:\
-    \ 85\n  nodes: 99\n  edges: 152\n  deep_facts: 2921\nsources:\n  knowledge_db:\
-    \ /Users/szilaa/scripts/ext_sources/github_repos/knowledge.db\n# query_ms: 0"
+    \ 97\n  nodes: 111\n  edges: 152\n  deep_facts: 2921\nsources:\n  master_index:\
+    \ /Users/szilaa/scripts/ext_sources/github_repos/master_index.yaml\n  master_graph:\
+    \ /Users/szilaa/scripts/ext_sources/github_repos/master_graph.yaml\n  master_deep_facts:\
+    \ /Users/szilaa/scripts/ext_sources/github_repos/master_deep_facts.yaml"
 - step: 7
   command: Re-run WS6 command with identical input and verify output hashes unchanged
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-05T04:21:00Z'
+  ran_at_utc: '2026-03-05T05:20:55Z'
   duration_ms: 0
   observation: hash_stability=true
 artifact_hashes:

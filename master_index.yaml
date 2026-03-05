@@ -1,23 +1,23 @@
 artifact_type: ws4_master_index
-generated_at_utc: '2026-03-05T04:16:38Z'
+generated_at_utc: '2026-03-05T05:18:49Z'
 contract_version: 1.0.0-ws1
 metadata:
   source_shards:
   - llm_repos
   - ssh_repos
-  total_repos: 85
+  total_repos: 97
   repo_counts_by_shard:
-    llm_repos: 48
+    llm_repos: 60
     ssh_repos: 37
   category_counts:
     agent_cli: 5
     agent_framework: 6
     agent_frameworks: 3
-    agent_orchestration: 2
+    agent_orchestration: 3
     agent_platform: 1
     backup_tool: 1
     browser_automation: 1
-    cli_tool: 2
+    cli_tool: 3
     cli_wrapper: 1
     data_pipelines: 2
     data_transformation: 1
@@ -30,11 +30,13 @@ metadata:
     nearest_neighbor_search: 1
     network_infrastructure: 2
     network_utils: 1
+    office_automation: 2
     postgres_extension: 1
     rag_frameworks: 6
-    remote_access: 2
+    remote_access: 3
     snippet_collection: 1
     static_site_generator: 1
+    structured_outputs: 4
     terminal_emulator: 1
     terminal_multiplexer: 1
     terminal_ui: 1
@@ -44,7 +46,7 @@ metadata:
     vector_databases: 1
     vpn_mesh: 5
     web_framework: 1
-    workflow_builder: 1
+    workflow_builder: 4
   compiled_source: compiled_master
 repos:
 - node_id: repo::1panel-dev/maxkb
@@ -147,6 +149,47 @@ repos:
     - Corporate internal knowledge base
     - Academic research assistance
     - Educational chatbots
+- node_id: repo::airtable/airtable.js
+  github_full_name: airtable/airtable.js
+  html_url: https://github.com/airtable/airtable.js
+  source: compiled_master
+  name: airtable.js
+  category: workflow_builder
+  summary: Phase 4 Corpus Expansion P4-B2 intake for airtable/airtable.js. Workflow
+    builder repository routed explicitly to llm_repos.
+  core_concepts:
+  - API client integration
+  - workflow automation data modeling
+  key_entry_points:
+  - README.md
+  - src/
+  build_run:
+    language: javascript
+    build: npm run build
+    test: npm test
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/airtable__airtable.js.yaml
+    as_of: '2026-03-05T05:18:49Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::airtable/airtable.js
+    intake:
+      pilot_batch_id: PHASE-4-P4-B2
+      repo_id: repo::airtable/airtable.js
+      queue_id: intake::airtable/airtable.js
+      domain_hint: workflow_builder
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-05T05:18:49Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/airtable/airtable.js
+      fetched_at_utc: '2026-03-05T05:18:49Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
 - node_id: repo::anderspitman/awesome-tunneling
   github_full_name: anderspitman/awesome-tunneling
   html_url: https://github.com/anderspitman/awesome-tunneling
@@ -230,6 +273,47 @@ repos:
       mode: metadata
       endpoint: /repos/anomalyco/opencode
       fetched_at_utc: '2026-03-05T04:16:38Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
+- node_id: repo::ansible/ansible
+  github_full_name: ansible/ansible
+  html_url: https://github.com/ansible/ansible
+  source: compiled_master
+  name: ansible
+  category: agent_orchestration
+  summary: Phase 4 Corpus Expansion P4-B2 intake for ansible/ansible. Agent orchestration
+    repository routed explicitly to llm_repos.
+  core_concepts:
+  - infrastructure automation playbooks
+  - orchestrated task execution
+  key_entry_points:
+  - README.rst
+  - lib/ansible/
+  build_run:
+    language: python
+    build: python3 -m pip install -e .
+    test: python3 -m pytest
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/ansible__ansible.yaml
+    as_of: '2026-03-05T05:18:49Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::ansible/ansible
+    intake:
+      pilot_batch_id: PHASE-4-P4-B2
+      repo_id: repo::ansible/ansible
+      queue_id: intake::ansible/ansible
+      domain_hint: agent_orchestration
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-05T05:18:49Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/ansible/ansible
+      fetched_at_utc: '2026-03-05T05:18:49Z'
       refresh:
         precedence: api_wins_readme_for_missing_required_fields
         fallback_source: readme_fallback
@@ -481,6 +565,47 @@ repos:
         precedence: api_wins_readme_for_missing_required_fields
         fallback_source: readme_fallback
         fallback_used: false
+- node_id: repo::brianpetro/obsidian-smart-connections
+  github_full_name: brianpetro/obsidian-smart-connections
+  html_url: https://github.com/brianpetro/obsidian-smart-connections
+  source: compiled_master
+  name: obsidian-smart-connections
+  category: workflow_builder
+  summary: Phase 4 Corpus Expansion P4-B2 intake for brianpetro/obsidian-smart-connections.
+    Workflow builder repository routed explicitly to llm_repos.
+  core_concepts:
+  - knowledge graph note linking
+  - semantic retrieval workflows
+  key_entry_points:
+  - README.md
+  - src/
+  build_run:
+    language: typescript
+    build: npm run build
+    test: npm test
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/brianpetro__obsidian-smart-connections.yaml
+    as_of: '2026-03-05T05:18:49Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::brianpetro/obsidian-smart-connections
+    intake:
+      pilot_batch_id: PHASE-4-P4-B2
+      repo_id: repo::brianpetro/obsidian-smart-connections
+      queue_id: intake::brianpetro/obsidian-smart-connections
+      domain_hint: workflow_builder
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-05T05:18:49Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/brianpetro/obsidian-smart-connections
+      fetched_at_utc: '2026-03-05T05:18:49Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
 - node_id: repo::capistrano/capistrano
   github_full_name: capistrano/capistrano
   html_url: https://github.com/capistrano/capistrano
@@ -560,6 +685,47 @@ repos:
         precedence: api_wins_readme_for_missing_required_fields
         fallback_source: readme_fallback
         fallback_used: false
+- node_id: repo::coder/code-server
+  github_full_name: coder/code-server
+  html_url: https://github.com/coder/code-server
+  source: compiled_master
+  name: code-server
+  category: remote_access
+  summary: Phase 4 Corpus Expansion P4-B2 intake for coder/code-server. Remote access
+    repository routed explicitly to llm_repos.
+  core_concepts:
+  - browser-based development environment
+  - remote workspace access
+  key_entry_points:
+  - README.md
+  - src/
+  build_run:
+    language: typescript
+    build: npm run build
+    test: npm test
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/coder__code-server.yaml
+    as_of: '2026-03-05T05:18:49Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::coder/code-server
+    intake:
+      pilot_batch_id: PHASE-4-P4-B2
+      repo_id: repo::coder/code-server
+      queue_id: intake::coder/code-server
+      domain_hint: remote_access
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-05T05:18:49Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/coder/code-server
+      fetched_at_utc: '2026-03-05T05:18:49Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
 - node_id: repo::composiohq/awesome-claude-skills
   github_full_name: composiohq/awesome-claude-skills
   html_url: https://github.com/ComposioHQ/awesome-claude-skills
@@ -597,6 +763,47 @@ repos:
       mode: metadata
       endpoint: /repos/composiohq/awesome-claude-skills
       fetched_at_utc: '2026-03-05T04:16:38Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  html_url: https://github.com/containers/podman
+  source: compiled_master
+  name: podman
+  category: cli_tool
+  summary: Phase 4 Corpus Expansion P4-B2 intake for containers/podman. CLI tool repository
+    routed explicitly to llm_repos.
+  core_concepts:
+  - container runtime CLI workflows
+  - daemonless container management
+  key_entry_points:
+  - README.md
+  - cmd/podman/
+  build_run:
+    language: go
+    build: make
+    test: make test
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/containers__podman.yaml
+    as_of: '2026-03-05T05:18:49Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::containers/podman
+    intake:
+      pilot_batch_id: PHASE-4-P4-B2
+      repo_id: repo::containers/podman
+      queue_id: intake::containers/podman
+      domain_hint: cli_tool
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-05T05:18:49Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/containers/podman
+      fetched_at_utc: '2026-03-05T05:18:49Z'
       refresh:
         precedence: api_wins_readme_for_missing_required_fields
         fallback_source: readme_fallback
@@ -803,6 +1010,47 @@ repos:
       purpose: Index of all tutorials
     - path: llm-universe-main/
       purpose: Core learning materials and code examples
+- node_id: repo::dottxt-ai/outlines
+  github_full_name: dottxt-ai/outlines
+  html_url: https://github.com/dottxt-ai/outlines
+  source: compiled_master
+  name: outlines
+  category: structured_outputs
+  summary: Phase 4 Corpus Expansion P4-B2 intake for dottxt-ai/outlines. Structured
+    outputs repository routed explicitly to llm_repos.
+  core_concepts:
+  - constrained generation
+  - typed structured output extraction
+  key_entry_points:
+  - README.md
+  - outlines/
+  build_run:
+    language: python
+    build: python3 -m pip install -e .
+    test: python3 -m pytest
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/dottxt-ai__outlines.yaml
+    as_of: '2026-03-05T05:18:49Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::dottxt-ai/outlines
+    intake:
+      pilot_batch_id: PHASE-4-P4-B2
+      repo_id: repo::dottxt-ai/outlines
+      queue_id: intake::dottxt-ai/outlines
+      domain_hint: structured_outputs
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-05T05:18:49Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/dottxt-ai/outlines
+      fetched_at_utc: '2026-03-05T05:18:49Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
 - node_id: repo::drduh/yubikey-guide
   github_full_name: drduh/yubikey-guide
   html_url: https://github.com/drduh/yubikey-guide
@@ -2434,6 +2682,47 @@ repos:
     - Research assistant
     - Document chat
     - Automated newsletters/notifications
+- node_id: repo::krosebrook/archdesigner
+  github_full_name: krosebrook/archdesigner
+  html_url: https://github.com/Krosebrook/archdesigner
+  source: compiled_master
+  name: archdesigner
+  category: workflow_builder
+  summary: Phase 4 Corpus Expansion P4-B2 intake for Krosebrook/archdesigner. Workflow
+    builder repository routed explicitly to llm_repos.
+  core_concepts:
+  - architecture workflow design
+  - structured planning artifacts
+  key_entry_points:
+  - README.md
+  - docs/
+  build_run:
+    language: mixed
+    build: See upstream README for build steps.
+    test: See upstream README for test steps.
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/krosebrook__archdesigner.yaml
+    as_of: '2026-03-05T05:18:49Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::krosebrook/archdesigner
+    intake:
+      pilot_batch_id: PHASE-4-P4-B2
+      repo_id: repo::Krosebrook/archdesigner
+      queue_id: intake::Krosebrook/archdesigner
+      domain_hint: workflow_builder
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-05T05:18:49Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/krosebrook/archdesigner
+      fetched_at_utc: '2026-03-05T05:18:49Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
 - node_id: repo::lancedb/lancedb
   github_full_name: lancedb/lancedb
   html_url: https://github.com/lancedb/lancedb
@@ -3841,6 +4130,47 @@ repos:
         precedence: api_wins_readme_for_missing_required_fields
         fallback_source: readme_fallback
         fallback_used: false
+- node_id: repo::paddlepaddle/paddleocr
+  github_full_name: paddlepaddle/paddleocr
+  html_url: https://github.com/PaddlePaddle/PaddleOCR
+  source: compiled_master
+  name: PaddleOCR
+  category: office_automation
+  summary: Phase 4 Corpus Expansion P4-B2 intake for PaddlePaddle/PaddleOCR. Office
+    automation repository routed explicitly to llm_repos.
+  core_concepts:
+  - optical character recognition pipeline
+  - document understanding workflows
+  key_entry_points:
+  - README.md
+  - ppocr/
+  build_run:
+    language: python
+    build: python3 -m pip install -e .
+    test: python3 -m pytest
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/paddlepaddle__paddleocr.yaml
+    as_of: '2026-03-05T05:18:49Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::paddlepaddle/paddleocr
+    intake:
+      pilot_batch_id: PHASE-4-P4-B2
+      repo_id: repo::PaddlePaddle/PaddleOCR
+      queue_id: intake::PaddlePaddle/PaddleOCR
+      domain_hint: office_automation
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-05T05:18:49Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/paddlepaddle/paddleocr
+      fetched_at_utc: '2026-03-05T05:18:49Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
 - node_id: repo::pathwaycom/llm-app
   github_full_name: pathwaycom/llm-app
   html_url: https://github.com/pathwaycom/llm-app
@@ -4147,6 +4477,47 @@ repos:
         precedence: api_wins_readme_for_missing_required_fields
         fallback_source: readme_fallback
         fallback_used: false
+- node_id: repo::pydantic/pydantic
+  github_full_name: pydantic/pydantic
+  html_url: https://github.com/pydantic/pydantic
+  source: compiled_master
+  name: pydantic
+  category: structured_outputs
+  summary: Phase 4 Corpus Expansion P4-B2 intake for pydantic/pydantic. Structured
+    outputs repository routed explicitly to llm_repos.
+  core_concepts:
+  - runtime data validation
+  - typed model serialization
+  key_entry_points:
+  - README.md
+  - pydantic/
+  build_run:
+    language: python
+    build: python3 -m pip install -e .
+    test: python3 -m pytest
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/pydantic__pydantic.yaml
+    as_of: '2026-03-05T05:18:49Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::pydantic/pydantic
+    intake:
+      pilot_batch_id: PHASE-4-P4-B2
+      repo_id: repo::pydantic/pydantic
+      queue_id: intake::pydantic/pydantic
+      domain_hint: structured_outputs
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-05T05:18:49Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/pydantic/pydantic
+      fetched_at_utc: '2026-03-05T05:18:49Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
 - node_id: repo::pydantic/pydantic-ai
   github_full_name: pydantic/pydantic-ai
   html_url: https://github.com/pydantic/pydantic-ai
@@ -4188,6 +4559,88 @@ repos:
       mode: metadata
       endpoint: /repos/pydantic/pydantic-ai
       fetched_at_utc: '2026-02-24T19:46:56Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
+- node_id: repo::pydantic/pydantic-core
+  github_full_name: pydantic/pydantic-core
+  html_url: https://github.com/pydantic/pydantic-core
+  source: compiled_master
+  name: pydantic-core
+  category: structured_outputs
+  summary: Phase 4 Corpus Expansion P4-B2 intake for pydantic/pydantic-core. Structured
+    outputs repository routed explicitly to llm_repos.
+  core_concepts:
+  - rust validation engine
+  - python binding performance paths
+  key_entry_points:
+  - README.md
+  - src/
+  build_run:
+    language: rust
+    build: maturin develop
+    test: python3 -m pytest
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/pydantic__pydantic-core.yaml
+    as_of: '2026-03-05T05:18:49Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::pydantic/pydantic-core
+    intake:
+      pilot_batch_id: PHASE-4-P4-B2
+      repo_id: repo::pydantic/pydantic-core
+      queue_id: intake::pydantic/pydantic-core
+      domain_hint: structured_outputs
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-05T05:18:49Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/pydantic/pydantic-core
+      fetched_at_utc: '2026-03-05T05:18:49Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
+- node_id: repo::pydantic/pydantic-settings
+  github_full_name: pydantic/pydantic-settings
+  html_url: https://github.com/pydantic/pydantic-settings
+  source: compiled_master
+  name: pydantic-settings
+  category: structured_outputs
+  summary: Phase 4 Corpus Expansion P4-B2 intake for pydantic/pydantic-settings. Structured
+    outputs repository routed explicitly to llm_repos.
+  core_concepts:
+  - environment configuration models
+  - typed settings management
+  key_entry_points:
+  - README.md
+  - pydantic_settings/
+  build_run:
+    language: python
+    build: python3 -m pip install -e .
+    test: python3 -m pytest
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/pydantic__pydantic-settings.yaml
+    as_of: '2026-03-05T05:18:49Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::pydantic/pydantic-settings
+    intake:
+      pilot_batch_id: PHASE-4-P4-B2
+      repo_id: repo::pydantic/pydantic-settings
+      queue_id: intake::pydantic/pydantic-settings
+      domain_hint: structured_outputs
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-05T05:18:49Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/pydantic/pydantic-settings
+      fetched_at_utc: '2026-03-05T05:18:49Z'
       refresh:
         precedence: api_wins_readme_for_missing_required_fields
         fallback_source: readme_fallback
@@ -4930,6 +5383,47 @@ repos:
         client-server communication
     - path: sshuttle/methods/__init__.py:109
       purpose: Firewall method dispatcher - loads appropriate backend (nat/nft/pf/ipfw/windivert)
+- node_id: repo::stirling-tools/stirling-pdf
+  github_full_name: stirling-tools/stirling-pdf
+  html_url: https://github.com/Stirling-Tools/Stirling-PDF
+  source: compiled_master
+  name: Stirling-PDF
+  category: office_automation
+  summary: Phase 4 Corpus Expansion P4-B2 intake for Stirling-Tools/Stirling-PDF.
+    Office automation repository routed explicitly to llm_repos.
+  core_concepts:
+  - pdf transformation workflows
+  - self-hosted document operations
+  key_entry_points:
+  - README.md
+  - src/
+  build_run:
+    language: java
+    build: ./gradlew build
+    test: ./gradlew test
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/stirling-tools__stirling-pdf.yaml
+    as_of: '2026-03-05T05:18:49Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::stirling-tools/stirling-pdf
+    intake:
+      pilot_batch_id: PHASE-4-P4-B2
+      repo_id: repo::Stirling-Tools/Stirling-PDF
+      queue_id: intake::Stirling-Tools/Stirling-PDF
+      domain_hint: office_automation
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-05T05:18:49Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/stirling-tools/stirling-pdf
+      fetched_at_utc: '2026-03-05T05:18:49Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
 - node_id: repo::streisandeffect/streisand
   github_full_name: streisandeffect/streisand
   html_url: https://github.com/streisandeffect/streisand

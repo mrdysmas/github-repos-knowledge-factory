@@ -18,12 +18,20 @@
 !/ssh_repos/*.yaml
 !/ssh_repos/.gitignore
 
+# Non-canonical local corpora (scratch/source clones)
+/cli_repos/
+/go_repos/
+/structured_outputs/
+/uncat_repos/
+/vector_db/
+
 # Local noise (kept last so these still win inside allowlisted folders)
 **/.DS_Store
 **/__pycache__/
 **/*.py[cod]
 **/.tmp/
 **/.knowledge-history/
+/reports/ws6_deep_integration/deep_audit_*.md
 
 # WS7 read model — derived artifact, rebuilt on every compile
 knowledge.db

@@ -1,0 +1,41 @@
+name: PaddleOCR
+node_id: repo::paddlepaddle/paddleocr
+github_full_name: paddlepaddle/paddleocr
+html_url: https://github.com/PaddlePaddle/PaddleOCR
+source: remote_metadata
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/repos/paddlepaddle__paddleocr.yaml
+  as_of: '2026-03-05T05:18:49Z'
+directory: remote::paddlepaddle/paddleocr
+category: office_automation
+summary: Phase 4 Corpus Expansion P4-B2 intake for PaddlePaddle/PaddleOCR. Office
+  automation repository routed explicitly to llm_repos.
+core_concepts:
+- optical character recognition pipeline
+- document understanding workflows
+key_entry_points:
+- README.md
+- ppocr/
+build_run:
+  language: python
+  build: python3 -m pip install -e .
+  test: python3 -m pytest
+local_cache_dir: null
+extras:
+  intake:
+    pilot_batch_id: PHASE-4-P4-B2
+    repo_id: repo::PaddlePaddle/PaddleOCR
+    queue_id: intake::PaddlePaddle/PaddleOCR
+    domain_hint: office_automation
+    source_mode: remote_metadata
+    observed_at_utc: '2026-03-05T05:18:49Z'
+  remote:
+    provider: github
+    mode: metadata
+    endpoint: /repos/paddlepaddle/paddleocr
+    fetched_at_utc: '2026-03-05T05:18:49Z'
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false

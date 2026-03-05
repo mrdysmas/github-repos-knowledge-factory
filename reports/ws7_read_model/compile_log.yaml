@@ -1,20 +1,20 @@
 compile_run:
-  started_at_utc: '2026-03-05T04:21:15Z'
-  finished_at_utc: '2026-03-05T04:21:17Z'
-  duration_ms: 2166
+  started_at_utc: '2026-03-05T05:21:09Z'
+  finished_at_utc: '2026-03-05T05:21:11Z'
+  duration_ms: 2173
   result: ok
-  force_flag: true
+  force_flag: false
 source_files:
   index:
     path: master_index.yaml
-    sha256: ce1e50ac5b1332615ecfe49361d89b4bc8e5a6ca8b429667a3ecedbf913837fb
-    generated_at_utc: '2026-03-05T04:16:38Z'
-    repo_count: 85
+    sha256: 9ac4af89bc5c10b5aad707579fdab181996f338fcc857eec597a7bfa805eed4d
+    generated_at_utc: '2026-03-05T05:18:49Z'
+    repo_count: 97
   graph:
     path: master_graph.yaml
-    sha256: af1de6d3cf5bb1c1c763a89fbeeadaa2c0f366cbd2d36e6ede9afafc3df8b9b6
-    generated_at_utc: '2026-03-05T04:16:38Z'
-    node_count: 99
+    sha256: 23d1178e0a0bff5c07f43951adb6a93f11bac27a167ee919a5be74efbb8e1520
+    generated_at_utc: '2026-03-05T05:18:49Z'
+    node_count: 111
     edge_count: 152
   facts:
     path: master_deep_facts.yaml
@@ -23,21 +23,21 @@ source_files:
     fact_count: 2921
 gates:
   snapshot_consistency:
-    status: skipped (--force)
-    detail: index(ts=2026-03-05T04:16:38Z,sha256=ce1e50ac5b1332615ecfe49361d89b4bc8e5a6ca8b429667a3ecedbf913837fb),
-      graph(ts=2026-03-05T04:16:38Z,sha256=af1de6d3cf5bb1c1c763a89fbeeadaa2c0f366cbd2d36e6ede9afafc3df8b9b6),
+    status: warn
+    detail: 'timestamp divergence (non-blocking): index(ts=2026-03-05T05:18:49Z,sha256=9ac4af89bc5c10b5aad707579fdab181996f338fcc857eec597a7bfa805eed4d),
+      graph(ts=2026-03-05T05:18:49Z,sha256=23d1178e0a0bff5c07f43951adb6a93f11bac27a167ee919a5be74efbb8e1520),
       facts(ts=2026-03-04T00:00:00Z,sha256=86bf20f61f717b6a7358e7012c36e4eb45a80f74c775e7caeb093c7086a54fac),
-      max_delta_seconds=101798
+      max_delta_seconds=105529'
   row_count_parity:
     status: pass
     expected:
-      repos: 85
-      nodes: 99
+      repos: 97
+      nodes: 111
       edges: 152
       facts: 2921
     actual:
-      repos: 85
-      nodes: 99
+      repos: 97
+      nodes: 111
       edges: 152
       facts: 2921
   orphan_edge_detection:
@@ -49,8 +49,8 @@ gates:
     checks:
     - check: repos_count
       status: pass
-      expected: 85
-      actual: 85
+      expected: 97
+      actual: 97
     - check: first_repo_lookup
       status: pass
       node_id: repo::1panel-dev/maxkb
@@ -69,10 +69,10 @@ gates:
     detail: all compared tables match
 output:
   path: knowledge.db
-  size_bytes: 4386816
+  size_bytes: 4411392
   table_counts:
-    repos: 85
-    nodes: 99
+    repos: 97
+    nodes: 111
     edges: 152
     facts: 2921
     compile_metadata: 1

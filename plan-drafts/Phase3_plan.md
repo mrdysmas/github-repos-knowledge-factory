@@ -301,6 +301,7 @@ Migrate `query_master.py` to read from SQLite. Add `--source` flag for backward 
 - `query_master.py stats` works off `knowledge.db` without loading YAML files.
 - Existing test suite passes with SQLite path.
 - Performance is measurably faster (should be obvious at any corpus size, but worth recording).
+- Add explicit per-command query duration capture/logging so "measurably faster" is evidenced, not inferred.
 
 **Not in M2:** New query commands, graph traversal expansion.
 

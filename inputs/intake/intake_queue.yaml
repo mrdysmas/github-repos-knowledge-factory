@@ -1,6 +1,6 @@
 artifact_type: intake_repo_queue
 contract_version: 1.0.0-intake
-generated_at_utc: '2026-03-05T04:21:21Z'
+generated_at_utc: '2026-03-05T05:21:21Z'
 source:
   catalog_file: master_repo_list.yaml
   master_index_file: master_index.yaml
@@ -10,8 +10,8 @@ summary:
   source_rows_missing_github_url: 5
   source_rows_invalid_full_name: 0
   deduped_entries_total: 117
-  already_canonical_count: 83
-  queued_count: 34
+  already_canonical_count: 95
+  queued_count: 22
 policies:
   scan_mode_default: shallow_first
   clone_strategy: clone_on_demand
@@ -34,9 +34,9 @@ entries:
 - queue_id: intake::airtable/airtable.js
   github_full_name: airtable/airtable.js
   html_url: https://github.com/airtable/airtable.js
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - workflow_repos
@@ -76,9 +76,9 @@ entries:
 - queue_id: intake::ansible/ansible
   github_full_name: ansible/ansible
   html_url: https://github.com/ansible/ansible
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - cli_repos
@@ -174,9 +174,9 @@ entries:
 - queue_id: intake::brianpetro/obsidian-smart-connections
   github_full_name: brianpetro/obsidian-smart-connections
   html_url: https://github.com/brianpetro/obsidian-smart-connections
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - office_repos
@@ -230,9 +230,9 @@ entries:
 - queue_id: intake::coder/code-server
   github_full_name: coder/code-server
   html_url: https://github.com/coder/code-server
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - cli_repos
@@ -258,9 +258,9 @@ entries:
 - queue_id: intake::containers/podman
   github_full_name: containers/podman
   html_url: https://github.com/containers/podman
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - cli_repos
@@ -300,9 +300,9 @@ entries:
 - queue_id: intake::dottxt-ai/outlines
   github_full_name: dottxt-ai/outlines
   html_url: https://github.com/dottxt-ai/outlines
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - structured_outputs
@@ -706,12 +706,12 @@ entries:
   needs_review_count: 0
   source_row_indexes:
   - 102
-- queue_id: intake::Krosebrook/archdesigner
-  github_full_name: Krosebrook/archdesigner
+- queue_id: intake::krosebrook/archdesigner
+  github_full_name: krosebrook/archdesigner
   html_url: https://github.com/Krosebrook/archdesigner
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - workflow_repos
@@ -1073,12 +1073,12 @@ entries:
   needs_review_count: 0
   source_row_indexes:
   - 65
-- queue_id: intake::PaddlePaddle/PaddleOCR
-  github_full_name: PaddlePaddle/PaddleOCR
+- queue_id: intake::paddlepaddle/paddleocr
+  github_full_name: paddlepaddle/paddleocr
   html_url: https://github.com/PaddlePaddle/PaddleOCR
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - office_repos
@@ -1160,9 +1160,9 @@ entries:
 - queue_id: intake::pydantic/pydantic
   github_full_name: pydantic/pydantic
   html_url: https://github.com/pydantic/pydantic
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - structured_outputs
@@ -1188,9 +1188,9 @@ entries:
 - queue_id: intake::pydantic/pydantic-core
   github_full_name: pydantic/pydantic-core
   html_url: https://github.com/pydantic/pydantic-core
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - structured_outputs
@@ -1202,9 +1202,9 @@ entries:
 - queue_id: intake::pydantic/pydantic-settings
   github_full_name: pydantic/pydantic-settings
   html_url: https://github.com/pydantic/pydantic-settings
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - structured_outputs
@@ -1393,12 +1393,12 @@ entries:
   needs_review_count: 0
   source_row_indexes:
   - 89
-- queue_id: intake::Stirling-Tools/Stirling-PDF
-  github_full_name: Stirling-Tools/Stirling-PDF
+- queue_id: intake::stirling-tools/stirling-pdf
+  github_full_name: stirling-tools/stirling-pdf
   html_url: https://github.com/Stirling-Tools/Stirling-PDF
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - office_repos

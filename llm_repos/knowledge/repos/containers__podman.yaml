@@ -1,0 +1,41 @@
+name: podman
+node_id: repo::containers/podman
+github_full_name: containers/podman
+html_url: https://github.com/containers/podman
+source: remote_metadata
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/repos/containers__podman.yaml
+  as_of: '2026-03-05T05:18:49Z'
+directory: remote::containers/podman
+category: cli_tool
+summary: Phase 4 Corpus Expansion P4-B2 intake for containers/podman. CLI tool repository
+  routed explicitly to llm_repos.
+core_concepts:
+- container runtime CLI workflows
+- daemonless container management
+key_entry_points:
+- README.md
+- cmd/podman/
+build_run:
+  language: go
+  build: make
+  test: make test
+local_cache_dir: null
+extras:
+  intake:
+    pilot_batch_id: PHASE-4-P4-B2
+    repo_id: repo::containers/podman
+    queue_id: intake::containers/podman
+    domain_hint: cli_tool
+    source_mode: remote_metadata
+    observed_at_utc: '2026-03-05T05:18:49Z'
+  remote:
+    provider: github
+    mode: metadata
+    endpoint: /repos/containers/podman
+    fetched_at_utc: '2026-03-05T05:18:49Z'
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false

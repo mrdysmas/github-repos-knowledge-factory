@@ -1,7 +1,7 @@
 metadata:
   created: 2026-02-20
   purpose: Quick reference for LLM-related repositories
-  total_repos: 48
+  total_repos: 60
 categories:
   rag_frameworks:
     description: RAG, orchestration, and LLM application frameworks
@@ -110,9 +110,18 @@ categories:
   workflow_builder:
     description: 'Remote-ingested category: workflow_builder'
     repos:
+    - name: airtable.js
+      summary: Phase 4 Corpus Expansion P4-B2 intake for airtable/airtable.js. Workflow
+        builder repository routed explicitly to llm_repos.
+    - name: archdesigner
+      summary: Phase 4 Corpus Expansion P4-B2 intake for Krosebrook/archdesigner.
+        Workflow builder repository routed explicitly to llm_repos.
     - name: Flowise
       summary: Shallow intake pilot canonicalization for flowiseai/flowise in workflow
         builder domain.
+    - name: obsidian-smart-connections
+      summary: Phase 4 Corpus Expansion P4-B2 intake for brianpetro/obsidian-smart-connections.
+        Workflow builder repository routed explicitly to llm_repos.
   vector_database:
     description: 'Remote-ingested category: vector_database'
     repos:
@@ -158,6 +167,9 @@ categories:
   agent_orchestration:
     description: 'Remote-ingested category: agent_orchestration'
     repos:
+    - name: ansible
+      summary: Phase 4 Corpus Expansion P4-B2 intake for ansible/ansible. Agent orchestration
+        repository routed explicitly to llm_repos.
     - name: claude-flow
       summary: Shallow intake pilot canonicalization for ruvnet/claude-flow in agent
         orchestration domain.
@@ -170,13 +182,58 @@ categories:
     - name: gin
       summary: Shallow intake pilot canonicalization for gin-gonic/gin in web framework
         domain.
+  remote_access:
+    description: 'Remote-ingested category: remote_access'
+    repos:
+    - name: code-server
+      summary: Phase 4 Corpus Expansion P4-B2 intake for coder/code-server. Remote
+        access repository routed explicitly to llm_repos.
+  cli_tool:
+    description: 'Remote-ingested category: cli_tool'
+    repos:
+    - name: podman
+      summary: Phase 4 Corpus Expansion P4-B2 intake for containers/podman. CLI tool
+        repository routed explicitly to llm_repos.
+  structured_outputs:
+    description: 'Remote-ingested category: structured_outputs'
+    repos:
+    - name: outlines
+      summary: Phase 4 Corpus Expansion P4-B2 intake for dottxt-ai/outlines. Structured
+        outputs repository routed explicitly to llm_repos.
+    - name: pydantic
+      summary: Phase 4 Corpus Expansion P4-B2 intake for pydantic/pydantic. Structured
+        outputs repository routed explicitly to llm_repos.
+    - name: pydantic-core
+      summary: Phase 4 Corpus Expansion P4-B2 intake for pydantic/pydantic-core. Structured
+        outputs repository routed explicitly to llm_repos.
+    - name: pydantic-settings
+      summary: Phase 4 Corpus Expansion P4-B2 intake for pydantic/pydantic-settings.
+        Structured outputs repository routed explicitly to llm_repos.
+  office_automation:
+    description: 'Remote-ingested category: office_automation'
+    repos:
+    - name: PaddleOCR
+      summary: Phase 4 Corpus Expansion P4-B2 intake for PaddlePaddle/PaddleOCR. Office
+        automation repository routed explicitly to llm_repos.
+    - name: Stirling-PDF
+      summary: Phase 4 Corpus Expansion P4-B2 intake for Stirling-Tools/Stirling-PDF.
+        Office automation repository routed explicitly to llm_repos.
 repos_alpha:
 - name: agent-skills
   category: agent_framework
   file: repos/anysiteio__agent-skills.yaml
+- name: airtable.js
+  category: workflow_builder
+  file: repos/airtable__airtable.js.yaml
+- name: ansible
+  category: agent_orchestration
+  file: repos/ansible__ansible.yaml
 - name: anything_llm
   category: ui_tools
   file: repos/anything_llm.yaml
+- name: archdesigner
+  category: workflow_builder
+  file: repos/krosebrook__archdesigner.yaml
 - name: awesome-claude-skills
   category: agent_framework
   file: repos/composiohq__awesome-claude-skills.yaml
@@ -189,6 +246,9 @@ repos_alpha:
 - name: claude-flow
   category: agent_orchestration
   file: repos/ruvnet__claude-flow.yaml
+- name: code-server
+  category: remote_access
+  file: repos/coder__code-server.yaml
 - name: codex
   category: agent_cli
   file: repos/openai__codex.yaml
@@ -261,6 +321,9 @@ repos_alpha:
 - name: nexa_sdk
   category: inference_serving
   file: repos/nexa_sdk.yaml
+- name: obsidian-smart-connections
+  category: workflow_builder
+  file: repos/brianpetro__obsidian-smart-connections.yaml
 - name: ollama
   category: inference_serving
   file: repos/ollama.yaml
@@ -273,18 +336,36 @@ repos_alpha:
 - name: opencompass
   category: evaluation
   file: repos/opencompass.yaml
+- name: outlines
+  category: structured_outputs
+  file: repos/dottxt-ai__outlines.yaml
+- name: PaddleOCR
+  category: office_automation
+  file: repos/paddlepaddle__paddleocr.yaml
 - name: parlant
   category: agent_frameworks
   file: repos/parlant.yaml
 - name: pathway
   category: data_pipelines
   file: repos/pathway.yaml
+- name: podman
+  category: cli_tool
+  file: repos/containers__podman.yaml
 - name: Prompt-Engineering-Guide
   category: educational
   file: repos/Prompt-Engineering-Guide.yaml
+- name: pydantic
+  category: structured_outputs
+  file: repos/pydantic__pydantic.yaml
 - name: pydantic-ai
   category: agent_framework
   file: repos/pydantic__pydantic-ai.yaml
+- name: pydantic-core
+  category: structured_outputs
+  file: repos/pydantic__pydantic-core.yaml
+- name: pydantic-settings
+  category: structured_outputs
+  file: repos/pydantic__pydantic-settings.yaml
 - name: qdrant
   category: vector_database
   file: repos/qdrant__qdrant.yaml
@@ -297,6 +378,9 @@ repos_alpha:
 - name: skills
   category: agent_framework
   file: repos/anthropics__skills.yaml
+- name: Stirling-PDF
+  category: office_automation
+  file: repos/stirling-tools__stirling-pdf.yaml
 - name: usearch
   category: vector_database
   file: repos/unum-cloud__usearch.yaml

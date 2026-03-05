@@ -1,0 +1,41 @@
+name: airtable.js
+node_id: repo::airtable/airtable.js
+github_full_name: airtable/airtable.js
+html_url: https://github.com/airtable/airtable.js
+source: remote_metadata
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/repos/airtable__airtable.js.yaml
+  as_of: '2026-03-05T05:18:49Z'
+directory: remote::airtable/airtable.js
+category: workflow_builder
+summary: Phase 4 Corpus Expansion P4-B2 intake for airtable/airtable.js. Workflow
+  builder repository routed explicitly to llm_repos.
+core_concepts:
+- API client integration
+- workflow automation data modeling
+key_entry_points:
+- README.md
+- src/
+build_run:
+  language: javascript
+  build: npm run build
+  test: npm test
+local_cache_dir: null
+extras:
+  intake:
+    pilot_batch_id: PHASE-4-P4-B2
+    repo_id: repo::airtable/airtable.js
+    queue_id: intake::airtable/airtable.js
+    domain_hint: workflow_builder
+    source_mode: remote_metadata
+    observed_at_utc: '2026-03-05T05:18:49Z'
+  remote:
+    provider: github
+    mode: metadata
+    endpoint: /repos/airtable/airtable.js
+    fetched_at_utc: '2026-03-05T05:18:49Z'
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
