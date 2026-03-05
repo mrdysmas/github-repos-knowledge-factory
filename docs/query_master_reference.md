@@ -1307,3 +1307,35 @@ python3 tools/ws7_read_model_compiler.py --workspace-root . --force
 
 This compiles canonical YAML artifacts into `knowledge.db` (a gitignored derived artifact). Operationally, the canonical update path remains:
 `inputs/ws5/ws5_input_manifest.yaml` -> `tools/ws5_remote_ingestion.py` -> WS1/trust/shard gates -> `tools/ws4_master_compiler.py` -> `tools/ws7_read_model_compiler.py` -> `tools/query_master.py`.
+
+## 8. Agent integration stack
+
+For agent/skill usage, treat the query layer as three explicit components:
+
+- Human reference: `docs/query_master_reference.md` (this file)
+- Machine contract: `docs/query_master_reference.machine.yaml`
+- Loader facade: `tools/query_master_loader.py`
+- Skill-facing adapter: `tools/query_master_skill_adapter.py`
+
+Recommended usage by layer:
+
+- Use `tools/query_master.py` directly for manual shell work.
+- Use `tools/query_master_loader.py` when you need contract validation, structured parse, and `query_ms` normalization.
+- Use `tools/query_master_skill_adapter.py` when you want compact outputs (`ok/data/error_kind/fix`) and optional multi-step recipe execution.
+
+Quick examples:
+
+```bash
+# Loader: one query with full structured envelope
+python3 tools/query_master_loader.py --command repo --arg id=maxkb
+```
+
+```bash
+# Adapter: one query with compact skill-facing output
+python3 tools/query_master_skill_adapter.py --command repo --arg id=maxkb
+```
+
+```bash
+# Adapter: run a named recipe from workflow_recipes in the machine YAML
+python3 tools/query_master_skill_adapter.py --recipe repo_profile_and_relationships --var repo=maxkb
+```
