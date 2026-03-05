@@ -16,3 +16,7 @@ Use order:
 
 Stop rule:
 - Do not hand off to executor if `self_prompt_lock_ref` is missing, lock file is missing, or lock `prompt.sha1` is unverified.
+
+Unmapped-section metric policy:
+- Canonical read path: `reports/ws6_deep_integration/coverage.yaml` -> `metrics.unmapped_sections_count`.
+- Fallback only: `reports/ws6_deep_integration/validation_runs.yaml` -> `gate_metrics.unmapped_sections_count`.

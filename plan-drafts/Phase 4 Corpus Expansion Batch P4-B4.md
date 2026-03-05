@@ -141,9 +141,13 @@ PRE-FLIGHT (must pass):
    - `python3 - <<'PY'`
    - `import yaml`
    - `from pathlib import Path`
-   - `p=Path('reports/ws6_deep_integration/mismatch_report.yaml')`
-   - `d=yaml.safe_load(p.read_text()) if p.exists() else {}`
-   - `print('unmapped_sections_count_pre', d.get('unmapped_sections_count', 0))`
+   - `c=Path('reports/ws6_deep_integration/coverage.yaml')`
+   - `v=Path('reports/ws6_deep_integration/validation_runs.yaml')`
+   - `cd=yaml.safe_load(c.read_text()) if c.exists() else {}`
+   - `vd=yaml.safe_load(v.read_text()) if v.exists() else {}`
+   - `n=(cd.get('metrics') or {}).get('unmapped_sections_count')`
+   - `if n is None: n=(vd.get('gate_metrics') or {}).get('unmapped_sections_count', 'unknown')`
+   - `print('unmapped_sections_count_pre', n)`
    - `PY`
 9) Record SHA1 hashes:
    - `phase_4_progress_tracker.yaml`
@@ -181,9 +185,13 @@ IMPLEMENTATION ORDER:
    - `python3 - <<'PY'`
    - `import yaml`
    - `from pathlib import Path`
-   - `p=Path('reports/ws6_deep_integration/mismatch_report.yaml')`
-   - `d=yaml.safe_load(p.read_text()) if p.exists() else {}`
-   - `print('unmapped_sections_count_post', d.get('unmapped_sections_count', 0))`
+   - `c=Path('reports/ws6_deep_integration/coverage.yaml')`
+   - `v=Path('reports/ws6_deep_integration/validation_runs.yaml')`
+   - `cd=yaml.safe_load(c.read_text()) if c.exists() else {}`
+   - `vd=yaml.safe_load(v.read_text()) if v.exists() else {}`
+   - `n=(cd.get('metrics') or {}).get('unmapped_sections_count')`
+   - `if n is None: n=(vd.get('gate_metrics') or {}).get('unmapped_sections_count', 'unknown')`
+   - `print('unmapped_sections_count_post', n)`
    - `PY`
 
 HARD ACCEPTANCE CRITERIA:
@@ -199,6 +207,7 @@ HARD ACCEPTANCE CRITERIA:
 
 SOFT QUALITY DISCLOSURE (required to report, non-blocking):
 - Unmapped-section count: before -> after, with explicit delta and attribution.
+- Metric source rule: use `reports/ws6_deep_integration/coverage.yaml` -> `metrics.unmapped_sections_count` as canonical source; use `reports/ws6_deep_integration/validation_runs.yaml` -> `gate_metrics.unmapped_sections_count` only as fallback.
 
 FINAL REPORT FORMAT:
 1) Baseline vs final counts:
@@ -221,6 +230,7 @@ FINAL REPORT FORMAT:
 7) Files changed list (paths only)
 8) Unmapped-sections disclosure:
    - `unmapped_sections_count_pre`, `unmapped_sections_count_post`, delta
+   - source used (`coverage.metrics.unmapped_sections_count` or `validation_runs.gate_metrics.unmapped_sections_count` fallback)
 9) Blockers/fallbacks with exact reason
 
 RUBRIC ACCEPTANCE GATE:
