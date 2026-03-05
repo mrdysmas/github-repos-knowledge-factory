@@ -1,11 +1,11 @@
 version: 1
-as_of_utc: "2026-03-05T05:35:47Z"
+as_of_utc: "2026-03-05T16:22:18Z"
 
 phase:
   number: "4"
   name: "Corpus Expansion and Stabilization"
   status: "IN_PROGRESS"
-  workflow: "B1_COMPLETE -> STABILIZATION_COMPLETE -> B2_COMPLETE -> B2_DEEP_READY -> B3_PLANNED -> TEMPLATE_STANDARDIZED"
+  workflow: "B1_COMPLETE -> STABILIZATION_COMPLETE -> B2_COMPLETE -> B3_COMPLETE_ACCEPT_WITH_NOTES -> B4_PLANNED -> TEMPLATE_STANDARDIZED"
   date_initiated: "2026-03-05"
   date_started: "2026-03-05"
   date_completed: null
@@ -31,24 +31,24 @@ baseline:
     deep_facts: 2921
 
 current:
-  queued_count: 22
-  already_canonical_count: 95
+  queued_count: 14
+  already_canonical_count: 103
   query_master:
-    repos: 97
-    nodes: 111
+    repos: 105
+    nodes: 119
     edges: 152
-    deep_facts: 2921
+    deep_facts: 3418
   deltas_vs_baseline:
-    queued_count: -24
-    already_canonical_count: 24
-    repos: 24
-    nodes: 24
+    queued_count: -32
+    already_canonical_count: 32
+    repos: 32
+    nodes: 32
     edges: 0
-    deep_facts: 0
+    deep_facts: 497
   freshness:
-    master_index_generated_at_utc: "2026-03-05T05:18:49Z"
-    master_graph_generated_at_utc: "2026-03-05T05:18:49Z"
-    master_deep_facts_generated_at_utc: "2026-03-04T00:00:00Z"
+    master_index_generated_at_utc: "2026-03-05T05:30:00Z"
+    master_graph_generated_at_utc: "2026-03-05T05:30:00Z"
+    master_deep_facts_generated_at_utc: "2026-03-05T00:00:00Z"
     ws7_snapshot_status: "warn"
     ws7_force_used: false
 
@@ -78,6 +78,9 @@ policy_controls:
     - "Every targeted repo has a deep narrative file in {shard}/knowledge/deep/<file_stem>.yaml."
     - "Every targeted repo has a materialized deep_facts file in {shard}/knowledge/deep_facts/<file_stem>.yaml."
     - "Batch-level query_master deep_facts delta must be > 0 (hard gate)."
+  next_prompt_fix_required:
+    - "Preflight must baseline WS6 unmapped-section count before execution."
+    - "Final report must disclose unmapped-section before/after delta (soft-quality evidence)."
   re_escalate_snapshot_to_blocking_when:
     - "Snapshot divergence repeatedly causes incorrect query interpretation in practice."
     - "Deep-facts regeneration cadence is tightened such that timestamp alignment is expected by design."
@@ -127,7 +130,7 @@ milestones:
 
   m4:
     name: "Batch B2-Deep Sub-batch (4 repos)"
-    status: "IN_PROGRESS"
+    status: "COMPLETE"
     deliverables:
       - "4 deep narratives produced from source code under llm_repos/knowledge/deep"
       - "4 deep_facts files materialized via WS6"
@@ -138,11 +141,11 @@ milestones:
       - "WS7 strict run passes blocking gates (snapshot warn allowed)."
     plan_ref: "plan-drafts/Phase 4 Corpus Expansion Batch P4-B2-Deep.md"
     date_started: "2026-03-05"
-    date_completed: null
+    date_completed: "2026-03-05"
 
   m5:
     name: "Batch B3 Repeatability + Template Standardization Decision"
-    status: "PLANNED"
+    status: "IN_PROGRESS"
     deliverables:
       - "Second consecutive hardened-policy batch report"
       - "Go/No-Go recommendation to standardize prompt template"
@@ -150,7 +153,11 @@ milestones:
       - "Second consecutive run completes without blocking gate regressions."
       - "Freshness disclosure and fallback discipline are consistently observed."
       - "Template standardization recommendation recorded in project_status.yaml."
-    date_started: null
+    notes:
+      - "B3 executed as HYBRID (8 shallow + 4 deep) and accepted with notes."
+      - "Hard gates all passed; deep_facts delta was +204 (3214 -> 3418)."
+      - "Before standardizing template, next batch prompt must baseline unmapped-section count in preflight."
+    date_started: "2026-03-05"
     date_completed: null
 
 batches:
@@ -179,7 +186,7 @@ batches:
       - "No blocker and no fallback usage"
     commit_ref: "e8bdff4"
   b2_deep:
-    status: "READY_TO_EXECUTE"
+    status: "COMPLETE"
     repo_count_target: 4
     target_repos:
       - "pydantic/pydantic"
@@ -188,12 +195,33 @@ batches:
       - "dottxt-ai/outlines"
     plan_ref: "plan-drafts/Phase 4 Corpus Expansion Batch P4-B2-Deep.md"
   b3:
-    status: "PLANNED"
-    repo_count_target: "8-12"
+    status: "COMPLETE_ACCEPT_WITH_NOTES"
+    repo_count_target: 12
+    shallow_repo_count: 8
+    deep_repo_count: 4
     objective: "Confirm repeatability of hardened policy and deep-lane gating before standardizing prompt template."
+    mode_recommendation_used: "HYBRID"
+    ws7_strict_runs: 1
+    ws7_force_runs: 0
+    ws7_snapshot_status: "warn"
+    deep_success: true
+    policy_success: true
+    acceptance_decision: "ACCEPT_WITH_NOTES"
+    notes:
+      - "queue: 22 -> 14, already_canonical: 95 -> 103"
+      - "repos: 97 -> 105, nodes: 111 -> 119, edges unchanged"
+      - "deep_facts: 3214 -> 3418 (+204), hard deep gate passed"
+      - "Soft-gap: unmapped-section before/after was not baselined in preflight"
+      - "One non-whitelist pre-existing untracked draft file was excluded from execution scope"
+  b4:
+    status: "PLANNED"
+    objective: "Run next batch with explicit preflight unmapped-section baseline and before/after disclosure."
+    required_prompt_fix:
+      - "Capture unmapped-section baseline in preflight."
+      - "Report unmapped-section delta in final evidence block."
 
 open_threads:
-  - "Calibrate deep sub-batch size (3 vs 4 repos) based on token use and fact yield."
+  - "For B4 prompt: require preflight unmapped-section baseline and explicit before/after disclosure."
   - "Case-insensitive collision handling if two repos differ only by case."
   - "Keep batch evidence commits scoped; separate hygiene/doc edits from ingestion outputs."
 
@@ -202,6 +230,9 @@ evidence_refs:
   - "phase_4_progress_tracker.yaml"
   - "plan-drafts/Phase 4 Corpus Expansion Batch P4-B2.md"
   - "plan-drafts/Phase 4 Corpus Expansion Batch P4-B2-Deep.md"
+  - "plan-drafts/Phase 4 Corpus Expansion Batch P4-B3.md"
+  - "plan-drafts/Phase 4 Executor Report Review Rubric.md"
   - "reports/ws4_master_build/validation_runs.yaml"
+  - "reports/ws5_remote_ingestion/validation_runs.yaml"
   - "reports/ws6_deep_integration/validation_runs.yaml"
   - "reports/ws7_read_model/compile_log.yaml"

@@ -1,5 +1,5 @@
 version: 1
-as_of_utc: "2026-03-05T05:11:56Z"
+as_of_utc: "2026-03-05T16:22:18Z"
 
 naming_legend:
   WS: "Workstream (pipeline lane/stage, e.g., WS1-WS7)"
@@ -121,6 +121,7 @@ canonical:
       - "deep_facts delta vs baseline"
       - "WS7 strict result and snapshot status (pass/warn; fallback used or not)"
     standardization_trigger: "Adopt as default prompted workflow after two consecutive batch runs confirm policy behavior and no integrity-gate regressions."
+    standardization_note: "Two consecutive hardened runs passed; next prompt must add unmapped-section preflight baseline + before/after disclosure before template standardization decision."
   intake_controls:
     manifest: "inputs/intake/intake_manifest.yaml"
     pilot_batch: "inputs/intake/pilot_batch.yaml"
@@ -196,11 +197,11 @@ todo:
     - id: "B"
       topic: "Update workflow"
       status: "IN_PROGRESS"
-      note: "Phase 4 runbook now enforces explicit target_shard, strict-first WS7, and conditional --force fallback. Promote to standard after two successful batch runs."
+      note: "Two consecutive hardened runs now completed (B2 and B3) with no blocking regressions. Remaining item before template standardization: enforce unmapped-section preflight baseline and before/after disclosure in next batch prompt."
     - id: "C"
       topic: "Quality gates"
       status: "IN_PROGRESS"
-      note: "Gate policy hardened: WS7 integrity checks remain blocking; snapshot timestamp divergence is warning-only with explicit freshness disclosure in batch reports."
+      note: "Gate policy hardened: WS7 integrity checks remain blocking; snapshot timestamp divergence is warning-only with explicit freshness disclosure in batch reports. Next prompt must also baseline/report unmapped-section delta."
     - id: "D"
       topic: "Query read-model + deep semantic access"
       status: "COMPLETE"
@@ -225,20 +226,22 @@ todo:
 next_agent_handoff:
   if_user_asks: "What now? What should we work on?"
   answer:
-    current_focus: "Phase 4 corpus expansion in queued batches, while validating WS6/WS7 hardening policy over consecutive runs."
+    current_focus: "Phase 4 corpus expansion continues after B3 ACCEPT_WITH_NOTES; next action is B4 prompt update plus execution with explicit unmapped-section baseline disclosure."
     read_first:
       - "project_status.yaml"
       - "phase_4_progress_tracker.yaml"
-      - "plan-drafts/Phase 4 Corpus Expansion Batch P4-B2.md"
+      - "plan-drafts/Phase 4 Corpus Expansion Batch P4-B3.md"
+      - "plan-drafts/Phase 4 Executor Report Review Rubric.md"
       - "tools/query_master.py"
       - "tools/ws6_deep_integrator.py"
       - "tools/ws7_read_model_compiler.py"
     immediate_next_step:
-      id: "P4-B2_EXECUTION"
-      objective: "Execute B2 batch with strict-first WS7 policy and collect freshness evidence for standardization decision."
+      id: "P4-B4_PROMPT_UPDATE_AND_EXECUTION"
+      objective: "Patch next batch prompt to baseline unmapped-section count in preflight, then execute with strict-first WS7 and full freshness/quality evidence."
       first_commands:
         - "python3 tools/check_intake_queue_sync.py --workspace-root ."
         - "python3 tools/query_master.py stats"
+        - "python3 - <<'PY'\nimport yaml\nfrom pathlib import Path\np=Path('reports/ws6_deep_integration/mismatch_report.yaml')\nd=yaml.safe_load(p.read_text()) if p.exists() else {}\nprint('preflight_unmapped_sections_count', d.get('unmapped_sections_count', 'unknown'))\nPY"
         - "python3 tools/ws5_remote_ingestion.py --workspace-root . --input inputs/ws5/ws5_input_manifest.yaml --reports-dir reports/ws5_remote_ingestion"
         - "python3 tools/ws4_master_compiler.py --workspace-root . --master-index master_index.yaml --master-graph master_graph.yaml --reports-dir reports/ws4_master_build"
         - "python3 tools/ws6_deep_integrator.py --workspace-root . --reports-dir reports/ws6_deep_integration --materialize-spec reports/ws6_deep_integration/spec.yaml --run-validation-suite"
@@ -249,7 +252,7 @@ status_docs:
   execution_tracker: "phase_4_progress_tracker.yaml"
   phase_3_tracker: "phase_3_progress_tracker.yaml"
   phase_2_tracker: "phase_2_progress_tracker.yaml"
-  phase_4_plan: "plan-drafts/Phase 4 Corpus Expansion Batch P4-B2.md"
+  phase_4_plan: "plan-drafts/Phase 4 Corpus Expansion Batch P4-B3.md"
   historical: "master_graph_merge_progress.yaml"
   decisions:
     - "docs/decisions/intake_shard_routing_decision.md"
