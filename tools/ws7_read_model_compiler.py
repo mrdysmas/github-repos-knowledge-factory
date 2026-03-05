@@ -837,6 +837,8 @@ def main() -> int:
     args = parser.parse_args()
 
     workspace_root = Path(args.workspace_root).resolve()
+    if args.force:
+        print("NOTE: --force is compatibility-only (no-op). Snapshot timestamp divergence is warning-only.")
     return run_compile(workspace_root, args.force)
 
 
