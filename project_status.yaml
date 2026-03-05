@@ -1,5 +1,5 @@
 version: 1
-as_of_utc: "2026-03-05T03:15:18Z"
+as_of_utc: "2026-03-05T03:34:16Z"
 
 naming_legend:
   WS: "Workstream (pipeline lane/stage, e.g., WS1-WS6)"
@@ -7,23 +7,31 @@ naming_legend:
   D: "Decision (governance decision ID, e.g., D1-D5)"
 
 phase:
-  id: "0"
-  name: "Master Knowledge Graph Consolidation"
+  id: "3"
+  name: "SQLite Read Model and Query Migration"
   status: "COMPLETE"
   closeout_approved: true
-  closeout_approved_at_utc: "2026-02-24T02:53:46Z"
+  closeout_approved_at_utc: "2026-03-05T03:16:01Z"
 
 workstream_closeouts:
   ws5:
     status: "COMPLETE"
     closeout_approved: true
     closeout_approved_at_utc: "2026-02-23T04:57:06Z"
+  ws6:
+    status: "COMPLETE"
+    closeout_approved: true
+    closeout_approved_at_utc: "2026-02-24T21:43:04Z"
+  ws7:
+    status: "COMPLETE"
+    closeout_approved: true
+    closeout_approved_at_utc: "2026-03-05T03:15:18Z"
 
 governance:
   resolved_at_utc: "2026-02-24T19:58:27Z"
   decisions:
     D1:
-      summary: "YAML-only canonical source of truth now; SQLite read-model later only if needed."
+      summary: "Canonical source-of-truth is YAML; generated SQLite read model (WS7) is required as the operational query cache."
       status: "RESOLVED"
     D2:
       summary: "Richer ontology plus canonical mapping."
@@ -168,7 +176,7 @@ todo:
     - id: "F"
       topic: "Intake lifecycle + clone prune workflow"
       status: "COMPLETE"
-      note: "Pilot clone lifecycle/provenance + domain_hint records are shallow-canonicalized through WS5/WS4; priority deep follow-up is complete for langgenius/dify, FlowiseAI/Flowise, pydantic/pydantic-ai, and qdrant/qdrant. WS6 now reports deep_facts=1908 and unmapped_sections_count=55, with the top-5 target sections (languages, related_repos, type, primary_language, ports) reduced to 0 outstanding."
+      note: "Pilot clone lifecycle/provenance + domain_hint records were shallow-canonicalized through WS5/WS4; priority deep follow-up completed for langgenius/dify, FlowiseAI/Flowise, pydantic/pydantic-ai, and qdrant/qdrant. Historical Phase 2 baseline was deep_facts=1908 and unmapped_sections_count=55; Phase 2 final state reached deep_facts=2921 and unmapped_sections_count=33."
     - id: "G"
       topic: "Hard enforcement for intake queue sync"
       status: "COMPLETE"
@@ -191,6 +199,7 @@ next_agent_handoff:
       id: "POST-PHASE3"
       objective: "Supervisor decision on next phase direction."
       first_commands:
+        - "python3 tools/ws7_read_model_compiler.py --workspace-root ."
         - "python3 tools/ws7_read_model_compiler.py --workspace-root . --force"
         - "python3 tools/query_master.py stats"
         - "python3 tools/query_master.py aggregate --group-by category"
