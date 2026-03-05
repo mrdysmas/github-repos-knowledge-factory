@@ -1,5 +1,5 @@
 version: 1
-as_of_utc: "2026-03-05T17:35:17Z"
+as_of_utc: "2026-03-05T17:53:01Z"
 
 naming_legend:
   WS: "Workstream (pipeline lane/stage, e.g., WS1-WS7)"
@@ -109,7 +109,7 @@ canonical:
         - "deterministic_rebuild"
       warning_only:
         - "snapshot_consistency (timestamp divergence)"
-    ws7_force_policy: "Use --force only when strict WS7 fails solely on snapshot/timestamp consistency."
+    ws7_force_policy: "`--force` is compatibility-only (no-op); strict WS7 failures require stop-and-escalate."
     ws7_freshness_escalation_trigger:
       - "Snapshot divergence repeatedly causes incorrect query interpretations in practice."
       - "Deep-facts regeneration cadence is tightened such that timestamp alignment is expected by design."
@@ -119,7 +119,7 @@ canonical:
       - "master_graph.generated_at_utc"
       - "master_deep_facts.generated_at_utc"
       - "deep_facts delta vs baseline"
-      - "WS7 strict result and snapshot status (pass/warn; fallback used or not)"
+      - "WS7 strict result and snapshot status (pass/warn; include `--force` invocation status for audit)"
     standardization_trigger: "Adopt as default prompted workflow after two consecutive batch runs confirm policy behavior and no integrity-gate regressions."
     standardization_note: "Two consecutive hardened runs passed (B3, B4). Before template standardization, patch prompt/template to source unmapped-section pre/post from WS6 gate metrics (coverage/validation), not mismatch_report."
   intake_controls:
@@ -201,7 +201,7 @@ todo:
     - id: "C"
       topic: "Quality gates"
       status: "IN_PROGRESS"
-      note: "Gate policy hardened: WS7 integrity checks remain blocking; snapshot timestamp divergence is warning-only with explicit freshness disclosure in batch reports. B4 showed instrumentation mismatch (mismatch_report field absent); next prompt must use coverage/validation gate metrics for unmapped-section delta."
+      note: "Gate policy hardened: WS7 integrity checks remain blocking; snapshot timestamp divergence is warning-only with explicit freshness disclosure in batch reports. `--force` is compatibility-only (no-op). B4 showed instrumentation mismatch (mismatch_report field absent); next prompt must use coverage/validation gate metrics for unmapped-section delta."
     - id: "D"
       topic: "Query read-model + deep semantic access"
       status: "COMPLETE"
@@ -226,7 +226,7 @@ todo:
 next_agent_handoff:
   if_user_asks: "What now? What should we work on?"
   answer:
-    current_focus: "Phase 4 continues after B4 ACCEPT_WITH_NOTES; immediate action is patching next prompt/template so unmapped-section pre/post is sourced from WS6 gate metrics, then execute B5."
+    current_focus: "Phase 4 continues after B4 ACCEPT_WITH_NOTES; immediate action is drafting and executing B5 with canonical unmapped-section metric sourcing and strict-only WS7 semantics."
     read_first:
       - "project_status.yaml"
       - "phase_4_progress_tracker.yaml"
@@ -236,8 +236,8 @@ next_agent_handoff:
       - "tools/ws6_deep_integrator.py"
       - "tools/ws7_read_model_compiler.py"
     immediate_next_step:
-      id: "P4-B5_PROMPT_TEMPLATE_PATCH_AND_EXECUTION"
-      objective: "Patch next batch prompt/template to read unmapped-section from WS6 gate metrics (coverage/validation), then execute with strict-first WS7 and full evidence."
+      id: "P4-B5_DRAFT_AND_EXECUTION"
+      objective: "Draft and execute B5 using canonical unmapped-section sourcing (coverage first, validation fallback) and strict-only WS7 semantics."
       first_commands:
         - "python3 tools/check_intake_queue_sync.py --workspace-root ."
         - "python3 tools/query_master.py stats"

@@ -36,7 +36,7 @@ PROMPT_AUDIT_HEADER:
   hard_gates:
     - "Queue sync PASS pre and post."
     - "All WS1/trust/validate/WS6/WS7 blocking gates PASS."
-    - "WS7 strict-first mandatory; --force only for snapshot/timestamp-only failure."
+    - "WS7 strict-first mandatory; do not rely on --force for recovery (compatibility no-op)."
     - "Executor report accepted only if rubric evidence is complete."
     - "Commit scope must match whitelist-only rule."
 
@@ -57,7 +57,7 @@ PROMPT_AUDIT_HEADER:
 
   known_failure_modes:
     - "Prompt/hash drift mid-run."
-    - "Strict WS7 skipped or --force used prematurely."
+    - "Strict WS7 skipped or --force assumed to recover a strict failure."
     - "Deep lane executed but deep_facts delta stays flat."
     - "Manifest/queue drift or shard misrouting."
     - "Mixed-intent commit contamination."
@@ -171,10 +171,10 @@ IMPLEMENTATION ORDER:
    - `cd /Users/szilaa/scripts/ext_sources/github_repos`
    - `python3 tools/ws6_deep_integrator.py --workspace-root . --reports-dir reports/ws6_deep_integration --materialize-spec reports/ws6_deep_integration/spec.yaml --run-validation-suite`
    - `python3 tools/ws7_read_model_compiler.py --workspace-root .`
-4) WS7 fallback rule:
-   - Do not use `--force` by default.
-   - Use `--force` only if strict failure is snapshot/timestamp-only.
-   - Any blocking gate failure => stop and escalate.
+4) WS7 execution rule:
+   - Run strict compile once: `python3 tools/ws7_read_model_compiler.py --workspace-root .`
+   - `--force` is compatibility-only (no-op) and must not be treated as a recovery path.
+   - Any strict failure (blocking gate or otherwise) => stop and escalate.
 5) Queue refresh:
    - `python3 tools/check_intake_queue_sync.py --workspace-root . --fix`
    - `python3 tools/check_intake_queue_sync.py --workspace-root .`
@@ -197,7 +197,7 @@ IMPLEMENTATION ORDER:
 HARD ACCEPTANCE CRITERIA:
 - Queue sync PASS pre and post.
 - All WS1/trust/validate/WS6/WS7 blocking gates PASS.
-- WS7 strict-first observed; fallback (if any) snapshot-only justified.
+- WS7 strict-first observed; `--force` not used as a recovery path.
 - Deep lane outputs:
   - 4 deep files exist.
   - 4 deep_facts files exist.
@@ -216,7 +216,7 @@ FINAL REPORT FORMAT:
    - `master_index.generated_at_utc` (before -> after)
    - `master_graph.generated_at_utc` (before -> after)
    - `master_deep_facts.generated_at_utc` (before -> after)
-   - WS7 snapshot status (`pass` or `warn`) + fallback usage
+   - WS7 snapshot status (`pass` or `warn`) + `--force` invocation status (expected `false`; no-op if `true`)
 3) Evidence hash block:
    - SHA1 for `phase_4_progress_tracker.yaml`
    - SHA1 for prior prompts (`P4-B2`, `P4-B2-Deep`, `P4-B3`)

@@ -1,5 +1,5 @@
 version: 1
-as_of_utc: "2026-03-05T17:35:17Z"
+as_of_utc: "2026-03-05T17:53:01Z"
 
 phase:
   number: "4"
@@ -62,7 +62,7 @@ policy_controls:
     warning_only:
       - "snapshot_consistency (timestamp divergence)"
   ws6_validation_source: "python3 tools/query_master.py --source yaml stats"
-  ws7_force_rule: "Use --force only when strict WS7 fails solely on snapshot/timestamp consistency."
+  ws7_force_rule: "`--force` is compatibility-only (no-op); strict WS7 failures require stop-and-escalate."
   run_order:
     - "tools/ws5_remote_ingestion.py"
     - "tools/ws4_master_compiler.py"
@@ -73,7 +73,7 @@ policy_controls:
     - "master_graph.generated_at_utc"
     - "master_deep_facts.generated_at_utc"
     - "deep_facts delta vs baseline"
-    - "WS7 strict result + snapshot gate status (pass/warn) + fallback usage"
+    - "WS7 strict result + snapshot gate status (pass/warn) + `--force` invocation status"
   deep_run_acceptance:
     - "Every targeted repo has a deep narrative file in {shard}/knowledge/deep/<file_stem>.yaml."
     - "Every targeted repo has a materialized deep_facts file in {shard}/knowledge/deep_facts/<file_stem>.yaml."
@@ -81,6 +81,7 @@ policy_controls:
   next_prompt_fix_required:
     - "Preflight unmapped-section baseline must be sourced from WS6 coverage/validation gate metrics, not mismatch_report."
     - "Final report must disclose unmapped-section before/after delta using the same metric source."
+    - "Treat WS7 `--force` as compatibility no-op; do not model it as fallback."
   re_escalate_snapshot_to_blocking_when:
     - "Snapshot divergence repeatedly causes incorrect query interpretation in practice."
     - "Deep-facts regeneration cadence is tightened such that timestamp alignment is expected by design."
@@ -220,7 +221,7 @@ batches:
     prompt_ref: "plan-drafts/Phase 4 Corpus Expansion Batch P4-B4.md"
     prompt_lock_ref: "reports/phase4/prompt_locks/P4-B4.lock.yaml"
     prompt_hash_source: "external_lock_file"
-    prompt_sha1: "563c1828bd924d44485163a8942f74853d686470"
+    prompt_sha1: "fa2f944f21c2c376a6fc4c08d580585d5430bfd7"
     repo_count_target: 12
     shallow_repo_count: 8
     deep_repo_count: 4
@@ -239,14 +240,14 @@ batches:
       - "Soft instrumentation gap: pre/post unmapped command read mismatch_report field that is absent (reported 0 -> 0), while WS6 gate metrics indicate unmapped_sections_count=33"
   b5:
     status: "PLANNED"
-    objective: "Patch next prompt template to source unmapped-section evidence from WS6 gate metrics and run next batch."
+    objective: "Draft and execute B5 using strict-only WS7 semantics and canonical unmapped-section metric sourcing."
     required_prompt_fix:
       - "Use reports/ws6_deep_integration/coverage.yaml: metrics.unmapped_sections_count for pre/post baseline."
-      - "Optionally cross-check reports/ws6_deep_integration/validation_runs.yaml: gate_metrics.unmapped_sections_count."
-      - "Remove mismatch_report.yaml fallback for this metric."
+      - "Use reports/ws6_deep_integration/validation_runs.yaml: gate_metrics.unmapped_sections_count only as fallback."
+      - "WS7 wording must be strict-only; `--force` is compatibility-only (no-op)."
 
 open_threads:
-  - "Patch next prompt/template so unmapped-section pre/post uses WS6 gate metrics source (coverage/validation), then execute B5."
+  - "Patch next prompt/template so WS7 is strict-only in wording and unmapped-section pre/post uses WS6 coverage-first with validation fallback, then execute B5."
   - "Case-insensitive collision handling if two repos differ only by case."
   - "Keep batch evidence commits scoped; separate hygiene/doc edits from ingestion outputs."
 

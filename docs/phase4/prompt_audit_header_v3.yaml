@@ -34,7 +34,7 @@ PROMPT_AUDIT_HEADER:
   hard_gates:
     - "Queue sync PASS pre and post."
     - "All WS1/trust/validate/WS6/WS7 blocking gates PASS."
-    - "WS7 strict-first mandatory; --force only for snapshot/timestamp-only failure."
+    - "WS7 strict-first mandatory; do not rely on --force for recovery (compatibility no-op)."
     - "Executor report accepted only if rubric evidence is complete."
     - "Commit scope must match whitelist-only rule."
 
@@ -55,7 +55,7 @@ PROMPT_AUDIT_HEADER:
 
   known_failure_modes:
     - "Prompt/hash drift mid-run."
-    - "Strict WS7 skipped or --force used prematurely."
+    - "Strict WS7 skipped or --force assumed to recover strict failure."
     - "Deep lane executed but deep_facts delta stays flat."
     - "Manifest/queue drift or shard misrouting."
     - "Mixed-intent commit contamination."
