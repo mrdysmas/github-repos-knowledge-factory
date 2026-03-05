@@ -1,5 +1,5 @@
 version: 1
-as_of_utc: "2026-03-03T20:57:29Z"
+as_of_utc: "2026-03-05T03:15:18Z"
 
 naming_legend:
   WS: "Workstream (pipeline lane/stage, e.g., WS1-WS6)"
@@ -45,6 +45,7 @@ canonical:
   generated_artifacts:
     - "master_index.yaml"
     - "master_graph.yaml"
+    - "knowledge.db (gitignored, derived from canonical YAML via WS7)"
   governing_documents:
     - "contracts/deep_narrative_contract.md"
   upcoming_workstreams:
@@ -64,6 +65,26 @@ canonical:
         - "reports/ws6_deep_integration/coverage.yaml"
         - "reports/ws6_deep_integration/mismatch_report.yaml"
         - "reports/ws6_deep_integration/validation_runs.yaml"
+    ws7:
+      status: "COMPLETE"
+      completed_at_utc: "2026-03-05T03:15:18Z"
+      purpose: "SQLite read model materialized from canonical YAML; non-negotiable compile gate"
+      primary_specs:
+        - "tools/ws7_read_model_compiler.py"
+        - "tools/query_master.py"
+      outputs:
+        - "knowledge.db"
+        - "reports/ws7_read_model/compile_log.yaml"
+      schema_version: "1.1.0"
+      query_commands:
+        - "stats"
+        - "repo"
+        - "neighbors"
+        - "facts"
+        - "search"
+        - "pattern"
+        - "graph"
+        - "aggregate"
   intake_controls:
     manifest: "inputs/intake/intake_manifest.yaml"
     pilot_batch: "inputs/intake/pilot_batch.yaml"
@@ -116,8 +137,9 @@ canonical:
       - "tools/trust_gates.py"
       - "llm_repos/knowledge/validate.py"
       - "ssh_repos/knowledge/validate.py"
+      - "tools/ws7_read_model_compiler.py"
     compile: "tools/ws4_master_compiler.py"
-  execution_tracker: "phase_2_progress_tracker.yaml"
+  execution_tracker: "phase_3_progress_tracker.yaml"
 
 non_canonical:
   kgraph_repos:
@@ -137,8 +159,8 @@ todo:
       status: "PENDING"
     - id: "D"
       topic: "Query read-model + deep semantic access"
-      status: "PENDING"
-      note: "Explore implementing a generated SQLite/DuckDB read-model keyed by node_id that joins master artifacts with deep files for practical querying."
+      status: "COMPLETE"
+      note: "Phase 3 delivered WS7 materializer (tools/ws7_read_model_compiler.py) producing knowledge.db. query_master.py reads SQLite by default with 9 commands including cross-repo search, pattern matching, graph traversal, and aggregate stats. Schema 1.1.0."
     - id: "E"
       topic: "WS6 deep integration bootstrap"
       status: "COMPLETE"
@@ -154,59 +176,29 @@ todo:
     - id: "H"
       topic: "Forward execution tracker maintenance"
       status: "IN_PROGRESS"
-      note: "Use phase_2_progress_tracker.yaml as checkpoint source of truth for Phase 2 progress and metrics."
+      note: "Active tracker: phase_3_progress_tracker.yaml. Phase 2 tracker archived at phase_2_progress_tracker.yaml."
 
 next_agent_handoff:
   if_user_asks: "What now? What should we work on?"
   answer:
-    current_focus: "Phase 2A extractor coverage cleanup (Phase 2B calibration is blocked until 2A completes)"
-    sequencing_rule: "Phase 2A must complete before Phase 2B starts."
+    current_focus: "Phase 3 complete. Next: decide between Phase 4 (DuckDB analytics, corpus expansion) or other priorities."
     read_first:
       - "project_status.yaml"
-      - "phase_2_progress_tracker.yaml"
-      - "contracts/ws1/deep_fact.schema.yaml"
-      - "tools/ws6_deep_integrator.py"
+      - "phase_3_progress_tracker.yaml"
       - "tools/query_master.py"
-      - "tools/check_intake_queue_sync.py"
-      - "reports/ws6_deep_integration/mismatch_report.yaml"
-      - "reports/ws6_deep_integration/coverage.yaml"
-      - "reports/ws6_deep_integration/validation_runs.yaml"
-      - "master_graph_merge_progress.yaml"
+      - "tools/ws7_read_model_compiler.py"
     immediate_next_step:
-      id: "PHASE2A-EXTRACTOR-CLEANUP-1"
-      objective: "Close top nine unmapped section types in existing corpus via iterative extractor expansion before any new repo intake."
+      id: "POST-PHASE3"
+      objective: "Supervisor decision on next phase direction."
       first_commands:
-        - "python3 tools/check_intake_queue_sync.py --workspace-root ."
+        - "python3 tools/ws7_read_model_compiler.py --workspace-root . --force"
         - "python3 tools/query_master.py stats"
-        - "python3 tools/ws6_deep_integrator.py --workspace-root . --reports-dir reports/ws6_deep_integration --materialize-spec reports/ws6_deep_integration/spec.yaml --run-validation-suite"
-        - "python3 -m unittest discover -s tests/ws6_deep_integration -p 'test_*.py'"
-        - "python3 -m unittest discover -s tests/intake_queue_sync -p 'test_*.py'"
-      operator_actions:
-        - "Use the exact executable command forms listed under first_commands; do not use pseudo-command aliases."
-        - "Work iteratively: implement one or two target section extractors per cycle, run full WS6 validation, then continue."
-        - "Do not run new intake/clone/WS5 ingestion operations during Phase 2A."
-        - "Do not modify master_repo_list.yaml or inputs/intake/intake_queue.yaml during Phase 2A."
-        - "Do not redesign schemas/contracts or manually edit generated reports."
-      parallel_step:
-        id: "M4-1"
-        objective: "COMPLETED 2026-02-25: commit-time check_intake_queue_sync enforcement."
-      done_when:
-        - "Queue sync gate passes via tools/check_intake_queue_sync.py."
-        - "Extractors for the nine target section types are implemented in tools/ws6_deep_integrator.py."
-        - "WS6 full validation run keeps gate_ready=true, blocking_mismatches=0, unknown_predicates=0."
-        - "unmapped_sections_count drops by at least 20 from baseline 55."
-        - "deep_facts increases above baseline 1908."
-        - "WS6 and intake_queue_sync test suites pass."
-        - "Phase 2A metrics are recorded under results.phase_2a in phase_2_progress_tracker.yaml."
-        - "WS6 validation_runs.yaml keeps required_commands as plan-only and records real execution outcomes under execution_results."
-    recommendation_on_new_data:
-      summary: "Phase 2B calibration remains planned, but is explicitly gated behind successful Phase 2A extractor cleanup."
-      calibration_batch_target: "8-12 additional repos outside current llm/ssh concentration, after Phase 2A done_when is met."
-      caution: "Do not start intake execution until Phase 2A completion is recorded."
+        - "python3 tools/query_master.py aggregate --group-by category"
+        - "python3 tools/query_master.py graph --id maxkb --hops 2"
 
 status_docs:
   current: "project_status.yaml"
-  execution_tracker: "phase_2_progress_tracker.yaml"
+  execution_tracker: "phase_3_progress_tracker.yaml"
   phase_2_tracker: "phase_2_progress_tracker.yaml"
   historical: "master_graph_merge_progress.yaml"
   decisions:
