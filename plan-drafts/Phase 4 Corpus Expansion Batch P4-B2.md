@@ -1,5 +1,26 @@
 TASK: Phase 4 Corpus Expansion Batch P4-B2 (12 queued repos)
 
+PROMPT_AUDIT_HEADER:
+  template_version: "p4-prompt-audit-v1"
+  prompt_id: "P4-B2"
+  run_class: "shallow_batch_policy_validation"
+  primary_intent: "Validate stabilized WS6/WS7 operating policy while ingesting 12 queued repos."
+  hard_gates:
+    - "Queue sync PASS at preflight and post-run."
+    - "All WS1/trust/validate/WS6/WS7 blocking gates PASS."
+    - "WS7 strict-first run required; --force allowed only for snapshot/timestamp-only failure."
+    - "All 12 repos resolve via query_master repo checks, including one mixed-case identifier."
+  known_failure_modes:
+    - "Manifest row missing explicit target_shard causes shard misrouting."
+    - "Accidental commit scope contamination from unrelated dirty/untracked files."
+    - "WS7 strict run failed by blocking integrity gate (non-snapshot)."
+    - "Shallow-only success mistaken for deep success (edges/deep_facts unchanged)."
+  report_tags:
+    - "phase4"
+    - "batch"
+    - "policy-validation"
+    - "ws7-strict-first"
+
 MODE: EXECUTION (no exploratory detours)
 
 WORKSPACE:
