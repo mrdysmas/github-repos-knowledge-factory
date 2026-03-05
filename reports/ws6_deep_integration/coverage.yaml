@@ -1,13 +1,13 @@
 artifact_type: ws6_deep_integration_coverage
-generated_at_utc: '2026-03-04T00:00:00Z'
+generated_at_utc: '2026-03-05T00:00:00Z'
 contract_version: 1.0.0-ws6-draft
 input_scope:
-  deep_narrative_files_total: 65
+  deep_narrative_files_total: 69
   deep_fact_draft_files_total: 0
-  repos_with_any_deep_inputs: 65
-  repos_materialized: 65
+  repos_with_any_deep_inputs: 69
+  repos_materialized: 69
 metrics:
-  facts_materialized_total: 2921
+  facts_materialized_total: 3214
   facts_with_evidence_pct: 100.0
   confidence_bounds_valid_pct: 100.0
   draft_overrides_count: 0
@@ -131,6 +131,19 @@ metrics:
     facts_emitted: 25
     blocked_facts: 0
     unmapped_sections_count: 4
+  - node_id: repo::dottxt-ai/outlines
+    github_full_name: dottxt-ai/outlines
+    shard: llm_repos
+    narrative_files: 1
+    draft_files: 0
+    narrative_facts_raw: 81
+    draft_facts_raw: 0
+    derived_facts_after_dedupe: 81
+    draft_overrides: 0
+    evidence_merges: 0
+    facts_emitted: 81
+    blocked_facts: 0
+    unmapped_sections_count: 0
   - node_id: repo::drduh/yubikey-guide
     github_full_name: drduh/yubikey-guide
     shard: ssh_repos
@@ -599,6 +612,19 @@ metrics:
     facts_emitted: 94
     blocked_facts: 0
     unmapped_sections_count: 0
+  - node_id: repo::pydantic/pydantic
+    github_full_name: pydantic/pydantic
+    shard: llm_repos
+    narrative_files: 1
+    draft_files: 0
+    narrative_facts_raw: 67
+    draft_facts_raw: 0
+    derived_facts_after_dedupe: 67
+    draft_overrides: 0
+    evidence_merges: 0
+    facts_emitted: 67
+    blocked_facts: 0
+    unmapped_sections_count: 0
   - node_id: repo::pydantic/pydantic-ai
     github_full_name: pydantic/pydantic-ai
     shard: llm_repos
@@ -610,6 +636,32 @@ metrics:
     draft_overrides: 0
     evidence_merges: 0
     facts_emitted: 35
+    blocked_facts: 0
+    unmapped_sections_count: 0
+  - node_id: repo::pydantic/pydantic-core
+    github_full_name: pydantic/pydantic-core
+    shard: llm_repos
+    narrative_files: 1
+    draft_files: 0
+    narrative_facts_raw: 68
+    draft_facts_raw: 0
+    derived_facts_after_dedupe: 68
+    draft_overrides: 0
+    evidence_merges: 0
+    facts_emitted: 68
+    blocked_facts: 0
+    unmapped_sections_count: 0
+  - node_id: repo::pydantic/pydantic-settings
+    github_full_name: pydantic/pydantic-settings
+    shard: llm_repos
+    narrative_files: 1
+    draft_files: 0
+    narrative_facts_raw: 77
+    draft_facts_raw: 0
+    derived_facts_after_dedupe: 77
+    draft_overrides: 0
+    evidence_merges: 0
+    facts_emitted: 77
     blocked_facts: 0
     unmapped_sections_count: 0
   - node_id: repo::qdrant/qdrant
@@ -878,6 +930,7 @@ actions:
   - llm_repos/knowledge/deep_facts/Prompt-Engineering-Guide.yaml
   - llm_repos/knowledge/deep_facts/anything_llm.yaml
   - llm_repos/knowledge/deep_facts/awesome-llm-apps.yaml
+  - llm_repos/knowledge/deep_facts/dottxt-ai__outlines.yaml
   - llm_repos/knowledge/deep_facts/flowiseai__flowise.yaml
   - llm_repos/knowledge/deep_facts/graphrag.yaml
   - llm_repos/knowledge/deep_facts/khoj.yaml
@@ -899,6 +952,9 @@ actions:
   - llm_repos/knowledge/deep_facts/parlant.yaml
   - llm_repos/knowledge/deep_facts/pathway.yaml
   - llm_repos/knowledge/deep_facts/pydantic__pydantic-ai.yaml
+  - llm_repos/knowledge/deep_facts/pydantic__pydantic-core.yaml
+  - llm_repos/knowledge/deep_facts/pydantic__pydantic-settings.yaml
+  - llm_repos/knowledge/deep_facts/pydantic__pydantic.yaml
   - llm_repos/knowledge/deep_facts/qdrant__qdrant.yaml
   - llm_repos/knowledge/deep_facts/ragflow.yaml
   - llm_repos/knowledge/deep_facts/self-llm.yaml
