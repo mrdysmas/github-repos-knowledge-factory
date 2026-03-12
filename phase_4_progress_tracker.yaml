@@ -1,11 +1,11 @@
 version: 1
-as_of_utc: "2026-03-05T18:05:51Z"
+as_of_utc: "2026-03-10T15:10:58Z"
 
 phase:
   number: "4"
   name: "Corpus Expansion and Stabilization"
   status: "IN_PROGRESS"
-  workflow: "B1_COMPLETE -> STABILIZATION_COMPLETE -> B2_COMPLETE -> B3_COMPLETE_ACCEPT_WITH_NOTES -> B4_COMPLETE_ACCEPT_WITH_NOTES -> B5_PLANNED -> TEMPLATE_STANDARDIZED"
+  workflow: "B1_COMPLETE -> STABILIZATION_COMPLETE -> B2_COMPLETE -> B3_COMPLETE_ACCEPT_WITH_NOTES -> B4_COMPLETE_ACCEPT_WITH_NOTES -> B5_COMPLETE_ACCEPT_WITH_NOTES -> TEMPLATE_STANDARDIZATION_PENDING"
   date_initiated: "2026-03-05"
   date_started: "2026-03-05"
   date_completed: null
@@ -31,23 +31,23 @@ baseline:
     deep_facts: 2921
 
 current:
-  queued_count: 6
-  already_canonical_count: 111
+  queued_count: 8
+  already_canonical_count: 109
   query_master:
-    repos: 113
-    nodes: 127
+    repos: 111
+    nodes: 125
     edges: 152
-    deep_facts: 3619
+    deep_facts: 3601
   deltas_vs_baseline:
-    queued_count: -40
-    already_canonical_count: 40
-    repos: 40
-    nodes: 40
+    queued_count: -38
+    already_canonical_count: 38
+    repos: 38
+    nodes: 38
     edges: 0
-    deep_facts: 698
+    deep_facts: 680
   freshness:
-    master_index_generated_at_utc: "2026-03-05T17:05:00Z"
-    master_graph_generated_at_utc: "2026-03-05T17:05:00Z"
+    master_index_generated_at_utc: "2026-03-05T05:30:00Z"
+    master_graph_generated_at_utc: "2026-03-05T05:30:00Z"
     master_deep_facts_generated_at_utc: "2026-03-05T00:00:00Z"
     ws7_snapshot_status: "warn"
     ws7_force_used: false
@@ -157,8 +157,10 @@ milestones:
     notes:
       - "B3 executed as HYBRID (8 shallow + 4 deep) and accepted with notes."
       - "B4 executed as HYBRID (8 shallow + 4 deep) and accepted with notes."
-      - "Hard gates passed in both runs; deep_facts deltas were +204 (B3) and +201 (B4)."
-      - "Before standardizing template, patch unmapped-section metric source to WS6 coverage/validation gate metrics."
+      - "B5 executed as HYBRID (6 shallow + 4 deep) and accepted with notes after supervisor review."
+      - "Hard gates passed in all three hardened runs; deep_facts deltas were +204 (B3), +201 (B4), and +183 (B5)."
+      - "B5 verified canonical unmapped-section sourcing from WS6 coverage metrics (33 -> 33) and strict-only WS7 semantics."
+      - "Remaining action is governance: decide whether to standardize the template now that B5 evidence and control-plane sync are complete."
     date_started: "2026-03-05"
     date_completed: null
 
@@ -239,7 +241,7 @@ batches:
       - "Prompt-lock gate passed: prompt SHA matched lock + tracker throughout run"
       - "Soft instrumentation gap: pre/post unmapped command read mismatch_report field that is absent (reported 0 -> 0), while WS6 gate metrics indicate unmapped_sections_count=33"
   b5:
-    status: "READY_FOR_EXECUTION_GATED"
+    status: "COMPLETE_ACCEPT_WITH_NOTES"
     objective: "Execute B5 using strict-only WS7 semantics and canonical unmapped-section metric sourcing."
     prompt_ref: "plan-drafts/Phase 4 Corpus Expansion Batch P4-B5.md"
     prompt_lock_ref: "reports/phase4/prompt_locks/P4-B5.lock.yaml"
@@ -248,16 +250,27 @@ batches:
     repo_count_target: 10
     shallow_repo_count: 6
     deep_repo_count: 4
-    mode_recommendation: "HYBRID"
-    execution_guardrail:
-      - "Do not execute B5 while B4 execution artifacts are still dirty/untracked in this worktree."
-      - "Before execution, either commit B4 artifacts intentionally or run B5 in a clean/isolated worktree."
+    mode_recommendation_used: "HYBRID"
+    ws7_strict_runs: 2
+    ws7_force_runs: 0
+    ws7_snapshot_status: "warn"
+    deep_success: true
+    policy_success: true
+    acceptance_decision: "ACCEPT_WITH_NOTES"
     prompt_applied_fixes:
       - "Unmapped metrics: canonical coverage.yaml path with validation_runs fallback."
       - "WS7 semantics: strict-only; `--force` compatibility no-op only."
+    notes:
+      - "queue: 14 -> 8, already_canonical: 103 -> 109"
+      - "repos: 105 -> 111, nodes: 119 -> 125, edges unchanged"
+      - "deep_facts: 3418 -> 3601 (+183), hard deep gate passed"
+      - "Prompt-lock gate passed: prompt SHA matched file + lock + tracker"
+      - "Canonical unmapped metric sourced from WS6 coverage.yaml (33 -> 33, delta 0)"
+      - "Preflight query baselines required a supervisor-approved WS7 refresh because knowledge.db was stale"
+      - "Supervisor review downgraded closure from ACCEPT to ACCEPT_WITH_NOTES until control-plane status files were synchronized"
 
 open_threads:
-  - "Resolve B4 artifact contamination (commit or isolate), then execute B5."
+  - "Decide whether to standardize the Phase 4 batch prompt template now that B5 executed under canonical unmapped-metric sourcing and strict-only WS7 semantics."
   - "Case-insensitive collision handling if two repos differ only by case."
   - "Keep batch evidence commits scoped; separate hygiene/doc edits from ingestion outputs."
 
