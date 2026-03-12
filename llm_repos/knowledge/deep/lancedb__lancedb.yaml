@@ -1,0 +1,153 @@
+name: lancedb
+node_id: repo::lancedb/lancedb
+github_full_name: lancedb/lancedb
+html_url: https://github.com/lancedb/lancedb
+source: remote_metadata
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep/lancedb__lancedb.yaml
+  as_of: '2026-03-05'
+directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/lancedb__lancedb
+category: vector_database
+
+architecture:
+  module_breakdown:
+  - module: rust/lancedb
+    responsibility: "Core Rust database engine, index management, and query execution."
+    key_files:
+    - rust/lancedb/src/lib.rs
+    - rust/lancedb/src/connection.rs
+  - module: python/python/lancedb
+    responsibility: "Python client API for table management, ingestion, and vector queries."
+    key_files:
+    - python/python/lancedb/__init__.py
+    - python/python/lancedb/table.py
+  - module: node/src
+    responsibility: "TypeScript bindings and client surface for Node.js consumers."
+    key_files:
+    - node/src/index.ts
+  key_abstractions:
+  - name: Connection
+    purpose: "Primary handle for creating tables and issuing vector or hybrid queries."
+  - name: Table
+    purpose: "Logical dataset abstraction with schema, data mutation, and index operations."
+  - name: QueryBuilder
+    purpose: "Composable query interface for vector search, filtering, and reranking options."
+
+code_patterns:
+- pattern: "Builder-style query construction"
+  description: "Query options chain through fluent methods before execution."
+  location: python/python/lancedb/table.py
+- pattern: "Arrow-first data interchange"
+  description: "Arrow data structures are used as canonical in-memory representation for table IO."
+  location: rust/lancedb/src
+- pattern: "Multi-language binding surface"
+  description: "Rust core capabilities are surfaced through Python and Node bindings."
+  location: rust/lancedb/src/lib.rs
+
+implementation_patterns:
+- pattern: "Index-aware search dispatch"
+  description: "Search execution path chooses ANN-capable routes when index metadata is present."
+  location: rust/lancedb/src
+- pattern: "Schema-on-write validation"
+  description: "Incoming rows are validated against table schema before persistence."
+  location: python/python/lancedb/table.py
+
+core_modules:
+  engine:
+    path: rust/lancedb
+    description: "Core storage, indexing, and query execution runtime."
+  python_sdk:
+    path: python/python/lancedb
+    description: "Python package for table lifecycle and query APIs."
+  node_sdk:
+    path: node/src
+    description: "Node/TypeScript bindings for client usage."
+
+key_features:
+- feature: "Vector similarity search"
+  description: "Supports nearest-neighbor style retrieval over vector columns."
+- feature: "Hybrid filtering"
+  description: "Combines vector retrieval with metadata filter constraints."
+- feature: "Multi-language clients"
+  description: "Exposes first-party Python and Node interfaces over a Rust core."
+- feature: "Table and index management"
+  description: "Supports creation, mutation, and lifecycle operations for indexed datasets."
+
+key_files:
+- path: README.md
+  description: "Project overview and getting-started workflow."
+- path: rust/lancedb/src/lib.rs
+  description: "Rust entry point for core crate exports."
+- path: python/python/lancedb/table.py
+  description: "Python table and query API implementation."
+- path: node/src/index.ts
+  description: "TypeScript package entry point."
+
+configuration:
+- name: runtime_options
+  options:
+  - key: uri
+    description: "Database location for local or remote connection targets."
+  - key: vector_column
+    description: "Column identifier used for vector indexing and nearest-neighbor queries."
+  - key: metric
+    description: "Similarity metric used by vector search operations."
+- name: index_options
+  options:
+  - key: index_type
+    description: "Configured ANN index backend for vector acceleration."
+  - key: num_partitions
+    description: "Partitioning setting for large index layouts."
+
+testing:
+  framework: mixed
+  structure: "Repository includes Rust and SDK test coverage for table operations and query behavior."
+  coverage_areas:
+  - "Index creation and vector query correctness"
+  - "Schema validation and ingestion paths"
+  - "Client API behavior across supported language surfaces"
+  test_patterns:
+  - "cargo test"
+  - "pytest"
+  - "npm test"
+
+integrations:
+  runtime:
+  - Apache Arrow
+  - Python ecosystem
+  - Node.js ecosystem
+  workflows:
+  - vector retrieval pipelines
+  - hybrid search services
+
+quick_reference:
+- topic: "Build Rust core"
+  command: "cargo build"
+- topic: "Run Python tests"
+  command: "pytest"
+- topic: "Run Node tests"
+  command: "npm test"
+
+commands:
+- name: "cargo build"
+  description: "Compile core Rust crates."
+  usage: "cargo build"
+- name: "cargo test"
+  description: "Run Rust test suites."
+  usage: "cargo test"
+- name: "pytest"
+  description: "Run Python SDK tests."
+  usage: "pytest"
+
+api_surface:
+  public_functions:
+  - name: connect
+    purpose: "Create a database connection handle for table operations."
+    location: python/python/lancedb/__init__.py
+  - name: create_table
+    purpose: "Create a named table with schema and data."
+    location: python/python/lancedb/table.py
+  - name: search
+    purpose: "Execute vector search with optional filter constraints."
+    location: python/python/lancedb/table.py

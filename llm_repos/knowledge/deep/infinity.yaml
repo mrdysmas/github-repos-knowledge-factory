@@ -1,0 +1,142 @@
+name: infinity
+node_id: repo::infiniflow/infinity
+github_full_name: infiniflow/infinity
+html_url: https://github.com/infiniflow/infinity
+source: remote_metadata
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep/infinity.yaml
+  as_of: '2026-03-05'
+directory: remote::infiniflow/infinity
+category: vector_database
+
+architecture:
+  module_breakdown:
+  - module: src/core
+    responsibility: "Core database engine for indexing, query planning, and execution."
+    key_files:
+    - src/core
+  - module: python/
+    responsibility: "Python client and integration surfaces for retrieval workloads."
+    key_files:
+    - python/
+  - module: docs/
+    responsibility: "Operational guidance and usage documentation for deployment and query flows."
+    key_files:
+    - docs/
+  key_abstractions:
+  - name: IndexManager
+    purpose: "Manages vector index lifecycle and optimization settings."
+  - name: QueryPlanner
+    purpose: "Builds execution plans for vector, scalar, and hybrid search queries."
+  - name: StorageSegment
+    purpose: "Organizes persisted vectors and metadata for retrieval operations."
+
+code_patterns:
+- pattern: "Hybrid query execution"
+  description: "Query pipeline combines vector similarity with scalar filters and ranking signals."
+  location: src/core
+- pattern: "Segmented storage layout"
+  description: "Data paths separate segments to balance ingestion and retrieval performance."
+  location: src/core
+- pattern: "Client-wrapper abstraction"
+  description: "Python interfaces wrap lower-level APIs for common retrieval workflows."
+  location: python/
+
+implementation_patterns:
+- pattern: "Planner-and-executor split"
+  description: "Query planning and execution responsibilities are separated to allow optimization passes."
+  location: src/core
+- pattern: "Batch ingestion path"
+  description: "Ingestion supports batched writes for large vector payloads."
+  location: src/core
+
+core_modules:
+  db_engine:
+    path: src/core
+    description: "Database engine internals for indexing and query execution."
+  python_sdk:
+    path: python/
+    description: "Python client interfaces for operational usage."
+  docs_surface:
+    path: docs/
+    description: "Usage and deployment documentation."
+
+key_features:
+- feature: "Vector retrieval core"
+  description: "Supports high-dimensional nearest-neighbor search over vector embeddings."
+- feature: "Hybrid search support"
+  description: "Combines vector scoring with structured metadata filters."
+- feature: "AI-native data workflows"
+  description: "Targets retrieval-heavy applications in LLM and semantic search stacks."
+- feature: "Operational indexing controls"
+  description: "Exposes index-management knobs for tuning performance."
+
+key_files:
+- path: README.md
+  description: "Repository introduction, architecture notes, and setup commands."
+- path: src/core
+  description: "Core database runtime and query components."
+- path: python/
+  description: "Python interface and integration code."
+- path: docs/
+  description: "Operational docs and usage examples."
+
+configuration:
+- name: index_tuning
+  options:
+  - key: index_type
+    description: "Vector index backend selection."
+  - key: distance_metric
+    description: "Similarity metric for nearest-neighbor computation."
+  - key: ef_search
+    description: "Search-time recall/performance tuning parameter."
+- name: runtime_settings
+  options:
+  - key: storage_path
+    description: "Filesystem or service path for persisted data."
+  - key: batch_size
+    description: "Write batch size for ingestion throughput."
+
+testing:
+  framework: mixed
+  structure: "Coverage includes index behavior, retrieval correctness, and client integration workflows."
+  coverage_areas:
+  - "Vector and hybrid query correctness"
+  - "Index build and maintenance behavior"
+  - "Client API integration"
+  test_patterns:
+  - "pytest"
+  - "ctest"
+
+integrations:
+  runtime:
+  - Python data pipelines
+  - vector search stacks
+  - retrieval-augmented generation services
+
+quick_reference:
+- topic: "Build project"
+  command: "See upstream README build section"
+- topic: "Run tests"
+  command: "See upstream README test section"
+
+commands:
+- name: "build"
+  description: "Compile core components using upstream build instructions."
+  usage: "See upstream README build section"
+- name: "test"
+  description: "Run project test suites using upstream instructions."
+  usage: "See upstream README test section"
+
+api_surface:
+  public_functions:
+  - name: create_index
+    purpose: "Create vector index structures for a target dataset."
+    location: src/core
+  - name: search
+    purpose: "Run vector or hybrid retrieval query against indexed data."
+    location: src/core
+  - name: upsert
+    purpose: "Insert or update vectors and metadata in storage."
+    location: src/core

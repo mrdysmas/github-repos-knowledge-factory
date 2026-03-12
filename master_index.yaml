@@ -5,13 +5,13 @@ metadata:
   source_shards:
   - llm_repos
   - ssh_repos
-  total_repos: 105
+  total_repos: 111
   repo_counts_by_shard:
-    llm_repos: 68
+    llm_repos: 74
     ssh_repos: 37
   category_counts:
-    agent_cli: 8
-    agent_framework: 6
+    agent_cli: 11
+    agent_framework: 7
     agent_frameworks: 3
     agent_orchestration: 3
     agent_platform: 1
@@ -42,8 +42,8 @@ metadata:
     terminal_multiplexer: 1
     terminal_ui: 1
     tunneling: 9
-    ui_tools: 4
-    vector_database: 7
+    ui_tools: 5
+    vector_database: 8
     vector_databases: 1
     vpn_mesh: 5
     web_framework: 1
@@ -4022,6 +4022,36 @@ repos:
     - Privacy-preserving inference
     - Edge AI deployment
     - Automotive/IoT AI
+- node_id: repo::obsproject/obs-studio
+  github_full_name: obsproject/obs-studio
+  html_url: https://github.com/obsproject/obs-studio
+  source: compiled_master
+  name: obs-studio
+  category: ui_tools
+  summary: Phase 4 B5 shallow intake for obsproject/obs-studio as an open source live
+    streaming and recording platform.
+  core_concepts:
+  - scene composition for streaming workflows
+  - plugin-driven broadcast tooling
+  key_entry_points:
+  - README.md
+  - docs/
+  - UI/
+  build_run:
+    language: mixed
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/obs-studio.yaml
+    as_of: '2026-03-05T05:30:00Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::obsproject/obs-studio
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::ollama/ollama
   github_full_name: ollama/ollama
   html_url: https://github.com/ollama/ollama
@@ -5339,6 +5369,36 @@ repos:
       purpose: Index of all applications with setup instructions
     - path: (various project directories)
       purpose: Each subdirectory is a standalone application
+- node_id: repo::siddhesh2377/toolneuron
+  github_full_name: siddhesh2377/toolneuron
+  html_url: https://github.com/Siddhesh2377/ToolNeuron
+  source: compiled_master
+  name: toolneuron
+  category: agent_framework
+  summary: Phase 4 B5 shallow intake for Siddhesh2377/ToolNeuron as a framework-oriented
+    repository for tool-using agent workflows.
+  core_concepts:
+  - tool selection for agent loops
+  - workflow automation patterns
+  key_entry_points:
+  - README.md
+  - docs/
+  - examples/
+  build_run:
+    language: mixed
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/toolneuron.yaml
+    as_of: '2026-03-05T05:30:00Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::siddhesh2377/toolneuron
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::slackhq/nebula
   github_full_name: slackhq/nebula
   html_url: https://github.com/slackhq/nebula
@@ -5442,6 +5502,36 @@ repos:
         logic
     - path: handshake_manager.go:1
       purpose: Noise Protocol handshake orchestration - manages peer connection establishment
+- node_id: repo::snarktank/ralph
+  github_full_name: snarktank/ralph
+  html_url: https://github.com/snarktank/ralph
+  source: compiled_master
+  name: ralph
+  category: agent_cli
+  summary: Phase 4 B5 shallow intake for snarktank/ralph as a Claude-adjacent CLI
+    workflow helper.
+  core_concepts:
+  - terminal-first agent operations
+  - lightweight workflow automation
+  key_entry_points:
+  - README.md
+  - src/
+  - scripts/
+  build_run:
+    language: mixed
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/ralph.yaml
+    as_of: '2026-03-05T05:30:00Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::snarktank/ralph
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::spotify/annoy
   github_full_name: spotify/annoy
   html_url: https://github.com/spotify/annoy
@@ -5812,6 +5902,36 @@ repos:
         precedence: api_wins_readme_for_missing_required_fields
         fallback_source: readme_fallback
         fallback_used: false
+- node_id: repo::thedotmack/claude-mem
+  github_full_name: thedotmack/claude-mem
+  html_url: https://github.com/thedotmack/claude-mem
+  source: compiled_master
+  name: claude-mem
+  category: agent_cli
+  summary: Phase 4 B5 shallow intake for thedotmack/claude-mem as memory tooling around
+    Claude workflow usage.
+  core_concepts:
+  - conversational memory persistence
+  - context retrieval utilities
+  key_entry_points:
+  - README.md
+  - src/
+  - docs/
+  build_run:
+    language: mixed
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/claude-mem.yaml
+    as_of: '2026-03-05T05:30:00Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::thedotmack/claude-mem
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::thephpleague/fractal
   github_full_name: thephpleague/fractal
   html_url: https://github.com/thephpleague/fractal
@@ -6355,6 +6475,36 @@ repos:
     - path: typings/xterm.d.ts
       purpose: Public TypeScript type definitions - the authoritative API documentation
         for library consumers
+- node_id: repo::yahoojapan/ngt
+  github_full_name: yahoojapan/ngt
+  html_url: https://github.com/yahoojapan/NGT
+  source: compiled_master
+  name: ngt
+  category: vector_database
+  summary: Phase 4 B5 shallow intake for yahoojapan/NGT as an approximate nearest
+    neighbor vector search engine.
+  core_concepts:
+  - ANN index construction
+  - vector similarity retrieval
+  key_entry_points:
+  - README.md
+  - lib/
+  - python/
+  build_run:
+    language: c++
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/ngt.yaml
+    as_of: '2026-03-05T05:30:00Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::yahoojapan/ngt
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::yetidevworks/ytunnel
   github_full_name: yetidevworks/ytunnel
   html_url: https://github.com/yetidevworks/ytunnel
@@ -6443,6 +6593,36 @@ repos:
     - path: src/state.rs
       purpose: Persistent tunnel state management (tunnels.toml) tracking tunnel metadata
         and settings
+- node_id: repo::ykdojo/claude-code-tips
+  github_full_name: ykdojo/claude-code-tips
+  html_url: https://github.com/ykdojo/claude-code-tips
+  source: compiled_master
+  name: claude-code-tips
+  category: agent_cli
+  summary: Phase 4 B5 shallow intake for ykdojo/claude-code-tips as a curated tips
+    and workflow companion for Claude Code users.
+  core_concepts:
+  - prompt and workflow patterns
+  - operator playbooks for agent coding
+  key_entry_points:
+  - README.md
+  - docs/
+  - examples/
+  build_run:
+    language: mixed
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/claude-code-tips.yaml
+    as_of: '2026-03-05T05:30:00Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::ykdojo/claude-code-tips
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::yusuf-musleh/mmar
   github_full_name: yusuf-musleh/mmar
   html_url: https://github.com/yusuf-musleh/mmar

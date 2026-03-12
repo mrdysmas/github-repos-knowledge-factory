@@ -1,6 +1,6 @@
 artifact_type: intake_repo_queue
 contract_version: 1.0.0-intake
-generated_at_utc: '2026-03-05T16:12:00Z'
+generated_at_utc: '2026-03-05T19:56:02Z'
 source:
   catalog_file: master_repo_list.yaml
   master_index_file: master_index.yaml
@@ -10,8 +10,8 @@ summary:
   source_rows_missing_github_url: 5
   source_rows_invalid_full_name: 0
   deduped_entries_total: 117
-  already_canonical_count: 103
-  queued_count: 14
+  already_canonical_count: 109
+  queued_count: 8
 policies:
   scan_mode_default: shallow_first
   clone_strategy: clone_on_demand
@@ -1006,9 +1006,9 @@ entries:
 - queue_id: intake::obsproject/obs-studio
   github_full_name: obsproject/obs-studio
   html_url: https://github.com/obsproject/obs-studio
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - testing_repos
@@ -1309,12 +1309,12 @@ entries:
   needs_review_count: 0
   source_row_indexes:
   - 98
-- queue_id: intake::Siddhesh2377/ToolNeuron
-  github_full_name: Siddhesh2377/ToolNeuron
+- queue_id: intake::siddhesh2377/toolneuron
+  github_full_name: siddhesh2377/toolneuron
   html_url: https://github.com/Siddhesh2377/ToolNeuron
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - uncat_repos
@@ -1340,9 +1340,9 @@ entries:
 - queue_id: intake::snarktank/ralph
   github_full_name: snarktank/ralph
   html_url: https://github.com/snarktank/ralph
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - plugin_repos
@@ -1452,9 +1452,9 @@ entries:
 - queue_id: intake::thedotmack/claude-mem
   github_full_name: thedotmack/claude-mem
   html_url: https://github.com/thedotmack/claude-mem
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - plugin_repos
@@ -1589,12 +1589,12 @@ entries:
   needs_review_count: 0
   source_row_indexes:
   - 94
-- queue_id: intake::yahoojapan/NGT
-  github_full_name: yahoojapan/NGT
+- queue_id: intake::yahoojapan/ngt
+  github_full_name: yahoojapan/ngt
   html_url: https://github.com/yahoojapan/NGT
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - vector_db
@@ -1620,9 +1620,9 @@ entries:
 - queue_id: intake::ykdojo/claude-code-tips
   github_full_name: ykdojo/claude-code-tips
   html_url: https://github.com/ykdojo/claude-code-tips
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - plugin_repos

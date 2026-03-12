@@ -1,7 +1,7 @@
 metadata:
   created: 2026-02-20
   purpose: Quick reference for LLM-related repositories
-  total_repos: 68
+  total_repos: 74
 categories:
   rag_frameworks:
     description: RAG, orchestration, and LLM application frameworks
@@ -43,6 +43,9 @@ categories:
       summary: Enterprise low-code platform with AI integration, MCP plugins (Java/Vue)
     - name: maxkb
       summary: Enterprise agent platform with RAG, workflows, MCP tools (Chinese)
+    - name: obs-studio
+      summary: Phase 4 B5 shallow intake for obsproject/obs-studio as an open source
+        live streaming and recording platform.
     - name: open_webui
       summary: Feature-rich self-hosted ChatGPT UI with RAG, most popular for Ollama
   agent_frameworks:
@@ -89,6 +92,12 @@ categories:
     - name: claude-code
       summary: Shallow intake pilot canonicalization for anthropics/claude-code in
         agent cli domain.
+    - name: claude-code-tips
+      summary: Phase 4 B5 shallow intake for ykdojo/claude-code-tips as a curated
+        tips and workflow companion for Claude Code users.
+    - name: claude-mem
+      summary: Phase 4 B5 shallow intake for thedotmack/claude-mem as memory tooling
+        around Claude workflow usage.
     - name: codex
       summary: Shallow intake pilot canonicalization for openai/codex in agent cli
         domain.
@@ -107,6 +116,9 @@ categories:
     - name: opencode
       summary: Phase 4 Corpus Expansion P4-B1 intake for anomalyco/opencode. Agent
         CLI repository routed explicitly to llm_repos.
+    - name: ralph
+      summary: Phase 4 B5 shallow intake for snarktank/ralph as a Claude-adjacent
+        CLI workflow helper.
     - name: ralph-claude-code
       summary: Phase 4 B3 shallow intake for frankbria/ralph-claude-code as a Claude
         Code workflow companion utility.
@@ -140,6 +152,9 @@ categories:
     - name: lancedb
       summary: Shallow intake pilot canonicalization for lancedb/lancedb in vector
         database domain.
+    - name: ngt
+      summary: Phase 4 B5 shallow intake for yahoojapan/NGT as an approximate nearest
+        neighbor vector search engine.
     - name: qdrant
       summary: Shallow intake pilot canonicalization for qdrant/qdrant in vector database
         domain.
@@ -176,6 +191,9 @@ categories:
     - name: skills
       summary: Phase 4 Corpus Expansion P4-B1 intake for anthropics/skills. Agent
         framework repository routed explicitly to llm_repos.
+    - name: toolneuron
+      summary: Phase 4 B5 shallow intake for Siddhesh2377/ToolNeuron as a framework-oriented
+        repository for tool-using agent workflows.
   agent_orchestration:
     description: 'Remote-ingested category: agent_orchestration'
     repos:
@@ -276,9 +294,15 @@ repos_alpha:
 - name: claude-code
   category: agent_cli
   file: repos/anthropics__claude-code.yaml
+- name: claude-code-tips
+  category: agent_cli
+  file: repos/claude-code-tips.yaml
 - name: claude-flow
   category: agent_orchestration
   file: repos/ruvnet__claude-flow.yaml
+- name: claude-mem
+  category: agent_cli
+  file: repos/claude-mem.yaml
 - name: code-server
   category: remote_access
   file: repos/coder__code-server.yaml
@@ -363,6 +387,12 @@ repos_alpha:
 - name: nexa_sdk
   category: inference_serving
   file: repos/nexa_sdk.yaml
+- name: ngt
+  category: vector_database
+  file: repos/ngt.yaml
+- name: obs-studio
+  category: ui_tools
+  file: repos/obs-studio.yaml
 - name: obsidian-smart-connections
   category: workflow_builder
   file: repos/brianpetro__obsidian-smart-connections.yaml
@@ -417,6 +447,9 @@ repos_alpha:
 - name: ragflow
   category: rag_frameworks
   file: repos/ragflow.yaml
+- name: ralph
+  category: agent_cli
+  file: repos/ralph.yaml
 - name: ralph-claude-code
   category: agent_cli
   file: repos/ralph-claude-code.yaml
@@ -432,6 +465,9 @@ repos_alpha:
 - name: Stirling-PDF
   category: office_automation
   file: repos/stirling-tools__stirling-pdf.yaml
+- name: toolneuron
+  category: agent_framework
+  file: repos/toolneuron.yaml
 - name: usearch
   category: vector_database
   file: repos/unum-cloud__usearch.yaml

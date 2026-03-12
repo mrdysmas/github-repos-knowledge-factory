@@ -1,60 +1,83 @@
 artifact_type: ws5_remote_ingestion_input_manifest
 contract_version: 1.0.0-ws1
 defaults:
-  target_shard: ssh_repos
+  target_shard: llm_repos
   as_of: '2026-03-05'
   source: remote_metadata
 repos:
-- name: awesome-go
-  github_full_name: avelino/awesome-go
-  html_url: https://github.com/avelino/awesome-go
+- name: obs-studio
+  github_full_name: obsproject/obs-studio
+  html_url: https://github.com/obsproject/obs-studio
   target_shard: llm_repos
   source: remote_metadata
-  category: documentation
-  summary: Phase 4 B3 shallow intake for avelino/awesome-go as a curated Go ecosystem reference index.
+  category: ui_tools
+  summary: Phase 4 B5 shallow intake for obsproject/obs-studio as an open source live streaming and recording platform.
   core_concepts:
-  - curated Go project catalog
-  - discoverability for Go tooling and libraries
+  - scene composition for streaming workflows
+  - plugin-driven broadcast tooling
   key_entry_points:
   - README.md
-  - CONTRIBUTING.md
+  - docs/
+  - UI/
   build_run:
-    language: markdown
-    build: No build step required for curated list repository.
-    test: No automated test suite in this repository.
+    language: mixed
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   as_of: '2026-03-05T05:30:00Z'
   local_cache_dir: null
-- name: wetty
-  github_full_name: butlerx/wetty
-  html_url: https://github.com/butlerx/wetty
+- name: toolneuron
+  github_full_name: Siddhesh2377/ToolNeuron
+  html_url: https://github.com/Siddhesh2377/ToolNeuron
   target_shard: llm_repos
   source: remote_metadata
-  category: remote_access
-  summary: Phase 4 B3 shallow intake for butlerx/wetty as a browser-accessible terminal over SSH utility.
+  category: agent_framework
+  summary: Phase 4 B5 shallow intake for Siddhesh2377/ToolNeuron as a framework-oriented repository for tool-using agent workflows.
   core_concepts:
-  - web terminal access
-  - SSH proxy workflow
+  - tool selection for agent loops
+  - workflow automation patterns
   key_entry_points:
   - README.md
-  - src/
+  - docs/
+  - examples/
   build_run:
-    language: typescript
-    build: npm run build
-    test: npm test
+    language: mixed
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   as_of: '2026-03-05T05:30:00Z'
   local_cache_dir: null
-- name: oh-my-opencode
-  github_full_name: code-yeongyu/oh-my-opencode
-  html_url: https://github.com/code-yeongyu/oh-my-opencode
+- name: ralph
+  github_full_name: snarktank/ralph
+  html_url: https://github.com/snarktank/ralph
   target_shard: llm_repos
   source: remote_metadata
   category: agent_cli
-  summary: Phase 4 B3 shallow intake for code-yeongyu/oh-my-opencode as an extension pack around agent CLI workflows.
+  summary: Phase 4 B5 shallow intake for snarktank/ralph as a Claude-adjacent CLI workflow helper.
   core_concepts:
-  - agent cli customization
-  - extension and prompt packaging
+  - terminal-first agent operations
+  - lightweight workflow automation
   key_entry_points:
   - README.md
+  - src/
+  - scripts/
+  build_run:
+    language: mixed
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  as_of: '2026-03-05T05:30:00Z'
+  local_cache_dir: null
+- name: claude-mem
+  github_full_name: thedotmack/claude-mem
+  html_url: https://github.com/thedotmack/claude-mem
+  target_shard: llm_repos
+  source: remote_metadata
+  category: agent_cli
+  summary: Phase 4 B5 shallow intake for thedotmack/claude-mem as memory tooling around Claude workflow usage.
+  core_concepts:
+  - conversational memory persistence
+  - context retrieval utilities
+  key_entry_points:
+  - README.md
+  - src/
   - docs/
   build_run:
     language: mixed
@@ -62,97 +85,40 @@ repos:
     test: See upstream README for project test steps.
   as_of: '2026-03-05T05:30:00Z'
   local_cache_dir: null
-- name: ralph-claude-code
-  github_full_name: frankbria/ralph-claude-code
-  html_url: https://github.com/frankbria/ralph-claude-code
-  target_shard: llm_repos
-  source: remote_metadata
-  category: agent_cli
-  summary: Phase 4 B3 shallow intake for frankbria/ralph-claude-code as a Claude Code workflow companion utility.
-  core_concepts:
-  - claude code workflow automation
-  - task orchestration helpers
-  key_entry_points:
-  - README.md
-  - src/
-  build_run:
-    language: mixed
-    build: See upstream README for project build steps.
-    test: See upstream README for project test steps.
-  as_of: '2026-03-05T05:30:00Z'
-  local_cache_dir: null
-- name: smile
-  github_full_name: haifengl/smile
-  html_url: https://github.com/haifengl/smile
-  target_shard: llm_repos
-  source: remote_metadata
-  category: machine_learning
-  summary: Phase 4 B3 shallow intake for haifengl/smile as a JVM machine learning and data mining toolkit.
-  core_concepts:
-  - statistical learning algorithms
-  - JVM data science tooling
-  key_entry_points:
-  - README.md
-  - scala/
-  - core/
-  build_run:
-    language: java
-    build: ./gradlew build
-    test: ./gradlew test
-  as_of: '2026-03-05T05:30:00Z'
-  local_cache_dir: null
-- name: felony
-  github_full_name: henryboldi/felony
-  html_url: https://github.com/henryboldi/felony
-  target_shard: llm_repos
-  source: remote_metadata
-  category: agent_cli
-  summary: Phase 4 B3 shallow intake for henryboldi/felony as a command-line utility in the agent tooling ecosystem.
-  core_concepts:
-  - command-line developer workflow
-  - terminal-first automation helpers
-  key_entry_points:
-  - README.md
-  - src/
-  build_run:
-    language: mixed
-    build: See upstream README for project build steps.
-    test: See upstream README for project test steps.
-  as_of: '2026-03-05T05:30:00Z'
-  local_cache_dir: null
-- name: java-design-patterns
-  github_full_name: iluwatar/java-design-patterns
-  html_url: https://github.com/iluwatar/java-design-patterns
-  target_shard: llm_repos
-  source: remote_metadata
-  category: documentation
-  summary: Phase 4 B3 shallow intake for iluwatar/java-design-patterns as a reference implementation catalog of software design patterns.
-  core_concepts:
-  - design pattern exemplars
-  - Java architecture references
-  key_entry_points:
-  - README.md
-  - java-design-patterns/
-  build_run:
-    language: java
-    build: mvn -q package
-    test: mvn -q test
-  as_of: '2026-03-05T05:30:00Z'
-  local_cache_dir: null
-- name: infinity
-  github_full_name: infiniflow/infinity
-  html_url: https://github.com/infiniflow/infinity
+- name: ngt
+  github_full_name: yahoojapan/NGT
+  html_url: https://github.com/yahoojapan/NGT
   target_shard: llm_repos
   source: remote_metadata
   category: vector_database
-  summary: Phase 4 B3 shallow intake for infiniflow/infinity as an AI-native database for vector and hybrid retrieval workloads.
+  summary: Phase 4 B5 shallow intake for yahoojapan/NGT as an approximate nearest neighbor vector search engine.
   core_concepts:
-  - vector indexing and retrieval
-  - hybrid search infrastructure
+  - ANN index construction
+  - vector similarity retrieval
   key_entry_points:
   - README.md
-  - src/
+  - lib/
   - python/
+  build_run:
+    language: c++
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  as_of: '2026-03-05T05:30:00Z'
+  local_cache_dir: null
+- name: claude-code-tips
+  github_full_name: ykdojo/claude-code-tips
+  html_url: https://github.com/ykdojo/claude-code-tips
+  target_shard: llm_repos
+  source: remote_metadata
+  category: agent_cli
+  summary: Phase 4 B5 shallow intake for ykdojo/claude-code-tips as a curated tips and workflow companion for Claude Code users.
+  core_concepts:
+  - prompt and workflow patterns
+  - operator playbooks for agent coding
+  key_entry_points:
+  - README.md
+  - docs/
+  - examples/
   build_run:
     language: mixed
     build: See upstream README for project build steps.
