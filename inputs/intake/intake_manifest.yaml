@@ -17,7 +17,7 @@ intake_model:
 directory_strategy:
   preferred_single_intake_dir: "/Users/szilaa/scripts/ext_sources/github_repos/intake_repos"
   status: "CONSOLIDATED_TO_INTAKE_ROOT_AND_QUEUE_DRIVEN"
-  note: "Canonical shards (llm_repos/ssh_repos) remain output targets, not raw intake buckets."
+  note: "Canonical outputs land in the unified shard at repos/knowledge; intake_repos remains a raw clone workspace only."
 
 queue_source:
   source_catalog: "/Users/szilaa/scripts/ext_sources/github_repos/master_repo_list.yaml"
@@ -29,13 +29,12 @@ queue_source:
 
 classification_strategy:
   shard_policy:
-    current_allowed_shards:
-      - "llm_repos"
-      - "ssh_repos"
-    decision: "Keep two-shard routing through pilot; defer new shard creation until post-pilot trigger."
+    canonical_target_shard: "repos"
+    compatibility_behavior: "target_shard remains in some intake artifacts for manifest compatibility; any legacy llm_repos/ssh_repos value normalizes to repos and does not require operator routing."
+    decision: "Unified canonical shard is active; no shard assignment decision is performed during intake."
     decision_ref: "/Users/szilaa/scripts/ext_sources/github_repos/docs/decisions/intake_shard_routing_decision.md"
   domain_hint:
-    purpose: "Metadata-only classifier for future shard split and prioritization."
+    purpose: "Metadata-only taxonomy and prioritization hint; it does not control canonical destination."
     affects_target_shard_now: false
     taxonomy_status: "provisional"
     alias_policy: "aliases are transitional; canonical values in suggested_values are required in committed records"
@@ -99,7 +98,7 @@ record_template:
   html_url: "https://github.com/<owner>/<name>"
   intake_path: "/Users/szilaa/scripts/ext_sources/github_repos/intake_repos/<repo-dir>"
   domain_hint: "<metadata_classifier_only>"
-  target_shard: "llm_repos | ssh_repos"
+  target_shard: "repos"
   current_state: "discovered"
   source:
     mode: "local_clone | remote_api | remote_metadata"
