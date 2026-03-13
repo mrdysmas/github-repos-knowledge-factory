@@ -1,11 +1,11 @@
 version: 1
-as_of_utc: "2026-03-12T02:41:04Z"
+as_of_utc: "2026-03-13T04:28:53Z"
 
 phase:
   number: "4"
   name: "Corpus Expansion and Stabilization"
   status: "IN_PROGRESS"
-  workflow: "B1_COMPLETE -> STABILIZATION_COMPLETE -> B2_COMPLETE -> B3_COMPLETE_ACCEPT_WITH_NOTES -> B4_COMPLETE_ACCEPT_WITH_NOTES -> B5_COMPLETE_ACCEPT_WITH_NOTES -> TEMPLATE_STANDARDIZATION_PENDING"
+  workflow: "B1_COMPLETE -> STABILIZATION_COMPLETE -> B2_COMPLETE -> B3_COMPLETE_ACCEPT_WITH_NOTES -> B4_COMPLETE_ACCEPT_WITH_NOTES -> B5_COMPLETE_ACCEPT_WITH_NOTES -> TEMPLATE_STANDARDIZATION_PENDING -> TEMPLATE_STANDARDIZATION_APPROVED"
   date_initiated: "2026-03-05"
   date_started: "2026-03-05"
   date_completed: null
@@ -146,7 +146,7 @@ milestones:
 
   m5:
     name: "Batch B3/B4 Repeatability + Template Standardization Decision"
-    status: "IN_PROGRESS"
+    status: "COMPLETE"
     deliverables:
       - "Second consecutive hardened-policy batch report"
       - "Go/No-Go recommendation to standardize prompt template"
@@ -161,8 +161,9 @@ milestones:
       - "Hard gates passed in all three hardened runs; deep_facts deltas were +204 (B3), +201 (B4), and +183 (B5)."
       - "B5 verified canonical unmapped-section sourcing from WS6 coverage metrics (33 -> 33) and strict-only WS7 semantics."
       - "Remaining action is governance: decide whether to standardize the template now that B5 evidence and control-plane sync are complete."
+      - "Template standardization decision approved by supervisor. Decision ref: docs/decisions/phase4_prompt_template_standardization_decision.md"
     date_started: "2026-03-05"
-    date_completed: null
+    date_completed: "2026-03-12"
 
 batches:
   b1:
@@ -270,7 +271,6 @@ batches:
       - "Supervisor review downgraded closure from ACCEPT to ACCEPT_WITH_NOTES until control-plane status files were synchronized"
 
 open_threads:
-  - "Review and approve/revise/reject the draft standardization proposal in docs/decisions/phase4_prompt_template_standardization_decision.md."
   - "Case-insensitive collision handling if two repos differ only by case."
   - "Keep batch evidence commits scoped; separate hygiene/doc edits from ingestion outputs."
 

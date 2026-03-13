@@ -1,6 +1,9 @@
-# Phase 4 Prompt Template Standardization Decision (Draft)
+# Phase 4 Prompt Template Standardization Decision (Approved)
 
 Drafted at (UTC): 2026-03-12T02:41:04Z
+Approved at (UTC): 2026-03-13T04:28:53Z
+Approved by: supervisor
+Approval basis: Three consecutive hardened hybrid runs (B3, B4, B5) with no blocking gate regressions. B5 validated canonical unmapped-section sourcing and strict-only WS7 semantics. All three conditions to approve are accepted as stated.
 
 ## Proposed Decision
 
