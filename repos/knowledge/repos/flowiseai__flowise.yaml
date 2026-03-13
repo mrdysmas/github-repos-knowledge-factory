@@ -1,0 +1,44 @@
+name: Flowise
+node_id: repo::flowiseai/flowise
+github_full_name: flowiseai/flowise
+html_url: https://github.com/FlowiseAI/Flowise
+source: remote_metadata
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/repos/flowiseai__flowise.yaml
+  as_of: '2026-02-24T19:46:56Z'
+directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/FlowiseAI__Flowise
+category: workflow_builder
+summary: Shallow intake pilot canonicalization for flowiseai/flowise in workflow builder
+  domain.
+core_concepts:
+- workflow builder capabilities
+- flowise repository architecture
+key_entry_points:
+- README.md
+- package.json
+build_run:
+  language: javascript
+  build: npm run build
+  test: npm test
+local_cache_dir: null
+extras:
+  intake:
+    pilot_batch_id: INTAKE-PILOT-1
+    repo_id: repo::FlowiseAI/Flowise
+    queue_id: intake::FlowiseAI/Flowise
+    intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/FlowiseAI__Flowise
+    domain_hint: workflow_builder
+    source_mode: local_clone
+    source_commit: 917e02eb36736fcbfaa4bef9342e217c5d4a9840
+    default_branch: main
+    observed_at_utc: '2026-02-24T19:46:56Z'
+  remote:
+    provider: github
+    mode: metadata
+    endpoint: /repos/flowiseai/flowise
+    fetched_at_utc: '2026-02-24T19:46:56Z'
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false

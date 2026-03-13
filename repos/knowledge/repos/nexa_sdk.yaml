@@ -1,0 +1,91 @@
+name: nexa_sdk
+node_id: repo::nexaai/nexa-sdk
+github_full_name: nexaai/nexa-sdk
+html_url: https://github.com/nexaai/nexa-sdk
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/repos/nexa_sdk.yaml
+  as_of: '2026-02-25'
+directory: nexa-sdk-main
+category: inference_serving
+
+summary: |
+  On-device AI inference framework optimized for NPU, GPU, and CPU across mobile
+  (Android, iOS), desktop, and IoT. Day-0 support for latest models (Qwen3-VL, DeepSeek-OCR).
+  NPU-first approach with Qualcomm Hexagon, Apple ANE, Intel NPU, AMD NPU support.
+  Featured by Qualcomm, IBM, Google, NVIDIA, Microsoft for cutting-edge on-device AI.
+
+core_concepts:
+  - name: Python SDK
+    description: Python bindings for LLM, VLM, ASR, OCR, embeddings
+    location: bindings/python/
+
+  - name: Android SDK
+    description: Kotlin SDK for Qualcomm Snapdragon NPU
+    location: bindings/android/
+
+  - name: iOS SDK
+    description: Swift SDK for Apple Neural Engine
+    location: bindings/ios/
+
+  - name: Runner/Engine
+    description: Core inference engine (NexaML)
+    location: runner/
+
+key_entry_points:
+  - path: bindings/python/
+    purpose: Python SDK
+
+  - path: bindings/android/
+    purpose: Android/Kotlin SDK
+
+  - path: runner/
+    purpose: Core inference engine
+
+  - path: cookbook/
+    purpose: Examples and tutorials
+
+build_run:
+  language: Python/Kotlin/Swift/Go
+  install: "pip install nexaai"
+  usage: |
+    from nexaai import LLM, GenerationConfig, LlmChatMessage
+
+    llm = LLM.from_(model="NexaAI/Qwen3-0.6B-GGUF")
+    for token in llm.generate_stream(prompt, GenerationConfig()):
+        print(token, end="")
+
+key_features:
+  - NPU-first (Qualcomm, Apple, Intel, AMD)
+  - Mobile SDKs (Android, iOS)
+  - Day-0 model support
+  - Multimodal (LLM, VLM, ASR, OCR, image gen)
+  - Multiple formats (GGUF, MLX, NEXA)
+  - OpenAI-compatible API
+  - Function calling support
+  - Cross-platform (desktop, mobile, IoT)
+
+use_cases:
+  - On-device mobile AI apps
+  - Privacy-preserving inference
+  - Edge AI deployment
+  - Automotive/IoT AI
+
+ecosystem_connections:
+  - target: ollama
+    relation: alternative_to
+    note: NexaSDK has NPU support and mobile SDKs; Ollama is desktop-focused
+
+  - target: vllm
+    relation: alternative_to
+    note: vLLM is server/cloud; NexaSDK is on-device/mobile
+
+  - target: lmdeploy
+    relation: alternative_to
+    note: Different focus; LMDeploy for server deployment, NexaSDK for edge
+
+further_reading:
+  - README.md
+  - docs: https://docs.nexa.ai
+  - hub: https://sdk.nexa.ai/model

@@ -1,0 +1,101 @@
+name: parlant
+node_id: repo::emcie-co/parlant
+github_full_name: emcie-co/parlant
+html_url: https://github.com/emcie-co/parlant
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/repos/parlant.yaml
+  as_of: '2026-02-25'
+directory: parlant-develop
+category: agent_frameworks
+
+summary: |
+  Enterprise-grade AI agent framework focused on compliance and predictable behavior.
+  Parlant guarantees rule-following through behavioral guidelines, journeys, and tool
+  associations rather than hoping LLMs follow system prompts. Built with hexagonal
+  architecture for enterprise scale with SLAs and security requirements.
+
+core_concepts:
+  - name: Guidelines Engine
+    description: Natural language rules with ensured compliance
+    location: src/parlant/core/guidelines/
+
+  - name: Journeys
+    description: Step-by-step customer conversation flows
+    location: src/parlant/core/journeys/
+
+  - name: Tool Integration
+    description: Reliable API/backend service attachment
+    location: src/parlant/core/tools/
+
+  - name: Canned Responses
+    description: Template-based responses to eliminate hallucination
+    location: src/parlant/core/canned_responses/
+
+  - name: SDK
+    description: Python SDK for agent development
+    location: src/parlant/sdk.py
+
+key_entry_points:
+  - path: src/parlant/core/
+    purpose: Core framework (hexagonal architecture)
+
+  - path: src/parlant/adapters/
+    purpose: LLM, database, and external service adapters
+
+  - path: src/parlant/api/
+    purpose: REST API layer (FastAPI)
+
+  - path: src/parlant/sdk.py
+    purpose: Main SDK entry point
+
+build_run:
+  language: Python
+  install: "pip install parlant"
+  usage: |
+    import parlant_sdk as p
+
+    async with p.Server() as server:
+        agent = await server.create_agent(name="Bot")
+        await agent.create_guideline(
+            condition="User asks about X",
+            action="Do Y",
+            tools=[my_tool]
+        )
+
+key_features:
+  - Ensured guideline compliance (not hopeful)
+  - Conversational journeys
+  - Dynamic tool association
+  - Canned responses (zero hallucination)
+  - Full explainability
+  - Built-in testing framework
+  - React widget for web integration
+  - Enterprise-ready (HIPAA, financial compliance)
+
+use_cases:
+  - Customer service agents with guaranteed behavior
+  - Financial services compliance
+  - Healthcare patient interactions
+  - Legal tech with precise responses
+  - E-commerce at scale
+
+ecosystem_connections:
+  - target: langchain
+    relation: alternative_to
+    note: Parlant focuses on compliance; LangChain on flexibility
+
+  - target: mem0
+    relation: related_to
+    note: Both enhance agent behavior; Parlant via rules, mem0 via memory
+
+  - target: open_webui
+    relation: related_to
+    note: Parlant has React widget for custom UI integration
+
+further_reading:
+  - README.md
+  - CLAUDE.md
+  - docs: https://parlant.io/docs
+  - blog: https://parlant.io/blog

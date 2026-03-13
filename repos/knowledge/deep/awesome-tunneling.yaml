@@ -1,0 +1,141 @@
+name: awesome-tunneling
+node_id: repo::anderspitman/awesome-tunneling
+github_full_name: anderspitman/awesome-tunneling
+html_url: https://github.com/anderspitman/awesome-tunneling
+source: ssh_repos
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/deep/awesome-tunneling.yaml
+  as_of: '2026-02-25'
+directory: awesome-tunneling-master
+category: documentation
+
+summary: |
+  Curated list of tunneling tools and solutions for exposing local services publicly, with focus on self-hosting and NAT traversal.
+
+architecture:
+  document_structure:
+    - section: Introduction
+      line_range: [1, 12]
+      topics: [purpose, update-policy, target-audience]
+    - section: The Dream
+      line_range: [13, 30]
+      topics: [ideal-features, requirements, wishlist]
+    - section: Recommendations
+      line_range: [31, 35]
+      topics: [cloudflare-tunnel, self-hosted-options]
+    - section: Open Source Tools
+      line_range: [36, 102]
+      topics: [tunneling-tools, reverse-proxies, nat-traversal]
+      tool_count: 64
+    - section: Commercial/Closed Source
+      line_range: [103, 135]
+      topics: [saas-tunneling, managed-services]
+      tool_count: 30
+    - section: Overlay Networks & Advanced
+      line_range: [136, 162]
+      topics: [mesh-networks, p2p, vpn-overlays]
+      tool_count: 24
+    - section: Reference
+      line_range: [163, 172]
+      topics: [blog-posts, tutorials, comparisons]
+      resource_count: 7
+    - section: Discussions
+      line_range: [174, 177]
+      topics: [hacker-news, community]
+  organization: single-file
+  style: awesome-list
+
+content_coverage:
+  topics:
+    - name: tunneling-tools
+      depth: shallow
+      resources: 64
+    - name: overlay-networks
+      depth: shallow
+      resources: 24
+    - name: commercial-services
+      depth: shallow
+      resources: 30
+    - name: nat-traversal
+      depth: shallow
+      resources: 50
+  resource_types:
+    - tools
+    - libraries
+    - blog-posts
+    - tutorials
+
+  entry_format:
+    - project-name
+    - url
+    - description
+    - github-stars
+    - source-code-link
+    - language
+    - license
+
+key_sections:
+  - name: Recommendations
+    location: README.md:31-35
+    summary: Quick recommendations - Cloudflare Tunnel for most, self-hosted (Pangolin, frp) for control
+  - name: Open Source Tools
+    location: README.md:36-102
+    summary: Core section with 64 open-source tunneling solutions including most kgraph repos
+  - name: Overlay Networks & Advanced
+    location: README.md:136-162
+    summary: Advanced mesh/P2P networking tools including Tailscale, NetBird, Nebula
+
+cross_references:
+  internal: []
+  external:
+    - cloudflare-tunnel
+    - ngrok
+    - zerotier
+    - tailscale
+    - netbird
+  kgraph_overlap:
+    - repo: frp
+      location: open-source-tools
+      context: Primary self-hosted tunneling recommendation
+    - repo: bore
+      location: open-source-tools
+      context: Simple TCP tunnel tool
+    - repo: rathole
+      location: open-source-tools
+      context: High-performance tunneling
+    - repo: gost
+      location: open-source-tools
+      context: GO Simple Tunnel
+    - repo: sshuttle
+      location: open-source-tools
+      context: SSH-based VPN
+    - repo: teleport
+      location: overlay-networks
+      context: Access plane for infrastructure
+    - repo: headscale
+      location: overlay-networks
+      context: Tailscale control server
+    - repo: nebula
+      location: overlay-networks
+      context: Mesh networking
+    - repo: pangolin
+      location: open-source-tools
+      context: Modern self-hosted tunneling
+    - repo: hysteria
+      location: open-source-tools
+      context: High-performance proxy
+
+contribution_policy:
+  stars_required: 100
+  non_github: case-by-case
+  process: open-issue
+
+metadata:
+  lines: 180
+  primary_file: README.md
+  maintenance: active
+  last_updated: "2026-02-16"
+  style: curated-list
+  scope: focused
+  total_tools: 126

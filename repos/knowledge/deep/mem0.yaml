@@ -1,0 +1,362 @@
+name: mem0
+node_id: repo::mem0ai/mem0
+github_full_name: mem0ai/mem0
+html_url: https://github.com/mem0ai/mem0
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep/mem0.yaml
+  as_of: '2026-02-25'
+sparse: false
+
+code_patterns:
+  - name: Memory CRUD Operations
+    description: Core memory add, get, search, update, delete operations
+    code: |
+      # File: mem0/memory/main.py
+      from mem0 import Memory
+
+      memory = Memory()
+
+      # ADD - Create memory with LLM fact extraction
+      result = memory.add(
+          "I prefer dark roast coffee",
+          user_id="user123",
+          metadata={"category": "preferences"},
+          infer=True,  # Use LLM to extract facts
+      )
+
+      # GET - Retrieve specific memory
+      mem = memory.get(memory_id="mem_abc123")
+
+      # GET_ALL - List all with filters
+      memories = memory.get_all(user_id="user123", limit=100)
+
+      # SEARCH - Semantic search
+      results = memory.search(
+          query="coffee preferences",
+          user_id="user123",
+          limit=5,
+          threshold=0.7,
+          rerank=True,
+      )
+
+      # UPDATE - Modify memory content
+      memory.update(memory_id="mem_abc", data="Updated content")
+
+      # DELETE - Remove memory
+      memory.delete(memory_id="mem_abc")
+    file_reference: mem0/memory/main.py
+
+  - name: Session Scoping Pattern
+    description: Multi-level memory hierarchy with user/agent/run scope
+    code: |
+      # At least ONE of user_id, agent_id, run_id is REQUIRED
+
+      # User-level memory (persists across agents)
+      memory.add(messages, user_id="user123")
+
+      # Agent-level memory (specific to assistant)
+      memory.add(messages, user_id="user123", agent_id="assistant_a")
+
+      # Run-level memory (conversation-specific)
+      memory.add(messages, user_id="user123", agent_id="assistant_a", run_id="session_xyz")
+
+      # Hierarchy: User > Agent > Run
+      # - user_id alone: memories shared across all user's agents
+      # - agent_id: memories for specific agent
+      # - run_id: ephemeral conversation memories
+    file_reference: mem0/memory/main.py
+
+  - name: LLM Provider Configuration
+    description: Configure LLM for fact extraction and memory processing
+    code: |
+      # File: mem0/llms/configs.py
+      from mem0.configs.base import MemoryConfig
+
+      config = MemoryConfig(
+          llm={
+              "provider": "openai",  # 18+ providers
+              "config": {
+                  "model": "gpt-4o-mini",
+                  "temperature": 0.2,
+                  "api_key": "sk-...",
+              }
+          }
+      )
+      memory = Memory.from_config(config)
+
+      # Supported providers:
+      # openai, ollama, anthropic, groq, together, aws_bedrock,
+      # litellm, azure_openai, gemini, deepseek, xai, lmstudio, vllm
+    file_reference: mem0/llms/configs.py
+
+  - name: Vector Store Backend Configuration
+    description: Configure vector database for memory storage
+    code: |
+      # File: mem0/vector_stores/configs.py
+      from mem0 import Memory
+      from mem0.configs.vector_stores.qdrant import QdrantConfig
+
+      # Qdrant configuration
+      config = {
+          "vector_store": {
+              "provider": "qdrant",
+              "config": {
+                  "collection_name": "memories",
+                  "host": "localhost",
+                  "port": 6333,
+                  # or for local:
+                  "path": "/tmp/qdrant",
+                  "on_disk": True,
+              }
+          }
+      }
+      memory = Memory.from_config(config)
+
+      # 26 supported providers:
+      # qdrant, chroma, pgvector, pinecone, mongodb, milvus,
+      # redis, elasticsearch, weaviate, faiss, supabase, etc.
+    file_reference: mem0/vector_stores/configs.py
+
+  - name: Client API Pattern (Cloud)
+    description: Cloud API client for hosted Mem0 service
+    code: |
+      # File: mem0/client/main.py
+      from mem0 import MemoryClient
+
+      # Initialize with API key
+      client = MemoryClient(api_key="mem0-xxx")  # or MEM0_API_KEY env
+
+      # Core operations (same as OSS Memory)
+      client.add([{"role": "user", "content": "I love Python"}], user_id="user1")
+      client.search("programming", user_id="user1", limit=5)
+      client.get_all(user_id="user1")
+
+      # Async client
+      from mem0 import AsyncMemoryClient
+      async with AsyncMemoryClient(api_key="...") as client:
+          memories = await client.search("query", user_id="user1")
+
+      # Advanced filtering
+      filters = {
+          "AND": [
+              {"category": {"eq": "preferences"}},
+              {"priority": {"gte": 3}},
+              {"tags": {"in": ["important"]}}
+          ]
+      }
+      client.search("query", user_id="user1", filters=filters)
+    file_reference: mem0/client/main.py
+
+  - name: Agent Integration Pattern
+    description: Memory tools for AI agents
+    code: |
+      # Example agent integration
+      from mem0 import MemoryClient
+      from agents import Agent, function_tool
+
+      mem0 = MemoryClient()
+
+      @function_tool
+      def search_memory(query: str, user_id: str) -> str:
+          """Search through past conversations and memories"""
+          memories = mem0.search(query, user_id=user_id, limit=3)
+          return "\n".join([f"- {m['memory']}" for m in memories])
+
+      @function_tool
+      def save_memory(content: str, user_id: str) -> str:
+          """Save important information to memory"""
+          mem0.add([{"role": "user", "content": content}], user_id=user_id)
+          return "Information saved."
+
+      agent = Agent(
+          name="Assistant",
+          instructions="Use memory tools for personalization",
+          tools=[search_memory, save_memory],
+      )
+    file_reference: examples/misc/test.py
+
+configuration:
+  - name: MemoryConfig
+    options:
+      - key: vector_store
+        default: "{}"
+        description: Vector database configuration
+      - key: llm
+        default: "{}"
+        description: LLM provider configuration
+      - key: embedder
+        default: "{}"
+        description: Embedding model configuration
+      - key: history_db_path
+        default: "~/.mem0/history.db"
+        description: Path to history database
+      - key: graph_store
+        default: "{}"
+        description: Graph store for knowledge graphs
+      - key: reranker
+        default: "null"
+        description: Optional reranker configuration
+      - key: version
+        default: "v1.1"
+        description: Memory config version
+      - key: custom_fact_extraction_prompt
+        default: "null"
+        description: Custom prompt for fact extraction
+      - key: custom_update_memory_prompt
+        default: "null"
+        description: Custom prompt for memory updates
+
+  - name: LLM Providers
+    options:
+      - key: provider
+        default: "openai"
+        description: "Provider: openai, ollama, anthropic, groq, together, etc."
+      - key: model
+        default: "gpt-4o-mini"
+        description: Model name for the provider
+      - key: temperature
+        default: "0.2"
+        description: Sampling temperature
+      - key: api_key
+        default: ""
+        description: API key (or env var)
+
+  - name: Embedder Providers
+    options:
+      - key: provider
+        default: "openai"
+        description: "Provider: openai, ollama, huggingface, azure, gemini"
+      - key: model
+        default: "text-embedding-3-small"
+        description: Embedding model name
+      - key: embedding_dims
+        default: "1536"
+        description: Output dimensions
+
+  - name: Qdrant Vector Store
+    options:
+      - key: collection_name
+        default: "mem0"
+        description: Collection name
+      - key: host
+        default: "null"
+        description: Qdrant server host
+      - key: port
+        default: "6333"
+        description: Qdrant server port
+      - key: path
+        default: "null"
+        description: Local storage path
+      - key: on_disk
+        default: "false"
+        description: Enable persistent storage
+      - key: api_key
+        default: "null"
+        description: Qdrant Cloud API key
+
+common_tasks:
+  - task: Basic Memory Setup
+    steps:
+      - "pip install mem0ai"
+      - "from mem0 import Memory"
+      - "memory = Memory()  # Uses defaults: Qdrant local, OpenAI"
+      - "Set OPENAI_API_KEY env var"
+    gotchas:
+      - "Default uses Qdrant in-memory - data lost on restart"
+      - "OpenAI API key required for fact extraction (infer=True)"
+
+  - task: Production Configuration
+    steps:
+      - "Choose vector store: qdrant, pgvector, pinecone, etc."
+      - "Configure LLM provider (or use local via ollama)"
+      - "Set up embedder (match dims with vector store)"
+      - "Create Memory.from_config(config_dict)"
+    gotchas:
+      - "Embedding dimensions must match vector store expectations"
+      - "Use persistent storage (on_disk=True) for production"
+
+  - task: Integrate with AI Agent
+    steps:
+      - "Create memory tools wrapping add/search"
+      - "Pass user_id from agent context to memory calls"
+      - "Use search before generation for context"
+      - "Save important facts after conversation"
+    gotchas:
+      - "Always scope with user_id for multi-tenant isolation"
+      - "Batch memory adds to reduce LLM calls"
+
+troubleshooting:
+  - symptom: No memories found after add
+    cause: Missing user_id or wrong scope
+    fix: "Always pass user_id (or agent_id/run_id) to both add and search"
+
+  - symptom: Embedding dimension mismatch
+    cause: Embedder output doesn't match vector store config
+    fix: "Match embedding_dims in embedder config with vector store dimensions"
+
+  - symptom: Slow memory operations
+    cause: Large memory count or missing vector index
+    fix: "Enable reranking for better results, use smaller top_k, check vector store indexes"
+
+  - symptom: LLM extraction not working
+    cause: Missing API key or provider misconfiguration
+    fix: "Set api_key in llm config, verify provider name matches exactly"
+
+quick_reference:
+  - topic: Memory Operations
+    content: |
+      ┌──────────────────┬─────────────────────────────────────────┐
+      │ Method           │ Description                             │
+      ├──────────────────┼─────────────────────────────────────────┤
+      │ add()            │ Create memory (LLM extraction)          │
+      │ get(id)          │ Retrieve by ID                          │
+      │ get_all()        │ List all with filters                   │
+      │ search(query)    │ Semantic search                         │
+      │ update(id, data) │ Modify memory content                   │
+      │ delete(id)       │ Remove memory                           │
+      │ delete_all()     │ Bulk delete                             │
+      │ history(id)      │ Get change history                      │
+      └──────────────────┴─────────────────────────────────────────┘
+
+  - topic: LLM Providers
+    content: |
+      ┌─────────────────┬─────────────────────────────────────────┐
+      │ Provider        │ Notes                                   │
+      ├─────────────────┼─────────────────────────────────────────┤
+      │ openai          │ Default, requires OPENAI_API_KEY        │
+      │ ollama          │ Local, set base_url                     │
+      │ anthropic       │ Claude models                           │
+      │ groq            │ Fast inference                          │
+      │ together        │ Many open models                        │
+      │ aws_bedrock     │ AWS managed                             │
+      │ azure_openai    │ Azure-hosted OpenAI                     │
+      │ gemini          │ Google models                           │
+      │ vllm            │ vLLM backend                            │
+      └─────────────────┴─────────────────────────────────────────┘
+
+  - topic: MemoryItem Response
+    content: |
+      {
+        "id": "mem_abc123",
+        "memory": "User prefers dark roast coffee",
+        "hash": "sha256...",
+        "score": 0.85,          # Search relevance
+        "created_at": "2025-01-15T10:30:00Z",
+        "updated_at": "2025-01-15T11:00:00Z",
+        "user_id": "user123",
+        "agent_id": "agent456",
+        "run_id": "run789",
+        "metadata": {"category": "preferences"}
+      }
+
+  - topic: Vector Stores (26 Providers)
+    content: |
+      Production: qdrant, pgvector, pinecone, milvus, mongodb,
+                  redis, elasticsearch, opensearch, weaviate,
+                  azure_ai_search, vertex_ai_vector_search, databricks
+
+      Local/Dev:  chroma, faiss
+
+      Cloud:      upstash_vector, supabase, neptune

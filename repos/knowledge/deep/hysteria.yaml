@@ -1,0 +1,194 @@
+name: hysteria
+node_id: repo::apernet/hysteria
+github_full_name: apernet/hysteria
+html_url: https://github.com/apernet/hysteria
+source: ssh_repos
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/deep/hysteria.yaml
+  as_of: '2026-02-25'
+directory: hysteria-master
+category: vpn_mesh
+
+# Inherited from shallow file
+summary: |
+  A QUIC-based proxy/VPN designed for high performance over unreliable networks and
+  censorship resistance through HTTP/3 traffic masquerading.
+
+# Deep additions
+architecture:
+  module_breakdown:
+    - module: app/cmd/
+      responsibility: CLI layer - root, client, server commands with Cobra/Viper
+      key_files: [app/cmd/root.go, app/cmd/client.go, app/cmd/server.go]
+    - module: app/internal/
+      responsibility: App utilities - socks5, http, forwarding, tproxy, tun implementations
+      key_files: [app/internal/socks5/, app/internal/forwarding/]
+    - module: core/client/
+      responsibility: QUIC client - connection, authentication, TCP/UDP tunneling
+      key_files: [core/client/client.go, core/client/udp.go]
+    - module: core/server/
+      responsibility: QUIC server - HTTP/3 listener, auth handling, traffic stats
+      key_files: [core/server/server.go, core/server/udp.go]
+    - module: core/internal/congestion/brutal/
+      responsibility: Brutal congestion control - fixed-rate pacing
+      key_files: [core/internal/congestion/brutal/brutal.go]
+    - module: core/internal/protocol/
+      responsibility: Wire protocol - HTTP auth, proxy frames, UDP fragmentation
+      key_files: [core/internal/protocol/http.go, core/internal/protocol/proxy.go]
+  data_flow: |
+    1. Client initiates QUIC connection to server (appears as HTTP/3)
+    2. Client sends POST /auth with Hysteria-Auth header (password or user:pass)
+    3. Server validates auth, responds with status 233 + Hysteria-UDP header
+    4. TCP proxying: HTTP/3 CONNECT-style streams with 0x401 frame type
+    5. UDP proxying: QUIC datagrams with fragmentation support
+    6. Server masquerades as regular HTTP/3 server to unauthorized clients
+  key_abstractions:
+    - name: BrutalSender
+      purpose: Fixed-rate congestion control - ignores packet loss, uses configured bandwidth
+    - name: UDPMessage
+      purpose: UDP packet with session ID, fragmentation (PacketID, FragID, FragCount)
+    - name: HTTP/3 Auth
+      purpose: Custom header-based auth (Hysteria-Auth, Hysteria-CC-RX, Hysteria-Padding)
+    - name: PluggableOutbound
+      purpose: Outbound chain for ACL, resolver, routing on server side
+
+implementation_patterns:
+  - pattern: Fixed-Rate Congestion Control
+    description: Token bucket pacing, cwnd = bps * RTT * 2 / ack_rate
+    location: core/internal/congestion/brutal/brutal.go:46
+  - pattern: HTTP/3 Masquerading
+    description: POST /auth with custom headers, status 233 response
+    location: core/internal/protocol/http.go
+  - pattern: UDP Fragmentation
+    description: Automatic splitting when datagram > 1200 bytes
+    location: core/internal/frag/
+  - pattern: QUIC Stream Wrapper
+    description: Proper full-duplex close handling
+    location: core/internal/utils/qstream.go
+  - pattern: Session-based UDP
+    description: 32-bit session ID, 60s timeout cleanup
+    location: core/client/udp.go
+
+configuration:
+  file: YAML format
+  options:
+    # Client options
+    - name: server
+      type: string
+      default: required
+      description: Server address
+    - name: auth
+      type: string
+      default: required
+      description: Authentication string (password or user:pass)
+    - name: bandwidth.up
+      type: string
+      default: required
+      description: Upload bandwidth (e.g., "100M", "1G")
+    - name: bandwidth.down
+      type: string
+      default: required
+      description: Download bandwidth
+    - name: socks5.listen
+      type: string
+      default: ""
+      description: SOCKS5 listen address
+    - name: http.listen
+      type: string
+      default: ""
+      description: HTTP proxy listen address
+    - name: tun.name
+      type: string
+      default: ""
+      description: TUN interface name for VPN mode
+    - name: tls.sni
+      type: string
+      default: ""
+      description: Server name for TLS
+    - name: tls.insecure
+      type: bool
+      default: false
+      description: Skip certificate verification
+    # Server options
+    - name: listen
+      type: string
+      default: required
+      description: Listen address
+    - name: tls.cert
+      type: string
+      default: required
+      description: Certificate path
+    - name: tls.key
+      type: string
+      default: required
+      description: Private key path
+    - name: auth.type
+      type: string
+      default: "password"
+      description: password/userpass/http/command
+    - name: auth.password
+      type: string
+      default: ""
+      description: Password for password auth
+    - name: masquerade.type
+      type: string
+      default: "404"
+      description: 404/file/proxy/string
+    - name: trafficStats.listen
+      type: string
+      default: ""
+      description: Traffic stats API address
+    - name: acl.file
+      type: string
+      default: ""
+      description: ACL file path
+
+api_surface:
+  public_functions:
+    - name: client.New
+      signature: func New(config *Config) (*Client, error)
+      purpose: Create QUIC client
+      location: core/client/client.go:43
+    - name: client.Client.DialTCP
+      signature: func (c *Client) DialTCP(addr string) (net.Conn, error)
+      purpose: Establish TCP tunnel
+      location: core/client/client.go
+    - name: server.New
+      signature: func New(config *Config) (*Server, error)
+      purpose: Create QUIC server
+      location: core/server/server.go:45
+  http_endpoints:
+    - path: /auth
+      method: POST
+      purpose: Authentication handshake
+      headers: [Hysteria-Auth, Hysteria-CC-RX, Hysteria-Padding]
+      response: Status 233 with Hysteria-UDP, Hysteria-CC-RX headers
+
+testing:
+  framework: Go testing
+  structure: "*_test.go files"
+  coverage_areas:
+    - Brutal congestion control algorithm
+    - UDP fragmentation/reassembly
+    - HTTP auth protocol
+  test_patterns:
+    - Unit tests for protocol parsing
+    - Integration tests for client-server communication
+
+extension_points:
+  - location: extras/auth/
+    hook: Authenticator interface
+    example: Custom auth backends (LDAP, OAuth, etc.)
+  - location: extras/outbounds/
+    hook: PluggableOutbound interface
+    example: Custom outbound routing (e.g., per-user routing)
+  - location: core/internal/congestion/
+    hook: CongestionControl interface
+    example: Alternative congestion control (BBR available)
+  - location: server.RequestHook
+    hook: RequestHook interface
+    example: Protocol sniffing, traffic modification
+  - location: server.TrafficLogger
+    hook: TrafficLogger interface
+    example: Custom traffic accounting, bandwidth limiting

@@ -1,0 +1,46 @@
+name: awesome-tunneling
+node_id: repo::anderspitman/awesome-tunneling
+github_full_name: anderspitman/awesome-tunneling
+html_url: https://github.com/anderspitman/awesome-tunneling
+source: ssh_repos
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/repos/awesome-tunneling.yaml
+  as_of: '2026-02-25'
+directory: awesome-tunneling-master
+category: documentation
+summary: |
+  Curated list of tunneling tools and solutions for exposing local services publicly, with focus on self-hosting and NAT traversal.
+core_concepts:
+  - name: Reverse Tunnels
+    description: Tools that expose local webservers/ports via public domain names with automatic HTTPS, even behind NAT or restricted networks.
+  - name: Overlay Networks
+    description: Peer-to-peer mesh networks (Tailscale, ZeroTier, Nebula) that create virtual private networks with NAT traversal.
+  - name: Protocol Multiplexing
+    description: Techniques for carrying multiple connections over a single transport (HTTP/2, QUIC, WebSocket, SSH).
+key_entry_points:
+  - path: README.md
+    purpose: Main curated list organized by license type (open source, commercial, overlay networks)
+build_run:
+  format: markdown
+  primary_language: n/a
+  organization: Categorized into Open Source tools, Commercial/Closed Source, Overlay Networks/Advanced Tools, and Reference materials
+ecosystem_connections:
+  references:
+    - frp (comprehensive ngrok alternative with UDP, P2P mode, multiplexing)
+    - ngrok (original tunneling tool - v1 open source, v2 commercial)
+    - Cloudflare Tunnel (recommended production solution, closed source but free)
+    - Tailscale (WireGuard-based overlay network)
+    - rathole (Rust-based, frp-compatible config, high performance)
+    - chisel (SSH-based tunnel with Let's Encrypt support)
+    - ZeroTier (Layer 2 overlay network)
+    - Pangolin (self-hostable reverse proxy with dashboard UI)
+    - bore (minimal Rust tunneling solution)
+    - wstunnel (WebSocket-based tunneling for restricted networks)
+  related_lists:
+    - awesome-selfhosted (self-hosted services)
+    - awesome-networking (network tools)
+notable_insights:
+  - Author's "dream" tool would combine domain registration, DNS management, auto HTTPS certs, and simple GUI - no single tool achieves this yet
+  - Minimum 100 GitHub stars required for new additions (as of 2026-02-16)
+  - Primary use case is self-hosters and developers exposing local services

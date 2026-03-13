@@ -1,0 +1,77 @@
+name: sshuttle
+node_id: repo::sshuttle/sshuttle
+github_full_name: sshuttle/sshuttle
+html_url: https://github.com/sshuttle/sshuttle
+source: ssh_repos
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/repos/sshuttle.yaml
+  as_of: '2026-02-25'
+directory: sshuttle-master
+category: remote_access
+summary: |
+  "Poor man's VPN" that creates a transparent proxy over SSH, routing traffic through
+  a remote server without requiring admin access on the remote or dealing with complex
+  VPN protocols. Avoids TCP-over-TCP performance issues through intelligent proxying.
+core_concepts:
+  - name: Transparent Proxy via Firewall Manipulation
+    description: |
+      Intercepts outbound traffic at the firewall level (using nat/nft/pf/ipfw/windivert)
+      and redirects it through an SSH tunnel. Works at the network layer without requiring
+      application-level proxy configuration.
+  - name: TCP-over-TCP Avoidance
+    description: |
+      Unlike OpenSSH's PermitTunnel, sshuttle avoids encapsulating TCP inside TCP (which
+      causes terrible performance due to conflicting congestion control). It proxies
+      data at the application level over SSH, maintaining one clean TCP connection.
+  - name: Multi-Platform Firewall Methods
+    description: |
+      Supports multiple firewall backends auto-detected by platform: iptables/nftables
+      (Linux), pf (macOS/BSD), ipfw (legacy BSD), and WinDivert (Windows). Each method
+      implements the same BaseMethod interface for traffic interception.
+key_entry_points:
+  - path: sshuttle/cmdline.py:17
+    purpose: Main CLI entry point - parses arguments and routes to firewall, hostwatch, or client mode
+  - path: sshuttle/__main__.py:8
+    purpose: Package entry point - calls cmdline.main() for `python -m sshuttle`
+  - path: sshuttle/client.py:100+
+    purpose: Core client logic - establishes SSH connection, manages firewall, handles traffic proxying
+  - path: sshuttle/firewall.py:25
+    purpose: Firewall subprocess - runs as privileged process to manipulate routing rules
+  - path: sshuttle/server.py:1
+    purpose: Server-side code - runs on remote host via SSH, handles proxied connections
+  - path: sshuttle/ssnet.py:1
+    purpose: Network protocol - defines Mux/Proxy classes and command protocol for client-server communication
+  - path: sshuttle/methods/__init__.py:109
+    purpose: Firewall method dispatcher - loads appropriate backend (nat/nft/pf/ipfw/windivert)
+build_run:
+  language: python
+  package_manager: uv/hatch
+  python_version: ">=3.9"
+  build_command: pip install . or uv pip install .
+  run_command: sshuttle -r user@remotehost 0/0
+  test_command: pytest --cov=sshuttle --cov-branch
+  key_dependencies:
+    - Python 3.9+ (no external runtime dependencies)
+    - sudo/root access for firewall manipulation
+ecosystem_connections:
+  similar_to:
+    - OpenSSH -D (SOCKS proxy)
+    - ssh -w (tun device forwarding)
+    - OpenVPN (full VPN)
+    - WireGuard (modern VPN)
+  alternatives:
+    - OpenSSH PermitTunnel - requires server config, has TCP-over-TCP issues
+    - ssh -L/-R port forwarding - per-host manual setup
+    - SOCKS proxies (ssh -D) - requires app-level proxy support
+    - shadowsocks - similar proxy approach but requires server daemon
+    - clappr/ptunnel - ICMP/DNS tunneling alternatives
+  used_with:
+    - SSH keys/agent for authentication
+    - sudo for local firewall access
+    - systemd/launchd for daemonized operation
+  platform_support:
+    - Linux (iptables/nftables)
+    - macOS (pf)
+    - FreeBSD (pf/ipfw)
+    - Windows (WinDivert)

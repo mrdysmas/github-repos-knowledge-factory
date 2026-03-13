@@ -1,0 +1,31 @@
+name: server
+node_id: repo::mariadb/server
+github_full_name: mariadb/server
+html_url: https://github.com/MariaDB/server
+source: remote_metadata
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/repos/server.yaml
+  as_of: '2026-03-13T04:28:53Z'
+directory: remote::mariadb/server
+category: data_pipelines
+summary: Phase 4 B6 shallow intake for MariaDB/server as a database server codebase
+  routed per locked batch policy.
+core_concepts:
+- relational data processing engine
+- database service operations
+key_entry_points:
+- README.md
+- sql/
+- storage/
+- include/
+build_run:
+  language: c++
+  build: See upstream README for project build steps.
+  test: See upstream README for project test steps.
+local_cache_dir: null
+extras:
+  refresh:
+    precedence: api_wins_readme_for_missing_required_fields
+    fallback_source: readme_fallback
+    fallback_used: false

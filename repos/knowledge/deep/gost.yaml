@@ -1,0 +1,200 @@
+name: gost
+node_id: repo::go-gost/gost
+github_full_name: go-gost/gost
+html_url: https://github.com/go-gost/gost
+source: ssh_repos
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/deep/gost.yaml
+  as_of: '2026-02-25'
+directory: gost-master
+category: tunneling
+
+# Inherited from shallow file
+summary: |
+  GO Simple Tunnel - a versatile Go-based tunneling tool that functions as a forward proxy,
+  port forwarder, and reverse proxy with multi-protocol support and chaining capabilities
+  for secure network traversal.
+
+# Deep additions
+architecture:
+  module_breakdown:
+    - module: cmd/gost/main.go
+      responsibility: Entry point - SIGHUP hot-reload, multi-process support via -- separator
+      key_files: [cmd/gost/main.go]
+    - module: cmd/gost/program.go
+      responsibility: Service lifecycle - Init/Start/Stop/Reload orchestration
+      key_files: [cmd/gost/program.go]
+    - module: cmd/gost/register.go
+      responsibility: Protocol registration via blank imports with init() functions
+      key_files: [cmd/gost/register.go]
+    - module: github.com/go-gost/core
+      responsibility: Core interfaces - service definitions, registries, base types
+      key_files: [cmd/gost/register.go]
+    - module: github.com/go-gost/x
+      responsibility: Protocol implementations - 40+ connectors/dialers/handlers/listeners
+      key_files: [cmd/gost/register.go]
+  data_flow: |
+    1. Configuration parsed from YAML/CLI into service definitions
+    2. Services registered in ServiceRegistry
+    3. Each service has: Listener (inbound) → Handler (processing) → Chain (forwarding)
+    4. Chains composed of Hops, each Hop has Nodes with Connector + Dialer
+    5. Traffic flows: Client → Listener → Handler → Chain → Node.Dialer → Target
+    6. Hot reload: SIGHUP triggers config reload, graceful service restart
+  key_abstractions:
+    - name: Service
+      purpose: Top-level container with Listener + Handler + optional Chain
+    - name: Chain
+      purpose: Multi-hop forwarding pipeline with selection strategy
+    - name: Hop
+      purpose: Single relay level with multiple Nodes for failover
+    - name: Node
+      purpose: Endpoint with Connector (inbound protocol) + Dialer (outbound protocol)
+    - name: Registry
+      purpose: DI container for services, authers, connectors, dialers, handlers, listeners
+
+implementation_patterns:
+  - pattern: Registry-based DI
+    description: Components registered by type, retrieved by name
+    location: cmd/gost/program.go:80
+  - pattern: init() Registration
+    description: Protocols self-register via blank imports
+    location: cmd/gost/register.go
+  - pattern: Service Lifecycle Interface
+    description: Init/Start/Stop/Reload methods for managed services
+    location: cmd/gost/program.go:35-194
+  - pattern: Chain Selection Strategy
+    description: round/rand/leastconn/custom for node selection
+    location: cmd/gost/program.go
+  - pattern: Multi-Process Mode
+    description: Split on --, workers coordinated via _GOST_ID env var
+    location: cmd/gost/main.go:106
+
+configuration:
+  file: YAML format (gost.yml)
+  options:
+    # Service configuration
+    - name: services[].name
+      type: string
+      default: required
+      description: Service identifier
+    - name: services[].addr
+      type: string
+      default: required
+      description: Listen address (e.g., ":8080")
+    - name: services[].handler.type
+      type: string
+      default: required
+      description: Handler type (http, socks, relay, dns, etc.)
+    - name: services[].listener.type
+      type: string
+      default: "tcp"
+      description: Listener type (tcp, tls, ws, quic, etc.)
+    - name: services[].handler.chain
+      type: string
+      default: ""
+      description: Forwarding chain reference
+    - name: services[].handler.auth
+      type: AuthConfig
+      default: None
+      description: Basic authentication
+    # Chain configuration
+    - name: chains[].name
+      type: string
+      default: required
+      description: Chain identifier
+    - name: chains[].selector.strategy
+      type: string
+      default: "round"
+      description: round/rand/leastconn/custom
+    - name: chains[].hops[].nodes[].addr
+      type: string
+      default: required
+      description: Node address
+    - name: chains[].hops[].nodes[].connector.type
+      type: string
+      default: required
+      description: Inbound protocol (socks5, http, ss, etc.)
+    - name: chains[].hops[].nodes[].dialer.type
+      type: string
+      default: required
+      description: Outbound protocol (tcp, tls, quic, kcp, etc.)
+    # API configuration
+    - name: api.addr
+      type: string
+      default: ""
+      description: REST API address
+    - name: api.pathPrefix
+      type: string
+      default: "/api"
+      description: API path prefix
+    # Metrics configuration
+    - name: metrics.addr
+      type: string
+      default: ""
+      description: Prometheus metrics address
+    - name: metrics.path
+      type: string
+      default: "/metrics"
+      description: Metrics endpoint path
+
+api_surface:
+  public_functions:
+    - name: main
+      signature: func main()
+      purpose: CLI entry point
+      location: cmd/gost/main.go:106
+    - name: program.Init
+      signature: func (p *program) Init(env svc.Environment) error
+      purpose: Initialize service
+      location: cmd/gost/program.go:35
+    - name: program.Start
+      signature: func (p *program) Start() error
+      purpose: Start all registered services
+      location: cmd/gost/program.go:49
+    - name: program.Stop
+      signature: func (p *program) Stop() error
+      purpose: Graceful shutdown
+      location: cmd/gost/program.go:166
+    - name: program.Reload
+      signature: func (p *program) Reload() error
+      purpose: Hot reload configuration
+      location: cmd/gost/program.go:192
+  rest_endpoints:
+    - path: /api/services
+      methods: [GET, POST, DELETE]
+      purpose: Service management
+    - path: /api/chains
+      methods: [GET]
+      purpose: Chain inspection
+    - path: /metrics
+      methods: [GET]
+      purpose: Prometheus metrics
+
+testing:
+  framework: Go testing, testify
+  structure: "*_test.go files alongside source"
+  coverage_areas:
+    - Configuration parsing
+    - Protocol implementations
+    - Chain selection
+  test_patterns:
+    - Table-driven tests
+    - Mock interfaces for testing
+
+extension_points:
+  - location: cmd/gost/register.go
+    hook: Connector interface (from go-gost/core)
+    example: Register new inbound protocol (e.g., custom proxy)
+  - location: cmd/gost/register.go
+    hook: Dialer interface (from go-gost/core)
+    example: Register new outbound protocol (e.g., QUIC variant)
+  - location: cmd/gost/register.go
+    hook: Handler interface (from go-gost/core)
+    example: Register new request handler (e.g., custom routing)
+  - location: cmd/gost/register.go
+    hook: Listener interface (from go-gost/core)
+    example: Register new listener type (e.g., custom transport)
+  - location: cmd/gost/register.go
+    hook: Blank import section
+    example: Add _ "your-module/connector" to register custom protocol

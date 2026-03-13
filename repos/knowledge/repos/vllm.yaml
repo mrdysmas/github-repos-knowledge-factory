@@ -1,0 +1,105 @@
+name: vllm
+node_id: repo::vllm-project/vllm
+github_full_name: vllm-project/vllm
+html_url: https://github.com/vllm-project/vllm
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/repos/vllm.yaml
+  as_of: '2026-02-25'
+directory: vllm-main
+category: inference_serving
+
+summary: |
+  High-throughput LLM inference engine from UC Berkeley. vLLM achieves state-of-the-art
+  serving performance via PagedAttention (efficient KV cache memory management), continuous
+  batching, and optimized CUDA kernels. The go-to choice for production LLM deployments
+  requiring maximum throughput. OpenAI-compatible API server included.
+
+core_concepts:
+  - name: PagedAttention
+    description: Memory-efficient attention using paged KV cache (like virtual memory)
+    location: vllm/attention/
+
+  - name: Continuous Batching
+    description: Iteration-level batching for optimal GPU utilization
+    location: vllm/engine/
+
+  - name: LLM Engine
+    description: Core inference orchestration
+    location: vllm/engine/
+
+  - name: Model Loader
+    description: HuggingFace model loading and optimization
+    location: vllm/model_executor/
+
+  - name: API Server
+    description: OpenAI-compatible REST API
+    location: vllm/entrypoints/openai/
+
+  - name: Distributed Inference
+    description: Tensor, pipeline, and expert parallelism
+    location: vllm/distributed/
+
+key_entry_points:
+  - path: vllm/engine/
+    purpose: Core inference engine
+
+  - path: vllm/attention/
+    purpose: PagedAttention implementation
+
+  - path: vllm/entrypoints/openai/
+    purpose: OpenAI-compatible API server
+
+  - path: vllm/model_executor/
+    purpose: Model loading and execution
+
+  - path: vllm/worker/
+    purpose: GPU worker processes
+
+build_run:
+  language: Python + C++/CUDA
+  install: "pip install vllm"
+  run_server: "vllm serve <model> --port 8000"
+  run_offline: |
+    from vllm import LLM
+    llm = LLM(model="meta-llama/Llama-2-7b-hf")
+    outputs = llm.generate(["Hello, world!"])
+
+performance_features:
+  - PagedAttention for efficient KV cache
+  - Continuous batching
+  - CUDA/HIP graphs
+  - FlashAttention integration
+  - Speculative decoding
+  - Quantization (GPTQ, AWQ, INT4/8, FP8)
+  - Chunked prefill
+  - Prefix caching
+  - Multi-LoRA support
+
+ecosystem_connections:
+  - target: ollama
+    relation: alternative_to
+    note: vLLM for production throughput, Ollama for developer convenience
+
+  - target: lmdeploy
+    relation: alternative_to
+    note: Both high-performance engines; different optimization approaches
+
+  - target: langchain
+    relation: integrates_with
+    note: LangChain can use vLLM as backend
+
+  - target: llama_index
+    relation: integrates_with
+    note: llama-index-llms-vllm integration
+
+  - target: xinference
+    relation: related_to
+    note: Xinference can use vLLM as backend engine
+
+further_reading:
+  - README.md
+  - docs: https://docs.vllm.ai
+  - paper: https://arxiv.org/abs/2309.06180
+  - blog: https://blog.vllm.ai

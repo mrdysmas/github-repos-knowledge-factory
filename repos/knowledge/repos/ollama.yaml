@@ -1,0 +1,98 @@
+name: ollama
+node_id: repo::ollama/ollama
+github_full_name: ollama/ollama
+html_url: https://github.com/ollama/ollama
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/repos/ollama.yaml
+  as_of: '2026-02-25'
+directory: ollama-main
+category: inference_serving
+
+summary: |
+  The easiest way to run LLMs locally. Ollama wraps llama.cpp with a simple CLI and REST API,
+  handling model management (pull, list, run) automatically. Designed for developer convenience
+  over raw performance. Supports GPU acceleration (CUDA, Metal) and offers a model library
+  at ollama.com/library. Now integrates directly with coding tools like Claude Code.
+
+core_concepts:
+  - name: Model Management
+    description: Pull, list, run models from registry (ollama.com/library)
+    location: cmd/
+
+  - name: REST API
+    description: OpenAI-compatible API at localhost:11434
+    location: api/
+
+  - name: Modelfile
+    description: Model configuration format (like Dockerfile for models)
+    location: docs/modelfile.md
+
+  - name: llama.cpp Backend
+    description: GGUF-based inference engine
+    location: integrated via llama.cpp project
+
+  - name: CLI
+    description: Command-line interface for all operations
+    location: cmd/
+
+key_entry_points:
+  - path: cmd/
+    purpose: CLI commands (ollama run, pull, serve, etc.)
+
+  - path: api/
+    purpose: REST API server and client implementations
+
+  - path: app/
+    purpose: Application logic and model loading
+
+  - path: convert/
+    purpose: Model conversion utilities (PyTorch/Safetensors to GGUF)
+
+build_run:
+  language: Go + C++
+  build: "go build ."
+  run: "ollama serve"
+  cli: "ollama run <model>"
+  docker: "docker run -d -p 11434:11434 ollama/ollama"
+
+api_endpoints:
+  - POST /api/chat - Chat completions
+  - POST /api/generate - Text generation
+  - POST /api/embeddings - Generate embeddings
+  - POST /api/pull - Download model
+  - GET /api/tags - List models
+
+ecosystem_connections:
+  - target: open_webui
+    relation: integrates_with
+    note: Most popular web UI for Ollama
+
+  - target: langchain
+    relation: integrates_with
+    note: langchain-ollama package
+
+  - target: llama_index
+    relation: integrates_with
+    note: llama-index-llms-ollama package
+
+  - target: vllm
+    relation: alternative_to
+    note: Ollama for convenience/local, vLLM for production throughput
+
+  - target: anything_llm
+    relation: integrates_with
+    note: AnythingLLM supports Ollama as backend
+
+  - target: ragflow
+    relation: integrates_with
+    note: RAGFlow supports Ollama as LLM provider
+
+further_reading:
+  - README.md
+  - docs/development.md
+  - docs/api.md
+  - docs/modelfile.md
+  - library: https://ollama.com/library
+  - docs: https://docs.ollama.com

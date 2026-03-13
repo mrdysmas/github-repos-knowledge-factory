@@ -1,0 +1,29 @@
+name: wetty
+node_id: repo::butlerx/wetty
+github_full_name: butlerx/wetty
+html_url: https://github.com/butlerx/wetty
+source: remote_metadata
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/repos/wetty.yaml
+  as_of: '2026-03-05T05:30:00Z'
+directory: remote::butlerx/wetty
+category: remote_access
+summary: Phase 4 B3 shallow intake for butlerx/wetty as a browser-accessible terminal
+  over SSH utility.
+core_concepts:
+- web terminal access
+- SSH proxy workflow
+key_entry_points:
+- README.md
+- src/
+build_run:
+  language: typescript
+  build: npm run build
+  test: npm test
+local_cache_dir: null
+extras:
+  refresh:
+    precedence: api_wins_readme_for_missing_required_fields
+    fallback_source: readme_fallback
+    fallback_used: false

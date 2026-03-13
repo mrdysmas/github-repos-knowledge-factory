@@ -1,0 +1,109 @@
+name: anything_llm
+node_id: repo::mintplex-labs/anything-llm
+github_full_name: mintplex-labs/anything-llm
+html_url: https://github.com/mintplex-labs/anything-llm
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/repos/anything_llm.yaml
+  as_of: '2026-02-25'
+directory: anything-llm-master
+category: ui_tools
+
+summary: |
+  All-in-one desktop and server AI application for document chat. AnythingLLM emphasizes
+  ease-of-use with desktop apps (Mac/Windows/Linux) alongside Docker deployment.
+  Features workspace-based document organization, AI agent flows, MCP compatibility,
+  and a no-code agent builder. Supports 20+ LLM providers.
+
+core_concepts:
+  - name: Workspaces
+    description: Containerized document groups (like threads with docs)
+    location: frontend/src/pages/Workspace/
+
+  - name: Collector
+    description: Document ingestion and embedding pipeline
+    location: collector/
+
+  - name: Agent Flows
+    description: No-code AI agent builder
+    location: frontend/src/components/AgentFlows/
+
+  - name: Vector DB Abstraction
+    description: Unified interface for multiple vector stores
+    location: server/utils/vectorDbProviders/
+
+  - name: LLM Abstraction
+    description: Unified interface for multiple LLM providers
+    location: server/utils/AiProviders/
+
+key_entry_points:
+  - path: server/
+    purpose: Node.js backend (Express)
+
+  - path: frontend/
+    purpose: React frontend
+
+  - path: collector/
+    purpose: Document processing pipeline
+
+  - path: docker/
+    purpose: Docker deployment configs
+
+  - path: embed/
+    purpose: Embeddable chat widget
+
+build_run:
+  frontend: React + Vite
+  backend: Node.js + Express
+  desktop: Electron
+  run_docker: "docker run -d -p 3001:3001 -v anythingllm:/app/server/storage --name anythingllm mintplexlabs/anythingllm"
+  desktop_download: https://anythingllm.com/download
+
+key_features:
+  - Desktop apps (Mac/Windows/Linux)
+  - Workspace-based document organization
+  - No-code AI agent builder
+  - Full MCP compatibility
+  - Custom AI agents (web browsing, etc.)
+  - Multi-user support (Docker)
+  - Embeddable chat widget
+  - 20+ LLM provider integrations
+  - Multiple vector DB options
+  - Developer API
+
+supported_providers:
+  llms:
+    - OpenAI, Azure OpenAI, Anthropic
+    - Ollama, LM Studio, LocalAI
+    - Together AI, Fireworks, Perplexity
+    - OpenRouter, DeepSeek, Mistral
+    - Groq, Cohere, Gemini
+    - AWS Bedrock, NVIDIA NIM
+  vector_dbs:
+    - LanceDB (built-in)
+    - Chroma, Pinecone, Weaviate
+    - Qdrant, Milvus
+    - pgvector, Astra DB
+
+ecosystem_connections:
+  - target: ollama
+    relation: integrates_with
+    note: Supports Ollama as LLM provider
+
+  - target: open_webui
+    relation: alternative_to
+    note: Both full-stack AI apps; AnythingLLM has desktop focus
+
+  - target: milvus
+    relation: integrates_with
+    note: Supported vector database option
+
+  - target: ragflow
+    relation: alternative_to
+    note: Both document-focused RAG apps
+
+further_reading:
+  - README.md
+  - docs: https://docs.anythingllm.com
+  - download: https://anythingllm.com/download

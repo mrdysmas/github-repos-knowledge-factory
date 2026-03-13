@@ -1,0 +1,59 @@
+name: netmask
+node_id: repo::josephdove/netmask
+github_full_name: josephdove/netmask
+html_url: https://github.com/josephdove/netmask
+source: ssh_repos
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/repos/netmask.yaml
+  as_of: '2026-02-25'
+directory: netmask-main
+category: network_utils
+summary: |
+  Self-hosted TCP/UDP reverse proxy/tunneling solution (Ngrok alternative) with encrypted client-server communication, dual-stack IPv4/IPv6 support, and optional terminal GUI.
+core_concepts:
+  - name: Client-Server Tunnel Architecture
+    description: |
+      Two-component design: netmasks (server) listens for incoming connections and manages tunnel endpoints; netmaskc (client) connects to server and forwards local ports. Server dynamically allocates public ports for each tunnel.
+  - name: Rolling Key Encryption
+    description: |
+      XOR-based stream cipher with SHA-256 rolling keys that change per packet. Key derivation from communication key via shake_256. Proof-of-encryption handshake validates both sides share the same key before tunnel establishment.
+  - name: Protocol-Agnostic Forwarding
+    description: |
+      Supports both TCP and UDP protocols with unified architecture. TCP uses async handlers with bidirectional forwarding; UDP uses datagram protocols with address-based client tracking. Both support IPv4 and IPv6 simultaneously.
+key_entry_points:
+  - path: netmask/netmasks.py:15
+    purpose: Server CLI entry point (netmasks command), parses args and starts NetmaskServer
+  - path: netmask/netmaskc.py:6
+    purpose: Client CLI entry point (netmaskc command), parses args and starts NetmaskClient with optional GUI
+  - path: netmask/server/main.py:342
+    purpose: NetmaskServer class - core server implementation handling TCP/UDP listeners, client connections, and tunnel management
+  - path: netmask/client/main.py:228
+    purpose: NetmaskClient class - client implementation with TCP/UDP forwarding threads and connection management
+  - path: netmask/impl/packets.py:7
+    purpose: ProtocolHandler base class - packet serialization/deserialization with encryption layer
+  - path: netmask/utils/encryption.py:3
+    purpose: NetmaskEncryption class - rolling key XOR cipher implementation
+build_run:
+  language: python
+  package_manager: pip
+  build_command: pip install -e . or python3 setup.py install
+  run_command: |
+    Server: netmasks 0.0.0.0 :: --port 1024 --key mykey
+    Client: netmaskc tcp 8080 4 server.example.com:1024 --key mykey
+  test_command: No tests included in repository
+ecosystem_connections:
+  similar_to:
+    - ngrok (commercial tunneling service)
+    - bore (Rust tunneling tool)
+    - rathole (Rust tunneling tool)
+    - frp (Fast Reverse Proxy)
+  alternatives:
+    - tailscale/headscale (mesh VPN approach)
+    - cloudflared (Cloudflare Tunnel)
+    - teleport (access plane with tunneling)
+  used_with:
+    - Local development servers (expose localhost to internet)
+    - IoT devices behind NAT
+    - Webhook testing during development
+    - Game servers (UDP support)

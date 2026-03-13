@@ -1,0 +1,279 @@
+name: parlant
+node_id: repo::emcie-co/parlant
+github_full_name: emcie-co/parlant
+html_url: https://github.com/emcie-co/parlant
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep_facts/parlant.yaml
+  as_of: '2026-02-25'
+  extractor_version: ws6-deep-integrator-v1
+facts:
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    source_section: api_structure.agents
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_structure.agents
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    excerpt: /agents
+  object_value: /agents
+  fact_id: fact::8b4ef0ab849f5c49d7902fd9
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    source_section: api_structure.canned_responses
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_structure.canned_responses
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    excerpt: /canned-responses
+  object_value: /canned-responses
+  fact_id: fact::ad65e753a3c3f313d6b0c89a
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    source_section: api_structure.glossary
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_structure.glossary
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    excerpt: /glossary
+  object_value: /glossary
+  fact_id: fact::7f75de7935a46d0a8487064c
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    source_section: api_structure.guidelines
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_structure.guidelines
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    excerpt: /guidelines
+  object_value: /guidelines
+  fact_id: fact::a946c679a41212d6fe0c06e5
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    source_section: api_structure.journeys
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_structure.journeys
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    excerpt: /journeys
+  object_value: /journeys
+  fact_id: fact::82e8e4b5a791885e76461d14
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    source_section: api_structure.sessions
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_structure.sessions
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    excerpt: /sessions
+  object_value: /sessions
+  fact_id: fact::465f6f7ced82607255b3ca56
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    source_section: api_structure.tools
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_structure.tools
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    excerpt: /tools
+  object_value: /tools
+  fact_id: fact::e33c92dc17eb1675047db5a0
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    source_section: core_modules.adapters
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.adapters
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    excerpt: src/parlant/adapters/
+  object_value: src/parlant/adapters/
+  note: 'Infrastructure adapters (LLM, vector DB, tracing). Submodules: llm, db, tracing,
+    vector_db'
+  fact_id: fact::edbdc4f3b15dd58b56f328b7
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    source_section: core_modules.api
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.api
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    excerpt: src/parlant/api/
+  object_value: src/parlant/api/
+  note: REST API endpoints and schemas
+  fact_id: fact::c85dd038ab88be0294d087fe
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    source_section: core_modules.client
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.client
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    excerpt: src/parlant/client/
+  object_value: src/parlant/client/
+  note: Python client SDK
+  fact_id: fact::803db35163fd2c422fbe67e5
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    source_section: core_modules.core
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.core
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    excerpt: src/parlant/core/
+  object_value: src/parlant/core/
+  note: 'Domain logic - agents, sessions, guidelines, journeys. Submodules: agents,
+    sessions, guidelines, journeys, events, tools, glossary, canned_responses'
+  fact_id: fact::723f3f6aedd220bdb58dd064
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.59
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    source_section: related_repos[2].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: related_repos[2].line[0]
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    excerpt: khoj
+  object_value: khoj
+  note: related repository
+  fact_id: fact::01561f8fe18c1f82247f20c9
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.59
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    source_section: related_repos[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: related_repos[0].line[0]
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    excerpt: langchain
+  object_value: langchain
+  note: related repository
+  fact_id: fact::2d7c91be736f6bc2c534cd50
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.59
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    source_section: related_repos[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: related_repos[1].line[0]
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    excerpt: mem0
+  object_value: mem0
+  note: related repository
+  fact_id: fact::92efc41af5588912b5431316
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: external_tool
+  confidence: 0.7
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    source_section: sdk_usage.client_init
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: sdk_usage.client_init
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    excerpt: from parlant import Client
+  object_node_id: external_tool::parlant
+  note: Client Init SDK; from parlant import Client
+  object_value: parlant
+  fact_id: fact::1b5f30194bf6e31f80b1fb10
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    source_section: testing.framework.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.framework.line[0]
+    source_file: llm_repos/knowledge/deep/parlant.yaml
+    excerpt: parlant-test
+  object_value: parlant-test
+  note: 'testing metadata: framework'
+  fact_id: fact::c6953de8f0cd9a7922c5c632

@@ -1,0 +1,51 @@
+name: vgrok
+node_id: repo::styfle/vgrok
+github_full_name: styfle/vgrok
+html_url: https://github.com/styfle/vgrok
+source: ssh_repos
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/repos/vgrok.yaml
+  as_of: '2026-02-25'
+directory: vgrok-main
+category: tunneling
+summary: |
+  Exposes local web servers to the public internet via Vercel sandboxes, enabling webhook testing and remote access without port forwarding.
+core_concepts:
+  - name: Vercel Sandbox Proxy
+    description: Spins up ephemeral Vercel sandbox instances that act as public-facing proxies, relaying HTTP traffic back to your local machine via WebSocket tunnels.
+  - name: Bidirectional WebSocket Tunnel
+    description: Local client connects to sandbox via WebSocket; HTTP requests hitting the sandbox are serialized, sent through the tunnel, executed locally, and responses streamed back.
+  - name: Sandbox Lifecycle Management
+    description: Supports ephemeral mode (sandbox dies with process) or persistent mode (sandbox reused across sessions via cached config), with 45-minute timeout for hobby tier.
+key_entry_points:
+  - path: src/vgrok.ts:1
+    purpose: CLI entry point; parses port argument, handles start/stop commands, manages process lifecycle.
+  - path: src/client.ts:33
+    purpose: Core client logic; creates/reuses sandboxes, establishes WebSocket tunnel, forwards local HTTP responses.
+  - path: src/server.ts:1
+    purpose: Runs inside Vercel sandbox; HTTP server that accepts public requests and WebSocket client connections, coordinates request/response routing.
+  - path: src/vercel-cli-auth.ts:54
+    purpose: Extracts Vercel credentials from CLI config files or environment variables for sandbox API authentication.
+build_run:
+  language: TypeScript
+  package_manager: pnpm
+  build_command: pnpm build (uses tsgo)
+  run_command: vgrok <port> or vgrok <port> start
+  test_command: Not configured
+ecosystem_connections:
+  similar_to:
+    - ngrok (original inspiration, proprietary backend)
+    - bore (Rust-based, self-hosted)
+    - localtunnel (npm package, hosted service)
+    - cloudflare tunnel (zero-trust, enterprise-grade)
+  alternatives:
+    - ngrok
+    - bore
+    - localtunnel
+    - tunnelmole
+    - cloudflare tunnel
+  used_with:
+    - Vercel CLI (vercel login, vercel link)
+    - Local dev servers (Next.js, Express, etc.)
+    - Webhook testing (Stripe, GitHub, Slack)

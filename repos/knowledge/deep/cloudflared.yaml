@@ -1,0 +1,154 @@
+name: cloudflared
+node_id: repo::cloudflare/cloudflared
+github_full_name: cloudflare/cloudflared
+html_url: https://github.com/cloudflare/cloudflared
+source: remote_metadata
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+  as_of: '2026-03-13'
+directory: remote::cloudflare/cloudflared
+category: network_infrastructure
+
+architecture:
+  module_breakdown:
+  - module: cmd/cloudflared
+    responsibility: "CLI entrypoint, subcommands, flags, and tunnel management workflows."
+    key_files:
+    - cmd/cloudflared
+  - module: ingress and proxy
+    responsibility: "Ingress rule handling and upstream proxy behavior for exposed services."
+    key_files:
+    - ingress
+    - proxy
+  - module: connection and orchestration
+    responsibility: "Tunnel connection lifecycle, coordination, and process supervision."
+    key_files:
+    - connection
+    - orchestration
+    - supervisor
+  - module: token, metrics, and management
+    responsibility: "Credential handling, observability, and operational control surfaces."
+    key_files:
+    - token
+    - metrics
+    - management
+  key_abstractions:
+  - name: Tunnel command surface
+    purpose: "Configures and runs Cloudflare Tunnel client workflows."
+  - name: Ingress rules
+    purpose: "Map incoming requests to configured origin services."
+  - name: Connection manager
+    purpose: "Maintains outbound connectivity to Cloudflare edge services."
+
+code_patterns:
+- pattern: "CLI subcommand fan-out"
+  description: "Operational behaviors are grouped into CLI-focused command packages under cmd/cloudflared."
+  location: cmd/cloudflared
+- pattern: "Ingress-to-origin routing"
+  description: "Ingress definitions and middleware map tunnel traffic to origin services."
+  location: ingress
+- pattern: "Supervised connection lifecycle"
+  description: "Tunnel processes and edge connections are coordinated through dedicated connection and orchestration packages."
+  location: connection
+
+implementation_patterns:
+- pattern: "Credential-backed tunnel startup"
+  description: "Token and credential packages separate authentication concerns from transport logic."
+  location: token
+- pattern: "Operational metrics emission"
+  description: "Metrics and management modules expose runtime observability around tunnel behavior."
+  location: metrics
+
+core_modules:
+  cli:
+    path: cmd/cloudflared
+    description: "Command-line entrypoints and subcommands."
+  ingress_stack:
+    path: ingress
+    description: "Ingress rule parsing, middleware, and origin selection."
+  tunnel_runtime:
+    path: connection
+    description: "Connection lifecycle and tunnel transport behavior."
+  operations:
+    path: orchestration
+    description: "Supervision and runtime coordination."
+
+key_features:
+- feature: "Cloudflare Tunnel client"
+  description: "Publishes local services through outbound connections to Cloudflare edge."
+- feature: "Ingress rule routing"
+  description: "Maps incoming traffic to configured origins and middleware chains."
+- feature: "Managed credentials and tokens"
+  description: "Separates token handling and credential workflows from tunnel runtime."
+- feature: "Operational metrics and management"
+  description: "Exposes observability and management surfaces for tunnel processes."
+
+key_files:
+- path: README.md
+  description: "Project overview and tunnel usage guidance."
+- path: go.mod
+  description: "Go module and dependency declarations."
+- path: cmd/cloudflared
+  description: "CLI command tree."
+- path: ingress
+  description: "Ingress routing implementation."
+- path: connection
+  description: "Tunnel connection runtime."
+
+configuration:
+- name: tunnel_settings
+  options:
+  - key: tunnel
+    description: "Named tunnel selection or identifier."
+  - key: credentials-file
+    description: "Credential file used for authenticated tunnel operation."
+  - key: config
+    description: "YAML configuration file for ingress and operational settings."
+  - key: url
+    description: "Origin service URL for local exposure."
+
+testing:
+  framework: go test
+  structure: "Go packages cover tunnel runtime, ingress behavior, and command surfaces."
+  coverage_areas:
+  - "Tunnel startup and connection behavior"
+  - "Ingress rule handling"
+  - "CLI command workflows"
+  test_patterns:
+  - "go test ./..."
+
+integrations:
+  networking:
+  - Cloudflare edge
+  - local origin services
+  - ingress middleware
+  operations:
+  - management APIs
+  - metrics pipelines
+
+quick_reference:
+- topic: "Build cloudflared"
+  command: "go build ./cmd/cloudflared"
+- topic: "Run tests"
+  command: "go test ./..."
+
+commands:
+- name: "go build ./cmd/cloudflared"
+  description: "Build the cloudflared binary."
+  usage: "go build ./cmd/cloudflared"
+- name: "go test ./..."
+  description: "Run Go test suites across the repo."
+  usage: "go test ./..."
+
+api_surface:
+  public_functions:
+  - name: cloudflared CLI
+    purpose: "Provide tunnel lifecycle and ingress commands."
+    location: cmd/cloudflared
+  - name: ingress rules
+    purpose: "Define request routing from tunnel edges to origin services."
+    location: ingress
+  - name: connection manager
+    purpose: "Maintain and supervise edge connectivity."
+    location: connection

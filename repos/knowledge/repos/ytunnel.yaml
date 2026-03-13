@@ -1,0 +1,67 @@
+name: ytunnel
+node_id: repo::yetidevworks/ytunnel
+github_full_name: yetidevworks/ytunnel
+html_url: https://github.com/yetidevworks/ytunnel
+source: ssh_repos
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/repos/ytunnel.yaml
+  as_of: '2026-02-25'
+directory: ytunnel-master
+category: tunneling
+summary: |
+  TUI-first CLI for managing Cloudflare Tunnels with custom domains - ngrok alternative using your own Cloudflare-managed domain with persistent URLs, multi-account support, and real-time metrics dashboard.
+core_concepts:
+  - name: Tunnel Management Layer
+    description: |
+      ytunnel is a management orchestrator, not a daemon itself. It generates cloudflared configs, creates launchd (macOS) or systemd (Linux) service files, and delegates actual tunneling to Cloudflare's cloudflared binary. The tool runs only when invoked; persistent tunnels survive via OS service managers.
+  - name: Ephemeral vs Persistent Tunnels
+    description: |
+      Two modes: ephemeral (ytunnel run) creates foreground tunnels that auto-cleanup on Ctrl+C - ideal for quick testing; persistent (ytunnel add) creates background daemons with auto-restart, optional login auto-start, and survives reboots via launchd/systemd integration.
+  - name: Multi-Account/Multi-Zone Architecture
+    description: |
+      Supports multiple Cloudflare accounts and zones per account. Each tunnel is scoped to an account_name, enabling work/personal environment isolation. DNS CNAME records are auto-managed per zone, and credentials are stored per-tunnel in the config directory.
+key_entry_points:
+  - path: src/main.rs:17
+    purpose: Main entry point - parses CLI args and dispatches to command handlers or opens TUI
+  - path: src/cli.rs:1
+    purpose: CLI command definitions using clap - defines all subcommands (init, run, add, start, stop, logs, etc.)
+  - path: src/tui/mod.rs
+    purpose: TUI dashboard implementation using ratatui - interactive tunnel management with live metrics
+  - path: src/daemon.rs
+    purpose: Platform-specific daemon management - generates launchd plists (macOS) and systemd units (Linux)
+  - path: src/cloudflare.rs
+    purpose: Cloudflare API client - creates tunnels, manages DNS records, handles credentials
+  - path: src/tunnel.rs:20
+    purpose: Ephemeral tunnel runner - spawns cloudflared process with generated config, handles Ctrl+C cleanup
+  - path: src/config.rs:120
+    purpose: Multi-account config loading/saving with legacy format migration
+  - path: src/state.rs
+    purpose: Persistent tunnel state management (tunnels.toml) tracking tunnel metadata and settings
+build_run:
+  language: rust
+  package_manager: cargo
+  build_command: cargo build --release
+  install_command: cargo install --path .
+  run_command: ytunnel [args]
+  test_command: cargo test
+  prerequisites:
+    - cloudflared (Cloudflare tunnel daemon installed separately)
+    - Cloudflare API token with Zone/DNS/Tunnel permissions
+    - Domain managed by Cloudflare
+ecosystem_connections:
+  similar_to:
+    - ngrok (quick tunnels but with random URLs and paid plans for custom domains)
+    - cloudflared directly (manual config management, no TUI)
+    - localtunnel (free but less reliable, no custom domains)
+    - teleport (enterprise tunneling with more complexity)
+  alternatives:
+    - ngrok (simpler but requires paid tier for custom domains, no self-hosted option)
+    - frp (self-hosted, more manual config, no managed DNS)
+    - tailscale funnel (requires tailscale network, different trust model)
+    - bore (simple Rust tunnel, no dashboard or DNS management)
+  used_with:
+    - cloudflared (required dependency - ytunnel manages this binary)
+    - Any local web server (Node.js, Python http.server, etc.)
+    - Development frameworks (Next.js, Vite, Rails dev servers)
+    - CI/CD pipelines for ephemeral preview environments

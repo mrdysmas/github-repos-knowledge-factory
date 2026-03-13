@@ -1,0 +1,45 @@
+name: gin
+node_id: repo::gin-gonic/gin
+github_full_name: gin-gonic/gin
+html_url: https://github.com/gin-gonic/gin
+source: remote_metadata
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/repos/gin-gonic__gin.yaml
+  as_of: '2026-02-24T19:46:56Z'
+directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/gin-gonic__gin
+category: web_framework
+summary: Shallow intake pilot canonicalization for gin-gonic/gin in web framework
+  domain.
+core_concepts:
+- web framework capabilities
+- gin repository architecture
+key_entry_points:
+- README.md
+- go.mod
+- docs/
+build_run:
+  language: go
+  build: go build ./...
+  test: go test ./...
+local_cache_dir: null
+extras:
+  intake:
+    pilot_batch_id: INTAKE-PILOT-1
+    repo_id: repo::gin-gonic/gin
+    queue_id: intake::gin-gonic/gin
+    intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/gin-gonic__gin
+    domain_hint: web_framework
+    source_mode: local_clone
+    source_commit: 81dba468722f41347ed74ee66e9c1781d72f68a5
+    default_branch: master
+    observed_at_utc: '2026-02-24T19:46:56Z'
+  remote:
+    provider: github
+    mode: metadata
+    endpoint: /repos/gin-gonic/gin
+    fetched_at_utc: '2026-02-24T19:46:56Z'
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false

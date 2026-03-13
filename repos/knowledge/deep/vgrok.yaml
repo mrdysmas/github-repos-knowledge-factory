@@ -1,0 +1,151 @@
+name: vgrok
+node_id: repo::styfle/vgrok
+github_full_name: styfle/vgrok
+html_url: https://github.com/styfle/vgrok
+source: ssh_repos
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/deep/vgrok.yaml
+  as_of: '2026-02-25'
+directory: vgrok-main
+category: tunneling
+
+# Inherited from shallow file
+summary: |
+  Exposes local web servers to the public internet via Vercel sandboxes, enabling webhook testing and remote access without port forwarding.
+
+# Deep additions
+architecture:
+  module_breakdown:
+    - module: src/vgrok.ts
+      responsibility: CLI entry point - parses args, manages tunnel lifecycle with start/stop
+      key_files: [src/vgrok.ts]
+    - module: src/client.ts
+      responsibility: Core tunnel client - manages Vercel sandbox, WebSocket tunnel, request forwarding
+      key_files: [src/client.ts]
+    - module: src/server.ts
+      responsibility: HTTP/WebSocket server deployed to Vercel sandbox for public access
+      key_files: [src/server.ts]
+    - module: src/vercel-cli-auth.ts
+      responsibility: Extracts Vercel credentials from CLI config or environment
+      key_files: [src/vercel-cli-auth.ts]
+  data_flow: |
+    1. Client authenticates with Vercel via token
+    2. Client creates/reuses a sandbox on Vercel infrastructure
+    3. Server code (server.js) injected into sandbox
+    4. WebSocket established between client and sandbox
+    5. Public HTTP requests hit sandbox URL
+    6. Sandbox serializes request, sends via WebSocket
+    7. Client forwards to local server, streams response back
+  key_abstractions:
+    - name: Sandbox
+      purpose: Isolated Node.js environment on Vercel infrastructure
+    - name: Tunnel
+      purpose: WebSocket bidirectional channel for request/response relay
+    - name: Client
+      purpose: Manages local ↔ sandbox connection and lifecycle
+
+implementation_patterns:
+  - pattern: Sandbox Reuse Pattern
+    description: Reuses existing sandbox if running and not expired
+    location: src/client.ts:42-54
+  - pattern: File Injection Pattern
+    description: Deploys tunnel server code dynamically to sandbox
+    location: src/client.ts:83-92
+  - pattern: Detached Process Pattern
+    description: Server runs detached in sandbox, independent of client
+    location: src/client.ts:97-107
+  - pattern: Base64URL Encoding
+    description: Body encoding for safe WebSocket transmission
+    location: src/client.ts:80,141
+  - pattern: Minimalist Design
+    description: Only 4 core files with clear separation of concerns
+
+configuration:
+  file: Environment variables
+  options:
+    - name: VERCEL_TOKEN
+      type: string
+      default:
+      description: Vercel authentication token
+    - name: VERCEL_TEAM_ID
+      type: string
+      default:
+      description: Team ID override
+    - name: VERCEL_PROJECT_ID
+      type: string
+      default:
+      description: Project ID override
+  runtime_config:
+    - name: localPortToSandbox
+      type: Record<string, {id, createdAt}>
+      description: Mapping of local ports to sandbox IDs
+  constants:
+    - name: SANDBOX_PORT
+      value: 3000
+      description: Fixed port for tunnel server
+    - name: WS_PATH
+      value: "/_ws"
+      description: WebSocket endpoint path
+    - name: timeout
+      value: 2700000 (45 min)
+      description: Sandbox lifetime
+    - name: runtime
+      value: "node22"
+      description: Node.js version in sandbox
+
+api_surface:
+  public_functions:
+    - name: client
+      signature: async function client({port, timeout})
+      purpose: Create tunnel to local port
+      location: src/client.ts:33
+    - name: shutdown
+      signature: tunnel.shutdown()
+      purpose: Cleanup tunnel resources
+      location: src/client.ts
+  cli_interface:
+    - command: "vgrok <port>"
+      purpose: Start tunnel on specified port
+    - command: "vgrok <port> start"
+      purpose: Start tunnel with explicit command
+    - command: "vgrok <port> stop"
+      purpose: Stop tunnel for specified port
+  types:
+    - name: TunnelRequest
+      fields: [id, method, url, headers, body]
+    - name: TunnelResponse
+      fields: [id, statusCode, headers, body]
+    - name: Tunnel
+      fields: [url, shutdown]
+
+testing:
+  framework: None
+  structure: No tests present
+  coverage_areas: []
+  notes: |
+    Codebase is small (4 core files) but would benefit from:
+    - WebSocket connection error handling tests
+    - Sandbox lifecycle management tests
+    - Authentication flow validation
+    - Request/response forwarding integrity tests
+
+extension_points:
+  - location: src/client.ts:Sandbox.create()
+    hook: Sandbox options
+    example: Custom resource allocation (vcpus, memory)
+  - location: src/client.ts
+    hook: Multiple port support
+    example: Currently single-port per sandbox; could add multi-port
+  - location: src/vercel-cli-auth.ts
+    hook: Authentication providers
+    example: OAuth, GitHub auth, etc.
+  - location: src/server.ts
+    hook: Transport protocol
+    example: HTTP long-polling, SSE, gRPC as alternatives to WebSocket
+  - location: src/client.ts
+    hook: Persistence strategies
+    example: Database/cloud storage instead of temp file
+  - location: src/client.ts
+    hook: Transformation hooks for request/response pipeline
+    example: Modify requests before forwarding or responses before returning

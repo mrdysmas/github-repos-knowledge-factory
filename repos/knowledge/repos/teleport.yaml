@@ -1,0 +1,92 @@
+name: teleport
+node_id: repo::gravitational/teleport
+github_full_name: gravitational/teleport
+html_url: https://github.com/gravitational/teleport
+source: ssh_repos
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/repos/teleport.yaml
+  as_of: '2026-02-25'
+directory: teleport-master
+category: remote_access
+summary: |
+  Identity-aware access plane that provides unified connectivity, authentication, access controls,
+  and audit for infrastructure. Replaces SSH keys, VPNs, and bastion hosts with short-lived
+  certificate-based auth and Just-in-Time access across SSH, Kubernetes, databases, and cloud APIs.
+core_concepts:
+  - name: Short-lived Certificates
+    description: |
+      Instead of long-lived SSH keys or passwords, Teleport issues auto-expiring TLS/SSH certificates
+      bound to user identity. Eliminates credential rotation and vault dependencies.
+  - name: Auth Service (Certificate Authority)
+    description: |
+      Central CA that issues certificates, enforces RBAC/ABAC policies, and maintains cluster state.
+      Integrates with SSO providers (Okta, GitHub, Entra ID) for identity.
+  - name: Proxy Service
+    description: |
+      Identity-aware reverse proxy that terminates connections and enforces access policies.
+      Provides Web UI, CLI access (`tsh`), and tunnels to resources behind NAT/firewalls.
+  - name: Cluster and Trusted Clusters
+    description: |
+      A Teleport deployment forms a cluster with Auth + Proxy services. Trusted clusters enable
+      federation across multiple Teleport deployments for multi-team/multi-cloud scenarios.
+key_entry_points:
+  - path: tool/teleport/main.go:32
+    purpose: Main daemon entry point - delegates to common.Run() for CLI parsing and service startup
+  - path: tool/teleport/common/teleport.go:76
+    purpose: CLI command routing - handles start, configure, status, and all subcommands
+  - path: tool/teleport/common/teleport.go:894
+    purpose: OnStart() - initializes and runs the Teleport service with merged configuration
+  - path: lib/service/service.go
+    purpose: Core service orchestration - manages Auth, Proxy, SSH, DB, Kube, App services lifecycle
+  - path: lib/auth/auth.go
+    purpose: Auth server implementation - certificate signing, access control, user management
+  - path: tool/tsh/main.go:26
+    purpose: tsh client entry point - user CLI for connecting to Teleport clusters
+  - path: tool/tctl/main.go:32
+    purpose: tctl admin tool - cluster management, user provisioning, configuration
+build_run:
+  language: go
+  go_version: "1.25"
+  package_manager: go mod
+  build_command: make full
+  run_command: teleport start --config=/etc/teleport.yaml
+  test_command: go test ./...
+  additional_deps:
+    - Rust (for some components)
+    - Node.js (for Web UI)
+    - libfido2 (for FIDO2/ WebAuthn support)
+ecosystem_connections:
+  similar_to:
+    - HashiCorp Boundary (secretless access broker)
+    - AWS Systems Manager Session Manager
+    - Azure Bastion
+    - BeyondTrust Privileged Remote Access
+  alternatives:
+    - OpenSSH with certificate authority
+    - HashiCorp Vault + SSH secrets engine
+    - CyberArk Privileged Access Security
+    - Okta Privileged Access
+    - StrongDM
+  used_with:
+    - Kubernetes clusters (EKS, AKS, GKE)
+    - Cloud databases (RDS, Cloud SQL, Atlas)
+    - SSO providers (Okta, Entra ID, Google Workspace, GitHub)
+    - Terraform (provider for infrastructure provisioning)
+    - SPIFFE/SPIRE (workload identity federation)
+    - MCP servers (Model Context Protocol for AI agents)
+notes: |
+  Architecture highlights:
+  - Single Go binary with multiple roles (auth, proxy, node, app, db, kube)
+  - gRPC for internal service communication
+  - Multiple backend options: SQLite, DynamoDB, etcd, Firestore, PostgreSQL
+  - Web UI built in TypeScript (web/ directory)
+  - Supports both self-hosted and Teleport Cloud (SaaS)
+
+  Key binaries produced:
+  - teleport: Main daemon
+  - tsh: User client (SSH, kubectl, db proxy)
+  - tctl: Admin tool
+  - tbot: Machine identity agent for workloads
+
+  License: AGPL-3.0 (core), Apache 2.0 (API module), commercial for Enterprise

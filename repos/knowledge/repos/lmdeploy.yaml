@@ -1,0 +1,92 @@
+name: lmdeploy
+node_id: repo::internlm/lmdeploy
+github_full_name: internlm/lmdeploy
+html_url: https://github.com/internlm/lmdeploy
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/repos/lmdeploy.yaml
+  as_of: '2026-02-25'
+directory: lmdeploy-main
+category: inference_serving
+
+summary: |
+  High-performance LLM inference toolkit from InternLM team (OpenMMLab). LMDeploy offers
+  both TurboMind (C++ engine) and PyTorch backends with strong quantization support.
+  Claims 1.8x higher throughput than vLLM with 4-bit inference at 2.4x FP16 speed.
+  Supports Huawei Ascend in addition to NVIDIA GPUs.
+
+core_concepts:
+  - name: TurboMind Engine
+    description: High-performance C++ inference engine
+    location: lmdeploy/turbomind/
+
+  - name: PyTorch Engine
+    description: Python-native engine for flexibility
+    location: lmdeploy/pytorch/
+
+  - name: Quantization
+    description: Weight-only and KV cache quantization (AWQ, W4A16)
+    location: lmdeploy/quantization/
+
+  - name: API Server
+    description: RESTful API for inference
+    location: lmdeploy/serve/
+
+  - name: Model Converter
+    description: Convert models for deployment
+    location: lmdeploy/convert/
+
+key_entry_points:
+  - path: lmdeploy/turbomind/
+    purpose: TurboMind C++ inference engine
+
+  - path: lmdeploy/pytorch/
+    purpose: PyTorch inference engine
+
+  - path: lmdeploy/serve/
+    purpose: API server and gradio interfaces
+
+  - path: lmdeploy/quantization/
+    purpose: Model quantization utilities
+
+  - path: lmdeploy/vl/
+    purpose: Vision-language model support
+
+build_run:
+  language: Python + C++/CUDA
+  install: "pip install lmdeploy"
+  run_server: "lmdeploy serve api_server <model> --server-port 8000"
+  cli: "lmdeploy chat turbomind <model>"
+
+performance_features:
+  - TurboMind engine (persistent batch, blocked KV cache)
+  - 4-bit inference (2.4x faster than FP16)
+  - AWQ quantization
+  - KV cache quantization
+  - Dynamic split&fuse
+  - FlashAttention support
+  - Tensor parallelism
+
+hardware_support:
+  - NVIDIA GPUs
+  - Huawei Ascend
+  - CPU fallback
+
+ecosystem_connections:
+  - target: vllm
+    relation: alternative_to
+    note: Both high-performance; LMDeploy claims better throughput
+
+  - target: xinference
+    relation: related_to
+    note: Xinference can integrate with various backends
+
+  - target: langchain
+    relation: integrates_with
+    note: Can be used as LangChain backend
+
+further_reading:
+  - README.md
+  - docs: https://lmdeploy.readthedocs.io
+  - quantization: docs/en/quantization/

@@ -1,0 +1,90 @@
+name: khoj
+node_id: repo::khoj-ai/khoj
+github_full_name: khoj-ai/khoj
+html_url: https://github.com/khoj-ai/khoj
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/repos/khoj.yaml
+  as_of: '2026-02-25'
+directory: khoj-master
+category: agent_frameworks
+
+summary: |
+  Personal AI "second brain" application with RAG capabilities. Khoj scales from on-device
+  personal AI to cloud-scale enterprise deployments. Supports chatting with local/online LLMs,
+  document search (PDF, markdown, Notion, Word, org-mode), custom agent creation, and
+  multi-platform access (browser, Obsidian, Emacs, desktop, phone, WhatsApp).
+
+core_concepts:
+  - name: Multi-Platform Interface
+    description: Browser, Obsidian, Emacs, Desktop, Mobile, WhatsApp clients
+    location: src/interface/
+
+  - name: Agent System
+    description: Custom agents with knowledge, persona, tools
+    location: src/khoj/agent/
+
+  - name: Document Processing
+    description: PDF, Markdown, Notion, Word, org-mode support
+    location: src/khoj/content/
+
+  - name: Search Engine
+    description: Semantic search across indexed documents
+    location: src/khoj/search/
+
+key_entry_points:
+  - path: src/khoj/
+    purpose: Core application logic
+
+  - path: src/interface/
+    purpose: Multi-platform client interfaces
+
+  - path: src/khoj/processor/
+    purpose: Document and content processors
+
+build_run:
+  language: Python
+  install: "pip install khoj"
+  usage: |
+    khoj  # Start server
+    # Access at http://localhost:42110
+
+key_features:
+  - Chat with any LLM (local or cloud)
+  - Document RAG (PDF, markdown, Notion, etc.)
+  - Custom agent creation with tools
+  - Multi-platform (browser, Obsidian, Emacs, desktop, mobile)
+  - Internet search integration
+  - Image generation
+  - Voice input/output
+  - Self-hostable or cloud
+
+use_cases:
+  - Personal knowledge management
+  - Research assistant
+  - Document chat
+  - Automated newsletters/notifications
+
+ecosystem_connections:
+  - target: ollama
+    relation: integrates_with
+    note: Supports local LLMs via Ollama
+
+  - target: langchain
+    relation: related_to
+    note: Both RAG frameworks with agent support
+
+  - target: open_webui
+    relation: alternative_to
+    note: Both self-hosted AI chat; Khoj has stronger RAG/document focus
+
+  - target: mem0
+    relation: related_to
+    note: Both provide persistent context/memory
+
+further_reading:
+  - README.md
+  - docs: https://docs.khoj.dev
+  - web: https://khoj.dev
+  - app: https://app.khoj.dev

@@ -1,0 +1,209 @@
+name: self-hosting-guide
+node_id: repo::mikeroyal/self-hosting-guide
+github_full_name: mikeroyal/self-hosting-guide
+html_url: https://github.com/mikeroyal/self-hosting-guide
+source: ssh_repos
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/deep/self-hosting-guide.yaml
+  as_of: '2026-02-25'
+directory: Self-Hosting-Guide-main
+category: documentation
+
+summary: |
+  Comprehensive curated guide for self-hosting applications and services, covering containers, cloud infrastructure, home servers, media centers, networking, security, and development tools across 34 major topic areas.
+
+architecture:
+  document_structure:
+    - section: Table of Contents
+      line_range: [24, 197]
+      topics: [navigation]
+    - section: Getting Started
+      line_range: [199, 911]
+      topics: [containers, podman, docker, os-setup, tools-overview]
+    - section: WireGuard
+      line_range: [4013, 4412]
+      topics: [wireguard, tailscale, netmaker, vpn-tools, setup-guides]
+    - section: Nextcloud
+      line_range: [4413, 4478]
+      topics: [cloud-storage, collaboration]
+    - section: Raspberry Pi
+      line_range: [4479, 5044]
+      topics: [hardware, os, home-assistant, homebridge, esphome, upgrades]
+    - section: Grafana
+      line_range: [5045, 5107]
+      topics: [monitoring, dashboards, visualization]
+    - section: Networking
+      line_range: [5108, 5230]
+      topics: [protocols, layers, interfaces, network-tools]
+    - section: Docker
+      line_range: [5231, 5303]
+      topics: [containers, orchestration, tools]
+    - section: Kubernetes
+      line_range: [5304, 5448]
+      topics: [orchestration, frameworks, projects, learning]
+    - section: Ansible
+      line_range: [5449, 5540]
+      topics: [automation, configuration-management, devops]
+    - section: Databases
+      line_range: [5541, 5668]
+      topics: [sql, nosql, storage]
+    - section: Telco 5G
+      line_range: [5669, 5762]
+      topics: [telecommunications, networking]
+    - section: Open Source Security
+      line_range: [5763, 5926]
+      topics: [security-standards, tools, hardening]
+    - section: Differential Privacy
+      line_range: [5927, 6026]
+      topics: [privacy, anonymization]
+    - section: Machine Learning
+      line_range: [6027, 6116]
+      topics: [ml-frameworks, ai, learning-resources]
+    - section: IoT Protocols
+      line_range: [6117, 6137]
+      topics: [iot, protocols]
+    - section: Operating Systems
+      line_range: [6138, 6200]
+      topics: [linux, bsd, server-os]
+    - section: Middleware
+      line_range: [6201, 6211]
+      topics: [integration, messaging]
+    - section: Node Flow Editors
+      line_range: [6212, 6223]
+      topics: [visual-programming, automation]
+    - section: Data Visualization
+      line_range: [6224, 6230]
+      topics: [charts, graphs, dashboards]
+    - section: Search
+      line_range: [6231, 6235]
+      topics: [elasticsearch, indexing]
+    - section: Hardware
+      line_range: [6236, 6255]
+      topics: [in-memory-grids, servers]
+    - section: Home Automation
+      line_range: [6256, 6266]
+      topics: [smart-home, iot, automation]
+    - section: Robotics
+      line_range: [6267, 6372]
+      topics: [robotics, automation, learning]
+    - section: Mesh Networks
+      line_range: [6373, 6381]
+      topics: [mesh, p2p, networking]
+    - section: Blockchain Development
+      line_range: [6382, 6448]
+      topics: [blockchain, smart-contracts, web3]
+    - section: Node.js Development
+      line_range: [6449, 6526]
+      topics: [javascript, runtime, frameworks]
+    - section: C/C++ Development
+      line_range: [6527, 6664]
+      topics: [systems-programming, libraries, tools]
+    - section: Java Development
+      line_range: [6665, 6765]
+      topics: [jvm, frameworks, enterprise]
+    - section: Python Development
+      line_range: [6766, 6887]
+      topics: [python, frameworks, data-science]
+    - section: Rust Development
+      line_range: [6888, 6972]
+      topics: [rust, systems, safety]
+    - section: Swift Development
+      line_range: [6973, 7062]
+      topics: [swift, apple, ios]
+    - section: XML Development
+      line_range: [7063, 7147]
+      topics: [xml, parsing, standards]
+  organization: single-file
+  style: encyclopedia
+
+content_coverage:
+  topics:
+    - name: containers
+      depth: deep
+      resources: 50+
+    - name: vpn-networking
+      depth: deep
+      resources: 30+
+    - name: monitoring
+      depth: moderate
+      resources: 20+
+    - name: home-automation
+      depth: moderate
+      resources: 15+
+    - name: databases
+      depth: moderate
+      resources: 25+
+    - name: security
+      depth: deep
+      resources: 40+
+    - name: development
+      depth: deep
+      resources: 100+
+    - name: media-servers
+      depth: moderate
+      resources: 20+
+  resource_types:
+    - tools
+    - libraries
+    - tutorials
+    - documentation
+    - youtube-channels
+    - podcasts
+    - books
+    - subreddits
+
+key_sections:
+  - name: Getting Started with Self-Hosting
+    location: README.md:199-911
+    summary: Entry point covering tools overview, containers, OS guides, and essential services
+  - name: WireGuard & VPN
+    location: README.md:4013-4412
+    summary: Comprehensive VPN section with WireGuard, Tailscale, Netmaker, and setup guides
+  - name: Open Source Security
+    location: README.md:5763-5926
+    summary: Security standards, hardening guides, and security tooling
+  - name: Docker
+    location: README.md:5231-5303
+    summary: Container learning resources and orchestration tools
+  - name: Kubernetes
+    location: README.md:5304-5448
+    summary: K8s frameworks, projects, and learning resources
+
+cross_references:
+  internal: []
+  external:
+    - frp
+    - teleport
+    - headscale
+    - nebula
+    - rathole
+    - gost
+    - hysteria
+    - pangolin
+    - hiddify-app
+  kgraph_overlap:
+    - repo: frp
+      context: Referenced in tunneling/remote access section
+    - repo: headscale
+      context: Tailscale-compatible control server
+    - repo: nebula
+      context: Mesh networking solution
+    - repo: pangolin
+      context: Modern tunneling solution
+
+supplementary_files:
+  - path: CONTRIBUTING.md
+    purpose: Contribution guidelines
+    lines: 20
+  - path: "Getting Started  with Self-Hosting.dockerfile"
+    purpose: Starter Docker configuration
+    lines: 40
+
+metadata:
+  lines: 7147
+  primary_file: README.md
+  maintenance: active
+  update_frequency: frequent
+  style: curated-list
+  scope: comprehensive

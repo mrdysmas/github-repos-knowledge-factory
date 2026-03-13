@@ -1,0 +1,77 @@
+name: llama.cpp
+node_id: repo::ggml-org/llama.cpp
+github_full_name: ggml-org/llama.cpp
+html_url: https://github.com/ggml-org/llama.cpp
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/repos/llama.cpp.yaml
+  as_of: '2026-02-25'
+directory: llama.cpp-master
+category: inference_serving
+
+summary: |
+  High-performance LLM inference in pure C/C++ with minimal dependencies.
+  Pioneered GGUF quantization format for efficient model storage. Optimized
+  for CPU inference with optional GPU acceleration (CUDA, Metal, Vulkan).
+  The foundation that Ollama and many other tools are built on.
+
+core_concepts:
+  - name: GGUF Format
+    description: Quantized model format for efficient storage and fast loading
+    location: gguf.c, gguf.h
+
+  - name: Quantization
+    description: Multiple quantization methods (4-bit, 5-bit, 8-bit)
+    location: ggml.c, quantize.cpp
+
+  - name: CPU Inference
+    description: Highly optimized CPU inference with SIMD support
+    location: ggml.c
+
+  - name: GPU Backends
+    description: CUDA, Metal (Apple), Vulkan, ROCm support
+    location: ggml-cuda/, ggml-metal/, ggml-vulkan/
+
+key_entry_points:
+  - path: main.cpp
+    purpose: Main CLI inference entry point
+
+  - path: server.cpp
+    purpose: HTTP server for API access
+
+  - path: ggml.c
+    purpose: Core tensor library
+
+  - path: gguf.c
+    purpose: GGUF format implementation
+
+build_run:
+  language: C/C++
+  manager: make
+  build: "make"
+  test: "make test"
+  cuda_build: "make LLAMA_CUDA=1"
+  metal_build: "make LLAMA_METAL=1 (macOS default)"
+
+ecosystem_connections:
+  - target: ollama
+    relation: extends
+    note: Ollama wraps llama.cpp for inference
+
+  - target: vllm
+    relation: alternative_to
+    note: llama.cpp for CPU/local; vLLM for GPU/production
+
+  - target: lmdeploy
+    relation: alternative_to
+    note: Different optimization approaches
+
+  - target: xinference
+    relation: integrates_with
+    note: Xinference can use llama.cpp as backend
+
+further_reading:
+  - README.md
+  - examples/README.md
+  - docs/

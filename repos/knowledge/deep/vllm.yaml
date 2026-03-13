@@ -1,0 +1,401 @@
+name: vllm
+node_id: repo::vllm-project/vllm
+github_full_name: vllm-project/vllm
+html_url: https://github.com/vllm-project/vllm
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep/vllm.yaml
+  as_of: '2026-02-25'
+sparse: false
+
+code_patterns:
+  - name: Offline Inference with LLM Class
+    description: Basic text generation using the LLM class
+    code: |
+      from vllm import LLM, SamplingParams
+
+      # Initialize model
+      llm = LLM(
+          model="meta-llama/Llama-3.2-1B-Instruct",
+          tensor_parallel_size=1,
+          gpu_memory_utilization=0.9,
+      )
+
+      # Configure sampling
+      sampling_params = SamplingParams(
+          temperature=0.8,
+          top_p=0.95,
+          max_tokens=100,
+      )
+
+      # Generate
+      prompts = ["Hello, my name is", "The capital of France is"]
+      outputs = llm.generate(prompts, sampling_params)
+
+      for output in outputs:
+          print(output.outputs[0].text)
+    file_reference: vllm/entrypoints/llm.py
+
+  - name: Chat Completion with Messages
+    description: Chat-style interaction with message format
+    code: |
+      from vllm import LLM, SamplingParams
+
+      llm = LLM(model="meta-llama/Llama-3.2-1B-Instruct")
+
+      messages = [
+          {"role": "system", "content": "You are a helpful assistant."},
+          {"role": "user", "content": "What is the capital of France?"},
+      ]
+
+      sampling_params = SamplingParams(max_tokens=50)
+      outputs = llm.chat(messages, sampling_params)
+
+      print(outputs[0].outputs[0].text)
+    file_reference: vllm/entrypoints/llm.py
+
+  - name: Embeddings and Classification
+    description: Generate embeddings or classifications using pooling
+    code: |
+      from vllm import LLM, PoolingParams
+
+      llm = LLM(model="BAAI/bge-base-en-v1.5")
+
+      # For embeddings
+      outputs = llm.embed(["Hello world", "Goodbye world"])
+      # outputs[0].outputs.embedding is the embedding vector
+
+      # Alternative with encode
+      outputs = llm.encode(
+          ["text1", "text2"],
+          pooling_params=PoolingParams(pooling_type="MEAN")
+      )
+
+      # For classification models
+      llm = LLM(model="facebook/bart-large-mnli")
+      outputs = llm.classify(["I love this movie"])
+    file_reference: vllm/entrypoints/llm.py
+
+  - name: Structured Output Generation
+    description: Generate JSON or regex-constrained outputs
+    code: |
+      from vllm import LLM, SamplingParams
+      from vllm.sampling_params import StructuredOutputsParams
+
+      llm = LLM(model="meta-llama/Llama-3.2-1B-Instruct")
+
+      # JSON schema constrained output
+      structured = StructuredOutputsParams(
+          json={
+              "type": "object",
+              "properties": {
+                  "name": {"type": "string"},
+                  "age": {"type": "integer"},
+              },
+              "required": ["name", "age"],
+          }
+      )
+
+      sampling_params = SamplingParams(
+          max_tokens=100,
+          structured_outputs=structured,
+      )
+
+      outputs = llm.generate(["Generate a person"], sampling_params)
+
+      # Regex constrained
+      regex_params = StructuredOutputsParams(regex=r"\d{3}-\d{2}-\d{4}")
+    file_reference: vllm/sampling_params.py
+
+  - name: OpenAI-Compatible Server Launch
+    description: Start OpenAI-compatible API server
+    code: |
+      # CLI command
+      # vllm serve meta-llama/Llama-3.2-1B-Instruct \
+      #     --host 0.0.0.0 \
+      #     --port 8000 \
+      #     --tensor-parallel-size 2 \
+      #     --gpu-memory-utilization 0.9 \
+      #     --api-key secret
+
+      # Python client usage
+      from openai import OpenAI
+
+      client = OpenAI(
+          base_url="http://localhost:8000/v1",
+          api_key="secret",
+      )
+
+      response = client.chat.completions.create(
+          model="meta-llama/Llama-3.2-1B-Instruct",
+          messages=[{"role": "user", "content": "Hello!"}],
+          max_tokens=50,
+      )
+    file_reference: vllm/entrypoints/openai/api_server.py
+
+  - name: PagedAttention KV Cache
+    description: Core attention pattern for efficient memory management
+    code: |
+      # Internal pattern - PagedAttention splits KV cache into blocks
+      # Not typically called directly, but understanding helps with tuning
+
+      # Key configuration options:
+      # --block-size 16          # Tokens per cache block
+      # --gpu-memory-utilization 0.9  # GPU memory fraction
+      # --swap-space 4           # CPU swap space in GB
+      # --enable-prefix-caching  # Cache common prefixes
+
+      # In Python:
+      llm = LLM(
+          model="meta-llama/Llama-3.2-1B-Instruct",
+          block_size=16,
+          gpu_memory_utilization=0.9,
+          enable_prefix_caching=True,
+          swap_space=4,  # GB
+      )
+    file_reference: vllm/v1/attention/ops/paged_attn.py
+
+configuration:
+  - name: Model Configuration
+    options:
+      - key: model
+        default: "required"
+        description: HuggingFace model name or path
+      - key: dtype
+        default: "auto"
+        description: "Data type: auto, float16, bfloat16, float32"
+      - key: quantization
+        default: "null"
+        description: "Quantization: awq, gptq, fp8, bitsandbytes"
+      - key: max_model_len
+        default: "auto"
+        description: Maximum context length
+      - key: tokenizer_mode
+        default: "auto"
+        description: "Tokenizer mode: auto, hf, slow, mistral"
+      - key: trust_remote_code
+        default: "false"
+        description: Allow custom model code execution
+
+  - name: Parallelism Configuration
+    options:
+      - key: tensor_parallel_size
+        default: "1"
+        description: Number of GPUs for tensor parallelism
+      - key: pipeline_parallel_size
+        default: "1"
+        description: Number of GPUs for pipeline parallelism
+      - key: data_parallel_size
+        default: "1"
+        description: Number of data parallel replicas
+      - key: distributed_executor_backend
+        default: "auto"
+        description: "Distributed backend: ray, mp (multiprocessing)"
+
+  - name: Memory and Cache Configuration
+    options:
+      - key: gpu_memory_utilization
+        default: "0.9"
+        description: Fraction of GPU memory to use
+      - key: kv_cache_dtype
+        default: "auto"
+        description: "KV cache dtype: auto, fp8, fp16, bf16"
+      - key: block_size
+        default: "16"
+        description: Tokens per cache block
+      - key: enable_prefix_caching
+        default: "false"
+        description: Cache common prefixes across requests
+      - key: swap_space
+        default: "4"
+        description: CPU swap space in GB
+      - key: cpu_offload_gb
+        default: "0"
+        description: CPU memory for offloading in GB
+
+  - name: Scheduler Configuration
+    options:
+      - key: max_num_seqs
+        default: "256"
+        description: Maximum sequences per batch
+      - key: max_num_batched_tokens
+        default: "auto"
+        description: Maximum tokens in batch
+      - key: max_num_partial_prefills
+        default: "1"
+        description: Maximum partial prefills
+
+  - name: Sampling Parameters
+    options:
+      - key: temperature
+        default: "1.0"
+        description: Randomness (0 = greedy)
+      - key: top_p
+        default: "1.0"
+        description: Nucleus sampling threshold
+      - key: top_k
+        default: "0"
+        description: Top-k sampling (0 = disabled)
+      - key: min_p
+        default: "0.0"
+        description: Minimum probability threshold
+      - key: max_tokens
+        default: "16"
+        description: Maximum tokens to generate
+      - key: min_tokens
+        default: "0"
+        description: Minimum tokens before EOS
+      - key: presence_penalty
+        default: "0.0"
+        description: Presence penalty (-2 to 2)
+      - key: frequency_penalty
+        default: "0.0"
+        description: Frequency penalty (-2 to 2)
+      - key: repetition_penalty
+        default: "1.0"
+        description: Repetition penalty (>1 discourages repeats)
+
+  - name: Server Configuration
+    options:
+      - key: host
+        default: "localhost"
+        description: Server host address
+      - key: port
+        default: "8000"
+        description: Server port
+      - key: api_key
+        default: "null"
+        description: API key for authentication
+      - key: disable_fastapi_docs
+        default: "false"
+        description: Disable FastAPI documentation endpoints
+
+common_tasks:
+  - task: Launch Production Server
+    steps:
+      - "Install: pip install vllm"
+      - "Launch: vllm serve model-name --tensor-parallel-size 2"
+      - "Monitor GPU usage with nvidia-smi"
+      - "Test: curl http://localhost:8000/health"
+    gotchas:
+      - "First load downloads model - can take time"
+      - "gpu_memory_utilization should leave headroom for PyTorch"
+      - "Use --disable-log-stats in production for performance"
+
+  - task: Configure Multi-GPU Inference
+    steps:
+      - "Set tensor_parallel_size to number of GPUs"
+      - "Ensure all GPUs have same memory capacity"
+      - "Use RAY for distributed backend: --distributed-executor-backend ray"
+      - "Start Ray cluster first if multi-node"
+    gotchas:
+      - "Model must fit in combined GPU memory"
+      - "Communication overhead increases with TP size"
+      - "NCCL errors often indicate network/GPU connectivity issues"
+
+  - task: Optimize for Throughput
+    steps:
+      - "Increase max_num_seqs (default 256)"
+      - "Enable prefix caching: --enable-prefix-caching"
+      - "Increase gpu_memory_utilization to 0.95"
+      - "Use FP8 KV cache: --kv-cache-dtype fp8"
+    gotchas:
+      - "Higher throughput may increase latency per request"
+      - "FP8 requires GPU support (H100, A100 with newer drivers)"
+
+  - task: Use Quantized Models
+    steps:
+      - "AWQ: --quantization awq with AWQ model"
+      - "GPTQ: --quantization gptq with GPTQ model"
+      - "FP8: --kv-cache-dtype fp8 for KV cache only"
+      - "BitsAndBytes: --quantization bitsandbytes for 4-bit"
+    gotchas:
+      - "Quantized models need specific checkpoints, not base models"
+      - "Quality may degrade with aggressive quantization"
+
+troubleshooting:
+  - symptom: OutOfMemoryError during model loading
+    cause: Model too large for GPU memory
+    fix: "Reduce gpu_memory_utilization, use quantization, or increase tensor_parallel_size"
+
+  - symptom: Slow first request after server start
+    cause: CUDA graph capture and KV cache allocation
+    fix: "This is normal - subsequent requests are fast. Use --enforce-eager to disable CUDA graphs."
+
+  - symptom: NCCL timeout errors in multi-GPU
+    cause: GPU communication issues or network problems
+    fix: "Check NCCL_P2P_LEVEL=SYS, ensure same CUDA version, verify network connectivity"
+
+  - symptom: KV cache memory exhausted
+    cause: Too many concurrent sequences or long contexts
+    fix: "Reduce max_num_seqs, decrease max_model_len, or increase swap_space"
+
+  - symptom: Slow generation with long prompts
+    cause: Prefill phase bottleneck
+    fix: "Enable chunked prefill with max_num_partial_prefills, use prefix caching"
+
+quick_reference:
+  - topic: CLI Commands
+    content: |
+      ┌────────────────────────┬─────────────────────────────────────┐
+      │ Command                │ Description                         │
+      ├────────────────────────┼─────────────────────────────────────┤
+      │ vllm serve <model>     │ Launch OpenAI-compatible server     │
+      │ vllm bench latency     │ Benchmark request latency           │
+      │ vllm bench throughput  │ Benchmark throughput                │
+      │ vllm bench startup     │ Benchmark startup time              │
+      │ vllm run-batch <file>  │ Run batch inference job             │
+      │ vllm collect-env       │ Collect env info for debugging      │
+      └────────────────────────┴─────────────────────────────────────┘
+
+  - topic: Common CLI Flags
+    content: |
+      ┌───────────────────────────────────┬────────────────────────┐
+      │ Flag                              │ Default                │
+      ├───────────────────────────────────┼────────────────────────┤
+      │ --tensor-parallel-size            │ 1                      │
+      │ --gpu-memory-utilization          │ 0.9                    │
+      │ --max-model-len                   │ auto                   │
+      │ --dtype                           │ auto                   │
+      │ --quantization                    │ None                   │
+      │ --kv-cache-dtype                  │ auto                   │
+      │ --block-size                      │ 16                     │
+      │ --enable-prefix-caching           │ False                  │
+      │ --max-num-seqs                    │ 256                    │
+      │ --host                            │ localhost              │
+      │ --port                            │ 8000                   │
+      │ --api-key                         │ None                   │
+      └───────────────────────────────────┴────────────────────────┘
+
+  - topic: SamplingParams Quick Reference
+    content: |
+      SamplingParams(
+          n=1,                    # Number of outputs
+          temperature=1.0,        # 0 = greedy, 1 = normal
+          top_p=1.0,              # Nucleus sampling
+          top_k=0,                # 0 = disabled
+          min_p=0.0,              # Min probability
+          max_tokens=16,          # Max generation length
+          min_tokens=0,           # Min before EOS
+          stop=["\n"],            # Stop sequences
+          stop_token_ids=[1,2],   # Stop token IDs
+          presence_penalty=0.0,   # -2 to 2
+          frequency_penalty=0.0,  # -2 to 2
+          repetition_penalty=1.0, # >1 = less repeat
+          logprobs=None,          # Return top N logprobs
+          seed=42,                # Reproducibility
+      )
+
+  - topic: LLM Methods
+    content: |
+      ┌───────────────────────┬─────────────────────────────────────┐
+      │ Method                │ Purpose                             │
+      ├───────────────────────┼─────────────────────────────────────┤
+      │ llm.generate()        │ Text completion                     │
+      │ llm.chat()            │ Chat with messages                  │
+      │ llm.embed()           │ Generate embeddings                 │
+      │ llm.encode()          │ Embeddings with PoolingParams       │
+      │ llm.classify()        │ Classification                      │
+      │ llm.score(a, b)       │ Similarity scoring                  │
+      └───────────────────────┴─────────────────────────────────────┘

@@ -1,0 +1,113 @@
+name: graphrag
+node_id: repo::microsoft/graphrag
+github_full_name: microsoft/graphrag
+html_url: https://github.com/microsoft/graphrag
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/repos/graphrag.yaml
+  as_of: '2026-02-25'
+directory: graphrag-main
+category: rag_frameworks
+
+summary: |
+  Microsoft's GraphRAG uses knowledge graphs to enhance LLM retrieval. Unlike vector-based RAG,
+  GraphRAG builds a structured knowledge graph from documents, enabling better reasoning over
+  relationships and communities. Best suited for complex narrative data where entity relationships
+  matter. Warning: indexing is expensive (high LLM token usage).
+
+core_concepts:
+  - name: Indexing Pipeline
+    description: Extract entities, relationships, claims from documents
+    location: packages/graphrag/graphrag/index/
+
+  - name: Query Engine
+    description: Global (whole corpus) and local (neighborhood) search
+    location: packages/graphrag/graphrag/query/
+
+  - name: Graphs
+    description: Knowledge graph construction and community detection
+    location: packages/graphrag/graphrag/graphs/
+
+  - name: Prompts
+    description: LLM prompts for entity extraction, summarization
+    location: packages/graphrag/graphrag/prompts/
+
+  - name: Prompt Tuning
+    description: Customize prompts for your domain
+    location: packages/graphrag/graphrag/prompt_tune/
+
+key_entry_points:
+  - path: packages/graphrag/graphrag/index/
+    purpose: Indexing pipeline (entity extraction, graph building)
+
+  - path: packages/graphrag/graphrag/query/
+    purpose: Search interfaces (global, local, drift)
+
+  - path: packages/graphrag/graphrag/prompts/
+    purpose: LLM prompts for extraction
+
+  - path: packages/graphrag/graphrag/cli/
+    purpose: CLI commands (init, index, query)
+
+monorepo_packages:
+  - name: graphrag
+    pypi: graphrag
+    purpose: Main package with CLI and API
+
+  - name: graphrag-llm
+    purpose: LLM abstractions
+
+  - name: graphrag-vectors
+    purpose: Vector store abstractions
+
+  - name: graphrag-storage
+    purpose: Storage backends
+
+  - name: graphrag-cache
+    purpose: Caching layer
+
+  - name: graphrag-input
+    purpose: Input/loading utilities
+
+build_run:
+  language: Python
+  manager: uv
+  install: "uv sync"
+  cli_init: "graphrag init --root ./myproject"
+  cli_index: "graphrag index --root ./myproject"
+  cli_query: "graphrag query --root ./myproject --method local"
+  test: "pytest"
+
+search_methods:
+  - name: Local Search
+    description: Query specific entities and their neighborhood
+
+  - name: Global Search
+    description: Reason about entire corpus using community summaries
+
+  - name: DRIFT Search
+    description: Dynamic reasoning with inference and flow tracking
+
+ecosystem_connections:
+  - target: langchain
+    relation: related_to
+    note: Can complement LangChain; different retrieval paradigm
+
+  - target: llama_index
+    relation: related_to
+    note: LlamaIndex has graph_rag module inspired by this
+
+  - target: ragflow
+    relation: related_to
+    note: RAGFlow has graphrag module; similar approach
+
+  - target: milvus
+    relation: integrates_with
+    note: Can use Milvus for vector storage via graphrag-vectors
+
+further_reading:
+  - README.md
+  - docs: https://microsoft.github.io/graphrag/
+  - paper: https://arxiv.org/pdf/2404.16130
+  - blog: https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-discovery-on-narrative-private-data/

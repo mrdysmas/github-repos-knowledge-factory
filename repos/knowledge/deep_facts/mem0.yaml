@@ -1,0 +1,689 @@
+name: mem0
+node_id: repo::mem0ai/mem0
+github_full_name: mem0ai/mem0
+html_url: https://github.com/mem0ai/mem0
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep_facts/mem0.yaml
+  as_of: '2026-02-25'
+  extractor_version: ws6-deep-integrator-v1
+facts:
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: configuration[1].options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[3]
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: api_key
+  object_value: api_key
+  note: API key (or env var)
+  fact_id: fact::29428ffc607b53a2bb68ee10
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: configuration[3].options[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[3].options[5]
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: api_key
+  object_value: api_key
+  note: 'default: null; Qdrant Cloud API key'
+  fact_id: fact::58990ee7fa4fe72f10dabaca
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: configuration[3].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[3].options[0]
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: collection_name
+  object_value: collection_name
+  note: 'default: mem0; Collection name'
+  fact_id: fact::22167f593526071731948bfb
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: configuration[0].options[7]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[7]
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: custom_fact_extraction_prompt
+  object_value: custom_fact_extraction_prompt
+  note: 'default: null; Custom prompt for fact extraction'
+  fact_id: fact::cbc8b9459f1cc9c89ee21ad7
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: configuration[0].options[8]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[8]
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: custom_update_memory_prompt
+  object_value: custom_update_memory_prompt
+  note: 'default: null; Custom prompt for memory updates'
+  fact_id: fact::16859fd3e593913716709220
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: configuration[0].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[2]
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: embedder
+  object_value: embedder
+  note: 'default: {}; Embedding model configuration'
+  fact_id: fact::35a001a6ba3956a8ae8be2af
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: configuration[2].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[2].options[2]
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: embedding_dims
+  object_value: embedding_dims
+  note: 'default: 1536; Output dimensions'
+  fact_id: fact::5bded4341ca7dd006efc6e1d
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: configuration[0].options[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[4]
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: graph_store
+  object_value: graph_store
+  note: 'default: {}; Graph store for knowledge graphs'
+  fact_id: fact::d95ef4c7a3cb4ccd5ccf9a9f
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: configuration[0].options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[3]
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: history_db_path
+  object_value: history_db_path
+  note: 'default: ~/.mem0/history.db; Path to history database'
+  fact_id: fact::e8015f42a7f75fc6d6a5dd26
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: configuration[3].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[3].options[1]
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: host
+  object_value: host
+  note: 'default: null; Qdrant server host'
+  fact_id: fact::262ad22dc2e3f3449163504c
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: configuration[0].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[1]
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: llm
+  object_value: llm
+  note: 'default: {}; LLM provider configuration'
+  fact_id: fact::8c97b165b9efab3f8aae34fe
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: configuration[2].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[2].options[1]
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: model
+  object_value: model
+  note: 'default: text-embedding-3-small; Embedding model name'
+  fact_id: fact::0215cd1de7868c9af0fce8a0
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: configuration[1].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[1]
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: model
+  object_value: model
+  note: 'default: gpt-4o-mini; Model name for the provider'
+  fact_id: fact::9a7d02c33ccd09814218395c
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: configuration[3].options[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[3].options[4]
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: on_disk
+  object_value: on_disk
+  note: 'default: false; Enable persistent storage'
+  fact_id: fact::f07db976681b2c9df4626b43
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: configuration[3].options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[3].options[3]
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: path
+  object_value: path
+  note: 'default: null; Local storage path'
+  fact_id: fact::52139c2c6ae122379756e0bc
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: configuration[3].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[3].options[2]
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: port
+  object_value: port
+  note: 'default: 6333; Qdrant server port'
+  fact_id: fact::4bff8b788eb093c37038174f
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: configuration[1].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[0]
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: provider
+  object_value: provider
+  note: 'default: openai; Provider: openai, ollama, anthropic, groq, together, etc.'
+  fact_id: fact::66ddc4738e0cd8cce024429e
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: configuration[2].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[2].options[0]
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: provider
+  object_value: provider
+  note: 'default: openai; Provider: openai, ollama, huggingface, azure, gemini'
+  fact_id: fact::90f9c17fb1ad1bb94cc1975f
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: configuration[0].options[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[5]
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: reranker
+  object_value: reranker
+  note: 'default: null; Optional reranker configuration'
+  fact_id: fact::7501dd97c56ee266ea468b34
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: configuration[1].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[2]
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: temperature
+  object_value: temperature
+  note: 'default: 0.2; Sampling temperature'
+  fact_id: fact::a64bbf18a6b9f3023a0baba8
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: configuration[0].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[0]
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: vector_store
+  object_value: vector_store
+  note: 'default: {}; Vector database configuration'
+  fact_id: fact::12c927bb5430b7b2bedfa743
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: configuration[0].options[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[6]
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: version
+  object_value: version
+  note: 'default: v1.1; Memory config version'
+  fact_id: fact::d31dcfaf231cf2179c8f879e
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: Embedding dimension mismatch
+  object_value: Embedding dimension mismatch
+  note: 'cause: Embedder output doesn''t match vector store config; fix: Match embedding_dims
+    in embedder config with vector store dimensions'
+  fact_id: fact::031b5f8294858ec3157719f6
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: LLM extraction not working
+  object_value: LLM extraction not working
+  note: 'cause: Missing API key or provider misconfiguration; fix: Set api_key in
+    llm config, verify provider name matches exactly'
+  fact_id: fact::d8c5a996918c5c219619c045
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: No memories found after add
+  object_value: No memories found after add
+  note: 'cause: Missing user_id or wrong scope; fix: Always pass user_id (or agent_id/run_id)
+    to both add and search'
+  fact_id: fact::729a330746ccc6aecc3e66cb
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: Slow memory operations
+  object_value: Slow memory operations
+  note: 'cause: Large memory count or missing vector index; fix: Enable reranking
+    for better results, use smaller top_k, check vector store indexes'
+  fact_id: fact::f443eed4a59a94a75d5077f6
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: code_patterns[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: examples/misc/test.py
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: Memory tools for AI agents
+  object_value: Agent Integration Pattern
+  note: 'description: Memory tools for AI agents; location: examples/misc/test.py'
+  fact_id: fact::f4396e779b663f6d58bc315a
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: code_patterns[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: mem0/client/main.py
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: Cloud API client for hosted Mem0 service
+  object_value: Client API Pattern (Cloud)
+  note: 'description: Cloud API client for hosted Mem0 service; location: mem0/client/main.py'
+  fact_id: fact::19d4df5e63ba478c960317a6
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: code_patterns[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: mem0/llms/configs.py
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: Configure LLM for fact extraction and memory processing
+  object_value: LLM Provider Configuration
+  note: 'description: Configure LLM for fact extraction and memory processing; location:
+    mem0/llms/configs.py'
+  fact_id: fact::138bca224ee23cc3f25772b5
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: code_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: mem0/memory/main.py
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: Core memory add, get, search, update, delete operations
+  object_value: Memory CRUD Operations
+  note: 'description: Core memory add, get, search, update, delete operations; location:
+    mem0/memory/main.py'
+  fact_id: fact::d9babbdc606fc2a1afc44404
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: code_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: mem0/memory/main.py
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: Multi-level memory hierarchy with user/agent/run scope
+  object_value: Session Scoping Pattern
+  note: 'description: Multi-level memory hierarchy with user/agent/run scope; location:
+    mem0/memory/main.py'
+  fact_id: fact::00a243cd3f59c57160530134
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: code_patterns[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: mem0/vector_stores/configs.py
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: Configure vector database for memory storage
+  object_value: Vector Store Backend Configuration
+  note: 'description: Configure vector database for memory storage; location: mem0/vector_stores/configs.py'
+  fact_id: fact::735a30a54fca81930aa3b9c0
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: common_tasks[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[0]
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: Basic Memory Setup
+  object_value: Basic Memory Setup
+  note: 'pip install mem0ai, from mem0 import Memory, memory = Memory() # Uses defaults:
+    Qdrant local, OpenAI, Set OPENAI_API_KEY env var; Default uses Qdrant in-memory
+    - data lost on restart, OpenAI API key required for fact extraction (infer=True)'
+  fact_id: fact::54798f0720e8dc7f91cec8a1
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: common_tasks[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[2]
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: Integrate with AI Agent
+  object_value: Integrate with AI Agent
+  note: Create memory tools wrapping add/search, Pass user_id from agent context to
+    memory calls, Use search before generation for context, Save important facts after
+    conversation; Always scope with user_id for multi-tenant isolation, Batch memory
+    adds to reduce LLM calls
+  fact_id: fact::be3cbd44cbf10892b892a5b6
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.58
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: quick_reference[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: quick_reference[1]
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: LLM Providers
+  object_value: LLM Providers
+  note: quick reference topic
+  fact_id: fact::f98381b6131dba05e7422f9f
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.58
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: quick_reference[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: quick_reference[0]
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: Memory Operations
+  object_value: Memory Operations
+  note: quick reference topic
+  fact_id: fact::83556fc33e6f190ccd56e7a4
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.58
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: quick_reference[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: quick_reference[2]
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: MemoryItem Response
+  object_value: MemoryItem Response
+  note: quick reference topic
+  fact_id: fact::a0e5b999aa39657fa4688e2c
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: common_tasks[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[1]
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: Production Configuration
+  object_value: Production Configuration
+  note: 'Choose vector store: qdrant, pgvector, pinecone, etc., Configure LLM provider
+    (or use local via ollama), Set up embedder (match dims with vector store), Create
+    Memory.from_config(config_dict); Embedding dimensions must match vector store
+    expectations, Use persistent storage (o...'
+  fact_id: fact::b63f47b4cd16710405e71595
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.58
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    source_section: quick_reference[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: quick_reference[3]
+    source_file: llm_repos/knowledge/deep/mem0.yaml
+    excerpt: Vector Stores (26 Providers)
+  object_value: Vector Stores (26 Providers)
+  note: quick reference topic
+  fact_id: fact::3ee5c8426057898c460bbce9

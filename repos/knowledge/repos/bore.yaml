@@ -1,0 +1,57 @@
+name: bore
+node_id: repo::ekzhang/bore
+github_full_name: ekzhang/bore
+html_url: https://github.com/ekzhang/bore
+source: ssh_repos
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/repos/bore.yaml
+  as_of: '2026-02-25'
+directory: bore-main
+category: tunneling
+summary: |
+  A minimalist TCP tunnel (~400 lines of async Rust) that exposes local ports to a public server, bypassing NAT firewalls. Designed for simplicity and self-hosting with no frills.
+core_concepts:
+  - name: Control Protocol
+    description: Client-server handshake over TCP port 7835 using null-delimited JSON messages. Client sends Hello with desired port, server responds with assigned port and forwards incoming connections via UUID-tagged messages.
+  - name: Connection Proxying
+    description: When external traffic hits the server's exposed port, server generates a UUID, notifies client via control channel, client opens new TCP stream and sends Accept with UUID, then server bidirectionally proxies bytes between both connections.
+  - name: HMAC Authentication
+    description: Optional shared-secret auth using HMAC challenge-response. Server sends random challenge (UUID), client must respond with correct HMAC-SHA256 to prove secret possession. Only secures handshake, not data.
+key_entry_points:
+  - path: src/main.rs:63
+    purpose: CLI entry point with clap subcommands (Local, Server), spawns async runtime and dispatches to Client or Server
+  - path: src/client.rs:36
+    purpose: Client::new() establishes control connection, performs auth handshake, sends Hello; Client::listen() receives Connection messages and spawns handlers
+  - path: src/client.rs:105
+    purpose: handle_connection() opens new stream to server, sends Accept with UUID, then bidirectionally copies bytes between local and remote
+  - path: src/server.rs:59
+    purpose: Server::listen() accepts control connections on port 7835, spawns handler for each client
+  - path: src/server.rs:118
+    purpose: handle_connection() handles auth, processes Hello/Accept messages, manages tunnel listener lifecycle
+  - path: src/server.rs:81
+    purpose: create_listener() binds to requested port (or finds random available port via 150-attempt probabilistic search)
+  - path: src/shared.rs:15
+    purpose: CONTROL_PORT constant (7835), ClientMessage/ServerMessage enums defining protocol, Delimited wrapper for null-delimited JSON framing
+build_run:
+  language: rust
+  package_manager: cargo
+  build_command: cargo build --release
+  run_command: bore [local <port> --to <server> | server]
+  test_command: cargo test
+ecosystem_connections:
+  similar_to:
+    - ngrok (more feature-rich, closed-source)
+    - localtunnel (Node.js based)
+    - cloudflared tunnel (Cloudflare's solution)
+    - frp (Fast Reverse Proxy, more config options)
+  alternatives:
+    - ngrok
+    - cloudflare tunnel
+    - tailscale funnel
+    - teleport
+  used_with:
+    - web development (expose local dev server)
+    - webhook testing
+    - IoT/device access
+    - SSH access to NATed machines

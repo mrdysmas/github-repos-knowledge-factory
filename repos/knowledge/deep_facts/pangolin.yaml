@@ -1,0 +1,1026 @@
+name: pangolin
+node_id: repo::fosrl/pangolin
+github_full_name: fosrl/pangolin
+html_url: https://github.com/fosrl/pangolin
+source: ssh_repos
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/deep_facts/pangolin.yaml
+  as_of: '2026-02-25'
+  extractor_version: ws6-deep-integrator-v1
+facts:
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: api_surface.rest_endpoints[10]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.rest_endpoints[10]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: GET /api/v1/client/
+  object_value: GET /api/v1/client/
+  note: List user devices
+  fact_id: fact::e45860a103d098915ca87ebc
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: api_surface.rest_endpoints[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.rest_endpoints[3]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: GET /api/v1/org/
+  object_value: GET /api/v1/org/
+  note: List organizations
+  fact_id: fact::bc270fe218b3754229a1419f
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: api_surface.rest_endpoints[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.rest_endpoints[5]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: GET /api/v1/resource/
+  object_value: GET /api/v1/resource/
+  note: List resources
+  fact_id: fact::ce7edfe77fdd90e01bd527ae
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: api_surface.rest_endpoints[8]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.rest_endpoints[8]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: GET /api/v1/site/
+  object_value: GET /api/v1/site/
+  note: List WireGuard sites
+  fact_id: fact::b3ec5a5b5123f0753b5e1b1a
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: api_surface.rest_endpoints[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.rest_endpoints[0]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: POST /api/v1/auth/login
+  object_value: POST /api/v1/auth/login
+  note: User login
+  fact_id: fact::2ad23c456872fe939c62fcb9
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: api_surface.rest_endpoints[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.rest_endpoints[2]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: POST /api/v1/auth/logout
+  object_value: POST /api/v1/auth/logout
+  note: User logout
+  fact_id: fact::fe6c84135f4997ab5ceed339
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: api_surface.rest_endpoints[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.rest_endpoints[1]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: POST /api/v1/auth/signup
+  object_value: POST /api/v1/auth/signup
+  note: User registration
+  fact_id: fact::79b9f9471bd8ae07c485008e
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: api_surface.rest_endpoints[11]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.rest_endpoints[11]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: POST /api/v1/client/
+  object_value: POST /api/v1/client/
+  note: Create client
+  fact_id: fact::9af2fd03175c0c99cf32dd92
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: api_surface.rest_endpoints[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.rest_endpoints[4]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: POST /api/v1/org/
+  object_value: POST /api/v1/org/
+  note: Create organization
+  fact_id: fact::2ed3e32d08882ea75b03e636
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: api_surface.rest_endpoints[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.rest_endpoints[6]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: POST /api/v1/resource/
+  object_value: POST /api/v1/resource/
+  note: Create resource
+  fact_id: fact::7e799aae532f38b458f12772
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: api_surface.rest_endpoints[7]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.rest_endpoints[7]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: POST /api/v1/resource/:id/auth-access-token
+  object_value: POST /api/v1/resource/:id/auth-access-token
+  note: Generate access token
+  fact_id: fact::4f47709c613f056a5fdcfac7
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: api_surface.rest_endpoints[9]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.rest_endpoints[9]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: POST /api/v1/site/
+  object_value: POST /api/v1/site/
+  note: Create site
+  fact_id: fact::10362574c5ea7863a13c7fec
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: architecture.key_abstractions[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[2]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: User device connecting to Pangolin
+  object_value: Client
+  note: User device connecting to Pangolin
+  fact_id: fact::fbdd8fc607be0c49da37293a
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: architecture.key_abstractions[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[3]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: WireGuard peer for outbound access
+  object_value: Exit Node
+  note: WireGuard peer for outbound access
+  fact_id: fact::19ff54e7ec25f4f59cadbcfb
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: architecture.key_abstractions[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[4]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: Tenant isolation boundary
+  object_value: Organization
+  note: Tenant isolation boundary
+  fact_id: fact::6980e17fab6ef4cab4ca7e5c
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: architecture.key_abstractions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[1]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: Proxied application via Traefik
+  object_value: Resource
+  note: Proxied application via Traefik
+  fact_id: fact::f3ce29cea9bc9821f31f75b4
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: architecture.key_abstractions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[0]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: WireGuard endpoint for remote network access
+  object_value: Site
+  note: WireGuard endpoint for remote network access
+  fact_id: fact::638831b21a9e425855458dce
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: architecture.module_breakdown[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[1]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: External API server (port 3000) with Express, auth, rate limiting
+  object_value: server/apiServer.ts
+  note: 'responsibility: External API server (port 3000) with Express, auth, rate
+    limiting; key_files: server/apiServer.ts'
+  fact_id: fact::e2f5c8bcff5de3f7f35951b3
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: architecture.module_breakdown[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[0]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: Main entry point - initializes config, licensing, starts all servers
+  object_value: server/index.ts
+  note: 'responsibility: Main entry point - initializes config, licensing, starts
+    all servers; key_files: server/index.ts'
+  fact_id: fact::d497f26cd985ab1c8b3031f7
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: architecture.module_breakdown[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[3]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: Internal server (port 3001) for site-to-control-plane communication
+  object_value: server/internalServer.ts
+  note: 'responsibility: Internal server (port 3001) for site-to-control-plane communication;
+    key_files: server/internalServer.ts'
+  fact_id: fact::3a8e73fef7923f5492e7b68d
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: architecture.module_breakdown[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[5]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: Centralized configuration with Zod validation
+  object_value: server/lib/config.ts
+  note: 'responsibility: Centralized configuration with Zod validation; key_files:
+    server/lib/config.ts'
+  fact_id: fact::472684331125a68bc5c1949a
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: architecture.module_breakdown[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[4]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: Traefik reverse proxy configuration, SSL certificates
+  object_value: server/lib/traefik/
+  note: 'responsibility: Traefik reverse proxy configuration, SSL certificates; key_files:
+    server/lib/traefik/TraefikConfigManager.ts'
+  fact_id: fact::00a7c051eb053a0e6ec76ec6
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: architecture.module_breakdown[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[6]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: Auth middleware (verifyUser, verifyApiKey, verifyOrgAccess)
+  object_value: server/middlewares/
+  note: 'responsibility: Auth middleware (verifyUser, verifyApiKey, verifyOrgAccess);
+    key_files: server/middlewares/'
+  fact_id: fact::c87dcaabaacc09627761bf8b
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: architecture.module_breakdown[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[2]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: Next.js frontend server (port 3002)
+  object_value: server/nextServer.ts
+  note: 'responsibility: Next.js frontend server (port 3002); key_files: server/nextServer.ts'
+  fact_id: fact::584f6744cf1cf6fdf462fc9c
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: architecture.module_breakdown[7]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[7]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: Next.js App Router pages for web dashboard
+  object_value: src/app/
+  note: 'responsibility: Next.js App Router pages for web dashboard; key_files: src/app/'
+  fact_id: fact::c5ef533507228b0a56943652
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: configuration.options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[0]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: app.dashboard_url
+  object_value: app.dashboard_url
+  note: 'type: string; Dashboard URL with domain substitution'
+  fact_id: fact::265af63f79b4e50d04720738
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: configuration.options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[1]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: app.log_level
+  object_value: app.log_level
+  note: 'type: string; default: info; Logging verbosity'
+  fact_id: fact::caff80b8cc557be394d4de8b
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: configuration.options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[2]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: app.telemetry.anonymous_usage
+  object_value: app.telemetry.anonymous_usage
+  note: 'type: bool; Anonymous usage telemetry'
+  fact_id: fact::93529553efb03eec4c421d6b
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: configuration.file
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.file
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: file
+  object_value: file
+  note: 'default: config/config.yml; configuration default for file'
+  fact_id: fact::95d418b9e5d0253e89842282
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: configuration.options[15]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[15]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: flags.disable_signup_without_invite
+  object_value: flags.disable_signup_without_invite
+  note: 'type: bool; Disable public signup'
+  fact_id: fact::203de1474563d129dd3a9ce6
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: configuration.options[14]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[14]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: flags.require_email_verification
+  object_value: flags.require_email_verification
+  note: 'type: bool; Require email verification'
+  fact_id: fact::2e831fc602a18e0bae4bc204
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: configuration.options[10]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[10]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: gerbil.base_endpoint
+  object_value: gerbil.base_endpoint
+  note: 'type: string; WireGuard endpoint domain'
+  fact_id: fact::83dfe1631da6ad419bfa3938
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: configuration.options[9]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[9]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: gerbil.start_port
+  object_value: gerbil.start_port
+  note: 'type: int; WireGuard starting port'
+  fact_id: fact::994b2a31b7279ae871914c68
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: configuration.options[11]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[11]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: gerbil.subnet_group
+  object_value: gerbil.subnet_group
+  note: 'type: string; default: 100.89.137.0/20; WireGuard subnet'
+  fact_id: fact::33f6e206266b43f38902131d
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: configuration.options[13]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[13]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: rate_limits.global.max_requests
+  object_value: rate_limits.global.max_requests
+  note: 'type: int; Max requests per window'
+  fact_id: fact::9e5cfa6106c432e9ea55021d
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: configuration.options[12]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[12]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: rate_limits.global.window_minutes
+  object_value: rate_limits.global.window_minutes
+  note: 'type: int; Rate limit window'
+  fact_id: fact::acde765ce9c378eda898173f
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: configuration.options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[3]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: server.external_port
+  object_value: server.external_port
+  note: 'type: int; External API port'
+  fact_id: fact::afa43f725bd67aba98498b20
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: configuration.options[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[4]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: server.internal_port
+  object_value: server.internal_port
+  note: 'type: int; Internal server port'
+  fact_id: fact::2b4530ef64f58d6d09f7c44c
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: configuration.options[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[5]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: server.secret
+  object_value: server.secret
+  note: 'type: string; Server secret for sessions'
+  fact_id: fact::8794b70a1738143dfad75f68
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: configuration.options[8]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[8]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: traefik.cert_resolver
+  object_value: traefik.cert_resolver
+  note: 'type: string; default: letsencrypt; Certificate resolver'
+  fact_id: fact::cdbc888c970eff9e8f89de28
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: configuration.options[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[6]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: traefik.http_entrypoint
+  object_value: traefik.http_entrypoint
+  note: 'type: string; default: web; HTTP entrypoint name'
+  fact_id: fact::40557d461f5cbaef882971c7
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: configuration.options[7]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[7]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: traefik.https_entrypoint
+  object_value: traefik.https_entrypoint
+  note: 'type: string; default: websecure; HTTPS entrypoint name'
+  fact_id: fact::7e8b3a1959baea57a73d7173
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.71
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: extension_points[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[5]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: Feature flags in config
+  object_value: Feature flags in config
+  note: Toggle features without code changes; flags.* configuration
+  fact_id: fact::ba10beb77c06c5abfc8f5624
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.71
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: extension_points[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[4]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: WebSocket connections
+  object_value: WebSocket connections
+  note: Push notifications, live configuration updates; Real-time extensions
+  fact_id: fact::a67b9e8972547155b1952c23
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: api_surface.public_functions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[0]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: createApiServer
+  object_value: createApiServer
+  note: Create external API server; async function createApiServer(); server/apiServer.ts:29
+  fact_id: fact::6fc0be1f5586767244c39ee2
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: api_surface.public_functions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[1]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: createInternalServer
+  object_value: createInternalServer
+  note: Create internal server; async function createInternalServer(); server/internalServer.ts
+  fact_id: fact::1dee6581b13b869087432206
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: api_surface.public_functions[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[2]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: createNextServer
+  object_value: createNextServer
+  note: Create Next.js frontend server; async function createNextServer(); server/nextServer.ts:10
+  fact_id: fact::803b4d55e9d7d9e5efb18bf6
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: path
+  confidence: 0.71
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: extension_points[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[3]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: server/lib/billing/
+  object_value: server/lib/billing/
+  note: Stripe, custom billing providers; Billing integration
+  fact_id: fact::aa1e750b00c0fd1df21bafc6
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: path
+  confidence: 0.71
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: extension_points[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[1]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: server/lib/blueprints/
+  object_value: server/lib/blueprints/
+  note: Custom resource types (proxy, ssh, rdp, docker); ResourceBlueprint interface
+  fact_id: fact::25470315b10f75707cf259d1
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: path
+  confidence: 0.71
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: extension_points[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[0]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: server/lib/idp/
+  object_value: server/lib/idp/
+  note: OIDC, SAML, custom identity provider integration; Identity providers
+  fact_id: fact::08e3ec1a3be59fc7fd098ef1
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: path
+  confidence: 0.71
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: extension_points[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[2]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: server/lib/traefik/
+  object_value: server/lib/traefik/
+  note: Custom certificate resolvers, wildcard certificates; Certificate management
+  fact_id: fact::554d9f3b15f9644b36c08182
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: implementation_patterns[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: server/lib/blueprints/
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: Extensible resource type system
+  object_value: Blueprint Pattern
+  note: 'description: Extensible resource type system; location: server/lib/blueprints/'
+  fact_id: fact::18f20611a59ed12e1c3e45dd
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: implementation_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: server/lib/config.ts
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: YAML configuration with Zod validation, environment variable substitution
+  object_value: Configuration-Driven
+  note: 'description: YAML configuration with Zod validation, environment variable
+    substitution; location: server/lib/config.ts'
+  fact_id: fact::d5c08df1dfeef9002452fc90
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: implementation_patterns[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: server/index.ts
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: Dynamic imports separate OSS from enterprise features
+  object_value: Dynamic Imports
+  note: 'description: Dynamic imports separate OSS from enterprise features; location:
+    server/index.ts'
+  fact_id: fact::f4fd0fde11e69e37a3b17955
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: implementation_patterns[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: server/middlewares/
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: Authentication, authorization, and audit middleware layers
+  object_value: Middleware Stack
+  note: 'description: Authentication, authorization, and audit middleware layers;
+    location: server/middlewares/'
+  fact_id: fact::87fbe41e0c245d6b00f091d4
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: testing.framework.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.framework.line[0]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: Minimal (only test/assert.ts found)
+  object_value: Minimal (only test/assert.ts found)
+  note: 'testing metadata: framework'
+  fact_id: fact::49a442395e3c54a874a7e399
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: implementation_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: server/index.ts:27
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: Separate servers for API (3000), internal (3001), frontend (3002), integration
+      (3003)
+  object_value: Multi-Process Architecture
+  note: 'description: Separate servers for API (3000), internal (3001), frontend (3002),
+    integration (3003); location: server/index.ts:27'
+  fact_id: fact::3d3f701c6ec08d229bb61a0f
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: testing.structure.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.structure.line[0]
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: No comprehensive test suite
+  object_value: No comprehensive test suite
+  note: 'testing metadata: structure'
+  fact_id: fact::7d897e02433a48e4c2619029
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    source_section: implementation_patterns[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: server/middlewares/verifyOrgAccess.ts
+    source_file: ssh_repos/knowledge/deep/pangolin.yaml
+    excerpt: All access requires explicit authorization via policies
+  object_value: Zero-Trust Access
+  note: 'description: All access requires explicit authorization via policies; location:
+    server/middlewares/verifyOrgAccess.ts'
+  fact_id: fact::5dd4cafc0384d036d9e71bb2

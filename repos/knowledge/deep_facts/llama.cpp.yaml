@@ -1,0 +1,640 @@
+name: llama.cpp
+node_id: repo::ggml-org/llama.cpp
+github_full_name: ggml-org/llama.cpp
+html_url: https://github.com/ggml-org/llama.cpp
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep_facts/llama.cpp.yaml
+  as_of: '2026-02-25'
+  extractor_version: ws6-deep-integrator-v1
+facts:
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    source_section: configuration[1].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[1]
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    excerpt: --n-batch
+  object_value: --n-batch
+  note: 'default: 512; Batch size for prompt processing'
+  fact_id: fact::d33d8f4f538ec79614a6033c
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    source_section: configuration[1].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[0]
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    excerpt: --n-ctx
+  object_value: --n-ctx
+  note: 'default: 512; Context window size'
+  fact_id: fact::ca6da929ee64b7dfa489d36e
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    source_section: configuration[1].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[2]
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    excerpt: --n-gpu-layers / -ngl
+  object_value: --n-gpu-layers / -ngl
+  note: 'default: 0; Number of layers to offload to GPU'
+  fact_id: fact::728dc5d4d4466f5475a3166d
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    source_section: configuration[1].options[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[4]
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    excerpt: --temp
+  object_value: --temp
+  note: 'default: 0.8; Sampling temperature'
+  fact_id: fact::01838ff8b1bc7bcf08e238cb
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    source_section: configuration[1].options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[3]
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    excerpt: --threads / -t
+  object_value: --threads / -t
+  note: 'default: all available; Number of CPU threads'
+  fact_id: fact::52880d6030fc8a7427422f30
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    source_section: configuration[1].options[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[6]
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    excerpt: --use-mlock
+  object_value: --use-mlock
+  note: 'default: false; Keep model locked in memory'
+  fact_id: fact::e6053880011d148cc6cba037
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    source_section: configuration[1].options[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1].options[5]
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    excerpt: --use-mmap
+  object_value: --use-mmap
+  note: 'default: true; Use memory mapping for model loading'
+  fact_id: fact::16bc8e34ae8b3a79d10236cf
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    source_section: configuration[2].options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[2].options[3]
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    excerpt: F16
+  object_value: F16
+  note: 'default: optional; 16-bit floating point, lossless'
+  fact_id: fact::f5eba354652123caa0526e65
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    source_section: configuration[0].options[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[5]
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    excerpt: GGML_BLAS
+  object_value: GGML_BLAS
+  note: 'default: OFF; Enable BLAS acceleration'
+  fact_id: fact::5182081907f947d7224971a5
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    source_section: configuration[0].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[0]
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    excerpt: GGML_CUDA
+  object_value: GGML_CUDA
+  note: 'default: OFF; Enable NVIDIA GPU support'
+  fact_id: fact::e4df5af07c1c3fb44a16372f
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    source_section: configuration[0].options[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[4]
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    excerpt: GGML_HIP
+  object_value: GGML_HIP
+  note: 'default: OFF; Enable AMD GPU support'
+  fact_id: fact::d0111d7691bde6c86c99bdd4
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    source_section: configuration[0].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[1]
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    excerpt: GGML_METAL
+  object_value: GGML_METAL
+  note: 'default: ON (macOS); Enable Apple Metal support'
+  fact_id: fact::6cd58dcc01b5a08bcb0e1975
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    source_section: configuration[0].options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[3]
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    excerpt: GGML_SYCL
+  object_value: GGML_SYCL
+  note: 'default: OFF; Enable Intel GPU support'
+  fact_id: fact::9db34e2ef8262f7312184aea
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    source_section: configuration[0].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[2]
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    excerpt: GGML_VULKAN
+  object_value: GGML_VULKAN
+  note: 'default: OFF; Enable Vulkan cross-platform backend'
+  fact_id: fact::d86e55b7f30c920528e74476
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    source_section: configuration[2].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[2].options[0]
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    excerpt: Q4_K_M
+  object_value: Q4_K_M
+  note: 'default: recommended; ~4.89 bits, excellent quality/speed balance'
+  fact_id: fact::6748891911a4b4fac717625e
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    source_section: configuration[2].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[2].options[1]
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    excerpt: Q5_K_M
+  object_value: Q5_K_M
+  note: 'default: optional; ~5.70 bits, higher quality, larger file'
+  fact_id: fact::291eb023a661c7414f238456
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    source_section: configuration[2].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[2].options[2]
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    excerpt: Q8_0
+  object_value: Q8_0
+  note: 'default: optional; ~8.50 bits, near lossless'
+  fact_id: fact::23dd4d9c7542c2b558e37a17
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    excerpt: CUDA out of memory
+  object_value: CUDA out of memory
+  note: 'cause: Insufficient VRAM; fix: Reduce offload: --n-gpu-layers 20 Use smaller
+    quantization: Q4_0 instead of F16'
+  fact_id: fact::6f3da46f9a8961b8daff7272
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    excerpt: Failed to load model / invalid GGUF
+  object_value: Failed to load model / invalid GGUF
+  note: 'cause: Corrupted file or unsupported format; fix: Verify GGUF file integrity
+    Try different quantization method Use --dry-run to check options'
+  fact_id: fact::e924b3dad7ced8dddf50fb15
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    excerpt: GPU not being used, slow performance
+  object_value: GPU not being used, slow performance
+  note: 'cause: Missing CUDA build or incorrect runtime flags; fix: cmake -B build
+    -DGGML_CUDA=ON && cmake --build build ./llama-cli -m model.gguf -ngl 999'
+  fact_id: fact::e2251f2ed0ebc68e97bb65a9
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    source_section: troubleshooting[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[4]
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    excerpt: Incorrect response format in chat
+  object_value: Incorrect response format in chat
+  note: 'cause: Wrong chat template; fix: Specify template: --chat-template chatml
+    Use custom prefix: --in-prefix "User: "'
+  fact_id: fact::defdd121fa3d2beb09548eef
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    excerpt: Very slow token generation (< 1 token/sec)
+  object_value: Very slow token generation (< 1 token/sec)
+  note: 'cause: CPU oversaturation or wrong thread count; fix: Reduce threads: --threads
+    4 Verify GPU offload working'
+  fact_id: fact::36a46c07f3194dac15cc6784
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    source_section: code_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: examples/simple/simple.cpp
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    excerpt: Load model and generate text with sampling
+  object_value: Basic Text Generation
+  note: 'description: Load model and generate text with sampling; location: examples/simple/simple.cpp'
+  fact_id: fact::af6914d76cd375b8c15d80ea
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    source_section: code_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: README.md
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    excerpt: Interactive chat with automatic template detection
+  object_value: Chat Mode CLI
+  note: 'description: Interactive chat with automatic template detection; location:
+    README.md'
+  fact_id: fact::34dcfd68f13d1097fab99b8a
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    source_section: code_patterns[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: docs/build.md
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    excerpt: Offload layers to GPU for acceleration
+  object_value: GPU Offload
+  note: 'description: Offload layers to GPU for acceleration; location: docs/build.md'
+  fact_id: fact::3b128b21f80c62c5c93689be
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    source_section: code_patterns[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: README.md
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    excerpt: Start OpenAI-compatible API server
+  object_value: HTTP Server
+  note: 'description: Start OpenAI-compatible API server; location: README.md'
+  fact_id: fact::e78962803dc6360977021e5b
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    source_section: code_patterns[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tools/quantize/README.md
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    excerpt: Convert and quantize models to GGUF format
+  object_value: Model Quantization
+  note: 'description: Convert and quantize models to GGUF format; location: tools/quantize/README.md'
+  fact_id: fact::e4d96bb616436dd12b5d8620
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    source_section: code_patterns[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tools/mtmd/README.md
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    excerpt: Vision/audio model support
+  object_value: Multimodal Input
+  note: 'description: Vision/audio model support; location: tools/mtmd/README.md'
+  fact_id: fact::b5b903e1cf8b681ca32e4f54
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.58
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    source_section: quick_reference[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: quick_reference[0]
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    excerpt: CLI Flags
+  object_value: CLI Flags
+  note: quick reference topic
+  fact_id: fact::230d28e505755f0363326ce2
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    source_section: common_tasks[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[0]
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    excerpt: Convert model to GGUF
+  object_value: Convert model to GGUF
+  note: 'Install dependencies: pip install -r requirements.txt, Convert: python3 convert_hf_to_gguf.py
+    ./models/mymodel/, Verify tokenizer files present; Models must be in correct directory
+    structure, Safetensors files need to be converted'
+  fact_id: fact::8bf5aacaccc6ada7cdc6642f
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    source_section: common_tasks[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[4]
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    excerpt: Multimodal input
+  object_value: Multimodal input
+  note: 'Use specific multimodal models from Hugging Face, CLI: llama-mtmd-cli -hf
+    ggml-org/gemma-3-4b-it-GGUF, Increase context: -c 8192 or more; Only specific
+    models support multimodal, Image input requires base64 encoding'
+  fact_id: fact::76da820420bcbb8fdf43260b
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.58
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    source_section: quick_reference[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: quick_reference[2]
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    excerpt: Quantization Comparison
+  object_value: Quantization Comparison
+  note: quick reference topic
+  fact_id: fact::a6733c6728573ba711ce869a
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    source_section: common_tasks[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[1]
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    excerpt: Quantize a model
+  object_value: Quantize a model
+  note: 'Run: ./llama-quantize input.gguf output-Q4_K_M.gguf Q4_K_M, For better quality,
+    use importance matrix first, Always quantize from F16/F32, never from already
+    quantized; Need disk space for both input and output, Never re-quantize (significant
+    quality loss)'
+  fact_id: fact::881dfc4e60066fc1d9376d41
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    source_section: common_tasks[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[2]
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    excerpt: Run with GPU acceleration
+  object_value: Run with GPU acceleration
+  note: 'Build with CUDA: cmake -B build -DGGML_CUDA=ON, Offload layers: ./llama-cli
+    -m model.gguf -ngl 999, Use -t to prevent CPU oversaturation; Not all quantizations
+    work equally well on GPU, VRAM usage scales with offloaded layers'
+  fact_id: fact::ab698d3f00103cd052e630bb
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.58
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    source_section: quick_reference[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: quick_reference[1]
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    excerpt: Server API Endpoints
+  object_value: Server API Endpoints
+  note: quick reference topic
+  fact_id: fact::05fc0bf83b7c9435ddab2547
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    source_section: common_tasks[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[3]
+    source_file: llm_repos/knowledge/deep/llama.cpp.yaml
+    excerpt: Use as OpenAI-compatible server
+  object_value: Use as OpenAI-compatible server
+  note: 'Start: llama-server -m model.gguf --port 8080, Multiple users: add -c 8192
+    -np 4, Auth: add --api-key your-key; Default port is 8080, RAM can be high with
+    concurrent requests'
+  fact_id: fact::1ed5062ec644ee8ffb05dedc

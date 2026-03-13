@@ -1,0 +1,322 @@
+name: ollama
+node_id: repo::ollama/ollama
+github_full_name: ollama/ollama
+html_url: https://github.com/ollama/ollama
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep/ollama.yaml
+  as_of: '2026-02-25'
+sparse: false
+
+code_patterns:
+  - name: CLI Command Registration
+    description: Cobra command pattern for CLI subcommands
+    code: |
+      // File: cmd/cmd.go
+      runCmd := &cobra.Command{
+          Use:     "run MODEL [PROMPT]",
+          Short:   "Run a model",
+          Args:    cobra.MinimumNArgs(1),
+          PreRunE: checkServerHeartbeat,
+          RunE:    RunHandler,
+      }
+      runCmd.Flags().String("keepalive", "", "Duration to keep model loaded")
+      runCmd.Flags().Bool("verbose", false, "Show timing info")
+      runCmd.Flags().String("format", "", "Output format (json)")
+    file_reference: cmd/cmd.go
+
+  - name: Modelfile Parser
+    description: State machine parser for Modelfile syntax
+    code: |
+      // File: parser/parser.go
+      // Supported instructions: FROM, PARAMETER, TEMPLATE, SYSTEM,
+      // ADAPTER, LICENSE, MESSAGE, REQUIRES
+
+      func ParseFile(r io.Reader) (*Modelfile, error) {
+          // States: stateNil, stateName, stateValue,
+          // stateParameter, stateMessage, stateComment
+          switch state {
+          case stateParameter:
+              // Parse PARAMETER key value
+          case stateMessage:
+              // Parse MESSAGE role content
+          }
+      }
+    file_reference: parser/parser.go
+
+  - name: API Generate Handler
+    description: REST API handler for text generation with streaming
+    code: |
+      // File: server/routes.go
+      func (s *Server) GenerateHandler(c *gin.Context) {
+          var req api.GenerateRequest
+          if err := c.ShouldBindJSON(&req); err != nil {
+              c.AbortWithStatusJSON(400, gin.H{"error": "invalid request"})
+              return
+          }
+          // Stream response as NDJSON
+          streamResponse(c, ch)
+      }
+
+      // Request structure
+      type GenerateRequest struct {
+          Model     string         `json:"model"`
+          Prompt    string         `json:"prompt"`
+          Stream    bool           `json:"stream"`
+          Raw       bool           `json:"raw"`
+          Options   map[string]any `json:"options"`
+          KeepAlive *Duration      `json:"keep_alive"`
+      }
+    file_reference: server/routes.go
+
+  - name: Model Options Merging
+    description: Layer options from model defaults + request overrides
+    code: |
+      // File: server/routes.go
+      func (s *Server) modelOptions(model *Model, requestOpts map[string]any) (api.Options, error) {
+          opts := api.DefaultOptions()
+          // Layer 1: Model defaults from Modelfile
+          if err := opts.FromMap(model.Options); err != nil {
+              return api.Options{}, err
+          }
+          // Layer 2: Request overrides
+          if err := opts.FromMap(requestOpts); err != nil {
+              return api.Options{}, err
+          }
+          return opts, nil
+      }
+    file_reference: server/routes.go
+
+  - name: Environment Configuration
+    description: Runtime configuration via environment variables
+    code: |
+      // File: envconfig/config.go
+      func KeepAlive() time.Duration {
+          keepAlive := 5 * time.Minute  // Default
+          if s := Var("OLLAMA_KEEP_ALIVE"); s != "" {
+              if d, err := time.ParseDuration(s); err == nil {
+                  keepAlive = d
+              }
+          }
+          return keepAlive
+      }
+
+      // Key env vars: OLLAMA_HOST, OLLAMA_DEBUG, OLLAMA_GPU_OVERHEAD,
+      // OLLAMA_NUM_PARALLEL, OLLAMA_MAX_LOADED_MODELS, OLLAMA_MODELS
+    file_reference: envconfig/config.go
+
+  - name: Streaming Response (NDJSON)
+    description: Server-sent events via newline-delimited JSON
+    code: |
+      // File: server/routes.go
+      func streamResponse(c *gin.Context, ch chan any) {
+          c.Header("Content-Type", "application/x-ndjson")
+          c.Stream(func(w io.Writer) bool {
+              val, ok := <-ch
+              if !ok {
+                  return false
+              }
+              bts, _ := json.Marshal(val)
+              bts = append(bts, '\n')  // NDJSON delimiter
+              w.Write(bts)
+              return true
+          })
+      }
+    file_reference: server/routes.go
+
+configuration:
+  - name: Modelfile Parameters
+    options:
+      - key: num_ctx
+        default: "2048"
+        description: Context window size
+      - key: temperature
+        default: "0.8"
+        description: Randomness (0-2)
+      - key: top_p
+        default: "0.9"
+        description: Nucleus sampling threshold
+      - key: top_k
+        default: "40"
+        description: Top-k sampling
+      - key: min_p
+        default: "0.0"
+        description: Minimum probability threshold
+      - key: repeat_last_n
+        default: "64"
+        description: How far back for repetition penalty
+      - key: repeat_penalty
+        default: "1.1"
+        description: Repetition penalty (>1 discourages)
+      - key: seed
+        default: "-1"
+        description: Random seed (-1 = random)
+      - key: stop
+        default: ""
+        description: Stop sequence(s)
+      - key: num_predict
+        default: "-1"
+        description: Max tokens (-1 = infinite)
+
+  - name: Environment Variables
+    options:
+      - key: OLLAMA_HOST
+        default: "127.0.0.1:11434"
+        description: Server listen address
+      - key: OLLAMA_DEBUG
+        default: "0"
+        description: "Debug level: 0=off, 1=info, 2=debug, 3=trace"
+      - key: OLLAMA_KEEP_ALIVE
+        default: "5m"
+        description: Duration to keep models in memory
+      - key: OLLAMA_NUM_PARALLEL
+        default: "1"
+        description: Max parallel requests per model
+      - key: OLLAMA_MAX_LOADED_MODELS
+        default: "1"
+        description: Max models loaded per GPU
+      - key: OLLAMA_MODELS
+        default: "~/.ollama/models"
+        description: Models storage directory
+      - key: OLLAMA_FLASH_ATTENTION
+        default: "false"
+        description: Enable flash attention
+      - key: OLLAMA_GPU_OVERHEAD
+        default: "0"
+        description: Reserve VRAM per GPU in bytes
+
+  - name: GPU Selection
+    options:
+      - key: CUDA_VISIBLE_DEVICES
+        default: ""
+        description: NVIDIA GPU selection (comma-separated IDs)
+      - key: HIP_VISIBLE_DEVICES
+        default: ""
+        description: AMD ROCm GPU selection
+      - key: HSA_OVERRIDE_GFX_VERSION
+        default: ""
+        description: AMD GPU architecture override
+
+common_tasks:
+  - task: Create Custom Model from Modelfile
+    steps:
+      - "Create Modelfile: FROM llama3.2"
+      - "Add parameters: PARAMETER temperature 0.7"
+      - "Set system: SYSTEM You are a helpful assistant"
+      - "Build: ollama create mymodel -f ./Modelfile"
+      - "Run: ollama run mymodel"
+    gotchas:
+      - "PARAMETER values are space-separated, not equals"
+      - "TEMPLATE uses Go template syntax with {{.System}}, {{.Prompt}}"
+      - "Changes require recreate - no update command"
+
+  - task: Use OpenAI-Compatible API
+    steps:
+      - "Start server: ollama serve (or auto-starts on first use)"
+      - "Pull model: ollama pull llama3.2"
+      - "Call API: curl http://localhost:11434/v1/chat/completions"
+      - "Use OpenAI SDK with base_url=http://localhost:11434/v1"
+    gotchas:
+      - "API key can be any string (e.g., 'ollama') when not using cloud"
+      - "Model name must match pulled model exactly"
+
+  - task: Quantize a Model
+    steps:
+      - "Pull base model: ollama pull llama3.2"
+      - "Create with quant: ollama create mymodel -q q4_K_M -f Modelfile"
+      - "Available: q4_K_M, q4_K_S, q8_0, q5_K_M, etc."
+    gotchas:
+      - "Quantization happens at create time, not pull time"
+      - "Some quantization requires base model in specific format"
+
+troubleshooting:
+  - symptom: Model not found after pull
+    cause: Model name mismatch or registry issue
+    fix: "Check exact name with 'ollama list', use full name with tag (e.g., llama3.2:latest)"
+
+  - symptom: Out of memory errors
+    cause: GPU VRAM insufficient for model
+    fix: "Reduce OLLAMA_NUM_PARALLEL, use smaller quantization, or set OLLAMA_GPU_OVERHEAD"
+
+  - symptom: Slow first response
+    cause: Model loading from disk
+    fix: "Increase OLLAMA_KEEP_ALIVE to keep model in memory longer"
+
+  - symptom: CUDA not detected
+    cause: Driver or library path issues
+    fix: "Check nvidia-smi works, verify CUDA installation, check OLLAMA_LLM_LIBRARY override"
+
+quick_reference:
+  - topic: CLI Commands
+    content: |
+      ┌─────────────────────────┬─────────────────────────────────────┐
+      │ Command                 │ Description                         │
+      ├─────────────────────────┼─────────────────────────────────────┤
+      │ ollama run MODEL        │ Run model interactively             │
+      │ ollama pull MODEL       │ Download model from registry        │
+      │ ollama push MODEL       │ Upload model to registry            │
+      │ ollama create NAME -f   │ Create model from Modelfile         │
+      │ ollama list             │ List local models                   │
+      │ ollama show MODEL       │ Show model info                     │
+      │ ollama rm MODEL         │ Delete model                        │
+      │ ollama cp SRC DST       │ Copy model                          │
+      │ ollama ps               │ List running models                 │
+      │ ollama stop MODEL       │ Stop running model                  │
+      │ ollama serve            │ Start API server                    │
+      └─────────────────────────┴─────────────────────────────────────┘
+
+  - topic: API Endpoints
+    content: |
+      ┌─────────────────────────────┬────────┬─────────────────────┐
+      │ Endpoint                    │ Method │ Description         │
+      ├─────────────────────────────┼────────┼─────────────────────┤
+      │ /api/generate               │ POST   │ Text completion     │
+      │ /api/chat                   │ POST   │ Chat completion     │
+      │ /api/embed                  │ POST   │ Embeddings (new)    │
+      │ /api/embeddings             │ POST   │ Embeddings (legacy) │
+      │ /api/tags                   │ GET    │ List models         │
+      │ /api/show                   │ POST   │ Model info          │
+      │ /api/pull                   │ POST   │ Download model      │
+      │ /api/create                 │ POST   │ Create model        │
+      │ /api/delete                 │ DELETE │ Delete model        │
+      │ /v1/chat/completions        │ POST   │ OpenAI-compatible   │
+      │ /v1/completions             │ POST   │ OpenAI-compatible   │
+      │ /v1/embeddings              │ POST   │ OpenAI-compatible   │
+      │ /v1/models                  │ GET    │ OpenAI-compatible   │
+      └─────────────────────────────┴────────┴─────────────────────┘
+
+  - topic: Modelfile Syntax
+    content: |
+      # Modelfile example
+      FROM llama3.2                    # Base model (required)
+
+      PARAMETER temperature 0.7        # Sampling params
+      PARAMETER num_ctx 4096
+      PARAMETER stop "###"
+
+      SYSTEM You are a helpful AI.     # System prompt
+
+      TEMPLATE """{{.System}}          # Chat template
+      USER: {{.Prompt}}
+      ASSISTANT: {{.Response}}"""
+
+      MESSAGE user Hello               # Few-shot examples
+      MESSAGE assistant Hi there!
+
+      ADAPTER ./lora.safetensors       # LoRA adapter
+      LICENSE "MIT"                    # License text
+
+  - topic: Run Flags
+    content: |
+      ┌─────────────────────────────┬───────────────────────────────┐
+      │ Flag                        │ Description                   │
+      ├─────────────────────────────┼───────────────────────────────┤
+      │ --keepalive 5m              │ Keep model loaded duration    │
+      │ --verbose                   │ Show timing information       │
+      │ --format json               │ JSON output format            │
+      │ --insecure                  │ Skip TLS verification         │
+      │ --nowordwrap                │ Disable word wrapping         │
+      │ --think true/false/high     │ Enable thinking mode          │
+      │ --hidethinking              │ Hide thinking output          │
+      └─────────────────────────────┴───────────────────────────────┘

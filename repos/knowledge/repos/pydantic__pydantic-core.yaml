@@ -1,0 +1,41 @@
+name: pydantic-core
+node_id: repo::pydantic/pydantic-core
+github_full_name: pydantic/pydantic-core
+html_url: https://github.com/pydantic/pydantic-core
+source: remote_metadata
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/repos/pydantic__pydantic-core.yaml
+  as_of: '2026-03-05T05:18:49Z'
+directory: remote::pydantic/pydantic-core
+category: structured_outputs
+summary: Phase 4 Corpus Expansion P4-B2 intake for pydantic/pydantic-core. Structured
+  outputs repository routed explicitly to llm_repos.
+core_concepts:
+- rust validation engine
+- python binding performance paths
+key_entry_points:
+- README.md
+- src/
+build_run:
+  language: rust
+  build: maturin develop
+  test: python3 -m pytest
+local_cache_dir: null
+extras:
+  intake:
+    pilot_batch_id: PHASE-4-P4-B2
+    repo_id: repo::pydantic/pydantic-core
+    queue_id: intake::pydantic/pydantic-core
+    domain_hint: structured_outputs
+    source_mode: remote_metadata
+    observed_at_utc: '2026-03-05T05:18:49Z'
+  remote:
+    provider: github
+    mode: metadata
+    endpoint: /repos/pydantic/pydantic-core
+    fetched_at_utc: '2026-03-05T05:18:49Z'
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false

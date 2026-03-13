@@ -1,0 +1,849 @@
+name: rathole
+node_id: repo::rapiz1/rathole
+github_full_name: rapiz1/rathole
+html_url: https://github.com/rapiz1/rathole
+source: ssh_repos
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/deep_facts/rathole.yaml
+  as_of: '2026-02-25'
+  extractor_version: ws6-deep-integrator-v1
+facts:
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: architecture.key_abstractions[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[3]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: Manages single service connection and data forwarding
+  object_value: ControlChannelHandle
+  note: Manages single service connection and data forwarding
+  fact_id: fact::6582b07afa1116faa9aec0ab
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: architecture.key_abstractions[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[2]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: Dual-key routing by ServiceDigest and Nonce (session key)
+  object_value: MultiMap
+  note: Dual-key routing by ServiceDigest and Nonce (session key)
+  fact_id: fact::feeaeb09fca0e38e8bba9c68
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: architecture.key_abstractions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[1]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: SHA256 hash of service name for routing without leaking names
+  object_value: ServiceDigest
+  note: SHA256 hash of service name for routing without leaking names
+  fact_id: fact::1e9390a1c169da30ca28f2a0
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: architecture.key_abstractions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[0]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: Abstracts TCP/TLS/Noise/WebSocket with unified interface
+  object_value: Transport trait
+  note: Abstracts TCP/TLS/Noise/WebSocket with unified interface
+  fact_id: fact::08d62dfd912add67e6922eb0
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: architecture.module_breakdown[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[1]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: Client implementation - establishes control channel, creates data channels,
+      heartbeats
+  object_value: src/client.rs
+  note: 'responsibility: Client implementation - establishes control channel, creates
+    data channels, heartbeats; key_files: src/client.rs'
+  fact_id: fact::56f843d3265b2e04e3021013
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: architecture.module_breakdown[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[5]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: Configuration schema - TOML parsing, validation, service configs
+  object_value: src/config.rs
+  note: 'responsibility: Configuration schema - TOML parsing, validation, service
+    configs; key_files: src/config.rs'
+  fact_id: fact::75fa6d7f4522b08236a2eb75
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: architecture.module_breakdown[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[6]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: Hot reload - file watcher, service update channels
+  object_value: src/config_watcher.rs
+  note: 'responsibility: Hot reload - file watcher, service update channels; key_files:
+    src/config_watcher.rs'
+  fact_id: fact::20b4a975718dd2702a1724a9
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: architecture.module_breakdown[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[0]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: Main orchestrator - runs client/server modes, config watcher integration
+  object_value: src/lib.rs
+  note: 'responsibility: Main orchestrator - runs client/server modes, config watcher
+    integration; key_files: src/lib.rs'
+  fact_id: fact::d220fc88da04d3ecc1869b17
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: architecture.module_breakdown[7]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[7]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: Dual-key hash map for service routing (ServiceDigest + Nonce)
+  object_value: src/multi_map.rs
+  note: 'responsibility: Dual-key hash map for service routing (ServiceDigest + Nonce);
+    key_files: src/multi_map.rs'
+  fact_id: fact::768663f83e4930d8f4ec88d4
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: architecture.module_breakdown[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[3]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: Wire protocol - message types (Hello/Auth/Ack/Cmd), framing, bincode
+      serialization
+  object_value: src/protocol.rs
+  note: 'responsibility: Wire protocol - message types (Hello/Auth/Ack/Cmd), framing,
+    bincode serialization; key_files: src/protocol.rs'
+  fact_id: fact::40f3e28f041824ed71b8dbbe
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: architecture.module_breakdown[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[2]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: Server implementation - accepts connections, validates auth, manages
+      service routing
+  object_value: src/server.rs
+  note: 'responsibility: Server implementation - accepts connections, validates auth,
+    manages service routing; key_files: src/server.rs'
+  fact_id: fact::3579770d5632304c89b940fc
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: architecture.module_breakdown[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[4]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: Transport abstraction - TCP/TLS/Noise/WebSocket implementations via trait
+  object_value: src/transport/
+  note: 'responsibility: Transport abstraction - TCP/TLS/Noise/WebSocket implementations
+    via trait; key_files: src/transport/mod.rs, src/transport/tcp.rs, src/transport/noise.rs'
+  fact_id: fact::c595d6b316ecb0a45d91866e
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: configuration.options[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[5]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: bind_addr
+  object_value: bind_addr
+  note: 'type: String; default: required; Address to bind control channel'
+  fact_id: fact::8754cfa39c52b67fa01693f1
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: configuration.options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[1]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: default_token
+  object_value: default_token
+  note: 'type: MaskedString; default: None; Fallback token for services without explicit
+    token'
+  fact_id: fact::5e7c8cae51e5e8f8c4dd8124
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: configuration.file
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.file
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: file
+  object_value: file
+  note: 'default: TOML format; configuration default for file'
+  fact_id: fact::7b7514d95eac1ed4f227dd54
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: configuration.options[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[6]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: heartbeat_interval
+  object_value: heartbeat_interval
+  note: 'type: u64; default: 30; Seconds between heartbeat packets'
+  fact_id: fact::d8050a7c4826239806356360
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: configuration.options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[3]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: heartbeat_timeout
+  object_value: heartbeat_timeout
+  note: 'type: u64; default: 40; Seconds before connection considered dead'
+  fact_id: fact::aee49dfacb4a95710f75480c
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: configuration.options[8]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[8]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: local_addr
+  object_value: local_addr
+  note: 'type: String; default: required (client); Local address to forward from/to'
+  fact_id: fact::2eec6c573845b24c0f541608
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: configuration.options[10]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[10]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: nodelay
+  object_value: nodelay
+  note: 'type: bool; TCP_NODELAY socket option'
+  fact_id: fact::9d3ab84045e0d0159eae8387
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: configuration.options[12]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[12]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: noise.pattern
+  object_value: noise.pattern
+  note: 'type: String; default: Noise_NK_25519_ChaChaPoly_BLAKE2s; Noise protocol
+    pattern'
+  fact_id: fact::8f0d6b09521bc92d99706f8a
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: configuration.options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[2]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: prefer_ipv6
+  object_value: prefer_ipv6
+  note: 'type: bool; Prefer IPv6 when resolving addresses'
+  fact_id: fact::6357b53428c71ff88cc1da0c
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: configuration.options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[0]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: remote_addr
+  object_value: remote_addr
+  note: 'type: String; default: required; Server address to connect to'
+  fact_id: fact::ec29a0f51bf536d9df350aba
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: configuration.options[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[4]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: retry_interval
+  object_value: retry_interval
+  note: 'type: u64; default: 1; Seconds between reconnection attempts'
+  fact_id: fact::b23671dcb450d8a67dacb1db
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: configuration.options[7]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[7]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: service_type
+  object_value: service_type
+  note: 'type: ServiceType; default: Tcp; Tcp or Udp forwarding'
+  fact_id: fact::7dfe15ecd0b0548a073c8791
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: configuration.options[13]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[13]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: tcp.keepalive_secs
+  object_value: tcp.keepalive_secs
+  note: 'type: u64; default: 20; TCP keepalive timeout'
+  fact_id: fact::1f50cc8d9f4c6fa50cdebaa3
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: configuration.options[14]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[14]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: tcp.proxy
+  object_value: tcp.proxy
+  note: 'type: Url; default: None; SOCKS5/HTTP proxy for outbound connections'
+  fact_id: fact::7bb291ebaba371814a14757a
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: configuration.options[9]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[9]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: token
+  object_value: token
+  note: 'type: MaskedString; default: None; Service-specific auth token'
+  fact_id: fact::1399e12a55d35ed34e66cc14
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: configuration.options[11]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[11]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: transport_type
+  object_value: transport_type
+  note: 'type: TransportType; default: Tcp; Tcp/Tls/Noise/Websocket'
+  fact_id: fact::1548a66b543bfe280eadca1e
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: api_surface.public_functions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[1]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: Cli
+  object_value: Cli
+  note: CLI argument structure; pub struct Cli { config_path, server, client, genkey
+    }; src/cli.rs:35-68
+  fact_id: fact::4cf426660fdf3f5525c63098
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: api_surface.public_functions[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[2]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: Config
+  object_value: Config
+  note: Parsed configuration structure; pub struct Config { server, client }; src/config.rs:232-237
+  fact_id: fact::eee8471ebfbe22b99231d4dd
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: api_surface.public_functions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[0]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: run
+  object_value: run
+  note: 'Main entry point for library usage; pub async fn run(args: Cli, shutdown_rx:
+    broadcast::Receiver<bool>) -> Result<()>; src/lib.rs:10-27'
+  fact_id: fact::811eaa82217063acc0f51451
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: path
+  confidence: 0.71
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: extension_points[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[2]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: src/config.rs:82-89
+  object_value: src/config.rs:82-89
+  note: Add new service types (HTTP, custom protocols); ServiceType enum
+  fact_id: fact::08525fbd2f9de7b794c3273d
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: path
+  confidence: 0.71
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: extension_points[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[3]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: src/config_watcher.rs:25-89
+  object_value: src/config_watcher.rs:25-89
+  note: Custom reload behaviors for specific config changes; ConfigChange enum
+  fact_id: fact::54d20606a055189f56a0bed5
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: path
+  confidence: 0.71
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: extension_points[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[1]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: src/protocol.rs:19-59
+  object_value: src/protocol.rs:19-59
+  note: Add new commands for protocol extensions; Message enums (Hello, Ack, ControlChannelCmd,
+    DataChannelCmd)
+  fact_id: fact::8e543a3f3c84c3fb49d8ee4f
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: path
+  confidence: 0.71
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: extension_points[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[0]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: src/transport/mod.rs:52-68
+  object_value: src/transport/mod.rs:52-68
+  note: Implement for QUIC, WebTransport, or custom protocols; Transport trait
+  fact_id: fact::22a7fd5e0b693084c922b01d
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: testing.test_patterns[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.test_patterns[1].line[0]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: Async test functions with
+  object_value: Async test functions with
+  note: 'testing metadata: test_patterns'
+  fact_id: fact::e8149ceee2c83007171683cd
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: implementation_patterns[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: src/protocol.rs:15-59
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: Fixed-length packets with bincode for wire protocol
+  object_value: Bincode Serialization
+  note: 'description: Fixed-length packets with bincode for wire protocol; location:
+    src/protocol.rs:15-59'
+  fact_id: fact::dc59904a103067ddf62cf0ca
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: testing.coverage_areas[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[0].line[0]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: Configuration parsing and validation
+  object_value: Configuration parsing and validation
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::5cad69ac112e7f9919c9e11d
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: testing.test_patterns[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.test_patterns[0].line[0]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: Feature-gated test modules
+  object_value: Feature-gated test modules
+  note: 'testing metadata: test_patterns'
+  fact_id: fact::88d1a736368a2bf2b881d4d2
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: implementation_patterns[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: src/config_watcher.rs:25-89
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: notify crate watches config, sends updates via channel
+  object_value: Hot Reload via File Watcher
+  note: 'description: notify crate watches config, sends updates via channel; location:
+    src/config_watcher.rs:25-89'
+  fact_id: fact::908dfc2c6c1aac1757e75c5c
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: testing.structure.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.structure.line[0]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: Inline tests in modules, integration tests possible
+  object_value: Inline tests in modules, integration tests possible
+  note: 'testing metadata: structure'
+  fact_id: fact::b21b2b7cbbbc5246690b72e4
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: testing.coverage_areas[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[1].line[0]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: Protocol message serialization
+  object_value: Protocol message serialization
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::51f3783352a8c5bc64e92763
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: implementation_patterns[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: src/protocol.rs:19-33, src/server.rs:67-72
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: Service tokens hashed for comparison, constant-time validation
+  object_value: SHA256 Token Auth
+  note: 'description: Service tokens hashed for comparison, constant-time validation;
+    location: src/protocol.rs:19-33, src/server.rs:67-72'
+  fact_id: fact::a86ab3cb65e7c2d67f1638df
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: implementation_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: src/client.rs:34-78, src/server.rs:42-89
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: tokio::spawn for concurrent handlers, async streams for data transfer
+  object_value: Tokio Async Runtime
+  note: 'description: tokio::spawn for concurrent handlers, async streams for data
+    transfer; location: src/client.rs:34-78, src/server.rs:42-89'
+  fact_id: fact::3dbc00e1bafee4ce762f648c
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: implementation_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: src/transport/mod.rs:52-68
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: Transport trait with associated types for Acceptor/Stream
+  object_value: Trait-based Transport Abstraction
+  note: 'description: Transport trait with associated types for Acceptor/Stream; location:
+    src/transport/mod.rs:52-68'
+  fact_id: fact::f48428a0439360a321049e2b
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: testing.coverage_areas[2].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[2].line[0]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: Transport implementations
+  object_value: Transport implementations
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::bc700b6c081e469eec6d6527
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: implementation_patterns[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: src/protocol.rs:62-66
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: Custom header prepends address + length for UDP packets
+  object_value: UDP Framing with SocketAddr
+  note: 'description: Custom header prepends address + length for UDP packets; location:
+    src/protocol.rs:62-66'
+  fact_id: fact::c016bd4600db958ea8c85c07
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    source_section: testing.framework.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.framework.line[0]
+    source_file: ssh_repos/knowledge/deep/rathole.yaml
+    excerpt: tokio::test, built-in Rust tests
+  object_value: tokio::test, built-in Rust tests
+  note: 'testing metadata: framework'
+  fact_id: fact::696712c1a8cc70de4cf7c9ed

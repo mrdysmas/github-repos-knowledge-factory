@@ -1,0 +1,444 @@
+# milvus Deep Knowledge
+# Source: milvus-master
+# Updated: 2026-02-22
+
+name: milvus
+node_id: repo::milvus-io/milvus
+github_full_name: milvus-io/milvus
+html_url: https://github.com/milvus-io/milvus
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep/milvus.yaml
+  as_of: '2026-02-25'
+description: Distributed vector database for AI applications
+primary_language: Go
+languages: [Go, C++, Python]
+sparse: false
+
+architecture:
+  pattern: Microservices with distributed coordination
+  type: Distributed vector database
+  coordination: etcd
+  storage: MinIO/S3
+  entry_point: ./milvus
+
+  components:
+    proxy:
+      description: Entry point for client requests
+    datacoord:
+      description: Data operations coordinator
+    querycoord:
+      description: Query task coordinator
+    data_node:
+      description: Data insertion and storage
+    query_node:
+      description: Vector search execution
+    mix_coord:
+      description: Standalone deployment coordinator (combines data+query)
+
+cli_commands:
+  standalone:
+    command: ./milvus run standalone
+    description: Run single-node deployment
+  coordinator:
+    command: ./milvus run coord
+    description: Run cluster coordinator
+  querynode:
+    command: ./milvus run querynode
+    description: Run query node worker
+  stop:
+    command: ./milvus stop
+    description: Shutdown Milvus
+  metadata_check:
+    command: ./milvus mck run
+    description: Run metadata consistency check
+
+sdk_usage:
+  python:
+    example: |
+      from pymilvus import MilvusClient
+      client = MilvusClient(uri="milvus_demo.db")  # Embedded
+      client.create_collection("demo", dimension=768)
+      client.insert("demo", data)
+      results = client.search("demo", vectors, limit=10)
+    package: pymilvus
+
+environment:
+  ETCD_ENDPOINTS:
+    description: etcd endpoints for coordination
+    default: localhost:2379
+  MINIO_ADDRESS:
+    description: Object storage address
+    default: localhost:9000
+
+ports:
+  grpc: 19530
+  metrics: 9091
+
+key_features:
+  - Distributed architecture with horizontal scaling
+  - Multiple index types for different use cases
+  - Hybrid search (vector + scalar)
+  - Multi-tenancy support
+  - Time travel queries
+
+related_repos:
+  - langchain
+  - llama_index
+  - ragflow
+
+code_patterns:
+  - name: Client Connection
+    description: Connect to Milvus server with configuration
+    code: |
+      // File: client/milvusclient/common.go
+      import "github.com/milvus-io/milvus/client/v2/milvusclient"
+
+      client, err := milvusclient.New(ctx, &milvusclient.ClientConfig{
+          Address: "localhost:19530",
+          Database: "default",
+          Username: "root",
+          Password: "Milvus",
+      })
+      if err != nil {
+          log.Fatal(err)
+      }
+      defer client.Close(ctx)
+    file_reference: client/milvusclient/common.go
+
+  - name: Collection with Custom Schema
+    description: Define fields and create collection
+    code: |
+      // File: client/entity/schema_example_test.go
+      import "github.com/milvus-io/milvus/client/v2/entity"
+
+      schema := entity.NewSchema()
+      // Primary key
+      schema.WithField(entity.NewField().
+          WithName("id").
+          WithDataType(entity.FieldTypeInt64).
+          WithIsPrimaryKey(true).
+          WithIsAutoID(true))
+
+      // Vector field
+      schema.WithField(entity.NewField().
+          WithName("embedding").
+          WithDataType(entity.FieldTypeFloatVector).
+          WithDim(768))
+
+      // Scalar fields
+      schema.WithField(entity.NewField().
+          WithName("text").
+          WithDataType(entity.FieldTypeVarChar).
+          WithMaxLength(2048))
+
+      schema.WithField(entity.NewField().
+          WithName("metadata").
+          WithDataType(entity.FieldTypeJSON))
+
+      // Create collection
+      opt := milvusclient.NewCreateCollectionOption("my_collection", schema).
+          WithShardNum(2)
+      err := client.CreateCollection(ctx, opt)
+    file_reference: client/entity/schema_example_test.go
+
+  - name: Simple Collection Creation
+    description: Quick collection creation with defaults
+    code: |
+      // File: client/milvusclient/collection_test.go
+      // One-liner for simple vector collection
+
+      opt := milvusclient.SimpleCreateCollectionOptions(
+          "quick_setup",  // collection name
+          128,            // vector dimension
+      )
+      err := client.CreateCollection(ctx, opt)
+
+      // With additional options
+      opt = milvusclient.NewCreateCollectionOption(collectionName, schema).
+          WithShardNum(2).
+          WithConsistencyLevel(entity.ClEventually).
+          WithProperty(common.CollectionTTLConfigKey, 86400)
+    file_reference: client/milvusclient/collection_test.go
+
+  - name: Index Creation
+    description: Create vector index for efficient search
+    code: |
+      // File: client/milvusclient/index_test.go
+      import "github.com/milvus-io/milvus/client/v2/index"
+
+      // HNSW index (recommended for accuracy)
+      task, err := client.CreateIndex(ctx,
+          milvusclient.NewCreateIndexOption(
+              "my_collection",
+              "embedding",
+              index.NewHNSWIndex(entity.L2, 32, 128).
+                  WithIndexName("embedding_idx"),
+          ))
+
+      // IVF FLAT index (faster build, tunable)
+      ivfIdx := index.NewIvfFlatIndex(entity.COSINE, 128)  // nlist=128
+
+      // IVF PQ (memory efficient)
+      pqIdx := index.NewIvfPQIndex(entity.L2, 128, 16, 8)  // nlist, m, nbits
+
+      // AUTOINDEX (automatic selection)
+      autoIdx := index.NewAutoIndex(entity.COSINE)
+    file_reference: client/milvusclient/index_test.go
+
+  - name: Vector Search
+    description: Search with options and filters
+    code: |
+      // File: client/milvusclient/read_example_test.go
+      queryVector := []float32{0.358, -0.602, 0.184, -0.262, 0.902}
+
+      resultSets, err := client.Search(ctx,
+          milvusclient.NewSearchOption(
+              "my_collection",    // collection
+              10,                 // top-k
+              []entity.Vector{entity.FloatVector(queryVector)},
+          ).WithOutputFields("text", "metadata").
+            WithConsistencyLevel(entity.ClBounded))
+
+      for _, rs := range resultSets {
+          for i := 0; i < rs.ResultCount; i++ {
+              id, _ := rs.IDs.GetAsInt64(i)
+              score := rs.Scores[i]
+              text, _ := rs.Fields.GetColumn("text").GetAsString(i)
+          }
+      }
+    file_reference: client/milvusclient/read_example_test.go
+
+  - name: Data Insertion
+    description: Insert vectors with scalar fields
+    code: |
+      // File: client/milvusclient/write.go
+      // Insert multiple records
+      column1 := entity.NewColumnInt64("id", []int64{1, 2, 3})
+      column2 := entity.NewColumnFloatVector("embedding", 128, [][]float32{
+          {0.1, 0.2, ...},  // 128 dims
+          {0.3, 0.4, ...},
+          {0.5, 0.6, ...},
+      })
+      column3 := entity.NewColumnVarChar("text", []string{"a", "b", "c"})
+
+      result, err := client.Insert(ctx,
+          milvusclient.NewColumnBasedInsertOption("my_collection",
+              column1, column2, column3))
+      // result.InsertCount gives number inserted
+    file_reference: client/milvusclient/write.go
+
+configuration:
+  - name: Field Data Types
+    options:
+      - key: FieldTypeInt64
+        default: ""
+        description: 64-bit integer (common for IDs)
+      - key: FieldTypeVarChar
+        default: ""
+        description: Variable-length string (max_length required)
+      - key: FieldTypeFloatVector
+        default: ""
+        description: Float32 vector (dim required)
+      - key: FieldTypeFloat16Vector
+        default: ""
+        description: Float16 vector (memory efficient)
+      - key: FieldTypeBinaryVector
+        default: ""
+        description: Binary vector (bit-packed)
+      - key: FieldTypeSparseVector
+        default: ""
+        description: Sparse vector (BM25-style)
+      - key: FieldTypeJSON
+        default: ""
+        description: JSON object
+      - key: FieldTypeArray
+        default: ""
+        description: Array of scalars
+      - key: FieldTypeBool
+        default: ""
+        description: Boolean
+
+  - name: Index Types
+    options:
+      - key: HNSW
+        default: ""
+        description: "Best accuracy, params: M (32), efConstruction (128)"
+      - key: IvfFlat
+        default: ""
+        description: "Fast search, params: nlist (128-4096)"
+      - key: IvfPQ
+        default: ""
+        description: "Memory efficient, params: nlist, m, nbits"
+      - key: IvfSQ8
+        default: ""
+        description: "8-bit quantization, params: nlist"
+      - key: AUTOINDEX
+        default: ""
+        description: "Automatic selection based on data"
+      - key: DISKANN
+        default: ""
+        description: "Disk-based for large datasets"
+      - key: GPUCagra
+        default: ""
+        description: "GPU-accelerated graph index"
+      - key: SparseInverted
+        default: ""
+        description: "Sparse vector inverted index"
+
+  - name: Metric Types
+    options:
+      - key: L2
+        default: ""
+        description: Euclidean distance (smaller = more similar)
+      - key: COSINE
+        default: ""
+        description: Cosine similarity (-1 to 1)
+      - key: IP
+        default: ""
+        description: Inner product (larger = more similar)
+      - key: HAMMING
+        default: ""
+        description: Hamming distance (binary vectors)
+      - key: JACCARD
+        default: ""
+        description: Jaccard distance (binary vectors)
+
+  - name: Consistency Levels
+    options:
+      - key: ClStrong
+        default: ""
+        description: Latest data, higher latency
+      - key: ClBounded
+        default: ""
+        description: Bounded staleness (default)
+      - key: ClEventually
+        default: ""
+        description: Best availability, may miss recent writes
+      - key: ClSession
+        default: ""
+        description: Session consistency
+
+  - name: Server Configuration
+    options:
+      - key: proxy.port
+        default: "19530"
+        description: Client connection port
+      - key: proxy.maxDimension
+        default: "32768"
+        description: Max vector dimensions
+      - key: etcd.endpoints
+        default: "localhost:2379"
+        description: ETCD for metadata
+      - key: minio.address
+        default: "localhost:9000"
+        description: MinIO/S3 for data storage
+
+common_tasks:
+  - task: Deploy Standalone (Docker)
+    steps:
+      - "Download: wget https://github.com/milvus-io/milvus/releases/download/v2.3.0/milvus-standalone-docker-compose.yml -O docker-compose.yml"
+      - "Start: docker compose up -d"
+      - "Verify: curl http://localhost:9091/healthz"
+      - "Connect: localhost:19530"
+    gotchas:
+      - "Needs 8GB+ RAM for standalone"
+      - "Data stored in ./volumes/ by default"
+      - "Stop with: docker compose down && sudo rm -rf volumes"
+
+  - task: Create and Search Collection
+    steps:
+      - "Create schema with primary key + vector field"
+      - "Create collection with schema"
+      - "Create index on vector field"
+      - "Load collection into memory"
+      - "Insert vectors with metadata"
+      - "Search with query vector"
+    gotchas:
+      - "Collection must be loaded before search"
+      - "Index creation is async - wait for completion"
+      - "Use batch insert for better throughput"
+
+  - task: Scale to Cluster (Kubernetes)
+    steps:
+      - "Add Milvus Helm repo: helm repo add milvus https://milvus-io.github.io/milvus-helm"
+      - "Install: helm install my-release milvus/milvus"
+      - "Configure: values.yaml for resources, storage"
+      - "Expose: kubectl port-forward svc/my-release-milvus 19530:19530"
+    gotchas:
+      - "Production needs: etcd cluster, minio/S3, pulsar/kafka"
+      - "Separate query/index/data nodes for scaling"
+      - "Use node affinity for GPU nodes"
+
+troubleshooting:
+  - symptom: Collection not loaded error
+    cause: Collection must be explicitly loaded into memory
+    fix: "Call client.LoadCollection(ctx, collectionName) before search"
+
+  - symptom: Index creation timeout
+    cause: Large dataset or insufficient resources
+    fix: "Increase index.build_parallel_rate in config, use simpler index type"
+
+  - symptom: Search returns empty results
+    cause: Wrong metric type or no data in partition
+    fix: "Verify metric matches index, check partition has data, verify search vector dimensions"
+
+  - symptom: Memory allocation failed
+    cause: Insufficient memory for vectors
+    fix: "Use IvfPQ index, enable mmap, or add more memory"
+
+  - symptom: Connection refused
+    cause: Server not running or wrong address
+    fix: "Check docker compose status, verify port 19530 is accessible"
+
+quick_reference:
+  - topic: Docker Services (Standalone)
+    content: |
+      ┌────────────────┬─────────────────────────────────────────┐
+      │ Service        │ Description / Port                      │
+      ├────────────────┼─────────────────────────────────────────┤
+      │ standalone     │ Main Milvus process (19530)             │
+      │ etcd           │ Metadata store (2379)                   │
+      │ minio          │ Object storage (9000, 9001 console)     │
+      └────────────────┴─────────────────────────────────────────┘
+
+  - topic: Index Selection Guide
+    content: |
+      ┌─────────────────┬─────────────────────────────────────────┐
+      │ Use Case        │ Recommended Index                       │
+      ├─────────────────┼─────────────────────────────────────────┤
+      │ Best accuracy   │ HNSW (M=32, efConstruction=128)         │
+      │ Memory limited  │ IvfPQ (compresses 4-8x)                 │
+      │ Large dataset   │ DISKANN (disk-based)                    │
+      │ GPU available   │ GPUCagra                                │
+      │ Simple/quick    │ AUTOINDEX                               │
+      │ Sparse vectors  │ SparseInverted                          │
+      └─────────────────┴─────────────────────────────────────────┘
+
+  - topic: HNSW Parameters
+    content: |
+      HNSW Index Parameters:
+      - M: Max connections per node (16-64, higher = more memory, better recall)
+      - efConstruction: Build-time search depth (64-512, higher = better index)
+
+      Search-time:
+      - ef: Search depth (must be >= top_k)
+
+  - topic: IVF Parameters
+    content: |
+      IVF Index Parameters:
+      - nlist: Number of clusters (sqrt(N) to N/1000)
+      - nprobe: Clusters to search (search-time, higher = better recall)
+
+      Trade-off:
+      - nlist ↑ → faster build, slower search, more memory
+      - nprobe ↑ → better recall, slower search
+
+  - topic: Common Imports (Go)
+    content: |
+      import (
+          "github.com/milvus-io/milvus/client/v2/milvusclient"
+          "github.com/milvus-io/milvus/client/v2/entity"
+          "github.com/milvus-io/milvus/client/v2/index"
+      )

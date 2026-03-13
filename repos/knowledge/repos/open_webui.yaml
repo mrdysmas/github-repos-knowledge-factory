@@ -1,0 +1,101 @@
+name: open_webui
+node_id: repo::open-webui/open-webui
+github_full_name: open-webui/open-webui
+html_url: https://github.com/open-webui/open-webui
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/repos/open_webui.yaml
+  as_of: '2026-02-25'
+directory: open-webui-main
+category: ui_tools
+
+summary: |
+  Feature-rich, self-hosted ChatGPT-style interface for LLMs. Open WebUI is the most
+  popular web UI for Ollama, with built-in RAG support, multi-user auth, pipelines plugin
+  system, and enterprise features (SSO, RBAC). Supports both Ollama and OpenAI-compatible
+  APIs. Runs entirely offline with Docker deployment.
+
+core_concepts:
+  - name: Chat Interface
+    description: ChatGPT-like UI with markdown, LaTeX, voice/video
+    location: src/lib/components/chat/
+
+  - name: RAG Integration
+    description: Built-in document chat with 9 vector DB options
+    location: backend/apps/rag/
+
+  - name: Pipelines
+    description: Plugin framework for custom logic
+    location: Uses github.com/open-webui/pipelines
+
+  - name: Model Management
+    description: Pull, create, manage Ollama models
+    location: backend/apps/models/
+
+  - name: Auth & Permissions
+    description: Multi-user with RBAC, LDAP, SSO
+    location: backend/apps/webui/
+
+  - name: Tools Workspace
+    description: Native Python function calling
+    location: src/lib/components/workspace/
+
+key_entry_points:
+  - path: backend/
+    purpose: FastAPI backend (Python)
+
+  - path: src/
+    purpose: SvelteKit frontend (TypeScript)
+
+  - path: backend/apps/rag/
+    purpose: RAG/document processing
+
+  - path: backend/apps/webui/
+    purpose: User/auth management
+
+build_run:
+  frontend: SvelteKit + TypeScript
+  backend: FastAPI + Python
+  run_docker: "docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui ghcr.io/open-webui/open-webui:main"
+  run_pip: "pip install open-webui && open-webui"
+
+key_features:
+  - Offline-capable, self-hosted
+  - Ollama + OpenAI-compatible APIs
+  - Built-in RAG with 9 vector DBs
+  - Web search integration (15+ providers)
+  - Image generation (DALL-E, ComfyUI, A1111)
+  - Voice/video call support
+  - Pipelines plugin system
+  - Multi-user with RBAC/SSO/LDAP
+  - Model builder for Ollama
+  - Python function calling tools
+  - Horizontal scalability (Redis)
+
+ecosystem_connections:
+  - target: ollama
+    relation: integrates_with
+    note: Primary backend, most popular UI for Ollama
+
+  - target: vllm
+    relation: integrates_with
+    note: Can use vLLM via OpenAI-compatible API
+
+  - target: langchain
+    relation: related_to
+    note: Can be used as UI layer for LangChain apps
+
+  - target: milvus
+    relation: integrates_with
+    note: One of 9 supported vector databases
+
+  - target: anything-llm
+    relation: alternative_to
+    note: Both full-stack AI apps; Open WebUI more community-driven
+
+further_reading:
+  - README.md
+  - docs: https://docs.openwebui.com
+  - community: https://openwebui.com
+  - pipelines: https://github.com/open-webui/pipelines

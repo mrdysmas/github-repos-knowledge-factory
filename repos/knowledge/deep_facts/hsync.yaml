@@ -1,0 +1,740 @@
+name: hsync
+node_id: repo::monteslu/hsync
+github_full_name: monteslu/hsync
+html_url: https://github.com/monteslu/hsync
+source: ssh_repos
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/deep_facts/hsync.yaml
+  as_of: '2026-02-25'
+  extractor_version: ws6-deep-integrator-v1
+facts:
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: architecture.key_abstractions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[1]
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: WebRTC-based P2P connection with JSON-RPC methods
+  object_value: Peer
+  note: WebRTC-based P2P connection with JSON-RPC methods
+  fact_id: fact::4d5e0bfc885f3f9e6ab2aea8
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: architecture.key_abstractions[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[3]
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: TCP port forwarding in both directions
+  object_value: SocketListener/Relay
+  note: TCP port forwarding in both directions
+  fact_id: fact::df23e655a56fba872ff1c628
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: architecture.key_abstractions[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[2]
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: HTTP request proxy from MQTT messages to local server
+  object_value: WebHandler
+  note: HTTP request proxy from MQTT messages to local server
+  fact_id: fact::4550751d8ae07823be23d18d
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: architecture.key_abstractions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[0]
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: Main client object exposing events, peer access, listener/relay management
+  object_value: hsyncClient
+  note: Main client object exposing events, peer access, listener/relay management
+  fact_id: fact::5de1ed026db40aeb9c5ac43e
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: architecture.module_breakdown[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[2]
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: CLI and interactive shell interfaces with Commander
+  object_value: cli.js / shell.js
+  note: 'responsibility: CLI and interactive shell interfaces with Commander; key_files:
+    cli.js, shell.js'
+  fact_id: fact::8db551438b783196fcf71629
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: architecture.module_breakdown[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[1]
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: Core createHsync() factory orchestrating MQTT, peers, listeners, relays
+  object_value: connection.js
+  note: 'responsibility: Core createHsync() factory orchestrating MQTT, peers, listeners,
+    relays; key_files: connection.js'
+  fact_id: fact::000a48239cef52d3a2bfa96a
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: architecture.module_breakdown[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[0]
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: Main exports for Node.js and browser environments
+  object_value: hsync.js / hsync-web.js
+  note: 'responsibility: Main exports for Node.js and browser environments; key_files:
+    hsync.js, hsync-web.js'
+  fact_id: fact::9073fdc70ebbd151c3c84023
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: architecture.module_breakdown[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[3]
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: WebRTC peer management, RPC method handling via rawr library
+  object_value: lib/peers.js
+  note: 'responsibility: WebRTC peer management, RPC method handling via rawr library;
+    key_files: lib/peers.js'
+  fact_id: fact::a1cbdee15d9389621f246ddb
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: architecture.module_breakdown[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[5]
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: Accepts local connections, forwards to remote targets
+  object_value: lib/socket-listeners.js
+  note: 'responsibility: Accepts local connections, forwards to remote targets; key_files:
+    lib/socket-listeners.js'
+  fact_id: fact::005ba7f876c3560309e8a2e3
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: architecture.module_breakdown[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[6]
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: Accepts remote requests, connects to local TCP sockets
+  object_value: lib/socket-relays.js
+  note: 'responsibility: Accepts remote requests, connects to local TCP sockets; key_files:
+    lib/socket-relays.js'
+  fact_id: fact::4d1a25b6394986eb3ac4010d
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: architecture.module_breakdown[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[4]
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: HTTP proxy with WebSocket support for web request tunneling
+  object_value: lib/web-handler.js
+  note: 'responsibility: HTTP proxy with WebSocket support for web request tunneling;
+    key_files: lib/web-handler.js'
+  fact_id: fact::1e88150b9a4aadfac0247207
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: configuration.options[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[6]
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: dynamicHost
+  object_value: dynamicHost
+  note: 'type: string; Dynamic host URL override'
+  fact_id: fact::6c4a00989a5802cc74a236f2
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: configuration.file
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.file
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: file
+  object_value: file
+  note: 'default: Environment variables and CLI flags; configuration default for file'
+  fact_id: fact::72b24e0ba64afe18b126e295
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: configuration.options[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[4]
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: hsyncBase
+  object_value: hsyncBase
+  note: 'type: string; default: _hs; Base path for routing'
+  fact_id: fact::f19217ac6e2291dee1f9b923
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: configuration.options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[1]
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: hsyncSecret
+  object_value: hsyncSecret
+  note: 'type: string; default: env.HSYNC_SECRET; Authentication secret'
+  fact_id: fact::724860a08f923252f6fc612f
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: configuration.options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[0]
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: hsyncServer
+  object_value: hsyncServer
+  note: 'type: string; default: env.HSYNC_SERVER; WebSocket URL to hsync-server'
+  fact_id: fact::16ddd562635a48787eab62e8
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: configuration.options[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[5]
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: keepalive
+  object_value: keepalive
+  note: 'type: number; MQTT keepalive interval (seconds)'
+  fact_id: fact::96f58889d372d3cf25e1f01b
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: configuration.options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[2]
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: localHost
+  object_value: localHost
+  note: 'type: string; default: localhost; Local server host'
+  fact_id: fact::6a84a43dd3ccd798b7eeaf90
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: configuration.options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[3]
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: port
+  object_value: port
+  note: 'type: number; Local server port'
+  fact_id: fact::db93e0eed3f388f0ccc1bd11
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.71
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: extension_points[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[0]
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: connection.js:117
+  object_value: connection.js:117
+  note: Custom web handler for HTTP proxy logic; config.webHandler
+  fact_id: fact::57ebe1b20387405f399dbb4e
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.71
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: extension_points[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[2]
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: connection.js:19-23
+  object_value: connection.js:19-23
+  note: Custom network stack (useful for testing); setNet(netImpl)
+  fact_id: fact::c2854d162d69dd40d0101f15
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.71
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: extension_points[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[5]
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: connection.js:191-242
+  object_value: connection.js:191-242
+  note: Add custom server-side RPC handlers; serverReplyMethods
+  fact_id: fact::0ac046772e0060c3afe66565
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.71
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: extension_points[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[4]
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: connection.js:244-258
+  object_value: connection.js:244-258
+  note: Override or extend RPC methods for peers; peerMethods
+  fact_id: fact::11d05f3effaf74bc60cfd0d9
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.71
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: extension_points[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[3]
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: connection.js:25-27
+  object_value: connection.js:25-27
+  note: Custom MQTT client implementation; setMqtt(mqttImpl)
+  fact_id: fact::d25cfe12db96c2ef8709065c
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: api_surface.public_functions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[0]
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: createConnection
+  object_value: createConnection
+  note: Main entry point to create hsync client; export async function createConnection(config);
+    hsync.js:31
+  fact_id: fact::8350a867a8203ebce9f5497e
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: api_surface.public_functions[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[2]
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: createHsync
+  object_value: createHsync
+  note: Factory function for full client setup; export function createHsync(config);
+    connection.js:29
+  fact_id: fact::b25a61a138719eac897ac953
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: api_surface.public_functions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[1]
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: dynamicConnect
+  object_value: dynamicConnect
+  note: Connect to dynamic host; export async function dynamicConnect(config); hsync.js:32
+  fact_id: fact::3922d7a048cc13ddde40154a
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: path
+  confidence: 0.71
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: extension_points[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[1]
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: lib/peers.js:36-38
+  object_value: lib/peers.js:36-38
+  note: Custom WebRTC implementation; setRTC(rtcImpl)
+  fact_id: fact::eeb65aa282d70692dab9192f
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: testing.coverage.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage.line[0]
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: 85%+ with v8 profiler
+  object_value: 85%+ with v8 profiler
+  note: 'testing metadata: coverage'
+  fact_id: fact::88144564c04b2f08270bbd58
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: testing.coverage_areas[5].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[5].line[0]
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: API client utilities
+  object_value: API client utilities
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::9e858060a51b6f5fc09603f9
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: implementation_patterns[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: lib/socket-relays.js:35-57
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: Whitelist/blacklist with wildcard matching for relay security
+  object_value: Access Control Lists
+  note: 'description: Whitelist/blacklist with wildcard matching for relay security;
+    location: lib/socket-relays.js:35-57'
+  fact_id: fact::ecf7c38dcb8ab339c550a36b
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: testing.coverage_areas[4].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[4].line[0]
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: Configuration parsing
+  object_value: Configuration parsing
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::92163672b8ef969c794f84db
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: implementation_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: connection.js:19-27
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: setNet(), setMqtt(), setRTC() allow swapping implementations
+  object_value: Dependency Injection
+  note: 'description: setNet(), setMqtt(), setRTC() allow swapping implementations;
+    location: connection.js:19-27'
+  fact_id: fact::aec992b71dc28671afeb2975
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: implementation_patterns[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: connection.js:86-91
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: EventEmitter for connected, json, external_message, connect_error events
+  object_value: Event-Driven Architecture
+  note: 'description: EventEmitter for connected, json, external_message, connect_error
+    events; location: connection.js:86-91'
+  fact_id: fact::809665b8bdd2c79321fd69ae
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: implementation_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: connection.js:29-319
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: createHsync(config) creates and wires all components
+  object_value: Factory Pattern
+  note: 'description: createHsync(config) creates and wires all components; location:
+    connection.js:29-319'
+  fact_id: fact::f031b9862e9967a0c2f094e6
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: testing.coverage_areas[3].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[3].line[0]
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: HTTP proxy handling
+  object_value: HTTP proxy handling
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::ba4ea6baef57d4525f86a505
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: testing.coverage_areas[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[0].line[0]
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: Peer management and RPC
+  object_value: Peer management and RPC
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::2de00220c1de3331bc3d2b12
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: testing.coverage_areas[2].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[2].line[0]
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: Socket listeners
+  object_value: Socket listeners
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::bbe14e32813cb681551b5785
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: testing.coverage_areas[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[1].line[0]
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: Socket relay functionality
+  object_value: Socket relay functionality
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::ca29a1d78a33dbf410c32dfb
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: implementation_patterns[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: lib/rtc-web.js
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: WebRTC uses native API in browser (rtc-web.js), node-datachannel in Node.js
+      (rtc-node.js)
+  object_value: Strategy Pattern for RTC
+  note: 'description: WebRTC uses native API in browser (rtc-web.js), node-datachannel
+    in Node.js (rtc-node.js); location: lib/rtc-web.js'
+  fact_id: fact::6f24d33b0883d52364026ae2
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: testing.framework.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.framework.line[0]
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: Vitest with ES modules
+  object_value: Vitest with ES modules
+  note: 'testing metadata: framework'
+  fact_id: fact::c8556989d8d325f3b44eb455
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    source_section: testing.structure.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.structure.line[0]
+    source_file: ssh_repos/knowledge/deep/hsync.yaml
+    excerpt: test/unit/
+  object_value: test/unit/
+  note: 'testing metadata: structure'
+  fact_id: fact::8661602224535d11e944531b

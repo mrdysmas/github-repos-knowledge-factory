@@ -1,0 +1,198 @@
+name: hiddify-app
+node_id: repo::hiddify/hiddify-app
+github_full_name: hiddify/hiddify-app
+html_url: https://github.com/hiddify/hiddify-app
+source: ssh_repos
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+  as_of: '2026-02-25'
+directory: hiddify-app-main
+category: network_infrastructure
+
+# Inherited from shallow file
+summary: |
+  Cross-platform multi-protocol proxy/VPN client built on Flutter with Sing-box core,
+  designed for censorship circumvention in restrictive regions.
+
+# Deep additions
+architecture:
+  module_breakdown:
+    - module: core/
+      responsibility: Router, theme, preferences, database, localization, shared models
+      key_files: [lib/core/]
+    - module: features/connection/
+      responsibility: Connection state management, connect/disconnect/reconnect operations
+      key_files: [lib/features/connection/notifier/connection_notifier.dart]
+    - module: features/profile/
+      responsibility: Profile management, parsing, active profile tracking
+      key_files: [lib/features/profile/]
+    - module: features/settings/
+      responsibility: App settings, config options, preferences
+      key_files: [lib/features/settings/]
+    - module: features/proxy/
+      responsibility: Proxy configuration, outbound selection
+      key_files: [lib/features/proxy/]
+    - module: hiddifycore/
+      responsibility: gRPC interface to hiddify-core native library
+      key_files: [lib/hiddifycore/hiddify_core_service.dart]
+    - module: singbox/
+      responsibility: Sing-box configuration models, protocol types, status
+      key_files: [lib/singbox/]
+  data_flow: |
+    1. App initializes via bootstrap.dart, sets up directories, preferences, core service
+    2. User adds profile (remote URL or local file)
+    3. ProfileParser detects protocol, parses configuration
+    4. User initiates connection via ConnectionNotifier.toggleConnection()
+    5. HiddifyCoreService.start() launches native core via gRPC
+    6. Core status streamed via watchStatus() to update UI
+    7. Traffic stats, logs streamed from core
+  key_abstractions:
+    - name: ConnectionNotifier
+      purpose: State management for connection operations
+      location: lib/features/connection/notifier/connection_notifier.dart:74
+    - name: HiddifyCoreService
+      purpose: gRPC client wrapper for native core communication
+      location: lib/hiddifycore/hiddify_core_service.dart:67
+    - name: ProfileEntity
+      purpose: Remote or Local profile with options, subscription info
+      location: lib/features/profile/model/profile_entity.dart
+    - name: ConnectionStatus
+      purpose: State machine (Disconnected, Connecting, Connected, Disconnecting)
+      location: lib/features/connection/model/connection_status.dart:8
+    - name: CoreInterface
+      purpose: Platform-specific core interface (Mobile vs Desktop)
+      location: lib/hiddifycore/core_interface/core_interface.dart
+
+implementation_patterns:
+  - pattern: Riverpod State Management
+    description: Reactive providers with @Riverpod annotation, keepAlive for critical state
+    location: lib/features/connection/notifier/connection_notifier.dart
+  - pattern: TaskEither Error Handling
+    description: Functional error handling for async operations
+    location: lib/hiddifycore/hiddify_core_service.dart
+  - pattern: Freezed Data Classes
+    description: Immutable models with code generation
+    location: lib/features/profile/model/profile_entity.dart
+  - pattern: Platform-Specific Implementations
+    description: CoreInterfaceMobile vs CoreInterfaceDesktop
+    location: lib/hiddifycore/core_interface/core_interface.dart
+  - pattern: Stream-Based Status Monitoring
+    description: Real-time core status via gRPC streaming
+    location: lib/hiddifycore/hiddify_core_service.dart
+  - pattern: Feature-Driven Architecture
+    description: Each feature in own directory with notifier, model, widget, data layers
+    location: lib/features/connection/
+
+configuration:
+  file: Profile-based + App preferences
+  profile_formats:
+    - Sing-box JSON
+    - V2Ray / Xray
+    - Clash / Clash Meta
+    - WireGuard
+  options:
+    - name: serviceMode
+      type: enum
+      values: [proxy, systemProxy, tun, tunService]
+      description: How traffic is routed
+    - name: tunImplementation
+      type: enum
+      values: [mixed, system, gVisor]
+      description: TUN interface implementation
+    - name: ipv6Mode
+      type: enum
+      values: [disable, enable, prefer]
+      description: IPv6 handling strategy
+    - name: enableWarp
+      type: bool
+      default: false
+      description: Cloudflare WARP integration
+    - name: enableFragment
+      type: bool
+      default: false
+      description: TLS fragmentation for bypass
+    - name: domainStrategy
+      type: enum
+      values: [AsIs, PreferIPv4, PreferIPv6, IPv4Only, IPv6Only]
+      description: DNS resolution strategy
+  platform_configs:
+    Desktop: All service modes (proxy, systemProxy, tun)
+    macOS: proxy, systemProxy, tun
+    Mobile: proxy, tun only
+    Android: Additional tunService mode
+
+api_surface:
+  public_functions:
+    - name: ConnectionNotifier.toggleConnection
+      signature: Future<void> toggleConnection()
+      purpose: Toggle connection state
+      location: lib/features/connection/notifier/connection_notifier.dart:74
+    - name: ConnectionNotifier.reconnect
+      signature: Future<void> reconnect(ProfileEntity?)
+      purpose: Reconnect with specific profile
+      location: lib/features/connection/notifier/connection_notifier.dart
+    - name: HiddifyCoreService.start
+      signature: TaskEither<ConnectionFailure, Unit> start(path, name, disableMemoryLimit)
+      purpose: Start VPN tunnel with config
+      location: lib/hiddifycore/hiddify_core_service.dart:67
+    - name: HiddifyCoreService.watchStatus
+      signature: Stream<CoreStatus> watchStatus()
+      purpose: Stream core status updates
+      location: lib/hiddifycore/hiddify_core_service.dart
+    - name: ProfileParser.protocol
+      signature: static String protocol(String content)
+      purpose: Auto-detect protocol from content
+      location: lib/features/profile/data/profile_parser.dart:30
+  provider_interfaces:
+    - name: ProfileRepository
+      methods: addLocal, addRemote, updateRemote, offlineUpdate
+    - name: ConfigOptionRepository
+      methods: fullOptions, fullOptionsOverrided
+
+supported_protocols:
+  direct:
+    - Shadowsocks (SS, SSR)
+    - VMess, VLESS, xVLESS, xVMess
+    - Trojan, xTrojan
+    - WireGuard, AWG
+    - Hysteria, Hysteria2
+    - TUIC
+    - SSH
+    - ShadowTLS
+    - HTTP, SOCKS, Naive
+    - Tor, Mieru
+  group:
+    - Selector
+    - URLTest
+    - Balancer
+  special:
+    - Warp (Cloudflare WARP)
+
+testing:
+  framework: Flutter test framework
+  structure: test/
+  coverage_areas:
+    - Profile parsing
+    - Connection state transitions
+    - Configuration validation
+  notes: |
+    Build uses build_runner for code generation:
+    dart run build_runner build --delete-conflicting-outputs
+
+extension_points:
+  - location: lib/singbox/model/singbox_proxy_type.dart
+    hook: ProxyType enum
+    example: Add newProtocol("New Protocol") with label
+  - location: lib/features/profile/data/profile_parser.dart
+    hook: protocol() detection
+    example: Add URI scheme detection for new protocols
+  - location: lib/hiddifycore/core_interface/
+    hook: Platform implementations
+    example: CoreInterfaceMobile, CoreInterfaceDesktop patterns
+  - location: lib/core/theme/theme_extensions.dart
+    hook: ThemeExtension
+    example: Add custom theme extensions for UI customization
+  - location: lib/core/router/go_router/routing_config_notifier.dart
+    hook: GoRouter routes
+    example: Add new routes/pages for new features

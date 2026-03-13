@@ -1,0 +1,45 @@
+name: claude-flow
+node_id: repo::ruvnet/claude-flow
+github_full_name: ruvnet/claude-flow
+html_url: https://github.com/ruvnet/claude-flow
+source: remote_metadata
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/repos/ruvnet__claude-flow.yaml
+  as_of: '2026-02-24T19:46:56Z'
+directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/ruvnet__claude-flow
+category: agent_orchestration
+summary: Shallow intake pilot canonicalization for ruvnet/claude-flow in agent orchestration
+  domain.
+core_concepts:
+- agent orchestration capabilities
+- claude-flow repository architecture
+key_entry_points:
+- README.md
+- package.json
+- docs/
+build_run:
+  language: javascript
+  build: npm run build
+  test: npm test
+local_cache_dir: null
+extras:
+  intake:
+    pilot_batch_id: INTAKE-PILOT-1
+    repo_id: repo::ruvnet/claude-flow
+    queue_id: intake::ruvnet/claude-flow
+    intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/ruvnet__claude-flow
+    domain_hint: agent_orchestration
+    source_mode: local_clone
+    source_commit: 7416506d2726906350cc3bed21ea6b43928c7340
+    default_branch: main
+    observed_at_utc: '2026-02-24T19:46:56Z'
+  remote:
+    provider: github
+    mode: metadata
+    endpoint: /repos/ruvnet/claude-flow
+    fetched_at_utc: '2026-02-24T19:46:56Z'
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false

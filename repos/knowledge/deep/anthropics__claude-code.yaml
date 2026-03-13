@@ -1,0 +1,164 @@
+name: claude-code
+node_id: repo::anthropics/claude-code
+github_full_name: anthropics/claude-code
+html_url: https://github.com/anthropics/claude-code
+source: remote_metadata
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep/anthropics__claude-code.yaml
+  as_of: '2026-03-05'
+directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/anthropics__claude-code
+category: agent_cli
+
+architecture:
+  module_breakdown:
+  - module: scripts
+    responsibility: Installer and operational scripts for multi-platform setup.
+    key_files:
+    - scripts/
+  - module: plugins
+    responsibility: Extension catalog that augments default Claude Code behavior.
+    key_files:
+    - plugins/
+    - plugins/README.md
+  - module: examples
+    responsibility: Reference usage patterns for real project workflows.
+    key_files:
+    - examples/
+  key_abstractions:
+  - name: Terminal-native coding agent loop
+    purpose: Accepts natural language tasks and executes coding workflows in-repo.
+  - name: Plugin extension surface
+    purpose: Allows custom commands and reusable agents without forking core workflows.
+  components:
+  - name: Bootstrap installers
+    description: Curl/PowerShell install paths for Mac, Linux, and Windows.
+  - name: Plugin runtime
+    description: Discovers and invokes plugin-provided commands and agents.
+
+code_patterns:
+- pattern: Platform-specific install orchestration
+  description: Separate shell and PowerShell installation paths reduce platform friction.
+  location: README.md
+- pattern: Extension-first repository structure
+  description: Plugin assets are versioned with docs so custom behavior can be distributed with the project.
+  location: plugins/
+- pattern: Docs-linked command workflows
+  description: Operational commands are documented alongside tool behavior for fast onboarding.
+  location: README.md
+
+implementation_patterns:
+- pattern: Command-driven terminal interactions
+  description: User intent is captured in plain language and routed through command execution flows.
+  location: README.md
+- pattern: Plugin modularization
+  description: Optional functionality is segmented into discrete plugin packages.
+  location: plugins/
+
+core_modules:
+  installation:
+    path: scripts
+    description: Install and maintenance scripts for supported environments.
+  extensions:
+    path: plugins
+    description: Claude Code plugin ecosystem content and examples.
+    submodules:
+    - plugins/README.md
+  examples:
+    path: examples
+    description: Scenario-driven usage examples for developers.
+
+key_features:
+- feature: Terminal-based agentic coding
+  description: Runs directly in local terminal workflows with natural language prompts.
+- feature: Multi-platform installation paths
+  description: Provides installer support for macOS, Linux, and Windows.
+- feature: Plugin support
+  description: Extends baseline behavior with custom commands and agent logic.
+- feature: Built-in feedback and issue reporting path
+  description: Encourages bug reporting via in-product command and GitHub issues.
+
+key_files:
+- path: README.md
+  description: Core setup guide and operational overview.
+- path: scripts/
+  description: Installers and helper scripts.
+- path: plugins/
+  description: Plugin definitions and documentation.
+- path: examples/
+  description: Practical usage references.
+
+configuration:
+- name: installation_channels
+  options:
+  - key: install_method
+    default: official_install_script
+    description: Recommended setup path via hosted install script.
+  - key: package_channel
+    default: homebrew_cask
+    description: Supported cask-based installation alternative.
+  - key: npm_deprecated
+    default: true
+    description: Signals deprecated npm install path in project docs.
+- name: runtime_conventions
+  options:
+  - key: launch_command
+    default: claude
+    description: Primary terminal command used after installation.
+
+commands:
+- name: claude
+  description: Launch Claude Code inside current project directory.
+  usage: claude
+- name: curl -fsSL https://claude.ai/install.sh | bash
+  description: Recommended installer for macOS and Linux.
+  usage: curl -fsSL https://claude.ai/install.sh | bash
+- name: brew install --cask claude-code
+  description: Homebrew cask installation path.
+  usage: brew install --cask claude-code
+- name: /bug
+  description: In-product bug reporting command.
+  usage: /bug
+
+testing:
+  framework: mixed
+  structure: Repository quality is validated through scripts, plugin checks, and release workflows.
+  coverage_areas:
+  - installer reliability across supported platforms
+  - plugin behavior and command integration
+  - documentation and setup correctness
+  test_patterns:
+  - npm test
+  - node scripts/
+
+integrations:
+  ecosystems:
+  - npm package registry
+  - Homebrew cask distribution
+  community:
+  - GitHub issues
+  - Anthropic Discord
+  plugin_surfaces:
+  - custom command plugins
+  - custom agent plugins
+
+quick_reference:
+- topic: Run Claude Code
+  command: claude
+- topic: Install on macOS/Linux
+  command: curl -fsSL https://claude.ai/install.sh | bash
+- topic: Install via Homebrew
+  command: brew install --cask claude-code
+- topic: Report in-product issue
+  command: /bug
+
+api_surface:
+  public_functions:
+  - name: claude terminal command
+    purpose: Primary CLI entrypoint for starting sessions and running coding tasks.
+    signature: claude <subcommand>
+    location: README.md
+  - name: plugin command contract
+    purpose: Standardized extension interface for custom plugin-provided commands.
+    signature: plugin-defined command handlers
+    location: plugins/

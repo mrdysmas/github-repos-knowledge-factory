@@ -1,0 +1,103 @@
+name: milvus
+node_id: repo::milvus-io/milvus
+github_full_name: milvus-io/milvus
+html_url: https://github.com/milvus-io/milvus
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/repos/milvus.yaml
+  as_of: '2026-02-25'
+directory: milvus-master
+category: vector_databases
+
+summary: |
+  High-performance, scalable vector database from Zilliz/LF AI & Data Foundation.
+  Written in Go and C++ with hardware acceleration (CPU/GPU). Handles billions of
+  vectors with real-time updates. K8s-native distributed architecture. Milvus Lite
+  available for Python quickstart. Managed service via Zilliz Cloud.
+
+core_concepts:
+  - name: Collections
+    description: Vector storage containers with schema
+    location: internal/core/
+
+  - name: Index Types
+    description: IVF, HNSW, GPU indexes for different use cases
+    location: internal/core/src/index/
+
+  - name: Query Node
+    description: Search execution engine
+    location: internal/querynodev2/
+
+  - name: Data Node
+    description: Data ingestion and indexing
+    location: internal/datanode/
+
+  - name: Proxy
+    description: API gateway layer
+    location: internal/proxy/
+
+key_entry_points:
+  - path: internal/core/
+    purpose: Core C++ engine (indexing, search)
+
+  - path: internal/querynodev2/
+    purpose: Query execution
+
+  - path: internal/proxy/
+    purpose: API gateway
+
+  - path: pkg/
+    purpose: Go public packages
+
+  - path: client/
+    purpose: Go client SDK
+
+build_run:
+  language: Go + C++
+  run_docker: |
+    docker run -d --name milvus-standalone \
+      -p 19530:19530 -p 9091:9091 \
+      milvusdb/milvus:latest
+  run_lite: "pip install pymilvus[milvus_lite]"
+  client_python: "pip install pymilvus"
+
+deployment_modes:
+  - Standalone (single machine, Docker)
+  - Cluster (K8s, distributed)
+  - Milvus Lite (embedded Python)
+  - Zilliz Cloud (managed)
+
+index_types:
+  - FLAT (brute force)
+  - IVF_FLAT, IVF_SQ8, IVF_PQ
+  - HNSW (graph-based)
+  - GPU_IVF_FLAT, GPU_IVF_PQ
+  - SCANN, DISKANN
+
+ecosystem_connections:
+  - target: langchain
+    relation: integrates_with
+    note: langchain-milvus vector store integration
+
+  - target: llama_index
+    relation: integrates_with
+    note: llama-index-vector-stores-milvus
+
+  - target: ragflow
+    relation: integrates_with
+    note: RAGFlow can use Milvus as vector backend
+
+  - target: open_webui
+    relation: integrates_with
+    note: Open WebUI supports Milvus for RAG
+
+  - target: anything_llm
+    relation: integrates_with
+    note: AnythingLLM supports Milvus
+
+further_reading:
+  - README.md
+  - docs: https://milvus.io/docs
+  - cloud: https://zilliz.com/cloud
+  - lite: https://milvus.io/docs/milvus_lite.md

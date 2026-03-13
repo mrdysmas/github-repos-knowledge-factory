@@ -1,0 +1,76 @@
+name: llm-app
+node_id: repo::pathwaycom/llm-app
+github_full_name: pathwaycom/llm-app
+html_url: https://github.com/pathwaycom/llm-app
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/repos/llm-app.yaml
+  as_of: '2026-02-25'
+directory: llm-app-main
+category: rag_frameworks
+
+summary: |
+  Ready-to-deploy LLM application templates built on Pathway's real-time data
+  framework. Provides production-ready RAG pipelines with live document indexing,
+  incremental updates, and HTTP API endpoints. Includes templates for private
+  RAG, indexed RAG, and question-answering systems.
+
+core_concepts:
+  - name: Real-time RAG
+    description: Live document indexing with automatic updates on file changes
+    location: app/
+
+  - name: Pathway Integration
+    description: Built on Pathway stream processing engine
+    location: (uses pathway package)
+
+  - name: API Templates
+    description: HTTP endpoints for querying and document management
+    location: app/
+
+  - name: Docker Deployment
+    description: Containerized deployment for production
+    location: docker-compose.yaml
+
+key_entry_points:
+  - path: app/
+    purpose: Main application templates
+
+  - path: examples/
+    purpose: Example implementations
+
+  - path: docker-compose.yaml
+    purpose: Container orchestration
+
+build_run:
+  language: Python
+  manager: pip
+  build: "pip install -e ."
+  test: "pytest"
+  docker: "docker-compose up"
+
+ecosystem_connections:
+  - target: pathway
+    relation: extends
+    note: Built on Pathway's stream processing
+
+  - target: langchain
+    relation: alternative_to
+    note: Different approach; llm-app focuses on real-time
+
+  - target: llama_index
+    relation: alternative_to
+    note: llm-app emphasizes live data vs static indexing
+
+  - target: ragflow
+    relation: alternative_to
+    note: llm-app is lighter-weight, real-time focused
+
+  - target: ollama
+    relation: integrates_with
+    note: Can use Ollama for local LLM inference
+
+further_reading:
+  - README.md
+  - examples/README.md

@@ -1,0 +1,94 @@
+name: llamafactory
+node_id: repo::hiyouga/llama-factory
+github_full_name: hiyouga/llama-factory
+html_url: https://github.com/hiyouga/llama-factory
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/repos/llamafactory.yaml
+  as_of: '2026-02-25'
+directory: LlamaFactory-main
+category: fine_tuning
+
+summary: |
+  Comprehensive LLM fine-tuning framework supporting 100+ models. Unified interface for
+  various training approaches (LoRA, QLoRA, Full, Freeze). Zero-code CLI and Gradio Web UI
+  (LLaMA Board). Used by Amazon, NVIDIA, Aliyun. Supports distributed training, quantization,
+  and multiple precision types.
+
+core_concepts:
+  - name: Training Approaches
+    description: LoRA, QLoRA, Full, Freeze, DoRA
+    location: src/llamafactory/train/
+
+  - name: Model Support
+    description: 100+ models (LLaMA, Qwen, Mistral, etc.)
+    location: src/llamafactory/model/
+
+  - name: Data Processing
+    description: Dataset formatting and loading
+    location: src/llamafactory/data/
+
+  - name: Web UI (LLaMA Board)
+    description: Gradio-based zero-code interface
+    location: src/llamafactory/webui/
+
+  - name: Evaluation
+    description: Model evaluation pipelines
+    location: src/llamafactory/eval/
+
+key_entry_points:
+  - path: src/llamafactory/
+    purpose: Main library
+
+  - path: src/llamafactory/train/
+    purpose: Training implementations
+
+  - path: src/llamafactory/webui/
+    purpose: Gradio Web UI
+
+  - path: data/
+    purpose: Example datasets
+
+build_run:
+  language: Python
+  install: "pip install llamafactory"
+  cli: "llamafactory-cli train config.yaml"
+  webui: "llamafactory-cli webui"
+  docker: "docker run -it --gpus all hiyouga/llamafactory:latest"
+
+training_approaches:
+  - Full (full parameter fine-tuning)
+  - Freeze (freeze most layers)
+  - LoRA (Low-Rank Adaptation)
+  - QLoRA (Quantized LoRA)
+  - DoRA (Weight-Decomposed Low-Rank Adaptation)
+
+supported_features:
+  - 100+ LLM models
+  - Multiple training approaches
+  - 4-bit/8-bit quantization
+  - Distributed training (DeepSpeed, FSDP)
+  - Multiple precision (FP16, BF16, FP32)
+  - RLHF training
+  - Vision-language models
+  - Export to various formats
+
+ecosystem_connections:
+  - target: vllm
+    relation: related_to
+    note: Fine-tuned models can be deployed with vLLM
+
+  - target: lmdeploy
+    relation: related_to
+    note: Fine-tuned models can be deployed with LMDeploy
+
+  - target: opencompass
+    relation: related_to
+    note: Evaluate fine-tuned models with OpenCompass
+
+further_reading:
+  - README.md
+  - docs: https://llamafactory.readthedocs.io
+  - blog: https://blog.llamafactory.net
+  - colab: https://colab.research.google.com/drive/1eRTPn37ltBbYsISy9Aw2NuI2Aq5CQrD9

@@ -1,0 +1,183 @@
+name: mmar
+node_id: repo::yusuf-musleh/mmar
+github_full_name: yusuf-musleh/mmar
+html_url: https://github.com/yusuf-musleh/mmar
+source: ssh_repos
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/deep/mmar.yaml
+  as_of: '2026-02-25'
+directory: mmar-master
+category: tunneling
+
+# Inherited from shallow file
+summary: |
+  Zero-dependency, self-hostable HTTP tunnel that exposes localhost services on public URLs
+  via auto-generated subdomains - useful for quick sharing, testing webhooks, or demoing work.
+
+# Deep additions
+architecture:
+  module_breakdown:
+    - module: cmd/mmar
+      responsibility: CLI entry point with server/client/version subcommands
+      key_files: [cmd/mmar/main.go]
+    - module: internal/client
+      responsibility: MmarClient with TCP connection, tunnel creation, request processing
+      key_files: [internal/client/main.go]
+    - module: internal/server
+      responsibility: MmarServer with HTTP server for public requests, TCP server for clients
+      key_files: [internal/server/main.go]
+    - module: internal/protocol
+      responsibility: Tunnel struct and message serialization/deserialization
+      key_files: [internal/protocol/main.go]
+    - module: internal/utils
+      responsibility: Subdomain extraction, ID generation utilities
+      key_files: [internal/utils/main.go]
+    - module: internal/logger
+      responsibility: Colored logging utilities
+      key_files: [internal/logger/main.go]
+    - module: constants
+      responsibility: Default ports, timeouts, environment variable names
+      key_files: [constants/main.go]
+  data_flow: |
+    1. Client connects to server via TCP
+    2. Server assigns unique subdomain via GenerateUniqueSubdomain()
+    3. HTTP requests to subdomain arrive at server's HTTP listener
+    4. Server serializes request, sends via TCP tunnel to client
+    5. Client forwards to localhost, captures response
+    6. Response tunneled back through TCP to server
+    7. Server sends HTTP response to original requester
+  key_abstractions:
+    - name: MmarClient
+      purpose: Client struct with embedded Tunnel, ConfigOptions, and subdomain
+      location: internal/client/main.go:35
+    - name: MmarServer
+      purpose: Server managing clients map, tunnelsPerIP limits, and handlers
+      location: internal/server/main.go:35
+    - name: ClientTunnel
+      purpose: Tunnel wrapper with incoming/outgoing channels and request tracking
+      location: internal/server/main.go:57
+    - name: TunnelMessage
+      purpose: Protocol message with version, type, length, and data
+      location: internal/protocol/main.go
+
+implementation_patterns:
+  - pattern: Binary Protocol
+    description: Version (1 byte) + MsgType (1 byte) + Length (varies) + Delimiter (1 byte) + Data
+    location: internal/protocol/main.go:99-126
+  - pattern: Subdomain Generation
+    description: Random ID generation with reserved subdomain exclusion (admin, stats)
+    location: internal/server/main.go:248-257
+  - pattern: Auto-Reconnect with Reclamation
+    description: Client detects disconnection, reconnects, sends RECLAIM_TUNNEL with previous subdomain
+    location: internal/client/main.go:174-203
+  - pattern: Heartbeat Mechanism
+    description: Bidirectional heartbeats with read deadline extension
+    location: internal/client/main.go:211-231, internal/server/main.go:449-463
+  - pattern: Request Serialization
+    description: HTTP request serialized to bytes for tunnel transport
+    location: internal/server/main.go:171-246
+
+configuration:
+  file: CLI flags and environment variables
+  options:
+    - name: http-port
+      type: int
+      default: 3376
+      description: Server HTTP port for public requests
+    - name: tcp-port
+      type: int
+      default: 6673
+      description: Server TCP port for client connections
+    - name: local-port
+      type: int
+      default: 8000
+      description: Client's local port to forward
+    - name: tunnel-host
+      type: string
+      default: "mmar.dev"
+      description: Tunnel server hostname
+    - name: tunnel-http-port
+      type: int
+      default: 443
+      description: Tunnel server HTTP port
+    - name: tunnel-tcp-port
+      type: int
+      default: 6673
+      description: Tunnel server TCP port
+  environment_variables:
+    - MMAR_ENV_VAR_SERVER_HTTP_PORT
+    - MMAR_ENV_VAR_SERVER_TCP_PORT
+    - MMAR_ENV_VAR_LOCAL_PORT
+    - MMAR_ENV_VAR_TUNNEL_HOST
+    - MMAR_ENV_VAR_CUSTOM_DNS
+    - MMAR_ENV_VAR_CUSTOM_CERT
+
+api_surface:
+  public_functions:
+    - name: client.Run
+      signature: func Run(config ConfigOptions)
+      purpose: Start client and establish tunnel
+      location: internal/client/main.go:283
+    - name: server.Run
+      signature: func Run(config ConfigOptions)
+      purpose: Start server with HTTP and TCP listeners
+      location: internal/server/main.go:582
+    - name: Tunnel.SendMessage
+      signature: func (t *Tunnel) SendMessage(msg TunnelMessage)
+      purpose: Send message through tunnel
+      location: internal/protocol/main.go
+  message_types:
+    - id: 1
+      name: REQUEST
+      purpose: HTTP request forwarding
+    - id: 2
+      name: RESPONSE
+      purpose: HTTP response back
+    - id: 3
+      name: CREATE_TUNNEL
+      purpose: New tunnel creation
+    - id: 4
+      name: RECLAIM_TUNNEL
+      purpose: Reclaim existing tunnel after reconnect
+    - id: 5
+      name: TUNNEL_CREATED
+      purpose: Server assigns subdomain
+    - id: 6
+      name: TUNNEL_RECLAIMED
+      purpose: Tunnel reclaimed successfully
+    - id: 7
+      name: CLIENT_DISCONNECT
+      purpose: Client disconnection
+    - id: 30-33
+      name: HEARTBEAT_*
+      purpose: Connection health checks
+    - id: 27-29, 34
+      name: Error states
+      purpose: Various error conditions
+
+testing:
+  framework: Go testing with simulation framework
+  structure: simulations/
+  coverage_areas:
+    - HTTP method testing (GET, POST, redirects, invalid methods)
+    - Error handling (invalid headers, protocol versions, content-length)
+    - Load testing (10MB request limit)
+    - Connection issues (timeouts, crashes, invalid responses)
+    - Concurrency (multiple clients, subdomain allocation)
+    - Security (stats endpoint authentication)
+  test_file: simulations/simulation_test.go:771-874
+
+extension_points:
+  - location: internal/protocol/main.go
+    hook: Message type constants (lines 20-34)
+    example: Add new message types (NEW_MESSAGE_TYPE = uint8(iota + 35))
+  - location: internal/server/main.go
+    hook: GenerateUniqueSubdomain() (lines 248-257)
+    example: Custom naming schemes, user-provided subdomains, hash-based generation
+  - location: internal/protocol/main.go
+    hook: isValidTunnelMessageType() (lines 39-49)
+    example: Update range check for new message types
+  - location: internal/server/main.go
+    hook: ServeHTTP() (lines 171-246)
+    example: Add authentication, rate limiting, request transformation

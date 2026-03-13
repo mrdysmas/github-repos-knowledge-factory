@@ -1,0 +1,152 @@
+name: podman
+node_id: repo::containers/podman
+github_full_name: containers/podman
+html_url: https://github.com/containers/podman
+source: remote_metadata
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep/containers__podman.yaml
+  as_of: '2026-03-13'
+directory: remote::containers/podman
+category: cli_tool
+
+architecture:
+  module_breakdown:
+  - module: cmd/podman
+    responsibility: "Primary CLI commands for container, image, machine, network, and kube workflows."
+    key_files:
+    - cmd/podman
+  - module: libpod
+    responsibility: "Core runtime library for containers, pods, storage coordination, and lifecycle behavior."
+    key_files:
+    - libpod
+  - module: pkg/api and pkg/bindings
+    responsibility: "API server and client bindings for remote or programmatic control."
+    key_files:
+    - pkg/api
+    - pkg/bindings
+  - module: internal and pkg/domain
+    responsibility: "Shared domain logic, local API behaviors, and internal orchestration helpers."
+    key_files:
+    - internal
+    - pkg/domain
+  key_abstractions:
+  - name: libpod runtime
+    purpose: "Encapsulates container and pod lifecycle management."
+  - name: Podman CLI
+    purpose: "Exposes daemonless container operations and administrative commands."
+  - name: API bindings
+    purpose: "Provide programmatic access to Podman features."
+
+code_patterns:
+- pattern: "CLI subcommand decomposition"
+  description: "Command families are grouped by domain under cmd/podman."
+  location: cmd/podman
+- pattern: "Runtime-and-API split"
+  description: "Core runtime behavior lives in libpod while remote and programmatic surfaces live in pkg/api and pkg/bindings."
+  location: libpod
+- pattern: "Domain layering"
+  description: "Shared domain logic is separated into pkg/domain and internal packages."
+  location: pkg/domain
+
+implementation_patterns:
+- pattern: "Daemonless container workflow"
+  description: "Container operations are implemented around local runtime management rather than a long-lived daemon requirement."
+  location: libpod
+- pattern: "Local and remote control surfaces"
+  description: "CLI, API, and bindings packages expose the same runtime capabilities through separate interfaces."
+  location: pkg/api
+
+core_modules:
+  cli:
+    path: cmd/podman
+    description: "CLI command tree for container workflows."
+  runtime:
+    path: libpod
+    description: "Core runtime and lifecycle management."
+  api:
+    path: pkg/api
+    description: "API server surfaces and handlers."
+  bindings:
+    path: pkg/bindings
+    description: "Programmatic client bindings."
+
+key_features:
+- feature: "Daemonless container management"
+  description: "Runs container and pod workflows without a permanently running daemon."
+- feature: "Pods and Kubernetes-oriented tooling"
+  description: "Supports pod abstractions and kube-related command surfaces."
+- feature: "Remote and API access"
+  description: "Exposes API and binding layers in addition to the CLI."
+- feature: "Machine and rootless workflows"
+  description: "Supports local VM/machine helpers and rootless operation paths."
+
+key_files:
+- path: README.md
+  description: "Project overview and user-facing workflow guidance."
+- path: go.mod
+  description: "Go module definitions."
+- path: cmd/podman
+  description: "CLI command implementation tree."
+- path: libpod
+  description: "Core runtime package."
+- path: pkg/api
+  description: "API server packages."
+
+configuration:
+- name: runtime_settings
+  options:
+  - key: storage-driver
+    description: "Container storage backend selection."
+  - key: cgroup-manager
+    description: "Cgroup management mode."
+  - key: events-backend
+    description: "Event logging backend."
+  - key: rootless
+    description: "Rootless runtime behavior."
+
+testing:
+  framework: make test
+  structure: "Repository includes Go tests and scenario coverage across runtime, API, and CLI workflows."
+  coverage_areas:
+  - "Container lifecycle behavior"
+  - "CLI command families"
+  - "API and bindings behavior"
+  test_patterns:
+  - "make test"
+
+integrations:
+  container_stack:
+  - OCI container workflows
+  - image management
+  - kube command surfaces
+  interfaces:
+  - CLI users
+  - API consumers
+  - binding clients
+
+quick_reference:
+- topic: "Build project"
+  command: "make"
+- topic: "Run tests"
+  command: "make test"
+
+commands:
+- name: "make"
+  description: "Build Podman and related components."
+  usage: "make"
+- name: "make test"
+  description: "Run test suite."
+  usage: "make test"
+
+api_surface:
+  public_functions:
+  - name: podman CLI
+    purpose: "Provide user-facing container, image, pod, and machine commands."
+    location: cmd/podman
+  - name: libpod runtime
+    purpose: "Implement core container lifecycle behavior."
+    location: libpod
+  - name: Podman API
+    purpose: "Expose remote and programmatic control surfaces."
+    location: pkg/api

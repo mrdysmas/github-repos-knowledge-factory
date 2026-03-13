@@ -1,0 +1,262 @@
+name: graphrag
+node_id: repo::microsoft/graphrag
+github_full_name: microsoft/graphrag
+html_url: https://github.com/microsoft/graphrag
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep/graphrag.yaml
+  as_of: '2026-02-25'
+sparse: false
+code_patterns:
+  - name: CLI Main Entry Point
+    description: Typer-based CLI with init, index, query, update, prompt-tune commands
+    file_reference: packages/graphrag/graphrag/cli/main.py
+    code: |
+      app = typer.Typer(
+          help="GraphRAG: A graph-based retrieval-augmented generation (RAG) system.",
+          no_args_is_help=True,
+      )
+
+      @app.command("init")
+      def _initialize_cli(
+          root: Path = typer.Option(Path.cwd(), "--root", "-r"),
+          model: str = typer.Option(DEFAULT_COMPLETION_MODEL, "--model", "-m"),
+          embedding_model: str = typer.Option(DEFAULT_EMBEDDING_MODEL, "--embedding", "-e"),
+          force: bool = typer.Option(False, "--force", "-f"),
+      ) -> None:
+          """Generate a default configuration file."""
+          from graphrag.cli.initialize import initialize_project_at
+          initialize_project_at(path=root, force=force, model=model, embedding_model=embedding_model)
+
+      @app.command("index")
+      def _index_cli(
+          root: Path = typer.Option(Path.cwd(), "--root", "-r"),
+          method: IndexingMethod = typer.Option(IndexingMethod.Standard.value, "--method", "-m"),
+          verbose: bool = typer.Option(False, "--verbose", "-v"),
+          cache: bool = typer.Option(True, "--cache/--no-cache"),
+      ) -> None:
+          """Build a knowledge graph index."""
+          from graphrag.cli.index import index_cli
+          index_cli(root_dir=root, verbose=verbose, cache=cache, method=method)
+
+      @app.command("query")
+      def _query_cli(
+          query: str = typer.Argument(help="The query to execute."),
+          root: Path = typer.Option(Path.cwd(), "--root", "-r"),
+          method: SearchMethod = typer.Option(SearchMethod.GLOBAL.value, "--method", "-m"),
+          community_level: int = typer.Option(2, "--community-level"),
+          response_type: str = typer.Option("Multiple Paragraphs", "--response-type"),
+      ) -> None:
+          """Query a knowledge graph index."""
+          ...
+
+  - name: Query Methods
+    description: Different search algorithms for querying the knowledge graph
+    file_reference: packages/graphrag/graphrag/cli/main.py
+    code: |
+      from graphrag.cli.query import (
+          run_basic_search,
+          run_drift_search,
+          run_global_search,
+          run_local_search,
+      )
+
+      match method:
+          case SearchMethod.LOCAL:
+              run_local_search(
+                  data_dir=data, root_dir=root,
+                  community_level=community_level,
+                  response_type=response_type, query=query,
+              )
+          case SearchMethod.GLOBAL:
+              run_global_search(
+                  data_dir=data, root_dir=root,
+                  dynamic_community_selection=dynamic_community_selection,
+                  response_type=response_type, query=query,
+              )
+          case SearchMethod.DRIFT:
+              run_drift_search(...)
+          case SearchMethod.BASIC:
+              run_basic_search(...)
+
+  - name: GraphRAG Configuration Model
+    description: Main Pydantic configuration class defining all indexing and search parameters
+    file_reference: packages/graphrag/graphrag/config/models/graph_rag_config.py
+    code: |
+      class GraphRagConfig(BaseModel):
+          # Model configurations
+          completion_models: dict[str, ModelConfig] = Field(default=...)
+          embedding_models: dict[str, ModelConfig] = Field(default=...)
+
+          # Processing settings
+          concurrent_requests: int = Field(default=25)
+          async_mode: AsyncType = Field(default=AsyncType.Threaded)
+
+          # Storage configurations
+          input_storage: StorageConfig = Field(default=...)
+          output_storage: StorageConfig = Field(default=...)
+          cache: CacheConfig = Field(default=...)
+          vector_store: VectorStoreConfig = Field(default=...)
+
+          # Pipeline configurations
+          chunking: ChunkingConfig = Field(default=...)
+          extract_graph: ExtractGraphConfig = Field(default=...)
+          community_reports: CommunityReportsConfig = Field(default=...)
+          extract_claims: ExtractClaimsConfig = Field(default=...)
+
+          # Search configurations
+          local_search: LocalSearchConfig = Field(default=...)
+          global_search: GlobalSearchConfig = Field(default=...)
+          drift_search: DRIFTSearchConfig = Field(default=...)
+          basic_search: BasicSearchConfig = Field(default=...)
+
+  - name: Default Configuration Values
+    description: Default settings for chunking, embeddings, search parameters
+    file_reference: packages/graphrag/graphrag/config/defaults.py
+    code: |
+      DEFAULT_INPUT_BASE_DIR = "input"
+      DEFAULT_OUTPUT_BASE_DIR = "output"
+      DEFAULT_CACHE_BASE_DIR = "cache"
+      DEFAULT_COMPLETION_MODEL = "gpt-4.1"
+      DEFAULT_EMBEDDING_MODEL = "text-embedding-3-large"
+
+      @dataclass
+      class ChunkingDefaults:
+          type: str = ChunkerType.Tokens
+          size: int = 1200
+          overlap: int = 100
+          encoding_model: str = "o200k_base"
+
+      @dataclass
+      class LocalSearchDefaults:
+          text_unit_prop: float = 0.5
+          community_prop: float = 0.15
+          top_k_entities: int = 10
+          top_k_relationships: int = 10
+          max_context_tokens: int = 12_000
+
+      @dataclass
+      class EmbedTextDefaults:
+          batch_size: int = 16
+          batch_max_tokens: int = 8191
+
+configuration:
+  - key: completion_models
+    type: dict
+    default: {}
+    description: LLM configurations keyed by model ID
+  - key: embedding_models
+    type: dict
+    default: {}
+    description: Embedding model configurations
+  - key: chunking.size
+    type: int
+    default: 1200
+    description: Token count per chunk
+  - key: chunking.overlap
+    type: int
+    default: 100
+    description: Token overlap between chunks
+  - key: chunking.encoding_model
+    type: str
+    default: o200k_base
+    description: Tokenizer encoding model
+  - key: embed_text.batch_size
+    type: int
+    default: 16
+    description: Embedding batch size
+  - key: concurrent_requests
+    type: int
+    default: 25
+    description: Number of concurrent LLM requests
+  - key: input_storage.base_dir
+    type: str
+    default: input
+    description: Directory containing input documents
+  - key: output_storage.base_dir
+    type: str
+    default: output
+    description: Directory for index outputs
+  - key: vector_store.type
+    type: str
+    default: LanceDB
+    description: Vector store type (LanceDB, etc.)
+  - key: local_search.max_context_tokens
+    type: int
+    default: 12000
+    description: Max tokens for local search context
+  - key: global_search.max_context_tokens
+    type: int
+    default: 12000
+    description: Max tokens for global search context
+
+common_tasks:
+  - task: Initialize new project
+    command: graphrag init --root ./myproject
+    description: Create project directory with default settings.yaml
+  - task: Build index
+    command: graphrag index --root ./myproject
+    description: Run full indexing pipeline on input documents
+  - task: Query local search
+    command: graphrag query --root ./myproject --method local "What are the main entities?"
+    description: Local graph-based search focused on relevant entities
+  - task: Query global search
+    command: graphrag query --root ./myproject --method global "Summarize the document themes"
+    description: Global search using community summaries
+  - task: Query DRIFT search
+    command: graphrag query --root ./myproject --method drift "Follow these relationships..."
+    description: DRIFT search for multi-hop reasoning
+  - task: Update existing index
+    command: graphrag update --root ./myproject
+    description: Incremental index update for new documents
+  - task: Generate custom prompts
+    command: graphrag prompt-tune --root ./myproject
+    description: Auto-generate domain-specific prompts from data
+  - task: Dry run
+    command: graphrag index --root ./myproject --dry-run
+    description: Validate configuration without running LLM steps
+
+troubleshooting:
+  - issue: API rate limits
+    solution: |
+      - Reduce concurrent_requests in config
+      - Lower embed_text.batch_size
+      - Enable caching (default) to avoid re-processing
+      - Consider using Azure OpenAI with higher rate limits
+  - issue: Slow indexing
+    solution: |
+      - Start with small document sets for testing
+      - Use caching to resume interrupted runs
+      - Increase concurrent_requests if rate limits allow
+      - Check input document sizes - may need chunking adjustment
+  - issue: Empty or missing results
+    solution: |
+      - Verify input/ directory contains documents
+      - Check API key is set correctly
+      - Ensure output/ directory exists with parquet files
+      - Verify vector_store.db_uri path is accessible
+  - issue: Out of memory during indexing
+    solution: |
+      - Reduce chunking.size
+      - Lower batch sizes for embeddings
+      - Process documents in smaller batches
+      - Use streaming mode if available
+
+quick_reference:
+  - "# Initialize project"
+  - "graphrag init --root ./myproject --model gpt-4o --embedding text-embedding-3-small"
+  - ""
+  - "# Place documents in input/"
+  - "cp *.txt ./myproject/input/"
+  - ""
+  - "# Build index"
+  - "graphrag index --root ./myproject --verbose"
+  - ""
+  - "# Query with different methods"
+  - "graphrag query --root ./myproject --method local 'query text'"
+  - "graphrag query --root ./myproject --method global 'query text'"
+  - "graphrag query --root ./myproject --method drift 'query text'"
+  - ""
+  - "# Generate tuned prompts"
+  - "graphrag prompt-tune --root ./myproject --output ./myproject/prompts"

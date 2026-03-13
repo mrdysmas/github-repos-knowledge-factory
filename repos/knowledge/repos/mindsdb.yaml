@@ -1,0 +1,91 @@
+name: mindsdb
+node_id: repo::mindsdb/mindsdb
+github_full_name: mindsdb/mindsdb
+html_url: https://github.com/mindsdb/mindsdb
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/repos/mindsdb.yaml
+  as_of: '2026-02-25'
+directory: mindsdb-main
+category: data_pipelines
+
+summary: |
+  Data federation platform enabling humans, AI, and agents to query across large-scale
+  data sources. Connect, Unify, Respond philosophy with built-in MCP server, knowledge
+  bases for unstructured data, and SQL-based agents. Connects to hundreds of enterprise
+  data sources for unified querying without ETL.
+
+core_concepts:
+  - name: Data Integrations
+    description: 100+ connectors for databases, warehouses, SaaS
+    location: mindsdb/integrations/
+
+  - name: Knowledge Bases
+    description: Index and query unstructured data via SQL
+    location: mindsdb/interfaces/knowledge_base/
+
+  - name: MCP Server
+    description: Built-in Model Context Protocol for AI agents
+    location: mindsdb/api/mcp/
+
+  - name: Agents
+    description: SQL-configured agents for data Q&A
+    location: mindsdb/interfaces/agents/
+
+key_entry_points:
+  - path: mindsdb/
+    purpose: Core server and modules
+
+  - path: mindsdb/integrations/
+    purpose: Data source connectors
+
+  - path: mindsdb/api/
+    purpose: HTTP and MCP APIs
+
+  - path: mindsdb/interfaces/
+    purpose: Knowledge bases, agents, ML engines
+
+build_run:
+  language: Python
+  install: "docker run -p 47324:47324 mindsdb/mindsdb"
+  usage: |
+    # Access at http://localhost:47324
+    # SQL interface for querying across data sources
+    # CREATE KNOWLEDGE BASE, CREATE AGENT via SQL
+
+key_features:
+  - 100+ data source integrations
+  - No-ETL data federation via views
+  - Built-in MCP server for AI agents
+  - Knowledge bases for unstructured data
+  - SQL-configured agents
+  - Jobs for scheduled sync/transformation
+
+use_cases:
+  - Enterprise data unification
+  - AI agents over federated data
+  - Knowledge base from multiple sources
+  - Real-time data Q&A
+
+ecosystem_connections:
+  - target: langchain
+    relation: integrates_with
+    note: MindsDB can be used as data source for LangChain agents
+
+  - target: milvus
+    relation: integrates_with
+    note: MindsDB may use vector backends for knowledge bases
+
+  - target: maxkb
+    relation: related_to
+    note: Both have MCP server support
+
+  - target: ragflow
+    relation: alternative_to
+    note: Different approaches; MindsDB is data federation, RAGFlow is RAG platform
+
+further_reading:
+  - README.md
+  - docs: https://docs.mindsdb.com
+  - web: https://mindsdb.com

@@ -1,0 +1,44 @@
+name: codex
+node_id: repo::openai/codex
+github_full_name: openai/codex
+html_url: https://github.com/openai/codex
+source: remote_metadata
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/repos/openai__codex.yaml
+  as_of: '2026-02-24T19:46:56Z'
+directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/openai__codex
+category: agent_cli
+summary: Shallow intake pilot canonicalization for openai/codex in agent cli domain.
+core_concepts:
+- agent cli capabilities
+- codex repository architecture
+key_entry_points:
+- README.md
+- package.json
+- docs/
+build_run:
+  language: javascript
+  build: npm run build
+  test: npm test
+local_cache_dir: null
+extras:
+  intake:
+    pilot_batch_id: INTAKE-PILOT-1
+    repo_id: repo::openai/codex
+    queue_id: intake::openai/codex
+    intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/openai__codex
+    domain_hint: agent_cli
+    source_mode: local_clone
+    source_commit: 97d0068658a61df999fe545f06c13a69cda19e86
+    default_branch: main
+    observed_at_utc: '2026-02-24T19:46:56Z'
+  remote:
+    provider: github
+    mode: metadata
+    endpoint: /repos/openai/codex
+    fetched_at_utc: '2026-02-24T19:46:56Z'
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false

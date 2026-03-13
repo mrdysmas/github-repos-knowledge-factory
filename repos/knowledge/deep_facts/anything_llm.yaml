@@ -1,0 +1,423 @@
+name: anything_llm
+node_id: repo::mintplex-labs/anything-llm
+github_full_name: mintplex-labs/anything-llm
+html_url: https://github.com/mintplex-labs/anything-llm
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep_facts/anything_llm.yaml
+  as_of: '2026-02-25'
+  extractor_version: ws6-deep-integrator-v1
+facts:
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    source_section: integrations.api_endpoints[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.api_endpoints[0]
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    excerpt: /api/v1/chat
+  object_value: /api/v1/chat
+  note: POST; Streaming chat with workspace
+  fact_id: fact::200907be3b1275c3d35e96db
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    source_section: integrations.api_endpoints[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.api_endpoints[1]
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    excerpt: /api/v1/document/upload
+  object_value: /api/v1/document/upload
+  note: POST; Document upload endpoint
+  fact_id: fact::2a7733479208b5b0074d54e2
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    source_section: integrations.api_endpoints[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.api_endpoints[2]
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    excerpt: /api/v1/workspace
+  object_value: /api/v1/workspace
+  note: GET/POST; Workspace management
+  fact_id: fact::813177b5ffa5bc36cc53974f
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    source_section: architecture.components[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.components[1]
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    excerpt: Collector
+  object_value: Collector
+  note: Document processing service for file ingestion
+  fact_id: fact::3336d51aff614de234f3078d
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    source_section: architecture.components[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.components[3]
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    excerpt: Docker
+  object_value: Docker
+  note: Container orchestration for production deployment
+  fact_id: fact::06fc845b066eb2314c52f844
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    source_section: tech_stack[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tech_stack[1].line[0]
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    excerpt: Express
+  object_value: Express
+  note: technology stack (tech_stack)
+  fact_id: fact::18c73debaa18b85e9d2270df
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    source_section: architecture.components[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.components[2]
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    excerpt: Frontend
+  object_value: Frontend
+  note: React-based web UI
+  fact_id: fact::36d74f66f915508602333471
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    source_section: tech_stack[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tech_stack[0].line[0]
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    excerpt: Node.js
+  object_value: Node.js
+  note: technology stack (tech_stack)
+  fact_id: fact::c6c0366488146aec7dd4d14f
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    source_section: tech_stack[3].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tech_stack[3].line[0]
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    excerpt: Prisma
+  object_value: Prisma
+  note: technology stack (tech_stack)
+  fact_id: fact::04d353cf9caabf5f5059d5bc
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    source_section: tech_stack[2].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tech_stack[2].line[0]
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    excerpt: React
+  object_value: React
+  note: technology stack (tech_stack)
+  fact_id: fact::b69fe86d4501b388d8f8037f
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    source_section: tech_stack[4].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tech_stack[4].line[0]
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    excerpt: SQLite/PostgreSQL
+  object_value: SQLite/PostgreSQL
+  note: technology stack (tech_stack)
+  fact_id: fact::a96c5c1f771629d7bd25aff1
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    source_section: architecture.components[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.components[0]
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    excerpt: Server
+  object_value: Server
+  note: Express API server with authentication and LLM routing
+  fact_id: fact::97251bec1411508d7417c612
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    source_section: integrations.embeddable[0].description.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.embeddable[0].description.line[0]
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    excerpt: Embeddable chat widget
+  object_value: Embeddable chat widget
+  note: 'integration group: embeddable'
+  fact_id: fact::6d7c2ffd1fd0fe7f9e2606ca
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    excerpt: 401 errors on requests
+  object_value: 401 errors on requests
+  note: 'cause: AUTH_TOKEN or JWT_SECRET mismatch; solution: Verify tokens match between
+    env and requests'
+  fact_id: fact::cb2c21466297e063c6f91c3f
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    source_section: troubleshooting[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[4]
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    excerpt: Cross-origin requests blocked
+  object_value: Cross-origin requests blocked
+  note: 'cause: Frontend URL mismatch; solution: Configure CORS origin in server settings'
+  fact_id: fact::9b9cd9b2cc6ff19ba25da993
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    excerpt: Files over 3GB fail
+  object_value: Files over 3GB fail
+  note: 'cause: Hard limit enforced in server + collector; solution: Split large files
+    or increase limit in source'
+  fact_id: fact::9c81a8c4095bcd7f64b4381e
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    excerpt: No login screen, single user only
+  object_value: No login screen, single user only
+  note: 'cause: JWT_SECRET not configured; solution: Set JWT_SECRET with 12+ characters'
+  fact_id: fact::dc74642217102619583a8bb3
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    excerpt: Using LanceDB despite other config
+  object_value: Using LanceDB despite other config
+  note: 'cause: VECTOR_DB env var not set or invalid; solution: Set VECTOR_DB environment
+    variable explicitly'
+  fact_id: fact::9e939ea34784aaf5e94b4ab6
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    source_section: code_patterns[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: code_patterns[2]
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    excerpt: Express server with 3 main endpoints for document processing. Supports
+      multiple file types with MIME validation. Processes files into documents with
+      metadata and vector embeddings. Enforces 3GB file size limit.
+  object_value: Document Pipeline
+  note: 'description: Express server with 3 main endpoints for document processing.
+    Supports multiple file types with MIME validation. Processes files into documents
+    with metadata and vector embeddings. Enforces 3GB file size limit.'
+  fact_id: fact::d665b08e455669c59a181c7a
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    source_section: code_patterns[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: code_patterns[4]
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    excerpt: Multi-layered authentication supporting single/multi-user modes. JWT
+      tokens with role-based permissions (admin, manager, default). Workspace and
+      thread validation guards.
+  object_value: Middleware Chain
+  note: 'description: Multi-layered authentication supporting single/multi-user modes.
+    JWT tokens with role-based permissions (admin, manager, default). Workspace and
+    thread validation guards.'
+  fact_id: fact::d5de60e5e6edf2ae8d4a4364
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    source_section: code_patterns[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: code_patterns[3]
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    excerpt: SQLite by default with PostgreSQL option. Models cover workspace settings,
+      document vectors, chat history, and user management with roles.
+  object_value: Prisma ORM
+  note: 'description: SQLite by default with PostgreSQL option. Models cover workspace
+    settings, document vectors, chat history, and user management with roles.'
+  fact_id: fact::f792a1c2653b122e85238ed9
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    source_section: code_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: code_patterns[0]
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    excerpt: 'Factory pattern using environment variables to select providers. Supports
+      35+ LLM providers and 10+ vector databases. Each provider implements consistent
+      interface: getChatCompletion(), streamGetChatCompletion(), embedTextInput().'
+  object_value: Provider Factory
+  note: 'description: Factory pattern using environment variables to select providers.
+    Supports 35+ LLM providers and 10+ vector databases. Each provider implements
+    consistent interface: getChatCompletion(), streamGetChatCompletion(), embedTextInput().'
+  fact_id: fact::275ab82471df021293e7a8be
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    source_section: code_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: code_patterns[1]
+    source_file: llm_repos/knowledge/deep/anything_llm.yaml
+    excerpt: 'Server-Sent Events (SSE) implementation with Express. Sets Content-Type:
+      text/event-stream with Connection: keep-alive. Chunks include chatId, text,
+      sources, and close signals.'
+  object_value: Streaming Chat
+  note: 'description: Server-Sent Events (SSE) implementation with Express. Sets Content-Type:
+    text/event-stream with Connection: keep-alive. Chunks include chatId, text, sources,
+    and close signals.'
+  fact_id: fact::f6394280f407036700cc6dfe

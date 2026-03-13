@@ -1,0 +1,82 @@
+name: hiddify-app
+node_id: repo::hiddify/hiddify-app
+github_full_name: hiddify/hiddify-app
+html_url: https://github.com/hiddify/hiddify-app
+source: ssh_repos
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/repos/hiddify-app.yaml
+  as_of: '2026-02-25'
+directory: hiddify-app-main
+category: documentation
+summary: |
+  Cross-platform multi-protocol proxy/VPN client built on Flutter with Sing-box core,
+  designed for censorship circumvention in restrictive regions (Iran, China, Russia).
+core_concepts:
+  - name: Sing-box Core Integration
+    description: |
+      Uses a separate Go-based core (hiddify-core) compiled as native library,
+      communicated via gRPC. The Flutter app acts as UI frontend managing profiles,
+      connections, and configuration while the core handles actual tunneling.
+  - name: Profile-based Configuration
+    description: |
+      Supports multiple subscription/profile formats (Sing-box, V2ray, Clash, Clash Meta)
+      with automatic updates, traffic usage tracking, and expiry monitoring.
+      Profiles contain proxy server configurations and routing rules.
+  - name: Multi-platform TUN Mode
+    description: |
+      Implements system-wide VPN tunneling via TUN interface across Android, iOS,
+      Windows, macOS, and Linux using platform-specific network extensions
+      (PacketTunnelProvider on iOS/macOS, VpnService on Android).
+key_entry_points:
+  - path: lib/main.dart:7
+    purpose: Main entry point - initializes Flutter binding and calls lazyBootstrap
+  - path: lib/bootstrap.dart:32
+    purpose: App initialization orchestration - sets up directories, preferences, logging, profiles, translations, core service, and system tray
+  - path: lib/features/app/widget/app.dart:34
+    purpose: Root App widget - configures routing, theming, localization, lifecycle handling, and wraps app with connection/window/shortcut providers
+  - path: lib/features/connection/notifier/connection_notifier.dart:24
+    purpose: Connection state management - handles connect/disconnect/reconnect operations, monitors connection status stream from core
+  - path: lib/hiddifycore/hiddify_core_service.dart:32
+    purpose: gRPC client wrapper - communicates with hiddify-core native library for tunnel start/stop, config validation, outbound selection, logs
+build_run:
+  language: Dart/Flutter
+  package_manager: pub (flutter pub get)
+  flutter_version: ">=3.38.5"
+  dart_sdk: ">=3.10.4"
+  build_command: |
+    # Development build
+    flutter pub get
+    dart run build_runner build --delete-conflicting-outputs
+    flutter run
+
+    # Platform-specific release (requires core libs)
+    make android-prepare  # or windows-prepare, linux-prepare, macos-prepare, ios-prepare
+    flutter build apk     # or appropriate platform build
+  run_command: flutter run
+  notes: |
+    Requires hiddify-core native libraries downloaded via Makefile targets.
+    Core libraries are fetched from github.com/hiddify/hiddify-next-core releases.
+    Build uses fastforge for release packaging across platforms.
+ecosystem_connections:
+  similar_to:
+    - v2rayN (Windows V2Ray client)
+    - Clash for Windows
+    - Shadowrocket (iOS)
+    - Nekobox (Android)
+    - sing-box official clients
+  alternatives:
+    - NekoBox for Android
+    - FlClash (Flutter Clash client)
+    - Stash (iOS)
+    - Shadowrocket
+    - Quantumult X
+    - surfeze
+  used_with:
+    - hiddify-server (self-hosted proxy panel)
+    - sing-box (core proxy engine)
+    - Marzban (proxy management panel)
+    - V2Ray/Xray servers
+    - WireGuard servers
+    - Hysteria/TUIC servers
+    - WARP (Cloudflare)

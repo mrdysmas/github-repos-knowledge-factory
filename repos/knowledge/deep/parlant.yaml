@@ -1,0 +1,217 @@
+# parlant - Enterprise AI Agent Framework
+# Deep knowledge file generated from codebase analysis
+# Source: parlant-develop
+
+name: parlant
+node_id: repo::emcie-co/parlant
+github_full_name: emcie-co/parlant
+html_url: https://github.com/emcie-co/parlant
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep/parlant.yaml
+  as_of: '2026-02-25'
+metadata:
+  repo_path: parlant-develop
+  primary_language: Python
+  secondary_languages: []
+  category: agent_framework
+  description: Enterprise AI agent framework with guidelines, journeys, and tools
+
+architecture:
+  pattern: Hexagonal (Ports & Adapters)
+  backend: FastAPI
+  dependency_injection: lagom
+  python_version: "3.10+"
+  default_port: 8800
+  tool_service_port: 8818
+  entry_point: parlant-server
+
+core_modules:
+  core:
+    path: src/parlant/core/
+    description: Domain logic - agents, sessions, guidelines, journeys
+    submodules:
+      - agents
+      - sessions
+      - guidelines
+      - journeys
+      - events
+      - tools
+      - glossary
+      - canned_responses
+  api:
+    path: src/parlant/api/
+    description: REST API endpoints and schemas
+  adapters:
+    path: src/parlant/adapters/
+    description: Infrastructure adapters (LLM, vector DB, tracing)
+    submodules:
+      - llm
+      - db
+      - tracing
+      - vector_db
+  client:
+    path: src/parlant/client/
+    description: Python client SDK
+
+cli_commands:
+  server:
+    syntax: parlant-server
+    description: Start Parlant server
+  client:
+    syntax: parlant
+    description: Interactive client CLI
+  agents_list:
+    syntax: parlant agents list
+    description: List all agents
+  agents_create:
+    syntax: parlant agents create
+    description: Create new agent
+  test:
+    syntax: parlant-test tests.py
+    description: Run test suite
+
+key_concepts:
+  guidelines:
+    description: Natural language if-then rules that control agent behavior
+    structure:
+      condition: When condition applies
+      action: Then perform action
+    example: |
+      If the user asks about pricing
+      Then direct them to the pricing page and mention current discounts
+  journeys:
+    description: State machine conversation flows for structured interactions
+    components:
+      - states
+      - transitions
+      - triggers
+  tools:
+    description: Async functions decorated with @p.tool for agent capabilities
+    registration: |
+      @p.tool
+      async def my_tool(param: str) -> str:
+          """Tool description"""
+          return result
+  canned_responses:
+    description: Predefined response templates for consistent messaging
+    use_case: Standard replies, error messages, confirmations
+  glossary:
+    description: Domain terminology definitions for consistent understanding
+    purpose: Ensure consistent interpretation of domain-specific terms
+  sessions:
+    description: Conversation sessions with message history
+    persistence: Stored in database for continuity
+  events:
+    description: Event system for async processing and integration
+    types: [message, tool_call, guideline_match, state_transition]
+
+llm_providers:
+  - openai
+  - anthropic
+  - azure_openai
+  - google
+  - huggingface
+  - aws_bedrock
+  - together_ai
+  - ollama
+
+environment_variables:
+  PARLANT_PORT:
+    default: "8800"
+    description: Main server port
+  PARLANT_TOOL_SERVICE_PORT:
+    default: "8818"
+    description: Tool service port
+  PARLANT_DB_URL:
+    description: Database connection string
+  VECTOR_DB_URL:
+    description: Vector database URL for semantic search
+  OPENAI_API_KEY:
+    description: OpenAI authentication key
+  ANTHROPIC_API_KEY:
+    description: Anthropic authentication key
+  AZURE_OPENAI_API_KEY:
+    description: Azure OpenAI authentication key
+  AZURE_OPENAI_ENDPOINT:
+    description: Azure OpenAI endpoint URL
+  GOOGLE_API_KEY:
+    description: Google AI authentication key
+  HF_TOKEN:
+    description: Hugging Face token
+  AWS_ACCESS_KEY_ID:
+    description: AWS access key for Bedrock
+  AWS_SECRET_ACCESS_KEY:
+    description: AWS secret key for Bedrock
+  AWS_REGION:
+    default: us-east-1
+    description: AWS region for Bedrock
+  TOGETHER_API_KEY:
+    description: Together AI authentication key
+  OLLAMA_BASE_URL:
+    default: http://localhost:11434
+    description: Ollama server URL
+
+api_structure:
+  agents:
+    path: /agents
+    operations: [list, create, read, update, delete]
+  sessions:
+    path: /sessions
+    operations: [list, create, read, update, delete, events]
+  guidelines:
+    path: /guidelines
+    operations: [list, create, read, update, delete]
+  journeys:
+    path: /journeys
+    operations: [list, create, read, update, delete]
+  tools:
+    path: /tools
+    operations: [list, register, invoke]
+  glossary:
+    path: /glossary
+    operations: [list, create, update, delete]
+  canned_responses:
+    path: /canned-responses
+    operations: [list, create, update, delete]
+
+sdk_usage:
+  installation: pip install parlant
+  client_init: |
+    from parlant import Client
+    client = Client(base_url="http://localhost:8800")
+  create_agent: |
+    agent = client.agents.create(
+      name="Support Agent",
+      description="Customer support assistant"
+    )
+  create_session: |
+    session = client.sessions.create(agent_id=agent.id)
+  send_message: |
+    response = client.sessions.event(session.id, {
+      "type": "message",
+      "content": "Hello!"
+    })
+  add_guideline: |
+    guideline = client.guidelines.create(
+      agent_id=agent.id,
+      condition="User asks about returns",
+      action="Explain return policy"
+    )
+
+testing:
+  framework: parlant-test
+  example: |
+    # tests.py
+    from parlant.testing import TestSession
+
+    async def test_greeting():
+      session = TestSession(agent_id="support")
+      response = await session.send("Hello!")
+      assert "help" in response.content.lower()
+
+related_repos:
+  - langchain
+  - mem0
+  - khoj

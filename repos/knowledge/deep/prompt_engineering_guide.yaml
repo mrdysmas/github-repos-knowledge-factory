@@ -1,0 +1,328 @@
+# Deep Knowledge: Prompt Engineering Guide
+# Repository: Prompt-Engineering-Guide-main
+# Last Updated: 2026-02-22
+
+name: Prompt-Engineering-Guide
+node_id: repo::dair-ai/prompt-engineering-guide
+github_full_name: dair-ai/prompt-engineering-guide
+html_url: https://github.com/dair-ai/prompt-engineering-guide
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep/prompt_engineering_guide.yaml
+  as_of: '2026-02-25'
+description: Educational resource for prompt engineering techniques, models, and applications
+tech_stack:
+  - Next.js
+  - Nextra (documentation framework)
+  - MDX
+  - Jupyter Notebooks
+
+# Core Architecture
+architecture:
+  pattern: Static Documentation Site
+  components:
+    - name: Pages
+      path: pages/
+      description: MDX content pages organized by topic
+    - name: Components
+      path: components/
+      description: React components for documentation
+    - name: Guides
+      path: guides/
+      description: In-depth tutorial content
+    - name: Notebooks
+      path: notebooks/
+      description: Interactive Jupyter examples
+    - name: Localization
+      path: pages/_meta.*.json
+      description: Multi-language support (12+ languages)
+
+# Content Structure
+content_structure:
+  sections:
+    - name: Introduction
+      path: pages/*.en.mdx
+      topics:
+        - Basics of prompt engineering
+        - LLM settings (temperature, top_p)
+        - Prompt elements and structure
+
+    - name: Techniques
+      path: pages/techniques/
+      topics:
+        - Zero-shot prompting
+        - Few-shot prompting
+        - Chain-of-Thought (CoT)
+        - Self-Consistency
+        - Tree of Thoughts (ToT)
+        - Retrieval Augmented Generation (RAG)
+        - ReAct (Reasoning + Acting)
+        - Program-Aided Language Models (PAL)
+        - Automatic Prompt Engineer (APE)
+        - Active-Prompt
+        - Directional Stimulus Prompting
+        - Multimodal CoT
+        - Graph Prompting
+
+    - name: Applications
+      path: pages/applications/
+      topics:
+        - Text classification
+        - Information extraction
+        - Question answering
+        - Summarization
+        - Code generation
+        - Reasoning tasks
+
+    - name: Prompts
+      path: pages/prompts/
+      topics:
+        - Category-specific collections
+        - Production-ready examples
+        - Anti-patterns to avoid
+
+    - name: Models
+      path: pages/models/
+      topics:
+        - Model-specific guides
+        - Capabilities comparison
+        - Best practices per model
+
+    - name: Risks & Misuse
+      path: pages/risks/
+      topics:
+        - Safety considerations
+        - Bias mitigation
+        - Adversarial prompting
+        - Factuality issues
+
+    - name: Research
+      path: pages/research/
+      topics:
+        - Academic papers
+        - Research areas
+        - Benchmarks
+
+    - name: Tools
+      path: pages/tools/
+      topics:
+        - Libraries and frameworks
+        - Evaluation tools
+        - Development utilities
+
+# Key Techniques
+techniques:
+  - name: Zero-Shot Prompting
+    description: Prompts without examples, relying on model's pre-trained knowledge
+    use_case: Simple tasks, classification, when examples unavailable
+
+  - name: Few-Shot Prompting
+    description: Include examples in prompt to guide model behavior
+    use_case: Complex tasks, domain-specific formatting, style imitation
+
+  - name: Chain-of-Thought (CoT)
+    description: Explicit step-by-step reasoning in prompt
+    use_case: Math, logic, multi-step problems
+
+  - name: Self-Consistency
+    description: Multiple reasoning paths, aggregate results
+    use_case: High-stakes decisions, reducing variance
+
+  - name: Tree of Thoughts (ToT)
+    description: Explore multiple reasoning branches
+    use_case: Complex search, planning, creative tasks
+
+  - name: ReAct
+    description: Interleave reasoning and external actions
+    use_case: Tool use, information retrieval, agents
+
+  - name: RAG
+    description: Retrieve relevant context before generation
+    use_case: Knowledge-intensive tasks, factual accuracy
+
+  - name: PAL
+    description: Generate code to solve problems
+    use_case: Mathematical reasoning, data manipulation
+
+  - name: APE
+    description: Automatically generate/optimize prompts
+    use_case: Prompt optimization, discovery
+
+# Model Guides
+model_guides:
+  - model: ChatGPT
+    topics: Function calling, system prompts, best practices
+  - model: Claude 3
+    topics: Long context, constitutional AI, artifacts
+  - model: GPT-4
+    topics: Reasoning, vision, code generation
+  - model: Gemini
+    topics: Multimodal, long context, context caching
+  - model: LLaMA
+    topics: Open weights, local deployment, fine-tuning
+  - model: Mistral
+    topics: Efficiency, sliding window attention
+  - model: Mixtral
+    topics: MoE architecture, routing
+  - model: Code Llama
+    topics: Code generation, infilling
+  - model: Phi-2
+    topics: Small models, efficiency
+  - model: OLMo
+    topics: Fully open model, research
+
+# Languages Supported
+languages:
+  - English (en)
+  - Chinese (zh)
+  - Spanish (es)
+  - French (fr)
+  - German (de)
+  - Italian (it)
+  - Japanese (jp)
+  - Korean (kr)
+  - Portuguese (pt)
+  - Russian (ru)
+  - Turkish (tr)
+  - Arabic (ar)
+  - Catalan (ca)
+  - Finnish (fi)
+
+# Notebooks
+notebooks:
+  - file: pe-chatgpt-intro.ipynb
+    topic: Basic ChatGPT usage
+  - file: pe-chatgpt-adversarial.ipynb
+    topic: Adversarial prompting techniques
+  - file: pe-chatgpt-langchain.ipynb
+    topic: LangChain integration
+  - file: pe-function-calling.ipynb
+    topic: OpenAI function calling
+  - file: pe-rag.ipynb
+    topic: Retrieval augmented generation
+  - file: react.ipynb
+    topic: ReAct agent pattern
+  - file: pe-pal.ipynb
+    topic: Program-aided language models
+  - file: pe-mixtral-introduction.ipynb
+    topic: Mixtral model usage
+  - file: gemini-context-caching.ipynb
+    topic: Gemini context caching
+  - file: pe-code-llama.ipynb
+    topic: Code Llama for programming
+  - file: pe-litellm-intro.ipynb
+    topic: LiteLLM unified interface
+  - file: pe-lecture.ipynb
+    topic: Educational lecture materials
+
+# Commands
+commands:
+  installation:
+    command: npm install
+    description: Install dependencies
+
+  development:
+    command: npm run dev
+    description: Start development server
+
+  build:
+    command: npm run build
+    description: Build for production
+
+  deploy:
+    command: npm run deploy
+    description: Deploy documentation site
+
+# Troubleshooting
+troubleshooting:
+  - issue: Build errors with MDX
+    symptom: Syntax errors in markdown files
+    cause: Invalid MDX syntax, unclosed tags
+    solution: |
+      Check MDX syntax validity.
+      Ensure all JSX tags are properly closed.
+      Verify frontmatter format.
+
+  - issue: Missing translations
+    symptom: Pages show in wrong language
+    cause: Incomplete localization files
+    solution: |
+      Check _meta.*.json files for language.
+      Add missing translations.
+      Verify language code matches.
+
+  - issue: Notebook execution errors
+    symptom: Jupyter notebooks fail to run
+    cause: Missing dependencies, API keys
+    solution: |
+      Install required packages.
+      Set environment variables for API keys.
+      Check kernel configuration.
+
+# Integration Points
+integrations:
+  frameworks:
+    - LangChain
+    - LlamaIndex
+    - LiteLLM
+
+  providers:
+    - OpenAI
+    - Anthropic
+    - Google (Gemini)
+    - Mistral AI
+    - Local models (Ollama, vLLM)
+
+  tools:
+    - Prompt evaluation frameworks
+    - LLM observability tools
+    - Vector databases for RAG
+
+quick_reference:
+  - topic: Technique Selection Guide
+    content: |
+      ┌─────────────────────────┬─────────────────────────────────────────┐
+      │ Technique               │ Best For                                │
+      ├─────────────────────────┼─────────────────────────────────────────┤
+      │ Zero-shot               │ Simple, well-defined tasks              │
+      │ Few-shot                │ Tasks needing examples, style transfer  │
+      │ Chain-of-Thought        │ Math, logic, multi-step reasoning       │
+      │ Self-Consistency        │ Reducing variance, critical decisions   │
+      │ Tree of Thoughts        │ Planning, creative tasks, search        │
+      │ ReAct                   │ Tool use, agents, external data         │
+      │ RAG                     │ Knowledge-intensive, factual accuracy   │
+      │ PAL                     │ Code generation, calculations           │
+      └─────────────────────────┴─────────────────────────────────────────┘
+
+  - topic: Model Comparison
+    content: |
+      ┌────────────────┬─────────────────────────────────────────────────┐
+      │ Model          │ Key Strengths                                   │
+      ├────────────────┼─────────────────────────────────────────────────┤
+      │ GPT-4          │ Reasoning, code, multimodal                     │
+      │ Claude 3       │ Long context, safety, artifacts                 │
+      │ Gemini         │ Multimodal, context caching                     │
+      │ LLaMA          │ Open weights, customizable                      │
+      │ Mistral/Mixtral│ Efficiency, MoE routing                         │
+      └────────────────┴─────────────────────────────────────────────────┘
+
+  - topic: Site Structure
+    content: |
+      pages/
+      ├── introduction/     # Basics, settings, elements
+      ├── techniques/       # CoT, ReAct, RAG, ToT, etc.
+      ├── applications/     # Classification, QA, summarization
+      ├── prompts/          # Ready-to-use prompt collections
+      ├── models/           # Model-specific guides
+      ├── risks/            # Safety, bias, adversarial
+      ├── research/         # Papers, benchmarks
+      └── tools/            # Libraries, frameworks
+
+  - topic: Supported Languages
+    content: |
+      en (English)    zh (Chinese)    es (Spanish)
+      fr (French)     de (German)     it (Italian)
+      jp (Japanese)   kr (Korean)     pt (Portuguese)
+      ru (Russian)    tr (Turkish)    ar (Arabic)
+      ca (Catalan)    fi (Finnish)

@@ -1,0 +1,633 @@
+name: qdrant
+node_id: repo::qdrant/qdrant
+github_full_name: qdrant/qdrant
+html_url: https://github.com/qdrant/qdrant
+source: remote_metadata
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep_facts/qdrant__qdrant.yaml
+  as_of: '2026-02-24T19:46:56Z'
+  extractor_version: ws6-deep-integrator-v1
+facts:
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: integrations.api_endpoints[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.api_endpoints[0]
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: /collections
+  object_value: /collections
+  note: GET; list collections
+  fact_id: fact::70237cb0d5e0ed9720db10e1
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: api_structure.rest[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_structure.rest[0]
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: /collections
+  object_value: /collections
+  fact_id: fact::a5a69f20987429ccecd79c50
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: api_structure.rest[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_structure.rest[1]
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: /collections/{collection_name}
+  object_value: /collections/{collection_name}
+  fact_id: fact::8c50bbd61bf09be73345a20d
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: integrations.api_endpoints[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.api_endpoints[1]
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: /collections/{collection_name}/points/query
+  object_value: /collections/{collection_name}/points/query
+  note: POST; query points with vector and filter
+  fact_id: fact::258d3d9e538da71392190189
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: api_structure.rest[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_structure.rest[2]
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: /collections/{collection_name}/points/query
+  object_value: /collections/{collection_name}/points/query
+  fact_id: fact::67f57c1e7a4f187bd1c0779b
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: api_structure.rest[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_structure.rest[4]
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: /collections/{collection_name}/points/scroll
+  object_value: /collections/{collection_name}/points/scroll
+  fact_id: fact::631d17e8fddce7b469868857
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: api_structure.rest[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_structure.rest[3]
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: /collections/{collection_name}/points/search
+  object_value: /collections/{collection_name}/points/search
+  fact_id: fact::0699d6c6c6672b416a0f2c2b
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: integrations.api_endpoints[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.api_endpoints[2]
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: /collections/{collection_name}/points/search
+  object_value: /collections/{collection_name}/points/search
+  note: POST; nearest-neighbor point search
+  fact_id: fact::3a128045a666244d744d3ddd
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: api_structure.grpc[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_structure.grpc[0]
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: /grpc/Collections/List
+  object_value: /grpc/Collections/List
+  fact_id: fact::54730f438b120636ea806844
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: api_structure.grpc[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_structure.grpc[1]
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: /grpc/Points/Upsert
+  object_value: /grpc/Points/Upsert
+  fact_id: fact::cd7587c8d5629b43e95e8792
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: tech_stack[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tech_stack[1].line[0]
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: Actix Web
+  object_value: Actix Web
+  note: technology stack (tech_stack)
+  fact_id: fact::f9c8a8ac3c66f23af161a69c
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: tech_stack[4].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tech_stack[4].line[0]
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: Docker
+  object_value: Docker
+  note: technology stack (tech_stack)
+  fact_id: fact::ca24f06d6ffec0f175a4a2b8
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: tech_stack[3].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tech_stack[3].line[0]
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: OpenAPI 3.0
+  object_value: OpenAPI 3.0
+  note: technology stack (tech_stack)
+  fact_id: fact::8acb41c4d8dd4962c8d1739e
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: tech_stack[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tech_stack[0].line[0]
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: Rust
+  object_value: Rust
+  note: technology stack (tech_stack)
+  fact_id: fact::d2a89440fe94cea63b164acb
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: tech_stack[2].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tech_stack[2].line[0]
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: gRPC
+  object_value: gRPC
+  note: technology stack (tech_stack)
+  fact_id: fact::a8c69b43096789b63159bf47
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: integrations.ecosystem[3].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.ecosystem[3].line[0]
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: Cohere
+  object_value: Cohere
+  note: 'integration group: ecosystem'
+  fact_id: fact::ab58abc9ca87188af2271ac2
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: integrations.clients[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.clients[1].line[0]
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: Go client
+  object_value: Go client
+  note: 'integration group: clients'
+  fact_id: fact::a05d73be56e62a97ba8b40f0
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: integrations.ecosystem[2].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.ecosystem[2].line[0]
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: Haystack
+  object_value: Haystack
+  note: 'integration group: ecosystem'
+  fact_id: fact::aee0f850bebbf8dfca4cebf2
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: integrations.clients[4].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.clients[4].line[0]
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: Java client
+  object_value: Java client
+  note: 'integration group: clients'
+  fact_id: fact::da21f1750f1cf0882a695c65
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: integrations.clients[2].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.clients[2].line[0]
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: JavaScript/TypeScript client
+  object_value: JavaScript/TypeScript client
+  note: 'integration group: clients'
+  fact_id: fact::2f6bc85c30e256df9bc720d0
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: integrations.ecosystem[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.ecosystem[0].line[0]
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: LangChain
+  object_value: LangChain
+  note: 'integration group: ecosystem'
+  fact_id: fact::5ca6bf7d0d11acdb02f7970a
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: integrations.ecosystem[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.ecosystem[1].line[0]
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: LlamaIndex
+  object_value: LlamaIndex
+  note: 'integration group: ecosystem'
+  fact_id: fact::52c2b031256832a0de170c92
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: integrations.clients[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.clients[0].line[0]
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: Python client
+  object_value: Python client
+  note: 'integration group: clients'
+  fact_id: fact::de904ee3b20f474ec06e6f5d
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: integrations.clients[3].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.clients[3].line[0]
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: Rust client
+  object_value: Rust client
+  note: 'integration group: clients'
+  fact_id: fact::5bcb62675a00e53f12f1324a
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: testing.structure.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.structure.line[0]
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: Rust unit tests with HTTP/gRPC integration scripts in tests/
+  object_value: Rust unit tests with HTTP/gRPC integration scripts in tests/
+  note: 'testing metadata: structure'
+  fact_id: fact::7003efb402211b7bb4807eea
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: testing.coverage_areas[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[0].line[0]
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: collections and point query APIs
+  object_value: collections and point query APIs
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::3cd8f12815b7a7377254ffb2
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: testing.coverage_areas[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[1].line[0]
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: gRPC parity with REST behavior
+  object_value: gRPC parity with REST behavior
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::3fe039e13533cd2d5c4ef471
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: testing.coverage_areas[2].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[2].line[0]
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: snapshot and cluster-related operations
+  object_value: snapshot and cluster-related operations
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::fcd15d59defec6bb55a329ab
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.67
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: testing.test_patterns[2].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.test_patterns[2].line[0]
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: ./tests/basic_grpc_test.sh
+  object_value: ./tests/basic_grpc_test.sh
+  note: testing command
+  fact_id: fact::5f45feedddd716a98e5c82b7
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.67
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: testing.test_patterns[3].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.test_patterns[3].line[0]
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: ./tests/basic_query_grpc_test.sh
+  object_value: ./tests/basic_query_grpc_test.sh
+  note: testing command
+  fact_id: fact::f2300e9f5434c24197eab6f0
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.67
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: testing.test_patterns[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.test_patterns[0].line[0]
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: cargo test
+  object_value: cargo test
+  note: testing command
+  fact_id: fact::71956ab3db03e466bedf6f9e
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.67
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: testing.framework.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.framework.line[0]
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: cargo test plus integration shell and pytest/openapi checks
+  object_value: cargo test plus integration shell and pytest/openapi checks
+  note: testing command
+  fact_id: fact::e8f86b8db357a955a8e35042
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.67
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: quick_reference[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: quick_reference[1].line[0]
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: curl -X PUT http://localhost:6333/collections/test_collection
+  object_value: curl -X PUT http://localhost:6333/collections/test_collection
+  note: 'topic: Basic REST examples'
+  fact_id: fact::42f4af2627497f84d1ee82fd
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.67
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: quick_reference[1].line[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: quick_reference[1].line[1]
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: curl http://localhost:6333/collections/test_collection
+  object_value: curl http://localhost:6333/collections/test_collection
+  note: 'topic: Basic REST examples'
+  fact_id: fact::76fbc57719df2c16b9f51d5b
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.67
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: quick_reference[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: quick_reference[0].line[0]
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: docker run -p 6333:6333 qdrant/qdrant
+  object_value: docker run -p 6333:6333 qdrant/qdrant
+  note: 'topic: Local run'
+  fact_id: fact::d3713633359b4d2de285072b
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.67
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: testing.test_patterns[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.test_patterns[1].line[0]
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: pytest tests/openapi --durations=10
+  object_value: pytest tests/openapi --durations=10
+  note: testing command
+  fact_id: fact::1206ce9c4a63a52570b3b66b
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.58
+  as_of: '2026-02-25'
+  provenance:
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: quick_reference[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: quick_reference[2]
+    source_file: llm_repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: Default ports
+  object_value: Default ports
+  note: quick reference topic
+  fact_id: fact::596f9b53506b66a20c7a2cd7

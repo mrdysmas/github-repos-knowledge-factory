@@ -1,0 +1,184 @@
+name: gin
+node_id: repo::gin-gonic/gin
+github_full_name: gin-gonic/gin
+html_url: https://github.com/gin-gonic/gin
+source: remote_metadata
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep/gin-gonic__gin.yaml
+  as_of: '2026-03-05'
+directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/gin-gonic__gin
+category: web_framework
+
+architecture:
+  module_breakdown:
+  - module: gin.go
+    responsibility: Router engine creation, middleware wiring, and route registration APIs.
+    key_files:
+    - gin.go
+    - routergroup.go
+  - module: context.go
+    responsibility: Request-scoped context abstraction for binding, rendering, and flow control.
+    key_files:
+    - context.go
+  - module: binding
+    responsibility: Input binding and validation adapters for JSON, form, URI, and query payloads.
+    key_files:
+    - binding/
+  - module: render
+    responsibility: Response rendering for JSON, XML, HTML, and related formats.
+    key_files:
+    - render/
+  key_abstractions:
+  - name: Engine
+    purpose: Top-level router and middleware container.
+  - name: Context
+    purpose: Request lifecycle wrapper with helper methods for IO and control flow.
+  - name: RouterGroup
+    purpose: Route namespacing and shared middleware composition primitive.
+  components:
+  - name: Zero-allocation router core
+    description: High-performance routing built around httprouter-style matching.
+  - name: Middleware chain
+    description: Ordered handler stack for logging, recovery, auth, and custom concerns.
+
+code_patterns:
+- pattern: Middleware chain composition
+  description: Request handling executes through ordered handlers using Next and Abort controls.
+  location: context.go
+- pattern: Grouped route registration
+  description: RouterGroup supports hierarchical path prefixes and shared middleware.
+  location: routergroup.go
+- pattern: Binder abstraction per content type
+  description: Binding package routes payload decoding to typed binders by request format.
+  location: binding/
+
+implementation_patterns:
+- pattern: Context object reuse
+  description: Runtime reuses context objects to reduce allocations per request.
+  location: context.go
+- pattern: Recovery-first default middleware
+  description: Default engine composition includes logging and panic recovery handlers.
+  location: gin.go
+
+core_modules:
+  router_engine:
+    path: gin.go
+    description: Engine lifecycle and route registration behaviors.
+    submodules:
+    - routergroup.go
+    - tree.go
+  request_context:
+    path: context.go
+    description: Request-scoped helper APIs for binding, rendering, and control flow.
+  binding_layer:
+    path: binding
+    description: Input decoding and validation adapters.
+  rendering_layer:
+    path: render
+    description: Output encoders for common response formats.
+
+key_features:
+- feature: High-performance HTTP routing
+  description: Optimized router with low allocation overhead for request dispatch.
+- feature: Middleware extensibility
+  description: Composable middleware chain with fine-grained request flow control.
+- feature: Typed request binding
+  description: Binds JSON, form, query, and URI inputs into Go structs.
+- feature: Built-in rendering helpers
+  description: Supports JSON, XML, HTML, and other response formats.
+
+key_files:
+- path: README.md
+  description: Framework overview and quickstart guide.
+- path: gin.go
+  description: Engine creation and top-level router setup.
+- path: context.go
+  description: Request context API and middleware flow helpers.
+- path: routergroup.go
+  description: Route grouping and middleware inheritance logic.
+- path: binding/
+  description: Request data binding implementations.
+
+configuration:
+- name: runtime_toggles
+  options:
+  - key: gin_mode
+    default: debug
+    description: Runtime mode selection for debug, release, or test behavior.
+  - key: trusted_proxies
+    default: explicit_list_required
+    description: Proxy trust configuration for secure client IP handling.
+  - key: max_multipart_memory
+    default: '33554432'
+    description: Default maximum memory used for multipart forms.
+- name: build_requirements
+  options:
+  - key: go_version
+    default: '1.24+'
+    description: Minimum Go toolchain version documented by project.
+
+commands:
+- name: go test ./...
+  description: Run full test suite.
+  usage: go test ./...
+- name: go build ./...
+  description: Build framework and examples.
+  usage: go build ./...
+- name: go test -bench . ./...
+  description: Execute benchmark suite.
+  usage: go test -bench . ./...
+
+testing:
+  framework: go test
+  structure: Unit, integration, and benchmark tests are distributed across root and package directories.
+  coverage_areas:
+  - routing correctness
+  - middleware behavior
+  - request binding and validation
+  - rendering and response helpers
+  test_patterns:
+  - go test ./...
+  - go test -bench . ./...
+
+integrations:
+  middleware_ecosystem:
+  - authentication and authorization middleware
+  - observability middleware
+  serialization_formats:
+  - JSON
+  - XML
+  - HTML templates
+  protocol_support:
+  - HTTP/1.1
+  - HTTP/2
+  - HTTP/3
+
+quick_reference:
+- topic: Run tests
+  command: go test ./...
+- topic: Build packages
+  command: go build ./...
+- topic: Basic route example
+  command: r.GET("/ping", handler)
+- topic: Start server
+  command: r.Run(":8080")
+
+api_surface:
+  public_functions:
+  - name: gin.Default
+    purpose: Creates an Engine preloaded with logger and recovery middleware.
+    signature: func Default() *Engine
+    location: gin.go
+  - name: gin.New
+    purpose: Creates a bare Engine for custom middleware composition.
+    signature: func New() *Engine
+    location: gin.go
+  - name: Context.JSON
+    purpose: Serializes structured JSON responses for handlers.
+    signature: func (c *Context) JSON(code int, obj any)
+    location: context.go
+  endpoints:
+  - path: /ping
+    methods: GET
+    description: Canonical quickstart health endpoint used in docs and examples.

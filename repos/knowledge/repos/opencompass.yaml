@@ -1,0 +1,97 @@
+name: opencompass
+node_id: repo::open-compass/opencompass
+github_full_name: open-compass/opencompass
+html_url: https://github.com/open-compass/opencompass
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/repos/opencompass.yaml
+  as_of: '2026-02-25'
+directory: opencompass-main
+category: evaluation
+
+summary: |
+  Comprehensive LLM evaluation toolkit from OpenInterX (Shanghai AI Lab). Recommended
+  by Meta AI for Llama evaluation. Supports 100+ benchmarks including MMLU, GSM8K,
+  HumanEval, and specialized scientific benchmarks. LLM-as-judge support, distributed
+  evaluation, and public leaderboard (CompassRank).
+
+core_concepts:
+  - name: Datasets/Benchmarks
+    description: 100+ evaluation benchmarks
+    location: opencompass/datasets/
+
+  - name: Models
+    description: Model wrappers for various backends
+    location: opencompass/models/
+
+  - name: Evaluators
+    description: Evaluation logic and metrics
+    location: opencompass/evaluators/
+
+  - name: Summarizers
+    description: Result aggregation and reporting
+    location: opencompass/summarizers/
+
+  - name: Runners
+    description: Distributed evaluation orchestration
+    location: opencompass/runners/
+
+key_entry_points:
+  - path: opencompass/
+    purpose: Main library
+
+  - path: opencompass/datasets/
+    purpose: Benchmark datasets
+
+  - path: opencompass/models/
+    purpose: Model integrations (HF, vLLM, LMDeploy, API)
+
+  - path: configs/
+    purpose: Configuration files
+
+build_run:
+  language: Python
+  install: "pip install opencompass"
+  cli: "opencompass <config_file>"
+  python: |
+    from opencompass.runners import LocalRunner
+    from opencompass.tasks import OpenICLInferTask
+
+supported_benchmarks:
+  - General: MMLU, C-Eval, CMMLU, MMMLU
+  - Reasoning: GSM8K, MATH, MuSR, RULER
+  - Coding: HumanEval, MBPP, SciCode
+  - Long Context: BABILong, NeedleBench
+  - Knowledge: SuperGPQA
+  - Scientific: SciReasoner
+  - Custom: User-defined benchmarks
+
+key_features:
+  - 100+ built-in benchmarks
+  - LLM-as-judge (GenericLLMEvaluator)
+  - Math verification (MATHVerifyEvaluator)
+  - Cascade evaluation pipelines
+  - Distributed evaluation
+  - vLLM/LMDeploy backends
+  - Model post-processing (XFinder)
+  - CompassRank leaderboard
+
+ecosystem_connections:
+  - target: vllm
+    relation: integrates_with
+    note: OpenCompass can use vLLM as inference backend
+
+  - target: lmdeploy
+    relation: integrates_with
+    note: OpenCompass can use LMDeploy as inference backend
+
+  - target: llamafactory
+    relation: related_to
+    note: Evaluate fine-tuned models from LlamaFactory
+
+further_reading:
+  - README.md
+  - docs: https://opencompass.readthedocs.io
+  - hub: https://hub.opencompass.org.cn
+  - rank: https://rank.opencompass.org.cn

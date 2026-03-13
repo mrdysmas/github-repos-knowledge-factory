@@ -1,0 +1,669 @@
+name: tunnelite
+node_id: repo::cristipufu/tunnelite
+github_full_name: cristipufu/tunnelite
+html_url: https://github.com/cristipufu/tunnelite
+source: ssh_repos
+provenance:
+  shard: ssh_repos
+  source_file: ssh_repos/knowledge/deep_facts/tunnelite.yaml
+  as_of: '2026-02-25'
+  extractor_version: ws6-deep-integrator-v1
+facts:
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: api_surface.server_endpoints[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.server_endpoints[3]
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: DELETE /tunnelite/request/{requestId}
+  object_value: DELETE /tunnelite/request/{requestId}
+  note: Handle error cases
+  fact_id: fact::04ccd8ba3b9acb1c810aff4f
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: api_surface.server_endpoints[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.server_endpoints[1]
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: GET /tunnelite/request/{requestId}
+  object_value: GET /tunnelite/request/{requestId}
+  note: Get deferred request details
+  fact_id: fact::0c935d6675a7b86693272450
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: api_surface.server_endpoints[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.server_endpoints[2]
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: POST /tunnelite/request/{requestId}
+  object_value: POST /tunnelite/request/{requestId}
+  note: Forward response back
+  fact_id: fact::fb6b68d50ee3a819af2e6cc6
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: api_surface.server_endpoints[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.server_endpoints[0]
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: POST /tunnelite/tunnel
+  object_value: POST /tunnelite/tunnel
+  note: Register new tunnel
+  fact_id: fact::dcd5cd149638fdfd99101a92
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: architecture.key_abstractions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[1]
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: SignalR connection with MessagePack for bidirectional communication
+  object_value: HubConnection
+  note: SignalR connection with MessagePack for bidirectional communication
+  fact_id: fact::216e99c424bf3b493a97368d
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: architecture.key_abstractions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[0]
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: Core interface for all tunnel clients
+  object_value: ITunnelClient
+  note: Core interface for all tunnel clients
+  fact_id: fact::718c160ff25a8f0aa045fb13
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: architecture.key_abstractions[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[2]
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: Deferred request handling with completion tracking
+  object_value: Request Queue
+  note: Deferred request handling with completion tracking
+  fact_id: fact::9be0c36ef638dc71d9fcf2ed
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: architecture.module_breakdown[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[3]
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: Extension method for seamless ASP.NET Core integration
+  object_value: src/Tunnelite.AspNetCore/
+  note: 'responsibility: Extension method for seamless ASP.NET Core integration; key_files:
+    src/Tunnelite.AspNetCore/TunneliteExtensions.cs'
+  fact_id: fact::5f0c3d151d73dd5dbacee248
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: architecture.module_breakdown[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[1]
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: CLI tool using Spectre.Console for user interface
+  object_value: src/Tunnelite.Client/
+  note: 'responsibility: CLI tool using Spectre.Console for user interface; key_files:
+    src/Tunnelite.Client/Program.cs'
+  fact_id: fact::fc24c5186fef4faba4c0d40b
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: architecture.module_breakdown[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[0]
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: Core client SDK with SignalR implementations for all tunnel types
+  object_value: src/Tunnelite.Sdk/
+  note: 'responsibility: Core client SDK with SignalR implementations for all tunnel
+    types; key_files: src/Tunnelite.Sdk/ITunnelClient.cs, src/Tunnelite.Sdk/HttpTunnel/HttpTunnelClient.cs'
+  fact_id: fact::8d145627f070e3a388a7ce40
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: architecture.module_breakdown[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[2]
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: ASP.NET Core server with SignalR hub middleware
+  object_value: src/Tunnelite.Server/
+  note: 'responsibility: ASP.NET Core server with SignalR hub middleware; key_files:
+    src/Tunnelite.Server/Program.cs, src/Tunnelite.Server/HttpTunnel/HttpTunnelHub.cs'
+  fact_id: fact::f0f68f130a6dd621e1dfb50b
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: configuration.server_options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.server_options[1]
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: AllowedHosts
+  object_value: AllowedHosts
+  note: 'type: string; default: *; CORS allowed hosts'
+  fact_id: fact::ac3261c4bc5107135e35bbc3
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: configuration.server_options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.server_options[0]
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: Azure:SignalR:ConnectionString
+  object_value: Azure:SignalR:ConnectionString
+  note: 'type: string; Azure SignalR service for scalability'
+  fact_id: fact::a560d1fe9dbd6edb50c45ecb
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: configuration.tunnel_config[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.tunnel_config[1]
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: ClientId
+  object_value: ClientId
+  note: 'type: Guid; Unique client identifier'
+  fact_id: fact::6b0c7d6c0578123e03d31d3d
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: configuration.tunnel_config[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.tunnel_config[2]
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: LocalPort
+  object_value: LocalPort
+  note: 'type: int; For TCP tunnels, local port to forward'
+  fact_id: fact::bb916ece624c7c7c4975c9cc
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: configuration.tunnel_config[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.tunnel_config[3]
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: PublicPort
+  object_value: PublicPort
+  note: 'type: int; For TCP tunnels, public port (auto-assigned if null)'
+  fact_id: fact::df4856726b7b9ed33bc5c7c0
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: configuration.tunnel_config[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.tunnel_config[0]
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: Subdomain
+  object_value: Subdomain
+  note: 'type: string; Auto-generated or specified subdomain'
+  fact_id: fact::ea132fd2f52492cf8f5caa00
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: configuration.file
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.file
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: file
+  object_value: file
+  note: 'default: appsettings.json and CLI arguments; configuration default for file'
+  fact_id: fact::e48a83a4b562b4ddaa4a6067
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: configuration.options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[0]
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: localUrl
+  object_value: localUrl
+  note: 'type: string; The local URL to tunnel to'
+  fact_id: fact::22e8543ad8c3a0af83a03e1f
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: configuration.options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[2]
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: log
+  object_value: log
+  note: 'type: LogLevel; Logging level (Trace, Debug, Information, Warning, Error,
+    Critical)'
+  fact_id: fact::6dcd8e1149e0bd039bb3f9e8
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: configuration.options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.options[1]
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: publicUrl
+  object_value: publicUrl
+  note: 'type: string; default: https://tunnelite.com; Public server URL'
+  fact_id: fact::b59ab547c1875f6c2cc54472
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.71
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: extension_points[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[4]
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: Azure SignalR integration
+  object_value: Azure SignalR integration
+  note: Scale to multiple instances; Connection string configuration
+  fact_id: fact::b2bc396209b0af49219d94d8
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: api_surface.public_functions[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[2]
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: HttpTunnelClient.TunnelHttpConnectionAsync
+  object_value: HttpTunnelClient.TunnelHttpConnectionAsync
+  note: Handle HTTP tunnel streaming; Task TunnelHttpConnectionAsync(HttpConnection);
+    src/Tunnelite.Sdk/HttpTunnel/HttpTunnelClient.cs
+  fact_id: fact::dd09eaa9e753f503a62df57b
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: api_surface.public_functions[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[3]
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: HttpTunnelClient.TunnelWsConnectionAsync
+  object_value: HttpTunnelClient.TunnelWsConnectionAsync
+  note: Handle WebSocket tunnel streaming; Task TunnelWsConnectionAsync(WsConnection);
+    src/Tunnelite.Sdk/HttpTunnel/HttpTunnelClient.cs
+  fact_id: fact::d6fcfc00d1e3c9819da862f5
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: api_surface.public_functions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[0]
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: ITunnelClient.ConnectAsync
+  object_value: ITunnelClient.ConnectAsync
+  note: Establish connection to tunnel server; Task ConnectAsync(); src/Tunnelite.Sdk/ITunnelClient.cs:5-19
+  fact_id: fact::ed327b550b3aa45f4a9b7428
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: api_surface.public_functions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[1]
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: ITunnelClient.TunnelUrl
+  object_value: ITunnelClient.TunnelUrl
+  note: Public URL after connection; string? TunnelUrl { get; }; src/Tunnelite.Sdk/ITunnelClient.cs
+  fact_id: fact::54e35405f2c0d44f1ab3734b
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: api_surface.public_functions[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[4]
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: TcpTunnelClient.HandleNewTcpConnectionAsync
+  object_value: TcpTunnelClient.HandleNewTcpConnectionAsync
+  note: Handle TCP tunnel connections; Task HandleNewTcpConnectionAsync(TcpConnection);
+    src/Tunnelite.Sdk/TcpTunnel/TcpTunnelClient.cs
+  fact_id: fact::f5937de1ecfdf93694838540
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: path
+  confidence: 0.71
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: extension_points[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[2]
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: src/Tunnelite.AspNetCore/TunneliteExtensions.cs:15-56
+  object_value: src/Tunnelite.AspNetCore/TunneliteExtensions.cs:15-56
+  note: Custom middleware pipeline; UseTunnelite() middleware
+  fact_id: fact::c78fd7d4f58fcc6ca503b616
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: path
+  confidence: 0.71
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: extension_points[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[0]
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: src/Tunnelite.Sdk/ITunnelClient.cs
+  object_value: src/Tunnelite.Sdk/ITunnelClient.cs
+  note: Implement custom tunnel types; ITunnelClient interface
+  fact_id: fact::0de14a218a40c581f7f3f075
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: path
+  confidence: 0.71
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: extension_points[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[3]
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: src/Tunnelite.Server/
+  object_value: src/Tunnelite.Server/
+  note: Custom storage backends; HttpTunnelStore, HttpRequestsQueue
+  fact_id: fact::cb9fde7b996e135e3ca4c42f
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: path
+  confidence: 0.71
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: extension_points[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[1]
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: src/Tunnelite.Server/HttpTunnel/HttpAppExtensions.cs
+  object_value: src/Tunnelite.Server/HttpTunnel/HttpAppExtensions.cs
+  note: Modify header filtering; NotAllowedHeaders array
+  fact_id: fact::71248579196fb4ddcfbc5d0a
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: implementation_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: src/Tunnelite.Sdk/HttpTunnel/HttpTunnelClient.cs:214-232
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: IAsyncEnumerable for streaming data between client and server
+  object_value: Bidirectional Streaming
+  note: 'description: IAsyncEnumerable for streaming data between client and server;
+    location: src/Tunnelite.Sdk/HttpTunnel/HttpTunnelClient.cs:214-232'
+  fact_id: fact::af5d58eed51b8364c39eae2c
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: implementation_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: src/Tunnelite.Sdk/HttpTunnel/HttpTunnelClient.cs:248
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: ArrayPool<byte>.Shared for efficient memory management
+  object_value: Buffer Pooling
+  note: 'description: ArrayPool<byte>.Shared for efficient memory management; location:
+    src/Tunnelite.Sdk/HttpTunnel/HttpTunnelClient.cs:248'
+  fact_id: fact::2f5a6fdbe80eb500ddf24d96
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: implementation_patterns[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: src/Tunnelite.Sdk/HttpTunnel/HttpTunnelClient.cs
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: Automatic reconnection with exponential backoff
+  object_value: Connection Resilience
+  note: 'description: Automatic reconnection with exponential backoff; location: src/Tunnelite.Sdk/HttpTunnel/HttpTunnelClient.cs'
+  fact_id: fact::44f95d3276ca4a31036183a7
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: implementation_patterns[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: src/Tunnelite.Server/HttpTunnel/HttpAppExtensions.cs
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: Requests queued while waiting for client connection
+  object_value: Deferred Request Middleware
+  note: 'description: Requests queued while waiting for client connection; location:
+    src/Tunnelite.Server/HttpTunnel/HttpAppExtensions.cs'
+  fact_id: fact::39f96a5213e1a6623f7e303a
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: implementation_patterns[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: src/Tunnelite.Server/HttpTunnel/HttpAppExtensions.cs
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: Custom headers prefixed with X-TR- and X-TC- for metadata
+  object_value: Header Passthrough
+  note: 'description: Custom headers prefixed with X-TR- and X-TC- for metadata; location:
+    src/Tunnelite.Server/HttpTunnel/HttpAppExtensions.cs'
+  fact_id: fact::bae80e51715cb2caa556637c
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: testing.structure.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.structure.line[0]
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: test/ with sample applications
+  object_value: test/ with sample applications
+  note: 'testing metadata: structure'
+  fact_id: fact::98ca842c00bfb4638d9a9b27
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-02-25'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    source_section: testing.framework.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.framework.line[0]
+    source_file: ssh_repos/knowledge/deep/tunnelite.yaml
+    excerpt: xUnit (inferred from .NET ecosystem)
+  object_value: xUnit (inferred from .NET ecosystem)
+  note: 'testing metadata: framework'
+  fact_id: fact::6d3a029ccc57fdb1c1f6d99f

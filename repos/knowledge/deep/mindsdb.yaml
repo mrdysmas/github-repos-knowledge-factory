@@ -1,0 +1,109 @@
+# mindsdb Deep Knowledge
+# Source: mindsdb-main
+# Updated: 2026-02-22
+
+name: mindsdb
+node_id: repo::mindsdb/mindsdb
+github_full_name: mindsdb/mindsdb
+html_url: https://github.com/mindsdb/mindsdb
+source: llm_repos
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep/mindsdb.yaml
+  as_of: '2026-02-25'
+description: Data integration platform with AI agents and federated query engine
+primary_language: Python
+languages: [Python, SQL, JavaScript]
+
+architecture:
+  pattern: "Connect, Unify, Respond"
+  type: Federated query engine
+  storage: PostgreSQL (default)
+  entry_point: "python -m mindsdb"
+
+  components:
+    integrations:
+      path: mindsdb/integrations/handlers/
+      description: Data, app, ML, and file handlers
+    interfaces:
+      path: mindsdb/interfaces/
+      description: Agents, knowledge bases, models, jobs
+    api:
+      path: mindsdb/api/
+      description: HTTP, MySQL proxy, A2A, MCP server
+
+handler_types:
+  data:
+    - MySQL
+    - PostgreSQL
+    - MongoDB
+    - Snowflake
+    - BigQuery
+    - Redshift
+  app:
+    - Slack
+    - Salesforce
+    - GitHub
+    - Jira
+    - Gmail
+  ml:
+    - OpenAI
+    - Anthropic (via LiteLLM)
+    - Cohere
+    - Hugging Face
+  file:
+    - CSV
+    - JSON
+    - Parquet
+    - Excel
+
+cli_commands:
+  start_server:
+    command: python -m mindsdb
+    description: Start MindsDB server
+  dev_install:
+    command: make install_mindsdb
+    description: Development installation
+  install_handler:
+    command: make install_handler HANDLER_NAME=<name>
+    description: Install specific handler
+  run_tests:
+    command: make unit_tests
+    description: Run unit tests
+
+environment:
+  MINDSDB_DB_CON:
+    description: PostgreSQL connection string
+    required: true
+  MINDSDB_STORAGE_DIR:
+    description: Storage directory path
+    default: ~/.mindsdb
+  MINDSDB_APIS:
+    description: Enabled APIs (http,mysql,mcp,a2a)
+    default: http,mysql
+  OPENAI_API_KEY:
+    description: OpenAI API key for LLM
+  ANTHROPIC_API_KEY:
+    description: Anthropic API key
+
+ports:
+  http_api: 47334
+  mysql_proxy: 47335
+
+api_protocols:
+  - HTTP/REST
+  - MySQL wire protocol
+  - MCP (Model Context Protocol)
+  - A2A (Agent-to-Agent)
+
+key_features:
+  - Federated queries across data sources
+  - AI agents with knowledge bases
+  - Real-time and batch data sync
+  - SQL interface for ML models
+  - Native LLM integration
+
+related_repos:
+  - langchain
+  - llama_index
+  - mem0
