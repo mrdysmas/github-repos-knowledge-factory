@@ -1,5 +1,5 @@
 version: 1
-as_of_utc: "2026-03-10T15:10:58Z"
+as_of_utc: "2026-03-12T02:41:04Z"
 
 naming_legend:
   WS: "Workstream (pipeline lane/stage, e.g., WS1-WS7)"
@@ -230,6 +230,7 @@ next_agent_handoff:
     read_first:
       - "project_status.yaml"
       - "phase_4_progress_tracker.yaml"
+      - "docs/decisions/phase4_prompt_template_standardization_decision.md"
       - "plan-drafts/Phase 4 Corpus Expansion Batch P4-B5.md"
       - "reports/phase4/prompt_locks/P4-B5.lock.yaml"
       - "plan-drafts/Phase 4 Executor Report Review Rubric.md"
@@ -238,12 +239,13 @@ next_agent_handoff:
       - "tools/ws7_read_model_compiler.py"
     immediate_next_step:
       id: "P4_TEMPLATE_STANDARDIZATION_DECISION"
-      objective: "Review B5 ACCEPT_WITH_NOTES evidence, confirm no remaining execution-state drift, and decide whether Phase 4's locked batch prompt should now be standardized."
+      objective: "Review the drafted Phase 4 template-standardization decision against B5 evidence, confirm no remaining execution-state drift, and then approve, revise, or reject the standardization proposal."
       first_commands:
         - "git status -sb"
         - "python3 tools/check_intake_queue_sync.py --workspace-root ."
         - "python3 tools/query_master.py stats"
         - "python3 - <<'PY'\nimport yaml\nfrom pathlib import Path\nc=Path('reports/ws6_deep_integration/coverage.yaml')\nw=Path('reports/ws7_read_model/compile_log.yaml')\ncd=yaml.safe_load(c.read_text()) if c.exists() else {}\nwd=yaml.safe_load(w.read_text()) if w.exists() else {}\nprint('unmapped_sections_count', (cd.get('metrics') or {}).get('unmapped_sections_count', 'unknown'))\nprint('ws7_result', (wd.get('compile_run') or {}).get('result'))\nprint('ws7_force_flag', (wd.get('compile_run') or {}).get('force_flag'))\nprint('ws7_snapshot_status', ((wd.get('gates') or {}).get('snapshot_consistency') or {}).get('status'))\nPY"
+        - "sed -n '1,220p' docs/decisions/phase4_prompt_template_standardization_decision.md"
         - "sed -n '1,260p' phase_4_progress_tracker.yaml"
         - "sed -n '220,270p' project_status.yaml"
 
@@ -256,5 +258,6 @@ status_docs:
   historical: "master_graph_merge_progress.yaml"
   decisions:
     - "docs/decisions/intake_shard_routing_decision.md"
+    - "docs/decisions/phase4_prompt_template_standardization_decision.md"
   archived:
     - "docs/archive/high_view_summary--master_graph-merge.md"
