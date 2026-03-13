@@ -97,10 +97,9 @@ class WS1ContractRegressionTests(unittest.TestCase):
             workspace.mkdir(parents=True, exist_ok=True)
 
             shutil.copytree(ROOT / "contracts", workspace / "contracts")
-            shutil.copytree(ROOT / "llm_repos" / "knowledge", workspace / "llm_repos" / "knowledge")
-            shutil.copytree(ROOT / "ssh_repos" / "knowledge", workspace / "ssh_repos" / "knowledge")
+            shutil.copytree(ROOT / "repos" / "knowledge", workspace / "repos" / "knowledge")
 
-            deep_path = workspace / "llm_repos" / "knowledge" / "deep" / "khoj.yaml"
+            deep_path = workspace / "repos" / "knowledge" / "deep" / "khoj.yaml"
             deep_doc = yaml.safe_load(deep_path.read_text(encoding="utf-8"))
             deep_doc["repo_id"] = "legacy_alias"
             deep_path.write_text(

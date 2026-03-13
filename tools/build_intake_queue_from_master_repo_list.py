@@ -64,11 +64,8 @@ def parse_full_name_from_url(url: str) -> str:
 
 
 def infer_target_shard_hint(categories: set[str]) -> str:
-    if "llm_repos" in categories:
-        return "llm_repos"
-    if "ssh_repos" in categories or "go_repos" in categories:
-        return "ssh_repos"
-    return "undecided"
+    del categories
+    return "repos"
 
 
 def normalize_full_name(value: str) -> str:

@@ -29,8 +29,7 @@ Deep narrative generation is an LLM task — it requires reading and understandi
 Deep narratives live in `{shard}/knowledge/deep/`. The filename must use the `file_stem` from the repo's shallow file with a `.yaml` extension.
 
 ```
-ssh_repos/knowledge/deep/{file_stem}.yaml
-llm_repos/knowledge/deep/{file_stem}.yaml
+repos/knowledge/deep/{file_stem}.yaml
 ```
 
 The `file_stem` follows the pattern `owner__repo` with the GitHub `/` replaced by `__`. Examples:
@@ -54,8 +53,8 @@ github_full_name: ekzhang/bore
 html_url: https://github.com/ekzhang/bore
 source: remote_metadata
 provenance:
-  shard: ssh_repos
-  source_file: ssh_repos/knowledge/deep/bore.yaml
+  shard: repos
+  source_file: repos/knowledge/deep/bore.yaml
   as_of: "2026-03-04"
 directory: bore-main
 category: tunneling
@@ -69,7 +68,7 @@ These rules are non-negotiable. Violating them causes WS4 or WS1 gate failures.
 - `github_full_name` must match the shallow file character-for-character. Case matters (`FlowiseAI/Flowise` ≠ `flowiseai/flowise`).
 - `html_url` must match the shallow file character-for-character. Same casing rule.
 - `source` must match the shallow file's `source` field. For repos ingested via WS5, this is typically `remote_metadata`, not the shard name. Read it from the shallow file.
-- `provenance.shard` is the shard name (`ssh_repos` or `llm_repos`).
+- `provenance.shard` is the canonical shard name (`repos`).
 - `provenance.source_file` is the path to this deep file relative to the repo root.
 - `provenance.as_of` is the current UTC date.
 - `directory` should match the shallow file's `directory` field.
@@ -479,8 +478,8 @@ These are guidelines, not targets. The narrative should be as long as the source
 ## Reference Files
 
 - **Extractor source:** `tools/ws6_deep_integrator.py` (search for `extractor_map` near line 2513)
-- **Example small deep file:** `ssh_repos/knowledge/deep/bore.yaml` (~174 lines, Rust CLI)
-- **Example large deep file:** `llm_repos/knowledge/deep/anything_llm.yaml` (Node.js monorepo)
+- **Example small deep file:** `repos/knowledge/deep/bore.yaml` (~174 lines, Rust CLI)
+- **Example large deep file:** `repos/knowledge/deep/anything_llm.yaml` (Node.js monorepo)
 - **WS1 schema contracts:** `contracts/ws1/` (read-only — do not modify)
 - **Unmapped section debt:** `reports/ws6_deep_integration/mismatch_report.yaml`
 

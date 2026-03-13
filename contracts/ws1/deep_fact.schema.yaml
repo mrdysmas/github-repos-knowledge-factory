@@ -1,8 +1,7 @@
 contract_version: "1.0.0-ws6-draft"
 artifact_type: "ws1_deep_fact_schema"
 source_enums:
-  - llm_repos
-  - ssh_repos
+  - repos
   - remote_metadata
   - remote_api
   - compiled_master
@@ -69,8 +68,7 @@ schema:
     source:
       type: string
       enum:
-        - llm_repos
-        - ssh_repos
+        - repos
         - remote_metadata
         - remote_api
         - compiled_master
@@ -85,8 +83,7 @@ schema:
         shard:
           type: string
           enum:
-            - llm_repos
-            - ssh_repos
+            - repos
             - merged
         source_file:
           type: string

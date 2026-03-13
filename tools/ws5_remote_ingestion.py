@@ -25,10 +25,10 @@ import yaml
 
 CONTRACT_VERSION = "1.0.0-ws1"
 ALLOWED_MANIFEST_SOURCES = {"remote_metadata", "remote_api"}
-ALLOWED_PROVENANCE_SHARDS = {"llm_repos", "ssh_repos", "merged"}
-TARGET_SHARDS = ("llm_repos", "ssh_repos")
+ALLOWED_PROVENANCE_SHARDS = {"repos", "merged"}
+TARGET_SHARDS = ("repos",)
 REPO_SCHEMA_REL_PATH = Path("contracts/ws1/repo.schema.yaml")
-SOURCE_ENUMS_FALLBACK = {"llm_repos", "ssh_repos", "remote_metadata", "remote_api", "compiled_master"}
+SOURCE_ENUMS_FALLBACK = {"repos", "remote_metadata", "remote_api", "compiled_master"}
 FULL_NAME_PATTERN = re.compile(r"^[^/]+/[^/]+$")
 STEP8_EXPECTATION = "WS5 ingestion writes deterministic reports and WS1-compatible records"
 REFRESH_PRECEDENCE = "api_wins_readme_for_missing_required_fields"
@@ -189,6 +189,13 @@ def normalize_slug(value: str, fallback: str) -> str:
     return slug or fallback
 
 
+def normalize_target_shard(value: Any) -> str:
+    shard = ensure_string(value)
+    if shard in {"", "llm_repos", "ssh_repos", "repos"}:
+        return "repos"
+    return shard
+
+
 def load_repo_source_enums(workspace_root: Path) -> set[str]:
     path = workspace_root / REPO_SCHEMA_REL_PATH
     if not path.exists():
@@ -244,7 +251,7 @@ def normalize_repo_entries(
     invalid_provenance_shards: list[dict[str, Any]] = []
     local_cache_policy_violations: list[dict[str, Any]] = []
 
-    default_shard = ensure_string(defaults.get("target_shard")) or "ssh_repos"
+    default_shard = normalize_target_shard(defaults.get("target_shard")) or "repos"
     default_source = ensure_string(defaults.get("source")) or "remote_metadata"
     default_as_of = ensure_string(defaults.get("as_of")) or "1970-01-01"
     default_category = ensure_string(defaults.get("category")) or "documentation"
@@ -261,7 +268,7 @@ def normalize_repo_entries(
             row_errors.append("readme_fallback must be a mapping when provided")
         fallback_fields_used: list[str] = []
 
-        target_shard = ensure_string(raw.get("target_shard")) or default_shard
+        target_shard = normalize_target_shard(raw.get("target_shard")) or default_shard
         source = ensure_string(raw.get("source")) or default_source
         github_full_name = ensure_string(raw.get("github_full_name")).lower()
         if not github_full_name:
@@ -447,126 +454,13 @@ def build_repo_record(repo: RepoInput, source_file_rel: str) -> dict[str, Any]:
     return record
 
 
-def update_llm_index(workspace_root: Path, repos: list[RepoInput]) -> None:
-    if not repos:
-        return
-    path = workspace_root / "llm_repos" / "knowledge" / "index.yaml"
-    if not path.exists():
-        return
-    payload = load_yaml(path) or {}
-    if not isinstance(payload, dict):
-        return
-
-    categories = payload.get("categories")
-    if not isinstance(categories, dict):
-        categories = {}
-        payload["categories"] = categories
-
-    repos_alpha = payload.get("repos_alpha")
-    if not isinstance(repos_alpha, list):
-        repos_alpha = []
-        payload["repos_alpha"] = repos_alpha
-
-    alpha_by_name: dict[str, dict[str, Any]] = {}
-    for item in repos_alpha:
-        if isinstance(item, dict):
-            name = ensure_string(item.get("name"))
-            if name:
-                alpha_by_name[name] = dict(item)
-
-    for repo in repos:
-        alpha_by_name[repo.name] = {
-            "name": repo.name,
-            "category": repo.category,
-            "file": f"repos/{repo.file_stem}.yaml",
-        }
-
-        category_row = categories.get(repo.category)
-        if not isinstance(category_row, dict):
-            category_row = {"description": f"Remote-ingested category: {repo.category}", "repos": []}
-            categories[repo.category] = category_row
-
-        if not ensure_string(category_row.get("description")):
-            category_row["description"] = f"Remote-ingested category: {repo.category}"
-
-        repo_rows = category_row.get("repos")
-        if not isinstance(repo_rows, list):
-            repo_rows = []
-
-        by_name: dict[str, dict[str, Any]] = {}
-        for row in repo_rows:
-            if isinstance(row, dict):
-                row_name = ensure_string(row.get("name"))
-                if row_name:
-                    by_name[row_name] = dict(row)
-        by_name[repo.name] = {"name": repo.name, "summary": repo.summary}
-        category_row["repos"] = [by_name[name] for name in sorted(by_name, key=str.lower)]
-
-    payload["repos_alpha"] = [alpha_by_name[name] for name in sorted(alpha_by_name, key=str.lower)]
-
-    metadata = payload.get("metadata")
-    if isinstance(metadata, dict):
-        repo_files = sorted((workspace_root / "llm_repos" / "knowledge" / "repos").glob("*.yaml"))
-        metadata["total_repos"] = len(repo_files)
-        payload["metadata"] = metadata
-
-    text = dump_yaml(payload)
-    write_if_changed(path, text)
-
-
-def update_ssh_index(workspace_root: Path, repos: list[RepoInput]) -> None:
-    if not repos:
-        return
-    path = workspace_root / "ssh_repos" / "knowledge" / "index.yaml"
-    if not path.exists():
-        return
-    payload = load_yaml(path) or {}
-    if not isinstance(payload, dict):
-        return
-
-    categories = payload.get("categories")
-    if not isinstance(categories, dict):
-        categories = {}
-        payload["categories"] = categories
-
-    repos_section = payload.get("repos")
-    if not isinstance(repos_section, dict):
-        repos_section = {}
-        payload["repos"] = repos_section
-
-    for repo in repos:
-        category_row = categories.get(repo.category)
-        if not isinstance(category_row, dict):
-            category_row = {"description": f"Remote-ingested category: {repo.category}", "repos": []}
-            categories[repo.category] = category_row
-
-        if not ensure_string(category_row.get("description")):
-            category_row["description"] = f"Remote-ingested category: {repo.category}"
-
-        name_rows = category_row.get("repos")
-        names: list[str] = []
-        if isinstance(name_rows, list):
-            for row in name_rows:
-                if isinstance(row, str) and row.strip():
-                    names.append(row.strip())
-        if repo.name not in names:
-            names.append(repo.name)
-        category_row["repos"] = sorted(set(names), key=str.lower)
-
-        repo_row: dict[str, Any] = {
-            "category": repo.category,
-            "directory": repo.directory,
-            "summary": repo.summary,
-        }
-        language = ensure_string(repo.build_run.get("language"))
-        if language:
-            repo_row["language"] = language
-        repos_section[repo.name] = repo_row
-
-    repo_files = sorted((workspace_root / "ssh_repos" / "knowledge" / "repos").glob("*.yaml"))
-    payload["total_repos"] = len(repo_files)
-
-    text = dump_yaml(payload)
+def ensure_unified_index(workspace_root: Path) -> None:
+    path = workspace_root / "repos" / "knowledge" / "index.yaml"
+    text = (
+        "# Shard-level index (informational only).\n"
+        "# Authoritative index: master_index.yaml (compiled by WS4).\n"
+        'note: "This file is not consumed by the pipeline. See master_index.yaml."\n'
+    )
     write_if_changed(path, text)
 
 
@@ -588,56 +482,42 @@ def build_validation_template(step8_command: str) -> list[dict[str, Any]]:
         },
         {
             "step": 3,
-            "command": "python3 tools/trust_gates.py llm_repos/knowledge --production",
+            "command": "python3 tools/trust_gates.py repos/knowledge --production",
             "status": "PENDING_EXECUTION",
             "exit_code": None,
             "expectation": "overall_status: PASS and ready_state_allowed: true",
         },
         {
             "step": 4,
-            "command": "python3 tools/trust_gates.py ssh_repos/knowledge --production",
+            "command": "cd repos/knowledge && python3 validate.py",
             "status": "PENDING_EXECUTION",
             "exit_code": None,
-            "expectation": "overall_status: PASS and ready_state_allowed: true",
+            "expectation": "validate.py exits 0",
         },
         {
             "step": 5,
-            "command": "cd llm_repos/knowledge && python3 validate.py",
-            "status": "PENDING_EXECUTION",
-            "exit_code": None,
-            "expectation": "validate.py exits 0",
-        },
-        {
-            "step": 6,
-            "command": "cd ssh_repos/knowledge && python3 validate.py",
-            "status": "PENDING_EXECUTION",
-            "exit_code": None,
-            "expectation": "validate.py exits 0",
-        },
-        {
-            "step": 7,
             "command": "python3 -m unittest discover -s tests/ws5_remote_ingestion -p 'test_*.py'",
             "status": "PENDING_EXECUTION",
             "exit_code": None,
             "expectation": "unittest exits 0",
         },
         {
-            "step": 8,
+            "step": 6,
             "command": step8_command,
             "status": "PASS",
             "exit_code": 0,
             "expectation": STEP8_EXPECTATION,
         },
         {
-            "step": 9,
+            "step": 7,
             "command": "python3 tools/ws4_master_compiler.py --workspace-root . --master-index master_index.yaml --master-graph master_graph.yaml --reports-dir reports/ws4_master_build",
             "status": "PENDING_EXECUTION",
             "exit_code": None,
             "expectation": "compiler exits 0 and reports/ws4_master_build/coverage.yaml gate_ready: true",
         },
         {
-            "step": 10,
-            "command": "Re-run commands 8 and 9 with identical input and verify artifact hashes unchanged",
+            "step": 8,
+            "command": "Re-run commands 6 and 7 with identical input and verify artifact hashes unchanged",
             "status": "PENDING_EXECUTION",
             "exit_code": None,
             "expectation": "hashes unchanged",
@@ -670,9 +550,9 @@ def merge_required_commands(existing_value: Any, step8_command: str) -> list[dic
     merged_rows: list[dict[str, Any]] = []
     for template_row in template_rows:
         step_num = template_row["step"]
-        if step_num == 8:
+        if step_num == 6:
             step8_row = dict(existing_by_step.get(step_num, template_row))
-            step8_row["step"] = 8
+            step8_row["step"] = 6
             step8_row["command"] = step8_command
             step8_row["status"] = "PASS"
             step8_row["exit_code"] = 0
@@ -769,7 +649,7 @@ def main() -> int:
     deduped_rows: list[RepoInput] = []
 
     for row in valid_rows:
-        node_id = f"{row.target_shard}::repo::{row.github_full_name}"
+        node_id = f"repo::{row.github_full_name}"
         rel_path = f"{row.target_shard}/knowledge/repos/{row.file_stem}.yaml"
         seen_node_ids.setdefault(node_id, []).append(row.index)
         seen_file_paths.setdefault(rel_path, []).append(row.index)
@@ -802,7 +682,7 @@ def main() -> int:
 
     if blocking_mismatch_count == 0:
         # Deterministic path ordering keeps write sequence stable.
-        for row in sorted(deduped_rows, key=lambda item: (item.target_shard, item.file_stem, item.github_full_name)):
+        for row in sorted(deduped_rows, key=lambda item: (item.file_stem, item.github_full_name)):
             rel_path = Path(row.target_shard) / "knowledge" / "repos" / f"{row.file_stem}.yaml"
             abs_path = workspace_root / rel_path
             record = build_repo_record(row, rel_path.as_posix())
@@ -830,8 +710,7 @@ def main() -> int:
                 readme_fallback_fields_total += len(row.fallback_fields_used)
             written_records.append(record)
 
-        update_llm_index(workspace_root, [row for row in deduped_rows if row.target_shard == "llm_repos"])
-        update_ssh_index(workspace_root, [row for row in deduped_rows if row.target_shard == "ssh_repos"])
+        ensure_unified_index(workspace_root)
     else:
         writes_succeeded = False
 
@@ -893,7 +772,7 @@ def main() -> int:
 
     materialized_repo_paths = [
         f"{row.target_shard}/knowledge/repos/{row.file_stem}.yaml"
-        for row in sorted(deduped_rows, key=lambda item: (item.target_shard, item.file_stem, item.github_full_name))
+        for row in sorted(deduped_rows, key=lambda item: (item.file_stem, item.github_full_name))
     ]
 
     coverage = {

@@ -4,7 +4,7 @@
 This validator enforces the WS1 boundary contract:
 - Contract artifact existence + contract_version alignment
 - Source enum alignment across repo/node schemas (including remote-first enums)
-- Relation mapping coverage integrity (unique coverage + per-shard observed rows)
+- Relation mapping coverage integrity (unique coverage + observed rows)
 - Edge/node consistency with explicit dst_kind checks under configurable external-node policy
 """
 
@@ -29,7 +29,7 @@ REQUIRED_ARTIFACTS = [
 ]
 
 REQUIRED_REMOTE_SOURCES = {"remote_metadata", "remote_api", "compiled_master"}
-SHARDS = ("llm_repos", "ssh_repos")
+SHARDS = ("repos",)
 IDENTITY_REQUIRED_FIELDS = ("name", "node_id", "github_full_name", "html_url", "source", "provenance")
 DEEP_LEGACY_ALIAS_KEYS = {"repo_id", "repo", "full_name"}
 
@@ -301,8 +301,7 @@ def collect_observed_relations(graph_path: Path, keys: list[str] | tuple[str, ..
 
 def validate_relation_mapping(
     loaded: dict[str, Any],
-    llm_graph: Path,
-    ssh_graph: Path,
+    graph_path: Path,
     result: CheckResult,
 ) -> None:
     mapping = loaded.get("relation_mapping.yaml")
@@ -329,8 +328,7 @@ def validate_relation_mapping(
         return
 
     observed_by_shard = {
-        "llm_repos": collect_observed_relations(llm_graph, ["relation"]),
-        "ssh_repos": collect_observed_relations(ssh_graph, ["relation", "type"]),
+        "repos": collect_observed_relations(graph_path, ["relation", "type"]),
     }
 
     mapping_rows = mapping.get("mappings")
@@ -395,7 +393,7 @@ def validate_relation_mapping(
         result.add_fail("relation_mapping.yaml coverage must be a mapping")
         return
 
-    unique_observed = len(observed_by_shard["llm_repos"] | observed_by_shard["ssh_repos"])
+    unique_observed = len(observed_by_shard["repos"])
     unique_mapped = len(mapped_unique_observed)
     observed_rows = len(expected_pairs)
     mapped_rows = len(seen_pairs)
@@ -563,14 +561,9 @@ def parse_args() -> argparse.Namespace:
         help="Override contracts directory (default: <workspace-root>/contracts/ws1)",
     )
     parser.add_argument(
-        "--llm-graph",
+        "--graph",
         default=None,
-        help="Override llm graph path (default: <workspace-root>/llm_repos/knowledge/graph.yaml)",
-    )
-    parser.add_argument(
-        "--ssh-graph",
-        default=None,
-        help="Override ssh graph path (default: <workspace-root>/ssh_repos/knowledge/graph.yaml)",
+        help="Override graph path (default: <workspace-root>/repos/knowledge/graph.yaml)",
     )
     parser.add_argument(
         "--consistency-fixture",
@@ -598,8 +591,7 @@ def main() -> int:
         if args.contracts_dir
         else workspace_root / "contracts" / "ws1"
     )
-    llm_graph = Path(args.llm_graph).resolve() if args.llm_graph else workspace_root / "llm_repos" / "knowledge" / "graph.yaml"
-    ssh_graph = Path(args.ssh_graph).resolve() if args.ssh_graph else workspace_root / "ssh_repos" / "knowledge" / "graph.yaml"
+    graph_path = Path(args.graph).resolve() if args.graph else workspace_root / "repos" / "knowledge" / "graph.yaml"
     consistency_fixture = (
         Path(args.consistency_fixture).resolve()
         if args.consistency_fixture
@@ -610,15 +602,13 @@ def main() -> int:
 
     loaded = validate_artifacts(contracts_dir, result)
 
-    if not llm_graph.exists():
-        result.add_fail(f"Missing llm graph file: {llm_graph}")
-    if not ssh_graph.exists():
-        result.add_fail(f"Missing ssh graph file: {ssh_graph}")
+    if not graph_path.exists():
+        result.add_fail(f"Missing graph file: {graph_path}")
 
     if result.ok:
         validate_source_enum_alignment(loaded, result)
         validate_shallow_and_deep_identity(workspace_root, result)
-        validate_relation_mapping(loaded, llm_graph, ssh_graph, result)
+        validate_relation_mapping(loaded, graph_path, result)
         validate_policy_configuration(loaded, args.external_node_policy, result)
         validate_edge_node_consistency(consistency_fixture, args.external_node_policy, loaded, result)
 

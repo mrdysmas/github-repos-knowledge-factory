@@ -22,7 +22,7 @@ class WS6DeepIntegrationTests(unittest.TestCase):
         path.write_text(yaml.safe_dump(payload, sort_keys=False), encoding="utf-8")
 
     def _make_workspace(self, tmp_path: Path) -> Path:
-        for shard in ("llm_repos", "ssh_repos"):
+        for shard in ("repos",):
             (tmp_path / shard / "knowledge" / "repos").mkdir(parents=True, exist_ok=True)
             (tmp_path / shard / "knowledge" / "deep").mkdir(parents=True, exist_ok=True)
 
@@ -31,7 +31,7 @@ class WS6DeepIntegrationTests(unittest.TestCase):
         deep_fact_schema = {
             "contract_version": "1.0.0-ws6-draft",
             "artifact_type": "ws1_deep_fact_schema",
-            "source_enums": ["llm_repos", "ssh_repos", "remote_metadata", "remote_api", "compiled_master"],
+            "source_enums": ["repos", "remote_metadata", "remote_api", "compiled_master"],
             "fact_type_enums": [
                 "component",
                 "config_option",
@@ -74,7 +74,7 @@ class WS6DeepIntegrationTests(unittest.TestCase):
             "canonical_relations": ["integrates_with"],
             "mappings": [
                 {
-                    "shard": "llm_repos",
+                    "shard": "repos",
                     "observed_label": "integrates_with",
                     "canonical_relation": "integrates_with",
                     "status": "mapped",
@@ -88,19 +88,19 @@ class WS6DeepIntegrationTests(unittest.TestCase):
             "node_id": "repo::example/demo-repo",
             "github_full_name": "example/demo-repo",
             "html_url": "https://github.com/example/demo-repo",
-            "source": "llm_repos",
+            "source": "repos",
             "category": "demo",
             "summary": "demo",
             "core_concepts": ["demo"],
             "key_entry_points": ["README.md"],
             "build_run": {"language": "python"},
             "provenance": {
-                "shard": "llm_repos",
-                "source_file": "llm_repos/knowledge/repos/demo-repo.yaml",
+                "shard": "repos",
+                "source_file": "repos/knowledge/repos/demo-repo.yaml",
                 "as_of": "2026-02-24",
             },
         }
-        self._write_yaml(tmp_path / "llm_repos" / "knowledge" / "repos" / "demo-repo.yaml", shallow_repo)
+        self._write_yaml(tmp_path / "repos" / "knowledge" / "repos" / "demo-repo.yaml", shallow_repo)
 
         return tmp_path
 
@@ -128,10 +128,10 @@ class WS6DeepIntegrationTests(unittest.TestCase):
                 "node_id": "repo::example/demo-repo",
                 "github_full_name": "example/demo-repo",
                 "html_url": "https://github.com/example/demo-repo",
-                "source": "llm_repos",
+                "source": "repos",
                 "provenance": {
-                    "shard": "llm_repos",
-                    "source_file": "llm_repos/knowledge/deep/demo-repo.yaml",
+                    "shard": "repos",
+                    "source_file": "repos/knowledge/deep/demo-repo.yaml",
                     "as_of": "2026-02-24",
                 },
                 "architecture": {
@@ -172,12 +172,12 @@ class WS6DeepIntegrationTests(unittest.TestCase):
                 "supported_protocols": ["http", "grpc"],
                 "quick_reference": [{"topic": "CLI", "content": "Use --help"}],
             }
-            self._write_yaml(workspace / "llm_repos" / "knowledge" / "deep" / "demo-repo.yaml", deep_payload)
+            self._write_yaml(workspace / "repos" / "knowledge" / "deep" / "demo-repo.yaml", deep_payload)
 
             result = self._run_ws6(workspace)
             self.assertEqual(result.returncode, 0, msg=result.stdout + "\n" + result.stderr)
 
-            deep_facts_path = workspace / "llm_repos" / "knowledge" / "deep_facts" / "demo-repo.yaml"
+            deep_facts_path = workspace / "repos" / "knowledge" / "deep_facts" / "demo-repo.yaml"
             self.assertTrue(deep_facts_path.exists())
             deep_facts = yaml.safe_load(deep_facts_path.read_text(encoding="utf-8"))
             self.assertTrue(len(deep_facts.get("facts", [])) > 0)
@@ -222,25 +222,25 @@ class WS6DeepIntegrationTests(unittest.TestCase):
                 "node_id": "repo::example/demo-repo",
                 "github_full_name": "example/demo-repo",
                 "html_url": "https://github.com/example/demo-repo",
-                "source": "llm_repos",
+                "source": "repos",
                 "provenance": {
-                    "shard": "llm_repos",
-                    "source_file": "llm_repos/knowledge/deep/demo-repo.yaml",
+                    "shard": "repos",
+                    "source_file": "repos/knowledge/deep/demo-repo.yaml",
                     "as_of": "2026-02-24",
                 },
                 "implementation_patterns": [{"pattern": "P1", "description": "d", "location": "a.py"}],
             }
-            self._write_yaml(workspace / "llm_repos" / "knowledge" / "deep" / "demo-repo.yaml", deep_payload)
+            self._write_yaml(workspace / "repos" / "knowledge" / "deep" / "demo-repo.yaml", deep_payload)
 
             draft_payload = {
                 "name": "demo-repo",
                 "node_id": "repo::example/demo-repo",
                 "github_full_name": "example/demo-repo",
                 "html_url": "https://github.com/example/demo-repo",
-                "source": "llm_repos",
+                "source": "repos",
                 "provenance": {
-                    "shard": "llm_repos",
-                    "source_file": "llm_repos/knowledge/deep_facts_draft/demo-repo.yaml",
+                    "shard": "repos",
+                    "source_file": "repos/knowledge/deep_facts_draft/demo-repo.yaml",
                     "as_of": "2026-02-24",
                 },
                 "facts": [
@@ -255,14 +255,14 @@ class WS6DeepIntegrationTests(unittest.TestCase):
                             {
                                 "kind": "file_block",
                                 "ref": "facts[0]",
-                                "source_file": "llm_repos/knowledge/deep_facts_draft/demo-repo.yaml",
+                                "source_file": "repos/knowledge/deep_facts_draft/demo-repo.yaml",
                             }
                         ],
                     }
                 ],
             }
             self._write_yaml(
-                workspace / "llm_repos" / "knowledge" / "deep_facts_draft" / "demo-repo.yaml",
+                workspace / "repos" / "knowledge" / "deep_facts_draft" / "demo-repo.yaml",
                 draft_payload,
             )
 
@@ -285,10 +285,10 @@ class WS6DeepIntegrationTests(unittest.TestCase):
                 "node_id": "repo::example/demo-repo",
                 "github_full_name": "example/demo-repo",
                 "html_url": "https://github.com/example/demo-repo",
-                "source": "llm_repos",
+                "source": "repos",
                 "provenance": {
-                    "shard": "llm_repos",
-                    "source_file": "llm_repos/knowledge/deep/demo-repo.yaml",
+                    "shard": "repos",
+                    "source_file": "repos/knowledge/deep/demo-repo.yaml",
                     "as_of": "2026-02-24",
                 },
                 "implementation_patterns": [
@@ -296,17 +296,17 @@ class WS6DeepIntegrationTests(unittest.TestCase):
                     {"pattern": "Factory Registration", "description": "d1", "location": "src/a.py"},
                 ],
             }
-            self._write_yaml(workspace / "llm_repos" / "knowledge" / "deep" / "demo-repo.yaml", deep_payload)
+            self._write_yaml(workspace / "repos" / "knowledge" / "deep" / "demo-repo.yaml", deep_payload)
 
             draft_payload = {
                 "name": "demo-repo",
                 "node_id": "repo::example/demo-repo",
                 "github_full_name": "example/demo-repo",
                 "html_url": "https://github.com/example/demo-repo",
-                "source": "llm_repos",
+                "source": "repos",
                 "provenance": {
-                    "shard": "llm_repos",
-                    "source_file": "llm_repos/knowledge/deep_facts_draft/demo-repo.yaml",
+                    "shard": "repos",
+                    "source_file": "repos/knowledge/deep_facts_draft/demo-repo.yaml",
                     "as_of": "2026-02-24",
                 },
                 "facts": [
@@ -322,14 +322,14 @@ class WS6DeepIntegrationTests(unittest.TestCase):
                             {
                                 "kind": "file_block",
                                 "ref": "facts[0]",
-                                "source_file": "llm_repos/knowledge/deep_facts_draft/demo-repo.yaml",
+                                "source_file": "repos/knowledge/deep_facts_draft/demo-repo.yaml",
                             }
                         ],
                     }
                 ],
             }
             self._write_yaml(
-                workspace / "llm_repos" / "knowledge" / "deep_facts_draft" / "demo-repo.yaml",
+                workspace / "repos" / "knowledge" / "deep_facts_draft" / "demo-repo.yaml",
                 draft_payload,
             )
 
@@ -337,7 +337,7 @@ class WS6DeepIntegrationTests(unittest.TestCase):
             self.assertEqual(result.returncode, 0, msg=result.stdout + "\n" + result.stderr)
 
             deep_facts = yaml.safe_load(
-                (workspace / "llm_repos" / "knowledge" / "deep_facts" / "demo-repo.yaml").read_text(encoding="utf-8")
+                (workspace / "repos" / "knowledge" / "deep_facts" / "demo-repo.yaml").read_text(encoding="utf-8")
             )
             facts = deep_facts.get("facts", [])
             target = [f for f in facts if f.get("object_value") == "Factory Registration"]
@@ -360,10 +360,10 @@ class WS6DeepIntegrationTests(unittest.TestCase):
                 "node_id": "repo::example/demo-repo",
                 "github_full_name": "example/demo-repo",
                 "html_url": "https://github.com/example/demo-repo",
-                "source": "llm_repos",
+                "source": "repos",
                 "provenance": {
-                    "shard": "llm_repos",
-                    "source_file": "llm_repos/knowledge/deep/demo-repo.yaml",
+                    "shard": "repos",
+                    "source_file": "repos/knowledge/deep/demo-repo.yaml",
                     "as_of": "2026-02-24",
                 },
                 "testing": {
@@ -390,13 +390,13 @@ class WS6DeepIntegrationTests(unittest.TestCase):
                     }
                 },
             }
-            self._write_yaml(workspace / "llm_repos" / "knowledge" / "deep" / "demo-repo.yaml", deep_payload)
+            self._write_yaml(workspace / "repos" / "knowledge" / "deep" / "demo-repo.yaml", deep_payload)
 
             result = self._run_ws6(workspace)
             self.assertEqual(result.returncode, 0, msg=result.stdout + "\n" + result.stderr)
 
             deep_facts = yaml.safe_load(
-                (workspace / "llm_repos" / "knowledge" / "deep_facts" / "demo-repo.yaml").read_text(encoding="utf-8")
+                (workspace / "repos" / "knowledge" / "deep_facts" / "demo-repo.yaml").read_text(encoding="utf-8")
             )
             facts = deep_facts.get("facts", [])
 
@@ -467,10 +467,10 @@ class WS6DeepIntegrationTests(unittest.TestCase):
                 "node_id": "repo::example/demo-repo",
                 "github_full_name": "example/demo-repo",
                 "html_url": "https://github.com/example/demo-repo",
-                "source": "llm_repos",
+                "source": "repos",
                 "provenance": {
-                    "shard": "llm_repos",
-                    "source_file": "llm_repos/knowledge/deep/demo-repo.yaml",
+                    "shard": "repos",
+                    "source_file": "repos/knowledge/deep/demo-repo.yaml",
                     "as_of": "2026-02-24",
                 },
                 "type": "application_platform",
@@ -479,13 +479,13 @@ class WS6DeepIntegrationTests(unittest.TestCase):
                 "ports": {"grpc": 19530, "metrics": 9091},
                 "related_repos": ["langchain", "llama_index"],
             }
-            self._write_yaml(workspace / "llm_repos" / "knowledge" / "deep" / "demo-repo.yaml", deep_payload)
+            self._write_yaml(workspace / "repos" / "knowledge" / "deep" / "demo-repo.yaml", deep_payload)
 
             result = self._run_ws6(workspace)
             self.assertEqual(result.returncode, 0, msg=result.stdout + "\n" + result.stderr)
 
             deep_facts = yaml.safe_load(
-                (workspace / "llm_repos" / "knowledge" / "deep_facts" / "demo-repo.yaml").read_text(encoding="utf-8")
+                (workspace / "repos" / "knowledge" / "deep_facts" / "demo-repo.yaml").read_text(encoding="utf-8")
             )
             facts = deep_facts.get("facts", [])
 

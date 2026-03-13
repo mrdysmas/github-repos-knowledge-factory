@@ -26,7 +26,7 @@ import yaml
 
 
 CONTRACT_VERSION = "1.0.0-ws1"
-SHARDS = ("llm_repos", "ssh_repos")
+SHARDS = ("repos",)
 ALLOWED_DST_KINDS = {"repo", "external_tool", "concept"}
 ALLOWED_NODE_KINDS = {"repo", "external_tool", "concept"}
 REPO_ALLOWED_KEYS = {
@@ -877,40 +877,20 @@ def run_required_preflight_commands(workspace_root: Path) -> list[CommandRun]:
     runs.append(
         run_command(
             step=3,
-            command="python3 tools/trust_gates.py llm_repos/knowledge --production",
+            command="python3 tools/trust_gates.py repos/knowledge --production",
             expectation="overall_status: PASS and ready_state_allowed: true",
-            argv=[python, "tools/trust_gates.py", "llm_repos/knowledge", "--production"],
+            argv=[python, "tools/trust_gates.py", "repos/knowledge", "--production"],
             cwd=workspace_root,
-            extra_check=trust_gates_report_check(workspace_root / "llm_repos" / "knowledge" / "trust-gates-report.yaml"),
+            extra_check=trust_gates_report_check(workspace_root / "repos" / "knowledge" / "trust-gates-report.yaml"),
         )
     )
     runs.append(
         run_command(
             step=4,
-            command="python3 tools/trust_gates.py ssh_repos/knowledge --production",
-            expectation="overall_status: PASS and ready_state_allowed: true",
-            argv=[python, "tools/trust_gates.py", "ssh_repos/knowledge", "--production"],
-            cwd=workspace_root,
-            extra_check=trust_gates_report_check(workspace_root / "ssh_repos" / "knowledge" / "trust-gates-report.yaml"),
-        )
-    )
-    runs.append(
-        run_command(
-            step=5,
-            command="cd llm_repos/knowledge && python3 validate.py",
+            command="cd repos/knowledge && python3 validate.py",
             expectation="validate.py exits 0",
             argv=[python, "validate.py"],
-            cwd=workspace_root / "llm_repos" / "knowledge",
-            extra_check=None,
-        )
-    )
-    runs.append(
-        run_command(
-            step=6,
-            command="cd ssh_repos/knowledge && python3 validate.py",
-            expectation="validate.py exits 0",
-            argv=[python, "validate.py"],
-            cwd=workspace_root / "ssh_repos" / "knowledge",
+            cwd=workspace_root / "repos" / "knowledge",
             extra_check=None,
         )
     )

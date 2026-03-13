@@ -2,13 +2,11 @@ contract_version: "1.0.0-ws1"
 artifact_type: "ws1_validator_contract"
 canonical_command: "python3 tools/ws1_contract_validator.py --workspace-root <repo_root> --external-node-policy <first_class|label_only>"
 mandatory_call_sites:
-  - path: llm_repos/knowledge/validate.py
+  - path: repos/knowledge/validate.py
     hook: run_ws1_contract_preflight(base_path)
-  - path: ssh_repos/knowledge/validate.py
-    hook: run_ws1_contract_preflight()
 enforcement_scope:
   - "WS1 artifacts exist and share exact contract_version"
-  - "relation mapping coverage checks (unique coverage + per-shard rows)"
+  - "relation mapping coverage checks (unique coverage + observed rows)"
   - "external node policy mode validation"
   - "edge/node dst_kind integrity checks via canonical fixtures"
 blocking_behavior:

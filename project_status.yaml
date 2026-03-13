@@ -45,10 +45,10 @@ governance:
       status: "RESOLVED"
       rationale: "Timestamp mismatch can occur with unchanged deep facts; warn to preserve visibility without dead-stopping valid runs."
     D5:
-      summary: "Hold two canonical shards (llm_repos/ssh_repos) through pilot; use domain_hint metadata for non-LLM segmentation now."
+      summary: "Canonical knowledge artifacts now live in a single repos shard; domain_hint remains the taxonomy signal."
       status: "RESOLVED"
-      rationale: "Avoid pre-pilot schema/tool migration overhead; preserve existing WS1/WS4/WS5 contracts and add domain_hint for future routing flexibility."
-      expansion_trigger: "Consider new shard only after pilot shallow canonicalization is stable and enough repos share a distinct domain requiring different ontology/gates."
+      rationale: "The downstream pipeline already operated in a merged namespace, so the upstream shard split was retired to remove routing ambiguity."
+      expansion_trigger: "Introduce a new shard only if a future ontology or gate genuinely requires separate canonical treatment."
 
 canonical:
   source_of_truth: "YAML artifacts"
@@ -69,8 +69,7 @@ canonical:
         - "tools/ws6_deep_integrator.py"
         - "tools/query_master.py"
       outputs:
-        - "llm_repos/knowledge/deep_facts/*.yaml"
-        - "ssh_repos/knowledge/deep_facts/*.yaml"
+        - "repos/knowledge/deep_facts/*.yaml"
         - "master_deep_facts.yaml"
         - "reports/ws6_deep_integration/coverage.yaml"
         - "reports/ws6_deep_integration/mismatch_report.yaml"
@@ -177,8 +176,7 @@ canonical:
     gates:
       - "tools/ws1_contract_validator.py"
       - "tools/trust_gates.py"
-      - "llm_repos/knowledge/validate.py"
-      - "ssh_repos/knowledge/validate.py"
+      - "repos/knowledge/validate.py"
       - "tools/ws6_deep_integrator.py --run-validation-suite"
       - "tools/ws7_read_model_compiler.py"
     compile: "tools/ws4_master_compiler.py"

@@ -3,20 +3,14 @@
 /intake_repos/*
 !/intake_repos/README.md
 
-# LLM source clones are disposable; keep curated knowledge artifacts.
-/llm_repos/*
-!/llm_repos/knowledge/
-!/llm_repos/knowledge/**
-!/llm_repos/*.yaml
-!/llm_repos/repos.yaml
-!/llm_repos/CLAUDE.md
+# Unified knowledge shard
+/repos/*
+!/repos/knowledge/
+!/repos/knowledge/**
 
-# SSH source clones are disposable; keep curated knowledge artifacts.
-/ssh_repos/*
-!/ssh_repos/knowledge/
-!/ssh_repos/knowledge/**
-!/ssh_repos/*.yaml
-!/ssh_repos/.gitignore
+# Legacy shard directories (archived)
+/llm_repos/
+/ssh_repos/
 
 # Non-canonical local corpora (scratch/source clones)
 /cli_repos/

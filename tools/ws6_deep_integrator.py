@@ -20,7 +20,7 @@ from typing import Any, Callable
 import yaml
 
 
-SHARDS = ("llm_repos", "ssh_repos")
+SHARDS = ("repos",)
 EXTRACTOR_VERSION = "ws6-deep-integrator-v1"
 SPEC_VERSION = "1.1.0-ws6-materializer"
 
@@ -337,16 +337,13 @@ def build_spec() -> dict[str, Any]:
                 "contracts/ws1/relation_mapping.yaml",
             ],
             "shallow_repos": [
-                "llm_repos/knowledge/repos/*.yaml",
-                "ssh_repos/knowledge/repos/*.yaml",
+                "repos/knowledge/repos/*.yaml",
             ],
             "deep_narrative": [
-                "llm_repos/knowledge/deep/*.yaml",
-                "ssh_repos/knowledge/deep/*.yaml",
+                "repos/knowledge/deep/*.yaml",
             ],
             "deep_fact_draft_optional": [
-                "llm_repos/knowledge/deep_facts_draft/*.yaml",
-                "ssh_repos/knowledge/deep_facts_draft/*.yaml",
+                "repos/knowledge/deep_facts_draft/*.yaml",
             ],
         },
         "normalization_rules": [
@@ -417,8 +414,7 @@ def build_spec() -> dict[str, Any]:
         ],
         "outputs": {
             "canonical_shard_outputs": [
-                "llm_repos/knowledge/deep_facts/*.yaml",
-                "ssh_repos/knowledge/deep_facts/*.yaml",
+                "repos/knowledge/deep_facts/*.yaml",
             ],
             "master_output_for_ws4_and_query": "master_deep_facts.yaml",
             "reports": [
@@ -3529,12 +3525,7 @@ def materialize(
         },
         {
             "step": 2,
-            "command": "python3 tools/trust_gates.py llm_repos/knowledge --production",
-            "expectation": "overall_status: PASS and ready_state_allowed: true",
-        },
-        {
-            "step": 3,
-            "command": "python3 tools/trust_gates.py ssh_repos/knowledge --production",
+            "command": "python3 tools/trust_gates.py repos/knowledge --production",
             "expectation": "overall_status: PASS and ready_state_allowed: true",
         },
         {
@@ -3671,8 +3662,7 @@ def materialize(
     if run_validation_suite:
         suite_commands: dict[int, list[str]] = {
             1: ["python3", "tools/ws1_contract_validator.py", "--workspace-root", ".", "--external-node-policy", "first_class"],
-            2: ["python3", "tools/trust_gates.py", "llm_repos/knowledge", "--production"],
-            3: ["python3", "tools/trust_gates.py", "ssh_repos/knowledge", "--production"],
+            2: ["python3", "tools/trust_gates.py", "repos/knowledge", "--production"],
             5: [
                 "python3",
                 "tools/ws4_master_compiler.py",
@@ -3688,7 +3678,7 @@ def materialize(
             6: ["python3", "tools/query_master.py", "--source", "yaml", "stats"],
         }
 
-        for step in (1, 2, 3, 5, 6):
+        for step in (1, 2, 5, 6):
             cmd = suite_commands[step]
             started = time.monotonic()
             proc = subprocess.run(

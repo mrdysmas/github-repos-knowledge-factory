@@ -3,10 +3,8 @@
 WS2 identity/provenance backfill and evidence writer.
 
 Deterministic pass over:
-- llm_repos/knowledge/repos/*.yaml
-- llm_repos/knowledge/deep/*.yaml
-- ssh_repos/knowledge/repos/*.yaml
-- ssh_repos/knowledge/deep/*.yaml
+- repos/knowledge/repos/*.yaml
+- repos/knowledge/deep/*.yaml
 
 Applies canonical fields:
 - node_id
@@ -69,10 +67,9 @@ SOURCE_RANK = {
     "llm_manifest": 85,
     "readme_self_match": 90,
 }
-ALLOWED_MASTER_FALLBACK = {"ssh_repos/knowledge/repos/awesome-tunneling.yaml"}
+ALLOWED_MASTER_FALLBACK = {"repos/knowledge/repos/awesome-tunneling.yaml"}
 ALLOWED_RECORD_SOURCES = {
-    "llm_repos",
-    "ssh_repos",
+    "repos",
     "remote_metadata",
     "remote_api",
     "compiled_master",
@@ -438,6 +435,8 @@ def load_master_fallback_map(path: Path) -> dict[str, str]:
 
 
 def load_llm_manifest_map(path: Path) -> dict[str, str]:
+    if not path.exists():
+        return {}
     yaml = YAML(typ="safe")
     payload = yaml.load(path.read_text(encoding="utf-8")) or {}
     rows = payload.get("repos", [])
@@ -452,6 +451,21 @@ def load_llm_manifest_map(path: Path) -> dict[str, str]:
             continue
         out[directory] = values[0]
     return out
+
+
+def resolve_repo_dir(root: Path, directory: str, payload: dict[str, Any]) -> Path:
+    local_cache_dir = payload.get("local_cache_dir")
+    if isinstance(local_cache_dir, str) and local_cache_dir:
+        candidate = Path(local_cache_dir)
+        if candidate.exists():
+            return candidate
+
+    for prefix in ("llm_repos", "ssh_repos", "repos"):
+        candidate = root / prefix / directory
+        if candidate.exists():
+            return candidate
+
+    return root / "repos" / directory
 
 
 def expected_tokens_for_record(repo_name: str, stem: str, directory: str) -> set[str]:
@@ -543,7 +557,7 @@ def audit_identity(path: Path, payload: dict[str, Any], expected_shard: str) -> 
 
     if not isinstance(source, str) or source not in ALLOWED_RECORD_SOURCES:
         malformed.append("source")
-    elif source in {"llm_repos", "ssh_repos"} and source != expected_shard:
+    elif source == "repos" and source != expected_shard:
         malformed.append("source")
 
     if not isinstance(provenance, dict):
@@ -552,7 +566,7 @@ def audit_identity(path: Path, payload: dict[str, Any], expected_shard: str) -> 
         shard = provenance.get("shard")
         source_file = provenance.get("source_file")
         as_of = provenance.get("as_of")
-        if shard not in {"llm_repos", "ssh_repos", "merged"}:
+        if shard not in {"repos", "merged"}:
             provenance_errors.append("provenance.shard")
         if shard != expected_shard:
             provenance_errors.append("provenance.shard_mismatch")
@@ -589,12 +603,12 @@ def build_resolution_map(
             raise BackfillError(f"Missing/invalid directory in shallow record {path}")
 
         expected_tokens = expected_tokens_for_record(repo_name=repo_name, stem=stem, directory=directory)
-        repo_dir = root / shard / directory
+        repo_dir = resolve_repo_dir(root, directory, payload)
         candidates = collect_local_candidates(repo_dir, expected_tokens)
 
         resolution = choose_from_candidates(path, candidates, expected_tokens)
         if resolution is None:
-            if shard == "llm_repos" and directory in llm_manifest_map:
+            if directory in llm_manifest_map:
                 resolution = Resolution(
                     full_name=llm_manifest_map[directory],
                     source="llm_manifest",
@@ -756,11 +770,7 @@ def generate_reports(
     generated_at_utc: str,
 ) -> tuple[dict[str, Any], dict[str, Any]]:
     coverage_by_shard_and_artifact: dict[str, dict[str, Any]] = {
-        "llm_repos": {
-            "repos": {"scoped_records": 0, "required_field_presence_counts": defaultdict(int), "required_field_coverage_pct": {}},
-            "deep": {"scoped_records": 0, "required_field_presence_counts": defaultdict(int), "required_field_coverage_pct": {}},
-        },
-        "ssh_repos": {
+        "repos": {
             "repos": {"scoped_records": 0, "required_field_presence_counts": defaultdict(int), "required_field_coverage_pct": {}},
             "deep": {"scoped_records": 0, "required_field_presence_counts": defaultdict(int), "required_field_coverage_pct": {}},
         },
@@ -891,17 +901,13 @@ def generate_reports(
         "scope": {
             "definition": (
                 "All shard repo and deep YAML records "
-                "(llm_repos/knowledge/{repos,deep}, ssh_repos/knowledge/{repos,deep})"
+                "(repos/knowledge/{repos,deep})"
             ),
             "total_records": total_records,
             "shard_record_counts": {
-                "llm_repos": {
-                    "repos": coverage_by_shard_and_artifact["llm_repos"]["repos"]["scoped_records"],
-                    "deep": coverage_by_shard_and_artifact["llm_repos"]["deep"]["scoped_records"],
-                },
-                "ssh_repos": {
-                    "repos": coverage_by_shard_and_artifact["ssh_repos"]["repos"]["scoped_records"],
-                    "deep": coverage_by_shard_and_artifact["ssh_repos"]["deep"]["scoped_records"],
+                "repos": {
+                    "repos": coverage_by_shard_and_artifact["repos"]["repos"]["scoped_records"],
+                    "deep": coverage_by_shard_and_artifact["repos"]["deep"]["scoped_records"],
                 },
             },
         },
@@ -965,14 +971,8 @@ def main() -> int:
     yaml_safe = YAML(typ="safe")
     yaml_safe.allow_duplicate_keys = True
 
-    shallow_paths = sorted(
-        list(root.glob("llm_repos/knowledge/repos/*.yaml"))
-        + list(root.glob("ssh_repos/knowledge/repos/*.yaml"))
-    )
-    deep_paths = sorted(
-        list(root.glob("llm_repos/knowledge/deep/*.yaml"))
-        + list(root.glob("ssh_repos/knowledge/deep/*.yaml"))
-    )
+    shallow_paths = sorted(root.glob("repos/knowledge/repos/*.yaml"))
+    deep_paths = sorted(root.glob("repos/knowledge/deep/*.yaml"))
     scope_paths = shallow_paths + deep_paths
 
     expected_scope_count = len(shallow_paths) + len(deep_paths)
@@ -987,7 +987,7 @@ def main() -> int:
         )
 
     fallback_map = load_master_fallback_map(root / "master_repo_list.yaml")
-    llm_manifest_map = load_llm_manifest_map(root / "llm_repos/repos.yaml")
+    llm_manifest_map = load_llm_manifest_map(root / "llm_repos" / "repos.yaml")
     resolution_by_shallow, fallback_events = build_resolution_map(
         yaml_safe,
         shallow_paths,

@@ -20,7 +20,7 @@ Default mode is execution and supervision, not exploration.
 - Current status source of truth: `project_status.yaml`.
 - Historical phase tracker and evidence narrative: `master_graph_merge_progress.yaml`.
 - Canonical generated artifacts: `master_index.yaml` and `master_graph.yaml`.
-- Canonical update path: `inputs/ws5/ws5_input_manifest.yaml` -> `tools/ws5_remote_ingestion.py` -> WS1/trust/shard gates -> `tools/ws4_master_compiler.py` -> `tools/ws7_read_model_compiler.py`.
+- Canonical update path: `inputs/ws5/ws5_input_manifest.yaml` -> `tools/ws5_remote_ingestion.py` -> WS1/trust/validate gates on `repos/knowledge` -> `tools/ws4_master_compiler.py` -> `tools/ws7_read_model_compiler.py`.
 - Deep narrative output contract: `contracts/deep_narrative_contract.md` (governs all WS6-compatible deep YAML production).
 - Read model materializer: `tools/ws7_read_model_compiler.py` (WS7 — compiles canonical YAML into `knowledge.db`; non-negotiable gate after every WS4/WS6 run).
 - Read model output: `knowledge.db` (SQLite, gitignored — derived artifact rebuilt on every compile).

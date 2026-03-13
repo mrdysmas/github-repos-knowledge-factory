@@ -24,13 +24,13 @@ def _sha256(path: Path) -> str:
 class WS5RemoteIngestionTests(unittest.TestCase):
     def _make_workspace(self, tmp_path: Path) -> Path:
         (tmp_path / "contracts" / "ws1").mkdir(parents=True, exist_ok=True)
-        (tmp_path / "ssh_repos" / "knowledge" / "repos").mkdir(parents=True, exist_ok=True)
+        (tmp_path / "repos" / "knowledge" / "repos").mkdir(parents=True, exist_ok=True)
         (tmp_path / "inputs" / "ws5").mkdir(parents=True, exist_ok=True)
 
         repo_schema = {
             "contract_version": "1.0.0-ws1",
             "artifact_type": "ws1_repo_schema",
-            "source_enums": ["llm_repos", "ssh_repos", "remote_metadata", "remote_api", "compiled_master"],
+            "source_enums": ["repos", "remote_metadata", "remote_api", "compiled_master"],
         }
         (tmp_path / "contracts" / "ws1" / "repo.schema.yaml").write_text(
             yaml.safe_dump(repo_schema, sort_keys=False),
@@ -47,7 +47,7 @@ class WS5RemoteIngestionTests(unittest.TestCase):
             },
             "repos": {},
         }
-        (tmp_path / "ssh_repos" / "knowledge" / "index.yaml").write_text(
+        (tmp_path / "repos" / "knowledge" / "index.yaml").write_text(
             yaml.safe_dump(index_payload, sort_keys=False),
             encoding="utf-8",
         )
@@ -55,7 +55,7 @@ class WS5RemoteIngestionTests(unittest.TestCase):
         manifest_payload = {
             "artifact_type": "ws5_remote_ingestion_input_manifest",
             "contract_version": "1.0.0-ws1",
-            "defaults": {"target_shard": "ssh_repos", "as_of": "2026-02-23"},
+            "defaults": {"target_shard": "repos", "as_of": "2026-02-23"},
             "repos": [
                 {
                     "name": "cloudflared",
@@ -101,8 +101,8 @@ class WS5RemoteIngestionTests(unittest.TestCase):
             result = subprocess.run(cmd, capture_output=True, text=True, check=False)
             self.assertEqual(result.returncode, 0, msg=result.stdout + "\n" + result.stderr)
 
-            cloudflared_repo = workspace / "ssh_repos" / "knowledge" / "repos" / "cloudflared.yaml"
-            tailscale_repo = workspace / "ssh_repos" / "knowledge" / "repos" / "tailscale.yaml"
+            cloudflared_repo = workspace / "repos" / "knowledge" / "repos" / "cloudflared.yaml"
+            tailscale_repo = workspace / "repos" / "knowledge" / "repos" / "tailscale.yaml"
             self.assertTrue(cloudflared_repo.exists())
             self.assertTrue(tailscale_repo.exists())
 
@@ -110,7 +110,7 @@ class WS5RemoteIngestionTests(unittest.TestCase):
             tail_payload = yaml.safe_load(tailscale_repo.read_text(encoding="utf-8"))
             self.assertEqual(cloud_payload["source"], "remote_metadata")
             self.assertEqual(tail_payload["source"], "remote_api")
-            self.assertEqual(cloud_payload["provenance"]["shard"], "ssh_repos")
+            self.assertEqual(cloud_payload["provenance"]["shard"], "repos")
             self.assertIsNone(cloud_payload["local_cache_dir"])
             self.assertIsNone(tail_payload["local_cache_dir"])
 
@@ -163,10 +163,10 @@ class WS5RemoteIngestionTests(unittest.TestCase):
             self.assertEqual(result.returncode, 0, msg=result.stdout + "\n" + result.stderr)
 
             cloud_payload = yaml.safe_load(
-                (workspace / "ssh_repos" / "knowledge" / "repos" / "cloudflared.yaml").read_text(encoding="utf-8")
+                (workspace / "repos" / "knowledge" / "repos" / "cloudflared.yaml").read_text(encoding="utf-8")
             )
             tailscale_payload = yaml.safe_load(
-                (workspace / "ssh_repos" / "knowledge" / "repos" / "tailscale.yaml").read_text(encoding="utf-8")
+                (workspace / "repos" / "knowledge" / "repos" / "tailscale.yaml").read_text(encoding="utf-8")
             )
 
             self.assertEqual(cloud_payload["summary"], "Fallback summary from README")
@@ -221,8 +221,8 @@ class WS5RemoteIngestionTests(unittest.TestCase):
                 "coverage": _sha256(workspace / "reports" / "ws5_remote_ingestion" / "coverage.yaml"),
                 "mismatch": _sha256(workspace / "reports" / "ws5_remote_ingestion" / "mismatch_report.yaml"),
                 "validation_runs": _sha256(workspace / "reports" / "ws5_remote_ingestion" / "validation_runs.yaml"),
-                "cloudflared": _sha256(workspace / "ssh_repos" / "knowledge" / "repos" / "cloudflared.yaml"),
-                "tailscale": _sha256(workspace / "ssh_repos" / "knowledge" / "repos" / "tailscale.yaml"),
+                "cloudflared": _sha256(workspace / "repos" / "knowledge" / "repos" / "cloudflared.yaml"),
+                "tailscale": _sha256(workspace / "repos" / "knowledge" / "repos" / "tailscale.yaml"),
             }
 
             second = subprocess.run(cmd, capture_output=True, text=True, check=False)
@@ -232,8 +232,8 @@ class WS5RemoteIngestionTests(unittest.TestCase):
                 "coverage": _sha256(workspace / "reports" / "ws5_remote_ingestion" / "coverage.yaml"),
                 "mismatch": _sha256(workspace / "reports" / "ws5_remote_ingestion" / "mismatch_report.yaml"),
                 "validation_runs": _sha256(workspace / "reports" / "ws5_remote_ingestion" / "validation_runs.yaml"),
-                "cloudflared": _sha256(workspace / "ssh_repos" / "knowledge" / "repos" / "cloudflared.yaml"),
-                "tailscale": _sha256(workspace / "ssh_repos" / "knowledge" / "repos" / "tailscale.yaml"),
+                "cloudflared": _sha256(workspace / "repos" / "knowledge" / "repos" / "cloudflared.yaml"),
+                "tailscale": _sha256(workspace / "repos" / "knowledge" / "repos" / "tailscale.yaml"),
             }
             self.assertEqual(first_hashes, second_hashes)
 
@@ -265,56 +265,42 @@ class WS5RemoteIngestionTests(unittest.TestCase):
                     },
                     {
                         "step": 3,
-                        "command": "python3 tools/trust_gates.py llm_repos/knowledge --production",
+                        "command": "python3 tools/trust_gates.py repos/knowledge --production",
                         "status": "PASS",
                         "exit_code": 0,
                         "expectation": "overall_status: PASS and ready_state_allowed: true",
                     },
                     {
                         "step": 4,
-                        "command": "python3 tools/trust_gates.py ssh_repos/knowledge --production",
+                        "command": "cd repos/knowledge && python3 validate.py",
                         "status": "PASS",
                         "exit_code": 0,
-                        "expectation": "overall_status: PASS and ready_state_allowed: true",
+                        "expectation": "validate.py exits 0",
                     },
                     {
                         "step": 5,
-                        "command": "cd llm_repos/knowledge && python3 validate.py",
-                        "status": "PASS",
-                        "exit_code": 0,
-                        "expectation": "validate.py exits 0",
-                    },
-                    {
-                        "step": 6,
-                        "command": "cd ssh_repos/knowledge && python3 validate.py",
-                        "status": "PASS",
-                        "exit_code": 0,
-                        "expectation": "validate.py exits 0",
-                    },
-                    {
-                        "step": 7,
                         "command": "python3 -m unittest discover -s tests/ws5_remote_ingestion -p 'test_*.py'",
                         "status": "PASS",
                         "exit_code": 0,
                         "expectation": "unittest exits 0",
                     },
                     {
-                        "step": 8,
+                        "step": 6,
                         "command": "python3 tools/ws5_remote_ingestion.py --workspace-root . --input inputs/ws5/ws5_input_manifest.yaml --reports-dir reports/ws5_remote_ingestion",
                         "status": "FAIL",
                         "exit_code": 1,
                         "expectation": "WS5 ingestion writes deterministic reports and WS1-compatible records",
                     },
                     {
-                        "step": 9,
+                        "step": 7,
                         "command": "python3 tools/ws4_master_compiler.py --workspace-root . --master-index master_index.yaml --master-graph master_graph.yaml --reports-dir reports/ws4_master_build",
                         "status": "PASS",
                         "exit_code": 0,
                         "expectation": "compiler exits 0 and reports/ws4_master_build/coverage.yaml gate_ready: true",
                     },
                     {
-                        "step": 10,
-                        "command": "Re-run commands 8 and 9 with identical input and verify artifact hashes unchanged",
+                        "step": 8,
+                        "command": "Re-run commands 6 and 7 with identical input and verify artifact hashes unchanged",
                         "status": "PASS",
                         "exit_code": 0,
                         "expectation": "hashes unchanged",
@@ -369,12 +355,12 @@ class WS5RemoteIngestionTests(unittest.TestCase):
 
             commands_by_step = {row["step"]: row for row in first_runs["required_commands"]}
             seeded_commands = {row["step"]: row for row in seeded_validation_runs["required_commands"]}
-            for step in (1, 2, 3, 4, 5, 6, 7, 9, 10):
+            for step in (1, 2, 3, 4, 5, 7, 8):
                 self.assertEqual(commands_by_step[step]["status"], seeded_commands[step]["status"])
                 self.assertEqual(commands_by_step[step]["exit_code"], seeded_commands[step]["exit_code"])
 
-            self.assertEqual(commands_by_step[8]["status"], "PASS")
-            self.assertEqual(commands_by_step[8]["exit_code"], 0)
+            self.assertEqual(commands_by_step[6]["status"], "PASS")
+            self.assertEqual(commands_by_step[6]["exit_code"], 0)
             self.assertEqual(first_runs["gate_ready"], True)
 
             first_hash = _sha256(validation_path)
