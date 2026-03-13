@@ -2,10 +2,10 @@ name: hiddify-app
 node_id: repo::hiddify/hiddify-app
 github_full_name: hiddify/hiddify-app
 html_url: https://github.com/hiddify/hiddify-app
-source: ssh_repos
+source: repos
 provenance:
-  shard: ssh_repos
-  source_file: ssh_repos/knowledge/deep_facts/hiddify-app.yaml
+  shard: repos
+  source_file: repos/knowledge/deep_facts/hiddify-app.yaml
   as_of: '2026-02-25'
   extractor_version: ws6-deep-integrator-v1
 facts:
@@ -15,928 +15,928 @@ facts:
   confidence: 0.74
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: architecture.key_abstractions[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: architecture.key_abstractions[0]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: State management for connection operations
   object_value: ConnectionNotifier
   note: State management for connection operations
-  fact_id: fact::d8d32dbbd1f14634ef316055
+  fact_id: fact::348091c2128ad355d5c4ec19
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: architecture.key_abstractions[3]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: architecture.key_abstractions[3]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: State machine (Disconnected, Connecting, Connected, Disconnecting)
   object_value: ConnectionStatus
   note: State machine (Disconnected, Connecting, Connected, Disconnecting)
-  fact_id: fact::71e7314e54760c6455884ec8
+  fact_id: fact::837cc909ba01b6f609a27909
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: architecture.key_abstractions[4]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: architecture.key_abstractions[4]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: Platform-specific core interface (Mobile vs Desktop)
   object_value: CoreInterface
   note: Platform-specific core interface (Mobile vs Desktop)
-  fact_id: fact::50d414432ef1db53f4775e4f
+  fact_id: fact::5988c71cbfe5ef66f4859c5e
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: architecture.key_abstractions[1]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: architecture.key_abstractions[1]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: gRPC client wrapper for native core communication
   object_value: HiddifyCoreService
   note: gRPC client wrapper for native core communication
-  fact_id: fact::d2f105bf4b9225d837a4e9e5
+  fact_id: fact::84cea9f7d336f5259d27d414
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: architecture.key_abstractions[2]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: architecture.key_abstractions[2]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: Remote or Local profile with options, subscription info
   object_value: ProfileEntity
   note: Remote or Local profile with options, subscription info
-  fact_id: fact::567501896f11e37b43fa0f14
+  fact_id: fact::d4329c9182b1f33bf304daad
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: architecture.module_breakdown[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: architecture.module_breakdown[0]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: Router, theme, preferences, database, localization, shared models
   object_value: core/
   note: 'responsibility: Router, theme, preferences, database, localization, shared
     models; key_files: lib/core/'
-  fact_id: fact::ff86dfc691c7dffc37d60b46
+  fact_id: fact::a18687658cf8627c719b9b86
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: architecture.module_breakdown[1]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: architecture.module_breakdown[1]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: Connection state management, connect/disconnect/reconnect operations
   object_value: features/connection/
   note: 'responsibility: Connection state management, connect/disconnect/reconnect
     operations; key_files: lib/features/connection/notifier/connection_notifier.dart'
-  fact_id: fact::63b719b7051e9e4caa107913
+  fact_id: fact::986d0a67e62eff3d06bc79d4
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: architecture.module_breakdown[2]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: architecture.module_breakdown[2]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: Profile management, parsing, active profile tracking
   object_value: features/profile/
   note: 'responsibility: Profile management, parsing, active profile tracking; key_files:
     lib/features/profile/'
-  fact_id: fact::e30b6350d893a915fab0f299
+  fact_id: fact::45f8e94dcc889ac2b21c0252
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: architecture.module_breakdown[4]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: architecture.module_breakdown[4]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: Proxy configuration, outbound selection
   object_value: features/proxy/
   note: 'responsibility: Proxy configuration, outbound selection; key_files: lib/features/proxy/'
-  fact_id: fact::1f11c9489157ebb5b3d035dc
+  fact_id: fact::bba2ed4ab11e9027573f4d78
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: architecture.module_breakdown[3]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: architecture.module_breakdown[3]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: App settings, config options, preferences
   object_value: features/settings/
   note: 'responsibility: App settings, config options, preferences; key_files: lib/features/settings/'
-  fact_id: fact::b9a18e9143bca5c072d2ae57
+  fact_id: fact::aa77f3576fbd023bd64bb6fd
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: architecture.module_breakdown[5]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: architecture.module_breakdown[5]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: gRPC interface to hiddify-core native library
   object_value: hiddifycore/
   note: 'responsibility: gRPC interface to hiddify-core native library; key_files:
     lib/hiddifycore/hiddify_core_service.dart'
-  fact_id: fact::7e9c79ffd38b74ca31e812dc
+  fact_id: fact::6361caf57a5773b3addc9024
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: architecture.module_breakdown[6]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: architecture.module_breakdown[6]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: Sing-box configuration models, protocol types, status
   object_value: singbox/
   note: 'responsibility: Sing-box configuration models, protocol types, status; key_files:
     lib/singbox/'
-  fact_id: fact::7868fb8d75e3cacc3ce4a838
+  fact_id: fact::1349037628cb8c41f1c2f1a4
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: configuration.options[5]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: configuration.options[5]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: domainStrategy
   object_value: domainStrategy
   note: 'type: enum; DNS resolution strategy'
-  fact_id: fact::5b78c3410d2319bd6fd192f0
+  fact_id: fact::f095a9f8749d87be9460e559
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: configuration.options[4]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: configuration.options[4]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: enableFragment
   object_value: enableFragment
   note: 'type: bool; TLS fragmentation for bypass'
-  fact_id: fact::af6689a65d20467de66f0be0
+  fact_id: fact::0bf9e7a159fa105e467a4cae
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: configuration.options[3]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: configuration.options[3]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: enableWarp
   object_value: enableWarp
   note: 'type: bool; Cloudflare WARP integration'
-  fact_id: fact::27bcc95c12ee3e00e75943c0
+  fact_id: fact::24fbed4f929b4ef4cdda4b2f
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: configuration.file
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: configuration.file
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: file
   object_value: file
   note: 'default: Profile-based + App preferences; configuration default for file'
-  fact_id: fact::3843149058a1028cdaf8af37
+  fact_id: fact::c624b04f18d36a990967b8a1
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: configuration.options[2]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: configuration.options[2]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: ipv6Mode
   object_value: ipv6Mode
   note: 'type: enum; IPv6 handling strategy'
-  fact_id: fact::2bf41e3d55ae02473ac942a5
+  fact_id: fact::34af0ea2ff2c6525ecef8cc1
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: configuration.options[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: configuration.options[0]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: serviceMode
   object_value: serviceMode
   note: 'type: enum; How traffic is routed'
-  fact_id: fact::e58153c8d76e22d12ec28d09
+  fact_id: fact::96f9d54dafbd5b734f6afbcb
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: configuration.options[1]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: configuration.options[1]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: tunImplementation
   object_value: tunImplementation
   note: 'type: enum; TUN interface implementation'
-  fact_id: fact::0b90b1f47f80d793006e0789
+  fact_id: fact::99e2825bf0397dd95458cb39
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: api_surface.public_functions[1]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: api_surface.public_functions[1]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: ConnectionNotifier.reconnect
   object_value: ConnectionNotifier.reconnect
   note: Reconnect with specific profile; Future<void> reconnect(ProfileEntity?); lib/features/connection/notifier/connection_notifier.dart
-  fact_id: fact::5a2dbbea9819a8ce481b1ccd
+  fact_id: fact::be5305a699b6bdd44408f9d1
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: api_surface.public_functions[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: api_surface.public_functions[0]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: ConnectionNotifier.toggleConnection
   object_value: ConnectionNotifier.toggleConnection
   note: Toggle connection state; Future<void> toggleConnection(); lib/features/connection/notifier/connection_notifier.dart:74
-  fact_id: fact::a7d233dabed5b32af79ad1ab
+  fact_id: fact::793c4f80e8280f264078c838
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: api_surface.public_functions[2]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: api_surface.public_functions[2]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: HiddifyCoreService.start
   object_value: HiddifyCoreService.start
   note: Start VPN tunnel with config; TaskEither<ConnectionFailure, Unit> start(path,
     name, disableMemoryLimit); lib/hiddifycore/hiddify_core_service.dart:67
-  fact_id: fact::bc32f00a238088569ccffb2e
+  fact_id: fact::4842c59f6066d5dcc4ba9610
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: api_surface.public_functions[3]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: api_surface.public_functions[3]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: HiddifyCoreService.watchStatus
   object_value: HiddifyCoreService.watchStatus
   note: Stream core status updates; Stream<CoreStatus> watchStatus(); lib/hiddifycore/hiddify_core_service.dart
-  fact_id: fact::239bcde64812663ffbd2e743
+  fact_id: fact::5a2476dd7e4aade21e1708bc
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: api_surface.public_functions[4]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: api_surface.public_functions[4]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: ProfileParser.protocol
   object_value: ProfileParser.protocol
   note: Auto-detect protocol from content; static String protocol(String content);
     lib/features/profile/data/profile_parser.dart:30
-  fact_id: fact::cba47dea50e7ff0c9be2a6dd
+  fact_id: fact::5df5efc5f57d5925b8de5f74
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: extension_points[4]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: extension_points[4]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: lib/core/router/go_router/routing_config_notifier.dart
   object_value: lib/core/router/go_router/routing_config_notifier.dart
   note: Add new routes/pages for new features; GoRouter routes
-  fact_id: fact::b6f6f3dcd96f670aef27f424
+  fact_id: fact::043f581a7f1f4af555c4e5e5
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: extension_points[3]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: extension_points[3]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: lib/core/theme/theme_extensions.dart
   object_value: lib/core/theme/theme_extensions.dart
   note: Add custom theme extensions for UI customization; ThemeExtension
-  fact_id: fact::533bca13dc836c246752d6c4
+  fact_id: fact::daa6519d0e1a2862959c2362
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: extension_points[1]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: extension_points[1]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: lib/features/profile/data/profile_parser.dart
   object_value: lib/features/profile/data/profile_parser.dart
   note: Add URI scheme detection for new protocols; protocol() detection
-  fact_id: fact::4e5ed89c6166cfea0c40e395
+  fact_id: fact::02a3a8394c1162310d1770e7
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: extension_points[2]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: extension_points[2]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: lib/hiddifycore/core_interface/
   object_value: lib/hiddifycore/core_interface/
   note: CoreInterfaceMobile, CoreInterfaceDesktop patterns; Platform implementations
-  fact_id: fact::ba77e17fb27923739133c3ae
+  fact_id: fact::c171b3ef13281b3d5bb38295
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: extension_points[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: extension_points[0]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: lib/singbox/model/singbox_proxy_type.dart
   object_value: lib/singbox/model/singbox_proxy_type.dart
   note: Add newProtocol("New Protocol") with label; ProxyType enum
-  fact_id: fact::951fbe379a28f4a402127435
+  fact_id: fact::2147d6b0502e63056850694d
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: testing.coverage_areas[2].line[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: testing.coverage_areas[2].line[0]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: Configuration validation
   object_value: Configuration validation
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::4aef3a9317c6f5d3e834eecd
+  fact_id: fact::ff79e6fa4bf1c6fcad16e0dc
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: testing.coverage_areas[1].line[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: testing.coverage_areas[1].line[0]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: Connection state transitions
   object_value: Connection state transitions
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::3e92f3ff6911a753aefc5c9e
+  fact_id: fact::5f08af912535c088288d2daa
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: implementation_patterns[5]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: lib/features/connection/
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: Each feature in own directory with notifier, model, widget, data layers
   object_value: Feature-Driven Architecture
   note: 'description: Each feature in own directory with notifier, model, widget,
     data layers; location: lib/features/connection/'
-  fact_id: fact::5fe18b5b94c8d0a0875d505b
+  fact_id: fact::4e9c546e4a4e7f679da14e18
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: testing.framework.line[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: testing.framework.line[0]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: Flutter test framework
   object_value: Flutter test framework
   note: 'testing metadata: framework'
-  fact_id: fact::37f4d3a1a74e5ad0d4e3b1c5
+  fact_id: fact::433812b17c0987bb57400c4b
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: implementation_patterns[2]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: lib/features/profile/model/profile_entity.dart
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: Immutable models with code generation
   object_value: Freezed Data Classes
   note: 'description: Immutable models with code generation; location: lib/features/profile/model/profile_entity.dart'
-  fact_id: fact::b67787c8433b6490d4b16efd
+  fact_id: fact::1b3cb894efc2dd7168c5145c
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: implementation_patterns[3]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: lib/hiddifycore/core_interface/core_interface.dart
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: CoreInterfaceMobile vs CoreInterfaceDesktop
   object_value: Platform-Specific Implementations
   note: 'description: CoreInterfaceMobile vs CoreInterfaceDesktop; location: lib/hiddifycore/core_interface/core_interface.dart'
-  fact_id: fact::b718782ab7b4bed98775364e
+  fact_id: fact::21a58daed92fa45a225a9209
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: testing.coverage_areas[0].line[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: testing.coverage_areas[0].line[0]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: Profile parsing
   object_value: Profile parsing
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::e124585a32e78b62c69c577e
+  fact_id: fact::a3ffe2bca0534998e963ec38
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: implementation_patterns[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: lib/features/connection/notifier/connection_notifier.dart
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: Reactive providers with @Riverpod annotation, keepAlive for critical
       state
   object_value: Riverpod State Management
   note: 'description: Reactive providers with @Riverpod annotation, keepAlive for
     critical state; location: lib/features/connection/notifier/connection_notifier.dart'
-  fact_id: fact::c65cc5065fe8b72430308456
+  fact_id: fact::76892e04711aace2a3d52fe5
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: implementation_patterns[4]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: lib/hiddifycore/hiddify_core_service.dart
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: Real-time core status via gRPC streaming
   object_value: Stream-Based Status Monitoring
   note: 'description: Real-time core status via gRPC streaming; location: lib/hiddifycore/hiddify_core_service.dart'
-  fact_id: fact::53e4e66915f9e5408b9460e9
+  fact_id: fact::5dbca13025342586bf360350
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: implementation_patterns[1]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: lib/hiddifycore/hiddify_core_service.dart
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: Functional error handling for async operations
   object_value: TaskEither Error Handling
   note: 'description: Functional error handling for async operations; location: lib/hiddifycore/hiddify_core_service.dart'
-  fact_id: fact::9580797ec2f56cd61480cc08
+  fact_id: fact::9262945c487f646602a2fbe9
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: testing.structure.line[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: testing.structure.line[0]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: test/
   object_value: test/
   note: 'testing metadata: structure'
-  fact_id: fact::23069fd88073f215d64e9076
+  fact_id: fact::649a4f761436a3aa28d7ac29
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
   confidence: 0.67
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: testing.notes.line[1]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: testing.notes.line[1]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: dart run build_runner build --delete-conflicting-outputs
   object_value: dart run build_runner build --delete-conflicting-outputs
   note: testing command
-  fact_id: fact::b7c4ff08eb03ba774c8a169e
+  fact_id: fact::60dd6d89d0841da571e7aa49
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: supported_protocols[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: supported_protocols[0]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: Balancer
   object_value: Balancer
-  fact_id: fact::2cd5c28f88e5e4c50fa4128f
+  fact_id: fact::9064d7bf3ae4a47b32028662
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: supported_protocols[1]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: supported_protocols[1]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: HTTP, SOCKS, Naive
   object_value: HTTP, SOCKS, Naive
-  fact_id: fact::96b702bcb1363e49a367744f
+  fact_id: fact::0b80a82c05c6bcf1baebd1d5
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: supported_protocols[2]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: supported_protocols[2]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: Hysteria, Hysteria2
   object_value: Hysteria, Hysteria2
-  fact_id: fact::9e172f0280f3daba04d011bb
+  fact_id: fact::b35823454f676c8b9e61e3dd
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: supported_protocols[3]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: supported_protocols[3]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: SSH
   object_value: SSH
-  fact_id: fact::e8fee4d1a65c1ce98eaf504e
+  fact_id: fact::55a6df3793fed2baf91da6cc
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: supported_protocols[4]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: supported_protocols[4]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: Selector
   object_value: Selector
-  fact_id: fact::137f91930a7ae7dcd7a48608
+  fact_id: fact::5045115f749f140dc8a516f6
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: supported_protocols[5]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: supported_protocols[5]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: ShadowTLS
   object_value: ShadowTLS
-  fact_id: fact::b2be99ec96405b225fb08946
+  fact_id: fact::253537a027fbcce25376d881
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: supported_protocols[6]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: supported_protocols[6]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: Shadowsocks (SS, SSR)
   object_value: Shadowsocks (SS, SSR)
-  fact_id: fact::a0e357cbb1e3754d24ed54e5
+  fact_id: fact::e623b5e3ed0669a729fb2f31
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: supported_protocols[7]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: supported_protocols[7]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: TUIC
   object_value: TUIC
-  fact_id: fact::ea0a31025390afb982061ab7
+  fact_id: fact::c525a7cd77a4f1af077d5aeb
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: supported_protocols[8]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: supported_protocols[8]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: Tor, Mieru
   object_value: Tor, Mieru
-  fact_id: fact::59e8eb2135ddf2156118b8b6
+  fact_id: fact::f15a149ba1274525f03054cd
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: supported_protocols[9]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: supported_protocols[9]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: Trojan, xTrojan
   object_value: Trojan, xTrojan
-  fact_id: fact::190b533576b2b432decae251
+  fact_id: fact::486007903c3ac7f66e5f8ef6
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: supported_protocols[10]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: supported_protocols[10]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: URLTest
   object_value: URLTest
-  fact_id: fact::fc65b71594baba1d084b66e9
+  fact_id: fact::013e280696ce7010ee565689
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: supported_protocols[11]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: supported_protocols[11]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: VMess, VLESS, xVLESS, xVMess
   object_value: VMess, VLESS, xVLESS, xVMess
-  fact_id: fact::0fb732b92a32fb71dbd3ae98
+  fact_id: fact::2c6c5b2ea9ec5a1e3f124b9f
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: supported_protocols[12]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: supported_protocols[12]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: Warp (Cloudflare WARP)
   object_value: Warp (Cloudflare WARP)
-  fact_id: fact::86a4753d7fa2aa8cddddb1ff
+  fact_id: fact::90fb11d1630c67584387d46c
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
   confidence: 0.7
   as_of: '2026-02-25'
   provenance:
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     source_section: supported_protocols[13]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: supported_protocols[13]
-    source_file: ssh_repos/knowledge/deep/hiddify-app.yaml
+    source_file: repos/knowledge/deep/hiddify-app.yaml
     excerpt: WireGuard, AWG
   object_value: WireGuard, AWG
-  fact_id: fact::88c438ee7a90a69446a71f7f
+  fact_id: fact::c989869503c58ac809b35609

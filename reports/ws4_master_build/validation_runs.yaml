@@ -15,22 +15,12 @@ required_commands:
   status: PASS
   expectation: 'WS1_CONTRACT_STATUS: PASS'
 - step: 3
-  command: python3 tools/trust_gates.py llm_repos/knowledge --production
+  command: python3 tools/trust_gates.py repos/knowledge --production
   exit_code: 0
   status: PASS
   expectation: 'overall_status: PASS and ready_state_allowed: true'
 - step: 4
-  command: python3 tools/trust_gates.py ssh_repos/knowledge --production
-  exit_code: 0
-  status: PASS
-  expectation: 'overall_status: PASS and ready_state_allowed: true'
-- step: 5
-  command: cd llm_repos/knowledge && python3 validate.py
-  exit_code: 0
-  status: PASS
-  expectation: validate.py exits 0
-- step: 6
-  command: cd ssh_repos/knowledge && python3 validate.py
+  command: cd repos/knowledge && python3 validate.py
   exit_code: 0
   status: PASS
   expectation: validate.py exits 0
@@ -46,10 +36,10 @@ required_commands:
   status: PASS
   expectation: artifact hashes unchanged
 artifact_hashes:
-  master_index.yaml: 07bd6429c0365723c858fd48acce6ef6b2f844bdf65494007030992423a44ecd
-  master_graph.yaml: 81053cb4156a6cb28b1ce185bf9f5941c1862ced986b3a365f4607ae3237c8f4
-  reports/ws4_master_build/coverage.yaml: d3a4a25e9d3b8ac993de8d6fae57a528cc695b9f7a70e13dd70c40cf5f972e39
-  reports/ws4_master_build/mismatch_report.yaml: e9258ee5eec8b375acdf84c8d1f4cf68565c9d6facc454cd8536270427aec732
+  master_index.yaml: 27ad461ffb540f08062c54fd1432c323749a352f80cebcefd43732af8e80a0c6
+  master_graph.yaml: da3378fd2024cb2c82354517872eaab72a54fa5e54c2d2d4b3c195785613f046
+  reports/ws4_master_build/coverage.yaml: 0594923b18c8817f4136c38c3290ad95a8f644068b9ae06d591cb8fdfd28152f
+  reports/ws4_master_build/mismatch_report.yaml: c683c6e52b3ed5077ed590e2065966760039d6385da93b5aea0b4fbb43ff4563
 metrics:
   coverage:
     repo_records:
@@ -93,10 +83,8 @@ gate_bools:
   structured_list_fidelity_preserved_under_extras: true
   ws1_contract_first_class_pass: true
   ws1_contract_label_only_pass: true
-  trust_gates_llm_pass: true
-  trust_gates_ssh_pass: true
-  llm_validate_entrypoint_pass: true
-  ssh_validate_entrypoint_pass: true
+  trust_gates_repos_pass: true
+  repos_validate_entrypoint_pass: true
   ws4_command_7_compiler_pass: true
   ws4_command_8_deterministic_hash_unchanged: true
   all_required_commands_exit_zero: true

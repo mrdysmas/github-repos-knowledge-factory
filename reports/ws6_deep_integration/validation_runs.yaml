@@ -16,12 +16,7 @@ required_commands:
   status: PLANNED
   exit_code: null
 - step: 2
-  command: python3 tools/trust_gates.py llm_repos/knowledge --production
-  expectation: 'overall_status: PASS and ready_state_allowed: true'
-  status: PLANNED
-  exit_code: null
-- step: 3
-  command: python3 tools/trust_gates.py ssh_repos/knowledge --production
+  command: python3 tools/trust_gates.py repos/knowledge --production
   expectation: 'overall_status: PASS and ready_state_allowed: true'
   status: PLANNED
   exit_code: null
@@ -54,52 +49,29 @@ execution_results:
     first_class
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-13T04:57:06Z'
-  duration_ms: 768
+  ran_at_utc: '2026-03-13T05:30:08Z'
+  duration_ms: 749
   observation: exit_code=0; ws1_contract_status_pass=true
-  output_tail: "stdout_tail:\nexternal_node_policy: first_class\n\nPASS checks:\n\
-    \  - Contract version aligned across WS1 artifacts: 1.0.0-ws1\n  - Source enums\
-    \ aligned and remote-first ready: ['compiled_master', 'llm_repos', 'remote_api',\
-    \ 'remote_metadata', 'ssh_repos']\n  - Shallow/deep identity contract OK for llm_repos:\
-    \ shallow=79 deep=44 local_deep_coverage=100%\n  - Shallow/deep identity contract\
-    \ OK for ssh_repos: shallow=40 deep=37 local_deep_coverage=100%\n  - Relation\
-    \ mapping coverage OK: unique=12/12 rows=14/14\n  - External node policy mode\
-    \ selected: first_class\n  - Edge/node consistency OK for policy 'first_class'\
+  output_tail: "stdout_tail:\ncontracts_dir: /Users/szilaa/scripts/ext_sources/github_repos/contracts/ws1\n\
+    external_node_policy: first_class\n\nPASS checks:\n  - Contract version aligned\
+    \ across WS1 artifacts: 1.0.0-ws1\n  - Source enums aligned and remote-first ready:\
+    \ ['compiled_master', 'remote_api', 'remote_metadata', 'repos']\n  - Shallow/deep\
+    \ identity contract OK for repos: shallow=119 deep=81 local_deep_coverage=100%\n\
+    \  - Relation mapping coverage OK: unique=12/12 rows=12/12\n  - External node\
+    \ policy mode selected: first_class\n  - Edge/node consistency OK for policy 'first_class'\
     \ (dst_kind integrity enforced)\n\nWS1_CONTRACT_STATUS: PASS"
 - step: 2
-  command: python3 tools/trust_gates.py llm_repos/knowledge --production
+  command: python3 tools/trust_gates.py repos/knowledge --production
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-13T04:57:06Z'
-  duration_ms: 461
+  ran_at_utc: '2026-03-13T05:30:08Z'
+  duration_ms: 745
   observation: exit_code=0; overall_pass=true; ready_state_allowed_true=true
   output_tail: 'stdout_tail:
 
-    Knowledge dir: /Users/szilaa/scripts/ext_sources/github_repos/llm_repos/knowledge
+    Knowledge dir: /Users/szilaa/scripts/ext_sources/github_repos/repos/knowledge
 
-    Report: /Users/szilaa/scripts/ext_sources/github_repos/llm_repos/knowledge/trust-gates-report.yaml
-
-    G1 Parse Integrity: PASS (0 errors)
-
-    G2 Status Semantics: PASS (0 violations)
-
-    G3 Spec/Validator Contract: PASS (0 findings)
-
-    Overall: PASS
-
-    ready_state_allowed: true'
-- step: 3
-  command: python3 tools/trust_gates.py ssh_repos/knowledge --production
-  status: PASS
-  exit_code: 0
-  ran_at_utc: '2026-03-13T04:57:06Z'
-  duration_ms: 364
-  observation: exit_code=0; overall_pass=true; ready_state_allowed_true=true
-  output_tail: 'stdout_tail:
-
-    Knowledge dir: /Users/szilaa/scripts/ext_sources/github_repos/ssh_repos/knowledge
-
-    Report: /Users/szilaa/scripts/ext_sources/github_repos/ssh_repos/knowledge/trust-gates-report.yaml
+    Report: /Users/szilaa/scripts/ext_sources/github_repos/repos/knowledge/trust-gates-report.yaml
 
     G1 Parse Integrity: PASS (0 errors)
 
@@ -115,7 +87,7 @@ execution_results:
     --materialize-spec reports/ws6_deep_integration/spec.yaml
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-13T04:57:05Z'
+  ran_at_utc: '2026-03-13T05:30:07Z'
   duration_ms: 0
   observation: ws6_gate_ready=true blocking_mismatches=0 facts_materialized=3791
 - step: 5
@@ -123,8 +95,8 @@ execution_results:
     master_index.yaml --master-graph master_graph.yaml --reports-dir reports/ws4_master_build
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-13T04:57:13Z'
-  duration_ms: 6860
+  ran_at_utc: '2026-03-13T05:30:14Z'
+  duration_ms: 5396
   observation: exit_code=0; ws4_gate_ready=true
   output_tail: 'stdout_tail:
 
@@ -153,8 +125,8 @@ execution_results:
   command: python3 tools/query_master.py --source yaml stats
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-13T04:57:16Z'
-  duration_ms: 2719
+  ran_at_utc: '2026-03-13T05:30:16Z'
+  duration_ms: 2711
   observation: exit_code=0; deep_facts=3791
   output_tail: "stdout_tail:\nartifact_type: master_query_stats\ncounts:\n  repos:\
     \ 119\n  nodes: 133\n  edges: 152\n  deep_facts: 3791\nsources:\n  master_index:\
@@ -165,94 +137,94 @@ execution_results:
   command: Re-run WS6 command with identical input and verify output hashes unchanged
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-13T04:57:05Z'
+  ran_at_utc: '2026-03-13T05:30:07Z'
   duration_ms: 0
   observation: hash_stability=true
 artifact_hashes:
-  llm_repos/knowledge/deep_facts/JeecgBoot.yaml: 5c3157f8dd5d1dcf2e4c43650ec0a2109eee790d4a0b57469483566598fc2bf7
-  llm_repos/knowledge/deep_facts/Prompt-Engineering-Guide.yaml: 62b10147808b6d199d9517b228c9940a15ccd724c1b14c481cf2ac8b223eed21
-  llm_repos/knowledge/deep_facts/ansible__ansible.yaml: f901039350be591f77c428a3d735cb7187b606c7769b52977725316f94ee8bb8
-  llm_repos/knowledge/deep_facts/anthropics__claude-code.yaml: 9c0d01164bcfb3f4f63394629c76ccbb50967d752855b31825e4a8d5eb6a4634
-  llm_repos/knowledge/deep_facts/anything_llm.yaml: ce983a8dfc566f54b6d2db6bd619a21f956741b82bd1120cc8c983c4962c6a43
-  llm_repos/knowledge/deep_facts/awesome-llm-apps.yaml: 80d6af7f6a409e4edb3ba49603d318ce7017dc28ce69d915e77b404f110689bc
-  llm_repos/knowledge/deep_facts/containers__podman.yaml: db5e95c65eb447c3031e8ed85cc710b4e67dc9668375d81b5ab7f31c24230e9f
-  llm_repos/knowledge/deep_facts/dottxt-ai__outlines.yaml: e9e268a4e74184fc40f49f305d514a655067fd12f228fb934fe1eb17448f5cd9
-  llm_repos/knowledge/deep_facts/flowiseai__flowise.yaml: f612725f50287fa84e9ebf7d8c92f956f00b94e262605bb654b771bc61ba5d08
-  llm_repos/knowledge/deep_facts/gin-gonic__gin.yaml: 6c59c4c6ffae2190fd141b11bfe411fb9b722a32b69ece605c1e71382ee4b62d
-  llm_repos/knowledge/deep_facts/graphrag.yaml: 5c1160665a51b06c440754da9f602f09460ac8833522ca2b79d904359cf2d811
-  llm_repos/knowledge/deep_facts/infinity.yaml: dc32a6d76eb44e2ca0f5e6d678b9313563b707b87438d6c192ae8a42e7404638
-  llm_repos/knowledge/deep_facts/khoj.yaml: d7850930f749475fbbe17c25ba20bf22d9acf6eaa8c11b6a525cce3d1f508f89
-  llm_repos/knowledge/deep_facts/lancedb__lancedb.yaml: b04aaadc1ee563c282580ef06d122bd8a9332dbc42ce62ee71526260e8b9b790
-  llm_repos/knowledge/deep_facts/langchain.yaml: d355737ae87909ca3974788ffc446fe4fd0aa23d808233a4af0b55d15f05b843
-  llm_repos/knowledge/deep_facts/langgenius__dify.yaml: 955eef95b4cbd96b85c8787af36f6148e6daaec2a3ada5e958ed37128ff5e15c
-  llm_repos/knowledge/deep_facts/llama.cpp.yaml: 67aa38ad7742be5d76b158f7810a7560ffdd7716e5123391ca77d681b3243b8c
-  llm_repos/knowledge/deep_facts/llama_index.yaml: ba62c93ba84a1b7fc35b79fa6f552e422dd083a0b4b5184756e86f8ccbe830ec
-  llm_repos/knowledge/deep_facts/llamafactory.yaml: 52cea0a2af8a8682d5114b34eccc55d2486d81b2fe842a8ca3df0472ded26946
-  llm_repos/knowledge/deep_facts/llm-app.yaml: 470f53ae7cb2d79cdf0d0b5de2b297762c515e94e94c11f837ad47eace0157f5
-  llm_repos/knowledge/deep_facts/lmdeploy.yaml: d056e48d4f8074b9898f605ab36c2a87754bacdf08e0a2ac8ebb39386c33ae12
-  llm_repos/knowledge/deep_facts/maxkb.yaml: 7cf4ffcbfa7e7efc5d96761288fcc8adc672521ac84ccc7880cbee245e7e51cb
-  llm_repos/knowledge/deep_facts/mem0.yaml: 9f11958c615b866d5c08ff0239112752a72fc0a172444073e462394806b1b975
-  llm_repos/knowledge/deep_facts/microsoft__llguidance.yaml: 94cbba685296ac19b83d47cd6df44f47e1ee55b3ae454db6a75901016b8f3add
-  llm_repos/knowledge/deep_facts/milvus.yaml: 6ce3b369b47462113a4ffe095f084b93d311c7dbb2ace777dd3c226d0860c7a7
-  llm_repos/knowledge/deep_facts/mindsdb.yaml: 8431e8d275c70adc20db61204bb10c005bfdb2d78dcc6a81257e41661b121ac5
-  llm_repos/knowledge/deep_facts/nexa_sdk.yaml: 2c198743c1398d859e11b534c16b6042301499ec698867e5534ce0e2d6e0bb51
-  llm_repos/knowledge/deep_facts/ollama.yaml: b1a1f30cfac2cbc2adfd430d9c6cac1e7365c383757a882982c99bc0e32a4c4a
-  llm_repos/knowledge/deep_facts/open_webui.yaml: 0551d36ebf2bcfc798973bb17d96a0320cd969ab8db592e8f2f01a935064d254
-  llm_repos/knowledge/deep_facts/openai__codex.yaml: c7955a2dc779e2c53b153c4854040c2130e403302b4972c5d99968613c6058c4
-  llm_repos/knowledge/deep_facts/opencompass.yaml: 19d1df0603845713d84123c7d80a132651a02304c8c3e69a926bed77dcab5b10
-  llm_repos/knowledge/deep_facts/parlant.yaml: 43fb215ed075af584bb248b4cf7fd080df94709d7f8ab8e13b5861639d063059
-  llm_repos/knowledge/deep_facts/pathway.yaml: a5bb2a5cce8c53cbb0f778dbea7c191f1eb90bc45a2c688229ebc55b876747d8
-  llm_repos/knowledge/deep_facts/pydantic__pydantic-ai.yaml: 0c41fe7bfd036f6d14cc70a20ecb780261fa27e25285c3714c652f7b55654cdb
-  llm_repos/knowledge/deep_facts/pydantic__pydantic-core.yaml: c7209cc61624b8fd599e845303e8aa04c3eeff625d6dd84a3e35fc6394feb641
-  llm_repos/knowledge/deep_facts/pydantic__pydantic-settings.yaml: e617448819fc86c3a8e414570da4385e9017e5766c11a88e87c6148bf4048335
-  llm_repos/knowledge/deep_facts/pydantic__pydantic.yaml: 9d8eb6b39646f76890cc570d89dc554c2f75357f59b36599c691e30d670e6cf0
-  llm_repos/knowledge/deep_facts/qdrant__qdrant.yaml: 026d7c16185fa3b119397b3bf3bdf34337fc3d43f2643ce10c2b7f74b4ac2a42
-  llm_repos/knowledge/deep_facts/ragflow.yaml: 039ac31b0827091f20c8d72e0274e22bb643b78a527982f1b213e65ac6f80887
-  llm_repos/knowledge/deep_facts/ruvnet__claude-flow.yaml: 47bcf6e108203a653c64139a6436d3b99b37c6f5030385b0324d47947b5d769f
-  llm_repos/knowledge/deep_facts/self-llm.yaml: 4a38c38a6ea84ced3460952819f21bb6a8ce6a8f173d91f8a4d2bedf7a2b1bcd
-  llm_repos/knowledge/deep_facts/vllm.yaml: 282b36b0287f0c6133a91ed2772fed5828ec2b6a1f6f9ee6b3e5788e3898b3c3
-  llm_repos/knowledge/deep_facts/weaviate__weaviate.yaml: 8848ff1d6e376063aacb103c32344b8f31f862b827a8119e0c87922ba4287568
-  llm_repos/knowledge/deep_facts/xinference.yaml: 72434db0e2bf4377ece0cd73f188afb47672c53ce56da12e110ae61ab8ce5af3
-  master_deep_facts.yaml: cdf5f4c77e30381889f84f7388e620cc8a9512a731af77395ed0312c673aaae7
-  reports/ws6_deep_integration/coverage.yaml: e831a4f24fb7439020457158d46dd71153f8e0d47e82a6d8f065a72fa161ce59
-  reports/ws6_deep_integration/mismatch_report.yaml: 6211686fd43190aa0b11578ce6bbdad868e9bb5231c4374205e43cdc545c6660
-  ssh_repos/knowledge/deep_facts/awesome-tunneling.yaml: 7dad3e26e7688a26e8788fd42fd1db00dcbadd667925e7419ea166ab00bad22c
-  ssh_repos/knowledge/deep_facts/bore.yaml: d486181741dfb74e58c10aff4696525d27eed40fb9afbee53510cce33162b43a
-  ssh_repos/knowledge/deep_facts/borgbackup__borg.yaml: 0eb6f24ddfccf046ebff7a80b4cee58e1b74eecdcc8730d9c3a25770aeae9177
-  ssh_repos/knowledge/deep_facts/capistrano__capistrano.yaml: bad4abc80efbe36e2fcb7a9ffa6cdffa4c08ed6c7c49f6c5033e3fc7dc5f0655
-  ssh_repos/knowledge/deep_facts/cloudflared.yaml: 01a49ec7893d11cc70349303a0418ee2046b19758b305482978d990a5ae607bc
-  ssh_repos/knowledge/deep_facts/frp.yaml: 9bc23a7d0993eaf28645d57e3f7df6658e7a3a46bb0bff7af400eb6abbdca7a4
-  ssh_repos/knowledge/deep_facts/gohugoio__hugo.yaml: 2adf160330beb1fc85e8096f0835a74510c6b75492e9e8229246f04fc479288f
-  ssh_repos/knowledge/deep_facts/gost.yaml: 48c82f43a614dfa8c575f03fe27e933beb8af36b277deae62e400c485a987e81
-  ssh_repos/knowledge/deep_facts/headscale.yaml: 5f884e8ee39e9dcf82736371fbd6256453fbf6483a6d67f08f48290d33fcd31f
-  ssh_repos/knowledge/deep_facts/hiddify-app.yaml: b448310091afc92fd63de5f38759d627029bd68b1bc264713001bf737ecbfd84
-  ssh_repos/knowledge/deep_facts/hsync.yaml: 931f4afb1d84d62e8f7bdc76f4d746d1580b6e772e748c924cef3a3682ca2d98
-  ssh_repos/knowledge/deep_facts/hysteria.yaml: 0b7086704fcfcc6a337f3642b43e5524f8c5c6e7ff98cc669b5c04cc835dd332
-  ssh_repos/knowledge/deep_facts/mmar.yaml: a5db6e565fc7ab6807dc9908cdf0a38c5d3ff05d2e7ed4dd8858f0fc96a35b46
-  ssh_repos/knowledge/deep_facts/nebula.yaml: 98b2e4e08507ab79b9dcb6dc7470ff612d4e6ded31e57df006f0b3035dbedafa
-  ssh_repos/knowledge/deep_facts/netmask.yaml: d61ffb4ddca00cd114164842e60e123c5dd3299ab5cc04f2ff53a22179252f55
-  ssh_repos/knowledge/deep_facts/pangolin.yaml: 4c2704aefa3b13edb6138efb8855a4432776bb2641016b6f9f032550ae1e2cb7
-  ssh_repos/knowledge/deep_facts/pgvector__pgvector.yaml: 581a40e2b07510e19f42cf2688c7b323d9ec1da93dcbafc58342bffec55d67b8
-  ssh_repos/knowledge/deep_facts/phuocng__1loc.yaml: 2013eda60c4fa51a6fece7d54ecffa5324ac9211983ea72fc4164c9457e12e17
-  ssh_repos/knowledge/deep_facts/puppeteer__puppeteer.yaml: 72ae0a9a93bc0b04872955374c443f4ca0d63e1ba209a89a40a8ef3a55c0c943
-  ssh_repos/knowledge/deep_facts/rathole.yaml: a2c8cf32fe4567c97296ac2620bf9891a965aa3575cff0332c068215841fd7ce
-  ssh_repos/knowledge/deep_facts/self-hosting-guide.yaml: 0a08711023821b76094a59e03b6abd80b1a8cfe5b0d6deaa7915a0c202ecb5f4
-  ssh_repos/knowledge/deep_facts/sharkdp__bat.yaml: 64af754c4677ea8ef22ee6d305a6a49e38f74806a224369fd1147d313a2163f6
-  ssh_repos/knowledge/deep_facts/sharkdp__fd.yaml: eb1c20589dadd331969b213d2d54a3c30348b2874d7ae7782c439e1bab0a5335
-  ssh_repos/knowledge/deep_facts/spotify__annoy.yaml: f68e27b87243bf60377efb575e8959f97072495a55fe6716ade9ca442cb63774
-  ssh_repos/knowledge/deep_facts/sshuttle.yaml: 828795d6738087f78aea4f137ef9859ae05ed3ece5de964ee20b2fce98ba2497
-  ssh_repos/knowledge/deep_facts/streisand.yaml: c444ff0f5a82c75b72c2eb1875c9d5c6215e071bfd364a172a54c072d8104f88
-  ssh_repos/knowledge/deep_facts/tailscale.yaml: 38667791a47e88069fa9e04e93df91abaab29d0e9436310896c193ddd49226f6
-  ssh_repos/knowledge/deep_facts/teleport.yaml: e86abc579d26489b2775d75aed687bfb7f7a3606a44d9907a168c7e0b92728f0
-  ssh_repos/knowledge/deep_facts/thephpleague__fractal.yaml: c534fb1ce5c9e5d1dd094e58b394bdf6ed9838864ec509348bfebdb66d6d8caa
-  ssh_repos/knowledge/deep_facts/tmux__tmux.yaml: 3136486f2b70fe0cfe2d7b677c955fd3f29a11daae0c2b1613c2a52eed6e2961
-  ssh_repos/knowledge/deep_facts/tunnelite.yaml: 9c78a5ad1c918963242706b7b127e2809c8444f413149e50975bb7d55384c28a
-  ssh_repos/knowledge/deep_facts/vgrok.yaml: f32169f0ffaf75d0d2151f2b6adb040f76e3c1b2e428d3cd4234be2dbcf7e383
-  ssh_repos/knowledge/deep_facts/wez__wezterm.yaml: 48b541ba7877b4584abc9069d65ca72c6707f53c670a0798e26f0dff179bd8c9
-  ssh_repos/knowledge/deep_facts/xqsit94__glm.yaml: c48055cac5b8df2ffc87aae93859f7ce5658432cf8480ececbc70196aa30cbf7
-  ssh_repos/knowledge/deep_facts/xtermjs.yaml: a083b237cdaabb0c798235759108565a0b2cea94603cf52ca15f989a200c412d
-  ssh_repos/knowledge/deep_facts/ytunnel.yaml: 877675e6408c3c0f677f66c08edeb424e4091477a6c1971002b388d1a44d93e4
-  ssh_repos/knowledge/deep_facts/yubikey-guide.yaml: 65a29d9bd1883be4935aa38e3b8807a405ffe5629435f8345b02f69700aa16e0
+  master_deep_facts.yaml: d5580852cfc568b2d44ab80d9ca76dd703fe1c3cd292aab0e9348bf7de1e9c07
+  reports/ws6_deep_integration/coverage.yaml: 93ef8cc089d93bde19c251124deb53b01e4a889b21612db46ae233c711e18969
+  reports/ws6_deep_integration/mismatch_report.yaml: 8fb78527719e4f58b9218316ee957206114b1ca26bdfc88c43b51ef73ebc60a2
+  repos/knowledge/deep_facts/JeecgBoot.yaml: a8c6bd182b6815cc8e39236e6d5473d5f06f48ec496395a2a6c255c64b5a0614
+  repos/knowledge/deep_facts/Prompt-Engineering-Guide.yaml: 65f2e007eddc0e8fb31be97689e8d48173ad2786d3d042e49ebaa44c23c28cce
+  repos/knowledge/deep_facts/ansible__ansible.yaml: b0786c995c4dec4ad7f1eef5752f0b56533439e4556d258d989e684262498cd4
+  repos/knowledge/deep_facts/anthropics__claude-code.yaml: b2cc8743c5ac9c524ee3f24a747e8551b49ec151762f0b6d8bc9671e49a90423
+  repos/knowledge/deep_facts/anything_llm.yaml: a90786288e36f23895bd5d87052a45259579b01629f04aa2339f7415355561a1
+  repos/knowledge/deep_facts/awesome-llm-apps.yaml: 8d41b5948f04c88d94655e4b35798fd59ed8baafc2cf36c2331f4a549706be6d
+  repos/knowledge/deep_facts/awesome-tunneling.yaml: 935a7db92f421ee21fd3a464b668c0439c2a38d5e4bca3a52aa8b09fc8acf6f2
+  repos/knowledge/deep_facts/bore.yaml: 0e74c6b927003b9c3296c347dfe87916f244ad7c21d2297995faad29b4802799
+  repos/knowledge/deep_facts/borgbackup__borg.yaml: d9b1fab4b8e8ea05287335552e702b4deb75e1692ef80bd1ad013ad8a5aa8ceb
+  repos/knowledge/deep_facts/capistrano__capistrano.yaml: 30aa56d3fa13277df63ba6ebbfed600086437fb5fbbc042b5e981d31852e3c6f
+  repos/knowledge/deep_facts/cloudflared.yaml: a2ae2c4f25c22dd2b8c2702e5e8c96dc6d1c314795cba69691bc1e81e8cf5a19
+  repos/knowledge/deep_facts/containers__podman.yaml: 0f95153ba0cf63a6841bec5ecd14fd588105c17adfb1c134fd17fd030b1fdd8a
+  repos/knowledge/deep_facts/dottxt-ai__outlines.yaml: df1a02d4881f41f0dc782fd9a2fd6fe11b3dc47d047f0e1090194ffbcbf21604
+  repos/knowledge/deep_facts/flowiseai__flowise.yaml: 9c5c195f9d7d1ee2ffac8f1cbcaaa9fbe91d4b27a68ad656e9838f91da3d95b8
+  repos/knowledge/deep_facts/frp.yaml: 27ae1934f1808d4459eb177d9d77b4439c2f346ccf51c13a0a37d270e033f0f0
+  repos/knowledge/deep_facts/gin-gonic__gin.yaml: db459bf3aebfa614e36f0352792714034b74284d34d3b098f55947e674d8bc73
+  repos/knowledge/deep_facts/gohugoio__hugo.yaml: 07bd23de335b97909b1e82d31d63971ef01fb6486ec5b1f7b043d75fd0dd7f37
+  repos/knowledge/deep_facts/gost.yaml: 3293ff82267589a3a0f1b6f532ab13d79de989908f10716571c7bdb0422e2da3
+  repos/knowledge/deep_facts/graphrag.yaml: 610dd63b7ac70269f0364b23243fa3a7fb328e1cb8a094d5dbb7569f3c23ead4
+  repos/knowledge/deep_facts/headscale.yaml: bc31ff4b3c00ca6aa86f2dffa06de455077b5f3d801918c52ac9863620edad27
+  repos/knowledge/deep_facts/hiddify-app.yaml: 087365e72ded7e927a3cb84d5302011c31245d9c1ffdc66b4081b77439f86c19
+  repos/knowledge/deep_facts/hsync.yaml: 266fbce2acd703eac225fb7516b8cced0ead12fb1cd1f452636b7c8b0f932823
+  repos/knowledge/deep_facts/hysteria.yaml: 3d039b46c80d78c59a399775cf0241eadecd38f7ec4b494867c59dddb937cb17
+  repos/knowledge/deep_facts/infinity.yaml: eb074ca7d6e913a6d6df4934ea23417084e9d14dd09cbce7a8ea7b70d8dc383c
+  repos/knowledge/deep_facts/khoj.yaml: 4506974a7091870059bb9d8bc04377d19de27caff4a27844e1083d3d7d567e0a
+  repos/knowledge/deep_facts/lancedb__lancedb.yaml: da4b993894b04584404606cf15c231cbf39a399014496406df2c776fff1804f8
+  repos/knowledge/deep_facts/langchain.yaml: e27b600d8c2388e94ad256ead75109e3cc330786b913e37c78f1559499dfb6d2
+  repos/knowledge/deep_facts/langgenius__dify.yaml: d66ebf0106f307cbb44f6b02a778e3c2e19fd9aad5b6d85d5feb26a04ea0e2e3
+  repos/knowledge/deep_facts/llama.cpp.yaml: f7bca6fd400317091c41b13054843c5331f4ff8b1f09bf25bab620aa5f0168a3
+  repos/knowledge/deep_facts/llama_index.yaml: 400039fd3b90b40ef346192307002e23e72a1cb9cacac4ca93f95904cf812335
+  repos/knowledge/deep_facts/llamafactory.yaml: 3f2f7771ad4cd28417d4328f3a058ae0a1d3fb83b4735db5042232feb07efec1
+  repos/knowledge/deep_facts/llm-app.yaml: 6085ed156cbe07949a5ffaefacf2ce1e389b1afddb5560035e9084e8be3762a7
+  repos/knowledge/deep_facts/lmdeploy.yaml: 84f1b6f0a86bd306f1ab8f351bb45fe0435b4f3b28ffa8a803404b894c166432
+  repos/knowledge/deep_facts/maxkb.yaml: 44cf86f89ebd4414add7ea8ef79b9452b83c88c5fe5f4a5c6d4834c9d1b8d700
+  repos/knowledge/deep_facts/mem0.yaml: e6e94d2a2fe13bf5fc680a1db44d449ec1b258624d689836157886503d974128
+  repos/knowledge/deep_facts/microsoft__llguidance.yaml: c6d0e217cbc08d007ca53af68796890b3341888f647b0f7fe6abceb4af766e14
+  repos/knowledge/deep_facts/milvus.yaml: 67cb6454882b76e364e326a16441e177a797583adfd169fe85be8cb2239f7c19
+  repos/knowledge/deep_facts/mindsdb.yaml: c6bcd4bbb4ac3bec844f7f40a55bed3e67bd0d7d00006d95466961af83e1d2e8
+  repos/knowledge/deep_facts/mmar.yaml: cffcd82f5aa49c3acc13de698c8dd1a5f730ea58fa1697e893158b3b3bd89803
+  repos/knowledge/deep_facts/nebula.yaml: b9fc91998bfc2994b23c582dea663b40a4dfbc20201f15bc77a692d4e8ac7db3
+  repos/knowledge/deep_facts/netmask.yaml: 9f1310ac1926f7d1b4e43579be0205cd656e27cf2eeb89120b4c4aedf1a2eacd
+  repos/knowledge/deep_facts/nexa_sdk.yaml: 37d6894280e11854e1b0d2d3fc73876769c51dcae852358de274e82e59844bf1
+  repos/knowledge/deep_facts/ollama.yaml: c193b8d7f94b34c8e524eedf2036d2c5cc66dfe2c59217f232ed9317ede05fe8
+  repos/knowledge/deep_facts/open_webui.yaml: 561a7a2be6d6a0e73166ab7a4ec0356f52e4bf4769daf832d1f38a16195b3d1e
+  repos/knowledge/deep_facts/openai__codex.yaml: ef37ce0f386f9243f950b7d800b34fc1fe0ca1ea1e5450b02e4f8680822bda1d
+  repos/knowledge/deep_facts/opencompass.yaml: 81bd057de6ee63ecdf7aeaaa5830bef433504de396b0b1a7fb9e390fc50ae69c
+  repos/knowledge/deep_facts/pangolin.yaml: d0747684065be6a0074d007b0236414fed764e2ce62cfa02ec03cac0e7bfc6c9
+  repos/knowledge/deep_facts/parlant.yaml: 9b0e6ee921cd8ea890d25175ba988effe8fe76f7bce2b9851e4c9b1a17fa1bf4
+  repos/knowledge/deep_facts/pathway.yaml: 839c58d424ec14119ddf7ab0505f234e1c377b9684f5b8a85511c4efdb2ac042
+  repos/knowledge/deep_facts/pgvector__pgvector.yaml: d6a8f1f1230d37ab0423f09ea35a9e9b78444349d596fc181f8a8e5e7b6c3456
+  repos/knowledge/deep_facts/phuocng__1loc.yaml: 0864244658006521c6d59f53ae1b227edcb4fb7bbe4d41fbcd46c463b1e94a9b
+  repos/knowledge/deep_facts/puppeteer__puppeteer.yaml: 968e345c0ab85bf4d36d5b1e591b02e1042aedac301fc2844babe3af461bd7f8
+  repos/knowledge/deep_facts/pydantic__pydantic-ai.yaml: b718eb55dad08b15d8ea5c00f41acb379b83d81f8bf30e703f13f94243bc52fc
+  repos/knowledge/deep_facts/pydantic__pydantic-core.yaml: b0ef2573bff2d517be04a992db11ff1a44098cf46d5022822731b059348b0796
+  repos/knowledge/deep_facts/pydantic__pydantic-settings.yaml: 062ffdcdd180ffa06d61c2ff8ff2827f13dbff7d738f779c0bae9a8c17f0d437
+  repos/knowledge/deep_facts/pydantic__pydantic.yaml: bc4018845cf3471599ff027275f96b751344167f5dca104081d38022c04fce4a
+  repos/knowledge/deep_facts/qdrant__qdrant.yaml: 5c91a13f47cc136255d59f42b777a495345203ef8b18a6d52798bcbb07682158
+  repos/knowledge/deep_facts/ragflow.yaml: 8114a409d2e2aa3bf028d4201ac36640a51b8ec530887057e09e82032bf1e3cc
+  repos/knowledge/deep_facts/rathole.yaml: 09c2300f70a1ad60c44989f18e4ee73ffe576d8f3c5d32bc4eeb0674628a5704
+  repos/knowledge/deep_facts/ruvnet__claude-flow.yaml: d6c53db0905f14009b4b5b7291ee60f9eef2f218e1dc5d527cd152b086b2f2f7
+  repos/knowledge/deep_facts/self-hosting-guide.yaml: 4f66fb4ee8d6a92c263eac3b7e1192c4b152e9061a030ceff7e6950a3e32f435
+  repos/knowledge/deep_facts/self-llm.yaml: d828c9db7a61471cb8cb77eb89f75f1d4775e68dffefee8e00290e8dcd95cadf
+  repos/knowledge/deep_facts/sharkdp__bat.yaml: 94e2f81ad4862643f442c2f69253c361a2daa5d3e1a8d076aeddf4fdc57a247d
+  repos/knowledge/deep_facts/sharkdp__fd.yaml: 48f459e98e2921432f6286d6677a0bcb6b53a876f4aaa54597137872348e2294
+  repos/knowledge/deep_facts/spotify__annoy.yaml: 0ab0c3112e9adfb49245cfca5ea048ff9d4e156862b0738c9dd56f8d4b297cd1
+  repos/knowledge/deep_facts/sshuttle.yaml: 056b482fee5fbe06034904effdd78eaa1cdfed7580d91f3c60c498fe50e82502
+  repos/knowledge/deep_facts/streisand.yaml: 6c4a0e13c78c0c1e18cda5689ca8704ef960d20815c5fc1810465c6c547a74ec
+  repos/knowledge/deep_facts/tailscale.yaml: c3b684a2266b720b6e040ab617498e0fbe5e1ed7496c0b2937044f8f68ce313d
+  repos/knowledge/deep_facts/teleport.yaml: b5283e9280038a9c9e7bfb39e41fe6368e29f9fa302ab76a5292eefbc929b3c8
+  repos/knowledge/deep_facts/thephpleague__fractal.yaml: b3b1dd6c3741024c3e45fa88856f1ab2840c07ecbaedfe4c2c175ca1cab0b1fe
+  repos/knowledge/deep_facts/tmux__tmux.yaml: 61ab61f54d4112c4e67bf97dd4cce0029da40362402d89cce42c118531db6273
+  repos/knowledge/deep_facts/tunnelite.yaml: 5f1a64fd965abc6fbe4fa787ad31ea6d22e4dae258eb1b070cfabd9eecf9519a
+  repos/knowledge/deep_facts/vgrok.yaml: 89c0a466ddd5cfe828ca1dd983f8bdd8fc8dfce311107dc867f0d98704558b9e
+  repos/knowledge/deep_facts/vllm.yaml: 7780412e47984ecc1c5237c6a6d9649c5f1e4390d5bd06f32c127d780732fc61
+  repos/knowledge/deep_facts/weaviate__weaviate.yaml: ef17f632c8ee89a2d6e2e6289632624989c9c19e5e17a4ef3bf5648912394345
+  repos/knowledge/deep_facts/wez__wezterm.yaml: 6447686dcc0787084af7ee93531a2990a9e995de41f7884b8c8c742dbc2ca454
+  repos/knowledge/deep_facts/xinference.yaml: 75010927e4539844c568f1f9c39b6b5699b4d2c5c8ac783392eb1a66a0cccc31
+  repos/knowledge/deep_facts/xqsit94__glm.yaml: 9ddfcf0ea67cb9ae9b33401c035564312e737cf9464f75c8fa29722894f308c9
+  repos/knowledge/deep_facts/xtermjs.yaml: e8774ec4d498ae2d6acb552dc0167c771df402278caa885dc92ebd00e246814f
+  repos/knowledge/deep_facts/ytunnel.yaml: 60136cd6c7d41915d767172d31146af7317b8a754f200d3fa579d113d6361b7c
+  repos/knowledge/deep_facts/yubikey-guide.yaml: 314f4bbe59d88a18bd47139c41b0ef0648ea244db30da3df997a549575aef011
 gate_bools:
   deep_facts_parseable: true
   deep_fact_identity_coverage_100pct: true

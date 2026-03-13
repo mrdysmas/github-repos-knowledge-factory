@@ -1,32 +1,32 @@
 compile_run:
-  started_at_utc: '2026-03-13T04:57:30Z'
-  finished_at_utc: '2026-03-13T04:57:33Z'
-  duration_ms: 2893
+  started_at_utc: '2026-03-13T05:30:24Z'
+  finished_at_utc: '2026-03-13T05:30:27Z'
+  duration_ms: 2747
   result: ok
   force_flag: false
 source_files:
   index:
     path: master_index.yaml
-    sha256: 07bd6429c0365723c858fd48acce6ef6b2f844bdf65494007030992423a44ecd
+    sha256: 27ad461ffb540f08062c54fd1432c323749a352f80cebcefd43732af8e80a0c6
     generated_at_utc: '2026-03-13T04:28:53Z'
     repo_count: 119
   graph:
     path: master_graph.yaml
-    sha256: 81053cb4156a6cb28b1ce185bf9f5941c1862ced986b3a365f4607ae3237c8f4
+    sha256: da3378fd2024cb2c82354517872eaab72a54fa5e54c2d2d4b3c195785613f046
     generated_at_utc: '2026-03-13T04:28:53Z'
     node_count: 133
     edge_count: 152
   facts:
     path: master_deep_facts.yaml
-    sha256: cdf5f4c77e30381889f84f7388e620cc8a9512a731af77395ed0312c673aaae7
+    sha256: d5580852cfc568b2d44ab80d9ca76dd703fe1c3cd292aab0e9348bf7de1e9c07
     generated_at_utc: '2026-03-13T00:00:00Z'
     fact_count: 3791
 gates:
   snapshot_consistency:
     status: warn
-    detail: 'timestamp divergence (non-blocking): index(ts=2026-03-13T04:28:53Z,sha256=07bd6429c0365723c858fd48acce6ef6b2f844bdf65494007030992423a44ecd),
-      graph(ts=2026-03-13T04:28:53Z,sha256=81053cb4156a6cb28b1ce185bf9f5941c1862ced986b3a365f4607ae3237c8f4),
-      facts(ts=2026-03-13T00:00:00Z,sha256=cdf5f4c77e30381889f84f7388e620cc8a9512a731af77395ed0312c673aaae7),
+    detail: 'timestamp divergence (non-blocking): index(ts=2026-03-13T04:28:53Z,sha256=27ad461ffb540f08062c54fd1432c323749a352f80cebcefd43732af8e80a0c6),
+      graph(ts=2026-03-13T04:28:53Z,sha256=da3378fd2024cb2c82354517872eaab72a54fa5e54c2d2d4b3c195785613f046),
+      facts(ts=2026-03-13T00:00:00Z,sha256=d5580852cfc568b2d44ab80d9ca76dd703fe1c3cd292aab0e9348bf7de1e9c07),
       max_delta_seconds=16133'
   row_count_parity:
     status: pass
@@ -69,7 +69,7 @@ gates:
     detail: all compared tables match
 output:
   path: knowledge.db
-  size_bytes: 5660672
+  size_bytes: 5599232
   table_counts:
     repos: 119
     nodes: 133

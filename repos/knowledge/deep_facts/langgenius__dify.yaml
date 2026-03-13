@@ -4,8 +4,8 @@ github_full_name: langgenius/dify
 html_url: https://github.com/langgenius/dify
 source: remote_metadata
 provenance:
-  shard: llm_repos
-  source_file: llm_repos/knowledge/deep_facts/langgenius__dify.yaml
+  shard: repos
+  source_file: repos/knowledge/deep_facts/langgenius__dify.yaml
   as_of: '2026-02-24T19:46:56Z'
   extractor_version: ws6-deep-integrator-v1
 facts:
@@ -15,570 +15,570 @@ facts:
   confidence: 0.73
   as_of: '2026-02-25'
   provenance:
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     source_section: api_structure.app_api[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: api_structure.app_api[0]
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     excerpt: /apps/{app_id}/chat-messages
   object_value: /apps/{app_id}/chat-messages
-  fact_id: fact::7f433eec970bd8e18769c5f3
+  fact_id: fact::407d97a6344884bd42dae863
 - fact_type: api_endpoint
   predicate: exposes_api_endpoint
   object_kind: api_route
   confidence: 0.73
   as_of: '2026-02-25'
   provenance:
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     source_section: api_structure.app_api[1]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: api_structure.app_api[1]
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     excerpt: /apps/{app_id}/completion-messages
   object_value: /apps/{app_id}/completion-messages
-  fact_id: fact::276bdfee7322734adb7c288a
+  fact_id: fact::85eeb92cddc2b4118b5308b1
 - fact_type: api_endpoint
   predicate: exposes_api_endpoint
   object_kind: api_route
   confidence: 0.73
   as_of: '2026-02-25'
   provenance:
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
-    source_section: integrations.api_endpoints[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: integrations.api_endpoints[0]
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: /chat-messages
-  object_value: /chat-messages
-  note: POST; send chat app message and stream/collect response
-  fact_id: fact::bb084f9c72335ef93157f3ab
-- fact_type: api_endpoint
-  predicate: exposes_api_endpoint
-  object_kind: api_route
-  confidence: 0.73
-  as_of: '2026-02-25'
-  provenance:
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     source_section: api_structure.service_api[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: api_structure.service_api[0]
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     excerpt: /chat-messages
   object_value: /chat-messages
-  fact_id: fact::ca0e8363aeaa58de30dc5476
+  fact_id: fact::1dadfd202c1986fe7e93af4a
 - fact_type: api_endpoint
   predicate: exposes_api_endpoint
   object_kind: api_route
   confidence: 0.73
   as_of: '2026-02-25'
   provenance:
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
-    source_section: api_structure.service_api[1]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: integrations.api_endpoints[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
-    ref: api_structure.service_api[1]
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: /completion-messages
-  object_value: /completion-messages
-  fact_id: fact::8e744e7ee395745abafbd574
+    ref: integrations.api_endpoints[0]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: /chat-messages
+  object_value: /chat-messages
+  note: POST; send chat app message and stream/collect response
+  fact_id: fact::f21f2ef81dabd87486677a5c
 - fact_type: api_endpoint
   predicate: exposes_api_endpoint
   object_kind: api_route
   confidence: 0.73
   as_of: '2026-02-25'
   provenance:
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     source_section: integrations.api_endpoints[1]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: integrations.api_endpoints[1]
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     excerpt: /completion-messages
   object_value: /completion-messages
   note: POST; run completion app message generation
-  fact_id: fact::9e2a3e9338e91ac52b6e2c00
+  fact_id: fact::3728ff8d1c7f2b2c50202b7f
 - fact_type: api_endpoint
   predicate: exposes_api_endpoint
   object_kind: api_route
   confidence: 0.73
   as_of: '2026-02-25'
   provenance:
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: api_structure.service_api[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_structure.service_api[1]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: /completion-messages
+  object_value: /completion-messages
+  fact_id: fact::f62a7efd28e33afb5be64278
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.73
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     source_section: api_structure.service_api[2]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: api_structure.service_api[2]
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     excerpt: /completion-messages/{task_id}/stop
   object_value: /completion-messages/{task_id}/stop
-  fact_id: fact::52cecc20637961d24f3b857e
+  fact_id: fact::d22d43533d69d56f8541c8e2
 - fact_type: api_endpoint
   predicate: exposes_api_endpoint
   object_kind: api_route
   confidence: 0.73
   as_of: '2026-02-25'
   provenance:
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     source_section: integrations.api_endpoints[2]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: integrations.api_endpoints[2]
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     excerpt: /v1/workflows/run
   object_value: /v1/workflows/run
   note: POST; execute workflow graph run
-  fact_id: fact::036cafcd860327a1b2d085d2
+  fact_id: fact::7404d71a532d7e8ffc68a140
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.61
   as_of: '2026-02-25'
   provenance:
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     source_section: tech_stack[3].line[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: tech_stack[3].line[0]
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     excerpt: Docker Compose
   object_value: Docker Compose
   note: technology stack (tech_stack)
-  fact_id: fact::e32ea8aad49ed49ebee965bb
+  fact_id: fact::a964a341584a66cc6aecd667
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.61
   as_of: '2026-02-25'
   provenance:
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     source_section: tech_stack[4].line[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: tech_stack[4].line[0]
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     excerpt: PostgreSQL
   object_value: PostgreSQL
   note: technology stack (tech_stack)
-  fact_id: fact::081098537645cc6ecaa68d68
+  fact_id: fact::88fbbdcb30e9f37a81642703
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.61
   as_of: '2026-02-25'
   provenance:
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     source_section: tech_stack[0].line[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: tech_stack[0].line[0]
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     excerpt: Python
   object_value: Python
   note: technology stack (tech_stack)
-  fact_id: fact::7305dd04e876beaf119790f8
+  fact_id: fact::227c469621c0846eee992c80
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.61
   as_of: '2026-02-25'
   provenance:
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     source_section: tech_stack[2].line[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: tech_stack[2].line[0]
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     excerpt: React
   object_value: React
   note: technology stack (tech_stack)
-  fact_id: fact::d7adc3ae36acf0388d8a5554
+  fact_id: fact::5c7067e4b92843d493c19cf3
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.61
   as_of: '2026-02-25'
   provenance:
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     source_section: tech_stack[5].line[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: tech_stack[5].line[0]
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     excerpt: Redis
   object_value: Redis
   note: technology stack (tech_stack)
-  fact_id: fact::7439ecab0cbc67867a2edb16
+  fact_id: fact::b429f5cb58e2fa5db6f4f1dd
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.61
   as_of: '2026-02-25'
   provenance:
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     source_section: tech_stack[1].line[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: tech_stack[1].line[0]
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     excerpt: TypeScript
   object_value: TypeScript
   note: technology stack (tech_stack)
-  fact_id: fact::18f4af78114401c4ec3bab91
+  fact_id: fact::ca4fcbd39102fa66fa1b1c36
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.64
   as_of: '2026-02-25'
   provenance:
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     source_section: integrations.providers[1].line[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: integrations.providers[1].line[0]
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     excerpt: Anthropic-compatible model providers
   object_value: Anthropic-compatible model providers
   note: 'integration group: providers'
-  fact_id: fact::7acb536864209f8b9029bdcb
+  fact_id: fact::9e374dfb5e0b91c4a570987f
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.64
   as_of: '2026-02-25'
   provenance:
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     source_section: integrations.external_sources[0].line[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: integrations.external_sources[0].line[0]
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     excerpt: Notion
   object_value: Notion
   note: 'integration group: external_sources'
-  fact_id: fact::0cc19eb7a63afd27c2bfb5bb
+  fact_id: fact::7cb0100f554de11359e2bffb
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.64
   as_of: '2026-02-25'
   provenance:
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     source_section: integrations.providers[0].line[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: integrations.providers[0].line[0]
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     excerpt: OpenAI-compatible model providers
   object_value: OpenAI-compatible model providers
   note: 'integration group: providers'
-  fact_id: fact::050e038a5a9f295bef2991f9
+  fact_id: fact::2c372bf65dae947aad1290c9
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.64
   as_of: '2026-02-25'
   provenance:
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     source_section: integrations.external_sources[1].line[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: integrations.external_sources[1].line[0]
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     excerpt: Web crawler connectors
   object_value: Web crawler connectors
   note: 'integration group: external_sources'
-  fact_id: fact::69cfbbf4582242e8eca2ce83
+  fact_id: fact::9a780f92ff8b807137ed3618
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
   as_of: '2026-02-25'
   provenance:
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     source_section: testing.structure.line[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: testing.structure.line[0]
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     excerpt: API unit and integration tests plus workflow engine tests
   object_value: API unit and integration tests plus workflow engine tests
   note: 'testing metadata: structure'
-  fact_id: fact::1ee8b1dd4ca8613d71005ef1
+  fact_id: fact::9a85ec86e03d2b665f123890
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
   as_of: '2026-02-25'
   provenance:
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     source_section: testing.coverage_areas[1].line[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: testing.coverage_areas[1].line[0]
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     excerpt: chat and completion message APIs
   object_value: chat and completion message APIs
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::08f66d02ee0bae5706f897d9
+  fact_id: fact::2986b9c65e378a8f59ed57d6
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
   as_of: '2026-02-25'
   provenance:
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     source_section: testing.test_patterns[3].line[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: testing.test_patterns[3].line[0]
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     excerpt: mocked provider and environment fixtures
   object_value: mocked provider and environment fixtures
   note: 'testing metadata: test_patterns'
-  fact_id: fact::eb21d0b436893fb0809ee1a2
+  fact_id: fact::1812be0b4f083040303b3f87
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
   as_of: '2026-02-25'
   provenance:
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     source_section: testing.coverage_areas[2].line[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: testing.coverage_areas[2].line[0]
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     excerpt: tool/plugin integration behavior
   object_value: tool/plugin integration behavior
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::af2924c356e1e5bfb11c7d11
+  fact_id: fact::8ddcc9e2f7009cdcdd604e31
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
   as_of: '2026-02-25'
   provenance:
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     source_section: testing.coverage_areas[0].line[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: testing.coverage_areas[0].line[0]
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     excerpt: workflow execution and orchestration
   object_value: workflow execution and orchestration
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::84378fa0043cc07cc9b9239c
+  fact_id: fact::2ccb1a3d54f012309c379ea9
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
   confidence: 0.67
   as_of: '2026-02-25'
   provenance:
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     source_section: quick_reference[1].line[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: quick_reference[1].line[0]
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     excerpt: cd api
   object_value: cd api
   note: 'topic: API test commands'
-  fact_id: fact::78868ec174b4cc8c5567a483
+  fact_id: fact::dc1e98f21d80591ddb4fe452
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
   confidence: 0.67
   as_of: '2026-02-25'
   provenance:
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     source_section: quick_reference[0].line[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: quick_reference[0].line[0]
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     excerpt: cd docker
   object_value: cd docker
   note: 'topic: Self-host quick start'
-  fact_id: fact::58e86e04d5160e7906f3a3d4
+  fact_id: fact::88bdfc6f652e943c2acbb666
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
   confidence: 0.67
   as_of: '2026-02-25'
   provenance:
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     source_section: quick_reference[0].line[2]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: quick_reference[0].line[2]
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     excerpt: docker compose up -d
   object_value: docker compose up -d
   note: 'topic: Self-host quick start'
-  fact_id: fact::86b42f6f653ddfd34f7082c5
+  fact_id: fact::8846307e84066aa3574b88da
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
   confidence: 0.67
   as_of: '2026-02-25'
   provenance:
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     source_section: testing.framework.line[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: testing.framework.line[0]
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     excerpt: pytest (API) and frontend/component test suites
   object_value: pytest (API) and frontend/component test suites
   note: testing command
-  fact_id: fact::aab226c3df4cd388b4304ed2
+  fact_id: fact::5c89978e07af68ce51981c28
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
   confidence: 0.67
   as_of: '2026-02-25'
   provenance:
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
-    source_section: quick_reference[1].line[1]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[1].line[1]
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: uv run pytest
-  object_value: uv run pytest
-  note: 'topic: API test commands'
-  fact_id: fact::c805f86e90e049a5bb427f90
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-02-25'
-  provenance:
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     source_section: testing.test_patterns[0].line[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: testing.test_patterns[0].line[0]
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     excerpt: uv run pytest
   object_value: uv run pytest
   note: testing command
-  fact_id: fact::cf1589831c7bc1984c3cb8cf
+  fact_id: fact::108cceef14768d17022c52f6
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
   confidence: 0.67
   as_of: '2026-02-25'
   provenance:
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
-    source_section: testing.test_patterns[2].line[0]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: quick_reference[1].line[1]
     extraction_mode: narrative
   evidence:
   - kind: file_block
-    ref: testing.test_patterns[2].line[0]
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: uv run pytest tests/integration_tests/
-  object_value: uv run pytest tests/integration_tests/
-  note: testing command
-  fact_id: fact::abbc9b887ce16fced9ac7f5f
+    ref: quick_reference[1].line[1]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: uv run pytest
+  object_value: uv run pytest
+  note: 'topic: API test commands'
+  fact_id: fact::12605a55fbf725fd4e547f1d
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
   confidence: 0.67
   as_of: '2026-02-25'
   provenance:
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     source_section: quick_reference[1].line[3]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: quick_reference[1].line[3]
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     excerpt: uv run pytest tests/integration_tests/
   object_value: uv run pytest tests/integration_tests/
   note: 'topic: API test commands'
-  fact_id: fact::cbedb93956af66b83d6eb896
+  fact_id: fact::03d756a7436ab15857a384c9
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
   confidence: 0.67
   as_of: '2026-02-25'
   provenance:
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: testing.test_patterns[2].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.test_patterns[2].line[0]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: uv run pytest tests/integration_tests/
+  object_value: uv run pytest tests/integration_tests/
+  note: testing command
+  fact_id: fact::1753ca24a5f7b0e985c71125
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.67
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     source_section: testing.test_patterns[1].line[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: testing.test_patterns[1].line[0]
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     excerpt: uv run pytest tests/unit_tests/
   object_value: uv run pytest tests/unit_tests/
   note: testing command
-  fact_id: fact::93f0dca3b7a661593b0ab51c
+  fact_id: fact::e5a8c3e1a7bd7f699cd735f9
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
   confidence: 0.67
   as_of: '2026-02-25'
   provenance:
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     source_section: quick_reference[1].line[2]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: quick_reference[1].line[2]
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     excerpt: uv run pytest tests/unit_tests/
   object_value: uv run pytest tests/unit_tests/
   note: 'topic: API test commands'
-  fact_id: fact::ef9081c6e258569b1b48d1a1
+  fact_id: fact::ed7a49c2e4689c5a35c04076
 - fact_type: operational_task
   predicate: supports_task
   object_kind: text
   confidence: 0.58
   as_of: '2026-02-25'
   provenance:
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     source_section: quick_reference[2]
     extraction_mode: narrative
   evidence:
   - kind: file_block
     ref: quick_reference[2]
-    source_file: llm_repos/knowledge/deep/langgenius__dify.yaml
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
     excerpt: Common service API paths
   object_value: Common service API paths
   note: quick reference topic
-  fact_id: fact::797c9f55b63184fc694d72a3
+  fact_id: fact::e56a02e8515ba4c8a797aa3d

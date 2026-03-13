@@ -6,14 +6,11 @@ inputs:
   - contracts/ws1/deep_fact.schema.yaml
   - contracts/ws1/relation_mapping.yaml
   shallow_repos:
-  - llm_repos/knowledge/repos/*.yaml
-  - ssh_repos/knowledge/repos/*.yaml
+  - repos/knowledge/repos/*.yaml
   deep_narrative:
-  - llm_repos/knowledge/deep/*.yaml
-  - ssh_repos/knowledge/deep/*.yaml
+  - repos/knowledge/deep/*.yaml
   deep_fact_draft_optional:
-  - llm_repos/knowledge/deep_facts_draft/*.yaml
-  - ssh_repos/knowledge/deep_facts_draft/*.yaml
+  - repos/knowledge/deep_facts_draft/*.yaml
 normalization_rules:
 - Join deep artifacts to shallow repos by node_id/full_name/stem.
 - Require identity parity with shallow repo fields.
@@ -63,8 +60,7 @@ mapping_table:
   object_kind: protocol
 outputs:
   canonical_shard_outputs:
-  - llm_repos/knowledge/deep_facts/*.yaml
-  - ssh_repos/knowledge/deep_facts/*.yaml
+  - repos/knowledge/deep_facts/*.yaml
   master_output_for_ws4_and_query: master_deep_facts.yaml
   reports:
   - reports/ws6_deep_integration/coverage.yaml

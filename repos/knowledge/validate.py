@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Validator for the unified repos/knowledge shard."""
+"""Validator for the unified repos/knowledge shard.
+
+VALIDATOR_SCOPE: index.yaml, graph.yaml, repos/*.yaml
+"""
 
 from __future__ import annotations
 

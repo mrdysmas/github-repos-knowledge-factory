@@ -1093,10 +1093,8 @@ def main() -> int:
     step_by_number = {run.step: run for run in command_runs}
     ws1_first_class_pass = step_by_number.get(1, CommandRun(1, "", "", 1, "FAIL")).status == "PASS"
     ws1_label_only_pass = step_by_number.get(2, CommandRun(2, "", "", 1, "FAIL")).status == "PASS"
-    trust_gates_llm_pass = step_by_number.get(3, CommandRun(3, "", "", 1, "FAIL")).status == "PASS"
-    trust_gates_ssh_pass = step_by_number.get(4, CommandRun(4, "", "", 1, "FAIL")).status == "PASS"
-    llm_validate_pass = step_by_number.get(5, CommandRun(5, "", "", 1, "FAIL")).status == "PASS"
-    ssh_validate_pass = step_by_number.get(6, CommandRun(6, "", "", 1, "FAIL")).status == "PASS"
+    trust_gates_repos_pass = step_by_number.get(3, CommandRun(3, "", "", 1, "FAIL")).status == "PASS"
+    repos_validate_pass = step_by_number.get(4, CommandRun(4, "", "", 1, "FAIL")).status == "PASS"
 
     gate_bools: dict[str, bool] = {
         "repo_coverage_100pct": first_compile.coverage_metrics["coverage"]["repo_records"]["coverage_pct"] == 100.0,
@@ -1117,10 +1115,8 @@ def main() -> int:
         ),
         "ws1_contract_first_class_pass": ws1_first_class_pass,
         "ws1_contract_label_only_pass": ws1_label_only_pass,
-        "trust_gates_llm_pass": trust_gates_llm_pass,
-        "trust_gates_ssh_pass": trust_gates_ssh_pass,
-        "llm_validate_entrypoint_pass": llm_validate_pass,
-        "ssh_validate_entrypoint_pass": ssh_validate_pass,
+        "trust_gates_repos_pass": trust_gates_repos_pass,
+        "repos_validate_entrypoint_pass": repos_validate_pass,
         "ws4_command_7_compiler_pass": True,
         "ws4_command_8_deterministic_hash_unchanged": deterministic_hash_check,
     }
