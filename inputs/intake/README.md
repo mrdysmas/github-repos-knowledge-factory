@@ -44,7 +44,7 @@ It also enforces alias normalization via `classification_strategy.domain_hint.al
 1. Refresh queue.
 2. Select `canonical_status: queued` entries for next batch (8-12 recommended).
 3. Clone selected repos only when needed for scanning.
-4. Assign/confirm `domain_hint` metadata for selected repos (metadata-only; does not change shard gates).
+4. Assign/confirm `domain_hint` metadata for selected repos (metadata-only; does not change the canonical destination, which is always `repos`).
 5. Run shallow-first canonicalization flow.
 6. Mark top deep candidates and apply deep scan on demand.
 7. Apply prune policy to remove clones after extraction when safe.

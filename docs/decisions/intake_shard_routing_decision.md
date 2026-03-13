@@ -4,30 +4,27 @@ Decision date (UTC): 2026-02-24T19:58:27Z
 
 ## Decision
 
-Keep canonical shard routing to two shards (`llm_repos`, `ssh_repos`) during the current pilot.
-Do not introduce a third canonical shard yet.
+Use the unified canonical shard `repos` for intake-era canonical knowledge artifacts.
+Do not require operators to route repos between `llm_repos` and `ssh_repos`.
 
 Add and maintain `domain_hint` as metadata in intake lifecycle records now to preserve future split options.
 
 ## Why
 
-- Current WS contracts and tooling are explicitly two-shard:
-  - WS5 `target_shard` accepts only `llm_repos` or `ssh_repos`.
-  - WS1 validator iterates only `llm_repos` and `ssh_repos`.
-  - WS4 compiler merges only `llm_repos` and `ssh_repos`.
-- Adding a shard immediately creates cross-contract migration work (schemas, validators, mappings, compile path) before pilot throughput is proven.
-- `domain_hint` gives us low-cost semantic classification today without changing gates.
+- The active WS5/WS1/WS4/WS6/WS7 pipeline now operates on the unified canonical path under `repos/knowledge`.
+- Retaining legacy shard labels as routing inputs would create operator confusion without changing downstream behavior.
+- `domain_hint` still gives low-cost semantic classification without becoming a routing control.
 
 ## Tradeoff
 
-- Short-term: some non-LLM repos are temporarily routed into `llm_repos`.
-- Long-term: we avoid premature architecture churn and keep clean evidence for later shard extraction.
+- Short-term: compatibility fields such as `target_shard` may still appear in manifests and pilot artifacts.
+- Long-term: those compatibility fields normalize to `repos`, so the active execution contract stays simple while preserving backward compatibility.
 
 ## Trigger To Revisit
 
-Re-open shard expansion after pilot shallow canonicalization is stable and both conditions hold:
+Re-open shard expansion only if both conditions hold:
 
 1. A recurring domain cluster emerges (e.g., enough repos with same `domain_hint`), and
-2. That cluster needs different ontology, validation policy, or operational gates from current shards.
+2. That cluster needs different ontology, validation policy, or operational gates from the unified `repos` shard.
 
-Until then, `domain_hint` remains metadata-only and non-blocking for current shard routing.
+Until then, `domain_hint` remains metadata-only and non-blocking for canonical destination.
