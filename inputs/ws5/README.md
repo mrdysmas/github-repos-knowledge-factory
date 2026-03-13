@@ -39,7 +39,8 @@ or `extras.remote.refresh` (when `remote` metadata is present):
 
 ## Determinism Rules
 
-- Write order is stable: `(target_shard, file_stem, github_full_name)`.
+- Write order is stable on the normalized tuple `(target_shard, file_stem, github_full_name)`.
+- `target_shard` is compatibility-only for manifest inputs; committed WS5 repo records always resolve to the unified shard at `repos/knowledge/repos/`.
 - `fields_filled_from_readme` is sorted.
 - Report booleans and counters are deterministic for identical inputs.
 - Rerunning with unchanged inputs produces hash-stable WS5 artifacts.

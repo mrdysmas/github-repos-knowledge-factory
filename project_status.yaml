@@ -141,7 +141,7 @@ canonical:
     source_dirs_pending_consolidation: []
     strategy: "Queue-driven clone-on-demand from master_repo_list-derived intake queue."
     shard_routing_decision_ref: "docs/decisions/intake_shard_routing_decision.md"
-    domain_hint_policy: "Metadata-only classifier for future shard split; does not affect current target_shard gate."
+    domain_hint_policy: "Metadata-only taxonomy classifier; it does not affect canonical destination because target_shard is compatibility-normalized to repos."
     domain_hint_enforcement:
       mode: "STRICT_WITH_ALIAS_CANONICALIZATION"
       gate: "tools/check_intake_queue_sync.py"
