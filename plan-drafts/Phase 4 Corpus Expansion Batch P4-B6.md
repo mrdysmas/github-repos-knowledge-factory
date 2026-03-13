@@ -61,8 +61,8 @@ PROMPT_AUDIT_HEADER:
     - "Prompt/hash drift mid-run."
     - "Strict WS7 skipped or --force assumed to recover a strict failure."
     - "Deep lane executed but deep_facts delta stays flat."
-    - "Manifest/queue drift or shard misrouting."
-    - "Undecided shard_hint repos routed to wrong shard."
+    - "Manifest/queue drift or legacy shard values not normalized to repos."
+    - "domain_hint treated like a routing control instead of taxonomy metadata."
     - "Mixed-intent commit contamination."
 
   acceptance_policy:
@@ -86,30 +86,30 @@ OBJECTIVE:
 LOCKED TARGETS (do not change without regenerating header hashes):
 
 Shallow lane (8 queued — all remaining):
-1) kaitranntt/ccs           -> target_shard: llm_repos, category: agent_cli
-2) katarmal-ram/codemoot    -> target_shard: llm_repos, category: agent_cli
-3) MariaDB/server           -> target_shard: ssh_repos, category: data_pipelines
-4) michaelshimeles/ralphy   -> target_shard: llm_repos, category: agent_cli
-5) mlpack/mlpack            -> target_shard: ssh_repos, category: machine_learning
-6) mscdex/ssh2              -> target_shard: ssh_repos, category: network_utils
-7) obra/superpowers         -> target_shard: llm_repos, category: agent_framework
-8) obsidianmd/obsidian-releases -> target_shard: llm_repos, category: documentation
+1) kaitranntt/ccs           -> target_shard: repos, category: agent_cli
+2) katarmal-ram/codemoot    -> target_shard: repos, category: agent_cli
+3) MariaDB/server           -> target_shard: repos, category: data_pipelines
+4) michaelshimeles/ralphy   -> target_shard: repos, category: agent_cli
+5) mlpack/mlpack            -> target_shard: repos, category: machine_learning
+6) mscdex/ssh2              -> target_shard: repos, category: network_utils
+7) obra/superpowers         -> target_shard: repos, category: agent_framework
+8) obsidianmd/obsidian-releases -> target_shard: repos, category: documentation
 
-Shard routing notes:
-- MariaDB/server, mlpack/mlpack, mscdex/ssh2: SSH/systems-oriented → ssh_repos
-- kaitranntt/ccs, katarmal-ram/codemoot, michaelshimeles/ralphy: LLM agent tools → llm_repos
-- obra/superpowers: Claude skills/agent framework → llm_repos
-- obsidianmd/obsidian-releases: documentation/plugin index → llm_repos
+Domain/taxonomy notes:
+- MariaDB/server, mlpack/mlpack, mscdex/ssh2: systems-oriented repos; keep taxonomy/category accurate, but canonical destination still resolves to `repos`.
+- kaitranntt/ccs, katarmal-ram/codemoot, michaelshimeles/ralphy: agent-tooling repos; this informs category/domain_hint only.
+- obra/superpowers: Claude skills/agent framework; taxonomy-only signal.
+- obsidianmd/obsidian-releases: documentation/plugin index; taxonomy-only signal.
 
 Deep lane (4 canonical missing deep/deep_facts):
-1) tailscale/tailscale         (shard: ssh_repos, category: vpn_mesh)
-2) cloudflare/cloudflared      (shard: ssh_repos, category: network_infrastructure)
-3) containers/podman           (shard: ssh_repos, category: cli_tool)
-4) weaviate/weaviate           (shard: llm_repos, category: vector_database)
+1) tailscale/tailscale         (target_shard: repos, category: vpn_mesh)
+2) cloudflare/cloudflared      (target_shard: repos, category: network_infrastructure)
+3) containers/podman           (target_shard: repos, category: cli_tool)
+4) weaviate/weaviate           (target_shard: repos, category: vector_database)
 
 CONSTRAINTS:
 - Do not hand-edit `inputs/intake/intake_queue.yaml`; use queue sync tooling.
-- Keep explicit `target_shard` on every manifest row.
+- Keep explicit `target_shard: repos` on every manifest row that includes the compatibility field.
 - If any locked shallow target is no longer queued at preflight, stop and escalate with replacement options and new target hashes.
 - Follow `contracts/deep_narrative_contract.md` for deep files.
 - Do not modify contracts or AGENTS.md.
@@ -118,16 +118,11 @@ CONSTRAINTS:
 COMMIT-SCOPE WHITELIST (execution commit only):
 - `inputs/ws5/ws5_input_manifest.yaml`
 - `inputs/intake/intake_queue.yaml`
-- `llm_repos/knowledge/repos/*.yaml`
-- `llm_repos/knowledge/deep/*.yaml`
-- `llm_repos/knowledge/deep_facts/*.yaml`
-- `llm_repos/knowledge/index.yaml`
-- `llm_repos/knowledge/trust-gates-report.yaml`
-- `ssh_repos/knowledge/repos/*.yaml`
-- `ssh_repos/knowledge/deep/*.yaml`
-- `ssh_repos/knowledge/deep_facts/*.yaml`
-- `ssh_repos/knowledge/index.yaml`
-- `ssh_repos/knowledge/trust-gates-report.yaml`
+- `repos/knowledge/repos/*.yaml`
+- `repos/knowledge/deep/*.yaml`
+- `repos/knowledge/deep_facts/*.yaml`
+- `repos/knowledge/index.yaml`
+- `repos/knowledge/trust-gates-report.yaml`
 - `master_index.yaml`
 - `master_graph.yaml`
 - `master_deep_facts.yaml`
@@ -166,17 +161,15 @@ PRE-FLIGHT (must pass):
    - authoritative prompt hash from lock artifact (`reports/phase4/prompt_locks/P4-B6.lock.yaml`, field: `prompt.sha1`)
 
 IMPLEMENTATION ORDER:
-1) Prepare manifest rows for shallow targets with explicit shard/category/source fields.
-2) Author deep narratives for deep targets under `{shard}/knowledge/deep/<file_stem>.yaml`.
+1) Prepare manifest rows for shallow targets with explicit `target_shard: repos`, category, and source fields.
+2) Author deep narratives for deep targets under `repos/knowledge/deep/<file_stem>.yaml`.
 3) Run canonical pipeline:
    - `python3 tools/ws5_remote_ingestion.py --workspace-root . --input inputs/ws5/ws5_input_manifest.yaml --reports-dir reports/ws5_remote_ingestion`
    - `python3 tools/ws4_master_compiler.py --workspace-root . --master-index master_index.yaml --master-graph master_graph.yaml --reports-dir reports/ws4_master_build`
    - `python3 tools/ws1_contract_validator.py --workspace-root . --external-node-policy first_class`
    - `python3 tools/ws1_contract_validator.py --workspace-root . --external-node-policy label_only`
-   - `python3 tools/trust_gates.py llm_repos/knowledge --production`
-   - `python3 tools/trust_gates.py ssh_repos/knowledge --production`
-   - `cd llm_repos/knowledge && python3 validate.py`
-   - `cd ssh_repos/knowledge && python3 validate.py`
+   - `python3 tools/trust_gates.py repos/knowledge --production`
+   - `cd repos/knowledge && python3 validate.py`
    - `cd /Users/szilaa/scripts/ext_sources/github_repos`
    - `python3 tools/ws6_deep_integrator.py --workspace-root . --reports-dir reports/ws6_deep_integration --materialize-spec reports/ws6_deep_integration/spec.yaml --run-validation-suite`
    - `python3 tools/ws7_read_model_compiler.py --workspace-root .`
