@@ -1,6 +1,6 @@
 version: '1.0'
 generated: 2026-02-21
-total_repos: 37
+total_repos: 40
 categories:
   tunneling:
     description: Reverse tunneling and port forwarding tools
@@ -35,6 +35,7 @@ categories:
     description: Network utility libraries
     repos:
     - netmask
+    - ssh2
   network_infrastructure:
     description: Network infrastructure and access platforms
     repos:
@@ -96,6 +97,14 @@ categories:
     description: 'Remote-ingested category: browser_automation'
     repos:
     - puppeteer
+  data_pipelines:
+    description: 'Remote-ingested category: data_pipelines'
+    repos:
+    - server
+  machine_learning:
+    description: 'Remote-ingested category: machine_learning'
+    repos:
+    - mlpack
 repos:
   awesome-tunneling:
     category: documentation
@@ -294,6 +303,24 @@ repos:
     summary: Phase 2B SB3 intake for puppeteer/puppeteer. TypeScript browser automation
       monorepo for Chrome and Firefox control.
     language: typescript
+  server:
+    category: data_pipelines
+    directory: remote::mariadb/server
+    summary: Phase 4 B6 shallow intake for MariaDB/server as a database server codebase
+      routed per locked batch policy.
+    language: c++
+  mlpack:
+    category: machine_learning
+    directory: remote::mlpack/mlpack
+    summary: Phase 4 B6 shallow intake for mlpack/mlpack as a machine learning toolkit
+      routed per locked batch policy.
+    language: c++
+  ssh2:
+    category: network_utils
+    directory: remote::mscdex/ssh2
+    summary: Phase 4 B6 shallow intake for mscdex/ssh2 as a Node.js SSH protocol utility
+      library.
+    language: javascript
 languages:
   rust:
   - bore

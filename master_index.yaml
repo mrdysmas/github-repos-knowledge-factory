@@ -1,17 +1,17 @@
 artifact_type: ws4_master_index
-generated_at_utc: '2026-03-05T05:30:00Z'
+generated_at_utc: '2026-03-13T04:28:53Z'
 contract_version: 1.0.0-ws1
 metadata:
   source_shards:
   - llm_repos
   - ssh_repos
-  total_repos: 111
+  total_repos: 119
   repo_counts_by_shard:
-    llm_repos: 74
-    ssh_repos: 37
+    llm_repos: 79
+    ssh_repos: 40
   category_counts:
-    agent_cli: 11
-    agent_framework: 7
+    agent_cli: 14
+    agent_framework: 8
     agent_frameworks: 3
     agent_orchestration: 3
     agent_platform: 1
@@ -19,18 +19,18 @@ metadata:
     browser_automation: 1
     cli_tool: 3
     cli_wrapper: 1
-    data_pipelines: 2
+    data_pipelines: 3
     data_transformation: 1
     deployment_automation: 1
-    documentation: 6
+    documentation: 7
     educational: 2
     evaluation: 1
     fine_tuning: 1
     inference_serving: 6
-    machine_learning: 1
+    machine_learning: 2
     nearest_neighbor_search: 1
     network_infrastructure: 2
-    network_utils: 1
+    network_utils: 2
     office_automation: 2
     postgres_extension: 1
     rag_frameworks: 6
@@ -2824,6 +2824,66 @@ repos:
     - path: hscontrol/mapper/mapper.go
       purpose: Converts internal Headscale state to Tailscale wire protocol format
         for distribution to clients
+- node_id: repo::kaitranntt/ccs
+  github_full_name: kaitranntt/ccs
+  html_url: https://github.com/kaitranntt/ccs
+  source: compiled_master
+  name: ccs
+  category: agent_cli
+  summary: Phase 4 B6 shallow intake for kaitranntt/ccs as a Claude-adjacent command-line
+    workflow utility.
+  core_concepts:
+  - terminal-first agent workflows
+  - command orchestration helpers
+  key_entry_points:
+  - README.md
+  - src/
+  - scripts/
+  build_run:
+    language: mixed
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/ccs.yaml
+    as_of: '2026-03-13T04:28:53Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::kaitranntt/ccs
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
+- node_id: repo::katarmal-ram/codemoot
+  github_full_name: katarmal-ram/codemoot
+  html_url: https://github.com/katarmal-ram/codemoot
+  source: compiled_master
+  name: codemoot
+  category: agent_cli
+  summary: Phase 4 B6 shallow intake for katarmal-ram/codemoot as a command-line assistant
+    workflow project.
+  core_concepts:
+  - prompt-driven terminal workflows
+  - helper commands for coding loops
+  key_entry_points:
+  - README.md
+  - docs/
+  - src/
+  build_run:
+    language: mixed
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/codemoot.yaml
+    as_of: '2026-03-13T04:28:53Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::katarmal-ram/codemoot
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::khoj-ai/khoj
   github_full_name: khoj-ai/khoj
   html_url: https://github.com/khoj-ai/khoj
@@ -3168,6 +3228,37 @@ repos:
         precedence: api_wins_readme_for_missing_required_fields
         fallback_source: readme_fallback
         fallback_used: false
+- node_id: repo::mariadb/server
+  github_full_name: mariadb/server
+  html_url: https://github.com/MariaDB/server
+  source: compiled_master
+  name: server
+  category: data_pipelines
+  summary: Phase 4 B6 shallow intake for MariaDB/server as a database server codebase
+    routed per locked batch policy.
+  core_concepts:
+  - relational data processing engine
+  - database service operations
+  key_entry_points:
+  - README.md
+  - sql/
+  - storage/
+  - include/
+  build_run:
+    language: c++
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/server.yaml
+    as_of: '2026-03-13T04:28:53Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::mariadb/server
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::mem0ai/mem0
   github_full_name: mem0ai/mem0
   html_url: https://github.com/mem0ai/mem0
@@ -3260,6 +3351,36 @@ repos:
     - Customer support with history recall
     - Healthcare patient preferences
     - Personalized recommendations
+- node_id: repo::michaelshimeles/ralphy
+  github_full_name: michaelshimeles/ralphy
+  html_url: https://github.com/michaelshimeles/ralphy
+  source: compiled_master
+  name: ralphy
+  category: agent_cli
+  summary: Phase 4 B6 shallow intake for michaelshimeles/ralphy as a lightweight agent
+    CLI helper.
+  core_concepts:
+  - task-oriented agent commands
+  - developer workflow shortcuts
+  key_entry_points:
+  - README.md
+  - src/
+  - examples/
+  build_run:
+    language: mixed
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/ralphy.yaml
+    as_of: '2026-03-13T04:28:53Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::michaelshimeles/ralphy
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::microsoft/graphrag
   github_full_name: microsoft/graphrag
   html_url: https://github.com/microsoft/graphrag
@@ -3811,6 +3932,37 @@ repos:
       - Chroma, Pinecone, Weaviate
       - Qdrant, Milvus
       - pgvector, Astra DB
+- node_id: repo::mlpack/mlpack
+  github_full_name: mlpack/mlpack
+  html_url: https://github.com/mlpack/mlpack
+  source: compiled_master
+  name: mlpack
+  category: machine_learning
+  summary: Phase 4 B6 shallow intake for mlpack/mlpack as a machine learning toolkit
+    routed per locked batch policy.
+  core_concepts:
+  - machine learning algorithms
+  - reusable model training components
+  key_entry_points:
+  - README.md
+  - src/
+  - doc/
+  - CMakeLists.txt
+  build_run:
+    language: c++
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/mlpack.yaml
+    as_of: '2026-03-13T04:28:53Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::mlpack/mlpack
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::monteslu/hsync
   github_full_name: monteslu/hsync
   html_url: https://github.com/monteslu/hsync
@@ -3933,6 +4085,36 @@ repos:
         precedence: api_wins_readme_for_missing_required_fields
         fallback_source: readme_fallback
         fallback_used: false
+- node_id: repo::mscdex/ssh2
+  github_full_name: mscdex/ssh2
+  html_url: https://github.com/mscdex/ssh2
+  source: compiled_master
+  name: ssh2
+  category: network_utils
+  summary: Phase 4 B6 shallow intake for mscdex/ssh2 as a Node.js SSH protocol utility
+    library.
+  core_concepts:
+  - SSH client and server primitives
+  - Node.js network integrations
+  key_entry_points:
+  - README.md
+  - lib/
+  - examples/
+  build_run:
+    language: javascript
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  provenance:
+    shard: merged
+    source_file: ssh_repos/knowledge/repos/ssh2.yaml
+    as_of: '2026-03-13T04:28:53Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::mscdex/ssh2
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::nexaai/nexa-sdk
   github_full_name: nexaai/nexa-sdk
   html_url: https://github.com/nexaai/nexa-sdk
@@ -4022,6 +4204,66 @@ repos:
     - Privacy-preserving inference
     - Edge AI deployment
     - Automotive/IoT AI
+- node_id: repo::obra/superpowers
+  github_full_name: obra/superpowers
+  html_url: https://github.com/obra/superpowers
+  source: compiled_master
+  name: superpowers
+  category: agent_framework
+  summary: Phase 4 B6 shallow intake for obra/superpowers as a framework-oriented
+    skills and prompt tooling repository.
+  core_concepts:
+  - agent skill packaging
+  - reusable workflow capabilities
+  key_entry_points:
+  - README.md
+  - docs/
+  - examples/
+  build_run:
+    language: mixed
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/superpowers.yaml
+    as_of: '2026-03-13T04:28:53Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::obra/superpowers
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
+- node_id: repo::obsidianmd/obsidian-releases
+  github_full_name: obsidianmd/obsidian-releases
+  html_url: https://github.com/obsidianmd/obsidian-releases
+  source: compiled_master
+  name: obsidian-releases
+  category: documentation
+  summary: Phase 4 B6 shallow intake for obsidianmd/obsidian-releases as a release-tracking
+    and documentation-oriented repository.
+  core_concepts:
+  - product release history
+  - documentation-style release artifacts
+  key_entry_points:
+  - README.md
+  - releases/
+  - changelog/
+  build_run:
+    language: markdown
+    build: No build step required for release metadata repository.
+    test: No automated test suite in this repository.
+  provenance:
+    shard: merged
+    source_file: llm_repos/knowledge/repos/obsidian-releases.yaml
+    as_of: '2026-03-13T04:28:53Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::obsidianmd/obsidian-releases
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::obsproject/obs-studio
   github_full_name: obsproject/obs-studio
   html_url: https://github.com/obsproject/obs-studio

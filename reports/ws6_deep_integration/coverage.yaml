@@ -1,13 +1,13 @@
 artifact_type: ws6_deep_integration_coverage
-generated_at_utc: '2026-03-05T00:00:00Z'
+generated_at_utc: '2026-03-13T00:00:00Z'
 contract_version: 1.0.0-ws6-draft
 input_scope:
-  deep_narrative_files_total: 77
+  deep_narrative_files_total: 81
   deep_fact_draft_files_total: 0
-  repos_with_any_deep_inputs: 77
-  repos_materialized: 77
+  repos_with_any_deep_inputs: 81
+  repos_materialized: 81
 metrics:
-  facts_materialized_total: 3601
+  facts_materialized_total: 3791
   facts_with_evidence_pct: 100.0
   confidence_bounds_valid_pct: 100.0
   draft_overrides_count: 0
@@ -116,6 +116,32 @@ metrics:
     draft_overrides: 0
     evidence_merges: 0
     facts_emitted: 71
+    blocked_facts: 0
+    unmapped_sections_count: 0
+  - node_id: repo::cloudflare/cloudflared
+    github_full_name: cloudflare/cloudflared
+    shard: ssh_repos
+    narrative_files: 1
+    draft_files: 0
+    narrative_facts_raw: 47
+    draft_facts_raw: 0
+    derived_facts_after_dedupe: 47
+    draft_overrides: 0
+    evidence_merges: 0
+    facts_emitted: 47
+    blocked_facts: 0
+    unmapped_sections_count: 0
+  - node_id: repo::containers/podman
+    github_full_name: containers/podman
+    shard: llm_repos
+    narrative_files: 1
+    draft_files: 0
+    narrative_facts_raw: 47
+    draft_facts_raw: 0
+    derived_facts_after_dedupe: 47
+    draft_overrides: 0
+    evidence_merges: 0
+    facts_emitted: 47
     blocked_facts: 0
     unmapped_sections_count: 0
   - node_id: repo::cristipufu/tunnelite
@@ -911,6 +937,19 @@ metrics:
     facts_emitted: 31
     blocked_facts: 0
     unmapped_sections_count: 0
+  - node_id: repo::tailscale/tailscale
+    github_full_name: tailscale/tailscale
+    shard: ssh_repos
+    narrative_files: 1
+    draft_files: 0
+    narrative_facts_raw: 48
+    draft_facts_raw: 0
+    derived_facts_after_dedupe: 48
+    draft_overrides: 0
+    evidence_merges: 0
+    facts_emitted: 48
+    blocked_facts: 0
+    unmapped_sections_count: 0
   - node_id: repo::thephpleague/fractal
     github_full_name: thephpleague/fractal
     shard: ssh_repos
@@ -948,6 +987,19 @@ metrics:
     draft_overrides: 0
     evidence_merges: 0
     facts_emitted: 62
+    blocked_facts: 0
+    unmapped_sections_count: 0
+  - node_id: repo::weaviate/weaviate
+    github_full_name: weaviate/weaviate
+    shard: llm_repos
+    narrative_files: 1
+    draft_files: 0
+    narrative_facts_raw: 48
+    draft_facts_raw: 0
+    derived_facts_after_dedupe: 48
+    draft_overrides: 0
+    evidence_merges: 0
+    facts_emitted: 48
     blocked_facts: 0
     unmapped_sections_count: 0
   - node_id: repo::wez/wezterm
@@ -1036,6 +1088,7 @@ actions:
   - llm_repos/knowledge/deep_facts/anthropics__claude-code.yaml
   - llm_repos/knowledge/deep_facts/anything_llm.yaml
   - llm_repos/knowledge/deep_facts/awesome-llm-apps.yaml
+  - llm_repos/knowledge/deep_facts/containers__podman.yaml
   - llm_repos/knowledge/deep_facts/dottxt-ai__outlines.yaml
   - llm_repos/knowledge/deep_facts/flowiseai__flowise.yaml
   - llm_repos/knowledge/deep_facts/gin-gonic__gin.yaml
@@ -1071,11 +1124,13 @@ actions:
   - llm_repos/knowledge/deep_facts/ruvnet__claude-flow.yaml
   - llm_repos/knowledge/deep_facts/self-llm.yaml
   - llm_repos/knowledge/deep_facts/vllm.yaml
+  - llm_repos/knowledge/deep_facts/weaviate__weaviate.yaml
   - llm_repos/knowledge/deep_facts/xinference.yaml
   - ssh_repos/knowledge/deep_facts/awesome-tunneling.yaml
   - ssh_repos/knowledge/deep_facts/bore.yaml
   - ssh_repos/knowledge/deep_facts/borgbackup__borg.yaml
   - ssh_repos/knowledge/deep_facts/capistrano__capistrano.yaml
+  - ssh_repos/knowledge/deep_facts/cloudflared.yaml
   - ssh_repos/knowledge/deep_facts/frp.yaml
   - ssh_repos/knowledge/deep_facts/gohugoio__hugo.yaml
   - ssh_repos/knowledge/deep_facts/gost.yaml
@@ -1097,6 +1152,7 @@ actions:
   - ssh_repos/knowledge/deep_facts/spotify__annoy.yaml
   - ssh_repos/knowledge/deep_facts/sshuttle.yaml
   - ssh_repos/knowledge/deep_facts/streisand.yaml
+  - ssh_repos/knowledge/deep_facts/tailscale.yaml
   - ssh_repos/knowledge/deep_facts/teleport.yaml
   - ssh_repos/knowledge/deep_facts/thephpleague__fractal.yaml
   - ssh_repos/knowledge/deep_facts/tmux__tmux.yaml

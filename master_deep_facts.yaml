@@ -1,9 +1,9 @@
 artifact_type: ws6_master_deep_facts
-generated_at_utc: '2026-03-05T00:00:00Z'
+generated_at_utc: '2026-03-13T00:00:00Z'
 contract_version: 1.0.0-ws6-draft
 summary:
-  total_facts: 3601
-  repos_with_facts: 77
+  total_facts: 3791
+  repos_with_facts: 81
   source_shards:
   - llm_repos
   - ssh_repos
@@ -6709,6 +6709,1916 @@ facts:
   object_value: bundle exec cap production deploy
   note: Execute deploy for production stage.
   fact_id: fact::d0cb330df4df64cb01c4627e
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: key_features[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[0]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: Cloudflare Tunnel client
+  object_value: Cloudflare Tunnel client
+  note: Publishes local services through outbound connections to Cloudflare edge.
+  fact_id: fact::39d3819f6ca01393164b2080
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: architecture.key_abstractions[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[2]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: Maintains outbound connectivity to Cloudflare edge services.
+  object_value: Connection manager
+  note: Maintains outbound connectivity to Cloudflare edge services.
+  fact_id: fact::723899e1e2b44179c176af90
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: key_features[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[1]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: Ingress rule routing
+  object_value: Ingress rule routing
+  note: Maps incoming traffic to configured origins and middleware chains.
+  fact_id: fact::836ebf4e4e89bfa160f6f6eb
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: architecture.key_abstractions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[1]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: Map incoming requests to configured origin services.
+  object_value: Ingress rules
+  note: Map incoming requests to configured origin services.
+  fact_id: fact::95442208381f097090732ea1
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: key_features[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[2]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: Managed credentials and tokens
+  object_value: Managed credentials and tokens
+  note: Separates token handling and credential workflows from tunnel runtime.
+  fact_id: fact::421dbe09b4761b0d34fcbdbd
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: key_features[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[3]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: Operational metrics and management
+  object_value: Operational metrics and management
+  note: Exposes observability and management surfaces for tunnel processes.
+  fact_id: fact::d646e843738f18f666896b83
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: architecture.key_abstractions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[0]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: Configures and runs Cloudflare Tunnel client workflows.
+  object_value: Tunnel command surface
+  note: Configures and runs Cloudflare Tunnel client workflows.
+  fact_id: fact::0c9bdd76ed30c63728352111
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.78
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: architecture.module_breakdown[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[2]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: Tunnel connection lifecycle, coordination, and process supervision.
+  object_value: connection and orchestration
+  note: 'responsibility: Tunnel connection lifecycle, coordination, and process supervision.;
+    key_files: connection, orchestration, supervisor'
+  fact_id: fact::7b5dbf828fa0b320d0f20cad
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.78
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: architecture.module_breakdown[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[1]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: Ingress rule handling and upstream proxy behavior for exposed services.
+  object_value: ingress and proxy
+  note: 'responsibility: Ingress rule handling and upstream proxy behavior for exposed
+    services.; key_files: ingress, proxy'
+  fact_id: fact::2ebd0cb8453b6ed5eb34a251
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.78
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: architecture.module_breakdown[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[3]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: Credential handling, observability, and operational control surfaces.
+  object_value: token, metrics, and management
+  note: 'responsibility: Credential handling, observability, and operational control
+    surfaces.; key_files: token, metrics, management'
+  fact_id: fact::af66b2275387cb0095db24f9
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: key_files[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[0]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: README.md
+  object_value: README.md
+  note: Project overview and tunnel usage guidance.
+  fact_id: fact::8b99a586f3668b47d692e0e6
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: key_files[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[2]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: cmd/cloudflared
+  object_value: cmd/cloudflared
+  note: CLI command tree.
+  fact_id: fact::8a03894081246cdfc3214a80
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: architecture.module_breakdown[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[0]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: CLI entrypoint, subcommands, flags, and tunnel management workflows.
+  object_value: cmd/cloudflared
+  note: 'responsibility: CLI entrypoint, subcommands, flags, and tunnel management
+    workflows.; key_files: cmd/cloudflared'
+  fact_id: fact::bb2df15646fa0ced5476b751
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: core_modules.cli
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.cli
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: cmd/cloudflared
+  object_value: cmd/cloudflared
+  note: Command-line entrypoints and subcommands.
+  fact_id: fact::c8bb79b0062142bdd8068975
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: key_files[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[4]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: connection
+  object_value: connection
+  note: Tunnel connection runtime.
+  fact_id: fact::6cb4bdc34524c32cc71c53df
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: core_modules.tunnel_runtime
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.tunnel_runtime
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: connection
+  object_value: connection
+  note: Connection lifecycle and tunnel transport behavior.
+  fact_id: fact::9e0368efa4532c92223c4652
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: key_files[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[1]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: go.mod
+  object_value: go.mod
+  note: Go module and dependency declarations.
+  fact_id: fact::9c0db91115d5f717195aca88
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: key_files[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[3]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: ingress
+  object_value: ingress
+  note: Ingress routing implementation.
+  fact_id: fact::6c8299dcb73aaed211ee13d0
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: core_modules.ingress_stack
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.ingress_stack
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: ingress
+  object_value: ingress
+  note: Ingress rule parsing, middleware, and origin selection.
+  fact_id: fact::c04cd08c4a6af16498157ff3
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: core_modules.operations
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.operations
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: orchestration
+  object_value: orchestration
+  note: Supervision and runtime coordination.
+  fact_id: fact::fd61c9c4a5c9956278feabed
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: configuration[0].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[2]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: config
+  object_value: config
+  note: YAML configuration file for ingress and operational settings.
+  fact_id: fact::97703753ddd8b1c9994ca2ab
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: configuration[0].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[1]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: credentials-file
+  object_value: credentials-file
+  note: Credential file used for authenticated tunnel operation.
+  fact_id: fact::8480bcc9eff88ee5f697d8df
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: configuration[0].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[0]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: tunnel
+  object_value: tunnel
+  note: Named tunnel selection or identifier.
+  fact_id: fact::848e5b8663ca1d1a201d81eb
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: configuration[0].options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[3]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: url
+  object_value: url
+  note: Origin service URL for local exposure.
+  fact_id: fact::4101c8ee8d3accdeb19ec77b
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: integrations.networking[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.networking[0].line[0]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: Cloudflare edge
+  object_value: Cloudflare edge
+  note: 'integration group: networking'
+  fact_id: fact::5beda1994e151b37217d7208
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: api_surface.public_functions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[0]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: cloudflared CLI
+  object_value: cloudflared CLI
+  note: Provide tunnel lifecycle and ingress commands.; cmd/cloudflared
+  fact_id: fact::91a745cb66bd1ac5ec9f3b9a
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: api_surface.public_functions[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[2]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: connection manager
+  object_value: connection manager
+  note: Maintain and supervise edge connectivity.; connection
+  fact_id: fact::5ecc29c660ac5aceec756472
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: integrations.networking[2].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.networking[2].line[0]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: ingress middleware
+  object_value: ingress middleware
+  note: 'integration group: networking'
+  fact_id: fact::4aa1699b747087a5ca05dcd8
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: api_surface.public_functions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[1]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: ingress rules
+  object_value: ingress rules
+  note: Define request routing from tunnel edges to origin services.; ingress
+  fact_id: fact::de714b5e3080b60dbf3de406
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: integrations.networking[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.networking[1].line[0]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: local origin services
+  object_value: local origin services
+  note: 'integration group: networking'
+  fact_id: fact::54f3a4a02f41747a7d1f63a7
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: integrations.operations[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.operations[0].line[0]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: management APIs
+  object_value: management APIs
+  note: 'integration group: operations'
+  fact_id: fact::89e5d04fd44773db32151d2b
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: integrations.operations[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.operations[1].line[0]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: metrics pipelines
+  object_value: metrics pipelines
+  note: 'integration group: operations'
+  fact_id: fact::fc69ef4aa320b7f3ad952586
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: testing.coverage_areas[2].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[2].line[0]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: CLI command workflows
+  object_value: CLI command workflows
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::739850600531ed4ef09f011e
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: code_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cmd/cloudflared
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: Operational behaviors are grouped into CLI-focused command packages under
+      cmd/cloudflared.
+  object_value: CLI subcommand fan-out
+  note: 'description: Operational behaviors are grouped into CLI-focused command packages
+    under cmd/cloudflared.; location: cmd/cloudflared'
+  fact_id: fact::88a4ac88c94769092df4a685
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: implementation_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: token
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: Token and credential packages separate authentication concerns from transport
+      logic.
+  object_value: Credential-backed tunnel startup
+  note: 'description: Token and credential packages separate authentication concerns
+    from transport logic.; location: token'
+  fact_id: fact::df9e172dc75cb0e792c782a2
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: testing.structure.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.structure.line[0]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: Go packages cover tunnel runtime, ingress behavior, and command surfaces.
+  object_value: Go packages cover tunnel runtime, ingress behavior, and command surfaces.
+  note: 'testing metadata: structure'
+  fact_id: fact::3274812068960cacb9d67085
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: testing.coverage_areas[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[1].line[0]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: Ingress rule handling
+  object_value: Ingress rule handling
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::84e8bf03134020d75b0b4209
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: code_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: ingress
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: Ingress definitions and middleware map tunnel traffic to origin services.
+  object_value: Ingress-to-origin routing
+  note: 'description: Ingress definitions and middleware map tunnel traffic to origin
+    services.; location: ingress'
+  fact_id: fact::f5f9cfef4e5483bfe3d65073
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: implementation_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: metrics
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: Metrics and management modules expose runtime observability around tunnel
+      behavior.
+  object_value: Operational metrics emission
+  note: 'description: Metrics and management modules expose runtime observability
+    around tunnel behavior.; location: metrics'
+  fact_id: fact::61d189c7cf607d2919952be7
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: code_patterns[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: connection
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: Tunnel processes and edge connections are coordinated through dedicated
+      connection and orchestration packages.
+  object_value: Supervised connection lifecycle
+  note: 'description: Tunnel processes and edge connections are coordinated through
+    dedicated connection and orchestration packages.; location: connection'
+  fact_id: fact::22876cf73a2d0bceaaf24a81
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: testing.coverage_areas[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[0].line[0]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: Tunnel startup and connection behavior
+  object_value: Tunnel startup and connection behavior
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::7978e79e487bc1d6ec695d32
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: quick_reference[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: quick_reference[0].line[0]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: go build ./cmd/cloudflared
+  object_value: go build ./cmd/cloudflared
+  note: 'topic: Build cloudflared'
+  fact_id: fact::b1620af0866c418e478db2df
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: commands[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[0]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: go build ./cmd/cloudflared
+  object_value: go build ./cmd/cloudflared
+  note: Build the cloudflared binary.
+  fact_id: fact::baf12b7864018f12aa6d0837
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: testing.framework.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.framework.line[0]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: go test
+  object_value: go test
+  note: testing command
+  fact_id: fact::48da494060d2b944e3831ca3
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: testing.test_patterns[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.test_patterns[0].line[0]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: go test ./...
+  object_value: go test ./...
+  note: testing command
+  fact_id: fact::0a8e6b70d67e332d6fcd2805
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: commands[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[1]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: go test ./...
+  object_value: go test ./...
+  note: Run Go test suites across the repo.
+  fact_id: fact::2fb63bf96d50773afabe4e89
+- node_id: repo::cloudflare/cloudflared
+  github_full_name: cloudflare/cloudflared
+  name: cloudflared
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    source_section: quick_reference[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: quick_reference[1].line[0]
+    source_file: ssh_repos/knowledge/deep/cloudflared.yaml
+    excerpt: go test ./...
+  object_value: go test ./...
+  note: 'topic: Run tests'
+  fact_id: fact::5e832051636f475f62bbced2
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: architecture.key_abstractions[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[2]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: Provide programmatic access to Podman features.
+  object_value: API bindings
+  note: Provide programmatic access to Podman features.
+  fact_id: fact::90e4854aabd713aebd5d71c7
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: key_features[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[0]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: Daemonless container management
+  object_value: Daemonless container management
+  note: Runs container and pod workflows without a permanently running daemon.
+  fact_id: fact::6ef05520d43757f7a075f1d5
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: key_features[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[3]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: Machine and rootless workflows
+  object_value: Machine and rootless workflows
+  note: Supports local VM/machine helpers and rootless operation paths.
+  fact_id: fact::5c235bfa4fd880a543417632
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: architecture.key_abstractions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[1]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: Exposes daemonless container operations and administrative commands.
+  object_value: Podman CLI
+  note: Exposes daemonless container operations and administrative commands.
+  fact_id: fact::e304c4801c2b03802411fe0d
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: key_features[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[1]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: Pods and Kubernetes-oriented tooling
+  object_value: Pods and Kubernetes-oriented tooling
+  note: Supports pod abstractions and kube-related command surfaces.
+  fact_id: fact::3ed2d65834b68ffeb463f9a2
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: key_features[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[2]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: Remote and API access
+  object_value: Remote and API access
+  note: Exposes API and binding layers in addition to the CLI.
+  fact_id: fact::1fb56e57befb685eb2795110
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.78
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: architecture.module_breakdown[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[1]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: Core runtime library for containers, pods, storage coordination, and
+      lifecycle behavior.
+  object_value: libpod
+  note: 'responsibility: Core runtime library for containers, pods, storage coordination,
+    and lifecycle behavior.; key_files: libpod'
+  fact_id: fact::e255bd846428e01ee0e54418
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: architecture.key_abstractions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[0]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: Encapsulates container and pod lifecycle management.
+  object_value: libpod runtime
+  note: Encapsulates container and pod lifecycle management.
+  fact_id: fact::9ac11d7fe8da2edf5119bcff
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: key_files[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[0]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: README.md
+  object_value: README.md
+  note: Project overview and user-facing workflow guidance.
+  fact_id: fact::308cd7ea5f6c455e8f8b7f6c
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: key_files[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[2]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: cmd/podman
+  object_value: cmd/podman
+  note: CLI command implementation tree.
+  fact_id: fact::3ce6d6b6e15219cde4e68d10
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: architecture.module_breakdown[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[0]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: Primary CLI commands for container, image, machine, network, and kube
+      workflows.
+  object_value: cmd/podman
+  note: 'responsibility: Primary CLI commands for container, image, machine, network,
+    and kube workflows.; key_files: cmd/podman'
+  fact_id: fact::a4e8b90060809d26a4847aeb
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: core_modules.cli
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.cli
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: cmd/podman
+  object_value: cmd/podman
+  note: CLI command tree for container workflows.
+  fact_id: fact::f1088ea039eb20312e50cd48
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: key_files[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[1]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: go.mod
+  object_value: go.mod
+  note: Go module definitions.
+  fact_id: fact::c6da5d63ddbbc11d2e1f444e
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: architecture.module_breakdown[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[3]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: Shared domain logic, local API behaviors, and internal orchestration
+      helpers.
+  object_value: internal and pkg/domain
+  note: 'responsibility: Shared domain logic, local API behaviors, and internal orchestration
+    helpers.; key_files: internal, pkg/domain'
+  fact_id: fact::dcd97ce2c72f7f9d1a71d222
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: core_modules.runtime
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.runtime
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: libpod
+  object_value: libpod
+  note: Core runtime and lifecycle management.
+  fact_id: fact::3e19c38cc48380323f2b6584
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: key_files[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[3]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: libpod
+  object_value: libpod
+  note: Core runtime package.
+  fact_id: fact::4eb84a7083809bf9c4bf0fc3
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: core_modules.api
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.api
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: pkg/api
+  object_value: pkg/api
+  note: API server surfaces and handlers.
+  fact_id: fact::034fb79d04d5c7c664082b71
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: key_files[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[4]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: pkg/api
+  object_value: pkg/api
+  note: API server packages.
+  fact_id: fact::ef97d22850853d459fc9fd6f
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: architecture.module_breakdown[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[2]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: API server and client bindings for remote or programmatic control.
+  object_value: pkg/api and pkg/bindings
+  note: 'responsibility: API server and client bindings for remote or programmatic
+    control.; key_files: pkg/api, pkg/bindings'
+  fact_id: fact::6c32503efe6620bf4f809109
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: core_modules.bindings
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.bindings
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: pkg/bindings
+  object_value: pkg/bindings
+  note: Programmatic client bindings.
+  fact_id: fact::49971478ae9086baf35486db
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: configuration[0].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[1]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: cgroup-manager
+  object_value: cgroup-manager
+  note: Cgroup management mode.
+  fact_id: fact::603952e75e7b55612ee615f7
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: configuration[0].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[2]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: events-backend
+  object_value: events-backend
+  note: Event logging backend.
+  fact_id: fact::5240d18c4cd64eb8ee49b00c
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: configuration[0].options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[3]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: rootless
+  object_value: rootless
+  note: Rootless runtime behavior.
+  fact_id: fact::731ef2374f77fa9b452feea3
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: configuration[0].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[0]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: storage-driver
+  object_value: storage-driver
+  note: Container storage backend selection.
+  fact_id: fact::9ed5828f64c200129d0111d7
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: integrations.interfaces[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.interfaces[1].line[0]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: API consumers
+  object_value: API consumers
+  note: 'integration group: interfaces'
+  fact_id: fact::3c3ac3e95a3901224389dc33
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: integrations.interfaces[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.interfaces[0].line[0]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: CLI users
+  object_value: CLI users
+  note: 'integration group: interfaces'
+  fact_id: fact::eaec8e08813bbdf7c91980d3
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: integrations.container_stack[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.container_stack[0].line[0]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: OCI container workflows
+  object_value: OCI container workflows
+  note: 'integration group: container_stack'
+  fact_id: fact::65ab1541118782b45d0c6013
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: api_surface.public_functions[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[2]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: Podman API
+  object_value: Podman API
+  note: Expose remote and programmatic control surfaces.; pkg/api
+  fact_id: fact::88e1d80e13cb58f8c83ca247
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: integrations.interfaces[2].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.interfaces[2].line[0]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: binding clients
+  object_value: binding clients
+  note: 'integration group: interfaces'
+  fact_id: fact::913d9523be48237969da57eb
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: integrations.container_stack[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.container_stack[1].line[0]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: image management
+  object_value: image management
+  note: 'integration group: container_stack'
+  fact_id: fact::1b39d1fc47ef53bc73691fa9
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: integrations.container_stack[2].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.container_stack[2].line[0]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: kube command surfaces
+  object_value: kube command surfaces
+  note: 'integration group: container_stack'
+  fact_id: fact::f4a65bc309c8afc7b4b9d91c
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: api_surface.public_functions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[1]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: libpod runtime
+  object_value: libpod runtime
+  note: Implement core container lifecycle behavior.; libpod
+  fact_id: fact::62d348f10d54278b7b7da723
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: api_surface.public_functions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[0]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: podman CLI
+  object_value: podman CLI
+  note: Provide user-facing container, image, pod, and machine commands.; cmd/podman
+  fact_id: fact::7eb4b8b066ced0708401caa9
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: testing.coverage_areas[2].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[2].line[0]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: API and bindings behavior
+  object_value: API and bindings behavior
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::f444e4be11751356fac34690
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: testing.coverage_areas[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[1].line[0]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: CLI command families
+  object_value: CLI command families
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::82ac14f606acf4f2b82ec5d5
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: code_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cmd/podman
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: Command families are grouped by domain under cmd/podman.
+  object_value: CLI subcommand decomposition
+  note: 'description: Command families are grouped by domain under cmd/podman.; location:
+    cmd/podman'
+  fact_id: fact::ba4b3d7aa2d18519656a38e8
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: testing.coverage_areas[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[0].line[0]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: Container lifecycle behavior
+  object_value: Container lifecycle behavior
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::802b94eb6319df332cc150a1
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: implementation_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: libpod
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: Container operations are implemented around local runtime management
+      rather than a long-lived daemon requirement.
+  object_value: Daemonless container workflow
+  note: 'description: Container operations are implemented around local runtime management
+    rather than a long-lived daemon requirement.; location: libpod'
+  fact_id: fact::3451b909a506c7ca2677d017
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: code_patterns[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: pkg/domain
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: Shared domain logic is separated into pkg/domain and internal packages.
+  object_value: Domain layering
+  note: 'description: Shared domain logic is separated into pkg/domain and internal
+    packages.; location: pkg/domain'
+  fact_id: fact::f15c61290d12d2e0d300d463
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: implementation_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: pkg/api
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: CLI, API, and bindings packages expose the same runtime capabilities
+      through separate interfaces.
+  object_value: Local and remote control surfaces
+  note: 'description: CLI, API, and bindings packages expose the same runtime capabilities
+    through separate interfaces.; location: pkg/api'
+  fact_id: fact::cf8da115b7b9626f00990e30
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: testing.structure.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.structure.line[0]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: Repository includes Go tests and scenario coverage across runtime, API,
+      and CLI workflows.
+  object_value: Repository includes Go tests and scenario coverage across runtime,
+    API, and CLI workflows.
+  note: 'testing metadata: structure'
+  fact_id: fact::fea5c1625b908e17d3fda487
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: code_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: libpod
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: Core runtime behavior lives in libpod while remote and programmatic surfaces
+      live in pkg/api and pkg/bindings.
+  object_value: Runtime-and-API split
+  note: 'description: Core runtime behavior lives in libpod while remote and programmatic
+    surfaces live in pkg/api and pkg/bindings.; location: libpod'
+  fact_id: fact::54271fe6d026f7464ee86b31
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: commands[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[0]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: make
+  object_value: make
+  note: Build Podman and related components.
+  fact_id: fact::751f1c4e1c86dce55e933686
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: quick_reference[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: quick_reference[0].line[0]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: make
+  object_value: make
+  note: 'topic: Build project'
+  fact_id: fact::7c077b9d39203a750817ab15
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: testing.framework.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.framework.line[0]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: make test
+  object_value: make test
+  note: testing command
+  fact_id: fact::1f927c80e97c2246011f0abe
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: quick_reference[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: quick_reference[1].line[0]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: make test
+  object_value: make test
+  note: 'topic: Run tests'
+  fact_id: fact::9e1fe52002e0bc1daca22079
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    source_section: commands[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[1]
+    source_file: llm_repos/knowledge/deep/containers__podman.yaml
+    excerpt: make test
+  object_value: make test
+  note: Run test suite.
+  fact_id: fact::db0cb5e8d0750893d9c59e8d
 - node_id: repo::cristipufu/tunnelite
   github_full_name: cristipufu/tunnelite
   name: tunnelite
@@ -62031,6 +63941,984 @@ facts:
   note: 'description: Reuses existing sandbox if running and not expired; location:
     src/client.ts:42-54'
   fact_id: fact::5ab9c49884264a146f5833ac
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: key_features[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[1]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: Identity-aware access control
+  object_value: Identity-aware access control
+  note: Connects node behavior and policy to control-plane identity and configuration.
+  fact_id: fact::bb25c45a541d1fbf84284d5b
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: key_features[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[2]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: Local API and daemon management
+  object_value: Local API and daemon management
+  note: Supports client commands through a daemon-backed local API.
+  fact_id: fact::dd94a247770f674708791297
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: architecture.key_abstractions[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[2]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: Serves local management endpoints used by clients and integrations.
+  object_value: LocalAPI
+  note: Serves local management endpoints used by clients and integrations.
+  fact_id: fact::0cd158ea3d2fc3c3c969177a
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: architecture.key_abstractions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[0]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: Coordinates node state, preferences, and authenticated control-plane
+      interactions.
+  object_value: LocalBackend
+  note: Coordinates node state, preferences, and authenticated control-plane interactions.
+  fact_id: fact::e16c2f2b344dfa83ac493d34
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: key_features[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[0]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: Mesh VPN connectivity
+  object_value: Mesh VPN connectivity
+  note: Builds WireGuard-based mesh networking between authenticated nodes.
+  fact_id: fact::d0d507e2911fce4cfdaeb444
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: key_features[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[3]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: Relay and fallback connectivity
+  object_value: Relay and fallback connectivity
+  note: Uses discovery and DERP relay subsystems when direct connectivity is unavailable.
+  fact_id: fact::0c33c199006e1857895def70
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.78
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: architecture.module_breakdown[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[1]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: Node state management, local API serving, preferences, and backend orchestration.
+  object_value: ipn
+  note: 'responsibility: Node state management, local API serving, preferences, and
+    backend orchestration.; key_files: ipn/ipnlocal, ipn/localapi, ipn/ipnserver'
+  fact_id: fact::72b8593156a139bf7a247a48
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.78
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: architecture.module_breakdown[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[3]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: Network utilities, DERP/discovery coordination, and shared control-plane
+      types.
+  object_value: net and tailcfg
+  note: 'responsibility: Network utilities, DERP/discovery coordination, and shared
+    control-plane types.; key_files: net, tailcfg, derp'
+  fact_id: fact::66158e1d86bf121622a6a535
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.78
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: architecture.module_breakdown[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[2]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: WireGuard engine integration, peer connectivity, and dataplane behavior.
+  object_value: wgengine
+  note: 'responsibility: WireGuard engine integration, peer connectivity, and dataplane
+    behavior.; key_files: wgengine'
+  fact_id: fact::6048561635e421288df150d6
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: architecture.key_abstractions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[1]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: Encapsulates WireGuard dataplane and peer connectivity behavior.
+  object_value: wgengine
+  note: Encapsulates WireGuard dataplane and peer connectivity behavior.
+  fact_id: fact::c0b5f98958a81583d4db1bcf
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: key_files[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[0]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: README.md
+  object_value: README.md
+  note: Project overview and user entry points.
+  fact_id: fact::33c492f6db4e836daa2e4491
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: core_modules.cli_and_daemon
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.cli_and_daemon
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: cmd
+  object_value: cmd
+  note: User-facing CLI and daemon binaries.
+  fact_id: fact::0137b21a13c4b3648bd5e0f7
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: key_files[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[1]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: cmd/tailscale
+  object_value: cmd/tailscale
+  note: Primary CLI command implementation.
+  fact_id: fact::6408838e9ef527149661efc3
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: architecture.module_breakdown[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[0]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: CLI and daemon entrypoints for node control, login, and background networking
+      services.
+  object_value: cmd/tailscale and cmd/tailscaled
+  note: 'responsibility: CLI and daemon entrypoints for node control, login, and background
+    networking services.; key_files: cmd/tailscale, cmd/tailscaled'
+  fact_id: fact::b45f6c544b1f79e97e7b5b48
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: key_files[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[2]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: cmd/tailscaled
+  object_value: cmd/tailscaled
+  note: Daemon entrypoint.
+  fact_id: fact::4642b6d7f1d329a1170625aa
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: core_modules.state_backend
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.state_backend
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: ipn
+  object_value: ipn
+  note: State management, preferences, auth, and local API surfaces.
+  fact_id: fact::a8148550ee1f3ecc4448ee79
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: key_files[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[3]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: ipn/localapi
+  object_value: ipn/localapi
+  note: Local API implementation.
+  fact_id: fact::b3178e732dbcb023cfd67191
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: core_modules.shared_networking
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.shared_networking
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: net
+  object_value: net
+  note: Discovery, DNS, proxy, and network monitoring helpers.
+  fact_id: fact::44c22218228f9bdebf84b349
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: core_modules.dataplane
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.dataplane
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: wgengine
+  object_value: wgengine
+  note: WireGuard engine integration and peer networking.
+  fact_id: fact::620cb22c4df1db65b0e5bd3d
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: key_files[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[4]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: wgengine
+  object_value: wgengine
+  note: WireGuard engine integration.
+  fact_id: fact::dacfa34a188de2854aa3d5ec
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: configuration[0].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[2]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: advertise_routes
+  object_value: advertise_routes
+  note: Network route advertisement behavior.
+  fact_id: fact::ba10c64c618007000074c9ab
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: configuration[0].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[0]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: authkey
+  object_value: authkey
+  note: Authentication key used for device enrollment workflows.
+  fact_id: fact::5bf76b79cc6b7e58a487d5ec
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: configuration[0].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[1]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: control_url
+  object_value: control_url
+  note: Control-plane endpoint selection.
+  fact_id: fact::3f6c8a5cf96d4ea4d71cebc7
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: configuration[0].options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[3]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: exit_node
+  object_value: exit_node
+  note: Exit-node selection for egress routing.
+  fact_id: fact::4283f3e8886d5eb11d83a8dd
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: integrations.platforms[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.platforms[1].line[0]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: CLI environments
+  object_value: CLI environments
+  note: 'integration group: platforms'
+  fact_id: fact::73cfc43e912aecd2a84041f0
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: integrations.networking[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.networking[1].line[0]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: DERP relay network
+  object_value: DERP relay network
+  note: 'integration group: networking'
+  fact_id: fact::0898fcd4a23f352134948ce8
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: integrations.platforms[2].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.platforms[2].line[0]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: Kubernetes operator tooling
+  object_value: Kubernetes operator tooling
+  note: 'integration group: platforms'
+  fact_id: fact::4851d8f0353e17ddcf94e82e
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: api_surface.public_functions[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[2]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: LocalAPI
+  object_value: LocalAPI
+  note: Serve local management requests for clients and integrations.; ipn/localapi
+  fact_id: fact::0d36d22f94d0d58a1fa32039
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: integrations.networking[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.networking[0].line[0]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: WireGuard
+  object_value: WireGuard
+  note: 'integration group: networking'
+  fact_id: fact::51ae36bc06f922929938ea3a
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: integrations.platforms[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.platforms[0].line[0]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: desktop clients
+  object_value: desktop clients
+  note: 'integration group: platforms'
+  fact_id: fact::973750ecc73fefd4ca95e5bf
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: integrations.networking[2].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.networking[2].line[0]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: local API consumers
+  object_value: local API consumers
+  note: 'integration group: networking'
+  fact_id: fact::bd4b4653f5fe03fe76a7233c
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: api_surface.public_functions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[0]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: tailscale CLI
+  object_value: tailscale CLI
+  note: Expose user-facing node management and networking commands.; cmd/tailscale
+  fact_id: fact::81d45a651f77dbe69715a350
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: api_surface.public_functions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[1]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: tailscaled
+  object_value: tailscaled
+  note: Run the background daemon responsible for connectivity and state.; cmd/tailscaled
+  fact_id: fact::7b94bb0cb41a55e64636deea
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: code_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: ipn
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: Configuration/state logic lives in ipn while packet transport concerns
+      live in wgengine and net.
+  object_value: Control-plane and dataplane separation
+  note: 'description: Configuration/state logic lives in ipn while packet transport
+    concerns live in wgengine and net.; location: ipn'
+  fact_id: fact::33f148f33f30e02f5b947f54
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: implementation_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: derp
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: Relay and discovery support is organized as explicit subsystems for peer
+      connectivity fallback.
+  object_value: DERP fallback networking
+  note: 'description: Relay and discovery support is organized as explicit subsystems
+    for peer connectivity fallback.; location: derp'
+  fact_id: fact::016807fd54f64310b3fb7679
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: code_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cmd/tailscale
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: Operational commands are separated from the long-running networking daemon.
+  object_value: Daemon-plus-CLI split
+  note: 'description: Operational commands are separated from the long-running networking
+    daemon.; location: cmd/tailscale'
+  fact_id: fact::9b8c99c8660eaa3646f6dc31
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: testing.coverage_areas[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[0].line[0]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: Local API and backend behavior
+  object_value: Local API and backend behavior
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::b776736e0e176dad70c1f273
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: implementation_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: ipn/localapi
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: Client-facing commands route through a local API/backend layer instead
+      of mutating daemon state directly.
+  object_value: Local API mediation
+  note: 'description: Client-facing commands route through a local API/backend layer
+    instead of mutating daemon state directly.; location: ipn/localapi'
+  fact_id: fact::5d08a5048d4062831d45c9e6
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: testing.coverage_areas[2].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[2].line[0]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: Network utilities and discovery logic
+  object_value: Network utilities and discovery logic
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::19eb588a898a4c66d214ce8d
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: code_patterns[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: net
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: Network checks, DNS handling, and discovery paths are factored into dedicated
+      subpackages.
+  object_value: Package-oriented networking utilities
+  note: 'description: Network checks, DNS handling, and discovery paths are factored
+    into dedicated subpackages.; location: net'
+  fact_id: fact::2d9e1b39613226169dda8191
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: testing.structure.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.structure.line[0]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: Repository includes package-level tests across networking, control-plane,
+      and client modules.
+  object_value: Repository includes package-level tests across networking, control-plane,
+    and client modules.
+  note: 'testing metadata: structure'
+  fact_id: fact::701b8f2aac86654a25185982
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: testing.coverage_areas[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[1].line[0]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: WireGuard engine and peer connectivity
+  object_value: WireGuard engine and peer connectivity
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::867889497d2084e99e6bae55
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: commands[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[0]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: go build ./cmd/tailscale ./cmd/tailscaled
+  object_value: go build ./cmd/tailscale ./cmd/tailscaled
+  note: Build CLI and daemon binaries.
+  fact_id: fact::a29590eac6cea7fb662f48f4
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: quick_reference[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: quick_reference[0].line[0]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: go build ./cmd/tailscale ./cmd/tailscaled
+  object_value: go build ./cmd/tailscale ./cmd/tailscaled
+  note: 'topic: Build CLI and daemon'
+  fact_id: fact::d3fa4da108fda2fd78ec71b7
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: testing.framework.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.framework.line[0]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: go test
+  object_value: go test
+  note: testing command
+  fact_id: fact::f25debe40032dcf09b332ba0
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: quick_reference[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: quick_reference[1].line[0]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: go test ./...
+  object_value: go test ./...
+  note: 'topic: Run tests'
+  fact_id: fact::ae868220b3029a6886cd7de6
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: testing.test_patterns[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.test_patterns[0].line[0]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: go test ./...
+  object_value: go test ./...
+  note: testing command
+  fact_id: fact::bcc1e242bf64db1704bdd242
+- node_id: repo::tailscale/tailscale
+  github_full_name: tailscale/tailscale
+  name: tailscale
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-13'
+  provenance:
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    source_section: commands[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[1]
+    source_file: ssh_repos/knowledge/deep/tailscale.yaml
+    excerpt: go test ./...
+  object_value: go test ./...
+  note: Run Go test suites across the repo.
+  fact_id: fact::cdff4f66f65c5da5e73640f2
 - node_id: repo::thephpleague/fractal
   github_full_name: thephpleague/fractal
   name: fractal
@@ -66249,6 +69137,982 @@ facts:
     bitsandbytes for 4-bit; Quantized models need specific checkpoints, not base models,
     Quality may degrade with aggressive...'
   fact_id: fact::4385ae91bd298eea680ebfd4
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: key_features[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[3]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: Client and API surfaces
+  object_value: Client and API surfaces
+  note: Exposes operational and query interfaces through dedicated client packages.
+  fact_id: fact::d39de4e18ca025f9117848f2
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: key_features[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[2]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: Clustered operation
+  object_value: Clustered operation
+  note: Includes cluster, replication, and distributed task subsystems.
+  fact_id: fact::145cfe74f681b39f08f051df
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: key_features[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[1]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: Extensible modules
+  object_value: Extensible modules
+  note: Supports pluggable integrations and vectorization modules.
+  fact_id: fact::525c8a6c14fb705580d54832
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: key_features[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: Vector database server
+  object_value: Vector database server
+  note: Provides vector-native storage and retrieval capabilities.
+  fact_id: fact::ce453941da82aa15ce954204
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: architecture.key_abstractions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: Runs the database service and operational endpoints.
+  object_value: Weaviate server
+  note: Runs the database service and operational endpoints.
+  fact_id: fact::662c091ddd64f5790a61d1a5
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.78
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: architecture.module_breakdown[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[1]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: External interfaces, client adapters, storage-facing repos, and handlers.
+  object_value: adapters
+  note: 'responsibility: External interfaces, client adapters, storage-facing repos,
+    and handlers.; key_files: adapters'
+  fact_id: fact::a164b683f9447b8492269bb6
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.78
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: architecture.module_breakdown[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[3]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: Distributed coordination, replication, RPC, and cluster operations.
+  object_value: cluster and grpc
+  note: 'responsibility: Distributed coordination, replication, RPC, and cluster operations.;
+    key_files: cluster, grpc'
+  fact_id: fact::1abeeca9eba3a29eb2553791
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: architecture.key_abstractions[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[2]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: Handles distributed coordination and replication.
+  object_value: cluster runtime
+  note: Handles distributed coordination and replication.
+  fact_id: fact::dbbe2a2502c235e829e1c7cd
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.78
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: architecture.module_breakdown[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[4]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: Extensible vectorization and module integrations.
+  object_value: modules
+  note: 'responsibility: Extensible vectorization and module integrations.; key_files:
+    modules'
+  fact_id: fact::e3498643d28a496781190c1e
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.78
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: architecture.module_breakdown[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[2]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: Core application logic, domain models, schema behavior, and business
+      workflows.
+  object_value: usecases and entities
+  note: 'responsibility: Core application logic, domain models, schema behavior, and
+    business workflows.; key_files: usecases, entities'
+  fact_id: fact::a4d111b680c2d9a12dd2196c
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: architecture.key_abstractions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[1]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: Coordinates schema, objects, classification, and query workflows.
+  object_value: usecases layer
+  note: Coordinates schema, objects, classification, and query workflows.
+  fact_id: fact::c9f20b327754081069e9bc82
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: key_files[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: README.md
+  object_value: README.md
+  note: Repository overview and quick start.
+  fact_id: fact::f451b4107fa594338b35a658
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: core_modules.adapters_layer
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.adapters_layer
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: adapters
+  object_value: adapters
+  note: Handlers, repos, and external-facing adapters.
+  fact_id: fact::bd4dff3ded90e2ad9d62e18d
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: core_modules.cluster_runtime
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.cluster_runtime
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: cluster
+  object_value: cluster
+  note: Cluster coordination and replication subsystems.
+  fact_id: fact::dcc8b610cba14d06716e0d0f
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: architecture.module_breakdown[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: Server entrypoint and process bootstrap for the database runtime.
+  object_value: cmd/weaviate-server
+  note: 'responsibility: Server entrypoint and process bootstrap for the database
+    runtime.; key_files: cmd/weaviate-server'
+  fact_id: fact::80c2c9d6ca5373ee60e67ba5
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: core_modules.server
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.server
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: cmd/weaviate-server
+  object_value: cmd/weaviate-server
+  note: Primary server entrypoint.
+  fact_id: fact::c2309c05aae94c19c526cfc5
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: key_files[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[3]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: cmd/weaviate-server
+  object_value: cmd/weaviate-server
+  note: Main server command.
+  fact_id: fact::dda3d0314c7c51b90d6fed1a
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: key_files[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[1]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: go.mod
+  object_value: go.mod
+  note: Go module declaration.
+  fact_id: fact::d849b39874737ad653b41981
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: key_files[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[2]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: pyproject.toml
+  object_value: pyproject.toml
+  note: Python-related packaging or tooling definitions.
+  fact_id: fact::6c5a6a9071ea48065200382d
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: core_modules.domain_logic
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.domain_logic
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: usecases
+  object_value: usecases
+  note: Core business logic for query and schema workflows.
+  fact_id: fact::769991b0c98b81bbba7d1ad1
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: key_files[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[4]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: usecases
+  object_value: usecases
+  note: Application logic package tree.
+  fact_id: fact::f838e2cc0ec29087e6ecdf19
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: configuration[0].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: cluster
+  object_value: cluster
+  note: Distributed cluster behavior and replication settings.
+  fact_id: fact::b20e7c06ab82e7fd69f62ac1
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: configuration[0].options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[3]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: grpc
+  object_value: grpc
+  note: gRPC service behavior.
+  fact_id: fact::4c97251eed7024a001e2e066
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: configuration[0].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[1]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: modules
+  object_value: modules
+  note: Module enablement for vectorization or integrations.
+  fact_id: fact::2be51959aa789745cdb5641c
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: configuration[0].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[2]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: persistence
+  object_value: persistence
+  note: Storage and persistence configuration.
+  fact_id: fact::73482d7874755ba89c11393b
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: integrations.runtime[2].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.runtime[2].line[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: client APIs
+  object_value: client APIs
+  note: 'integration group: runtime'
+  fact_id: fact::e50e25de4f711af87c4a48d1
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: api_surface.public_functions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[1]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: client package
+  object_value: client package
+  note: Expose query and management operations to programmatic consumers.; client
+  fact_id: fact::1b32cb7257b730ef7210266d
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: api_surface.public_functions[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[2]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: cluster runtime
+  object_value: cluster runtime
+  note: Handle distributed coordination and replication.; cluster
+  fact_id: fact::c1d710e809803f67c69d118b
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: integrations.operations[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.operations[0].line[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: clustered deployments
+  object_value: clustered deployments
+  note: 'integration group: operations'
+  fact_id: fact::7a5009fc344dd3c600c51e35
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: integrations.runtime[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.runtime[0].line[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: gRPC
+  object_value: gRPC
+  note: 'integration group: runtime'
+  fact_id: fact::8385e58755f409daf62716c3
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: integrations.runtime[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.runtime[1].line[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: pluggable modules
+  object_value: pluggable modules
+  note: 'integration group: runtime'
+  fact_id: fact::fc1004368df69f122623f59f
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: integrations.operations[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.operations[1].line[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: vector retrieval services
+  object_value: vector retrieval services
+  note: 'integration group: operations'
+  fact_id: fact::5ba285cd29e033b64da7a0ab
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: api_surface.public_functions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: weaviate-server
+  object_value: weaviate-server
+  note: Run the main server process.; cmd/weaviate-server
+  fact_id: fact::ae0d5138de96e210e11b8ffd
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: implementation_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: client
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: Generated or organized client operations live separately from server
+      usecase logic.
+  object_value: Client and API surface partitioning
+  note: 'description: Generated or organized client operations live separately from
+    server usecase logic.; location: client'
+  fact_id: fact::9a9518b6824aa921a69fb6d0
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: testing.coverage_areas[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[0].line[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: Cluster and replication behavior
+  object_value: Cluster and replication behavior
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::b0ca09f8766aa111a519056a
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: code_patterns[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cluster
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: Distributed concerns are factored into dedicated cluster and grpc packages.
+  object_value: Clustered service decomposition
+  note: 'description: Distributed concerns are factored into dedicated cluster and
+    grpc packages.; location: cluster'
+  fact_id: fact::9bb9eeb06cca924a25ba2ddc
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: code_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: adapters
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: External interfaces, application logic, and domain types are separated
+      into dedicated top-level packages.
+  object_value: Layered adapters/usecases/entities architecture
+  note: 'description: External interfaces, application logic, and domain types are
+    separated into dedicated top-level packages.; location: adapters'
+  fact_id: fact::d66375b0f99a7f8ff441e98c
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: testing.coverage_areas[2].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[2].line[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: Module integrations
+  object_value: Module integrations
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::3fb692bc2f661dd70197345e
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: code_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: modules
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: Optional vectorization and integration features are organized under modules.
+  object_value: Pluggable modules layout
+  note: 'description: Optional vectorization and integration features are organized
+    under modules.; location: modules'
+  fact_id: fact::7ee5fa869b57ba5fd2c163ed
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: testing.structure.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.structure.line[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: Repository includes test coverage across server, cluster, modules, and
+      integration scenarios.
+  object_value: Repository includes test coverage across server, cluster, modules,
+    and integration scenarios.
+  note: 'testing metadata: structure'
+  fact_id: fact::18e8b8c3fb73d339ce9b0f80
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: testing.coverage_areas[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[1].line[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: Schema and query workflows
+  object_value: Schema and query workflows
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::133713f04f6bb02ed37895f6
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: implementation_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cmd/weaviate-server
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: The main server binary is isolated under cmd with package-level infrastructure
+      below it.
+  object_value: Server bootstrap via cmd package
+  note: 'description: The main server binary is isolated under cmd with package-level
+    infrastructure below it.; location: cmd/weaviate-server'
+  fact_id: fact::cad46395ada57f3f7fabbb36
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: quick_reference[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: quick_reference[0].line[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: go build ./cmd/weaviate-server
+  object_value: go build ./cmd/weaviate-server
+  note: 'topic: Build server'
+  fact_id: fact::28954ec6679fd61bb87cb397
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: commands[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: go build ./cmd/weaviate-server
+  object_value: go build ./cmd/weaviate-server
+  note: Build the main Weaviate server binary.
+  fact_id: fact::b2cf187fa1c39d94e57a747b
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: testing.test_patterns[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.test_patterns[0].line[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: go test ./...
+  object_value: go test ./...
+  note: testing command
+  fact_id: fact::17ef9f4ca4eb2aa6fd98b611
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: quick_reference[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: quick_reference[1].line[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: go test ./...
+  object_value: go test ./...
+  note: 'topic: Run tests'
+  fact_id: fact::a26e65930073db074d6bad62
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: commands[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[1]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: go test ./...
+  object_value: go test ./...
+  note: Run Go test suites across the repo.
+  fact_id: fact::cde2cffd81ee8d0dc11cf43e
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: testing.framework.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.framework.line[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: go test and repo test suites
+  object_value: go test and repo test suites
+  note: testing command
+  fact_id: fact::fe50d8362bf68b6825e5db4c
 - node_id: repo::wez/wezterm
   github_full_name: wez/wezterm
   name: wezterm

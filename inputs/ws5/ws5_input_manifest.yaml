@@ -2,59 +2,19 @@ artifact_type: ws5_remote_ingestion_input_manifest
 contract_version: 1.0.0-ws1
 defaults:
   target_shard: llm_repos
-  as_of: '2026-03-05'
+  as_of: '2026-03-13'
   source: remote_metadata
 repos:
-- name: obs-studio
-  github_full_name: obsproject/obs-studio
-  html_url: https://github.com/obsproject/obs-studio
-  target_shard: llm_repos
-  source: remote_metadata
-  category: ui_tools
-  summary: Phase 4 B5 shallow intake for obsproject/obs-studio as an open source live streaming and recording platform.
-  core_concepts:
-  - scene composition for streaming workflows
-  - plugin-driven broadcast tooling
-  key_entry_points:
-  - README.md
-  - docs/
-  - UI/
-  build_run:
-    language: mixed
-    build: See upstream README for project build steps.
-    test: See upstream README for project test steps.
-  as_of: '2026-03-05T05:30:00Z'
-  local_cache_dir: null
-- name: toolneuron
-  github_full_name: Siddhesh2377/ToolNeuron
-  html_url: https://github.com/Siddhesh2377/ToolNeuron
-  target_shard: llm_repos
-  source: remote_metadata
-  category: agent_framework
-  summary: Phase 4 B5 shallow intake for Siddhesh2377/ToolNeuron as a framework-oriented repository for tool-using agent workflows.
-  core_concepts:
-  - tool selection for agent loops
-  - workflow automation patterns
-  key_entry_points:
-  - README.md
-  - docs/
-  - examples/
-  build_run:
-    language: mixed
-    build: See upstream README for project build steps.
-    test: See upstream README for project test steps.
-  as_of: '2026-03-05T05:30:00Z'
-  local_cache_dir: null
-- name: ralph
-  github_full_name: snarktank/ralph
-  html_url: https://github.com/snarktank/ralph
+- name: ccs
+  github_full_name: kaitranntt/ccs
+  html_url: https://github.com/kaitranntt/ccs
   target_shard: llm_repos
   source: remote_metadata
   category: agent_cli
-  summary: Phase 4 B5 shallow intake for snarktank/ralph as a Claude-adjacent CLI workflow helper.
+  summary: Phase 4 B6 shallow intake for kaitranntt/ccs as a Claude-adjacent command-line workflow utility.
   core_concepts:
-  - terminal-first agent operations
-  - lightweight workflow automation
+  - terminal-first agent workflows
+  - command orchestration helpers
   key_entry_points:
   - README.md
   - src/
@@ -63,58 +23,120 @@ repos:
     language: mixed
     build: See upstream README for project build steps.
     test: See upstream README for project test steps.
-  as_of: '2026-03-05T05:30:00Z'
+  as_of: '2026-03-13T04:28:53Z'
   local_cache_dir: null
-- name: claude-mem
-  github_full_name: thedotmack/claude-mem
-  html_url: https://github.com/thedotmack/claude-mem
+- name: codemoot
+  github_full_name: katarmal-ram/codemoot
+  html_url: https://github.com/katarmal-ram/codemoot
   target_shard: llm_repos
   source: remote_metadata
   category: agent_cli
-  summary: Phase 4 B5 shallow intake for thedotmack/claude-mem as memory tooling around Claude workflow usage.
+  summary: Phase 4 B6 shallow intake for katarmal-ram/codemoot as a command-line assistant workflow project.
   core_concepts:
-  - conversational memory persistence
-  - context retrieval utilities
+  - prompt-driven terminal workflows
+  - helper commands for coding loops
   key_entry_points:
   - README.md
-  - src/
   - docs/
+  - src/
   build_run:
     language: mixed
     build: See upstream README for project build steps.
     test: See upstream README for project test steps.
-  as_of: '2026-03-05T05:30:00Z'
+  as_of: '2026-03-13T04:28:53Z'
   local_cache_dir: null
-- name: ngt
-  github_full_name: yahoojapan/NGT
-  html_url: https://github.com/yahoojapan/NGT
-  target_shard: llm_repos
+- name: server
+  github_full_name: MariaDB/server
+  html_url: https://github.com/MariaDB/server
+  target_shard: ssh_repos
   source: remote_metadata
-  category: vector_database
-  summary: Phase 4 B5 shallow intake for yahoojapan/NGT as an approximate nearest neighbor vector search engine.
+  category: data_pipelines
+  summary: Phase 4 B6 shallow intake for MariaDB/server as a database server codebase routed per locked batch policy.
   core_concepts:
-  - ANN index construction
-  - vector similarity retrieval
+  - relational data processing engine
+  - database service operations
   key_entry_points:
   - README.md
-  - lib/
-  - python/
+  - sql/
+  - storage/
+  - include/
   build_run:
     language: c++
     build: See upstream README for project build steps.
     test: See upstream README for project test steps.
-  as_of: '2026-03-05T05:30:00Z'
+  as_of: '2026-03-13T04:28:53Z'
   local_cache_dir: null
-- name: claude-code-tips
-  github_full_name: ykdojo/claude-code-tips
-  html_url: https://github.com/ykdojo/claude-code-tips
+- name: ralphy
+  github_full_name: michaelshimeles/ralphy
+  html_url: https://github.com/michaelshimeles/ralphy
   target_shard: llm_repos
   source: remote_metadata
   category: agent_cli
-  summary: Phase 4 B5 shallow intake for ykdojo/claude-code-tips as a curated tips and workflow companion for Claude Code users.
+  summary: Phase 4 B6 shallow intake for michaelshimeles/ralphy as a lightweight agent CLI helper.
   core_concepts:
-  - prompt and workflow patterns
-  - operator playbooks for agent coding
+  - task-oriented agent commands
+  - developer workflow shortcuts
+  key_entry_points:
+  - README.md
+  - src/
+  - examples/
+  build_run:
+    language: mixed
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  as_of: '2026-03-13T04:28:53Z'
+  local_cache_dir: null
+- name: mlpack
+  github_full_name: mlpack/mlpack
+  html_url: https://github.com/mlpack/mlpack
+  target_shard: ssh_repos
+  source: remote_metadata
+  category: machine_learning
+  summary: Phase 4 B6 shallow intake for mlpack/mlpack as a machine learning toolkit routed per locked batch policy.
+  core_concepts:
+  - machine learning algorithms
+  - reusable model training components
+  key_entry_points:
+  - README.md
+  - src/
+  - doc/
+  - CMakeLists.txt
+  build_run:
+    language: c++
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  as_of: '2026-03-13T04:28:53Z'
+  local_cache_dir: null
+- name: ssh2
+  github_full_name: mscdex/ssh2
+  html_url: https://github.com/mscdex/ssh2
+  target_shard: ssh_repos
+  source: remote_metadata
+  category: network_utils
+  summary: Phase 4 B6 shallow intake for mscdex/ssh2 as a Node.js SSH protocol utility library.
+  core_concepts:
+  - SSH client and server primitives
+  - Node.js network integrations
+  key_entry_points:
+  - README.md
+  - lib/
+  - examples/
+  build_run:
+    language: javascript
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  as_of: '2026-03-13T04:28:53Z'
+  local_cache_dir: null
+- name: superpowers
+  github_full_name: obra/superpowers
+  html_url: https://github.com/obra/superpowers
+  target_shard: llm_repos
+  source: remote_metadata
+  category: agent_framework
+  summary: Phase 4 B6 shallow intake for obra/superpowers as a framework-oriented skills and prompt tooling repository.
+  core_concepts:
+  - agent skill packaging
+  - reusable workflow capabilities
   key_entry_points:
   - README.md
   - docs/
@@ -123,5 +145,25 @@ repos:
     language: mixed
     build: See upstream README for project build steps.
     test: See upstream README for project test steps.
-  as_of: '2026-03-05T05:30:00Z'
+  as_of: '2026-03-13T04:28:53Z'
+  local_cache_dir: null
+- name: obsidian-releases
+  github_full_name: obsidianmd/obsidian-releases
+  html_url: https://github.com/obsidianmd/obsidian-releases
+  target_shard: llm_repos
+  source: remote_metadata
+  category: documentation
+  summary: Phase 4 B6 shallow intake for obsidianmd/obsidian-releases as a release-tracking and documentation-oriented repository.
+  core_concepts:
+  - product release history
+  - documentation-style release artifacts
+  key_entry_points:
+  - README.md
+  - releases/
+  - changelog/
+  build_run:
+    language: markdown
+    build: No build step required for release metadata repository.
+    test: No automated test suite in this repository.
+  as_of: '2026-03-13T04:28:53Z'
   local_cache_dir: null

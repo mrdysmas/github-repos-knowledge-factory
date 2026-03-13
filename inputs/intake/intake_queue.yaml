@@ -1,6 +1,6 @@
 artifact_type: intake_repo_queue
 contract_version: 1.0.0-intake
-generated_at_utc: '2026-03-05T19:56:02Z'
+generated_at_utc: '2026-03-13T04:57:44Z'
 source:
   catalog_file: master_repo_list.yaml
   master_index_file: master_index.yaml
@@ -10,8 +10,8 @@ summary:
   source_rows_missing_github_url: 5
   source_rows_invalid_full_name: 0
   deduped_entries_total: 117
-  already_canonical_count: 109
-  queued_count: 8
+  already_canonical_count: 117
+  queued_count: 0
 policies:
   scan_mode_default: shallow_first
   clone_strategy: clone_on_demand
@@ -667,9 +667,9 @@ entries:
 - queue_id: intake::kaitranntt/ccs
   github_full_name: kaitranntt/ccs
   html_url: https://github.com/kaitranntt/ccs
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - plugin_repos
@@ -681,9 +681,9 @@ entries:
 - queue_id: intake::katarmal-ram/codemoot
   github_full_name: katarmal-ram/codemoot
   html_url: https://github.com/katarmal-ram/codemoot
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - plugin_repos
@@ -762,12 +762,12 @@ entries:
   needs_review_count: 0
   source_row_indexes:
   - 21
-- queue_id: intake::MariaDB/server
-  github_full_name: MariaDB/server
+- queue_id: intake::mariadb/server
+  github_full_name: mariadb/server
   html_url: https://github.com/MariaDB/server
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - vector_db
@@ -793,9 +793,9 @@ entries:
 - queue_id: intake::michaelshimeles/ralphy
   github_full_name: michaelshimeles/ralphy
   html_url: https://github.com/michaelshimeles/ralphy
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - plugin_repos
@@ -905,9 +905,9 @@ entries:
 - queue_id: intake::mlpack/mlpack
   github_full_name: mlpack/mlpack
   html_url: https://github.com/mlpack/mlpack
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - vector_db
@@ -947,9 +947,9 @@ entries:
 - queue_id: intake::mscdex/ssh2
   github_full_name: mscdex/ssh2
   html_url: https://github.com/mscdex/ssh2
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - cli_repos
@@ -975,9 +975,9 @@ entries:
 - queue_id: intake::obra/superpowers
   github_full_name: obra/superpowers
   html_url: https://github.com/obra/superpowers
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - plugin_repos
@@ -992,9 +992,9 @@ entries:
 - queue_id: intake::obsidianmd/obsidian-releases
   github_full_name: obsidianmd/obsidian-releases
   html_url: https://github.com/obsidianmd/obsidian-releases
-  canonical_status: queued
-  intake_status: pending
-  recommended_action: candidate_shallow_scan
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
   target_shard_hint: undecided
   source_categories:
   - office_repos

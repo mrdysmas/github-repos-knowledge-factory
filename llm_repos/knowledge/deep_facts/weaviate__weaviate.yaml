@@ -1,0 +1,843 @@
+name: weaviate
+node_id: repo::weaviate/weaviate
+github_full_name: weaviate/weaviate
+html_url: https://github.com/weaviate/weaviate
+source: remote_metadata
+provenance:
+  shard: llm_repos
+  source_file: llm_repos/knowledge/deep_facts/weaviate__weaviate.yaml
+  as_of: '2026-02-24T19:46:56Z'
+  extractor_version: ws6-deep-integrator-v1
+facts:
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: key_features[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[3]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: Client and API surfaces
+  object_value: Client and API surfaces
+  note: Exposes operational and query interfaces through dedicated client packages.
+  fact_id: fact::d39de4e18ca025f9117848f2
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: key_features[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[2]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: Clustered operation
+  object_value: Clustered operation
+  note: Includes cluster, replication, and distributed task subsystems.
+  fact_id: fact::145cfe74f681b39f08f051df
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: key_features[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[1]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: Extensible modules
+  object_value: Extensible modules
+  note: Supports pluggable integrations and vectorization modules.
+  fact_id: fact::525c8a6c14fb705580d54832
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: key_features[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: Vector database server
+  object_value: Vector database server
+  note: Provides vector-native storage and retrieval capabilities.
+  fact_id: fact::ce453941da82aa15ce954204
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: architecture.key_abstractions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: Runs the database service and operational endpoints.
+  object_value: Weaviate server
+  note: Runs the database service and operational endpoints.
+  fact_id: fact::662c091ddd64f5790a61d1a5
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.78
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: architecture.module_breakdown[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[1]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: External interfaces, client adapters, storage-facing repos, and handlers.
+  object_value: adapters
+  note: 'responsibility: External interfaces, client adapters, storage-facing repos,
+    and handlers.; key_files: adapters'
+  fact_id: fact::a164b683f9447b8492269bb6
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.78
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: architecture.module_breakdown[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[3]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: Distributed coordination, replication, RPC, and cluster operations.
+  object_value: cluster and grpc
+  note: 'responsibility: Distributed coordination, replication, RPC, and cluster operations.;
+    key_files: cluster, grpc'
+  fact_id: fact::1abeeca9eba3a29eb2553791
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: architecture.key_abstractions[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[2]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: Handles distributed coordination and replication.
+  object_value: cluster runtime
+  note: Handles distributed coordination and replication.
+  fact_id: fact::dbbe2a2502c235e829e1c7cd
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.78
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: architecture.module_breakdown[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[4]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: Extensible vectorization and module integrations.
+  object_value: modules
+  note: 'responsibility: Extensible vectorization and module integrations.; key_files:
+    modules'
+  fact_id: fact::e3498643d28a496781190c1e
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.78
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: architecture.module_breakdown[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[2]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: Core application logic, domain models, schema behavior, and business
+      workflows.
+  object_value: usecases and entities
+  note: 'responsibility: Core application logic, domain models, schema behavior, and
+    business workflows.; key_files: usecases, entities'
+  fact_id: fact::a4d111b680c2d9a12dd2196c
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: architecture.key_abstractions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[1]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: Coordinates schema, objects, classification, and query workflows.
+  object_value: usecases layer
+  note: Coordinates schema, objects, classification, and query workflows.
+  fact_id: fact::c9f20b327754081069e9bc82
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: key_files[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: README.md
+  object_value: README.md
+  note: Repository overview and quick start.
+  fact_id: fact::f451b4107fa594338b35a658
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: core_modules.adapters_layer
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.adapters_layer
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: adapters
+  object_value: adapters
+  note: Handlers, repos, and external-facing adapters.
+  fact_id: fact::bd4dff3ded90e2ad9d62e18d
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: core_modules.cluster_runtime
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.cluster_runtime
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: cluster
+  object_value: cluster
+  note: Cluster coordination and replication subsystems.
+  fact_id: fact::dcc8b610cba14d06716e0d0f
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: architecture.module_breakdown[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: Server entrypoint and process bootstrap for the database runtime.
+  object_value: cmd/weaviate-server
+  note: 'responsibility: Server entrypoint and process bootstrap for the database
+    runtime.; key_files: cmd/weaviate-server'
+  fact_id: fact::80c2c9d6ca5373ee60e67ba5
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: core_modules.server
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.server
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: cmd/weaviate-server
+  object_value: cmd/weaviate-server
+  note: Primary server entrypoint.
+  fact_id: fact::c2309c05aae94c19c526cfc5
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: key_files[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[3]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: cmd/weaviate-server
+  object_value: cmd/weaviate-server
+  note: Main server command.
+  fact_id: fact::dda3d0314c7c51b90d6fed1a
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: key_files[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[1]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: go.mod
+  object_value: go.mod
+  note: Go module declaration.
+  fact_id: fact::d849b39874737ad653b41981
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: key_files[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[2]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: pyproject.toml
+  object_value: pyproject.toml
+  note: Python-related packaging or tooling definitions.
+  fact_id: fact::6c5a6a9071ea48065200382d
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: core_modules.domain_logic
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.domain_logic
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: usecases
+  object_value: usecases
+  note: Core business logic for query and schema workflows.
+  fact_id: fact::769991b0c98b81bbba7d1ad1
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: key_files[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[4]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: usecases
+  object_value: usecases
+  note: Application logic package tree.
+  fact_id: fact::f838e2cc0ec29087e6ecdf19
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: configuration[0].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: cluster
+  object_value: cluster
+  note: Distributed cluster behavior and replication settings.
+  fact_id: fact::b20e7c06ab82e7fd69f62ac1
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: configuration[0].options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[3]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: grpc
+  object_value: grpc
+  note: gRPC service behavior.
+  fact_id: fact::4c97251eed7024a001e2e066
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: configuration[0].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[1]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: modules
+  object_value: modules
+  note: Module enablement for vectorization or integrations.
+  fact_id: fact::2be51959aa789745cdb5641c
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: configuration[0].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[2]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: persistence
+  object_value: persistence
+  note: Storage and persistence configuration.
+  fact_id: fact::73482d7874755ba89c11393b
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: integrations.runtime[2].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.runtime[2].line[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: client APIs
+  object_value: client APIs
+  note: 'integration group: runtime'
+  fact_id: fact::e50e25de4f711af87c4a48d1
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: api_surface.public_functions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[1]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: client package
+  object_value: client package
+  note: Expose query and management operations to programmatic consumers.; client
+  fact_id: fact::1b32cb7257b730ef7210266d
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: api_surface.public_functions[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[2]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: cluster runtime
+  object_value: cluster runtime
+  note: Handle distributed coordination and replication.; cluster
+  fact_id: fact::c1d710e809803f67c69d118b
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: integrations.operations[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.operations[0].line[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: clustered deployments
+  object_value: clustered deployments
+  note: 'integration group: operations'
+  fact_id: fact::7a5009fc344dd3c600c51e35
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: integrations.runtime[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.runtime[0].line[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: gRPC
+  object_value: gRPC
+  note: 'integration group: runtime'
+  fact_id: fact::8385e58755f409daf62716c3
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: integrations.runtime[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.runtime[1].line[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: pluggable modules
+  object_value: pluggable modules
+  note: 'integration group: runtime'
+  fact_id: fact::fc1004368df69f122623f59f
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: integrations.operations[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.operations[1].line[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: vector retrieval services
+  object_value: vector retrieval services
+  note: 'integration group: operations'
+  fact_id: fact::5ba285cd29e033b64da7a0ab
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: api_surface.public_functions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: weaviate-server
+  object_value: weaviate-server
+  note: Run the main server process.; cmd/weaviate-server
+  fact_id: fact::ae0d5138de96e210e11b8ffd
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: implementation_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: client
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: Generated or organized client operations live separately from server
+      usecase logic.
+  object_value: Client and API surface partitioning
+  note: 'description: Generated or organized client operations live separately from
+    server usecase logic.; location: client'
+  fact_id: fact::9a9518b6824aa921a69fb6d0
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: testing.coverage_areas[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[0].line[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: Cluster and replication behavior
+  object_value: Cluster and replication behavior
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::b0ca09f8766aa111a519056a
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: code_patterns[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cluster
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: Distributed concerns are factored into dedicated cluster and grpc packages.
+  object_value: Clustered service decomposition
+  note: 'description: Distributed concerns are factored into dedicated cluster and
+    grpc packages.; location: cluster'
+  fact_id: fact::9bb9eeb06cca924a25ba2ddc
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: code_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: adapters
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: External interfaces, application logic, and domain types are separated
+      into dedicated top-level packages.
+  object_value: Layered adapters/usecases/entities architecture
+  note: 'description: External interfaces, application logic, and domain types are
+    separated into dedicated top-level packages.; location: adapters'
+  fact_id: fact::d66375b0f99a7f8ff441e98c
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: testing.coverage_areas[2].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[2].line[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: Module integrations
+  object_value: Module integrations
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::3fb692bc2f661dd70197345e
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: code_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: modules
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: Optional vectorization and integration features are organized under modules.
+  object_value: Pluggable modules layout
+  note: 'description: Optional vectorization and integration features are organized
+    under modules.; location: modules'
+  fact_id: fact::7ee5fa869b57ba5fd2c163ed
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: testing.structure.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.structure.line[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: Repository includes test coverage across server, cluster, modules, and
+      integration scenarios.
+  object_value: Repository includes test coverage across server, cluster, modules,
+    and integration scenarios.
+  note: 'testing metadata: structure'
+  fact_id: fact::18e8b8c3fb73d339ce9b0f80
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: testing.coverage_areas[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.coverage_areas[1].line[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: Schema and query workflows
+  object_value: Schema and query workflows
+  note: 'testing metadata: coverage_areas'
+  fact_id: fact::133713f04f6bb02ed37895f6
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: implementation_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cmd/weaviate-server
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: The main server binary is isolated under cmd with package-level infrastructure
+      below it.
+  object_value: Server bootstrap via cmd package
+  note: 'description: The main server binary is isolated under cmd with package-level
+    infrastructure below it.; location: cmd/weaviate-server'
+  fact_id: fact::cad46395ada57f3f7fabbb36
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: quick_reference[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: quick_reference[0].line[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: go build ./cmd/weaviate-server
+  object_value: go build ./cmd/weaviate-server
+  note: 'topic: Build server'
+  fact_id: fact::28954ec6679fd61bb87cb397
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: commands[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: go build ./cmd/weaviate-server
+  object_value: go build ./cmd/weaviate-server
+  note: Build the main Weaviate server binary.
+  fact_id: fact::b2cf187fa1c39d94e57a747b
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: testing.test_patterns[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.test_patterns[0].line[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: go test ./...
+  object_value: go test ./...
+  note: testing command
+  fact_id: fact::17ef9f4ca4eb2aa6fd98b611
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: quick_reference[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: quick_reference[1].line[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: go test ./...
+  object_value: go test ./...
+  note: 'topic: Run tests'
+  fact_id: fact::a26e65930073db074d6bad62
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: commands[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[1]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: go test ./...
+  object_value: go test ./...
+  note: Run Go test suites across the repo.
+  fact_id: fact::cde2cffd81ee8d0dc11cf43e
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.67
+  as_of: '2026-03-13'
+  provenance:
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: testing.framework.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.framework.line[0]
+    source_file: llm_repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: go test and repo test suites
+  object_value: go test and repo test suites
+  note: testing command
+  fact_id: fact::fe50d8362bf68b6825e5db4c
