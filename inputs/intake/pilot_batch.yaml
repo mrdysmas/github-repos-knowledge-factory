@@ -10,8 +10,8 @@ pilot_batch:
   source_queue: /Users/szilaa/scripts/ext_sources/github_repos/inputs/intake/intake_queue.yaml
   intake_directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos
   scan_mode: shallow_first
-  target_shard_policy: pilot_non_ssh_default_to_llm_repos
-  domain_hint_policy: metadata_only_non_blocking
+  target_shard_policy: unified_canonical_shard_repos_compatibility_only
+  domain_hint_policy: metadata_only_taxonomy_non_blocking
   shard_routing_decision_ref: /Users/szilaa/scripts/ext_sources/github_repos/docs/decisions/intake_shard_routing_decision.md
   repo_count: 10
   shallow_completed_at_utc: '2026-02-24T20:54:32Z'
@@ -22,7 +22,7 @@ records:
   html_url: https://github.com/anthropics/claude-code
   intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/anthropics__claude-code
   domain_hint: agent_cli
-  target_shard: llm_repos
+  target_shard: repos
   current_state: shallow_complete
   source:
     mode: local_clone
@@ -31,12 +31,12 @@ records:
     observed_at_utc: '2026-02-24T19:46:56Z'
   outputs:
     shallow_artifact_paths:
-    - llm_repos/knowledge/repos/anthropics__claude-code.yaml
+    - repos/knowledge/repos/anthropics__claude-code.yaml
     deep_artifact_paths: []
     ws5_manifest_row:
       manifest_path: inputs/ws5/ws5_input_manifest.yaml
       row_index: 2
-      target_shard: llm_repos
+      target_shard: repos
       file_stem: anthropics__claude-code
       source: remote_metadata
       as_of: '2026-02-24T19:46:56Z'
@@ -54,7 +54,7 @@ records:
   html_url: https://github.com/openai/codex
   intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/openai__codex
   domain_hint: agent_cli
-  target_shard: llm_repos
+  target_shard: repos
   current_state: shallow_complete
   source:
     mode: local_clone
@@ -63,12 +63,12 @@ records:
     observed_at_utc: '2026-02-24T19:46:56Z'
   outputs:
     shallow_artifact_paths:
-    - llm_repos/knowledge/repos/openai__codex.yaml
+    - repos/knowledge/repos/openai__codex.yaml
     deep_artifact_paths: []
     ws5_manifest_row:
       manifest_path: inputs/ws5/ws5_input_manifest.yaml
       row_index: 3
-      target_shard: llm_repos
+      target_shard: repos
       file_stem: openai__codex
       source: remote_metadata
       as_of: '2026-02-24T19:46:56Z'
@@ -86,7 +86,7 @@ records:
   html_url: https://github.com/langgenius/dify
   intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/langgenius__dify
   domain_hint: agent_platform
-  target_shard: llm_repos
+  target_shard: repos
   current_state: shallow_complete
   source:
     mode: local_clone
@@ -95,12 +95,12 @@ records:
     observed_at_utc: '2026-02-24T19:46:56Z'
   outputs:
     shallow_artifact_paths:
-    - llm_repos/knowledge/repos/langgenius__dify.yaml
+    - repos/knowledge/repos/langgenius__dify.yaml
     deep_artifact_paths: []
     ws5_manifest_row:
       manifest_path: inputs/ws5/ws5_input_manifest.yaml
       row_index: 4
-      target_shard: llm_repos
+      target_shard: repos
       file_stem: langgenius__dify
       source: remote_metadata
       as_of: '2026-02-24T19:46:56Z'
@@ -118,7 +118,7 @@ records:
   html_url: https://github.com/FlowiseAI/Flowise
   intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/FlowiseAI__Flowise
   domain_hint: workflow_builder
-  target_shard: llm_repos
+  target_shard: repos
   current_state: shallow_complete
   source:
     mode: local_clone
@@ -127,12 +127,12 @@ records:
     observed_at_utc: '2026-02-24T19:46:56Z'
   outputs:
     shallow_artifact_paths:
-    - llm_repos/knowledge/repos/flowiseai__flowise.yaml
+    - repos/knowledge/repos/flowiseai__flowise.yaml
     deep_artifact_paths: []
     ws5_manifest_row:
       manifest_path: inputs/ws5/ws5_input_manifest.yaml
       row_index: 5
-      target_shard: llm_repos
+      target_shard: repos
       file_stem: flowiseai__flowise
       source: remote_metadata
       as_of: '2026-02-24T19:46:56Z'
@@ -150,7 +150,7 @@ records:
   html_url: https://github.com/qdrant/qdrant
   intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/qdrant__qdrant
   domain_hint: vector_database
-  target_shard: llm_repos
+  target_shard: repos
   current_state: shallow_complete
   source:
     mode: local_clone
@@ -159,12 +159,12 @@ records:
     observed_at_utc: '2026-02-24T19:46:56Z'
   outputs:
     shallow_artifact_paths:
-    - llm_repos/knowledge/repos/qdrant__qdrant.yaml
+    - repos/knowledge/repos/qdrant__qdrant.yaml
     deep_artifact_paths: []
     ws5_manifest_row:
       manifest_path: inputs/ws5/ws5_input_manifest.yaml
       row_index: 6
-      target_shard: llm_repos
+      target_shard: repos
       file_stem: qdrant__qdrant
       source: remote_metadata
       as_of: '2026-02-24T19:46:56Z'
@@ -182,7 +182,7 @@ records:
   html_url: https://github.com/weaviate/weaviate
   intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/weaviate__weaviate
   domain_hint: vector_database
-  target_shard: llm_repos
+  target_shard: repos
   current_state: shallow_complete
   source:
     mode: local_clone
@@ -191,12 +191,12 @@ records:
     observed_at_utc: '2026-02-24T19:46:56Z'
   outputs:
     shallow_artifact_paths:
-    - llm_repos/knowledge/repos/weaviate__weaviate.yaml
+    - repos/knowledge/repos/weaviate__weaviate.yaml
     deep_artifact_paths: []
     ws5_manifest_row:
       manifest_path: inputs/ws5/ws5_input_manifest.yaml
       row_index: 7
-      target_shard: llm_repos
+      target_shard: repos
       file_stem: weaviate__weaviate
       source: remote_metadata
       as_of: '2026-02-24T19:46:56Z'
@@ -214,7 +214,7 @@ records:
   html_url: https://github.com/lancedb/lancedb
   intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/lancedb__lancedb
   domain_hint: vector_database
-  target_shard: llm_repos
+  target_shard: repos
   current_state: shallow_complete
   source:
     mode: local_clone
@@ -223,12 +223,12 @@ records:
     observed_at_utc: '2026-02-24T19:46:56Z'
   outputs:
     shallow_artifact_paths:
-    - llm_repos/knowledge/repos/lancedb__lancedb.yaml
+    - repos/knowledge/repos/lancedb__lancedb.yaml
     deep_artifact_paths: []
     ws5_manifest_row:
       manifest_path: inputs/ws5/ws5_input_manifest.yaml
       row_index: 8
-      target_shard: llm_repos
+      target_shard: repos
       file_stem: lancedb__lancedb
       source: remote_metadata
       as_of: '2026-02-24T19:46:56Z'
@@ -246,7 +246,7 @@ records:
   html_url: https://github.com/pydantic/pydantic-ai
   intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/pydantic__pydantic-ai
   domain_hint: agent_framework
-  target_shard: llm_repos
+  target_shard: repos
   current_state: shallow_complete
   source:
     mode: local_clone
@@ -255,12 +255,12 @@ records:
     observed_at_utc: '2026-02-24T19:46:56Z'
   outputs:
     shallow_artifact_paths:
-    - llm_repos/knowledge/repos/pydantic__pydantic-ai.yaml
+    - repos/knowledge/repos/pydantic__pydantic-ai.yaml
     deep_artifact_paths: []
     ws5_manifest_row:
       manifest_path: inputs/ws5/ws5_input_manifest.yaml
       row_index: 9
-      target_shard: llm_repos
+      target_shard: repos
       file_stem: pydantic__pydantic-ai
       source: remote_metadata
       as_of: '2026-02-24T19:46:56Z'
@@ -278,7 +278,7 @@ records:
   html_url: https://github.com/ruvnet/claude-flow
   intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/ruvnet__claude-flow
   domain_hint: agent_orchestration
-  target_shard: llm_repos
+  target_shard: repos
   current_state: shallow_complete
   source:
     mode: local_clone
@@ -287,12 +287,12 @@ records:
     observed_at_utc: '2026-02-24T19:46:56Z'
   outputs:
     shallow_artifact_paths:
-    - llm_repos/knowledge/repos/ruvnet__claude-flow.yaml
+    - repos/knowledge/repos/ruvnet__claude-flow.yaml
     deep_artifact_paths: []
     ws5_manifest_row:
       manifest_path: inputs/ws5/ws5_input_manifest.yaml
       row_index: 10
-      target_shard: llm_repos
+      target_shard: repos
       file_stem: ruvnet__claude-flow
       source: remote_metadata
       as_of: '2026-02-24T19:46:56Z'
@@ -310,7 +310,7 @@ records:
   html_url: https://github.com/gin-gonic/gin
   intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/gin-gonic__gin
   domain_hint: web_framework
-  target_shard: llm_repos
+  target_shard: repos
   current_state: shallow_complete
   source:
     mode: local_clone
@@ -319,12 +319,12 @@ records:
     observed_at_utc: '2026-02-24T19:46:56Z'
   outputs:
     shallow_artifact_paths:
-    - llm_repos/knowledge/repos/gin-gonic__gin.yaml
+    - repos/knowledge/repos/gin-gonic__gin.yaml
     deep_artifact_paths: []
     ws5_manifest_row:
       manifest_path: inputs/ws5/ws5_input_manifest.yaml
       row_index: 11
-      target_shard: llm_repos
+      target_shard: repos
       file_stem: gin-gonic__gin
       source: remote_metadata
       as_of: '2026-02-24T19:46:56Z'
