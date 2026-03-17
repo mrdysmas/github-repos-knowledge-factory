@@ -38,6 +38,35 @@ class QueryMasterSkillAdapter:
         self.loader = loader
 
     @staticmethod
+    def _agent_state(run: QueryMasterRunResult) -> str:
+        if run.ok:
+            return "ok"
+        if run.error_kind in {"knowledge_db_missing", "knowledge_db_stale"}:
+            return "setup_needed"
+        if run.error_kind is None:
+            return "recovery_recommended"
+        return "query_error"
+
+    @staticmethod
+    def _is_empty_success_data(data: Any) -> bool:
+        if data == [] or data == {}:
+            return True
+        if not isinstance(data, dict):
+            return False
+
+        list_values = [value for value in data.values() if isinstance(value, list)]
+        if not list_values:
+            return False
+        if any(value for value in list_values):
+            return False
+
+        nested_dict_values = [value for value in data.values() if isinstance(value, dict)]
+        if any(value for value in nested_dict_values):
+            return False
+
+        return True
+
+    @staticmethod
     def _compact_result(run: QueryMasterRunResult) -> dict[str, Any]:
         parsed = run.parsed if isinstance(run.parsed, (dict, list)) else None
         error_message: str | None = None
@@ -50,12 +79,22 @@ class QueryMasterSkillAdapter:
                 lines = [line.strip() for line in run.stdout.splitlines() if line.strip()]
                 error_message = lines[0] if lines else None
 
+        agent_state = QueryMasterSkillAdapter._agent_state(run)
+        hint = None
+        if run.ok and QueryMasterSkillAdapter._is_empty_success_data(parsed):
+            hint = (
+                "No results. Try broader search terms, a different predicate, or "
+                "search --term <keyword> to find candidates first."
+            )
+
         return {
             "ok": run.ok,
+            "agent_state": agent_state,
             "data": parsed if run.ok else None,
             "error_kind": run.error_kind,
             "error": error_message,
             "fix": run.recommended_fix,
+            "hint": hint,
             "meta": {
                 "command": run.command,
                 "source": run.source,
@@ -81,6 +120,7 @@ class QueryMasterSkillAdapter:
                 {
                     "name": row.get("name"),
                     "intent": row.get("intent"),
+                    "recommended_when": row.get("recommended_when"),
                     "step_count": len(steps) if isinstance(steps, list) else 0,
                     "steps": steps if isinstance(steps, list) else [],
                 }
@@ -175,6 +215,7 @@ class QueryMasterSkillAdapter:
         variables = recipe_vars or {}
         step_results: list[dict[str, Any]] = []
         overall_ok = True
+        overall_agent_state = "ok"
 
         for step in steps:
             if not isinstance(step, str):
@@ -188,11 +229,13 @@ class QueryMasterSkillAdapter:
 
             if not run.ok:
                 overall_ok = False
+                overall_agent_state = str(compact.get("agent_state") or "recovery_recommended")
                 if stop_on_error:
                     break
 
         return {
             "ok": overall_ok,
+            "agent_state": overall_agent_state,
             "recipe": recipe_name,
             "intent": recipe.get("intent"),
             "source": source or self.loader.spec.get("global", {}).get("default_source"),
@@ -294,8 +337,14 @@ def main() -> int:
     except QueryMasterLoaderError as exc:
         payload = {
             "ok": False,
+            "agent_state": "query_error",
+            "data": None,
+            "error_kind": None,
             "error_type": "adapter_validation_error",
             "error": str(exc),
+            "fix": None,
+            "hint": None,
+            "meta": None,
         }
         print(json.dumps(payload, indent=args.json_indent, sort_keys=False))
         return 2

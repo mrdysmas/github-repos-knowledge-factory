@@ -493,28 +493,41 @@ parsing_hints:
 workflow_recipes:
   - name: repo_profile_and_relationships
     intent: Understand what one repo does and how it connects.
+    recommended_when: You have a specific repo name or ID and want to understand it fully.
     steps:
       - "repo --id <repo>"
       - "neighbors --id <repo>"
       - "facts --id <repo> --predicate exposes_api_endpoint"
   - name: protocol_or_config_discovery
     intent: Find repos sharing a protocol or configuration pattern.
+    recommended_when: You want to find repos that share a protocol, config pattern, or keyword.
     steps:
       - "pattern --predicate uses_protocol"
       - "pattern --predicate has_config_option --value <term>"
       - "search --term <term>"
   - name: neighborhood_expansion
     intent: Explore graph neighborhood progressively.
+    recommended_when: You have a repo ID and want to explore its graph neighborhood progressively.
     steps:
       - "graph --id <repo> --hops 1"
       - "graph --id <repo> --hops 2"
       - "graph --id <repo> --hops 3"
   - name: corpus_snapshot
     intent: Get high-level corpus shape.
+    recommended_when: You want a high-level summary of the corpus before doing targeted queries.
     steps:
       - "stats"
       - "aggregate --group-by category --top 5"
       - "aggregate --group-by predicate"
+  - name: search_then_inspect
+    intent: Find candidate repos by keyword, then profile the best match.
+    recommended_when: >-
+      You have a keyword or concept but no specific repo ID yet. Use this
+      instead of querying the full corpus repeatedly.
+    steps:
+      - "search --term <term>"
+      - "repo --id <repo>"
+      - "neighbors --id <repo>"
 
 agent_integration_stack:
   layers:
@@ -571,6 +584,18 @@ agent_integration_stack:
       compact_envelope_fields:
         - field: ok
           type: bool
+        - field: agent_state
+          type: enum
+          values:
+            - ok
+            - setup_needed
+            - query_error
+            - recovery_recommended
+          note: >
+            Stable branchable state. Use this instead of parsing error prose.
+            setup_needed means knowledge.db is missing or stale and should
+            trigger the WS7 compiler. query_error means the query itself
+            failed. recovery_recommended means an unrecognized error occurred.
         - field: data
           type: any
           note: null on error
@@ -582,6 +607,11 @@ agent_integration_stack:
         - field: fix
           type: string_or_null
           note: recommended_fix from error_signatures
+        - field: hint
+          type: string_or_null
+          note: >
+            Populated when a successful query returns empty results. Suggests a
+            next action. Null when data is non-empty or on error.
         - field: meta
           subfields:
             - command
