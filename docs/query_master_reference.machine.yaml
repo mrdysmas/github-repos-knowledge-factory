@@ -494,27 +494,104 @@ workflow_recipes:
   - name: repo_profile_and_relationships
     intent: Understand what one repo does and how it connects.
     steps:
-      - "python3 tools/query_master.py repo --id <repo>"
-      - "python3 tools/query_master.py neighbors --id <repo>"
-      - "python3 tools/query_master.py facts --id <repo> --predicate exposes_api_endpoint"
+      - "repo --id <repo>"
+      - "neighbors --id <repo>"
+      - "facts --id <repo> --predicate exposes_api_endpoint"
   - name: protocol_or_config_discovery
     intent: Find repos sharing a protocol or configuration pattern.
     steps:
-      - "python3 tools/query_master.py pattern --predicate uses_protocol"
-      - "python3 tools/query_master.py pattern --predicate has_config_option --value <term>"
-      - "python3 tools/query_master.py search --term <term>"
+      - "pattern --predicate uses_protocol"
+      - "pattern --predicate has_config_option --value <term>"
+      - "search --term <term>"
   - name: neighborhood_expansion
     intent: Explore graph neighborhood progressively.
     steps:
-      - "python3 tools/query_master.py graph --id <repo> --hops 1"
-      - "python3 tools/query_master.py graph --id <repo> --hops 2"
-      - "python3 tools/query_master.py graph --id <repo> --hops 3"
+      - "graph --id <repo> --hops 1"
+      - "graph --id <repo> --hops 2"
+      - "graph --id <repo> --hops 3"
   - name: corpus_snapshot
     intent: Get high-level corpus shape.
     steps:
-      - "python3 tools/query_master.py stats"
-      - "python3 tools/query_master.py aggregate --group-by category --top 5"
-      - "python3 tools/query_master.py aggregate --group-by predicate"
+      - "stats"
+      - "aggregate --group-by category --top 5"
+      - "aggregate --group-by predicate"
+
+agent_integration_stack:
+  layers:
+    - name: query_master_cli
+      script: tools/query_master.py
+      role: direct_invocation
+      use_when: manual shell work or scripting without contract validation
+    - name: query_master_loader
+      script: tools/query_master_loader.py
+      role: contract_validated_loader
+      use_when: >
+        need pre invocation validation, structured QueryMasterRunResult envelope,
+        query_ms normalization, and error_kind classification
+      output_format: json
+      entrypoint_flags:
+        - flag: --command
+          required: true
+          description: query_master command name
+        - flag: --source
+          required: false
+          choices:
+            - sqlite
+            - yaml
+        - flag: --arg
+          repeatable: true
+          description: "KEY=VALUE argument for the command (snake_case keys)"
+        - flag: --workspace-root
+          required: false
+          default: "."
+    - name: query_master_skill_adapter
+      script: tools/query_master_skill_adapter.py
+      role: skill_facing_adapter
+      use_when: >
+        agent or skill invocation and want compact ok data error_kind fix envelope
+        plus optional multi step recipe execution
+      output_format: json
+      modes:
+        - mode: command
+          flag: --command
+          description: run one query_master command with compact output
+          additional_flags:
+            - "--arg KEY=VALUE"
+            - "--source [sqlite|yaml]"
+        - mode: recipe
+          flag: --recipe
+          description: run a named workflow recipe from workflow_recipes
+          additional_flags:
+            - "--var KEY=VALUE"
+            - "--continue-on-error"
+            - "--source [sqlite|yaml]"
+        - mode: list_recipes
+          flag: --list-recipes
+          description: enumerate available workflow recipes with intent and step count
+      compact_envelope_fields:
+        - field: ok
+          type: bool
+        - field: data
+          type: any
+          note: null on error
+        - field: error_kind
+          type: string_or_null
+          note: stable error identifier from error_signatures
+        - field: error
+          type: string_or_null
+        - field: fix
+          type: string_or_null
+          note: recommended_fix from error_signatures
+        - field: meta
+          subfields:
+            - command
+            - source
+            - exit_code
+            - query_ms
+  recommended_entry_point: query_master_skill_adapter
+  discovery_note: >
+    Agents should load this section before calling any tool. This file is the
+    authoritative source and flags should not be inferred from source code.
 
 pipeline_context:
   role: read_model_query_layer
@@ -532,18 +609,18 @@ pipeline_context:
 
 observed_snapshot:
   counts:
-    repos: 73
-    nodes: 87
+    repos: 119
+    nodes: 133
     edges: 152
-    deep_facts: 2921
+    deep_facts: 3791
   representative_aggregates:
     predicate_top:
       - key: has_component
-        count: 893
+        count: 1219
       - key: has_config_option
-        count: 722
+        count: 822
       - key: implements_pattern
-        count: 454
+        count: 620
     relation_top:
       - key: integrates_with
         count: 56
