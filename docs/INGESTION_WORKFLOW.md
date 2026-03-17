@@ -29,10 +29,10 @@ contributes zero queryable facts.
 The pipeline that executes both phases is:
 
 ```
-WS5 → WS4 → WS6 → WS7
+WS5 → WS4 → clone prep → WS6 → WS7
 ```
 
-`tools/run_batch.py` chains these four stages from a single command and
+`tools/run_batch.py` chains these stages from a single command and
 enforces gate checks between stages. Use it for all ingestion runs.
 
 ---
@@ -98,7 +98,30 @@ This must pass before executing the pipeline.
 
 ---
 
-## Step 3 — Generate the deep YAML file
+## Step 3 — Clone the repos
+
+`ws6_clone_prep.py` acquires source code for each repo in the manifest before
+WS6 runs. It is called automatically by `run_batch.py` — you do not need to
+invoke it manually.
+
+If any repo exceeds the `clone_size_limit_mb` threshold in `batch_spec.yaml`
+(default: 500 MB), the tool halts with exit code 2 before cloning anything and
+prints the offending repo and its size. To proceed, either remove the repo from
+the manifest or re-run with `--force-large` added to the clone prep args.
+
+The clone manifest is written to:
+
+    reports/ws6_clone_prep/<batch_id>_clones.yaml
+
+Deep file generation agents should read this file to locate source code. Do not
+hardcode clone paths — always resolve them from the clone manifest.
+
+Clones are retained by default after the pipeline completes. Set
+`clone_cleanup: true` in `batch_spec.yaml` to remove them automatically.
+
+---
+
+## Step 4 — Generate the deep YAML file
 
 This is the most substantive step. Read `contracts/deep_narrative_contract.md`
 in full before writing any content. That contract is the authoritative spec —
@@ -155,20 +178,15 @@ Reference examples:
 - Small: `repos/knowledge/deep/bore.yaml`
 - Large: `repos/knowledge/deep/anything_llm.yaml`
 
-**Sourcing note:**
+**Sourcing:**
 
-WS5 uses `source: remote_metadata` and `local_cache_dir: null` for most repos,
-meaning no local clone is present. Deep file generation may rely on training
-knowledge of well-known public libraries where that knowledge is reliable.
-For obscure or recently updated repos, be conservative — shorter files with
-fewer specific claims are preferable to longer files with unverifiable ones.
-Mark the provenance clearly in the file's `as_of` date. Any deep file produced
-without reading live source should be treated as high-confidence-but-unverified
-rather than code-verified.
+Deep file content must be grounded in source code from the local clone (see
+Step 3). Sourcing requirements and training-knowledge fallback rules are defined
+in `contracts/deep_narrative_contract.md` § Sourcing requirements.
 
 ---
 
-## Step 4 — Run the pipeline
+## Step 5 — Run the pipeline
 
 Create a `batch_spec.yaml` at the repo root (this file is gitignored; a
 reference copy lives at `tools/batch_spec.example.yaml`):
@@ -198,7 +216,7 @@ python3 tools/run_batch.py --spec batch_spec.yaml --workspace-root . --dry-run
 
 ---
 
-## Step 5 — Verify
+## Step 6 — Verify
 
 Check the verdict file at `reports/run_batch/<batch_id>_verdict.yaml`. A
 successful run looks like:
@@ -238,7 +256,7 @@ The `deep_facts` count must be higher than the pre-run baseline.
 
 ---
 
-## Step 6 — Commit
+## Step 7 — Commit
 
 Commit the new files in two separate commits, following the established
 batch commit pattern:
@@ -282,5 +300,7 @@ before any pipeline run — each deep file is independent.
 | `tools/run_batch.py` | Pipeline orchestrator — single command for WS5→WS7 |
 | `tools/batch_spec.example.yaml` | Reference batch spec |
 | `tools/query_master.py` | Query the knowledge base (9 commands) |
+| `tools/ws6_clone_prep.py` | Clones repos before WS6; writes clone manifest |
+| `reports/ws6_clone_prep/` | Clone manifests from each batch run |
 | `reports/run_batch/` | Verdict files from orchestrator runs |
 | `project_status.yaml` | Current project state |

@@ -1,6 +1,6 @@
 # Deep Narrative Generation Contract
 
-**Version:** 1.0
+**Version:** 1.1
 **Created:** 2026-03-04
 **Status:** Active — governs all deep narrative YAML production for WS6 extraction.
 
@@ -473,6 +473,37 @@ Some repos are genuinely small or simple. A <500 LOC CLI tool might produce a 50
 
 These are guidelines, not targets. The narrative should be as long as the source code justifies and no longer.
 
+### Sourcing requirements
+
+Deep file content must be grounded in actual source code. The standard method is to read from the local clone provided by the `ws6_clone_prep` step. The clone path for each repo is available in the batch's clone manifest at `reports/ws6_clone_prep/<batch_id>_clones.yaml`.
+
+**Training knowledge as fallback**
+
+Training knowledge may be used only when all of the following are true:
+
+1. No local clone is available (the repo is absent from the clone manifest or `cloned: false`)
+2. The repo is a well-known, widely-documented public library with stable APIs (examples: pydantic, qdrant, instructor, numpy)
+3. The batch supervisor has explicitly opted in by setting `sourcing_fallback: training_knowledge_permitted` in the batch spec
+
+When training knowledge is used, the deep file must declare this in its provenance block:
+
+```yaml
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep/<file_stem>.yaml
+  as_of: "<current UTC date>"
+  sourcing_method: training_knowledge
+```
+
+Code-verified files should declare:
+
+```yaml
+  sourcing_method: code_verified
+```
+
+Files without a `sourcing_method` field are assumed to be unverified. Do not
+omit it in new files.
+
 ---
 
 ## Reference Files
@@ -490,3 +521,4 @@ These are guidelines, not targets. The narrative should be as long as the source
 | Version | Date | Change |
 |---------|------|--------|
 | 1.0 | 2026-03-04 | Initial contract. Covers header matching, YAML quoting, recognized sections, expected shapes, quality guidelines. Derived from Phase 2B SB1–SB3 kickoff prompts and spot-check audit findings. |
+| 1.1 | 2026-03-17 | Add sourcing requirements section. Narrow training-knowledge permission to explicit opt-in. Add sourcing_method provenance field. |
