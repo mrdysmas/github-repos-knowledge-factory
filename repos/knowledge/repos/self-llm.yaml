@@ -2,27 +2,67 @@ name: self-llm
 node_id: repo::datawhalechina/self-llm
 github_full_name: datawhalechina/self-llm
 html_url: https://github.com/datawhalechina/self-llm
-source: remote_metadata
+source: repos
 provenance:
   shard: repos
   source_file: repos/knowledge/repos/self-llm.yaml
-  as_of: '2026-03-17'
-directory: remote::datawhalechina/self-llm
+  as_of: '2026-02-25'
+directory: self-llm_HOW-TO
 category: educational
-summary: Chinese-language tutorial collection for learning and deploying open-source
-  LLMs including model deployment and fine-tuning.
+
+summary: |
+  Chinese-language tutorial collection for learning and deploying open-source
+  LLMs. Covers model deployment (Llama, Qwen, ChatGLM), fine-tuning (LoRA,
+  P-Tuning), and application development. Includes hands-on guides with code
+  examples and practical exercises.
+
 core_concepts:
-- LLM deployment tutorials
-- model fine-tuning guides
+  - name: Model Deployment
+    description: Guides for deploying various open-source models
+    location: (distributed by model)
+
+  - name: Fine-tuning
+    description: LoRA, P-Tuning, and full fine-tuning tutorials
+    location: (fine-tuning section)
+
+  - name: RAG Applications
+    description: Building RAG systems with open-source models
+    location: (RAG section)
+
+  - name: Prompt Engineering
+    description: Chinese-language prompting guides
+    location: (prompting section)
+
 key_entry_points:
-- README.md
+  - path: README.md
+    purpose: Index of all tutorials
+
+  - path: llm-universe-main/
+    purpose: Core learning materials and code examples
+
 build_run:
-  language: python
-  build: See upstream README for project build steps.
-  test: See upstream README for project test steps.
-local_cache_dir: null
-extras:
-  refresh:
-    precedence: api_wins_readme_for_missing_required_fields
-    fallback_source: readme_fallback
-    fallback_used: false
+  language: Python/Markdown
+  manager: pip
+  build: "pip install -r requirements.txt (per project)"
+  test: "Varies by tutorial"
+
+ecosystem_connections:
+  - target: llamafactory
+    relation: related_to
+    note: Fine-tuning concepts overlap
+
+  - target: langchain
+    relation: related_to
+    note: Application development tutorials use LangChain
+
+  - target: vllm
+    relation: related_to
+    note: Deployment guides may reference vLLM
+
+  - target: ollama
+    relation: related_to
+    note: Local deployment alternatives
+
+further_reading:
+  - README.md
+  - llm-universe-main/README.md

@@ -2,27 +2,69 @@ name: Prompt-Engineering-Guide
 node_id: repo::dair-ai/prompt-engineering-guide
 github_full_name: dair-ai/prompt-engineering-guide
 html_url: https://github.com/dair-ai/prompt-engineering-guide
-source: remote_metadata
+source: repos
 provenance:
   shard: repos
-  source_file: repos/knowledge/repos/prompt-engineering-guide.yaml
-  as_of: '2026-03-17'
-directory: remote::dair-ai/prompt-engineering-guide
+  source_file: repos/knowledge/repos/Prompt-Engineering-Guide.yaml
+  as_of: '2026-02-25'
+directory: Prompt-Engineering-Guide-main
 category: educational
-summary: Comprehensive guide to prompt engineering techniques, patterns, and best
-  practices covering basics through advanced techniques.
+
+summary: |
+  Comprehensive guide to prompt engineering techniques, patterns, and best
+  practices. Covers basics, advanced techniques (CoT, ToT, GoT), applications,
+  and model-specific guidance. Available in multiple languages with web version
+  at promptingguide.ai.
+
 core_concepts:
-- prompt engineering fundamentals
-- advanced prompting techniques
+  - name: Prompting Basics
+    description: Introduction to prompt engineering fundamentals
+    location: guides/prompts.md
+
+  - name: Advanced Techniques
+    description: Chain-of-thought, Tree-of-thought, Graph-of-thought prompting
+    location: guides/adv_prompting.md
+
+  - name: Applications
+    description: Real-world use cases and patterns
+    location: guides/applications.md
+
+  - name: Model Guides
+    description: Specific guidance for different LLM providers
+    location: guides/models.md
+
 key_entry_points:
-- README.md
+  - path: README.md
+    purpose: Main index and navigation
+
+  - path: guides/
+    purpose: Core learning materials
+
+  - path: papers/
+    purpose: Academic paper references
+
+  - path: models/
+    purpose: Model-specific resources
+
 build_run:
-  language: markdown
-  build: See upstream README for project build steps.
-  test: See upstream README for project test steps.
-local_cache_dir: null
-extras:
-  refresh:
-    precedence: api_wins_readme_for_missing_required_fields
-    fallback_source: readme_fallback
-    fallback_used: false
+  language: Markdown/Documentation
+  manager: none
+  build: "N/A - static documentation"
+  test: "N/A"
+
+ecosystem_connections:
+  - target: langchain
+    relation: related_to
+    note: Prompt patterns applicable to LangChain development
+
+  - target: llama_index
+    relation: related_to
+    note: RAG prompting techniques
+
+  - target: open_webui
+    relation: related_to
+    note: Practical prompting for chat applications
+
+further_reading:
+  - README.md
+  - https://www.promptingguide.ai/
