@@ -1,0 +1,286 @@
+# Ingestion Workflow
+
+**Version:** 1.0
+**Created:** 2026-03-17
+**Status:** Active
+
+This document describes the end-to-end process for adding a new GitHub repo to
+the knowledge base — from "here is a URL" to "facts are queryable." It is
+written for agents and supervisors who need to execute or oversee an ingestion
+without relying on prior session context.
+
+Read `AGENTS.md` at the repo root before executing any steps.
+
+---
+
+## Overview
+
+Every repo in the knowledge base passes through two phases:
+
+1. **Shallow ingestion** — repo metadata, category, and core concepts are
+   written to a canonical YAML file. This is handled by WS5 and WS4.
+2. **Deep generation** — structured facts are extracted from the repo's source
+   code and written to a deep YAML file. This is handled by WS6.
+
+Both phases must complete before the read model reflects the repo. A repo that
+has only completed shallow ingestion exists in the knowledge base but
+contributes zero queryable facts.
+
+The pipeline that executes both phases is:
+
+```
+WS5 → WS4 → WS6 → WS7
+```
+
+`tools/run_batch.py` chains these four stages from a single command and
+enforces gate checks between stages. Use it for all ingestion runs.
+
+---
+
+## Step 1 — Register the repo
+
+Run `add_repo_candidate.py` to register the new repo in `master_repo_list.yaml`
+and refresh the intake queue:
+
+```bash
+python3 tools/add_repo_candidate.py \
+  --workspace-root . \
+  --github-url https://github.com/<owner>/<repo> \
+  --category <category>
+```
+
+`--category` should match one of the existing category labels in the corpus.
+Run `python3 tools/query_master.py --workspace-root . aggregate --group-by category`
+to see the current category vocabulary.
+
+This step writes to `master_repo_list.yaml` and regenerates
+`inputs/intake/intake_queue.yaml`. It does not write to the WS5 manifest.
+
+---
+
+## Step 2 — Build the WS5 manifest entry
+
+WS5 reads from `inputs/ws5/ws5_input_manifest.yaml`. Add an entry for the new
+repo manually or via an agent. Each entry requires:
+
+```yaml
+- name: <short_name>
+  github_full_name: <owner>/<repo>
+  html_url: https://github.com/<owner>/<repo>
+  target_shard: repos
+  source: remote_metadata
+  category: <category>
+  summary: <one or two sentence description>
+  core_concepts:
+    - <concept 1>
+    - <concept 2>
+  key_entry_points:
+    - README.md
+    - <primary source directory>
+  build_run:
+    language: <primary language>
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  as_of: <current UTC date>
+  local_cache_dir: null
+```
+
+`local_cache_dir: null` tells WS5 to clone from GitHub rather than use a local
+copy. This is the standard mode for remote ingestion.
+
+Run the queue sync gate to confirm the manifest is coherent before proceeding:
+
+```bash
+python3 tools/check_intake_queue_sync.py --workspace-root .
+```
+
+This must pass before executing the pipeline.
+
+---
+
+## Step 3 — Generate the deep YAML file
+
+This is the most substantive step. Read `contracts/deep_narrative_contract.md`
+in full before writing any content. That contract is the authoritative spec —
+this section is a summary only.
+
+**File location and naming:**
+
+Deep files live in `repos/knowledge/deep/`. The filename stem uses `__` in
+place of `/` in the GitHub full name:
+
+```
+owner/repo  →  repos/knowledge/deep/owner__repo.yaml
+```
+
+Read the shallow file at `repos/knowledge/repos/` to confirm the exact stem —
+do not guess.
+
+**Required header:**
+
+Copy these fields exactly from the shallow file. Case matters.
+
+```yaml
+name: <name>
+node_id: "repo::<github_full_name>"
+github_full_name: <github_full_name>
+html_url: <html_url>
+source: remote_metadata
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep/<file_stem>.yaml
+  as_of: "<current UTC date>"
+category: <category>
+```
+
+**Content:**
+
+Use only recognized section names from the contract. The highest-yield
+sections are: `architecture`, `configuration`, `implementation_patterns`,
+`api_surface`, `key_features`, `key_files`, `core_modules`.
+
+Ground every claim in actual source code. Do not invent file paths, function
+names, or configuration keys. If a claim cannot be verified, leave it out — a
+shorter accurate file produces better facts than a longer speculative one.
+
+Quote any string value containing: `` ` `` `@` `[` `]` `{` `}` `:` `#`
+
+Size guidance:
+- Large repos (dify, qdrant, weaviate): 150–300 lines
+- Medium repos (instructor, code-server): 100–200 lines
+- Small repos (pgvector, voyager): 80–150 lines
+- Tiny repos: 30–80 lines
+
+Reference examples:
+- Small: `repos/knowledge/deep/bore.yaml`
+- Large: `repos/knowledge/deep/anything_llm.yaml`
+
+**Sourcing note:**
+
+WS5 uses `source: remote_metadata` and `local_cache_dir: null` for most repos,
+meaning no local clone is present. Deep file generation may rely on training
+knowledge of well-known public libraries where that knowledge is reliable.
+For obscure or recently updated repos, be conservative — shorter files with
+fewer specific claims are preferable to longer files with unverifiable ones.
+Mark the provenance clearly in the file's `as_of` date. Any deep file produced
+without reading live source should be treated as high-confidence-but-unverified
+rather than code-verified.
+
+---
+
+## Step 4 — Run the pipeline
+
+Create a `batch_spec.yaml` at the repo root (this file is gitignored; a
+reference copy lives at `tools/batch_spec.example.yaml`):
+
+```yaml
+batch_id: <batch_id>
+manifest: inputs/ws5/ws5_input_manifest.yaml
+gates:
+  ws6_fail_on_any_false: true
+  ws7_fail_on_any_non_pass: false
+dry_run: false
+```
+
+Choose a batch ID that is unique and descriptive (e.g. `B9_myrepo`).
+
+Run the pipeline:
+
+```bash
+python3 tools/run_batch.py --spec batch_spec.yaml --workspace-root .
+```
+
+Use `--dry-run` first to confirm the planned steps before executing:
+
+```bash
+python3 tools/run_batch.py --spec batch_spec.yaml --workspace-root . --dry-run
+```
+
+---
+
+## Step 5 — Verify
+
+Check the verdict file at `reports/run_batch/<batch_id>_verdict.yaml`. A
+successful run looks like:
+
+```yaml
+result: ok
+halted_at: null
+ws6_gate_bools:
+  deep_facts_parseable: true
+  deep_fact_identity_coverage_100pct: true
+  facts_with_evidence_100pct: true
+  confidence_bounds_valid: true
+  unmapped_deep_predicates_zero: true
+  duplicate_fact_ids_zero: true
+  execution_results_pending_zero: true
+  ws6_hash_stable: true
+ws7_gate_summary:
+  snapshot_consistency: warn   # non-blocking — expected
+  row_count_parity: pass
+  orphan_edge_detection: pass
+  query_parity: pass
+  deterministic_rebuild: pass
+exit_code: 0
+```
+
+`snapshot_consistency: warn` is expected and non-blocking (governed by D4).
+Any `ws6_gate_bools` value of `false` is a blocking failure and must be
+resolved before committing.
+
+Confirm the fact count increased:
+
+```bash
+python3 tools/query_master.py --workspace-root . stats
+```
+
+The `deep_facts` count must be higher than the pre-run baseline.
+
+---
+
+## Step 6 — Commit
+
+Commit the new files in two separate commits, following the established
+batch commit pattern:
+
+1. **Execution artifacts** — the new shallow file, deep file, deep_facts file,
+   and any updated master artifacts (`master_index.yaml`, `master_graph.yaml`,
+   `master_deep_facts.yaml`)
+2. **Control-plane updates** — `project_status.yaml`,
+   `phase_4_progress_tracker.yaml`, and any governance notes
+
+Do not mix execution artifacts and control-plane updates in the same commit.
+
+---
+
+## Batch ingestion (multiple repos)
+
+For batches of more than one repo, the process is the same but the manifest
+entry and deep file generation steps are repeated per repo before running the
+pipeline once. The orchestrator handles all repos in the manifest in a single
+pass — there is no need to run the pipeline once per repo.
+
+For large batches, sub-batch by tier to keep each run reviewable:
+- T1: High-yield, architecturally rich repos
+- T2: Moderate yield
+- T3: Thin or documentation-only repos
+
+Deep file generation for a large batch can be parallelized across agents
+before any pipeline run — each deep file is independent.
+
+---
+
+## Reference
+
+| Artifact | Purpose |
+|---|---|
+| `AGENTS.md` | Agent instruction file — read before any work |
+| `contracts/deep_narrative_contract.md` | Deep YAML output contract — authoritative spec |
+| `tools/add_repo_candidate.py` | Register new repo in master_repo_list |
+| `tools/check_intake_queue_sync.py` | Preflight gate — run before pipeline |
+| `inputs/ws5/ws5_input_manifest.yaml` | WS5 input — add manifest entries here |
+| `tools/run_batch.py` | Pipeline orchestrator — single command for WS5→WS7 |
+| `tools/batch_spec.example.yaml` | Reference batch spec |
+| `tools/query_master.py` | Query the knowledge base (9 commands) |
+| `reports/run_batch/` | Verdict files from orchestrator runs |
+| `project_status.yaml` | Current project state |
