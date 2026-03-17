@@ -1,5 +1,8 @@
 batch_id: B7_smoke
 manifest: inputs/ws5/ws5_input_manifest.yaml
+clone_workdir: workspace/clones        # directory for temporary repo clones
+clone_size_limit_mb: 500               # halt before cloning repos larger than this
+clone_cleanup: false                   # remove clones after pipeline completes
 gates:
   ws6_fail_on_any_false: true
   ws7_fail_on_any_non_pass: false

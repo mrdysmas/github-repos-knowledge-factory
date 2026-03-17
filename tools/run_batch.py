@@ -37,6 +37,18 @@ STEPS = [
         ],
     },
     {
+        "name": "ws6_clone_prep",
+        "label": "WS6 clone prep",
+        "tool": "tools/ws6_clone_prep.py",
+        "args_fn": lambda spec, ws_root: [
+            "--workspace-root", ws_root,
+            "--manifest", spec["manifest"],
+            "--clone-workdir", str(Path(ws_root) / spec.get("clone_workdir", "workspace/clones")),
+            "--size-limit-mb", str(spec.get("clone_size_limit_mb", 500)),
+            "--batch-id", spec["batch_id"],
+        ] + (["--cleanup"] if spec.get("clone_cleanup", False) else []),
+    },
+    {
         "name": "ws6",
         "label": "WS6 deep integrator",
         "tool": "tools/ws6_deep_integrator.py",
