@@ -30,10 +30,11 @@ required_commands:
   exit_code: null
   expectation: validate.py exits 0
 - step: 6
-  command: cd ssh_repos/knowledge && python3 validate.py
-  status: PENDING_EXECUTION
-  exit_code: null
-  expectation: validate.py exits 0
+  command: python3 tools/ws5_remote_ingestion.py --workspace-root /Users/szilaa/scripts/ext_sources/github_repos
+    --input inputs/ws5/ws5_input_manifest.yaml --reports-dir reports/ws5_remote_ingestion
+  status: PASS
+  exit_code: 0
+  expectation: WS5 ingestion writes deterministic reports and WS1-compatible records
 - step: 7
   command: python3 -m unittest discover -s tests/ws5_remote_ingestion -p 'test_*.py'
   status: PENDING_EXECUTION
@@ -59,10 +60,10 @@ required_commands:
   exit_code: null
   expectation: hashes unchanged
 artifact_hashes:
-  inputs/ws5/ws5_input_manifest.yaml: 674c3acbb1d8f796e8b0ee7c456572159344b9e5845dce9f48609c218d9bd5c6
-  reports/ws5_remote_ingestion/coverage.yaml: 8ad42324cc694be8aa7f10e61d68c776a9f12e5dbda70d35342794f4f3cc801a
+  inputs/ws5/ws5_input_manifest.yaml: 32dd22b1cb8e9c4605f70a8767dd125393244d4404a40b25aed6dfae07fc1f1b
+  reports/ws5_remote_ingestion/coverage.yaml: 7c04175215fd95e6ace623a54e8e376cda2f1ec2ad8022cedda6369aef4b7fa9
   reports/ws5_remote_ingestion/mismatch_report.yaml: 6f46720511a6a12be9f2b0c40cffb8a705a33508c6da179a19e0c886a2031d06
-input_manifest_sha256: 674c3acbb1d8f796e8b0ee7c456572159344b9e5845dce9f48609c218d9bd5c6
+input_manifest_sha256: 32dd22b1cb8e9c4605f70a8767dd125393244d4404a40b25aed6dfae07fc1f1b
 gate_bools:
   manifest_parseable: true
   manifest_entries_present: true

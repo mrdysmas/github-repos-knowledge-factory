@@ -49,8 +49,8 @@ execution_results:
     first_class
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-13T05:30:08Z'
-  duration_ms: 749
+  ran_at_utc: '2026-03-17T05:11:11Z'
+  duration_ms: 755
   observation: exit_code=0; ws1_contract_status_pass=true
   output_tail: "stdout_tail:\ncontracts_dir: /Users/szilaa/scripts/ext_sources/github_repos/contracts/ws1\n\
     external_node_policy: first_class\n\nPASS checks:\n  - Contract version aligned\
@@ -64,8 +64,8 @@ execution_results:
   command: python3 tools/trust_gates.py repos/knowledge --production
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-13T05:30:08Z'
-  duration_ms: 745
+  ran_at_utc: '2026-03-17T05:11:12Z'
+  duration_ms: 786
   observation: exit_code=0; overall_pass=true; ready_state_allowed_true=true
   output_tail: 'stdout_tail:
 
@@ -87,7 +87,7 @@ execution_results:
     --materialize-spec reports/ws6_deep_integration/spec.yaml
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-13T05:30:07Z'
+  ran_at_utc: '2026-03-17T05:11:10Z'
   duration_ms: 0
   observation: ws6_gate_ready=true blocking_mismatches=0 facts_materialized=3791
 - step: 5
@@ -95,8 +95,8 @@ execution_results:
     master_index.yaml --master-graph master_graph.yaml --reports-dir reports/ws4_master_build
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-13T05:30:14Z'
-  duration_ms: 5396
+  ran_at_utc: '2026-03-17T05:11:17Z'
+  duration_ms: 5444
   observation: exit_code=0; ws4_gate_ready=true
   output_tail: 'stdout_tail:
 
@@ -125,8 +125,8 @@ execution_results:
   command: python3 tools/query_master.py --source yaml stats
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-13T05:30:16Z'
-  duration_ms: 2711
+  ran_at_utc: '2026-03-17T05:11:20Z'
+  duration_ms: 2834
   observation: exit_code=0; deep_facts=3791
   output_tail: "stdout_tail:\nartifact_type: master_query_stats\ncounts:\n  repos:\
     \ 119\n  nodes: 133\n  edges: 152\n  deep_facts: 3791\nsources:\n  master_index:\
@@ -137,7 +137,7 @@ execution_results:
   command: Re-run WS6 command with identical input and verify output hashes unchanged
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-13T05:30:07Z'
+  ran_at_utc: '2026-03-17T05:11:10Z'
   duration_ms: 0
   observation: hash_stability=true
 artifact_hashes:
