@@ -1,5 +1,5 @@
 version: 1
-as_of_utc: "2026-03-13T04:28:53Z"
+as_of_utc: "2026-03-17T00:00:00Z"
 
 phase:
   number: "4"
@@ -31,25 +31,25 @@ baseline:
     deep_facts: 2921
 
 current:
-  queued_count: 8
-  already_canonical_count: 109
+  queued_count: 0
+  already_canonical_count: 117
   query_master:
-    repos: 111
-    nodes: 125
+    repos: 119
+    nodes: 133
     edges: 152
-    deep_facts: 3601
+    deep_facts: 5013
   deltas_vs_baseline:
-    queued_count: -38
-    already_canonical_count: 38
-    repos: 38
-    nodes: 38
+    queued_count: -46
+    already_canonical_count: 46
+    repos: 46
+    nodes: 46
     edges: 0
-    deep_facts: 680
+    deep_facts: 2092
   freshness:
-    master_index_generated_at_utc: "2026-03-05T05:30:00Z"
-    master_graph_generated_at_utc: "2026-03-05T05:30:00Z"
-    master_deep_facts_generated_at_utc: "2026-03-05T00:00:00Z"
-    ws7_snapshot_status: "warn"
+    master_index_generated_at_utc: "2026-03-17T00:00:00Z"
+    master_graph_generated_at_utc: "2026-03-17T00:00:00Z"
+    master_deep_facts_generated_at_utc: "2026-03-17T00:00:00Z"
+    ws7_snapshot_status: "pass"
     ws7_force_used: false
 
 policy_controls:
@@ -269,6 +269,29 @@ batches:
       - "Canonical unmapped metric sourced from WS6 coverage.yaml (33 -> 33, delta 0)"
       - "Preflight query baselines required a supervisor-approved WS7 refresh because knowledge.db was stale"
       - "Supervisor review downgraded closure from ACCEPT to ACCEPT_WITH_NOTES until control-plane status files were synchronized"
+
+  b9_t2_deep:
+    status: "COMPLETE"
+    objective: "Deep file generation for 20 T2-tier repos from cloned source code."
+    batch_id: "B9_T2_deep"
+    repo_count_target: 20
+    deep_repo_count: 20
+    shallow_repo_count: 0
+    mode_recommendation_used: "DEEP_ONLY"
+    ws6_gate_bools_all_true: true
+    ws7_strict_runs: 1
+    ws7_force_runs: 0
+    ws7_snapshot_status: "pass"
+    deep_success: true
+    policy_success: true
+    acceptance_decision: "COMPLETE"
+    notes:
+      - "repos: 119, nodes: 133, edges: 152"
+      - "deep_facts: 4075 -> 5013 (+938), hard deep gate passed"
+      - "All WS6 gate bools true, all WS7 gates pass"
+      - "sourcing_method: code_verified for all 20 deep files"
+      - "Cleaned 2 old duplicate deep files (prompt_engineering_guide.yaml, self_llm.yaml)"
+      - "Fixed 8 manifest entries with explicit file_stem to prevent WS5 duplicate creation"
 
 open_threads:
   - "Case-insensitive collision handling if two repos differ only by case."
