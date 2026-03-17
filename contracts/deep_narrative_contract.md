@@ -1,6 +1,6 @@
 # Deep Narrative Generation Contract
 
-**Version:** 1.1
+**Version:** 1.2
 **Created:** 2026-03-04
 **Status:** Active — governs all deep narrative YAML production for WS6 extraction.
 
@@ -56,6 +56,9 @@ provenance:
   shard: repos
   source_file: repos/knowledge/deep/bore.yaml
   as_of: "2026-03-04"
+  sourcing_method: code_verified        # or training_knowledge
+  extraction_model: claude-opus-4-6    # optional
+  extraction_agent: codex              # optional
 directory: bore-main
 category: tunneling
 ```
@@ -71,6 +74,9 @@ These rules are non-negotiable. Violating them causes WS4 or WS1 gate failures.
 - `provenance.shard` is the canonical shard name (`repos`).
 - `provenance.source_file` is the path to this deep file relative to the repo root.
 - `provenance.as_of` is the current UTC date.
+- `provenance.sourcing_method` records whether the narrative was generated from verified code or training knowledge.
+- `provenance.extraction_model` is optional and records the model identifier used to generate this deep file (for example `claude-opus-4-6` or `claude-sonnet-4-6`). Omit if unknown.
+- `provenance.extraction_agent` is optional and records the agent or tool that invoked the model (for example `codex` or `manual`). Omit if unknown.
 - `directory` should match the shallow file's `directory` field.
 - `category` should match the shallow file's `category` field.
 
@@ -492,7 +498,9 @@ provenance:
   shard: repos
   source_file: repos/knowledge/deep/<file_stem>.yaml
   as_of: "<current UTC date>"
-  sourcing_method: training_knowledge
+  sourcing_method: code_verified        # or training_knowledge
+  extraction_model: claude-opus-4-6    # optional
+  extraction_agent: codex              # optional
 ```
 
 Code-verified files should declare:
@@ -522,3 +530,4 @@ omit it in new files.
 |---------|------|--------|
 | 1.0 | 2026-03-04 | Initial contract. Covers header matching, YAML quoting, recognized sections, expected shapes, quality guidelines. Derived from Phase 2B SB1–SB3 kickoff prompts and spot-check audit findings. |
 | 1.1 | 2026-03-17 | Add sourcing requirements section. Narrow training-knowledge permission to explicit opt-in. Add sourcing_method provenance field. |
+| 1.2 | 2026-03-17 | Add optional extraction_model and extraction_agent provenance fields and document their pass-through expectations. |

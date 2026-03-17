@@ -2928,6 +2928,7 @@ def materialize(
         )
 
     repo_narrative_facts: dict[str, list[FactCandidate]] = {}
+    repo_narrative_provenance: dict[str, dict[str, str]] = {}
     repo_draft_facts: dict[str, list[FactCandidate]] = {}
     repo_stats: dict[str, dict[str, Any]] = {}
 
@@ -3017,6 +3018,16 @@ def materialize(
             blocking_findings.extend(parity_issues)
             stats["blocked_facts"] += 1
             continue
+
+        provenance = ensure_dict(payload.get("provenance"))
+        extraction_model = ensure_string(provenance.get("extraction_model"))
+        extraction_agent = ensure_string(provenance.get("extraction_agent"))
+        narrative_provenance = dict(repo_narrative_provenance.get(repo.node_id, {}))
+        if extraction_model:
+            narrative_provenance["extraction_model"] = extraction_model
+        if extraction_agent:
+            narrative_provenance["extraction_agent"] = extraction_agent
+        repo_narrative_provenance[repo.node_id] = narrative_provenance
 
         unmapped_sections: list[dict[str, Any]] = []
         raw_facts = extract_narrative_facts(
@@ -3324,6 +3335,19 @@ def materialize(
         if not repo_as_of:
             fact_as_ofs = [ensure_string(f.get("as_of")) for f in canonical_facts if ensure_string(f.get("as_of"))]
             repo_as_of = fact_as_ofs[0] if fact_as_ofs else "1970-01-01"
+        narrative_provenance = repo_narrative_provenance.get(node_id, {})
+        output_provenance = {
+            "shard": repo.shard,
+            "source_file": output_rel,
+            "as_of": repo_as_of,
+            "extractor_version": EXTRACTOR_VERSION,
+        }
+        extraction_model = ensure_string(narrative_provenance.get("extraction_model"))
+        extraction_agent = ensure_string(narrative_provenance.get("extraction_agent"))
+        if extraction_model:
+            output_provenance["extraction_model"] = extraction_model
+        if extraction_agent:
+            output_provenance["extraction_agent"] = extraction_agent
 
         repo_payload = {
             "name": repo.name,
@@ -3331,12 +3355,7 @@ def materialize(
             "github_full_name": repo.github_full_name,
             "html_url": repo.html_url,
             "source": repo.source or repo.shard,
-            "provenance": {
-                "shard": repo.shard,
-                "source_file": output_rel,
-                "as_of": repo_as_of,
-                "extractor_version": EXTRACTOR_VERSION,
-            },
+            "provenance": output_provenance,
             "facts": canonical_facts,
         }
 
