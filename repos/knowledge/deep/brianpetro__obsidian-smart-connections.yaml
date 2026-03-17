@@ -1,0 +1,93 @@
+name: obsidian-smart-connections
+node_id: "repo::brianpetro/obsidian-smart-connections"
+github_full_name: brianpetro/obsidian-smart-connections
+html_url: https://github.com/brianpetro/obsidian-smart-connections
+source: remote_metadata
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep/brianpetro__obsidian-smart-connections.yaml
+  as_of: "2026-03-17"
+directory: remote::brianpetro/obsidian-smart-connections
+category: workflow_builder
+
+summary: |
+  Obsidian plugin that finds semantically similar notes using local or remote
+  embedding models. Builds a vector index over the vault and surfaces related
+  notes in a side panel. Also provides an AI chat interface over vault content.
+
+architecture:
+  module_breakdown:
+    - module: src/
+      responsibility: Core plugin TypeScript source — view components, embedding orchestration, settings
+      key_files: [src/smart_connections_plugin.js, src/views/]
+    - module: src/smart_embed/
+      responsibility: Embedding adapter layer supporting local (transformers.js) and remote (OpenAI) models
+      key_files: [src/smart_embed/]
+    - module: src/smart_chat/
+      responsibility: Chat interface modules for querying vault content via LLM
+      key_files: [src/smart_chat/]
+    - module: main.js
+      responsibility: Compiled plugin bundle loaded by Obsidian
+      key_files: [main.js]
+  key_abstractions:
+    - name: SmartConnectionsPlugin
+      purpose: Main Obsidian plugin class — registers views, commands, and settings
+    - name: SmartEmbed
+      purpose: Embedding abstraction that routes to local transformers.js or remote API
+    - name: SmartEmbedConnections
+      purpose: Manages the note vector store — index building, updates, and nearest-neighbor lookup
+    - name: SmartConnectionsView
+      purpose: Obsidian leaf view rendering the related-notes panel
+
+key_features:
+  - Semantic similarity search over all notes in the Obsidian vault
+  - Local embedding via transformers.js (no API key required)
+  - Remote embedding via OpenAI text-embedding API
+  - Side-panel view showing most similar notes for the active file
+  - AI chat interface for querying vault content with LLM
+  - Incremental index updates — only re-embeds changed notes
+  - Exclusion filters for folders and file patterns
+
+tech_stack:
+  - name: TypeScript / JavaScript
+    role: Primary plugin language
+  - name: Obsidian API
+    role: Plugin host framework providing vault access, views, and settings
+  - name: transformers.js
+    role: In-browser local embedding model runtime
+  - name: OpenAI API
+    role: Remote embedding and chat completion provider
+
+configuration:
+  - key: smart_connections_folder
+    description: Vault folder where Smart Connections stores its index data
+    default: ".smart-connections"
+  - key: embed_model
+    description: "Embedding model selection: local transformers.js model or OpenAI model name"
+  - key: api_key
+    description: OpenAI API key (required only when using remote embedding)
+  - key: excluded_headings
+    description: Headings to exclude from embedding context
+  - key: folder_exclusions
+    description: Comma-separated folder paths excluded from indexing
+
+key_files:
+  - path: main.js
+    purpose: Compiled Obsidian plugin bundle
+  - path: src/smart_connections_plugin.js
+    purpose: Plugin registration, command setup, and lifecycle hooks
+  - path: src/smart_embed/
+    purpose: Embedding adapter routing to local or remote model
+  - path: manifest.json
+    purpose: Obsidian plugin manifest with id, name, and version
+
+extension_points:
+  - name: Embedding model adapter
+    location: src/smart_embed/
+    hook: SmartEmbed class
+    example: Implement a custom embedding adapter for a different model provider
+
+environment:
+  optional:
+    - key: OPENAI_API_KEY
+      description: Required when using OpenAI embedding or chat models (set in plugin settings)

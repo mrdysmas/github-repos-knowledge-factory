@@ -1,0 +1,111 @@
+name: voyager
+node_id: "repo::spotify/voyager"
+github_full_name: spotify/voyager
+html_url: https://github.com/spotify/voyager
+source: remote_metadata
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep/spotify__voyager.yaml
+  as_of: "2026-03-17"
+directory: remote::spotify/voyager
+category: vector_database
+
+summary: |
+  Approximate nearest-neighbor library developed at Spotify, wrapping hnswlib
+  with a clean Python and Java API. Designed for production embedding retrieval
+  with serializable indices and type-safe distance metric selection.
+
+architecture:
+  module_breakdown:
+    - module: python/voyager/
+      responsibility: Python package with Index class, Space enum, and StorageDataType
+      key_files: [python/voyager/__init__.pyi, python/voyager/index.py]
+    - module: cpp/src/
+      responsibility: C++ hnswlib wrapper with voyager-specific memory and serialization extensions
+      key_files: [cpp/src/]
+    - module: java/
+      responsibility: Java bindings exposing Index class via JNI for JVM-based services
+      key_files: [java/src/main/java/com/spotify/voyager/jni/]
+  key_abstractions:
+    - name: Index
+      purpose: "In-memory HNSW index with add_item, query, save, and load_from_file methods"
+    - name: Space
+      purpose: "Enum selecting distance metric: Cosine, Euclidean, InnerProduct"
+    - name: StorageDataType
+      purpose: "Enum selecting vector precision: Float32, Float8, E4M3"
+
+key_features:
+  - HNSW approximate nearest-neighbor search via hnswlib
+  - Python and Java first-class APIs from a shared C++ core
+  - "Three distance metrics: Cosine, Euclidean, InnerProduct"
+  - "Three storage types: Float32, Float8, E4M3 (8-bit float)"
+  - Index serialization to file and loading back with full fidelity
+  - Thread-safe concurrent search and item addition
+  - Memory-mapped file support for large indices
+
+tech_stack:
+  - name: C++
+    role: Core index implementation wrapping hnswlib
+  - name: Python / PyBind11
+    role: Primary consumer API
+  - name: Java / JNI
+    role: JVM API for Spotify service integration
+  - name: hnswlib
+    role: Underlying HNSW graph algorithm library
+
+configuration:
+  - key: space
+    type: Space enum
+    description: "Distance metric: Space.Cosine, Space.Euclidean, Space.InnerProduct"
+  - key: num_dimensions
+    type: int
+    description: Vector dimensionality set at construction time
+  - key: M
+    type: int
+    default: "12"
+    description: HNSW M parameter controlling graph connectivity
+  - key: ef_construction
+    type: int
+    default: "200"
+    description: Beam width during index construction
+  - key: max_elements
+    type: int
+    description: Maximum number of elements the index can hold
+
+api_surface:
+  public_functions:
+    - name: Index.__init__
+      purpose: "Construct an index with space, num_dimensions, M, ef_construction, max_elements"
+      location: python/voyager/__init__.pyi
+    - name: Index.add_item
+      purpose: Add a single vector (with optional label) to the index
+      location: python/voyager/__init__.pyi
+    - name: Index.add_items
+      purpose: Batch-add multiple vectors
+      location: python/voyager/__init__.pyi
+    - name: Index.query
+      purpose: "Find k nearest neighbors for a query vector; returns labels and distances"
+      location: python/voyager/__init__.pyi
+    - name: Index.save
+      purpose: Persist the index to a file path
+      location: python/voyager/__init__.pyi
+    - name: Index.load_from_file
+      purpose: Class method to restore an index from a previously saved file
+      location: python/voyager/__init__.pyi
+
+key_files:
+  - path: python/voyager/__init__.pyi
+    purpose: Python stub file defining the public API surface
+  - path: cpp/src/
+    purpose: C++ hnswlib wrapper with Voyager-specific extensions
+  - path: java/src/main/java/com/spotify/voyager/jni/
+    purpose: Java JNI bindings
+  - path: pyproject.toml
+    purpose: Python package metadata and build configuration
+
+testing:
+  framework: pytest
+  patterns:
+    - name: Python API tests
+      location: tests/
+      description: Tests covering add, query, save/load, and metric correctness

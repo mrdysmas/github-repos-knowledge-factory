@@ -1,0 +1,137 @@
+name: code-server
+node_id: "repo::coder/code-server"
+github_full_name: coder/code-server
+html_url: https://github.com/coder/code-server
+source: remote_metadata
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep/coder__code-server.yaml
+  as_of: "2026-03-17"
+directory: remote::coder/code-server
+category: remote_access
+
+summary: |
+  Run VS Code in the browser. Packages VS Code's server-side runtime and exposes
+  it over HTTP with authentication. TypeScript/Node.js application installable
+  as a system service or via Docker.
+
+architecture:
+  module_breakdown:
+    - module: src/node/
+      responsibility: Node.js server — HTTP listener, proxy, authentication, CLI argument handling
+      key_files: [src/node/app.ts, src/node/cli.ts, src/node/server.ts]
+    - module: src/node/proxy_agent.ts
+      responsibility: HTTP/S proxy support for environments behind corporate proxies
+      key_files: [src/node/proxy_agent.ts]
+    - module: src/node/routes/
+      responsibility: Express route handlers for login, healthcheck, and VS Code app serving
+      key_files: [src/node/routes/]
+    - module: lib/vscode/
+      responsibility: Vendored VS Code source used for patching and building the server bundle
+      key_files: [lib/vscode/]
+    - module: ci/
+      responsibility: Build scripts, release packaging, and install scripts
+      key_files: [ci/build.sh, ci/release.sh]
+  key_abstractions:
+    - name: CodeServer
+      purpose: Main server class managing HTTP listener, VS Code process, and session state
+    - name: AuthMiddleware
+      purpose: Password and token-based authentication middleware
+    - name: ProxyController
+      purpose: Reverse-proxies VS Code extension host and language server connections
+
+key_features:
+  - VS Code running fully in the browser via server-side extension host
+  - Password authentication with configurable hashed passwords
+  - HTTPS support with user-provided certificates or self-signed
+  - Proxy-aware networking for corporate environments
+  - Single-binary install via shell script or package managers
+  - Docker image for containerized deployment
+  - Systemd service integration for persistent background operation
+  - Extension marketplace access (Open VSX Registry by default)
+
+tech_stack:
+  - name: TypeScript / Node.js
+    role: Server runtime and CLI
+  - name: VS Code
+    role: Vendored editor and extension host (patched for server-mode)
+  - name: Express
+    role: HTTP framework for routing and middleware
+  - name: Docker
+    role: Container packaging and distribution
+
+configuration:
+  - key: bind-addr
+    type: string
+    default: "127.0.0.1:8080"
+    description: Address and port the server binds on
+  - key: auth
+    type: string
+    default: password
+    description: "Authentication mode: password or none"
+  - key: password
+    type: string
+    description: Plaintext password (use hashed-password instead for security)
+  - key: hashed-password
+    type: string
+    description: SHA-256 hashed password for authentication
+  - key: cert
+    type: boolean/string
+    description: Enable HTTPS; optionally specify a certificate file path
+  - key: user-data-dir
+    type: string
+    description: Directory for user data, extensions, and settings
+  - key: extensions-dir
+    type: string
+    description: Override directory for installed extensions
+
+cli_arguments:
+  - flag: "--bind-addr"
+    description: "Address to bind (default: 127.0.0.1:8080)"
+  - flag: "--auth"
+    description: "Authentication type: password or none"
+  - flag: "--password"
+    description: Password for authentication
+  - flag: "--cert"
+    description: Enable HTTPS with optional certificate path
+  - flag: "--port"
+    description: Port to listen on (shorthand for bind-addr port component)
+  - flag: "--socket"
+    description: Path to a Unix socket to listen on instead of TCP
+  - flag: "--user-data-dir"
+    description: User data directory for settings and extensions
+  - flag: "--extensions-dir"
+    description: Directory containing installed extensions
+
+key_files:
+  - path: src/node/app.ts
+    purpose: Application entry point — wires HTTP server, auth, and VS Code proxy
+  - path: src/node/cli.ts
+    purpose: CLI argument parsing and configuration loading
+  - path: src/node/routes/
+    purpose: Express route handlers for login, health, and VS Code serving
+  - path: install.sh
+    purpose: Official one-line install script for Linux and macOS
+  - path: Dockerfile
+    purpose: Container image definition
+
+environment:
+  optional:
+    - key: PASSWORD
+      description: Authentication password (can also be set via config file)
+    - key: HASHED_PASSWORD
+      description: SHA-256 hashed authentication password
+    - key: PROXY_DOMAIN
+      description: Domain used for subdomain-based port proxying
+
+commands:
+  - name: code-server
+    description: Start the code-server HTTP server
+    usage: code-server --bind-addr 0.0.0.0:8080
+  - name: Install script
+    description: One-line install for Linux and macOS
+    usage: "curl -fsSL https://code-server.dev/install.sh | sh"
+
+ports:
+  - port: "8080"
+    description: Default HTTP port for the code-server web interface

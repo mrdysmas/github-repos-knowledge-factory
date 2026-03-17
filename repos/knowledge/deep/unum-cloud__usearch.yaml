@@ -1,0 +1,136 @@
+name: usearch
+node_id: "repo::unum-cloud/usearch"
+github_full_name: unum-cloud/usearch
+html_url: https://github.com/unum-cloud/usearch
+source: remote_metadata
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep/unum-cloud__usearch.yaml
+  as_of: "2026-03-17"
+directory: remote::unum-cloud/usearch
+category: vector_database
+
+summary: |
+  Fast open-source vector search engine and similarity search library.
+  Header-only C++17 implementation of HNSW with bindings for Python, JavaScript,
+  Rust, Java, Go, and C. Optimized for high-throughput batch indexing and search.
+
+architecture:
+  module_breakdown:
+    - module: include/usearch/index.hpp
+      responsibility: Core header-only HNSW index implementation in C++17
+      key_files: [include/usearch/index.hpp]
+    - module: include/usearch/index_dense.hpp
+      responsibility: Dense index variant with metric and quantization support
+      key_files: [include/usearch/index_dense.hpp]
+    - module: python/usearch/
+      responsibility: Python bindings and Index class exposing search/add/save/load API
+      key_files: [python/usearch/index.py]
+    - module: javascript/
+      responsibility: Node.js and browser bindings via WASM and native addons
+      key_files: [javascript/usearch.js]
+    - module: rust/
+      responsibility: Rust crate wrapping the C++ core via FFI
+      key_files: [rust/lib.rs]
+    - module: c/usearch.h
+      responsibility: C-compatible header for FFI use by other languages
+      key_files: [c/usearch.h]
+  key_abstractions:
+    - name: index_gt
+      purpose: "Templated C++ HNSW graph index parameterized by scalar type, metric, and quantization"
+    - name: index_dense_gt
+      purpose: Dense index variant supporting multiple metric families and compile-time quantization
+    - name: "usearch.Index (Python)"
+      purpose: Python-side Index class with ndim, metric, dtype constructor and add/search/save/load methods
+
+key_features:
+  - Header-only C++17 — zero dependencies, embeds directly in any project
+  - HNSW algorithm with configurable M, ef_construction, ef_search parameters
+  - Multi-metric support including cosine, IP, L2, Hamming, Jaccard, Tanimoto
+  - "Scalar quantization: f32, f16, i8 and binary vectors"
+  - Python, JavaScript, Rust, Java, Go, C bindings from single C++ core
+  - Batch add and search for high throughput indexing
+  - Index serialization and memory-mapped loading for large datasets
+  - Multi-index and filtered search support
+
+tech_stack:
+  - name: C++17
+    role: Core header-only HNSW implementation
+  - name: Python / PyBind11
+    role: Primary user-facing language binding
+  - name: CMake
+    role: Build system for native extensions
+  - name: NumPy
+    role: Array interface for batch vector operations in Python
+
+configuration:
+  - key: ndim
+    type: int
+    description: Vector dimensionality — set at index construction time
+  - key: metric
+    type: string
+    default: cos
+    description: "Distance metric: cos, ip, l2sq, hamming, jaccard"
+  - key: dtype
+    type: string
+    default: f32
+    description: "Scalar type for stored vectors: f32, f16, i8, b1"
+  - key: connectivity
+    type: int
+    default: "16"
+    description: "HNSW M parameter — edges per node in the graph"
+  - key: expansion_add
+    type: int
+    default: "128"
+    description: ef_construction — beam width during index construction
+  - key: expansion_search
+    type: int
+    default: "64"
+    description: ef_search — beam width during query
+
+api_surface:
+  public_functions:
+    - name: "Index.__init__"
+      purpose: "Construct an index with ndim, metric, dtype, connectivity, expansion_add, expansion_search"
+      location: python/usearch/index.py
+    - name: Index.add
+      purpose: Add one or more labeled vectors to the index
+      location: python/usearch/index.py
+    - name: Index.search
+      purpose: "Find k nearest neighbors for one or more query vectors; returns labels and distances"
+      location: python/usearch/index.py
+    - name: Index.save
+      purpose: Persist the index to a file
+      location: python/usearch/index.py
+    - name: Index.load
+      purpose: Load a previously saved index from disk
+      location: python/usearch/index.py
+    - name: Index.view
+      purpose: Memory-map an index file without loading into RAM
+      location: python/usearch/index.py
+
+key_files:
+  - path: include/usearch/index.hpp
+    purpose: Core HNSW implementation — all index logic lives here
+  - path: include/usearch/index_dense.hpp
+    purpose: Dense index with metric and quantization abstractions
+  - path: python/usearch/index.py
+    purpose: Python Index class and batch utilities
+  - path: c/usearch.h
+    purpose: C header for cross-language FFI
+
+testing:
+  framework: pytest
+  patterns:
+    - name: Python API tests
+      location: python/scripts/
+      description: Tests covering add, search, save, load, and metric variants
+    - name: C++ unit tests
+      location: cpp/test.cpp
+      description: Low-level index correctness and metric tests
+
+integrations:
+  - name: NumPy
+    description: Batch vector input/output via ndarray interface
+  - name: LangChain / LlamaIndex
+    description: Community integrations using usearch as a vector store backend

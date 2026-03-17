@@ -1,0 +1,124 @@
+name: instructor
+node_id: "repo::instructor-ai/instructor"
+github_full_name: instructor-ai/instructor
+html_url: https://github.com/instructor-ai/instructor
+source: remote_metadata
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep/instructor-ai__instructor.yaml
+  as_of: "2026-03-17"
+directory: remote::instructor-ai/instructor
+category: agent_framework
+
+summary: |
+  Python library for structured output extraction from LLMs using Pydantic models.
+  Patches OpenAI-compatible clients to add response_model support with automatic
+  retry and validation. Supports OpenAI, Anthropic, Cohere, Google, and other backends.
+
+architecture:
+  module_breakdown:
+    - module: instructor/client.py
+      responsibility: Core Instructor class and from_openai/from_anthropic factory functions
+      key_files: [instructor/client.py]
+    - module: instructor/patch.py
+      responsibility: Legacy patch() function wrapping an existing OpenAI client
+      key_files: [instructor/patch.py]
+    - module: instructor/retry.py
+      responsibility: Sync and async retry loops that re-prompt the model on Pydantic validation failure
+      key_files: [instructor/retry.py]
+    - module: instructor/process_response.py
+      responsibility: Response parsing and Pydantic model instantiation from completion output
+      key_files: [instructor/process_response.py]
+    - module: instructor/mode.py
+      responsibility: "Mode enum defining extraction strategies: TOOLS, JSON, MD_JSON, ANTHROPIC_TOOLS, etc."
+      key_files: [instructor/mode.py]
+    - module: instructor/dsl/
+      responsibility: DSL helpers including Partial for streaming structured output and Maybe for optional fields
+      key_files: [instructor/dsl/]
+  key_abstractions:
+    - name: Instructor
+      purpose: Client wrapper that intercepts chat.completions.create and handles response_model lifecycle
+    - name: Mode
+      purpose: Enum selecting how structured output is requested from each provider
+    - name: handle_response_model
+      purpose: Converts response_model + mode into provider-specific API parameters
+    - name: retry_sync / retry_async
+      purpose: Validation retry loop feeding Pydantic error messages back to the model on failure
+
+key_features:
+  - "response_model parameter on create() returns a validated Pydantic model instance"
+  - "Automatic retry with validation error context fed back to the model"
+  - "Streaming via Partial[T] for incremental structured output construction"
+  - "Multi-backend factory functions: from_openai, from_anthropic, from_cohere, from_gemini"
+  - "Iterable[T] support for extracting lists of structured objects in one call"
+  - "Async client support via AsyncInstructor with identical API surface"
+
+code_patterns:
+  - pattern: Client Wrapping
+    description: Intercepts client.chat.completions.create via __call__ override to inject response_model logic
+    location: instructor/client.py
+  - pattern: Pydantic Retry Loop
+    description: "Catches ValidationError, formats field-level error messages, and re-calls the model up to max_retries"
+    location: instructor/retry.py
+  - pattern: Mode-Based Dispatch
+    description: Mode enum drives which JSON extraction strategy is used per provider
+    location: instructor/mode.py
+  - pattern: Partial Streaming
+    description: Wraps response model with Partial[T] to incrementally emit valid partial Pydantic instances
+    location: instructor/dsl/partial.py
+
+api_surface:
+  public_functions:
+    - name: instructor.from_openai
+      purpose: "Create an Instructor client wrapping an openai.OpenAI or AsyncOpenAI instance"
+      location: instructor/client.py
+    - name: instructor.from_anthropic
+      purpose: Create an Instructor client wrapping an Anthropic client
+      location: instructor/client.py
+    - name: instructor.patch
+      purpose: Legacy in-place patch of an existing OpenAI client (backward compat)
+      location: instructor/patch.py
+    - name: "Instructor.chat.completions.create"
+      purpose: "Drop-in replacement for openai create(); accepts response_model, max_retries, validation_context"
+      location: instructor/client.py
+
+tech_stack:
+  - name: Python
+    role: Primary language
+  - name: Pydantic v2
+    role: Schema definition and validation engine for structured outputs
+  - name: OpenAI Python SDK
+    role: Primary client backend
+  - name: Tenacity
+    role: Retry logic with configurable stop/wait strategies
+
+testing:
+  framework: pytest
+  patterns:
+    - name: Provider integration tests
+      location: tests/
+      description: Per-backend tests covering tool-call and JSON-mode extraction paths
+    - name: Streaming tests
+      location: tests/
+      description: Tests for Partial[T] streaming correctness and async generator behavior
+
+key_files:
+  - path: instructor/client.py
+    purpose: Main entry — Instructor/AsyncInstructor classes and factory functions
+  - path: instructor/mode.py
+    purpose: Mode enum with all extraction strategy variants
+  - path: instructor/retry.py
+    purpose: Validation retry logic (sync and async)
+  - path: instructor/process_response.py
+    purpose: Parses raw completion into a validated Pydantic instance
+  - path: instructor/dsl/partial.py
+    purpose: Partial[T] streaming wrapper
+  - path: pyproject.toml
+    purpose: Package metadata and optional backend extra dependencies
+
+environment:
+  optional:
+    - key: OPENAI_API_KEY
+      description: OpenAI API key for OpenAI backend
+    - key: ANTHROPIC_API_KEY
+      description: Anthropic API key for Anthropic backend

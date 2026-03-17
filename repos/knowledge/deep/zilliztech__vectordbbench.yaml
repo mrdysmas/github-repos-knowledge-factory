@@ -1,0 +1,110 @@
+name: vectordbbench
+node_id: "repo::zilliztech/vectordbbench"
+github_full_name: zilliztech/vectordbbench
+html_url: https://github.com/zilliztech/VectorDBBench
+source: remote_metadata
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep/zilliztech__vectordbbench.yaml
+  as_of: "2026-03-17"
+directory: remote::zilliztech/vectordbbench
+category: vector_database
+
+summary: |
+  Open-source benchmarking tool for comparing vector database performance.
+  Supports Milvus, Qdrant, Weaviate, pgvector, Pinecone, and others.
+  Measures QPS, recall, and latency across standard ANN datasets (LAION, Cohere, GIST).
+
+architecture:
+  module_breakdown:
+    - module: vectordb_bench/
+      responsibility: Core benchmark orchestration — task runner, metric collector, case definitions
+      key_files: [vectordb_bench/backend/runner.py, vectordb_bench/backend/cases.py]
+    - module: vectordb_bench/backend/clients/
+      responsibility: Per-database client adapters implementing a common API for load, search, and teardown
+      key_files: [vectordb_bench/backend/clients/]
+    - module: vectordb_bench/metric.py
+      responsibility: Metric collection and aggregation (QPS, recall, latency percentiles)
+      key_files: [vectordb_bench/metric.py]
+    - module: vectordb_bench/frontend/
+      responsibility: Streamlit web dashboard for visualizing benchmark results
+      key_files: [vectordb_bench/frontend/]
+  key_abstractions:
+    - name: VectorDB (base class)
+      purpose: Abstract interface every database client must implement — load, search, optimize, ready, clean
+    - name: TaskConfig
+      purpose: Defines a benchmark scenario (dataset, k, filter, db, case type)
+    - name: CaseResult
+      purpose: Captures QPS, recall, and latency metrics from a completed benchmark run
+
+key_features:
+  - Standardized benchmark cases for capacity, performance, and filtered search
+  - Pluggable database adapters for Milvus, Qdrant, Weaviate, pgvector, Pinecone, and more
+  - Multiple public ANN datasets (LAION-100M, Cohere-1M, GIST-960, OpenAI-1536)
+  - Streamlit dashboard for comparing results across databases
+  - Automatic dataset download and preparation
+  - Recall and QPS measurement with configurable concurrency
+
+tech_stack:
+  - name: Python
+    role: Benchmark runner and all database client adapters
+  - name: Streamlit
+    role: Results visualization dashboard
+  - name: NumPy
+    role: Vector data handling and recall computation
+  - name: Docker
+    role: Container setup for database instances under test
+
+core_modules:
+  modules:
+    - name: runner
+      path: vectordb_bench/backend/runner.py
+      purpose: Orchestrates load phase, search phase, and metric collection for each case
+    - name: cases
+      path: vectordb_bench/backend/cases.py
+      purpose: Defines benchmark case types and their parameters
+    - name: clients
+      path: vectordb_bench/backend/clients/
+      purpose: One submodule per supported database with VectorDB interface implementation
+    - name: metric
+      path: vectordb_bench/metric.py
+      purpose: QPS, recall, and latency metric aggregation and reporting
+
+key_files:
+  - path: vectordb_bench/backend/cases.py
+    purpose: Benchmark case definitions (capacity, performance, filtered)
+  - path: vectordb_bench/backend/runner.py
+    purpose: Main benchmark execution loop
+  - path: vectordb_bench/backend/clients/
+    purpose: Database client adapters directory
+  - path: vectordb_bench/metric.py
+    purpose: Metric collection and recall computation
+  - path: pyproject.toml
+    purpose: Package metadata and dependency definitions
+
+commands:
+  - name: vectordbbench
+    description: CLI entry point to run benchmark tasks against a specified database
+    usage: python3 -m vectordb_bench
+  - name: streamlit run
+    description: Launch the results visualization dashboard
+    usage: "streamlit run vectordb_bench/frontend/app.py"
+
+integrations:
+  - name: Milvus
+    description: Vector database client adapter via pymilvus
+  - name: Qdrant
+    description: Vector database client adapter via qdrant-client
+  - name: Weaviate
+    description: Vector database client adapter via weaviate-client
+  - name: pgvector
+    description: PostgreSQL vector extension adapter via psycopg2
+  - name: Pinecone
+    description: Cloud vector database adapter via pinecone-client
+
+testing:
+  framework: pytest
+  patterns:
+    - name: Unit tests
+      location: tests/
+      description: Tests for metric computation and case configuration logic

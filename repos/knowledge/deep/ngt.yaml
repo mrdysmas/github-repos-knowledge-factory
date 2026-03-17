@@ -1,0 +1,121 @@
+name: ngt
+node_id: "repo::yahoojapan/ngt"
+github_full_name: yahoojapan/ngt
+html_url: https://github.com/yahoojapan/NGT
+source: remote_metadata
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep/ngt.yaml
+  as_of: "2026-03-17"
+directory: remote::yahoojapan/ngt
+category: vector_database
+
+summary: |
+  Neighborhood Graph and Tree (NGT) — approximate nearest-neighbor library from
+  Yahoo Japan. Implements ONNG and ANNG graph-based ANN index algorithms with
+  Python, Go, and CLI interfaces. High recall at competitive query speeds.
+
+architecture:
+  module_breakdown:
+    - module: lib/NGT/
+      responsibility: Core C++ library implementing graph indices, ANNG, ONNG, and PANNG algorithms
+      key_files: [lib/NGT/Index.h, lib/NGT/Graph.h, lib/NGT/Tree.h]
+    - module: python/ngt/
+      responsibility: Python bindings exposing Index, NGTIndex, and NGTOptimizer
+      key_files: [python/ngt/base.py]
+    - module: bin/ngt/
+      responsibility: CLI tool for creating, searching, and optimizing NGT indices
+      key_files: [bin/ngt/ngt.cpp]
+    - module: lib/NGT/Optimizer.h
+      responsibility: Graph optimization routines for ONNG construction from ANNG
+      key_files: [lib/NGT/Optimizer.h]
+  key_abstractions:
+    - name: Index
+      purpose: "Base index class supporting open, insert, search, remove, and save operations"
+    - name: ANNG
+      purpose: "Approximate Neighborhood Graph — base bidirectional graph index"
+    - name: ONNG
+      purpose: "Optimized ANNG — directed graph with improved recall via post-construction optimization"
+    - name: NGTOptimizer
+      purpose: Converts an ANNG to ONNG by adjusting edge directions and degrees
+
+key_features:
+  - Graph-based ANN with ANNG and ONNG algorithm variants
+  - High recall on high-dimensional vectors with tunable accuracy/speed tradeoff
+  - Python bindings for indexing and search
+  - CLI for batch index operations
+  - PANNG (Pruned ANNG) for reduced memory footprint
+  - Quantization support for compressed vector storage
+  - Support for cosine and L2 distance metrics
+
+tech_stack:
+  - name: C++
+    role: Core ANN index implementation
+  - name: Python / PyBind11
+    role: Python library bindings
+  - name: CMake
+    role: Build system
+  - name: Go
+    role: Go language bindings
+
+configuration:
+  - key: dimension
+    type: int
+    description: Vector dimensionality — required at index creation
+  - key: edge_size_for_creation
+    type: int
+    default: "10"
+    description: "Number of edges during ANNG construction (controls recall vs speed)"
+  - key: edge_size_for_search
+    type: int
+    default: "40"
+    description: "Edge exploration count during search (ef equivalent)"
+  - key: distance_type
+    type: string
+    default: L2
+    description: "Distance metric: L2, Cosine, Angle, Hamming"
+  - key: object_type
+    type: string
+    default: Float
+    description: "Vector data type: Float, Integer"
+
+api_surface:
+  public_functions:
+    - name: ngt.Index.open
+      purpose: Open an existing NGT index from a directory path
+      location: python/ngt/base.py
+    - name: ngt.Index.create
+      purpose: Create a new NGT index with given dimension and distance type
+      location: python/ngt/base.py
+    - name: ngt.Index.insert
+      purpose: Add a vector to the index and return its assigned object ID
+      location: python/ngt/base.py
+    - name: ngt.Index.build_index
+      purpose: Construct the graph edges after batch insertions
+      location: python/ngt/base.py
+    - name: ngt.Index.search
+      purpose: "Find k nearest neighbors for a query vector; returns (id, distance) pairs"
+      location: python/ngt/base.py
+    - name: ngt.Index.save
+      purpose: Persist the index to its directory
+      location: python/ngt/base.py
+
+cli_arguments:
+  - flag: ngt create
+    description: Create a new index with specified dimension and distance type
+  - flag: ngt append
+    description: Append vectors from a file to an existing index
+  - flag: ngt search
+    description: Search an index for nearest neighbors of query vectors
+  - flag: ngt optimize
+    description: Optimize an ANNG index to ONNG for better recall
+
+key_files:
+  - path: lib/NGT/Index.h
+    purpose: Core index class declaration and open/insert/search interface
+  - path: lib/NGT/Graph.h
+    purpose: Graph data structures and edge management
+  - path: python/ngt/base.py
+    purpose: Python Index wrapper and convenience methods
+  - path: bin/ngt/ngt.cpp
+    purpose: CLI entry point for all ngt commands
