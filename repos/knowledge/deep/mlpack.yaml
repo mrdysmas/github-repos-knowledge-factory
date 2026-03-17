@@ -1,0 +1,204 @@
+name: mlpack
+node_id: repo::mlpack/mlpack
+github_full_name: mlpack/mlpack
+html_url: https://github.com/mlpack/mlpack
+source: remote_metadata
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep/mlpack.yaml
+  as_of: "2026-03-17"
+  sourcing_method: code_verified
+directory: remote::mlpack/mlpack
+category: machine_learning
+
+architecture:
+  module_breakdown:
+  - module: src/mlpack/core
+    responsibility: Foundation layer providing data loading, math utilities, distance metrics, tree structures, serialization (cereal), and cross-validation.
+    key_files:
+    - src/mlpack/core/data/
+    - src/mlpack/core/math/
+    - src/mlpack/core/tree/
+    - src/mlpack/core/cv/
+    - src/mlpack/core/distributions/
+  - module: src/mlpack/methods
+    responsibility: Individual ML algorithm implementations, each in its own subdirectory with a corresponding header.
+    key_files:
+    - src/mlpack/methods/
+  - module: src/mlpack/bindings
+    responsibility: Language binding generators for CLI, Python, Julia, Go, R, and Markdown documentation.
+    key_files:
+    - src/mlpack/bindings/cli/
+    - src/mlpack/bindings/python/
+    - src/mlpack/bindings/julia/
+    - src/mlpack/bindings/go/
+    - src/mlpack/bindings/R/
+  - module: src/mlpack/tests
+    responsibility: Catch2-based unit tests covering core and method modules.
+    key_files:
+    - src/mlpack/tests/
+  key_abstractions:
+  - name: Header-only template library
+    purpose: All ML algorithms are implemented as C++ templates in headers, allowing compile-time specialization over data types and optimizers.
+  - name: Armadillo matrix backend
+    purpose: Uses Armadillo (and ensmallen for optimization) as the linear algebra foundation, enabling LAPACK/BLAS acceleration.
+  - name: Cereal serialization
+    purpose: All model classes support save/load via cereal for binary, JSON, and XML formats.
+  components:
+  - name: Tree subsystem
+    description: Implements spatial tree structures (KD-tree, ball tree, cover tree, etc.) used by nearest-neighbor and tree-based algorithms.
+  - name: Neural network framework
+    description: Flexible ANN architecture with pluggable layers, activation functions, loss functions, and initialization rules in src/mlpack/methods/ann/.
+  - name: Hyperparameter tuning
+    description: Grid search and cross-validation utilities in core/hpt and core/cv.
+
+code_patterns:
+- pattern: One-method-per-directory organization
+  description: Each ML algorithm lives in its own subdirectory under methods/ with a matching top-level header (e.g., methods/kmeans/ and methods/kmeans.hpp).
+  location: src/mlpack/methods/
+- pattern: Template-based policy design
+  description: Algorithms accept template parameters for distance metrics, tree types, and optimizers, allowing compile-time customization without virtual dispatch.
+  location: src/mlpack/methods/neighbor_search/
+- pattern: Binding auto-generation
+  description: A CMake-driven system generates CLI programs, Python wrappers, Julia bindings, Go shared libraries, and R packages from annotated C++ method definitions.
+  location: src/mlpack/bindings/
+
+implementation_patterns:
+- pattern: Ensmallen optimizer integration
+  description: Optimization-based methods accept ensmallen optimizer objects as template parameters, decoupling the algorithm from the optimization strategy.
+  location: src/mlpack/methods/logistic_regression/
+- pattern: Dual-tree algorithm pattern
+  description: Nearest-neighbor and kernel methods use dual-tree traversal for sublinear query performance.
+  location: src/mlpack/methods/neighbor_search/
+- pattern: DAG and FFN network builders
+  description: Neural networks are assembled as feed-forward (FFN) or directed acyclic graph (DAG) networks with compile-time layer stacking.
+  location: src/mlpack/methods/ann/
+
+core_modules:
+  data:
+    path: src/mlpack/core/data
+    description: Data loading, normalization, splitting, and format conversion (CSV, ARFF, image, audio).
+  math:
+    path: src/mlpack/core/math
+    description: Mathematical utilities including random number generation, range handling, and column/row operations.
+  tree:
+    path: src/mlpack/core/tree
+    description: Spatial partitioning trees (KD-tree, ball tree, cover tree, vantage-point tree, etc.) for fast neighbor queries.
+  metrics:
+    path: src/mlpack/core/metrics
+    description: Evaluation metrics for classification, regression, and clustering tasks.
+  distributions:
+    path: src/mlpack/core/distributions
+    description: Probability distribution implementations (Gaussian, Gamma, Laplace, regression distribution, etc.).
+  kernels:
+    path: src/mlpack/core/kernels
+    description: Kernel functions (Gaussian, polynomial, Epanechnikov, etc.) for kernel-based methods.
+
+key_features:
+- feature: Comprehensive ML method library
+  description: "Implements 40+ algorithms spanning classification (random forest, SVM, AdaBoost, decision trees), regression (linear, LARS, Bayesian), clustering (K-means, DBSCAN, mean shift, GMM), dimensionality reduction (PCA, kernel PCA, NCA), and reinforcement learning."
+- feature: Header-only C++ with multi-language bindings
+  description: Core is header-only C++ with auto-generated bindings for Python, Julia, Go, R, and CLI.
+- feature: Neural network framework
+  description: Includes feed-forward and DAG network architectures with conv layers, LSTM, GRU, attention, and diverse activation/loss functions.
+- feature: High-performance nearest neighbor search
+  description: Multiple tree-based and hashing-based (LSH) approaches for exact and approximate nearest neighbor queries.
+- feature: Collaborative filtering and recommender methods
+  description: SVD, SVD++, bias SVD, NMF, and alternating matrix factorization for recommendation tasks.
+- feature: XGBoost integration
+  description: Gradient boosting with XGBoost-style loss functions under src/mlpack/methods/xgboost/.
+
+key_files:
+- path: src/mlpack.hpp
+  description: Top-level include that pulls in all mlpack methods and core components.
+- path: src/mlpack/core.hpp
+  description: Core-only include for data, math, trees, and utilities without ML methods.
+- path: src/mlpack/prereqs.hpp
+  description: Prerequisite includes for Armadillo, cereal, and basic utilities.
+- path: src/mlpack/base.hpp
+  description: Lowest-level include with standard C++ headers and Armadillo configuration.
+- path: CMakeLists.txt
+  description: Top-level CMake build configuration with options for bindings, tests, and dependencies.
+- path: src/mlpack/methods/ann/
+  description: Neural network framework with layers, loss functions, activation functions, and network architectures.
+- path: src/mlpack/bindings/python/
+  description: Python binding generation infrastructure.
+
+tech_stack:
+  language: C++ (header-only, C++17)
+  build_system: CMake (minimum 3.11)
+  linear_algebra: Armadillo (with LAPACK/BLAS backend)
+  optimization: ensmallen
+  serialization: cereal
+  testing: Catch2
+  bindings:
+  - Python (via pybind11-style generation)
+  - Julia
+  - Go (shared library)
+  - R
+  - CLI executables
+
+configuration:
+- name: cmake_build_options
+  options:
+  - key: BUILD_CLI_EXECUTABLES
+    default: "ON"
+    description: Build command-line programs for each ML method.
+  - key: BUILD_PYTHON_BINDINGS
+    default: "OFF"
+    description: Generate and build Python bindings.
+  - key: BUILD_JULIA_BINDINGS
+    default: "OFF"
+    description: Generate and build Julia bindings.
+  - key: BUILD_TESTS
+    default: "OFF"
+    description: Build the test suite (time consuming).
+  - key: DOWNLOAD_DEPENDENCIES
+    default: "OFF"
+    description: Automatically download Armadillo, ensmallen, and cereal if not found.
+  - key: BUILD_GO_SHLIB
+    default: "OFF"
+    description: Build Go shared library for Go bindings.
+  - key: BUILD_SHARED_LIBS
+    default: "ON"
+    description: Build shared vs static libraries (default OFF on Windows).
+
+api_surface:
+  cpp_api:
+    description: Template-based C++ API where each algorithm is a class with Train() and Predict()/Classify() methods accepting Armadillo matrices.
+    examples:
+    - "mlpack::RandomForest<> rf(trainingData, labels, numClasses, numTrees)"
+    - "mlpack::KMeans<> kmeans; kmeans.Cluster(data, k, assignments)"
+    - "mlpack::LinearRegression lr(trainingData, responses); lr.Predict(testData, predictions)"
+  cli_api:
+    description: Each method generates a standalone CLI executable (e.g., mlpack_random_forest, mlpack_kmeans) with --help documentation.
+  python_api:
+    description: "Python module with functions like mlpack.random_forest() mirroring the CLI interface."
+
+testing:
+  framework: Catch2
+  location: src/mlpack/tests/
+  patterns:
+  - Convergence tests verifying algorithm output quality on synthetic datasets
+  - Serialization round-trip tests ensuring model save/load correctness
+  - Binding tests validating CLI and language interface correctness
+
+extension_points:
+- name: Custom distance metrics
+  description: Template parameter on neighbor search and clustering methods allows user-defined distance functors.
+- name: Custom tree types
+  description: Tree template parameter allows plugging in user-defined spatial data structures.
+- name: Custom optimizer policies
+  description: Ensmallen-compatible optimizers can be passed to any optimization-based method.
+- name: Custom ANN layers
+  description: Neural network layers implement a Layer interface and can be added to FFN or DAG networks.
+
+integrations:
+- name: Armadillo
+  description: Core matrix library; all data is represented as arma::mat, arma::Row, etc.
+- name: ensmallen
+  description: Optimization library providing SGD, Adam, L-BFGS, and other optimizers used by trainable methods.
+- name: cereal
+  description: Serialization library for model persistence in binary, JSON, and XML formats.
+- name: STB
+  description: Bundled image loading/saving support for image-based data ingestion.

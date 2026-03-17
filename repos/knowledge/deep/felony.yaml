@@ -1,0 +1,118 @@
+name: felony
+node_id: "repo::henryboldi/felony"
+github_full_name: henryboldi/felony
+html_url: https://github.com/henryboldi/felony
+source: remote_metadata
+directory: "remote::henryboldi/felony"
+category: agent_cli
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep/felony.yaml
+  as_of: "2026-03-17"
+  sourcing_method: code_verified
+
+description: >
+  Desktop PGP keychain application built with Electron, React, and Redux.
+  Provides a user-friendly GUI for encrypting, decrypting, and signing messages
+  using OpenPGP, targeting non-technical users.
+
+architecture:
+  style: electron_spa
+  pattern: "Electron main process + React/Redux renderer"
+  main_process: main.development.js
+  renderer_entry: app/index.js
+  notes:
+    - "Electron main process creates a 295x435 fixed-size window with hidden title bar"
+    - "Renderer uses React with Redux (thunk middleware) for state management"
+    - "Data persisted to ~/felony.json via lowdb file-async storage"
+    - "Auto-updater checks for updates via Heroku-hosted feed URL"
+
+key_features:
+  - "PGP key generation (4096-bit RSA) via openpgp.js"
+  - "Message encryption with multiple recipient support"
+  - "Message decryption with private key passphrase from OS keychain (keytar)"
+  - "Message signing and signature verification"
+  - "Public key import (armored key parsing)"
+  - "Buddies list (keychain) for managing contacts"
+  - "Copy-to-clipboard support for encrypted output"
+  - "Cross-platform builds (macOS, Windows, Linux)"
+  - "Auto-update mechanism via electron autoUpdater"
+
+key_files:
+  - path: main.development.js
+    role: "Electron main process entry point; creates BrowserWindow, sets up menus and auto-updater"
+  - path: app/index.js
+    role: "React renderer entry point; creates Redux store and renders root Felony component"
+  - path: app/utils/pgp.js
+    role: "Core PGP operations wrapper around openpgp.js (generateKey, encrypt, decrypt, sign, verify)"
+  - path: app/config/database.js
+    role: "lowdb database configuration; stores keychain data in ~/felony.json"
+  - path: app/actions/KeychainActions.js
+    role: "Redux actions for keychain CRUD (addKey, fetchKeychain, setKeychain)"
+  - path: app/reducers/keychainReducer.js
+    role: "Redux reducer managing keychain state using Immutable.js OrderedMap and Records"
+  - path: app/components/Felony.js
+    role: "Root React component"
+  - path: app/components/composer/Composer.js
+    role: "Message composition UI component"
+  - path: app/components/keychain/Keychain.js
+    role: "Keychain management UI component"
+  - path: app/components/decrypt/Decrypt.js
+    role: "Message decryption UI component"
+
+core_modules:
+  - name: pgp
+    path: app/utils/pgp.js
+    description: >
+      Wraps openpgp.js library for key generation, encryption, decryption, signing,
+      and verification. Uses keytar for OS keychain integration to retrieve private
+      key passphrases. Applies custom Felony branding to PGP output headers.
+  - name: database
+    path: app/config/database.js
+    description: >
+      Uses lowdb with file-async storage and underscore-db mixin. Stores all
+      keychain data as JSON at ~/felony.json.
+  - name: keychain_state
+    path: app/reducers/keychainReducer.js
+    description: >
+      Redux reducer using Immutable.js. Defines KeyRecord with fields: id, name,
+      email, publicKeyArmored, privateKeyArmored, avatar. State is an OrderedMap
+      of keychain entries.
+
+implementation_patterns:
+  - pattern: "Redux async actions via redux-thunk for database operations"
+    example: "KeychainActions.js uses async dispatch functions for DB read/write"
+  - pattern: "Immutable.js Records and OrderedMaps for predictable state"
+    example: "keychainReducer uses Record and OrderedMap for keychain storage"
+  - pattern: "100% inline styles via ReactCSS (no CSS-in-JS or external stylesheets for components)"
+  - pattern: "OS keychain integration for passphrase storage via keytar"
+    example: "pgp.js calls keytar.getPassword('felony', nameString) for private key passphrases"
+
+configuration:
+  build:
+    bundler: webpack
+    configs:
+      - webpack.config.base.js
+      - webpack.config.development.js
+      - webpack.config.production.js
+      - webpack.config.electron.js
+      - webpack.config.node.js
+    packaging: electron-packager (via package.js)
+  dev_commands:
+    dev: "npm run dev (concurrently runs hot-server and start-hot)"
+    build: "npm run build (builds main and renderer)"
+    package: "npm run package (production build + electron-packager)"
+    test: "npm run test (mocha with babel, cross-env)"
+
+tech_stack:
+  runtime: Electron (v1.2.6)
+  language: JavaScript (ES2015+ via Babel)
+  framework: React 15.x
+  state_management: Redux 3.x with redux-thunk
+  immutable_data: Immutable.js 3.x
+  pgp_library: openpgp.js 2.x
+  database: lowdb 0.12 (file-based JSON)
+  keychain: keytar 3.x (OS credential store)
+  styling: ReactCSS (inline styles)
+  bundler: Webpack 1.x
+  testing: Mocha + Chai + Sinon

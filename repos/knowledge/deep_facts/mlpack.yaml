@@ -1,0 +1,1183 @@
+name: mlpack
+node_id: repo::mlpack/mlpack
+github_full_name: mlpack/mlpack
+html_url: https://github.com/mlpack/mlpack
+source: remote_metadata
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep_facts/mlpack.yaml
+  as_of: '2026-03-13T04:28:53Z'
+  extractor_version: ws6-deep-integrator-v1
+facts:
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: tech_stack.linear_algebra.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tech_stack.linear_algebra.line[0]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Armadillo (with LAPACK/BLAS backend)
+  object_value: Armadillo (with LAPACK/BLAS backend)
+  note: technology stack (tech_stack)
+  fact_id: fact::db7282c772eb27c095a5720a
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: architecture.key_abstractions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[1]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Uses Armadillo (and ensmallen for optimization) as the linear algebra
+      foundation, enabling LAPACK/BLAS acceleration.
+  object_value: Armadillo matrix backend
+  note: Uses Armadillo (and ensmallen for optimization) as the linear algebra foundation,
+    enabling LAPACK/BLAS acceleration.
+  fact_id: fact::8c594caa8e3f2f75a73d7383
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: tech_stack.language.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tech_stack.language.line[0]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: C++ (header-only, C++17)
+  object_value: C++ (header-only, C++17)
+  note: technology stack (tech_stack)
+  fact_id: fact::69e3368625e765ed8bf05113
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: tech_stack.bindings[4].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tech_stack.bindings[4].line[0]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: CLI executables
+  object_value: CLI executables
+  note: technology stack (tech_stack)
+  fact_id: fact::58bae88fee3e2b4f3cfb4309
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: tech_stack.build_system.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tech_stack.build_system.line[0]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: CMake (minimum 3.11)
+  object_value: CMake (minimum 3.11)
+  note: technology stack (tech_stack)
+  fact_id: fact::31248f11d36f58e81d209373
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: tech_stack.testing.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tech_stack.testing.line[0]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Catch2
+  object_value: Catch2
+  note: technology stack (tech_stack)
+  fact_id: fact::0474afce02f3f0f501295195
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: architecture.key_abstractions[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[2]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: All model classes support save/load via cereal for binary, JSON, and
+      XML formats.
+  object_value: Cereal serialization
+  note: All model classes support save/load via cereal for binary, JSON, and XML formats.
+  fact_id: fact::7206be75e3f6b3f02021d047
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: key_features[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[4]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Collaborative filtering and recommender methods
+  object_value: Collaborative filtering and recommender methods
+  note: SVD, SVD++, bias SVD, NMF, and alternating matrix factorization for recommendation
+    tasks.
+  fact_id: fact::2906ced0e0eeedb0ff36515f
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: key_features[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[0]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Comprehensive ML method library
+  object_value: Comprehensive ML method library
+  note: Implements 40+ algorithms spanning classification (random forest, SVM, AdaBoost,
+    decision trees), regression (linear, LARS, Bayesian), clustering (K-means, DBSCAN,
+    mean shift, GMM), dimensionality reduction (PCA, kernel PCA, NCA), and reinforcement
+    learning.
+  fact_id: fact::57a15f59bcc19f1d75d4d37a
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: tech_stack.bindings[2].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tech_stack.bindings[2].line[0]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Go (shared library)
+  object_value: Go (shared library)
+  note: technology stack (tech_stack)
+  fact_id: fact::f1b52530113afb2aac214979
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: key_features[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[1]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Header-only C++ with multi-language bindings
+  object_value: Header-only C++ with multi-language bindings
+  note: Core is header-only C++ with auto-generated bindings for Python, Julia, Go,
+    R, and CLI.
+  fact_id: fact::96b0689a0ecbf5903deb443a
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: architecture.key_abstractions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[0]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: All ML algorithms are implemented as C++ templates in headers, allowing
+      compile-time specialization over data types and optimizers.
+  object_value: Header-only template library
+  note: All ML algorithms are implemented as C++ templates in headers, allowing compile-time
+    specialization over data types and optimizers.
+  fact_id: fact::035a5af68bc4bfb2e1c87529
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: key_features[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[3]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: High-performance nearest neighbor search
+  object_value: High-performance nearest neighbor search
+  note: Multiple tree-based and hashing-based (LSH) approaches for exact and approximate
+    nearest neighbor queries.
+  fact_id: fact::4b1e802bce24d8609dba03f6
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: architecture.components[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.components[2]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Hyperparameter tuning
+  object_value: Hyperparameter tuning
+  note: Grid search and cross-validation utilities in core/hpt and core/cv.
+  fact_id: fact::f7682cfc71c54676e61bb538
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: tech_stack.bindings[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tech_stack.bindings[1].line[0]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Julia
+  object_value: Julia
+  note: technology stack (tech_stack)
+  fact_id: fact::b48857797b3b08a4d6aadce2
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: architecture.components[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.components[1]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Neural network framework
+  object_value: Neural network framework
+  note: Flexible ANN architecture with pluggable layers, activation functions, loss
+    functions, and initialization rules in src/mlpack/methods/ann/.
+  fact_id: fact::8f8a0fc523df59853b169da0
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: key_features[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[2]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Neural network framework
+  object_value: Neural network framework
+  note: Includes feed-forward and DAG network architectures with conv layers, LSTM,
+    GRU, attention, and diverse activation/loss functions.
+  fact_id: fact::bb0f7a2f5d28e70f7c47296d
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: tech_stack.bindings[0].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tech_stack.bindings[0].line[0]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Python (via pybind11-style generation)
+  object_value: Python (via pybind11-style generation)
+  note: technology stack (tech_stack)
+  fact_id: fact::b0228cbbcd60d9d53af37558
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: tech_stack.bindings[3].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tech_stack.bindings[3].line[0]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: R
+  object_value: R
+  note: technology stack (tech_stack)
+  fact_id: fact::ea80b11074d9f729a949d345
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: architecture.components[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.components[0]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Tree subsystem
+  object_value: Tree subsystem
+  note: Implements spatial tree structures (KD-tree, ball tree, cover tree, etc.)
+    used by nearest-neighbor and tree-based algorithms.
+  fact_id: fact::7ba8a174b0c02a6d71ad0b3c
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: key_features[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[5]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: XGBoost integration
+  object_value: XGBoost integration
+  note: Gradient boosting with XGBoost-style loss functions under src/mlpack/methods/xgboost/.
+  fact_id: fact::ccbed770aad93c68bea9edea
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: tech_stack.serialization.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tech_stack.serialization.line[0]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: cereal
+  object_value: cereal
+  note: technology stack (tech_stack)
+  fact_id: fact::dd73b94c5bbcd5e13b17cd05
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: tech_stack.optimization.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tech_stack.optimization.line[0]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: ensmallen
+  object_value: ensmallen
+  note: technology stack (tech_stack)
+  fact_id: fact::700f7b4a3f22481be1eb674a
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: key_files[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[4]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: CMakeLists.txt
+  object_value: CMakeLists.txt
+  note: Top-level CMake build configuration with options for bindings, tests, and
+    dependencies.
+  fact_id: fact::d3e487e92fb2f884b9416a6e
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: key_files[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[0]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: src/mlpack.hpp
+  object_value: src/mlpack.hpp
+  note: Top-level include that pulls in all mlpack methods and core components.
+  fact_id: fact::ba3d5225e0080202d21903e5
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: key_files[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[3]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: src/mlpack/base.hpp
+  object_value: src/mlpack/base.hpp
+  note: Lowest-level include with standard C++ headers and Armadillo configuration.
+  fact_id: fact::a2890c39905ee815b0f6d85c
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: architecture.module_breakdown[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[2]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Language binding generators for CLI, Python, Julia, Go, R, and Markdown
+      documentation.
+  object_value: src/mlpack/bindings
+  note: 'responsibility: Language binding generators for CLI, Python, Julia, Go, R,
+    and Markdown documentation.; key_files: src/mlpack/bindings/cli/, src/mlpack/bindings/python/,
+    src/mlpack/bindings/julia/, src/mlpack/bindings/go/'
+  fact_id: fact::07cb342faee7b5abbb102482
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: key_files[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[6]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: src/mlpack/bindings/python/
+  object_value: src/mlpack/bindings/python/
+  note: Python binding generation infrastructure.
+  fact_id: fact::361fe150d6adb3c37e3fb858
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: architecture.module_breakdown[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[0]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Foundation layer providing data loading, math utilities, distance metrics,
+      tree structures, serialization (cereal), and cross-validation.
+  object_value: src/mlpack/core
+  note: 'responsibility: Foundation layer providing data loading, math utilities,
+    distance metrics, tree structures, serialization (cereal), and cross-validation.;
+    key_files: src/mlpack/core/data/, src/mlpack/core/math/, src/mlpack/core/tree/,
+    src/mlpack/core/cv/'
+  fact_id: fact::71ae74affd54f3e2c4866bf5
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: key_files[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[1]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: src/mlpack/core.hpp
+  object_value: src/mlpack/core.hpp
+  note: Core-only include for data, math, trees, and utilities without ML methods.
+  fact_id: fact::a03924dc14b2bc18aea4368e
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: core_modules.data
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.data
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: src/mlpack/core/data
+  object_value: src/mlpack/core/data
+  note: Data loading, normalization, splitting, and format conversion (CSV, ARFF,
+    image, audio).
+  fact_id: fact::f151d5264d92eac9afc78e6a
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: core_modules.distributions
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.distributions
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: src/mlpack/core/distributions
+  object_value: src/mlpack/core/distributions
+  note: Probability distribution implementations (Gaussian, Gamma, Laplace, regression
+    distribution, etc.).
+  fact_id: fact::baae7aa4bba3fd1dd0e6d3f9
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: core_modules.kernels
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.kernels
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: src/mlpack/core/kernels
+  object_value: src/mlpack/core/kernels
+  note: Kernel functions (Gaussian, polynomial, Epanechnikov, etc.) for kernel-based
+    methods.
+  fact_id: fact::05193bd4cfb9dceee62bbc66
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: core_modules.math
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.math
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: src/mlpack/core/math
+  object_value: src/mlpack/core/math
+  note: Mathematical utilities including random number generation, range handling,
+    and column/row operations.
+  fact_id: fact::9a160ad4ccebc0f4a44bb606
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: core_modules.metrics
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.metrics
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: src/mlpack/core/metrics
+  object_value: src/mlpack/core/metrics
+  note: Evaluation metrics for classification, regression, and clustering tasks.
+  fact_id: fact::ff123a762ac2fdb7a7b22a58
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: core_modules.tree
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.tree
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: src/mlpack/core/tree
+  object_value: src/mlpack/core/tree
+  note: Spatial partitioning trees (KD-tree, ball tree, cover tree, vantage-point
+    tree, etc.) for fast neighbor queries.
+  fact_id: fact::e7cbddc8c0392f964409a792
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: architecture.module_breakdown[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[1]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Individual ML algorithm implementations, each in its own subdirectory
+      with a corresponding header.
+  object_value: src/mlpack/methods
+  note: 'responsibility: Individual ML algorithm implementations, each in its own
+    subdirectory with a corresponding header.; key_files: src/mlpack/methods/'
+  fact_id: fact::cbde4f55dd70bbd2bbce4e88
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: key_files[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[5]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: src/mlpack/methods/ann/
+  object_value: src/mlpack/methods/ann/
+  note: Neural network framework with layers, loss functions, activation functions,
+    and network architectures.
+  fact_id: fact::9b921a43373b5306a26559a4
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: key_files[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[2]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: src/mlpack/prereqs.hpp
+  object_value: src/mlpack/prereqs.hpp
+  note: Prerequisite includes for Armadillo, cereal, and basic utilities.
+  fact_id: fact::17f32d71eb3b9ce45d00de6a
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: architecture.module_breakdown[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[3]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Catch2-based unit tests covering core and method modules.
+  object_value: src/mlpack/tests
+  note: 'responsibility: Catch2-based unit tests covering core and method modules.;
+    key_files: src/mlpack/tests/'
+  fact_id: fact::1813d712f56a3ae81f1d26f8
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: configuration[0].options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[0]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: BUILD_CLI_EXECUTABLES
+  object_value: BUILD_CLI_EXECUTABLES
+  note: 'default: ON; Build command-line programs for each ML method.'
+  fact_id: fact::3ad8eeb8bc717f96b5732669
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: configuration[0].options[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[5]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: BUILD_GO_SHLIB
+  object_value: BUILD_GO_SHLIB
+  note: 'default: OFF; Build Go shared library for Go bindings.'
+  fact_id: fact::752ad9bad3f0e206dc4bdc95
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: configuration[0].options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[2]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: BUILD_JULIA_BINDINGS
+  object_value: BUILD_JULIA_BINDINGS
+  note: 'default: OFF; Generate and build Julia bindings.'
+  fact_id: fact::dba4742481d2fe2fe2c06a5a
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: configuration[0].options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[1]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: BUILD_PYTHON_BINDINGS
+  object_value: BUILD_PYTHON_BINDINGS
+  note: 'default: OFF; Generate and build Python bindings.'
+  fact_id: fact::5fca83153c476a8cb300030a
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: configuration[0].options[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[6]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: BUILD_SHARED_LIBS
+  object_value: BUILD_SHARED_LIBS
+  note: 'default: ON; Build shared vs static libraries (default OFF on Windows).'
+  fact_id: fact::49b0d45e450fa79567287956
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: configuration[0].options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[3]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: BUILD_TESTS
+  object_value: BUILD_TESTS
+  note: 'default: OFF; Build the test suite (time consuming).'
+  fact_id: fact::fff5758e03454b4efc4ae730
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: configuration[0].options[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0].options[4]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: DOWNLOAD_DEPENDENCIES
+  object_value: DOWNLOAD_DEPENDENCIES
+  note: 'default: OFF; Automatically download Armadillo, ensmallen, and cereal if
+    not found.'
+  fact_id: fact::4399d6517626da5d2c4ea31b
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: integrations.items[0].name.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.items[0].name.line[0]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Armadillo
+  object_value: Armadillo
+  note: 'integration group: items'
+  fact_id: fact::2e93fe35e370c40486ca48a3
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: integrations.items[3].description.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.items[3].description.line[0]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Bundled image loading/saving support for image-based data ingestion.
+  object_value: Bundled image loading/saving support for image-based data ingestion.
+  note: 'integration group: items'
+  fact_id: fact::09d426d6df99d28bb44f3db0
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: integrations.items[0].description.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.items[0].description.line[0]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Core matrix library; all data is represented as arma::mat, arma::Row,
+      etc.
+  object_value: Core matrix library; all data is represented as arma::mat, arma::Row,
+    etc.
+  note: 'integration group: items'
+  fact_id: fact::06b7a901df6bba733bd1be1f
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.71
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: extension_points[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[3]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Custom ANN layers
+  object_value: Custom ANN layers
+  fact_id: fact::5e625038f188f731492d2f0e
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.71
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: extension_points[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[0]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Custom distance metrics
+  object_value: Custom distance metrics
+  fact_id: fact::5b3e604ae2bdd797700fae10
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.71
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: extension_points[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[2]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Custom optimizer policies
+  object_value: Custom optimizer policies
+  fact_id: fact::408ffdc067a5874fe5dfebb6
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.71
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: extension_points[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[1]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Custom tree types
+  object_value: Custom tree types
+  fact_id: fact::e91c5914d1c14899afcad1da
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: integrations.items[1].description.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.items[1].description.line[0]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Optimization library providing SGD, Adam, L-BFGS, and other optimizers
+      used by trainable methods.
+  object_value: Optimization library providing SGD, Adam, L-BFGS, and other optimizers
+    used by trainable methods.
+  note: 'integration group: items'
+  fact_id: fact::23cbaf042b718dd31bf2f31f
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: integrations.items[3].name.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.items[3].name.line[0]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: STB
+  object_value: STB
+  note: 'integration group: items'
+  fact_id: fact::fae24052e9e33c1f6b5ed2ed
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: integrations.items[2].description.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.items[2].description.line[0]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Serialization library for model persistence in binary, JSON, and XML
+      formats.
+  object_value: Serialization library for model persistence in binary, JSON, and XML
+    formats.
+  note: 'integration group: items'
+  fact_id: fact::9be21fa609dd53ce1af4e712
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: integrations.items[2].name.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.items[2].name.line[0]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: cereal
+  object_value: cereal
+  note: 'integration group: items'
+  fact_id: fact::cebdd50a60c654dc8a9e65c5
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: integrations.items[1].name.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.items[1].name.line[0]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: ensmallen
+  object_value: ensmallen
+  note: 'integration group: items'
+  fact_id: fact::c63bd440466fdc5afcc589df
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: code_patterns[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: src/mlpack/bindings/
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: A CMake-driven system generates CLI programs, Python wrappers, Julia
+      bindings, Go shared libraries, and R packages from annotated C++ method definitions.
+  object_value: Binding auto-generation
+  note: 'description: A CMake-driven system generates CLI programs, Python wrappers,
+    Julia bindings, Go shared libraries, and R packages from annotated C++ method
+    definitions.; location: src/mlpack/bindings/'
+  fact_id: fact::60f1e26cef537c4c187c51d2
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: testing.framework.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: testing.framework.line[0]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Catch2
+  object_value: Catch2
+  note: 'testing metadata: framework'
+  fact_id: fact::a7bd90717d608aa1fd03b63a
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: implementation_patterns[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: src/mlpack/methods/ann/
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Neural networks are assembled as feed-forward (FFN) or directed acyclic
+      graph (DAG) networks with compile-time layer stacking.
+  object_value: DAG and FFN network builders
+  note: 'description: Neural networks are assembled as feed-forward (FFN) or directed
+    acyclic graph (DAG) networks with compile-time layer stacking.; location: src/mlpack/methods/ann/'
+  fact_id: fact::48c6c02e45c6f1a57d22ac30
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: implementation_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: src/mlpack/methods/neighbor_search/
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Nearest-neighbor and kernel methods use dual-tree traversal for sublinear
+      query performance.
+  object_value: Dual-tree algorithm pattern
+  note: 'description: Nearest-neighbor and kernel methods use dual-tree traversal
+    for sublinear query performance.; location: src/mlpack/methods/neighbor_search/'
+  fact_id: fact::49b6c08aeb9cfd9e1c062b43
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: implementation_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: src/mlpack/methods/logistic_regression/
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Optimization-based methods accept ensmallen optimizer objects as template
+      parameters, decoupling the algorithm from the optimization strategy.
+  object_value: Ensmallen optimizer integration
+  note: 'description: Optimization-based methods accept ensmallen optimizer objects
+    as template parameters, decoupling the algorithm from the optimization strategy.;
+    location: src/mlpack/methods/logistic_regression/'
+  fact_id: fact::45d669a5b138f6fe53b13fac
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: code_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: src/mlpack/methods/
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Each ML algorithm lives in its own subdirectory under methods/ with a
+      matching top-level header (e.g., methods/kmeans/ and methods/kmeans.hpp).
+  object_value: One-method-per-directory organization
+  note: 'description: Each ML algorithm lives in its own subdirectory under methods/
+    with a matching top-level header (e.g., methods/kmeans/ and methods/kmeans.hpp).;
+    location: src/mlpack/methods/'
+  fact_id: fact::2c7368b7caacf337d1a19fc7
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: code_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: src/mlpack/methods/neighbor_search/
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Algorithms accept template parameters for distance metrics, tree types,
+      and optimizers, allowing compile-time customization without virtual dispatch.
+  object_value: Template-based policy design
+  note: 'description: Algorithms accept template parameters for distance metrics,
+    tree types, and optimizers, allowing compile-time customization without virtual
+    dispatch.; location: src/mlpack/methods/neighbor_search/'
+  fact_id: fact::f2bdcc390ebe6561b7f200b4

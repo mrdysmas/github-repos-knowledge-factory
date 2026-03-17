@@ -1,0 +1,215 @@
+name: PaddleOCR
+node_id: repo::paddlepaddle/paddleocr
+github_full_name: paddlepaddle/paddleocr
+html_url: https://github.com/PaddlePaddle/PaddleOCR
+source: remote_metadata
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+  as_of: "2026-03-17"
+  sourcing_method: code_verified
+directory: remote::paddlepaddle/paddleocr
+category: office_automation
+
+architecture:
+  module_breakdown:
+  - module: paddleocr
+    responsibility: High-level Python package providing user-facing API classes, CLI entrypoint, and pipeline orchestration.
+    key_files:
+    - paddleocr/__init__.py
+    - paddleocr/_cli.py
+    - paddleocr/_pipelines/
+    - paddleocr/_models/
+  - module: ppocr
+    responsibility: Low-level training and modeling framework with backbone networks, detection/recognition heads, loss functions, and data processing.
+    key_files:
+    - ppocr/modeling/
+    - ppocr/losses/
+    - ppocr/postprocess/
+    - ppocr/data/
+    - ppocr/metrics/
+    - ppocr/optimizer/
+  - module: tools
+    responsibility: Training, evaluation, inference, and model export scripts.
+    key_files:
+    - tools/train.py
+    - tools/eval.py
+    - tools/infer_det.py
+    - tools/infer_rec.py
+    - tools/export_model.py
+  - module: configs
+    responsibility: YAML configuration files for detection, recognition, classification, table, KIE, and super-resolution models.
+    key_files:
+    - configs/det/
+    - configs/rec/
+    - configs/cls/
+    - configs/table/
+    - configs/kie/
+  - module: deploy
+    responsibility: Deployment tooling for mobile (Android/iOS), C++ inference, ONNX export, Paddle Lite, and Docker.
+    key_files:
+    - deploy/cpp_infer/
+    - deploy/paddle2onnx/
+    - deploy/lite/
+    - deploy/android_demo/
+  - module: mcp_server
+    responsibility: MCP (Model Context Protocol) server for agent integration (e.g., Claude Desktop).
+    key_files:
+    - mcp_server/paddleocr_mcp/
+  key_abstractions:
+  - name: Pipeline architecture
+    purpose: High-level pipelines (PaddleOCR, PPStructureV3, PPChatOCRv4Doc) compose detection, recognition, and layout analysis models into end-to-end workflows.
+  - name: Modular model architecture
+    purpose: Neural network models are composed from interchangeable backbones, necks, and heads defined in ppocr/modeling/.
+  - name: PaddleX integration
+    purpose: "The paddleocr package delegates to paddlex[ocr-core] for model loading, inference, and serving."
+  components:
+  - name: Text detection pipeline
+    description: Detects text regions in images using models like DB, EAST, and SAST.
+  - name: Text recognition pipeline
+    description: Recognizes text from cropped regions using CRNN, SVTR, and other recognition architectures.
+  - name: Document structure analysis
+    description: PPStructureV3 extracts layout, tables, formulas, and charts, converting documents to Markdown/JSON.
+  - name: PaddleOCR-VL vision-language model
+    description: A 0.9B parameter VLM for real-world document parsing, text spotting, and seal recognition across 111 languages.
+
+code_patterns:
+- pattern: Pipeline-model composition
+  description: "High-level pipelines in paddleocr/_pipelines/ compose individual model classes from paddleocr/_models/ into multi-step OCR workflows."
+  location: paddleocr/_pipelines/
+- pattern: Backbone-neck-head architecture
+  description: Neural networks are assembled from backbone (feature extractor), neck (feature fusion), and head (task-specific output) components.
+  location: ppocr/modeling/
+- pattern: YAML-driven configuration
+  description: Training and inference are configured via YAML files that specify architecture, optimizer, dataset, and augmentation settings.
+  location: configs/
+
+implementation_patterns:
+- pattern: Registry-based model construction
+  description: Model components are registered and instantiated by name from YAML config, enabling flexible architecture swapping.
+  location: ppocr/modeling/architectures/
+- pattern: Pre/post-processing pipelines
+  description: Data augmentation (ppocr/data/) and post-processing (ppocr/postprocess/) are defined as composable operator chains.
+  location: ppocr/postprocess/
+- pattern: CLI subcommand dispatch
+  description: The paddleocr CLI registers each pipeline and model as a subcommand via argparse in _cli.py.
+  location: paddleocr/_cli.py
+
+core_modules:
+  pipelines:
+    path: paddleocr/_pipelines
+    description: End-to-end pipelines including PaddleOCR (OCR), PPStructureV3 (document parsing), PPChatOCRv4Doc (information extraction), DocPreprocessor, and PaddleOCRVL.
+    submodules:
+    - paddleocr/_pipelines/ocr.py
+    - paddleocr/_pipelines/pp_structurev3.py
+    - paddleocr/_pipelines/pp_chatocrv4_doc.py
+    - paddleocr/_pipelines/paddleocr_vl.py
+  models:
+    path: paddleocr/_models
+    description: Individual model wrappers for text detection, text recognition, layout detection, table structure, formula recognition, and document VLM.
+  modeling:
+    path: ppocr/modeling
+    description: Neural network architecture definitions with backbones, necks, heads, and transforms.
+    submodules:
+    - ppocr/modeling/backbones/
+    - ppocr/modeling/necks/
+    - ppocr/modeling/heads/
+  training:
+    path: tools
+    description: Scripts for training, evaluation, inference, and model export.
+
+key_features:
+- feature: PP-OCRv5 universal text recognition
+  description: Single model supporting five text types (Simplified Chinese, Traditional Chinese, English, Japanese, Pinyin) with 13% accuracy improvement over predecessor.
+- feature: PPStructureV3 document parsing
+  description: Converts complex PDFs and document images to Markdown and JSON with layout-preserving structure extraction.
+- feature: PPChatOCRv4 intelligent extraction
+  description: Integrates ERNIE 4.5 LLM for question-answering over document content with 15% accuracy improvement.
+- feature: PaddleOCR-VL vision-language model
+  description: 0.9B parameter model achieving SOTA on OmniDocBench v1.5 (94.5% precision) for document parsing, text spotting, and seal recognition.
+- feature: 100+ language support
+  description: Recognition models cover over 100 languages including CJK, Latin, Arabic, Devanagari, and more.
+- feature: Multi-platform deployment
+  description: Inference on CPU, GPU, Kunlun XPU, and Ascend NPU with deployment to mobile (Android/iOS), C++, ONNX, and Paddle Lite.
+- feature: MCP server integration
+  description: Built-in MCP server for integration with AI agent applications like Claude Desktop.
+
+key_files:
+- path: paddleocr/__init__.py
+  description: Package entrypoint exporting all model and pipeline classes.
+- path: paddleocr/_cli.py
+  description: CLI entrypoint with subcommand registration for all pipelines and models.
+- path: paddleocr/_pipelines/ocr.py
+  description: Core OCR pipeline composing detection, classification, and recognition.
+- path: paddleocr/_pipelines/pp_structurev3.py
+  description: Document structure analysis pipeline for layout, table, and formula extraction.
+- path: ppocr/modeling/architectures/
+  description: Model architecture assembly from backbone, neck, and head components.
+- path: tools/train.py
+  description: Unified training script driven by YAML configuration.
+- path: pyproject.toml
+  description: Package metadata and dependency specification.
+- path: configs/
+  description: YAML configuration files for all supported model architectures.
+
+tech_stack:
+  language: Python (3.8-3.12)
+  framework: PaddlePaddle (3.0+)
+  package_management: pip with pyproject.toml (setuptools backend)
+  core_dependency: "paddlex[ocr-core]>=3.4.0"
+  deployment:
+  - PaddlePaddle Inference
+  - Paddle Lite (mobile)
+  - ONNX (via paddle2onnx)
+  - C++ inference
+  - Docker
+  documentation: MkDocs (mkdocs.yml)
+
+configuration:
+- name: training_config
+  options:
+  - key: Global.pretrained_model
+    default: null
+    description: Path to pretrained model weights for fine-tuning.
+  - key: Global.use_gpu
+    default: "true"
+    description: Whether to use GPU for training and inference.
+  - key: Architecture.Backbone.name
+    default: varies
+    description: Backbone network name (e.g., MobileNetV3, ResNet).
+  - key: Train.dataset.name
+    default: varies
+    description: Dataset class name for training data loading.
+
+api_surface:
+  python_api:
+    description: "High-level Python API with pipeline classes instantiated directly: PaddleOCR(), PPStructureV3(), PPChatOCRv4Doc(), PaddleOCRVL()."
+    examples:
+    - "from paddleocr import PaddleOCR; ocr = PaddleOCR(); result = ocr.predict('image.jpg')"
+    - "from paddleocr import PPStructureV3; parser = PPStructureV3(); result = parser.predict('document.pdf')"
+  cli_api:
+    description: "Command-line interface via paddleocr command with subcommands for each pipeline and model."
+    examples:
+    - "paddleocr ocr --input image.jpg"
+    - "paddleocr pp_structurev3 --input document.pdf"
+  model_api:
+    description: Individual model classes (TextDetection, TextRecognition, LayoutDetection, etc.) for fine-grained control.
+
+testing:
+  framework: pytest
+  location: tests/
+  patterns:
+  - Integration tests for pipeline inference with sample images
+  - TIPC (Training Inference Pipeline Chain) tests in test_tipc/ for CI validation
+
+integrations:
+- name: PaddlePaddle
+  description: Deep learning framework providing model training, inference, and hardware acceleration.
+- name: PaddleX
+  description: High-level toolkit that paddleocr delegates to for model loading, inference, and deployment.
+- name: ERNIE 4.5
+  description: Large language model integrated for PPChatOCRv4 document understanding and information extraction.
+- name: MCP protocol
+  description: Model Context Protocol server enabling integration with AI agents like Claude Desktop.
+- name: LangChain
+  description: Integration via langchain-paddleocr/ for use in LLM-based RAG pipelines.

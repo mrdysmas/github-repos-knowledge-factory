@@ -1,0 +1,205 @@
+name: opencode
+node_id: "repo::anomalyco/opencode"
+github_full_name: anomalyco/opencode
+html_url: https://github.com/anomalyco/opencode
+source: remote_metadata
+directory: "remote::anomalyco/opencode"
+category: agent_cli
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep/anomalyco__opencode.yaml
+  as_of: "2026-03-17"
+  sourcing_method: code_verified
+
+description: >
+  Open source AI coding agent with a TUI interface. Provider-agnostic (Claude, OpenAI,
+  Google, local models), with built-in LSP support, client/server architecture,
+  and a comprehensive tool system. Built by the creators of terminal.shop.
+
+architecture:
+  style: monorepo_client_server
+  pattern: "Bun monorepo with Turborepo; core CLI agent + desktop app + web console + SDKs"
+  entry_point: packages/opencode/src/index.ts
+  cli_framework: "yargs with command modules"
+  agent_core: packages/opencode/src/agent/agent.ts
+  infrastructure: "SST (sst.config.ts) with Cloudflare home"
+  notes:
+    - "Client/server architecture enables remote driving (e.g., mobile app controlling desktop agent)"
+    - "Two built-in agents: 'build' (full-access default) and 'plan' (read-only analysis)"
+    - "'general' subagent for complex searches and multistep tasks"
+    - "Agent.Info defined with Zod schema including permissions, model config, and temperature"
+    - "Permission system with fine-grained rules per tool and file pattern"
+    - "Database storage via SQLite with Drizzle ORM (migrated from JSON)"
+
+key_features:
+  - "Provider-agnostic LLM support (Claude, OpenAI, Google, local models)"
+  - "Built-in LSP (Language Server Protocol) support for code intelligence"
+  - "TUI-first design with Tab key to switch between build/plan agents"
+  - "Desktop application (macOS, Windows, Linux) via Tauri"
+  - "Web UI console"
+  - "Client/server architecture for remote access"
+  - "MCP tool integration with management subcommand"
+  - "ACP (Agent Client Protocol) server"
+  - "Skill system for specialized tasks"
+  - "Session management with import/export"
+  - "GitHub integration (PR commands)"
+  - "Plan mode for read-only code exploration"
+  - "SQLite database with Drizzle ORM"
+  - "Multi-platform installation (npm, brew, scoop, choco, pacman, nix, mise)"
+
+key_files:
+  - path: packages/opencode/src/index.ts
+    role: "CLI entry point; registers yargs commands, sets up logging, runs database migration"
+  - path: packages/opencode/src/agent/agent.ts
+    role: "Agent definition and configuration; defines build/plan/general agents with Zod schemas and permission rulesets"
+  - path: packages/opencode/src/provider/provider.ts
+    role: "LLM provider abstraction layer"
+  - path: packages/opencode/src/provider/models.ts
+    role: "Model registry with capability/cost/limit metadata via Zod schemas"
+  - path: packages/opencode/src/tool/tool.ts
+    role: "Base tool infrastructure"
+  - path: packages/opencode/src/tool/registry.ts
+    role: "Tool registration system"
+  - path: packages/opencode/src/config/config.ts
+    role: "Configuration management"
+  - path: packages/opencode/src/session/
+    role: "Session management and system prompt generation"
+  - path: packages/opencode/src/storage/db.ts
+    role: "SQLite database with Drizzle ORM"
+  - path: packages/opencode/src/lsp/
+    role: "LSP client integration for code intelligence"
+  - path: packages/opencode/src/mcp/
+    role: "MCP server management"
+  - path: packages/opencode/src/permission/
+    role: "Permission system (PermissionNext) with configurable rulesets"
+  - path: packages/opencode/src/skill/
+    role: "Skill system for specialized tasks"
+  - path: package.json
+    role: "Root monorepo config with Bun workspaces and dependency catalog"
+  - path: sst.config.ts
+    role: "SST infrastructure config (Cloudflare home, Stripe, PlanetScale)"
+
+core_modules:
+  - name: Agent
+    path: packages/opencode/src/agent/
+    description: >
+      Defines agent types (build, plan, general) with Zod schemas. Each agent has
+      name, description, mode (subagent/primary/all), permission ruleset, optional
+      model override, and step limits. Permission rules support glob patterns for
+      file-level control.
+  - name: Tools
+    path: packages/opencode/src/tool/
+    description: >
+      Comprehensive tool set: bash, read, write, edit, multiedit, apply_patch, grep,
+      glob, ls, codesearch, lsp, webfetch, websearch, question, plan, task, todo,
+      skill, batch, external-directory. Each tool has a .ts implementation and .txt
+      prompt template.
+  - name: Provider
+    path: packages/opencode/src/provider/
+    description: >
+      Multi-provider LLM abstraction using Vercel AI SDK. ModelsDev namespace provides
+      rich model metadata (cost, limits, capabilities, modalities). Supports auth
+      service integration and provider transforms.
+  - name: Storage
+    path: packages/opencode/src/storage/
+    description: >
+      SQLite database via Drizzle ORM. Includes JSON-to-SQLite migration path.
+      Stores sessions, messages, and other persistent data.
+
+implementation_patterns:
+  - pattern: "Zod schemas for agent configuration and model metadata"
+    example: "Agent.Info defines schema with permissions, model, temperature, and other fields"
+  - pattern: "Namespace-based module organization"
+    example: "Agent, ModelsDev, Provider are TypeScript namespaces containing types and logic"
+  - pattern: "Permission rulesets with glob-based file patterns"
+    example: "Default permissions allow *, deny .env files, ask for external directories"
+  - pattern: "Text-file prompt templates co-located with tool implementations"
+    example: "bash.ts uses bash.txt, read.ts uses read.txt for tool prompts"
+  - pattern: "Instance state pattern for lazy initialization"
+    example: "Agent uses Instance.state() for deferred configuration loading"
+  - pattern: "Database migration from JSON to SQLite"
+    example: "JsonMigration.run() performs one-time migration with progress bar"
+
+configuration:
+  format: "Config file via packages/opencode/src/config/config.ts"
+  installation:
+    - "OPENCODE_INSTALL_DIR: custom install directory"
+    - "XDG_BIN_DIR: XDG-compliant path"
+    - "$HOME/bin or $HOME/.opencode/bin: fallback"
+  permissions:
+    default_rules:
+      - "'*': allow (most tools)"
+      - "doom_loop: ask"
+      - "external_directory: ask (except whitelisted)"
+      - "question: deny"
+      - "plan_enter/plan_exit: deny"
+      - "read *.env: ask"
+  cli_options:
+    - "--print-logs: print logs to stderr"
+    - "--log-level: DEBUG/INFO/WARN/ERROR"
+
+cli_arguments:
+  commands:
+    - "opencode (default): interactive TUI"
+    - "opencode run: run agent"
+    - "opencode generate: generate content"
+    - "opencode acp: ACP server"
+    - "opencode mcp: MCP management"
+    - "opencode serve: server mode"
+    - "opencode web: web UI"
+    - "opencode models: list models"
+    - "opencode providers: list providers"
+    - "opencode agent: agent configuration"
+    - "opencode stats: usage statistics"
+    - "opencode export/import: session data"
+    - "opencode github/pr: GitHub integration"
+    - "opencode session: session management"
+    - "opencode db: database operations"
+    - "opencode debug: debug mode"
+    - "opencode upgrade/uninstall: self-management"
+    - "opencode completion: shell completion"
+
+api_surface:
+  entry_point: "opencode: packages/opencode/bin/opencode"
+  agents:
+    - "build: full-access development agent (default)"
+    - "plan: read-only analysis agent"
+    - "general: subagent for complex searches (@general invocation)"
+  sdks:
+    - packages/sdk/js (JavaScript SDK)
+  packages:
+    - "packages/opencode: core CLI agent"
+    - "packages/app: web application"
+    - "packages/console: admin console"
+    - "packages/desktop: Tauri desktop app"
+    - "packages/desktop-electron: Electron desktop app"
+    - "packages/ui: shared UI components"
+    - "packages/web: landing page / docs"
+    - "packages/plugin: plugin system"
+    - "packages/enterprise: enterprise features"
+    - "packages/slack: Slack integration"
+
+tech_stack:
+  language: TypeScript (ES modules)
+  runtime: Bun 1.3
+  package_manager: Bun workspaces
+  build_orchestration: Turborepo
+  cli_framework: yargs
+  ai_sdk: "Vercel AI SDK (ai package v5)"
+  database: "SQLite via Drizzle ORM"
+  desktop: "Tauri (primary), Electron (alternative)"
+  web_framework: "SolidJS (app), Hono (API)"
+  infrastructure: "SST with Cloudflare, Stripe, PlanetScale"
+  schema_validation: "Zod 4"
+  key_dependencies:
+    - "effect: functional programming library"
+    - "drizzle-orm: SQL ORM"
+    - "shiki: syntax highlighting"
+    - "marked: markdown rendering"
+    - "tree-sitter: code parsing"
+    - "tailwindcss: styling"
+
+testing:
+  framework: "Bun test (bun test --timeout 30000)"
+  type_checking: "tsgo (TypeScript native preview) / Bun tsc"
+  formatting: Prettier

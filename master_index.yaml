@@ -1,5 +1,5 @@
 artifact_type: ws4_master_index
-generated_at_utc: '2026-03-13T04:28:53Z'
+generated_at_utc: '2026-03-17T00:00:00Z'
 contract_version: 1.0.0-ws1
 metadata:
   source_shards:
@@ -154,41 +154,28 @@ repos:
   source: compiled_master
   name: airtable.js
   category: workflow_builder
-  summary: Phase 4 Corpus Expansion P4-B2 intake for airtable/airtable.js. Workflow
-    builder repository routed explicitly to llm_repos.
+  summary: Official Airtable JavaScript API client for workflow automation and data
+    modeling.
   core_concepts:
   - API client integration
   - workflow automation data modeling
   key_entry_points:
   - README.md
-  - src/
   build_run:
     language: javascript
-    build: npm run build
-    test: npm test
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/airtable__airtable.js.yaml
-    as_of: '2026-03-05T05:18:49Z'
+    as_of: '2026-03-17'
   local_cache_dir: null
   extras:
     directory: remote::airtable/airtable.js
-    intake:
-      pilot_batch_id: PHASE-4-P4-B2
-      repo_id: repo::airtable/airtable.js
-      queue_id: intake::airtable/airtable.js
-      domain_hint: workflow_builder
-      source_mode: remote_metadata
-      observed_at_utc: '2026-03-05T05:18:49Z'
-    remote:
-      provider: github
-      mode: metadata
-      endpoint: /repos/airtable/airtable.js
-      fetched_at_utc: '2026-03-05T05:18:49Z'
-      refresh:
-        precedence: api_wins_readme_for_missing_required_fields
-        fallback_source: readme_fallback
-        fallback_used: false
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::anderspitman/awesome-tunneling
   github_full_name: anderspitman/awesome-tunneling
   html_url: https://github.com/anderspitman/awesome-tunneling
@@ -241,41 +228,27 @@ repos:
   source: compiled_master
   name: opencode
   category: agent_cli
-  summary: Phase 4 Corpus Expansion P4-B1 intake for anomalyco/opencode. Agent CLI
-    repository routed explicitly to llm_repos.
+  summary: Terminal-based coding assistant with agent CLI workflows.
   core_concepts:
   - agent cli workflows
   - terminal-based coding assistant patterns
   key_entry_points:
   - README.md
-  - docs/
   build_run:
     language: mixed
-    build: See upstream README for build steps.
-    test: See upstream README for test steps.
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/anomalyco__opencode.yaml
-    as_of: '2026-03-05T04:16:38Z'
+    as_of: '2026-03-17'
   local_cache_dir: null
   extras:
     directory: remote::anomalyco/opencode
-    intake:
-      pilot_batch_id: PHASE-4-P4-B1
-      repo_id: repo::anomalyco/opencode
-      queue_id: intake::anomalyco/opencode
-      domain_hint: agent_cli
-      source_mode: remote_metadata
-      observed_at_utc: '2026-03-05T04:16:38Z'
-    remote:
-      provider: github
-      mode: metadata
-      endpoint: /repos/anomalyco/opencode
-      fetched_at_utc: '2026-03-05T04:16:38Z'
-      refresh:
-        precedence: api_wins_readme_for_missing_required_fields
-        fallback_source: readme_fallback
-        fallback_used: false
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::ansible/ansible
   github_full_name: ansible/ansible
   html_url: https://github.com/ansible/ansible
@@ -640,22 +613,20 @@ repos:
   source: compiled_master
   name: wetty
   category: remote_access
-  summary: Phase 4 B3 shallow intake for butlerx/wetty as a browser-accessible terminal
-    over SSH utility.
+  summary: Browser-accessible terminal over SSH for web-based remote access.
   core_concepts:
   - web terminal access
   - SSH proxy workflow
   key_entry_points:
   - README.md
-  - src/
   build_run:
     language: typescript
-    build: npm run build
-    test: npm test
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/wetty.yaml
-    as_of: '2026-03-05T05:30:00Z'
+    as_of: '2026-03-17'
   local_cache_dir: null
   extras:
     directory: remote::butlerx/wetty
@@ -963,139 +934,56 @@ repos:
   source: compiled_master
   name: Prompt-Engineering-Guide
   category: educational
-  summary: 'Comprehensive guide to prompt engineering techniques, patterns, and best
-
-    practices. Covers basics, advanced techniques (CoT, ToT, GoT), applications,
-
-    and model-specific guidance. Available in multiple languages with web version
-
-    at promptingguide.ai.
-
-    '
+  summary: Comprehensive guide to prompt engineering techniques, patterns, and best
+    practices covering basics through advanced techniques.
   core_concepts:
-  - Prompting Basics
-  - Advanced Techniques
-  - Applications
-  - Model Guides
+  - prompt engineering fundamentals
+  - advanced prompting techniques
   key_entry_points:
   - README.md
-  - guides/
-  - papers/
-  - models/
   build_run:
-    language: Markdown/Documentation
-    manager: none
-    build: N/A - static documentation
-    test: N/A
+    language: markdown
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
-    source_file: repos/knowledge/repos/Prompt-Engineering-Guide.yaml
-    as_of: '2026-02-25'
-  ecosystem_connections:
-  - target: langchain
-    relation: related_to
-    note: Prompt patterns applicable to LangChain development
-  - target: llama_index
-    relation: related_to
-    note: RAG prompting techniques
-  - target: open_webui
-    relation: related_to
-    note: Practical prompting for chat applications
+    source_file: repos/knowledge/repos/prompt-engineering-guide.yaml
+    as_of: '2026-03-17'
+  local_cache_dir: null
   extras:
-    directory: Prompt-Engineering-Guide-main
-    further_reading:
-    - README.md
-    - https://www.promptingguide.ai/
-    raw_core_concepts_structured:
-    - name: Prompting Basics
-      description: Introduction to prompt engineering fundamentals
-      location: guides/prompts.md
-    - name: Advanced Techniques
-      description: Chain-of-thought, Tree-of-thought, Graph-of-thought prompting
-      location: guides/adv_prompting.md
-    - name: Applications
-      description: Real-world use cases and patterns
-      location: guides/applications.md
-    - name: Model Guides
-      description: Specific guidance for different LLM providers
-      location: guides/models.md
-    raw_key_entry_points_structured:
-    - path: README.md
-      purpose: Main index and navigation
-    - path: guides/
-      purpose: Core learning materials
-    - path: papers/
-      purpose: Academic paper references
-    - path: models/
-      purpose: Model-specific resources
+    directory: remote::dair-ai/prompt-engineering-guide
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::datawhalechina/self-llm
   github_full_name: datawhalechina/self-llm
   html_url: https://github.com/datawhalechina/self-llm
   source: compiled_master
   name: self-llm
   category: educational
-  summary: 'Chinese-language tutorial collection for learning and deploying open-source
-
-    LLMs. Covers model deployment (Llama, Qwen, ChatGLM), fine-tuning (LoRA,
-
-    P-Tuning), and application development. Includes hands-on guides with code
-
-    examples and practical exercises.
-
-    '
+  summary: Chinese-language tutorial collection for learning and deploying open-source
+    LLMs including model deployment and fine-tuning.
   core_concepts:
-  - Model Deployment
-  - Fine-tuning
-  - RAG Applications
-  - Prompt Engineering
+  - LLM deployment tutorials
+  - model fine-tuning guides
   key_entry_points:
   - README.md
-  - llm-universe-main/
   build_run:
-    language: Python/Markdown
-    manager: pip
-    build: pip install -r requirements.txt (per project)
-    test: Varies by tutorial
+    language: python
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/self-llm.yaml
-    as_of: '2026-02-25'
-  ecosystem_connections:
-  - target: llamafactory
-    relation: related_to
-    note: Fine-tuning concepts overlap
-  - target: langchain
-    relation: related_to
-    note: Application development tutorials use LangChain
-  - target: vllm
-    relation: related_to
-    note: Deployment guides may reference vLLM
-  - target: ollama
-    relation: related_to
-    note: Local deployment alternatives
+    as_of: '2026-03-17'
+  local_cache_dir: null
   extras:
-    directory: self-llm_HOW-TO
-    further_reading:
-    - README.md
-    - llm-universe-main/README.md
-    raw_core_concepts_structured:
-    - name: Model Deployment
-      description: Guides for deploying various open-source models
-      location: (distributed by model)
-    - name: Fine-tuning
-      description: LoRA, P-Tuning, and full fine-tuning tutorials
-      location: (fine-tuning section)
-    - name: RAG Applications
-      description: Building RAG systems with open-source models
-      location: (RAG section)
-    - name: Prompt Engineering
-      description: Chinese-language prompting guides
-      location: (prompting section)
-    raw_key_entry_points_structured:
-    - path: README.md
-      purpose: Index of all tutorials
-    - path: llm-universe-main/
-      purpose: Core learning materials and code examples
+    directory: remote::datawhalechina/self-llm
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::dottxt-ai/outlines
   github_full_name: dottxt-ai/outlines
   html_url: https://github.com/dottxt-ai/outlines
@@ -1611,14 +1499,12 @@ repos:
   source: compiled_master
   name: ralph-claude-code
   category: agent_cli
-  summary: Phase 4 B3 shallow intake for frankbria/ralph-claude-code as a Claude Code
-    workflow companion utility.
+  summary: Claude Code workflow companion utility for task orchestration.
   core_concepts:
   - claude code workflow automation
   - task orchestration helpers
   key_entry_points:
   - README.md
-  - src/
   build_run:
     language: mixed
     build: See upstream README for project build steps.
@@ -1626,7 +1512,7 @@ repos:
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/ralph-claude-code.yaml
-    as_of: '2026-03-05T05:30:00Z'
+    as_of: '2026-03-17'
   local_cache_dir: null
   extras:
     directory: remote::frankbria/ralph-claude-code
@@ -1762,41 +1648,27 @@ repos:
   source: compiled_master
   name: copilot-cli
   category: agent_cli
-  summary: Phase 4 Corpus Expansion P4-B1 intake for github/copilot-cli. Agent CLI
-    repository routed explicitly to llm_repos.
+  summary: GitHub Copilot command-line interface for agent-style code assistance workflows.
   core_concepts:
   - agent cli workflows
   - command-line code assistance
   key_entry_points:
   - README.md
-  - docs/
   build_run:
     language: mixed
-    build: See upstream README for build steps.
-    test: See upstream README for test steps.
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/github__copilot-cli.yaml
-    as_of: '2026-03-05T04:16:38Z'
+    as_of: '2026-03-17'
   local_cache_dir: null
   extras:
     directory: remote::github/copilot-cli
-    intake:
-      pilot_batch_id: PHASE-4-P4-B1
-      repo_id: repo::github/copilot-cli
-      queue_id: intake::github/copilot-cli
-      domain_hint: agent_cli
-      source_mode: remote_metadata
-      observed_at_utc: '2026-03-05T04:16:38Z'
-    remote:
-      provider: github
-      mode: metadata
-      endpoint: /repos/github/copilot-cli
-      fetched_at_utc: '2026-03-05T04:16:38Z'
-      refresh:
-        precedence: api_wins_readme_for_missing_required_fields
-        fallback_source: readme_fallback
-        fallback_used: false
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::go-gost/gost
   github_full_name: go-gost/gost
   html_url: https://github.com/go-gost/gost
@@ -2024,23 +1896,21 @@ repos:
   source: compiled_master
   name: smile
   category: machine_learning
-  summary: Phase 4 B3 shallow intake for haifengl/smile as a JVM machine learning
-    and data mining toolkit.
+  summary: JVM machine learning and data mining toolkit with statistical learning
+    algorithms.
   core_concepts:
   - statistical learning algorithms
   - JVM data science tooling
   key_entry_points:
   - README.md
-  - scala/
-  - core/
   build_run:
     language: java
-    build: ./gradlew build
-    test: ./gradlew test
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/smile.yaml
-    as_of: '2026-03-05T05:30:00Z'
+    as_of: '2026-03-17'
   local_cache_dir: null
   extras:
     directory: remote::haifengl/smile
@@ -2054,14 +1924,12 @@ repos:
   source: compiled_master
   name: felony
   category: agent_cli
-  summary: Phase 4 B3 shallow intake for henryboldi/felony as a command-line utility
-    in the agent tooling ecosystem.
+  summary: Command-line utility in the agent tooling ecosystem for developer workflows.
   core_concepts:
   - command-line developer workflow
   - terminal-first automation helpers
   key_entry_points:
   - README.md
-  - src/
   build_run:
     language: mixed
     build: See upstream README for project build steps.
@@ -2069,7 +1937,7 @@ repos:
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/felony.yaml
-    as_of: '2026-03-05T05:30:00Z'
+    as_of: '2026-03-17'
   local_cache_dir: null
   extras:
     directory: remote::henryboldi/felony
@@ -2279,22 +2147,20 @@ repos:
   source: compiled_master
   name: java-design-patterns
   category: documentation
-  summary: Phase 4 B3 shallow intake for iluwatar/java-design-patterns as a reference
-    implementation catalog of software design patterns.
+  summary: Reference implementation catalog of software design patterns in Java.
   core_concepts:
   - design pattern exemplars
   - Java architecture references
   key_entry_points:
   - README.md
-  - java-design-patterns/
   build_run:
     language: java
-    build: mvn -q package
-    test: mvn -q test
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/java-design-patterns.yaml
-    as_of: '2026-03-05T05:30:00Z'
+    as_of: '2026-03-17'
   local_cache_dir: null
   extras:
     directory: remote::iluwatar/java-design-patterns
@@ -2981,41 +2847,27 @@ repos:
   source: compiled_master
   name: archdesigner
   category: workflow_builder
-  summary: Phase 4 Corpus Expansion P4-B2 intake for Krosebrook/archdesigner. Workflow
-    builder repository routed explicitly to llm_repos.
+  summary: Architecture workflow design tool for structured planning artifacts.
   core_concepts:
   - architecture workflow design
   - structured planning artifacts
   key_entry_points:
   - README.md
-  - docs/
   build_run:
     language: mixed
-    build: See upstream README for build steps.
-    test: See upstream README for test steps.
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/krosebrook__archdesigner.yaml
-    as_of: '2026-03-05T05:18:49Z'
+    as_of: '2026-03-17'
   local_cache_dir: null
   extras:
     directory: remote::krosebrook/archdesigner
-    intake:
-      pilot_batch_id: PHASE-4-P4-B2
-      repo_id: repo::Krosebrook/archdesigner
-      queue_id: intake::Krosebrook/archdesigner
-      domain_hint: workflow_builder
-      source_mode: remote_metadata
-      observed_at_utc: '2026-03-05T05:18:49Z'
-    remote:
-      provider: github
-      mode: metadata
-      endpoint: /repos/krosebrook/archdesigner
-      fetched_at_utc: '2026-03-05T05:18:49Z'
-      refresh:
-        precedence: api_wins_readme_for_missing_required_fields
-        fallback_source: readme_fallback
-        fallback_used: false
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::lancedb/lancedb
   github_full_name: lancedb/lancedb
   html_url: https://github.com/lancedb/lancedb
@@ -3786,41 +3638,27 @@ repos:
   source: compiled_master
   name: mini-agent
   category: agent_orchestration
-  summary: Phase 4 Corpus Expansion P4-B1 intake for MiniMax-AI/Mini-Agent. Agent
-    orchestration repository routed explicitly to llm_repos.
+  summary: Multi-agent orchestration framework with agent runtime coordination patterns.
   core_concepts:
   - multi-agent orchestration
   - agent runtime coordination patterns
   key_entry_points:
   - README.md
-  - examples/
   build_run:
     language: mixed
-    build: See upstream README for build steps.
-    test: See upstream README for test steps.
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/minimax-ai__mini-agent.yaml
-    as_of: '2026-03-05T04:16:38Z'
+    as_of: '2026-03-17'
   local_cache_dir: null
   extras:
     directory: remote::minimax-ai/mini-agent
-    intake:
-      pilot_batch_id: PHASE-4-P4-B1
-      repo_id: repo::MiniMax-AI/Mini-Agent
-      queue_id: intake::MiniMax-AI/Mini-Agent
-      domain_hint: agent_orchestration
-      source_mode: remote_metadata
-      observed_at_utc: '2026-03-05T04:16:38Z'
-    remote:
-      provider: github
-      mode: metadata
-      endpoint: /repos/minimax-ai/mini-agent
-      fetched_at_utc: '2026-03-05T04:16:38Z'
-      refresh:
-        precedence: api_wins_readme_for_missing_required_fields
-        fallback_source: readme_fallback
-        fallback_used: false
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::mintplex-labs/anything-llm
   github_full_name: mintplex-labs/anything-llm
   html_url: https://github.com/mintplex-labs/anything-llm
@@ -4048,41 +3886,27 @@ repos:
   source: compiled_master
   name: kimi-cli
   category: agent_cli
-  summary: Phase 4 Corpus Expansion P4-B1 intake for MoonshotAI/kimi-cli. Agent CLI
-    repository routed explicitly to llm_repos.
+  summary: Moonshot AI Kimi command-line interface for agent-style LLM tooling.
   core_concepts:
   - agent cli workflows
   - command-line llm tooling
   key_entry_points:
   - README.md
-  - docs/
   build_run:
     language: mixed
-    build: See upstream README for build steps.
-    test: See upstream README for test steps.
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/moonshotai__kimi-cli.yaml
-    as_of: '2026-03-05T04:16:38Z'
+    as_of: '2026-03-17'
   local_cache_dir: null
   extras:
     directory: remote::moonshotai/kimi-cli
-    intake:
-      pilot_batch_id: PHASE-4-P4-B1
-      repo_id: repo::MoonshotAI/kimi-cli
-      queue_id: intake::MoonshotAI/kimi-cli
-      domain_hint: agent_cli
-      source_mode: remote_metadata
-      observed_at_utc: '2026-03-05T04:16:38Z'
-    remote:
-      provider: github
-      mode: metadata
-      endpoint: /repos/moonshotai/kimi-cli
-      fetched_at_utc: '2026-03-05T04:16:38Z'
-      refresh:
-        precedence: api_wins_readme_for_missing_required_fields
-        fallback_source: readme_fallback
-        fallback_used: false
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::mscdex/ssh2
   github_full_name: mscdex/ssh2
   html_url: https://github.com/mscdex/ssh2
@@ -4268,15 +4092,13 @@ repos:
   source: compiled_master
   name: obs-studio
   category: ui_tools
-  summary: Phase 4 B5 shallow intake for obsproject/obs-studio as an open source live
-    streaming and recording platform.
+  summary: Open source live streaming and recording platform with plugin-driven broadcast
+    tooling.
   core_concepts:
   - scene composition for streaming workflows
   - plugin-driven broadcast tooling
   key_entry_points:
   - README.md
-  - docs/
-  - UI/
   build_run:
     language: mixed
     build: See upstream README for project build steps.
@@ -4284,7 +4106,7 @@ repos:
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/obs-studio.yaml
-    as_of: '2026-03-05T05:30:00Z'
+    as_of: '2026-03-17'
   local_cache_dir: null
   extras:
     directory: remote::obsproject/obs-studio
@@ -4641,41 +4463,28 @@ repos:
   source: compiled_master
   name: PaddleOCR
   category: office_automation
-  summary: Phase 4 Corpus Expansion P4-B2 intake for PaddlePaddle/PaddleOCR. Office
-    automation repository routed explicitly to llm_repos.
+  summary: Optical character recognition toolkit with text detection, recognition,
+    and document understanding workflows.
   core_concepts:
   - optical character recognition pipeline
   - document understanding workflows
   key_entry_points:
   - README.md
-  - ppocr/
   build_run:
     language: python
-    build: python3 -m pip install -e .
-    test: python3 -m pytest
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/paddlepaddle__paddleocr.yaml
-    as_of: '2026-03-05T05:18:49Z'
+    as_of: '2026-03-17'
   local_cache_dir: null
   extras:
     directory: remote::paddlepaddle/paddleocr
-    intake:
-      pilot_batch_id: PHASE-4-P4-B2
-      repo_id: repo::PaddlePaddle/PaddleOCR
-      queue_id: intake::PaddlePaddle/PaddleOCR
-      domain_hint: office_automation
-      source_mode: remote_metadata
-      observed_at_utc: '2026-03-05T05:18:49Z'
-    remote:
-      provider: github
-      mode: metadata
-      endpoint: /repos/paddlepaddle/paddleocr
-      fetched_at_utc: '2026-03-05T05:18:49Z'
-      refresh:
-        precedence: api_wins_readme_for_missing_required_fields
-        fallback_source: readme_fallback
-        fallback_used: false
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::pathwaycom/llm-app
   github_full_name: pathwaycom/llm-app
   html_url: https://github.com/pathwaycom/llm-app
@@ -5748,15 +5557,12 @@ repos:
   source: compiled_master
   name: ralph
   category: agent_cli
-  summary: Phase 4 B5 shallow intake for snarktank/ralph as a Claude-adjacent CLI
-    workflow helper.
+  summary: Claude-adjacent CLI workflow helper for terminal-first agent operations.
   core_concepts:
   - terminal-first agent operations
   - lightweight workflow automation
   key_entry_points:
   - README.md
-  - src/
-  - scripts/
   build_run:
     language: mixed
     build: See upstream README for project build steps.
@@ -5764,7 +5570,7 @@ repos:
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/ralph.yaml
-    as_of: '2026-03-05T05:30:00Z'
+    as_of: '2026-03-17'
   local_cache_dir: null
   extras:
     directory: remote::snarktank/ralph
@@ -5954,41 +5760,28 @@ repos:
   source: compiled_master
   name: Stirling-PDF
   category: office_automation
-  summary: Phase 4 Corpus Expansion P4-B2 intake for Stirling-Tools/Stirling-PDF.
-    Office automation repository routed explicitly to llm_repos.
+  summary: Self-hosted PDF manipulation tool with transformation workflows for document
+    operations.
   core_concepts:
   - pdf transformation workflows
   - self-hosted document operations
   key_entry_points:
   - README.md
-  - src/
   build_run:
     language: java
-    build: ./gradlew build
-    test: ./gradlew test
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/stirling-tools__stirling-pdf.yaml
-    as_of: '2026-03-05T05:18:49Z'
+    as_of: '2026-03-17'
   local_cache_dir: null
   extras:
     directory: remote::stirling-tools/stirling-pdf
-    intake:
-      pilot_batch_id: PHASE-4-P4-B2
-      repo_id: repo::Stirling-Tools/Stirling-PDF
-      queue_id: intake::Stirling-Tools/Stirling-PDF
-      domain_hint: office_automation
-      source_mode: remote_metadata
-      observed_at_utc: '2026-03-05T05:18:49Z'
-    remote:
-      provider: github
-      mode: metadata
-      endpoint: /repos/stirling-tools/stirling-pdf
-      fetched_at_utc: '2026-03-05T05:18:49Z'
-      refresh:
-        precedence: api_wins_readme_for_missing_required_fields
-        fallback_source: readme_fallback
-        fallback_used: false
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::streisandeffect/streisand
   github_full_name: streisandeffect/streisand
   html_url: https://github.com/streisandeffect/streisand

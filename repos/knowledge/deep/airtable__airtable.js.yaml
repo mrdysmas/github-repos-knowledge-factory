@@ -1,0 +1,149 @@
+name: airtable.js
+node_id: "repo::airtable/airtable.js"
+github_full_name: airtable/airtable.js
+html_url: https://github.com/airtable/airtable.js
+source: remote_metadata
+directory: "remote::airtable/airtable.js"
+category: workflow_builder
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep/airtable__airtable.js.yaml
+  as_of: "2026-03-17"
+  sourcing_method: code_verified
+
+architecture:
+  overview: |
+    Official Airtable JavaScript client library providing a typed REST API wrapper for CRUD operations
+    on Airtable bases. Written in TypeScript, compiled to CommonJS for Node.js and bundled for browsers
+    via Grunt/Browserify. Core abstraction hierarchy: Airtable -> Base -> Table -> Record/Query.
+    Supports both callback and Promise-based APIs.
+  module_breakdown:
+    - module: src/airtable.ts
+      responsibility: Top-level Airtable class with global configuration (apiKey, endpointUrl, requestTimeout), static configure() method, and base() factory
+      key_files: [src/airtable.ts]
+    - module: src/base.ts
+      responsibility: Base class representing an Airtable base; handles HTTP requests with auth headers, retry logic, and rate limiting
+      key_files: [src/base.ts]
+    - module: src/table.ts
+      responsibility: Table class providing CRUD operations (find, select, create, update, replace, destroy) with callback/Promise dual API
+      key_files: [src/table.ts]
+    - module: src/record.ts
+      responsibility: Record class representing a single row with fields, save/fetch/destroy methods, and patch/put update semantics
+      key_files: [src/record.ts]
+    - module: src/query.ts
+      responsibility: Query class for paginated record retrieval via firstPage(), eachPage(), and all() methods
+      key_files: [src/query.ts]
+    - module: src/run_action.ts
+      responsibility: Low-level HTTP request executor with auth headers, rate-limit retry with exponential backoff, and browser/Node user-agent handling
+      key_files: [src/run_action.ts]
+  data_flow: |
+    Airtable(apiKey) -> base(baseId) -> table('Name') -> CRUD methods (find/select/create/update/destroy).
+    HTTP requests go through Base.runAction with Bearer auth; rate-limited 429s auto-retry with backoff.
+
+key_features:
+  - Full CRUD operations on Airtable records (create, read, update, replace, destroy)
+  - Dual callback and Promise API (callbacks return void, omitting callback returns Promise)
+  - Paginated record retrieval via Query.eachPage() and Query.all()
+  - Automatic rate-limit retry with exponential backoff and jitter
+  - TypeScript generics for typed field sets (Table<TFields>, Record<TFields>)
+  - Browser and Node.js support with separate builds
+  - Configurable via constructor options, static Airtable.configure(), or environment variables
+  - Parameter validation on select() with error messages for invalid/ignored keys
+
+key_files:
+  - path: src/airtable.ts
+    purpose: Main entry point with Airtable class, configure(), base() factory, and type exports
+  - path: src/base.ts
+    purpose: Base class for HTTP communication with auth, retries, and rate limiting
+  - path: src/table.ts
+    purpose: Table class with find/select/create/update/replace/destroy CRUD methods
+  - path: src/record.ts
+    purpose: Record class with save/fetch/destroy/patchUpdate/putUpdate methods
+  - path: src/query.ts
+    purpose: Query builder with firstPage/eachPage/all pagination
+  - path: src/run_action.ts
+    purpose: Low-level HTTP executor with exponential backoff on 429 rate limits
+  - path: src/callback_to_promise.ts
+    purpose: Wraps callback-style methods to also return Promises
+  - path: package.json
+    purpose: "Dual entry points: lib/airtable.js (Node), lib/airtable.umd.js (browser)"
+
+api_surface:
+  classes:
+    - name: Airtable
+      methods:
+        - "configure({apiKey, endpointUrl, apiVersion, noRetryIfRateLimited, requestTimeout}): void"
+        - "base(baseId: string): Base"
+        - "static default_config(): AirtableOptions"
+    - name: Base
+      methods:
+        - "table<TFields>(tableName: string): Table<TFields>"
+        - "makeRequest(options: BaseRequestOptions): Promise<BaseResponse>"
+        - "runAction(method, path, queryParams, bodyData, callback, numAttempts): void"
+    - name: "Table<TFields>"
+      methods:
+        - "find(recordId: string): Promise<Record<TFields>>"
+        - "select(params?: QueryParams<TFields>): Query<TFields>"
+        - "create(recordsData): Promise<Record<TFields> | Records<TFields>>"
+        - "update(recordId, recordData, opts?): Promise<Record<TFields>>"
+        - "replace(recordId, recordData, opts?): Promise<Record<TFields>>"
+        - "destroy(recordId: string): Promise<Record<TFields>>"
+    - name: "Record<TFields>"
+      methods: ["save()", "fetch()", "patchUpdate(fields)", "putUpdate(fields)", "destroy()"]
+    - name: "Query<TFields>"
+      methods: ["firstPage()", "eachPage(callback)", "all()"]
+  type_exports: ["Airtable.FieldSet", "Airtable.Collaborator", "Airtable.Attachment", "Airtable.Thumbnail"]
+
+configuration:
+  options:
+    - name: apiKey
+      env_var: AIRTABLE_API_KEY
+      description: Secret API token or OAuth access token (required)
+    - name: endpointUrl
+      env_var: AIRTABLE_ENDPOINT_URL
+      default: "https://api.airtable.com"
+      description: API endpoint URL (override for proxies)
+    - name: requestTimeout
+      default: 300000
+      description: Request timeout in milliseconds (default 5 minutes)
+    - name: noRetryIfRateLimited
+      default: false
+      description: Disable automatic retry on 429 responses
+    - name: apiVersion
+      default: "0.1.0"
+      description: API version string
+
+tech_stack:
+  language: TypeScript (compiled to JavaScript)
+  runtime: Node.js 8+, browsers (via Browserify bundle)
+  http: node-fetch (Node), native fetch (browser)
+  utilities: lodash (isPlainObject, get, keys)
+  build: TypeScript compiler + Grunt + Browserify
+  testing: Jest with 100% coverage threshold (branches, functions, lines, statements)
+  linting: ESLint with TypeScript parser, Prettier
+  package_manager: npm
+
+testing:
+  framework: Jest with 100% coverage threshold on branches, functions, lines, and statements
+  key_test_files: [test/airtable.test.js, test/base.test.js, test/table.test.js, test/record.test.js, test/select.test.js, test/create.test.js, test/update.test.js, test/delete.test.js]
+  test_helpers: test/test_helpers.js provides shared test utilities
+
+implementation_patterns:
+  - pattern: Callback-to-Promise Dual API
+    description: All Table and Record methods accept optional callback; when omitted, they return a Promise via callbackToPromise wrapper
+    location: src/callback_to_promise.ts, src/table.ts (lines 133-138)
+  - pattern: Exponential Backoff with Jitter
+    description: Rate-limited (429) requests are retried with randomized exponential backoff to prevent thundering herd
+    location: src/exponential_backoff_with_jitter.ts, src/run_action.ts
+  - pattern: URL Length Guard
+    description: GET requests exceeding URL_CHARACTER_LENGTH_LIMIT automatically switch to POST via listRecords endpoint
+    location: src/table.ts (lines 387-422), src/query_params.ts
+  - pattern: Base Functor Pattern
+    description: "Base.createFunctor returns a callable function that also has .table() method: base('TableName') is shorthand for base.table('TableName')"
+    location: src/base.ts
+  - pattern: Browser/Node Abstraction
+    description: "package.json browser field maps node-fetch and abort-controller to false, swaps lib/airtable.js for lib/airtable.umd.js"
+    location: package.json (lines 25-30), src/run_action.ts (lines 38-45)
+  - pattern: Deprecation Wrapper
+    description: Deprecated methods (list, forEach) wrapped with deprecate() that logs warning on first call
+    location: src/table.ts (lines 141-150), src/deprecate.ts

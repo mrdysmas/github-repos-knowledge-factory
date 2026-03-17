@@ -1,0 +1,167 @@
+name: java-design-patterns
+node_id: "repo::iluwatar/java-design-patterns"
+github_full_name: iluwatar/java-design-patterns
+html_url: https://github.com/iluwatar/java-design-patterns
+source: remote_metadata
+directory: "remote::iluwatar/java-design-patterns"
+category: documentation
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep/java-design-patterns.yaml
+  as_of: "2026-03-17"
+  sourcing_method: code_verified
+
+architecture:
+  overview: |
+    Multi-module Maven project containing ~190 independent pattern modules under a single parent POM.
+    Each pattern is a self-contained Maven module with its own src/main/java and src/test/java tree.
+    Packages follow the convention com.iluwatar.<pattern-name>. The root pom.xml aggregates all modules
+    and manages shared dependency versions (Spring Boot, JUnit 5, Mockito, Lombok, etc.).
+  module_breakdown:
+    - module: pom.xml (root)
+      responsibility: Parent POM aggregating ~190 pattern modules; manages dependency versions and build plugins
+      key_files: [pom.xml]
+    - module: "<pattern-name>/ (each pattern)"
+      responsibility: Self-contained implementation of a single design pattern with App.java entry point and unit tests
+      key_files: ["<pattern>/src/main/java/com/iluwatar/<pattern>/App.java"]
+    - module: .github/workflows/
+      responsibility: CI pipelines for Maven builds and PR validation
+      key_files: [.github/workflows/maven-ci.yml, .github/workflows/maven-pr-builder.yml]
+  pattern_categories:
+    - name: Creational
+      examples: [abstract-factory, builder, factory-method, prototype, singleton]
+    - name: Structural
+      examples: [adapter, bridge, composite, decorator, facade, flyweight, proxy]
+    - name: Behavioral
+      examples: [chain-of-responsibility, command, iterator, mediator, memento, observer, state, strategy, template-method, visitor]
+    - name: Architectural
+      examples: [clean-architecture, hexagonal-architecture, layered-architecture, microservices-api-gateway, model-view-controller, model-view-viewmodel]
+    - name: Concurrency
+      examples: [active-object, async-method-invocation, balking, double-checked-locking, guarded-suspension, half-sync-half-async, leader-election, producer-consumer, reactor, thread-pool-executor]
+    - name: Data Access
+      examples: [data-access-object, data-mapper, data-transfer-object, repository, unit-of-work]
+    - name: Integration / Cloud
+      examples: [ambassador, anti-corruption-layer, circuit-breaker, retry, saga, throttling, queue-based-load-leveling, rate-limiting-pattern]
+
+key_features:
+  - "~190 design pattern implementations in Java, each as an independent Maven module"
+  - Each pattern includes detailed Javadoc with intent, applicability, and consequences
+  - Multiple implementation variants per pattern (e.g., singleton has 6 variants including enum, Bill Pugh, double-checked locking)
+  - App.java in every pattern module serves as executable demonstration
+  - Comprehensive unit test coverage per pattern with JUnit 5
+  - Localized READMEs in 16 languages
+  - SonarCloud quality gates integrated via CI
+  - Companion e-book and web site at java-design-patterns.com
+
+key_files:
+  - path: pom.xml
+    purpose: Root parent POM defining all ~190 modules, dependency management, build plugins
+  - path: "<pattern>/src/main/java/com/iluwatar/<pattern>/App.java"
+    purpose: Entry point demonstrating the pattern usage
+  - path: "<pattern>/README.md"
+    purpose: Pattern documentation with intent, structure, examples, and applicability
+  - path: .github/workflows/maven-ci.yml
+    purpose: CI pipeline running Maven build and tests on push
+  - path: .github/workflows/maven-pr-builder.yml
+    purpose: PR validation pipeline
+  - path: checkstyle-suppressions.xml
+    purpose: Checkstyle rule suppressions for the project
+  - path: CONTRIBUTING.MD
+    purpose: Contributor guide pointing to the developer wiki
+
+implementation_patterns:
+  - pattern: One Module Per Pattern
+    description: Each design pattern lives in its own Maven module with independent pom.xml, source tree, and tests. Enables isolated compilation and testing.
+    location: pom.xml (modules section), each pattern directory
+  - pattern: App.java Entry Point
+    description: Every pattern module has an App.java with a main() method that demonstrates the pattern with logging via SLF4J/Logback
+    location: "*/src/main/java/com/iluwatar/*/App.java"
+  - pattern: Lombok Annotations
+    description: Uses Lombok for boilerplate reduction across patterns (e.g., "@Slf4j for logging, @Getter/@Setter, @Builder")
+    location: singleton/src/main/java/com/iluwatar/singleton/App.java (line 65)
+  - pattern: Multiple Variants
+    description: Complex patterns provide multiple implementation approaches (e.g., singleton has IvoryTower, EnumIvoryTower, ThreadSafeDoubleCheckLocking, BillPughImplementation, InitializingOnDemandHolderIdiom, ThreadSafeLazyLoadedIvoryTower)
+    location: singleton/src/main/java/com/iluwatar/singleton/
+  - pattern: Factory Maker
+    description: Abstract factory implementations use a FactoryMaker inner class with enum-based factory selection
+    location: abstract-factory/src/main/java/com/iluwatar/abstractfactory/App.java (line 80-85)
+  - pattern: Comprehensive Javadoc
+    description: Each App.java contains multi-paragraph Javadoc explaining the pattern, its risks, and cross-references to variant classes
+    location: singleton/src/main/java/com/iluwatar/singleton/App.java (lines 29-63)
+
+configuration:
+  build_system: Maven 3 with Maven Wrapper (mvnw/mvnw.cmd)
+  java_version: Java 17+ (inferred from Spring Boot 3.4.x dependency)
+  key_properties:
+    - name: spring-boot.version
+      value: 3.4.4
+    - name: junit.version
+      value: 5.11.4
+    - name: mockito.version
+      value: 5.14.2
+    - name: lombok.version
+      value: 1.18.38
+    - name: jacoco.version
+      value: 0.8.13
+    - name: slf4j.version
+      value: 2.0.17
+    - name: logback.version
+      value: 1.5.18
+
+tech_stack:
+  language: Java
+  build: Maven 3 with parent POM aggregation
+  testing: JUnit 5, Mockito
+  logging: SLF4J + Logback
+  code_generation: Lombok
+  quality: JaCoCo coverage, SonarCloud, Checkstyle
+  ci: GitHub Actions (maven-ci.yml, maven-pr-builder.yml)
+  databases_used_in_examples: H2 (in-memory), MongoDB driver
+  frameworks_used_in_examples: Spring Boot, Google Guice
+
+testing:
+  framework: JUnit 5 (junit.version 5.11.4), Mockito (5.14.2)
+  structure: "Each pattern has src/test/java/com/iluwatar/<pattern>/ with per-class test files"
+  coverage_tool: JaCoCo (0.8.13) with SonarCloud integration
+  example_test_files:
+    - singleton/src/test/java/com/iluwatar/singleton/IvoryTowerTest.java
+    - singleton/src/test/java/com/iluwatar/singleton/SingletonTest.java
+    - singleton/src/test/java/com/iluwatar/singleton/BillPughImplementationTest.java
+  patterns:
+    - Each singleton variant has its own dedicated test class
+    - Tests verify singleton identity (same instance returned)
+    - AppTest classes verify main() executes without exceptions
+
+core_modules:
+  - name: Creational Patterns (~20 modules)
+    description: Object creation mechanisms including factory, builder, prototype, singleton with multiple thread-safe variants
+  - name: Structural Patterns (~15 modules)
+    description: Class and object composition patterns including adapter, bridge, composite, decorator, facade, flyweight, proxy
+  - name: Behavioral Patterns (~20 modules)
+    description: Object interaction patterns including chain-of-responsibility, command, iterator, observer, state, strategy, visitor
+  - name: Architectural Patterns (~15 modules)
+    description: System-level patterns including clean-architecture, hexagonal, MVC, MVVM, microservices variants
+  - name: Concurrency Patterns (~15 modules)
+    description: Multi-threading patterns including active-object, producer-consumer, reactor, thread-pool-executor, double-checked-locking
+  - name: Data Access Patterns (~10 modules)
+    description: Data persistence patterns including DAO, data-mapper, repository, unit-of-work, identity-map
+  - name: Cloud / Integration Patterns (~15 modules)
+    description: Distributed system patterns including circuit-breaker, retry, saga, throttling, ambassador, anti-corruption-layer
+
+extension_points:
+  - location: pom.xml modules section
+    hook: Adding a new pattern module
+    example: Create new directory with pom.xml inheriting from parent, add App.java and tests, register in root pom.xml
+  - location: "*/src/main/java/com/iluwatar/*/App.java"
+    hook: Pattern demonstration
+    example: Each App.java can be extended with additional usage scenarios
+  - location: .github/workflows/
+    hook: CI pipeline customization
+    example: Add new workflow files for additional quality checks or deployment
+
+quick_reference:
+  build: "./mvnw clean install"
+  build_single_pattern: "./mvnw clean install -pl singleton"
+  run_pattern: "java -jar singleton/target/singleton-*.jar"
+  test: "./mvnw test"
+  test_single: "./mvnw test -pl singleton"

@@ -1,0 +1,229 @@
+name: smile
+node_id: repo::haifengl/smile
+github_full_name: haifengl/smile
+html_url: https://github.com/haifengl/smile
+source: remote_metadata
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep/smile.yaml
+  as_of: "2026-03-17"
+  sourcing_method: code_verified
+directory: remote::haifengl/smile
+category: machine_learning
+
+architecture:
+  module_breakdown:
+  - module: base
+    responsibility: "Foundational data structures, math, linear algebra, graph, neighbor search, I/O, interpolation, and wavelet transforms."
+    key_files:
+    - base/src/main/java/smile/data/
+    - base/src/main/java/smile/math/
+    - base/src/main/java/smile/linalg/
+    - base/src/main/java/smile/graph/
+    - base/src/main/java/smile/neighbor/
+    - base/src/main/java/smile/io/
+  - module: core
+    responsibility: ML algorithm implementations for classification, regression, clustering, association rules, manifold learning, anomaly detection, and time series.
+    key_files:
+    - core/src/main/java/smile/classification/
+    - core/src/main/java/smile/regression/
+    - core/src/main/java/smile/clustering/
+    - core/src/main/java/smile/manifold/
+    - core/src/main/java/smile/feature/
+  - module: deep
+    responsibility: "Deep learning with CPU/GPU support, including Llama 3.1 inference, EfficientNet, and tensor operations."
+    key_files:
+    - deep/src/main/java/smile/deep/
+    - deep/src/main/java/smile/llm/
+    - deep/src/main/java/smile/vision/
+  - module: nlp
+    responsibility: Natural language processing with tokenization, stemming, POS tagging, keyword extraction, and embeddings.
+    key_files:
+    - nlp/src/main/java/smile/nlp/
+  - module: plot
+    responsibility: Data visualization and plotting utilities.
+    key_files:
+    - plot/src/main/java/
+  - module: serve
+    responsibility: "Quarkus-based inference server with REST APIs for ML model serving and OpenAI-compatible LLM chat endpoints."
+    key_files:
+    - serve/src/main/java/smile/serve/
+    - serve/src/main/java/smile/chat/
+  - module: scala
+    responsibility: Scala API providing idiomatic wrappers over core Java classes.
+    key_files:
+    - scala/src/main/scala/smile/
+  - module: kotlin
+    responsibility: Kotlin API providing idiomatic wrappers over core Java classes.
+    key_files:
+    - kotlin/src/main/kotlin/smile/
+  key_abstractions:
+  - name: Multi-language JVM framework
+    purpose: Core algorithms in Java with idiomatic Scala and Kotlin APIs sharing the same runtime.
+  - name: Modular Gradle/SBT dual-build
+    purpose: Both Gradle (settings.gradle.kts) and SBT (build.sbt) build systems are supported for the same module structure.
+  - name: Unified ML and LLM inference
+    purpose: Single framework spans classical ML, deep learning, and LLM inference with a shared serving layer.
+  components:
+  - name: Classification subsystem
+    description: "SVM, decision trees, random forest, AdaBoost, gradient boosting, logistic regression, naive Bayes, neural networks, RBF networks, discriminant analysis."
+  - name: Clustering subsystem
+    description: "K-Means, X-Means, G-Means, DBSCAN, DENCLUE, spectral clustering, hierarchical clustering, SOM, neural gas."
+  - name: LLM inference engine
+    description: Native Java implementation of Llama 3.1 with tiktoken tokenizer and streaming chat support.
+  - name: Inference server
+    description: Quarkus-based REST server with model serving and OpenAI-compatible chat completion API.
+
+code_patterns:
+- pattern: Functional Scala/Kotlin DSL wrappers
+  description: Scala and Kotlin modules provide idiomatic function-style APIs (e.g., classification.kt, clustering.kt) that delegate to core Java implementations.
+  location: scala/src/main/scala/smile/
+- pattern: Builder-style model construction
+  description: ML models are constructed via factory methods or constructors taking training data and hyperparameters directly.
+  location: core/src/main/java/smile/classification/
+- pattern: Layered module dependency
+  description: "Module dependency flows base -> core -> deep -> serve, with nlp and plot as optional siblings."
+  location: settings.gradle.kts
+
+implementation_patterns:
+- pattern: Spatial index structures for neighbor search
+  description: "BK-tree, cover tree, KD-tree, LSH, and SimHash are implemented in base for fast nearest neighbor queries."
+  location: base/src/main/java/smile/neighbor/
+- pattern: Tensor abstraction for deep learning
+  description: Custom tensor types in deep/src/main/java/smile/deep/tensor/ provide the numeric foundation for neural networks.
+  location: deep/src/main/java/smile/deep/tensor/
+- pattern: Layer-based neural network composition
+  description: "Deep learning networks are composed from layers (Linear, Conv2d, BatchNorm, Dropout, etc.) in a sequential or custom block pattern."
+  location: deep/src/main/java/smile/deep/layer/
+
+core_modules:
+  base:
+    path: base
+    description: "Math, linear algebra, data structures, graphs, neighbor search, I/O, statistics, and interpolation."
+    submodules:
+    - base/src/main/java/smile/math/
+    - base/src/main/java/smile/linalg/
+    - base/src/main/java/smile/neighbor/
+    - base/src/main/java/smile/graph/
+    - base/src/main/java/smile/data/
+  core:
+    path: core
+    description: "ML algorithms: classification, regression, clustering, feature selection, manifold learning, anomaly detection, sequence learning, and model validation."
+    submodules:
+    - core/src/main/java/smile/classification/
+    - core/src/main/java/smile/regression/
+    - core/src/main/java/smile/clustering/
+    - core/src/main/java/smile/feature/
+    - core/src/main/java/smile/manifold/
+    - core/src/main/java/smile/validation/
+  deep:
+    path: deep
+    description: "Deep learning framework with layers, models, optimizers, and dataset abstractions plus LLM (Llama) and vision (EfficientNet) implementations."
+    submodules:
+    - deep/src/main/java/smile/deep/layer/
+    - deep/src/main/java/smile/llm/
+    - deep/src/main/java/smile/vision/
+  serve:
+    path: serve
+    description: "Quarkus REST inference server with ML model serving (InferenceService) and LLM chat completion (ChatService)."
+
+key_features:
+- feature: Comprehensive classical ML
+  description: "Covers classification, regression, clustering, association rules, feature selection (TreeSHAP, genetic algorithm), manifold learning (t-SNE, UMAP, IsoMap), and MDS."
+- feature: Native Java LLM inference
+  description: Pure Java implementation of Llama 3.1 with tiktoken tokenizer and SSE-based chat streaming.
+- feature: Deep learning with CPU and GPU
+  description: Neural network training and inference with layers (Conv2d, Linear, BatchNorm, Dropout, Embedding, RMSNorm) and EfficientNet vision model.
+- feature: Multi-language APIs
+  description: Idiomatic APIs in Java, Scala, Kotlin, and Clojure, all sharing the same core runtime on the JVM.
+- feature: Production inference server
+  description: Quarkus-based server with OpenAI-compatible chat completion API and general ML model serving endpoints.
+- feature: NLP toolkit
+  description: "Sentence splitting, tokenization, bigram testing, phrase/keyword extraction, stemming, POS tagging, and relevance ranking."
+- feature: Data visualization
+  description: Built-in plotting module for exploratory data analysis.
+
+key_files:
+- path: build.sbt
+  description: SBT build definition with all module settings, version (5.2.1), and Scala cross-compilation.
+- path: settings.gradle.kts
+  description: "Gradle build including all modules: base, core, deep, nlp, plot, kotlin, serve."
+- path: core/src/main/java/smile/classification/
+  description: Classification algorithm implementations.
+- path: core/src/main/java/smile/clustering/
+  description: Clustering algorithm implementations.
+- path: deep/src/main/java/smile/deep/layer/
+  description: Neural network layer implementations (Linear, Conv2d, BatchNorm, etc.).
+- path: deep/src/main/java/smile/llm/
+  description: Llama 3.1 LLM implementation for inference.
+- path: serve/src/main/java/smile/serve/
+  description: ML inference REST service.
+- path: serve/src/main/java/smile/chat/
+  description: OpenAI-compatible chat completion service for LLM.
+- path: README.md
+  description: Project overview with feature list and installation instructions.
+
+tech_stack:
+  language: "Java 25 (v5.x), with Scala 2.13/3.3 and Kotlin APIs"
+  build_systems:
+  - SBT
+  - Gradle (with Kotlin DSL)
+  inference_server: Quarkus
+  deep_learning_backend: Custom tensor layer with CPU/GPU support
+  license: Dual (open source + commercial)
+  version: 5.2.1
+
+configuration:
+- name: serve_configuration
+  options:
+  - key: Docker port mapping
+    default: "8080"
+    description: "Quarkus inference server runs on port 8080 inside container, mappable to host port."
+  - key: Model path mount
+    default: /model
+    description: Docker volume mount point for model files.
+- name: build_configuration
+  options:
+  - key: scalaVersion
+    default: "3.3.7"
+    description: Default Scala version for cross-compiled modules.
+  - key: Java version
+    default: "25"
+    description: "Target Java version for v5.x (v4.x requires Java 21)."
+
+api_surface:
+  java_api:
+    description: Direct Java API with static factory methods and constructors for each algorithm.
+    examples:
+    - "RandomForest.fit(formula, data)"
+    - "KMeans.fit(data, k)"
+    - "SVM.fit(x, y, kernel)"
+  scala_api:
+    description: Idiomatic Scala wrappers in smile.classification, smile.clustering, etc.
+  kotlin_api:
+    description: Kotlin extension functions in classification.kt, clustering.kt, etc.
+  rest_api:
+    description: "Quarkus REST endpoints: /v2/models/{model}/infer for ML inference, /v1/chat/completions for LLM chat (OpenAI-compatible)."
+
+testing:
+  framework: JUnit
+  location: "*/src/test/java/"
+  patterns:
+  - Algorithm correctness tests on standard datasets
+  - Inference server tests in serve/src/test/
+
+extension_points:
+- name: Custom kernel functions
+  description: Kernel-based methods (SVM, kernel PCA) accept user-defined kernel implementations.
+- name: Custom neural network layers
+  description: The Layer interface in deep module allows adding custom layers to network architectures.
+- name: Quarkus inference extensions
+  description: The serve module can be extended with additional REST endpoints for custom model types.
+
+integrations:
+- name: Quarkus
+  description: Microservice framework powering the inference and chat server.
+- name: BLAS/LAPACK
+  description: Native linear algebra acceleration via system BLAS/LAPACK libraries.
+- name: Docker
+  description: Pre-built Docker image (ghcr.io/haifengl/smile-serve) for inference server deployment.

@@ -1,0 +1,144 @@
+name: ralph-claude-code
+node_id: "repo::frankbria/ralph-claude-code"
+github_full_name: frankbria/ralph-claude-code
+html_url: https://github.com/frankbria/ralph-claude-code
+source: remote_metadata
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep/ralph-claude-code.yaml
+  as_of: "2026-03-17"
+  sourcing_method: code_verified
+directory: "remote::frankbria/ralph-claude-code"
+category: agent_cli
+
+summary: |
+  Autonomous AI development loop for Claude Code with intelligent exit detection,
+  rate limiting, circuit breaker, and session management. Implements the Geoffrey
+  Huntley "Ralph" pattern. Bash-based with modular library architecture. 566+ tests.
+
+architecture:
+  style: modular_bash_scripts
+  entry_points:
+    - "ralph_loop.sh — main autonomous loop executing Claude Code repeatedly"
+    - "ralph_monitor.sh — live tmux monitoring dashboard"
+    - "setup.sh — new project initialization"
+    - "ralph_enable.sh — interactive wizard for existing projects"
+    - "ralph_import.sh — PRD/spec import and conversion tool"
+  library_pattern: "Modular libraries in lib/ sourced by main scripts at startup"
+  project_layout: "Project state lives in .ralph/ subfolder to keep project root clean"
+
+key_features:
+  - title: Dual-condition exit gate
+    detail: "Requires BOTH completion_indicators >= 2 AND explicit EXIT_SIGNAL true from Claude to prevent premature exits"
+  - title: Circuit breaker
+    detail: "Three-state pattern (CLOSED/HALF_OPEN/OPEN) with configurable thresholds for no-progress, repeated errors, and permission denials"
+  - title: Rate limiting
+    detail: "100 calls/hour default with hourly reset and call tracking across restarts"
+  - title: Session continuity
+    detail: "Claude session ID persistence in .ralph/.claude_session_id with 24-hour expiration and --resume flag"
+  - title: Response analysis
+    detail: "JSON output parsing with automatic text fallback, semantic understanding, two-stage error filtering"
+  - title: Four-layer API limit detection
+    detail: "Timeout guard, structural JSON rate_limit_event, filtered text fallback, and Extra Usage quota detection"
+  - title: File protection
+    detail: "Three-layer strategy combining ALLOWED_TOOLS restrictions, PROMPT.md warnings, and pre-loop integrity validation"
+  - title: Live streaming
+    detail: "--live flag for real-time Claude Code output visibility via tmux"
+
+key_files:
+  - path: ralph_loop.sh
+    role: "Main loop script with rate limiting, exit detection, session management, and circuit breaker integration"
+  - path: ralph_monitor.sh
+    role: "tmux-based monitoring dashboard for tracking loop status"
+  - path: ralph_enable.sh
+    role: "5-phase interactive wizard for enabling Ralph in existing projects"
+  - path: ralph_import.sh
+    role: "PRD/spec import tool with JSON output format and text fallback"
+  - path: install.sh
+    role: "Global installation to ~/.local/bin/ and ~/.ralph/"
+  - path: setup.sh
+    role: "Project initialization script creating .ralph/ structure"
+  - path: create_files.sh
+    role: "Bootstrap script that creates the entire Ralph system"
+
+core_modules:
+  - module: lib/circuit_breaker.sh
+    responsibility: "Circuit breaker pattern with cooldown timer and auto-recovery; tracks no-progress, same-error, output-decline, and permission-denial thresholds"
+  - module: lib/response_analyzer.sh
+    responsibility: "Analyzes Claude Code output for completion signals, parses JSON/text responses, manages session IDs, detects questions and stuck loops"
+  - module: lib/date_utils.sh
+    responsibility: "Cross-platform ISO timestamps, epoch time, and ISO-to-epoch conversion"
+  - module: lib/timeout_utils.sh
+    responsibility: "Cross-platform timeout (Linux timeout / macOS gtimeout) with portable_timeout() function"
+  - module: lib/enable_core.sh
+    responsibility: "Shared logic for ralph-enable commands including idempotency checks, project detection, and template generation"
+  - module: lib/wizard_utils.sh
+    responsibility: "Interactive prompt utilities (confirm, select, prompt_text) with POSIX compatibility"
+  - module: lib/task_sources.sh
+    responsibility: "Task import from beads, GitHub Issues, and PRD documents with normalization"
+  - module: lib/file_protection.sh
+    responsibility: "Validates required Ralph paths exist before each loop iteration"
+
+tech_stack:
+  language: Bash (POSIX-compatible where possible)
+  testing: "BATS (Bash Automated Testing System) with bats-assert and bats-support"
+  test_count: "566+ tests across 17 test files"
+  ci: "GitHub Actions (test.yml, claude.yml, claude-code-review.yml)"
+  dependencies: "jq, tmux, Claude Code CLI (claude), git, GNU coreutils"
+  package_manager: npm (for BATS test runner only)
+
+configuration:
+  project_config_file: ".ralphrc"
+  key_variables:
+    - "MAX_CALLS_PER_HOUR — API call rate limit (default 100)"
+    - "CLAUDE_TIMEOUT_MINUTES — per-execution timeout (default 15)"
+    - "CLAUDE_OUTPUT_FORMAT — json or text (default json)"
+    - "CLAUDE_ALLOWED_TOOLS — granular tool permissions string"
+    - "CLAUDE_USE_CONTINUE — session continuity toggle (default true)"
+    - "CLAUDE_SESSION_EXPIRY_HOURS — session expiration (default 24)"
+    - "CLAUDE_CODE_CMD — Claude CLI command path (default claude)"
+    - "CLAUDE_AUTO_UPDATE — auto-update CLI at startup (default true)"
+    - "CB_COOLDOWN_MINUTES — circuit breaker cooldown (default 30)"
+    - "CB_AUTO_RESET — bypass cooldown on startup (default false)"
+  project_structure: |
+    .ralph/
+      PROMPT.md      — main development instructions
+      fix_plan.md    — prioritized task list
+      AGENT.md       — build/run instructions
+      status.json    — real-time status tracking
+      logs/          — execution logs
+      specs/         — project specifications
+
+cli_arguments:
+  - flag: "--monitor"
+    description: "Start with integrated tmux monitoring"
+  - flag: "--calls N"
+    description: "Set max API calls per hour"
+  - flag: "--live"
+    description: "Enable real-time streaming output"
+  - flag: "--resume <session_id>"
+    description: "Resume specific Claude session"
+  - flag: "--no-continue"
+    description: "Disable session continuity"
+  - flag: "--output-format json|text"
+    description: "Set Claude output format"
+  - flag: "--status"
+    description: "Show current Ralph status"
+  - flag: "--reset-circuit"
+    description: "Reset circuit breaker state"
+  - flag: "--auto-reset-circuit"
+    description: "Auto-reset OPEN circuit breaker on startup"
+  - flag: "--reset-session"
+    description: "Reset session state manually"
+
+testing:
+  framework: BATS
+  test_locations:
+    - tests/unit/ (13 test files)
+    - tests/integration/
+  notable_suites:
+    - "test_cli_modern.bats — 111 tests covering modern CLI commands, pipeline guards, API limit detection"
+    - "test_exit_detection.bats — 54 tests for exit signal detection and dual-condition gate"
+    - "test_json_parsing.bats — 52 tests for JSON output format parsing and session management"
+    - "test_project_setup.bats — 50 tests for setup.sh validation"
+  quality_gate: "100% test pass rate (coverage threshold disabled due to kcov subprocess limitations)"

@@ -1,0 +1,157 @@
+name: mini-agent
+node_id: "repo::minimax-ai/mini-agent"
+github_full_name: minimax-ai/mini-agent
+html_url: https://github.com/MiniMax-AI/Mini-Agent
+source: remote_metadata
+directory: "remote::minimax-ai/mini-agent"
+category: agent_orchestration
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep/minimax-ai__mini-agent.yaml
+  as_of: "2026-03-17"
+  sourcing_method: code_verified
+
+description: >
+  Minimal single-agent demo project showcasing best practices for building agents
+  with the MiniMax M2.5 model. Features interleaved thinking, persistent memory,
+  intelligent context management, Claude Skills integration, and MCP tool support.
+
+architecture:
+  style: single_agent_loop
+  pattern: "CLI entrypoint -> Agent loop (LLM call -> tool execution -> repeat)"
+  entry_point: mini_agent/cli.py (main function)
+  agent_core: mini_agent/agent.py (Agent class)
+  notes:
+    - "Agent.run() executes a step loop up to max_steps (default 50)"
+    - "Each step calls LLM, checks for tool_calls, executes tools, appends results"
+    - "Token-aware context management with automatic summarization when exceeding limit"
+    - "Cancellation support via asyncio.Event (Esc key listener in separate thread)"
+    - "Supports both interactive REPL mode and non-interactive --task mode"
+
+key_features:
+  - "Full agent execution loop with tool use"
+  - "Persistent session memory via SessionNoteTool (stores to .agent_memory.json)"
+  - "Automatic conversation summarization when tokens exceed configurable limit"
+  - "Claude Skills integration (15 professional skills loaded via git submodule)"
+  - "MCP (Model Context Protocol) tool integration for external tool servers"
+  - "Comprehensive logging to ~/.mini-agent/log/"
+  - "Interactive CLI with prompt-toolkit (auto-suggest, history, completions)"
+  - "Non-interactive mode via --task flag"
+  - "Esc-key cancellation of running agent tasks"
+  - "ACP (Agent Client Protocol) server for IDE integration (e.g., Zed editor)"
+
+key_files:
+  - path: mini_agent/cli.py
+    role: "CLI entry point; argument parsing, tool initialization, interactive REPL loop"
+  - path: mini_agent/agent.py
+    role: "Core Agent class; implements step-based execution loop with tool calls and context summarization"
+  - path: mini_agent/config.py
+    role: "Configuration management; loads YAML config with priority search (dev > user > package)"
+  - path: mini_agent/llm/base.py
+    role: "LLMClient base class for API communication"
+  - path: mini_agent/llm/anthropic_client.py
+    role: "Anthropic API client implementation"
+  - path: mini_agent/llm/openai_client.py
+    role: "OpenAI-compatible API client implementation"
+  - path: mini_agent/tools/base.py
+    role: "Tool and ToolResult base classes (Pydantic models with JSON Schema parameter definitions)"
+  - path: mini_agent/tools/file_tools.py
+    role: "ReadTool, WriteTool, EditTool for file operations"
+  - path: mini_agent/tools/bash_tool.py
+    role: "BashTool for shell command execution, plus BashOutputTool and BashKillTool"
+  - path: mini_agent/tools/note_tool.py
+    role: "SessionNoteTool for persistent memory across sessions"
+  - path: mini_agent/tools/mcp_loader.py
+    role: "Loads MCP tools from mcp.json configuration"
+  - path: mini_agent/tools/skill_tool.py
+    role: "Claude Skill tool integration (get_skill)"
+  - path: mini_agent/config/config-example.yaml
+    role: "Example configuration template"
+  - path: mini_agent/config/system_prompt.md
+    role: "Default system prompt for the agent"
+  - path: mini_agent/acp/server.py
+    role: "ACP server entry point for IDE integration"
+
+core_modules:
+  - name: Agent
+    path: mini_agent/agent.py
+    description: >
+      Core agent loop. Manages message history, calls LLM with tool schemas,
+      executes tool calls, and handles cancellation. Implements automatic
+      context summarization using tiktoken token estimation. Each step:
+      estimate tokens -> optionally summarize -> call LLM -> process tool_calls -> loop.
+  - name: Config
+    path: mini_agent/config.py
+    description: >
+      Pydantic-based configuration with YAML loading. Config search priority:
+      1) mini_agent/config/config.yaml (dev), 2) ~/.mini-agent/config/config.yaml (user),
+      3) package dir (installed). Contains LLMConfig, AgentConfig, ToolsConfig, MCPConfig.
+  - name: Tool system
+    path: mini_agent/tools/
+    description: >
+      Base Tool class with name/description/parameters properties and async execute method.
+      ToolResult is a Pydantic model with success, content, and error fields.
+      Tools produce both Anthropic and OpenAI schema formats.
+
+implementation_patterns:
+  - pattern: "Step-based agent loop with max_steps guard"
+    example: "Agent.run() iterates up to max_steps, each step calling LLM and executing tool_calls"
+  - pattern: "Token-aware context management"
+    example: "Agent._summarize_messages() uses tiktoken (cl100k_base) estimation, triggers LLM-based summarization when exceeding token_limit"
+  - pattern: "Pydantic models for configuration and tool results"
+  - pattern: "Priority-based config file resolution (dev > user > package)"
+  - pattern: "Async/await throughout (asyncio.run in CLI main)"
+  - pattern: "Thread-based keyboard listener for Esc cancellation"
+
+configuration:
+  format: YAML
+  primary_file: config.yaml
+  search_paths:
+    - "mini_agent/config/config.yaml (development)"
+    - "~/.mini-agent/config/config.yaml (user)"
+    - "<package>/config/config.yaml (installed)"
+  key_settings:
+    - "api_key: MiniMax API key"
+    - "api_base: API endpoint (global or China)"
+    - "model: LLM model name (default MiniMax-M2.5)"
+    - "max_steps: maximum agent steps per run (default 50)"
+    - "tools.*: enable/disable individual tool categories"
+    - "tools.mcp.*: MCP timeout configuration"
+    - "retry.*: LLM retry settings with exponential backoff"
+
+cli_arguments:
+  - "--workspace, -w: workspace directory (default: cwd)"
+  - "--task, -t: execute task non-interactively"
+  - "--version, -v: show version"
+  - "log [filename]: show/read log files"
+
+api_surface:
+  entry_points:
+    - "mini-agent (CLI): mini_agent.cli:main"
+    - "mini-agent-acp (ACP server): mini_agent.acp.server:main"
+  providers:
+    - "Anthropic-compatible (default for MiniMax)"
+    - "OpenAI-compatible"
+
+tech_stack:
+  language: Python 3.10+
+  package_manager: uv
+  build_system: setuptools
+  key_dependencies:
+    - "httpx: async HTTP client for LLM API calls"
+    - "pydantic: configuration and data models"
+    - "pyyaml: YAML configuration loading"
+    - "tiktoken: token counting for context management"
+    - "prompt-toolkit: interactive CLI with auto-suggest and history"
+    - "mcp: Model Context Protocol client"
+    - "anthropic: Anthropic SDK"
+    - "openai: OpenAI SDK"
+    - "agent-client-protocol: ACP integration"
+
+testing:
+  framework: pytest with pytest-asyncio
+  test_dir: tests/
+  coverage:
+    - "Unit tests for tools and LLM client"
+    - "Functional tests for SessionNoteTool and MCP loading"
+    - "Integration tests for agent end-to-end execution"

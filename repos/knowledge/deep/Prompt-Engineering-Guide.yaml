@@ -1,0 +1,148 @@
+name: Prompt-Engineering-Guide
+node_id: "repo::dair-ai/prompt-engineering-guide"
+github_full_name: dair-ai/prompt-engineering-guide
+html_url: https://github.com/dair-ai/prompt-engineering-guide
+source: remote_metadata
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep/Prompt-Engineering-Guide.yaml
+  as_of: "2026-03-17"
+  sourcing_method: code_verified
+directory: Prompt-Engineering-Guide-main
+category: educational
+
+summary: |
+  Comprehensive prompt engineering guide and reference site by DAIR.AI.
+  Built as a Next.js documentation site using Nextra theme, with content
+  in MDX format across 14 language locales. Covers prompting techniques,
+  LLM model guides, applications, research papers, and a prompt hub.
+
+architecture:
+  style: static_documentation_site
+  framework: Next.js with Nextra docs theme
+  content_format: MDX files organized by locale and topic
+  rendering: Server-side rendered via Next.js, deployed as static site
+  i18n_strategy: File-based locale routing with nextra/locales middleware
+
+key_features:
+  - title: Multi-language support
+    detail: "14 locales (en, zh, jp, pt, tr, es, it, fr, kr, ca, fi, ru, de, ar) with file-based i18n routing"
+  - title: Prompting techniques catalog
+    detail: "Covers zero-shot, few-shot, chain-of-thought, self-consistency, tree-of-thoughts, RAG, ReAct, prompt chaining, and more"
+  - title: Model-specific guides
+    detail: "Dedicated pages for ChatGPT, GPT-4, LLaMA, Mistral, Mixtral, Gemini, Claude-3, Code Llama, OLMo, Phi-2, and others"
+  - title: Prompt Hub
+    detail: "Curated prompt examples for classification, coding, creativity, evaluation, information extraction, reasoning, and more"
+  - title: Interactive notebooks
+    detail: "Jupyter notebooks in notebooks/ for hands-on exercises (RAG, function calling, LiteLLM, ChatGPT, Mixtral)"
+  - title: LaTeX rendering
+    detail: "LaTeX support enabled via KaTeX for mathematical notation in content"
+  - title: Copy page dropdown
+    detail: "CopyPageDropdown component on English pages for easy content sharing"
+  - title: Lecture materials
+    detail: "Dedicated lecture/ directory with presentation content"
+
+key_files:
+  - path: next.config.js
+    role: "Nextra configuration with i18n locale list, SVG loader setup, and LaTeX enabled"
+  - path: theme.config.tsx
+    role: "Nextra theme configuration defining logo, i18n locale labels, head metadata, footer, search, git timestamps, and navbar"
+  - path: middleware.js
+    role: "Exports nextra locales middleware for i18n routing"
+  - path: package.json
+    role: "Defines nextra-docs-template with Next.js 13, Nextra 2.13, React 18, KaTeX, FontAwesome, Vercel Analytics"
+  - path: pages/_meta.en.json
+    role: "English navigation structure defining section order and external course links menu"
+  - path: pages/_app.tsx
+    role: Next.js custom app entry point
+  - path: tsconfig.json
+    role: TypeScript configuration
+
+core_modules:
+  - module: pages/
+    responsibility: "All MDX content organized by topic and locale"
+    subdirectories:
+      - "pages/techniques/ — prompting technique pages (zeroshot, fewshot, cot, tot, rag, react, etc.)"
+      - "pages/models/ — LLM model guides (chatgpt, gpt-4, llama, mistral, gemini, claude-3, etc.)"
+      - "pages/applications/ — practical applications (function calling, code generation, data generation)"
+      - "pages/prompts/ — prompt hub with categorized examples"
+      - "pages/introduction/ — introductory content on prompt engineering basics"
+      - "pages/research/ — LLM research findings"
+      - "pages/risks/ — risks and misuse documentation"
+      - "pages/agents/ — AI agents content"
+      - "pages/guides/ — supplementary guides"
+  - module: components/
+    responsibility: "React components for site UI"
+    key_files:
+      - "components/CopyPageDropdown.tsx — dropdown for copying page content"
+      - "components/pre.tsx — custom code block pre component"
+      - "components/CodeBlock.tsx — code block rendering"
+      - "components/TabsComponent.tsx — tabbed content display"
+      - "components/CourseCard.tsx — course card component"
+  - module: notebooks/
+    responsibility: "Jupyter notebooks for hands-on exercises"
+    examples:
+      - pe-rag.ipynb
+      - pe-function-calling.ipynb
+      - pe-chatgpt-langchain.ipynb
+      - react.ipynb
+  - module: guides/
+    responsibility: Additional written guides and supplementary content
+  - module: lecture/
+    responsibility: Lecture and presentation materials
+
+tech_stack:
+  runtime: Node.js
+  framework: "Next.js 13.5"
+  theme: "Nextra 2.13 (nextra-theme-docs)"
+  language: TypeScript
+  ui: "React 18"
+  math_rendering: "KaTeX 0.16"
+  icons: "FontAwesome (SVG core + React)"
+  analytics: "@vercel/analytics"
+  svg_loading: "@svgr/webpack"
+  git_integration: "@napi-rs/simple-git (for git timestamps)"
+  package_manager: pnpm (pnpm-lock.yaml present) and npm (package-lock.json present)
+
+configuration:
+  i18n_locales:
+    - en (default)
+    - zh
+    - jp
+    - pt
+    - tr
+    - es
+    - it
+    - fr
+    - kr
+    - ca
+    - fi
+    - ru
+    - de
+    - ar
+  nextra_options:
+    theme: nextra-theme-docs
+    themeConfig: ./theme.config.tsx
+    latex: true
+
+implementation_patterns:
+  - pattern: File-based i18n
+    detail: "Each content page has per-locale variants (e.g., cot.en.mdx, cot.zh.mdx, cot.jp.mdx). Navigation metadata in _meta.{locale}.json per directory."
+  - pattern: MDX content
+    detail: "All documentation pages are MDX (Markdown + JSX), allowing embedded React components within content"
+  - pattern: Nextra convention
+    detail: "Directory structure under pages/ directly maps to URL routes. _meta.json files control ordering and titles."
+  - pattern: Custom pre component
+    detail: "Pre element overridden in theme config to use components/pre.tsx for enhanced code blocks"
+
+common_tasks:
+  - task: Run development server
+    command: "npm run dev (or pnpm dev)"
+  - task: Build for production
+    command: "npm run build"
+  - task: Start production server
+    command: "npm run start"
+  - task: Add new content page
+    steps: "Create {page-name}.{locale}.mdx in the appropriate pages/ subdirectory and add entry to _meta.{locale}.json"
+  - task: Add new language
+    steps: "Add locale code to next.config.js i18n.locales, add locale entry to theme.config.tsx i18n array, create _meta.{locale}.json and content files"

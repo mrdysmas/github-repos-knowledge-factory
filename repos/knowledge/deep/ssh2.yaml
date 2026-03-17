@@ -1,0 +1,191 @@
+name: ssh2
+node_id: repo::mscdex/ssh2
+github_full_name: mscdex/ssh2
+html_url: https://github.com/mscdex/ssh2
+source: remote_metadata
+directory: remote::mscdex/ssh2
+category: network_utils
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep/ssh2.yaml
+  as_of: "2026-03-17"
+  sourcing_method: code_verified
+
+architecture:
+  module_breakdown:
+    - module: lib/index.js
+      responsibility: Package entry point - re-exports Client, Server, agent classes, HTTP agents, and utils
+      key_files: [lib/index.js]
+    - module: lib/client.js
+      responsibility: SSH client implementation - connection, authentication, shell/exec/sftp session management
+      key_files: [lib/client.js]
+    - module: lib/server.js
+      responsibility: SSH server implementation - accepts connections, handles auth contexts (password, publickey, keyboard-interactive)
+      key_files: [lib/server.js]
+    - module: lib/Channel.js
+      responsibility: Duplex stream abstraction for SSH channels with flow control (MAX_WINDOW 2MB, PACKET_SIZE 32KB)
+      key_files: [lib/Channel.js]
+    - module: lib/agent.js
+      responsibility: SSH agent protocol implementations - OpenSSH, Pageant (Windows), Cygwin agent support
+      key_files: [lib/agent.js]
+    - module: lib/http-agents.js
+      responsibility: "Custom http.Agent/https.Agent that tunnel HTTP requests through SSH port forwarding"
+      key_files: [lib/http-agents.js]
+    - module: lib/keygen.js
+      responsibility: SSH key generation - RSA, ECDSA, ED25519 with OpenSSH format output
+      key_files: [lib/keygen.js]
+    - module: lib/protocol/
+      responsibility: Low-level SSH protocol layer - key exchange, crypto, SFTP, packet parsing
+      key_files: [lib/protocol/Protocol.js, lib/protocol/SFTP.js, lib/protocol/kex.js, lib/protocol/keyParser.js, lib/protocol/crypto.js, lib/protocol/constants.js]
+  data_flow: |
+    1. Client.connect() creates TCP socket, wraps it in Protocol instance
+    2. Protocol performs SSH handshake (version exchange, key exchange via kex.js)
+    3. Authentication proceeds (password, publickey, agent, keyboard-interactive)
+    4. On 'ready', user can open channels: shell(), exec(), sftp(), forwardIn/Out()
+    5. Each channel is a Duplex stream (Channel.js) with windowed flow control
+    6. SFTP sessions layer file operations atop a channel subsystem
+  key_abstractions:
+    - name: Client
+      purpose: EventEmitter that manages SSH connection lifecycle and channel creation
+    - name: Server
+      purpose: Net server wrapper that yields Connection objects with auth context handling
+    - name: Channel
+      purpose: Duplex stream for SSH channel with windowed flow control
+    - name: Protocol
+      purpose: Core SSH protocol state machine handling packets, kex, and message dispatch
+    - name: SFTP
+      purpose: SFTP protocol implementation with full file operation support
+
+key_features:
+  - Pure JavaScript SSH2 client and server (no native SSH dependencies)
+  - SFTP support with full file operation API (read, write, mkdir, stat, etc.)
+  - SSH agent forwarding (OpenSSH, Pageant, Cygwin)
+  - TCP port forwarding (local and remote) and SOCKS proxy support
+  - X11 forwarding
+  - "HTTP/HTTPS tunneling via custom http.Agent (SSHTTPAgent, SSHTTPSAgent)"
+  - SSH key generation (RSA, ECDSA, ED25519) in OpenSSH format
+  - Connection hopping (SSH through SSH)
+  - Keyboard-interactive authentication
+  - Optional native crypto acceleration via cpu-features
+
+key_files:
+  - path: lib/index.js
+    purpose: Package entry point exporting Client, Server, agents, HTTPAgent, utils
+  - path: lib/client.js
+    purpose: Client class - connect(), exec(), shell(), sftp(), forwardIn(), forwardOut()
+  - path: lib/server.js
+    purpose: Server class with AuthContext (password, publickey, keyboard-interactive)
+  - path: lib/Channel.js
+    purpose: Duplex stream channel with 2MB window and 32KB packet size
+  - path: lib/protocol/Protocol.js
+    purpose: Core SSH protocol state machine
+  - path: lib/protocol/SFTP.js
+    purpose: SFTP protocol with STATUS_CODE and OPEN_MODE constants
+  - path: lib/protocol/kex.js
+    purpose: Key exchange algorithms implementation
+  - path: lib/protocol/keyParser.js
+    purpose: SSH key parsing (OpenSSH, PEM, PPK formats)
+  - path: lib/protocol/constants.js
+    purpose: SSH protocol constants - DEFAULT_CIPHER, DEFAULT_KEX, DEFAULT_MAC, DISCONNECT_REASON
+  - path: install.js
+    purpose: Optional native addon build for crypto acceleration
+
+implementation_patterns:
+  - pattern: EventEmitter-based API
+    description: Client and Server extend EventEmitter; lifecycle events like ready, error, close, authentication drive the flow
+    location: lib/client.js, lib/server.js
+  - pattern: Windowed Flow Control
+    description: "Channels use MAX_WINDOW (2MB) with WINDOW_THRESHOLD (1MB) triggering windowAdjust messages"
+    location: lib/Channel.js
+  - pattern: Lazy Module Loading
+    description: http-agents.js defers require of client.js until first use to avoid circular dependencies
+    location: lib/http-agents.js
+  - pattern: Auth Context Chain
+    description: Server creates typed AuthContext subclasses (password, publickey, hostbased, keyboard-interactive) with accept/reject callbacks
+    location: lib/server.js
+  - pattern: Optional Native Acceleration
+    description: install.js attempts to build native crypto addon; falls back gracefully to pure JS
+    location: install.js
+
+configuration:
+  file: "Client.connect() options object (no config file)"
+  options:
+    - name: host
+      type: string
+      default: "localhost"
+      description: SSH server hostname
+    - name: port
+      type: number
+      default: 22
+      description: SSH server port
+    - name: username
+      type: string
+      default: required
+      description: Username for authentication
+    - name: password
+      type: string
+      default: none
+      description: Password for password authentication
+    - name: privateKey
+      type: string/Buffer
+      default: none
+      description: Private key for publickey authentication
+    - name: agent
+      type: string
+      default: none
+      description: SSH agent socket path (e.g. SSH_AUTH_SOCK)
+    - name: keepaliveInterval
+      type: number
+      default: 0
+      description: Milliseconds between keepalive packets
+    - name: keepaliveCountMax
+      type: number
+      default: 3
+      description: Max unanswered keepalives before disconnect
+
+api_surface:
+  public_classes:
+    - name: Client
+      purpose: SSH client connection and channel management
+      key_methods:
+        - "connect(config) - establish SSH connection"
+        - "exec(command, opts, cb) - execute remote command"
+        - "shell(opts, cb) - open interactive shell"
+        - "sftp(cb) - open SFTP session"
+        - "forwardIn(bindAddr, bindPort, cb) - remote port forwarding"
+        - "forwardOut(srcIP, srcPort, dstIP, dstPort, cb) - local port forwarding"
+        - "openssh_forwardInStreamLocal(socketPath, cb) - Unix socket forwarding"
+    - name: Server
+      purpose: SSH server that emits connection events with auth handling
+      key_methods:
+        - "listen(port, host, cb) - start SSH server"
+    - name: SFTP
+      purpose: SFTP file operations over SSH channel
+      key_methods:
+        - "readdir, open, close, read, write, mkdir, rmdir, stat, unlink, rename, chmod, chown"
+    - name: HTTPAgent / HTTPSAgent
+      purpose: "http.Agent implementations that tunnel through SSH"
+  exports:
+    - "Client, Server, AgentProtocol, BaseAgent, createAgent"
+    - "OpenSSHAgent, PageantAgent, CygwinAgent"
+    - "HTTPAgent, HTTPSAgent"
+    - "utils.parseKey, utils.generateKeyPair, utils.generateKeyPairSync"
+    - "utils.sftp.OPEN_MODE, utils.sftp.STATUS_CODE"
+
+tech_stack:
+  runtime: Node.js >= 10.16.0
+  language: JavaScript (CommonJS)
+  dependencies:
+    - "asn1 (^0.2.6) - ASN.1/BER encoding for key parsing"
+    - "bcrypt-pbkdf (^1.0.2) - bcrypt key derivation for OpenSSH key format"
+  optional_dependencies:
+    - "cpu-features (~0.0.10) - native CPU feature detection for crypto acceleration"
+    - "nan (^2.23.0) - native addon abstraction"
+
+testing:
+  framework: Custom test runner (node test/test.js)
+  structure: test/test.js
+  coverage_areas:
+    - Client connection and authentication
+    - SFTP operations
+    - Key parsing and generation

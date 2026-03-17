@@ -1,0 +1,137 @@
+name: copilot-cli
+node_id: repo::github/copilot-cli
+github_full_name: github/copilot-cli
+html_url: https://github.com/github/copilot-cli
+source: remote_metadata
+directory: remote::github/copilot-cli
+category: agent_cli
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep/github__copilot-cli.yaml
+  as_of: "2026-03-17"
+  sourcing_method: code_verified
+
+architecture:
+  overview: |
+    GitHub Copilot CLI is a closed-source terminal AI agent distributed as prebuilt binaries.
+    The public repository contains only documentation (README.md, changelog.md),
+    an install script (install.sh), and license information. The actual agent binary
+    is downloaded from GitHub Releases as a platform-specific tarball.
+  distribution_model: |
+    Binaries are built and released via GitHub Releases. The install script downloads
+    the correct binary for the user's platform (darwin/linux) and architecture (x64/arm64),
+    validates SHA256 checksums, and places the binary in PREFIX/bin/.
+
+key_features:
+  - "Terminal-native AI agent: build, edit, debug, and refactor code via natural language"
+  - "GitHub integration: access repos, issues, PRs authenticated via GitHub account"
+  - "MCP-powered extensibility: ships with GitHub MCP server, supports custom MCP servers"
+  - "Full control: preview every action before execution"
+  - "Multi-model support: Claude Sonnet 4.5 (default), Claude Sonnet 4, GPT-5 via /model command"
+  - "LSP integration: configurable language server support for code intelligence"
+  - "Experimental autopilot mode: agent continues working until task completion (Shift+Tab)"
+  - "Cross-platform: macOS, Linux, Windows (via winget)"
+  - "Plugin system: .claude-plugin/plugin.json discovery, marketplace manifests"
+  - "Sub-agent support: task dispatching with human-readable IDs"
+
+key_files:
+  - path: install.sh
+    purpose: Cross-platform install script - detects OS/arch, downloads binary, validates checksum
+  - path: README.md
+    purpose: Documentation covering installation, authentication, LSP config, usage
+  - path: changelog.md
+    purpose: Version history with detailed feature and bugfix notes
+  - path: LICENSE.md
+    purpose: License file
+
+implementation_patterns:
+  - pattern: Platform Detection Install
+    description: "install.sh uses uname -s for OS (Darwin/Linux) and uname -m for arch (x64/arm64), falls back to winget on Windows"
+    location: install.sh
+  - pattern: SHA256 Checksum Validation
+    description: Downloads SHA256SUMS.txt from releases and validates tarball integrity using sha256sum or shasum
+    location: install.sh
+  - pattern: Graceful PATH Setup
+    description: "Detects shell profile (zsh/bash) and offers to add install dir to PATH if not already present"
+    location: install.sh
+  - pattern: Token-Based Auth
+    description: "Supports GH_TOKEN/GITHUB_TOKEN env vars for both install-time auth and runtime Copilot access"
+    location: install.sh, README.md
+  - pattern: Fine-Grained PAT
+    description: "Authentication via fine-grained Personal Access Token with 'Copilot Requests' permission"
+    location: README.md
+
+configuration:
+  file: "~/.copilot/lsp-config.json (user-level), .github/lsp.json (repo-level)"
+  options:
+    - name: lspServers
+      type: object
+      default: "{}"
+      description: "Map of language server configs with command, args, and fileExtensions"
+  cli_flags:
+    - name: "--banner"
+      description: Show animated banner on launch
+    - name: "--experimental"
+      description: Enable experimental features (autopilot mode)
+  slash_commands:
+    - name: /login
+      description: Authenticate with GitHub
+    - name: /model
+      description: Choose AI model (Claude Sonnet 4.5, Claude Sonnet 4, GPT-5)
+    - name: /experimental
+      description: Toggle experimental mode (on/off)
+    - name: /feedback
+      description: Submit confidential feedback survey
+    - name: /lsp
+      description: View configured LSP server status
+    - name: /help
+      description: Display help dialog
+    - name: /clear
+      description: Clear session
+    - name: /pr
+      description: Create/view PRs, fix CI, address reviews
+    - name: /version
+      description: Display version and check for updates
+    - name: /extensions
+      description: View, enable, and disable CLI extensions
+  env_vars:
+    - "GH_TOKEN / GITHUB_TOKEN - authentication token (in order of precedence)"
+    - "PREFIX - custom install directory (default: /usr/local for root, ~/.local for user)"
+    - "VERSION - specific version to install (default: latest)"
+    - "COPILOT_CUSTOM_INSTRUCTIONS_DIRS - custom instruction file paths"
+
+cli_arguments:
+  install:
+    - "curl -fsSL https://gh.io/copilot-install | bash"
+    - "brew install copilot-cli"
+    - "winget install GitHub.Copilot"
+    - "npm install -g @github/copilot"
+  run:
+    - "copilot - launch interactive session"
+    - "copilot help - show usage information"
+    - "copilot --banner - show animated banner"
+    - "copilot --experimental - enable experimental features"
+
+integrations:
+  - name: GitHub MCP Server
+    description: Ships built-in for repo, issue, and PR access via natural language
+  - name: Custom MCP Servers
+    description: User-configurable MCP server extensions
+  - name: LSP Servers
+    description: "Language server protocol for go-to-definition, hover, diagnostics"
+  - name: VS Code Terminal
+    description: Integration with VS Code integrated terminal
+  - name: Plugin System
+    description: ".claude-plugin/plugin.json discovery, marketplace support"
+
+tech_stack:
+  distribution: Prebuilt binary (platform-specific tarballs)
+  platforms:
+    - "macOS (darwin x64/arm64)"
+    - "Linux (x64/arm64)"
+    - "Windows (via winget or npm)"
+  install_methods:
+    - "Shell script (curl/wget)"
+    - "Homebrew"
+    - "winget"
+    - "npm (@github/copilot)"

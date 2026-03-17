@@ -1,0 +1,218 @@
+name: obs-studio
+node_id: "repo::obsproject/obs-studio"
+github_full_name: obsproject/obs-studio
+html_url: https://github.com/obsproject/obs-studio
+source: remote_metadata
+directory: "remote::obsproject/obs-studio"
+category: ui_tools
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep/obs-studio.yaml
+  as_of: "2026-03-17"
+  sourcing_method: code_verified
+
+architecture:
+  overview: |
+    OBS Studio is a C/C++ application for video capture, compositing, encoding, recording, and streaming.
+    It follows a layered architecture: libobs (core C library) provides the media pipeline and plugin API,
+    graphics backends (OpenGL, D3D11, Metal) handle rendering, and the Qt-based frontend provides the GUI.
+    Extensibility comes from a rich plugin system with ~37 bundled plugins for capture, encoding, output,
+    and filtering.
+  module_breakdown:
+    - module: libobs/
+      responsibility: Core library implementing the OBS media pipeline - sources, scenes, outputs, encoders, services, audio/video mixing, module loading
+      key_files: [libobs/obs.h, libobs/obs.c, libobs/obs-source.c, libobs/obs-output.c, libobs/obs-encoder.c, libobs/obs-scene.c]
+    - module: libobs/graphics/
+      responsibility: Graphics abstraction layer with effects, shaders, textures, math utilities
+      key_files: [libobs/graphics/graphics.h, libobs/graphics/effect.c, libobs/graphics/vec2.h]
+    - module: libobs/media-io/
+      responsibility: Audio and video I/O pipelines, format conversion, resampling
+      key_files: [libobs/media-io/audio-io.c, libobs/media-io/video-io.c, libobs/media-io/format-conversion.c]
+    - module: libobs-opengl/
+      responsibility: OpenGL graphics backend (cross-platform)
+      key_files: [libobs-opengl/]
+    - module: libobs-d3d11/
+      responsibility: Direct3D 11 graphics backend (Windows)
+      key_files: [libobs-d3d11/]
+    - module: libobs-metal/
+      responsibility: Metal graphics backend (macOS)
+      key_files: [libobs-metal/]
+    - module: frontend/
+      responsibility: Qt-based desktop GUI application with docks, dialogs, settings, scene management
+      key_files: [frontend/obs-main.cpp, frontend/OBSApp.cpp, frontend/OBSApp.hpp]
+    - module: frontend/api/
+      responsibility: Frontend API exposing event hooks and control functions for plugins
+      key_files: [frontend/api/obs-frontend-api.h, frontend/api/obs-frontend-api.cpp]
+    - module: plugins/
+      responsibility: ~37 bundled plugins for capture, encoding, output, filters, and streaming services
+      key_files: [plugins/CMakeLists.txt]
+  data_flow: |
+    1. Sources capture raw video/audio data (camera, screen, window, audio devices)
+    2. Scenes compose sources with transforms, filters, and transitions
+    3. The video pipeline mixes scene output through the graphics subsystem
+    4. Audio pipeline mixes and resamples audio from all active sources
+    5. Encoders (x264, NVENC, QSV, VideoToolbox) compress the mixed A/V
+    6. Outputs send encoded data to files (recording) or streaming services (RTMP/WebRTC)
+    7. The frontend GUI controls all of this via the libobs C API and frontend API
+
+key_features:
+  - Real-time video compositing with scene/source hierarchy and transitions
+  - Multi-platform support (Windows, macOS, Linux) with native graphics backends
+  - Hardware-accelerated encoding via NVENC, QSV, VideoToolbox, AMF
+  - Software encoding via x264 and FFmpeg
+  - RTMP streaming and WebRTC output support
+  - Plugin architecture with ~37 bundled plugins
+  - Studio Mode with preview/program dual-view
+  - Virtual camera output
+  - Replay buffer for instant replay capture
+  - WebSocket remote control (obs-websocket plugin)
+  - Browser source for web-based overlays (obs-browser plugin using CEF)
+  - Audio mixing with per-source filters, monitoring, and volume controls
+  - Scene collections and profile management
+  - HEVC/AV1 encoding support
+
+key_files:
+  - path: CMakeLists.txt
+    purpose: Root build configuration defining build options (ENABLE_UI, ENABLE_SCRIPTING, ENABLE_HEVC) and subdirectory includes
+  - path: CMakePresets.json
+    purpose: CMake presets for platform-specific builds with prebuilt dependency hashes and streaming service OAuth config
+  - path: libobs/obs.h
+    purpose: "Main public API header (2694 lines) defining all opaque types: obs_source_t, obs_scene_t, obs_output_t, obs_encoder_t, obs_service_t, obs_canvas_t"
+  - path: libobs/obs.c
+    purpose: Core initialization, shutdown, and global state management
+  - path: libobs/obs-source.c
+    purpose: Source implementation (capture devices, media sources, scene items)
+  - path: libobs/obs-output.c
+    purpose: Output implementation (recording to file, streaming to services)
+  - path: libobs/obs-encoder.c
+    purpose: Encoder abstraction for video and audio compression
+  - path: libobs/obs-scene.c
+    purpose: Scene graph managing source items with transforms and ordering
+  - path: frontend/obs-main.cpp
+    purpose: Application entry point, logging setup, crash handler init
+  - path: frontend/OBSApp.cpp
+    purpose: QApplication subclass managing app lifecycle, themes, and window state
+  - path: frontend/api/obs-frontend-api.h
+    purpose: Frontend plugin API defining obs_frontend_event enum and source list utilities
+
+core_modules:
+  - name: libobs (core library)
+    description: C library providing the complete media pipeline with reference-counted objects, signal/callback system, and plugin module loading
+  - name: Graphics backends
+    description: Platform-specific rendering via OpenGL (all platforms), D3D11 (Windows), and Metal (macOS)
+  - name: Frontend (Qt GUI)
+    description: Desktop application with scene editor, audio mixer, settings, docks (browser, YouTube chat), and studio mode
+  - name: Capture plugins
+    description: win-capture (game/window/display), mac-capture, linux-capture, linux-pipewire, linux-v4l2, mac-avcapture
+  - name: Encoder plugins
+    description: obs-x264, obs-nvenc, obs-qsv11, mac-videotoolbox, obs-ffmpeg
+  - name: Output plugins
+    description: obs-outputs (RTMP/FLV), obs-ffmpeg (recording formats), obs-webrtc (WHIP/WebRTC)
+  - name: Filter plugins
+    description: obs-filters (color correction, chroma key, noise suppression), nv-filters (NVIDIA AI noise/background removal)
+  - name: Service plugins
+    description: rtmp-services (Twitch, YouTube, Restream service definitions)
+
+implementation_patterns:
+  - pattern: Opaque Type + C API
+    description: Core objects (obs_source_t, obs_output_t, etc.) are opaque structs with public C functions for creation, manipulation, and destruction
+    location: libobs/obs.h (lines 40-78 typedef declarations)
+  - pattern: Reference Counting
+    description: All core objects use reference counting (obs_source_addref/obs_source_release) for memory management
+    location: libobs/obs-source.h, libobs/obs-output.h
+  - pattern: Signal/Callback System
+    description: Objects emit signals for state changes; consumers register callbacks via signal handlers
+    location: libobs/callback/signal.h, libobs/callback/proc.h
+  - pattern: Plugin Module System
+    description: Plugins are shared libraries loaded at runtime via obs_module_load, registering sources/outputs/encoders/services
+    location: libobs/obs-module.c, libobs/obs-module.h
+  - pattern: Platform Abstraction
+    description: CMakeLists.txt conditionally includes platform-specific code via OS_WINDOWS, OS_MACOS, OS_LINUX checks
+    location: CMakeLists.txt (lines 23-30)
+  - pattern: Frontend Event System
+    description: obs_frontend_event enum defines ~35 lifecycle events (streaming start/stop, recording, scene changes, virtualcam) that plugins can observe
+    location: frontend/api/obs-frontend-api.h (lines 16-68)
+  - pattern: CMake Presets
+    description: CMakePresets.json defines build configurations with prebuilt dependency versions, hashes, and Qt6 requirements per platform
+    location: CMakePresets.json
+
+configuration:
+  build_system: CMake 3.28+ with CMakePresets.json
+  build_options:
+    - name: ENABLE_UI
+      type: bool
+      default: "ON"
+      description: Build the Qt-based frontend GUI
+    - name: ENABLE_SCRIPTING
+      type: bool
+      default: "ON"
+      description: Enable Lua/Python scripting support
+    - name: ENABLE_HEVC
+      type: bool
+      default: "ON"
+      description: Enable HEVC encoder support
+  streaming_service_env_vars:
+    - TWITCH_CLIENTID
+    - TWITCH_HASH
+    - YOUTUBE_CLIENTID
+    - YOUTUBE_SECRET
+    - RESTREAM_CLIENTID
+    - RESTREAM_HASH
+
+tech_stack:
+  languages: [C, C++, Objective-C]
+  build: CMake 3.28+
+  ui_framework: Qt 6
+  graphics_apis: [OpenGL, Direct3D 11, Metal]
+  encoding: [x264, FFmpeg, NVENC, QSV, VideoToolbox, AMF]
+  streaming_protocols: [RTMP, WebRTC/WHIP]
+  browser_integration: Chromium Embedded Framework (CEF) via obs-browser plugin
+  ci: GitHub Actions (push.yaml, build-project.yaml, check-format.yaml)
+  documentation: Sphinx (docs/sphinx/)
+  license: GPLv2+
+
+testing:
+  structure: test/ directory with test-input plugin for testing
+  ci_workflows:
+    - push.yaml (main branch builds)
+    - build-project.yaml (reusable build workflow)
+    - check-format.yaml (code formatting verification)
+    - analyze-project.yaml (static analysis)
+
+api_surface:
+  key_types:
+    - name: obs_source_t
+      purpose: Represents any video/audio source (capture device, media file, scene, browser source)
+    - name: obs_scene_t
+      purpose: Scene graph containing ordered scene items with transforms
+    - name: obs_output_t
+      purpose: Output target for encoded data (file recording, streaming endpoint)
+    - name: obs_encoder_t
+      purpose: Video or audio encoder instance
+    - name: obs_service_t
+      purpose: Streaming service configuration (server URL, stream key)
+    - name: obs_canvas_t
+      purpose: Rendering canvas for compositing scenes
+    - name: obs_display_t
+      purpose: Preview display for rendering to a window surface
+  frontend_events:
+    - OBS_FRONTEND_EVENT_STREAMING_STARTING/STARTED/STOPPING/STOPPED
+    - OBS_FRONTEND_EVENT_RECORDING_STARTING/STARTED/STOPPING/STOPPED
+    - OBS_FRONTEND_EVENT_SCENE_CHANGED
+    - OBS_FRONTEND_EVENT_VIRTUALCAM_STARTED/STOPPED
+    - OBS_FRONTEND_EVENT_REPLAY_BUFFER_SAVED
+    - OBS_FRONTEND_EVENT_STUDIO_MODE_ENABLED/DISABLED
+
+extension_points:
+  - location: libobs/obs-module.h
+    hook: obs_module_load / obs_register_source / obs_register_output / obs_register_encoder
+    example: Create a shared library plugin that registers custom sources, outputs, or encoders
+  - location: frontend/api/obs-frontend-api.h
+    hook: obs_frontend_event callback registration
+    example: Plugins observe frontend lifecycle events to add custom behavior
+  - location: plugins/ directory
+    hook: Adding bundled plugins
+    example: Create a new plugin directory with CMakeLists.txt, register in plugins/CMakeLists.txt
+  - location: frontend/docks/
+    hook: Custom dock widgets
+    example: Add new QDockWidget subclass for custom panel (e.g., BrowserDock, YouTubeChatDock)

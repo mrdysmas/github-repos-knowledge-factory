@@ -1,0 +1,202 @@
+name: kimi-cli
+node_id: "repo::moonshotai/kimi-cli"
+github_full_name: moonshotai/kimi-cli
+html_url: https://github.com/MoonshotAI/kimi-cli
+source: remote_metadata
+directory: "remote::moonshotai/kimi-cli"
+category: agent_cli
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep/moonshotai__kimi-cli.yaml
+  as_of: "2026-03-17"
+  sourcing_method: code_verified
+
+description: >
+  AI coding agent CLI by MoonshotAI. Runs in the terminal to help with software
+  development: reads/edits code, executes shell commands, searches/fetches web pages,
+  and plans actions autonomously. Supports multiple LLM providers, MCP tools,
+  VS Code extension, ACP integration, and a web UI mode.
+
+architecture:
+  style: agent_cli_with_multi_ui
+  pattern: "Typer CLI -> KimiCLI app -> KimiSoul agent runtime -> kosong chat provider -> tools"
+  entry_point: "src/kimi_cli/cli/__init__.py (cli function via typer)"
+  app_layer: "src/kimi_cli/app.py (KimiCLI class)"
+  agent_runtime: "src/kimi_cli/soul/ (KimiSoul, agent loader, context management)"
+  workspace_packages:
+    - "packages/kosong: core chat provider library"
+    - "packages/kaos: KaosPath and related utilities"
+    - "packages/kimi-code: VS Code extension"
+    - "sdks/kimi-sdk: Kimi SDK"
+  notes:
+    - "Multi-UI architecture: shell (interactive TUI), print (non-interactive), ACP server, Wire server, web UI"
+    - "Session management with persistence (Session.create, Session.continue_, Session.find)"
+    - "Reload loop pattern allows hot-reload of configuration without restarting"
+    - "SwitchToWeb exception transitions from TUI to web server mode"
+
+key_features:
+  - "Interactive shell-mode CLI with shell command integration (Ctrl-X toggle)"
+  - "Multi-provider LLM support (Kimi, OpenAI, Anthropic, Gemini, VertexAI)"
+  - "MCP tool integration with add/remove/list/auth subcommands"
+  - "Agent Client Protocol (ACP) server for IDE integration (Zed, JetBrains)"
+  - "VS Code extension (Kimi Code)"
+  - "Web UI mode (accessible via /web command or SwitchToWeb flow)"
+  - "Session management with resume/continue capability"
+  - "OAuth authentication (login/logout commands)"
+  - "Thinking mode toggle (--thinking/--no-thinking)"
+  - "Yolo mode (auto-approve all actions)"
+  - "Print mode for non-interactive piped usage with input/output format control"
+  - "Zsh integration via zsh-kimi-cli plugin"
+  - "Custom agent specifications (--agent, --agent-file)"
+  - "Export and visualization subcommands"
+  - "Skills directory support"
+
+key_files:
+  - path: src/kimi_cli/cli/__init__.py
+    role: "Main CLI entry point using Typer; defines all CLI options and subcommands"
+  - path: src/kimi_cli/app.py
+    role: "KimiCLI application class; creates sessions, configures LLM, runs UI modes"
+  - path: src/kimi_cli/config.py
+    role: "Configuration models (LLMProvider, LLMModel, LoopControl) using Pydantic with TOML/JSON support"
+  - path: src/kimi_cli/llm.py
+    role: "LLM abstraction; defines ProviderType, ModelCapability, LLM dataclass, and provider factory"
+  - path: src/kimi_cli/session.py
+    role: "Session management with create/find/continue/delete lifecycle"
+  - path: src/kimi_cli/agentspec.py
+    role: "Agent specification definitions (default and okabe agent files)"
+  - path: src/kimi_cli/soul/
+    role: "Agent runtime (KimiSoul, context management, agent loader)"
+  - path: src/kimi_cli/tools/
+    role: "Tool implementations (file ops, shell, web, planning, multi-agent, etc.)"
+  - path: src/kimi_cli/acp/
+    role: "Agent Client Protocol server implementation"
+  - path: src/kimi_cli/web/
+    role: "Web UI server (FastAPI + uvicorn)"
+  - path: src/kimi_cli/auth/
+    role: "OAuth authentication (login/logout flows)"
+  - path: src/kimi_cli/cli/mcp.py
+    role: "MCP subcommand group (add, remove, list, auth)"
+  - path: pyproject.toml
+    role: "Project metadata and dependencies; defines kimi and kimi-cli entry points"
+
+core_modules:
+  - name: CLI
+    path: src/kimi_cli/cli/
+    description: >
+      Typer-based CLI with extensive options. Supports shell/print/ACP/Wire UI modes.
+      Subcommands: login, logout, acp, term, mcp, export, vis, web, info.
+      Loop control via --max-steps-per-turn, --max-retries-per-step, --max-ralph-iterations.
+  - name: KimiCLI
+    path: src/kimi_cli/app.py
+    description: >
+      Application orchestrator. KimiCLI.create() factory method configures LLM provider,
+      loads agent spec, sets up MCP and skills. Exposes run_shell, run_print, run_acp,
+      run_wire_stdio methods for different UI modes.
+  - name: Tools
+    path: src/kimi_cli/tools/
+    description: >
+      Tool categories: ask_user, dmail, file operations, multi-agent, plan, shell,
+      think, todo, web. Each tool directory contains implementation modules.
+  - name: Soul
+    path: src/kimi_cli/soul/
+    description: >
+      Agent runtime core. KimiSoul manages the agent's reasoning loop.
+      Uses kosong ChatProvider for LLM communication.
+
+implementation_patterns:
+  - pattern: "Multi-UI architecture via match statement on UIMode enum"
+    example: "KimiCLI dispatches to run_shell/run_print/run_acp/run_wire_stdio based on UI mode"
+  - pattern: "Reload loop for hot configuration reloading"
+    example: "_reload_loop catches Reload exception and re-runs with preserved session_id"
+  - pattern: "Pydantic models with TOML/JSON config loading"
+    example: "Config uses AliasChoices, SecretStr, field_serializer for flexible config"
+  - pattern: "Workspace-scoped sessions with uv workspace monorepo"
+    example: "pyproject.toml defines workspace members: kosong, kaos, kimi-code, kimi-sdk"
+  - pattern: "OAuth flow with event-driven progress reporting"
+    example: "login command yields events (waiting, success, error) with rich console output"
+
+configuration:
+  format: "TOML (primary) or JSON"
+  primary_file: "~/.kimi/config.toml"
+  cli_override: "--config (string) or --config-file (path)"
+  key_settings:
+    - "Provider configuration (type, base_url, api_key, custom_headers, oauth)"
+    - "Model configuration (provider, model name, max_context_size, capabilities)"
+    - "Loop control (max_steps_per_turn, max_retries_per_step, max_ralph_iterations)"
+  mcp_config: "~/.kimi/mcp.json or via --mcp-config-file / --mcp-config flags"
+
+cli_arguments:
+  - "--work-dir, -w: working directory"
+  - "--session, -S: resume specific session"
+  - "--continue, -C: continue previous session"
+  - "--model, -m: LLM model override"
+  - "--thinking/--no-thinking: toggle thinking mode"
+  - "--yolo, --yes, -y: auto-approve all actions"
+  - "--prompt, -p, -c: non-interactive prompt"
+  - "--print: non-interactive print mode"
+  - "--acp: deprecated ACP server flag (use 'kimi acp')"
+  - "--wire: Wire server mode (experimental)"
+  - "--quiet: alias for --print --output-format text --final-message-only"
+  - "--agent: builtin agent spec (default, okabe)"
+  - "--agent-file: custom agent specification file"
+  - "--mcp-config-file: MCP config file path"
+  - "--skills-dir: skills directory override"
+  - "--max-steps-per-turn: loop step limit"
+
+api_surface:
+  entry_points:
+    - "kimi (CLI): kimi_cli.cli:cli"
+    - "kimi-cli (alias): kimi_cli.cli:cli"
+  subcommands:
+    - "kimi acp: run ACP server"
+    - "kimi login/logout: OAuth authentication"
+    - "kimi mcp add/remove/list/auth: MCP server management"
+    - "kimi export: export sessions"
+    - "kimi vis: visualization"
+    - "kimi web: web UI server"
+    - "kimi info: system information"
+    - "kimi term: Toad TUI backed by ACP server"
+  llm_providers:
+    - kimi
+    - openai_legacy
+    - openai_responses
+    - anthropic
+    - gemini
+    - vertexai
+
+tech_stack:
+  language: Python 3.12+
+  package_manager: uv
+  build_system: uv_build
+  cli_framework: Typer 0.21
+  key_dependencies:
+    - "kosong: in-house chat provider library (workspace package)"
+    - "pykaos: in-house path utilities (workspace package)"
+    - "aiohttp: async HTTP"
+    - "httpx: HTTP client with SOCKS proxy support"
+    - "rich: terminal formatting"
+    - "prompt-toolkit: interactive shell"
+    - "fastmcp: MCP client"
+    - "pydantic: data models and config"
+    - "fastapi + uvicorn: web UI server"
+    - "agent-client-protocol: ACP integration"
+    - "ripgrepy: code search"
+    - "trafilatura: web content extraction"
+    - "tenacity: retry logic"
+    - "keyring: credential storage"
+    - "loguru: structured logging"
+
+testing:
+  framework: pytest with pytest-asyncio
+  type_checking: pyright (strict mode on src/kimi_cli/)
+  linting: ruff
+  test_dirs:
+    - tests/
+    - tests_ai/
+    - tests_e2e/
+  make_targets:
+    - "make test: run all tests"
+    - "make check: linting and type checking"
+    - "make format: code formatting"
+    - "make build: build Python packages"
+    - "make build-bin: standalone binary via PyInstaller"

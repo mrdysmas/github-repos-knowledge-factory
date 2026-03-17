@@ -1,0 +1,137 @@
+name: self-llm
+node_id: "repo::datawhalechina/self-llm"
+github_full_name: datawhalechina/self-llm
+html_url: https://github.com/datawhalechina/self-llm
+source: remote_metadata
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep/self-llm.yaml
+  as_of: "2026-03-17"
+  sourcing_method: code_verified
+directory: self-llm_HOW-TO
+category: educational
+
+summary: |
+  Open-source LLM deployment and fine-tuning guide by Datawhale (Chinese community).
+  Provides step-by-step tutorials for 50+ open-source large language models covering
+  environment configuration, local deployment, inference, and efficient fine-tuning
+  (LoRA, ptuning). Targets Chinese beginners on Linux platforms.
+
+architecture:
+  style: tutorial_collection
+  note: "Not a software framework. Each model directory contains independent Markdown tutorials and Jupyter notebooks for deployment and fine-tuning."
+  organization: "Model-centric directory structure with per-model tutorials, plus cross-platform variants (AMD, Ascend, MLX)"
+
+key_features:
+  - title: 50+ model tutorials
+    detail: "Comprehensive coverage including Qwen, InternLM, ChatGLM, DeepSeek, LLaMA, Gemma, MiniCPM, GLM-4, Phi, Yi, and more"
+  - title: Multi-platform support
+    detail: "Tutorials for NVIDIA GPU (models/), AMD GPU (models_amd/), Huawei Ascend NPU (models_ascend/), and Apple MLX (models_mlx/)"
+  - title: Fine-tuning guides
+    detail: "Per-model LoRA fine-tuning tutorials with dataset examples and training scripts"
+  - title: General environment setup
+    detail: "models/General-Setting/ provides cross-model guides for pip/conda mirroring, AutoDL port setup, and model downloading"
+  - title: Example projects
+    detail: "examples/ directory with applied projects like Chat-Huanhuan (drama character chatbot), AMChat (math tutor), Tianji (social AI system), and Digital Life"
+  - title: Contributor tracking
+    detail: "utils.py + contributors.json system that parses support_model.md to count and rank contributor task completions"
+  - title: Dataset samples
+    detail: "dataset/ directory with sample fine-tuning data (huanhuan.json/jsonl)"
+
+key_files:
+  - path: README.md
+    role: "Main project overview (Chinese) with model list, learning path, and contributor credits"
+  - path: README_en.md
+    role: English translation of README
+  - path: support_model.md
+    role: "Complete model support matrix with links to individual tutorials and contributor attributions"
+  - path: support_model_amd.md
+    role: AMD GPU model support matrix
+  - path: support_model_Ascend.md
+    role: Huawei Ascend NPU model support matrix
+  - path: utils.py
+    role: "Contributor tracking script with update_contributors() and calculate_docker_hours() functions"
+  - path: contributors.json
+    role: "JSON registry of all contributors with GitHub links and task counts"
+
+core_modules:
+  - module: models/
+    responsibility: "NVIDIA GPU tutorials — 52 model directories each with deployment and fine-tuning guides"
+    notable_models:
+      - Qwen (1.0, 1.5, 2.0, 2.5, 3, 3-VL, Audio, Coder)
+      - InternLM (1, 2, 3)
+      - ChatGLM / GLM-4 / GLM-4.5 / GLM-4.7-Flash
+      - DeepSeek / DeepSeek-Coder-V2 / DeepSeek-R1-Distill-Qwen
+      - LLaMA3 / Llama3_1 / Llama4
+      - Gemma / Gemma2 / Gemma3
+      - MiniCPM / MiniCPM-o / MiniMax-M2
+      - BaiChuan / Yi / BlueLM / XVERSE
+  - module: models/General-Setting/
+    responsibility: "Cross-model setup guides"
+    key_files:
+      - "01-pip、conda换源.md — mirror configuration for pip and conda"
+      - "02-AutoDL开放端口.md — AutoDL GPU platform port setup"
+      - "03-模型下载.md — model downloading guide"
+      - "04-Issue&PR&update.md — contribution guide"
+  - module: models_amd/
+    responsibility: "AMD GPU (ROCm) specific tutorials"
+    models: [gemma3, qwen3]
+  - module: models_ascend/
+    responsibility: "Huawei Ascend NPU specific tutorials"
+    models: [qwen3]
+  - module: models_mlx/
+    responsibility: "Apple Silicon MLX framework tutorials with Gradio web UI"
+    key_files:
+      - "run_app_gradio.py — Gradio web interface for MLX model inference"
+      - "requirements.txt — MLX tutorial dependencies"
+  - module: examples/
+    responsibility: "Applied example projects demonstrating fine-tuned models"
+    projects:
+      - "Chat-嬛嬛 — Character chatbot fine-tuned on TV drama dialogue"
+      - "AMchat-高等数学 — Advanced math tutor based on InternLM2-Math-7B"
+      - "Tianji-天机 — Social AI system covering prompt engineering, RAG, and fine-tuning"
+      - "数字生命 — Digital life project creating personality-matched AI avatars"
+  - module: dataset/
+    responsibility: "Sample fine-tuning datasets"
+    files: [huanhuan.json, huanhuan.jsonl, huanhuan-100.json]
+
+tech_stack:
+  primary_language: Markdown (tutorials) and Python (utilities and notebooks)
+  target_platforms:
+    - "NVIDIA GPU (CUDA) — primary"
+    - "AMD GPU (ROCm)"
+    - "Huawei Ascend NPU"
+    - "Apple Silicon (MLX)"
+  common_frameworks:
+    - transformers (Hugging Face)
+    - peft (LoRA fine-tuning)
+    - xtuner (fine-tuning toolkit)
+    - LangChain (application integration)
+    - Gradio (demo web UIs)
+    - vLLM (inference serving)
+    - SwanLab (experiment tracking)
+  infrastructure:
+    - AutoDL (GPU cloud platform for tutorials)
+    - CodeWithGPU (Docker-based GPU containers)
+
+implementation_patterns:
+  - pattern: Per-model directory structure
+    detail: "Each model gets its own directory under models/ with numbered markdown files for each task (e.g., 01-env.md, 02-deploy.md, 03-lora.md)"
+  - pattern: Contributor attribution
+    detail: "Tutorials embed @contributor_name in support_model.md; utils.py parses these to auto-generate contributor rankings (LoRA tasks count 2 points, regular tasks count 1)"
+  - pattern: Multi-platform coverage
+    detail: "Same model may have tutorials in models/, models_amd/, models_ascend/, and models_mlx/ for different hardware targets"
+  - pattern: Docker hour tracking
+    detail: "utils.py calculate_docker_hours() queries CodeWithGPU API to track total runtime hours across all tutorial containers"
+
+common_tasks:
+  - task: Find tutorial for a specific model
+    steps: "Check support_model.md for the model name, click the link to the appropriate models/{ModelName}/ directory"
+  - task: Set up environment
+    steps: "Start with models/General-Setting/ guides for pip/conda mirrors and model downloading, then follow model-specific setup"
+  - task: Fine-tune a model with LoRA
+    steps: "Navigate to models/{ModelName}/, find the LoRA fine-tuning markdown file, follow step-by-step instructions"
+  - task: Update contributor rankings
+    command: "python utils.py"
+  - task: Run MLX web demo
+    command: "cd models_mlx && pip install -r requirements.txt && python run_app_gradio.py"

@@ -1,0 +1,148 @@
+name: superpowers
+node_id: repo::obra/superpowers
+github_full_name: obra/superpowers
+html_url: https://github.com/obra/superpowers
+source: remote_metadata
+directory: remote::obra/superpowers
+category: agent_framework
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep/superpowers.yaml
+  as_of: "2026-03-17"
+  sourcing_method: code_verified
+
+architecture:
+  module_breakdown:
+    - module: skills/
+      responsibility: Core skill library - markdown-based workflow definitions that agents auto-invoke
+      key_files:
+        - skills/brainstorming/SKILL.md
+        - skills/subagent-driven-development/SKILL.md
+        - skills/test-driven-development/SKILL.md
+        - skills/writing-plans/SKILL.md
+        - skills/executing-plans/SKILL.md
+        - skills/systematic-debugging/SKILL.md
+        - skills/using-superpowers/SKILL.md
+        - skills/writing-skills/SKILL.md
+    - module: hooks/
+      responsibility: Session lifecycle hooks that inject skill awareness at session start
+      key_files: [hooks/hooks.json, hooks/session-start, hooks/hooks-cursor.json]
+    - module: commands/
+      responsibility: Deprecated slash commands that redirect to skill invocations
+      key_files: [commands/brainstorm.md, commands/execute-plan.md, commands/write-plan.md, commands/code-reviewer.md]
+    - module: agents/
+      responsibility: Agent configuration files for subagent dispatch patterns
+      key_files: [agents/]
+    - module: tests/
+      responsibility: Integration and skill-triggering tests using shell scripts and prompt replay
+      key_files: [tests/skill-triggering/, tests/claude-code/, tests/subagent-driven-dev/]
+  data_flow: |
+    1. SessionStart hook fires (hooks/hooks.json triggers hooks/session-start)
+    2. session-start script reads using-superpowers/SKILL.md and injects as additionalContext
+    3. Agent receives skill awareness - must check skills before any response
+    4. When task matches a skill trigger, agent invokes the Skill tool
+    5. Skill content loads (SKILL.md), agent follows its checklist/process
+    6. Skills may dispatch subagents (subagent-driven-development) or chain to other skills
+  key_abstractions:
+    - name: Skill
+      purpose: A markdown file (SKILL.md) with frontmatter (name, description) that defines a mandatory workflow
+    - name: Hook
+      purpose: JSON-configured lifecycle event that injects context at session boundaries
+    - name: Subagent
+      purpose: Fresh agent instance dispatched per task with isolated context to prevent pollution
+
+key_features:
+  - Automatic skill invocation - agent checks skills before any response or action
+  - Brainstorming workflow - Socratic design refinement before any code is written
+  - Subagent-driven development - fresh agent per task with two-stage review (spec compliance then code quality)
+  - Test-driven development enforcement - RED-GREEN-REFACTOR cycle with mandatory test-first
+  - Implementation plan generation - tasks broken into 2-5 minute chunks with exact file paths
+  - Git worktree isolation - parallel development branches for clean workspace management
+  - Multi-platform support - Claude Code, Cursor, Codex, OpenCode, Gemini CLI
+  - SessionStart hook for automatic context injection across platforms
+  - Spec review loop with subagent dispatch and max 3 iteration cap
+
+key_files:
+  - path: skills/using-superpowers/SKILL.md
+    purpose: Meta-skill establishing that all other skills must be invoked before any response
+  - path: skills/brainstorming/SKILL.md
+    purpose: "Design-first workflow: explore context, ask questions, propose approaches, present design in sections"
+  - path: skills/subagent-driven-development/SKILL.md
+    purpose: Execute plans by dispatching fresh subagent per task with two-stage review
+  - path: skills/test-driven-development/SKILL.md
+    purpose: Enforces RED-GREEN-REFACTOR cycle - write test, watch fail, write minimal code
+  - path: skills/writing-plans/SKILL.md
+    purpose: Break approved designs into bite-sized implementation tasks
+  - path: skills/systematic-debugging/SKILL.md
+    purpose: 4-phase root cause debugging process
+  - path: skills/writing-skills/SKILL.md
+    purpose: Guide for creating new skills following best practices
+  - path: hooks/hooks.json
+    purpose: "Claude Code hook config: fires session-start script on SessionStart event"
+  - path: hooks/session-start
+    purpose: Bash script that reads using-superpowers SKILL.md and outputs JSON context injection
+  - path: hooks/hooks-cursor.json
+    purpose: Cursor-specific hook configuration
+  - path: package.json
+    purpose: "Package manifest (v5.0.4, ESM module)"
+  - path: gemini-extension.json
+    purpose: Gemini CLI extension manifest
+
+implementation_patterns:
+  - pattern: Mandatory Skill Invocation
+    description: "using-superpowers SKILL.md establishes: if even 1% chance a skill applies, agent MUST invoke it before responding"
+    location: skills/using-superpowers/SKILL.md
+  - pattern: HARD-GATE
+    description: Skills use HARD-GATE blocks to prevent premature implementation - no code until design is approved
+    location: skills/brainstorming/SKILL.md
+  - pattern: Subagent Isolation
+    description: Fresh subagent per task with precisely crafted instructions; never inherits session history
+    location: skills/subagent-driven-development/SKILL.md
+  - pattern: Two-Stage Review
+    description: Each subagent task gets spec compliance review first, then code quality review
+    location: skills/subagent-driven-development/SKILL.md
+  - pattern: Platform-Adaptive Hook Output
+    description: session-start script detects CURSOR_PLUGIN_ROOT vs CLAUDE_PLUGIN_ROOT to emit correct JSON structure
+    location: hooks/session-start
+  - pattern: Graphviz Process Flows
+    description: Skills embed dot/graphviz digraphs to document decision trees and process flows
+    location: skills/brainstorming/SKILL.md, skills/subagent-driven-development/SKILL.md
+  - pattern: Deprecated Command Redirect
+    description: Old slash commands (brainstorm, write-plan) redirect to skill invocations
+    location: commands/brainstorm.md
+
+configuration:
+  file: hooks/hooks.json
+  options:
+    - name: SessionStart matcher
+      type: string
+      default: "startup|clear|compact"
+      description: Events that trigger the session-start hook
+    - name: hook type
+      type: string
+      default: command
+      description: Hook execution type (runs shell command)
+    - name: async
+      type: boolean
+      default: false
+      description: Whether hook runs synchronously (blocks until context is injected)
+
+tech_stack:
+  runtime: "Node.js (ESM module)"
+  language: "Markdown (SKILL.md files), Bash (hooks), JSON (config)"
+  version: "5.0.4"
+  platforms:
+    - Claude Code (plugin marketplace)
+    - Cursor (plugin marketplace)
+    - Codex (manual setup)
+    - OpenCode (manual setup)
+    - Gemini CLI (extension)
+
+testing:
+  framework: Shell-based integration tests
+  structure: tests/ with subdirectories per test area
+  coverage_areas:
+    - "Skill triggering: verifying agents invoke skills at correct moments"
+    - "Claude Code integration: hook firing and context injection"
+    - "Subagent-driven development: task dispatch and review cycles"
+    - Brainstorm server tests

@@ -6,36 +6,22 @@ source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/repos/moonshotai__kimi-cli.yaml
-  as_of: '2026-03-05T04:16:38Z'
+  as_of: '2026-03-17'
 directory: remote::moonshotai/kimi-cli
 category: agent_cli
-summary: Phase 4 Corpus Expansion P4-B1 intake for MoonshotAI/kimi-cli. Agent CLI
-  repository routed explicitly to llm_repos.
+summary: Moonshot AI Kimi command-line interface for agent-style LLM tooling.
 core_concepts:
 - agent cli workflows
 - command-line llm tooling
 key_entry_points:
 - README.md
-- docs/
 build_run:
   language: mixed
-  build: See upstream README for build steps.
-  test: See upstream README for test steps.
+  build: See upstream README for project build steps.
+  test: See upstream README for project test steps.
 local_cache_dir: null
 extras:
-  intake:
-    pilot_batch_id: PHASE-4-P4-B1
-    repo_id: repo::MoonshotAI/kimi-cli
-    queue_id: intake::MoonshotAI/kimi-cli
-    domain_hint: agent_cli
-    source_mode: remote_metadata
-    observed_at_utc: '2026-03-05T04:16:38Z'
-  remote:
-    provider: github
-    mode: metadata
-    endpoint: /repos/moonshotai/kimi-cli
-    fetched_at_utc: '2026-03-05T04:16:38Z'
-    refresh:
-      precedence: api_wins_readme_for_missing_required_fields
-      fallback_source: readme_fallback
-      fallback_used: false
+  refresh:
+    precedence: api_wins_readme_for_missing_required_fields
+    fallback_source: readme_fallback
+    fallback_used: false

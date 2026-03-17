@@ -1,0 +1,198 @@
+name: Stirling-PDF
+node_id: repo::stirling-tools/stirling-pdf
+github_full_name: stirling-tools/stirling-pdf
+html_url: https://github.com/Stirling-Tools/Stirling-PDF
+source: remote_metadata
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+  as_of: "2026-03-17"
+  sourcing_method: code_verified
+directory: remote::stirling-tools/stirling-pdf
+category: office_automation
+
+architecture:
+  module_breakdown:
+  - module: app/core (stirling-pdf)
+    responsibility: Spring Boot backend with REST API controllers for 50+ PDF operations, pipeline system, and security layer.
+    key_files:
+    - app/core/src/main/java/stirling/software/SPDF/SPDFApplication.java
+    - app/core/src/main/java/stirling/software/SPDF/controller/api/
+  - module: app/common
+    responsibility: Shared models, configuration, services, utilities, and annotations used by both core and proprietary modules.
+    key_files:
+    - app/common/src/main/java/stirling/software/common/
+  - module: app/proprietary
+    responsibility: Enterprise/paid features layered on top of core (SSO, auditing, etc.).
+    key_files:
+    - app/proprietary/
+  - module: frontend
+    responsibility: "React + TypeScript SPA with Vite build, Mantine UI, TailwindCSS, and Tauri desktop app support."
+    key_files:
+    - frontend/src/core/
+    - frontend/src/desktop/
+    - frontend/src/proprietary/
+  - module: engine
+    responsibility: Python AI engine built with LangChain and Pydantic for document creation/editing, called from Java as a proxy.
+    key_files:
+    - engine/src/
+    - engine/pyproject.toml
+  key_abstractions:
+  - name: Tool-per-controller REST pattern
+    purpose: "Each PDF operation (merge, split, compress, convert, etc.) has a dedicated @RestController under /api/v1/."
+  - name: Pipeline automation system
+    purpose: PipelineController enables chaining multiple PDF operations into automated no-code workflows.
+  - name: Multi-layer build architecture
+    purpose: "Core/common/proprietary Gradle subprojects allow open-core licensing with enterprise feature layering."
+  - name: Stub/shadow component override
+    purpose: Frontend uses build-time layer resolution so desktop or proprietary components shadow core stubs without runtime conditionals.
+  components:
+  - name: PDF processing backend
+    description: "Spring Boot application using PDFBox for core operations, LibreOffice for format conversions, and PDF.js for client-side rendering."
+  - name: React frontend
+    description: Multi-tool workflow SPA with IndexedDB file persistence, Web Worker thumbnails, and FileContext central state management.
+  - name: Security layer
+    description: "Optional authentication via Spring Security, controlled by DOCKER_ENABLE_SECURITY environment variable."
+  - name: Pipeline system
+    description: Automated PDF processing workflows configured via the UI or API.
+
+code_patterns:
+- pattern: Controller-per-operation
+  description: "Each PDF tool has its own @RestController mapped to /api/v1/... (e.g., MergeController, SplitPDFController, RotationController)."
+  location: app/core/src/main/java/stirling/software/SPDF/controller/api/
+- pattern: useToolOperation hook pattern
+  description: "Frontend tools use a shared useToolOperation React hook that orchestrates validation, API calls, error handling, and resource cleanup."
+  location: frontend/src/core/hooks/tools/shared/useToolOperation.ts
+- pattern: "Three-layer frontend: core, proprietary, desktop"
+  description: "Import alias @app/* resolves to the correct layer at build time; higher layers shadow lower layer stubs."
+  location: frontend/src/core/, frontend/src/desktop/, frontend/src/proprietary/
+
+implementation_patterns:
+- pattern: FileContext central state management
+  description: All file operations, tool navigation, and memory lifecycle are managed through a single React context.
+  location: frontend/src/core/contexts/FileContext.tsx
+- pattern: Gradle multi-project with Spring Boot
+  description: "Three Gradle subprojects (stirling-pdf, common, proprietary) compose into a single Spring Boot application."
+  location: settings.gradle
+- pattern: Spotless code formatting
+  description: Google Java Format enforced automatically via spotless Gradle plugin before compilation.
+  location: build.gradle
+
+core_modules:
+  api_controllers:
+    path: app/core/src/main/java/stirling/software/SPDF/controller/api
+    description: "REST controllers for all PDF operations: converters, security, misc, pipeline, form, filters."
+    submodules:
+    - app/core/src/main/java/stirling/software/SPDF/controller/api/converters/
+    - app/core/src/main/java/stirling/software/SPDF/controller/api/security/
+    - app/core/src/main/java/stirling/software/SPDF/controller/api/misc/
+    - app/core/src/main/java/stirling/software/SPDF/controller/api/pipeline/
+  common:
+    path: app/common/src/main/java/stirling/software/common
+    description: "Shared configuration, models, services, and utilities."
+  frontend_core:
+    path: frontend/src/core
+    description: "React components, contexts, hooks, constants, and services for the web UI."
+  engine:
+    path: engine/src
+    description: Python AI engine for PDF document creation and editing via LangChain.
+
+key_features:
+- feature: 50+ PDF tools
+  description: "Edit, merge, split, sign, redact, convert, OCR, compress, add watermarks, extract images, rearrange pages, and more."
+- feature: Multi-platform deployment
+  description: "Runs as desktop app (Tauri), browser UI, self-hosted server, or Docker container."
+- feature: Format conversion
+  description: "Convert between PDF and Office formats, HTML, Markdown, ebook (EPUB), images, SVG, video, and CSV via PDFBox and LibreOffice."
+- feature: Security operations
+  description: "Password protection, certificate signing, redaction, sanitization, watermarking, and permission management."
+- feature: Pipeline automation
+  description: Chain multiple PDF operations into no-code automated workflows via UI or API.
+- feature: Enterprise features
+  description: "SSO, auditing, and flexible on-premises deployments in the proprietary module."
+- feature: REST API
+  description: Nearly all tools exposed as REST endpoints for system integration.
+- feature: Internationalization
+  description: UI available in 40+ languages via JSON translation files.
+
+key_files:
+- path: app/core/src/main/java/stirling/software/SPDF/SPDFApplication.java
+  description: Main Spring Boot application class with desktop UI and browser launching logic.
+- path: build.gradle
+  description: Root Gradle build with Spring Boot 4.0.3, PDFBox 3.0.6, and dependency versions.
+- path: settings.gradle
+  description: "Multi-project Gradle config defining three subprojects: stirling-pdf, common, proprietary."
+- path: app/core/src/main/java/stirling/software/SPDF/controller/api/
+  description: All REST API controller implementations for PDF operations.
+- path: frontend/src/core/contexts/FileContext.tsx
+  description: Central file state management for the React frontend.
+- path: engine/pyproject.toml
+  description: Python AI engine project configuration.
+- path: docker/
+  description: Dockerfile variants (unified, unified-lite) and compose files.
+
+tech_stack:
+  backend:
+    language: Java 21+ (recommends 25)
+    framework: Spring Boot 4.0.3
+    pdf_library: Apache PDFBox 3.0.6
+    office_conversion: LibreOffice
+    security: Spring Security with optional SAML SSO
+    build: Gradle with Spotless (Google Java Format)
+    annotations: Lombok
+  frontend:
+    framework: React + TypeScript
+    bundler: Vite
+    ui_library: Mantine UI + TailwindCSS
+    desktop: Tauri (Rust-based native wrapper)
+    state: React Context (FileContext)
+    storage: IndexedDB
+  engine:
+    language: Python 3.13
+    framework: LangChain + Pydantic
+  deployment:
+    docker_images:
+    - ultra-lite (basic PDF operations only)
+    - standard (full feature set)
+    - fat (pre-downloaded dependencies for air-gapped environments)
+
+configuration:
+- name: environment_variables
+  options:
+  - key: DOCKER_ENABLE_SECURITY
+    default: "false"
+    description: "Enable Spring Security with authentication, user management, and enterprise features."
+  - key: DISABLE_ADDITIONAL_FEATURES
+    default: "false"
+    description: Disable extra features to run in minimal mode.
+- name: build_variants
+  options:
+  - key: ultra-lite
+    default: N/A
+    description: Dockerfile.ultra-lite for basic PDF operations only.
+  - key: standard
+    default: N/A
+    description: Default Dockerfile with full feature set.
+  - key: fat
+    default: N/A
+    description: Dockerfile.fat with pre-downloaded dependencies for air-gapped environments.
+
+api_surface:
+  rest_api:
+    description: "REST API under /api/v1/ with endpoints organized by function: converters, security, misc, pipeline."
+    examples:
+    - "POST /api/v1/general/merge-pdfs"
+    - "POST /api/v1/general/split-pages"
+    - "POST /api/v1/misc/compress-pdf"
+    - "POST /api/v1/security/add-password"
+    - "POST /api/v1/convert/pdf/img"
+  swagger:
+    description: "Auto-generated API docs available at /swagger-ui/index.html via springdoc-openapi."
+
+testing:
+  framework: Cucumber (integration), JUnit
+  location: testing/cucumber/
+  patterns:
+  - Docker variant testing via test.sh (validates ultra-lite, standard, and fat builds)
+  - Cucumber integration tests for API endpoints
+  - No unit test suite; relies on UI and API testing

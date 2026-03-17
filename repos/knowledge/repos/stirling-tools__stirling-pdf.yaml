@@ -6,36 +6,23 @@ source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/repos/stirling-tools__stirling-pdf.yaml
-  as_of: '2026-03-05T05:18:49Z'
+  as_of: '2026-03-17'
 directory: remote::stirling-tools/stirling-pdf
 category: office_automation
-summary: Phase 4 Corpus Expansion P4-B2 intake for Stirling-Tools/Stirling-PDF. Office
-  automation repository routed explicitly to llm_repos.
+summary: Self-hosted PDF manipulation tool with transformation workflows for document
+  operations.
 core_concepts:
 - pdf transformation workflows
 - self-hosted document operations
 key_entry_points:
 - README.md
-- src/
 build_run:
   language: java
-  build: ./gradlew build
-  test: ./gradlew test
+  build: See upstream README for project build steps.
+  test: See upstream README for project test steps.
 local_cache_dir: null
 extras:
-  intake:
-    pilot_batch_id: PHASE-4-P4-B2
-    repo_id: repo::Stirling-Tools/Stirling-PDF
-    queue_id: intake::Stirling-Tools/Stirling-PDF
-    domain_hint: office_automation
-    source_mode: remote_metadata
-    observed_at_utc: '2026-03-05T05:18:49Z'
-  remote:
-    provider: github
-    mode: metadata
-    endpoint: /repos/stirling-tools/stirling-pdf
-    fetched_at_utc: '2026-03-05T05:18:49Z'
-    refresh:
-      precedence: api_wins_readme_for_missing_required_fields
-      fallback_source: readme_fallback
-      fallback_used: false
+  refresh:
+    precedence: api_wins_readme_for_missing_required_fields
+    fallback_source: readme_fallback
+    fallback_used: false

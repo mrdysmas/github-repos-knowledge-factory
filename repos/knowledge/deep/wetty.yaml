@@ -1,0 +1,208 @@
+name: wetty
+node_id: repo::butlerx/wetty
+github_full_name: butlerx/wetty
+html_url: https://github.com/butlerx/wetty
+source: remote_metadata
+directory: remote::butlerx/wetty
+category: remote_access
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep/wetty.yaml
+  as_of: "2026-03-17"
+  sourcing_method: code_verified
+
+architecture:
+  module_breakdown:
+    - module: src/server.ts
+      responsibility: "Main server module - creates Express app, sets up Socket.IO, spawns PTY on connection"
+      key_files: [src/server.ts]
+    - module: src/main.ts
+      responsibility: CLI entry point - parses yargs options, loads config, starts server
+      key_files: [src/main.ts]
+    - module: src/server/socketServer.ts
+      responsibility: Express middleware stack - compression, security policies, static assets, SSL, Socket.IO listener
+      key_files: [src/server/socketServer.ts]
+    - module: src/server/spawn.ts
+      responsibility: PTY process spawning via node-pty with flow control and Socket.IO bridge
+      key_files: [src/server/spawn.ts]
+    - module: src/server/command.ts
+      responsibility: "Command builder - determines ssh vs login command based on host/user/root status"
+      key_files: [src/server/command.ts]
+    - module: src/server/flowcontrol.ts
+      responsibility: Server-side flow control to prevent PTY output from overwhelming the WebSocket
+      key_files: [src/server/flowcontrol.ts]
+    - module: src/client/wetty.ts
+      responsibility: "Browser client - xterm.js terminal, Socket.IO connection, file download, mobile keyboard"
+      key_files: [src/client/wetty.ts]
+    - module: src/shared/
+      responsibility: Shared types (interfaces.ts), defaults (defaults.ts), config loading, logging
+      key_files: [src/shared/interfaces.ts, src/shared/defaults.ts, src/shared/config.ts, src/shared/logger.ts]
+  data_flow: |
+    1. main.ts parses CLI args via yargs, loads config file (JSON5), merges with defaults
+    2. start() in server.ts creates Express app, passes to socketServer for middleware setup
+    3. socketServer.ts configures Express (compression, helmet, static assets, SSL) and Socket.IO
+    4. On WebSocket connection, getCommand() builds ssh or login command args
+    5. spawn.ts creates PTY via node-pty, bridges PTY I/O to Socket.IO with flow control
+    6. Browser client (wetty.ts) renders xterm.js terminal, relays input/resize/disconnect events
+  key_abstractions:
+    - name: FlowControlServer / FlowControlClient
+      purpose: Bidirectional flow control preventing buffer overflow between PTY and WebSocket
+    - name: SSH/Server/SSL interfaces
+      purpose: TypeScript interfaces defining configuration shape for all server components
+    - name: tinybuffer
+      purpose: Batches small PTY output writes into larger Socket.IO emissions for efficiency
+
+key_features:
+  - Browser-based terminal over HTTP/HTTPS using xterm.js and WebSockets (Socket.IO)
+  - SSH gateway - connects to remote hosts via ssh or local /bin/login when running as root
+  - SSL/TLS support with configurable key and certificate paths
+  - Configurable base path for reverse proxy deployment (default /wetty/)
+  - "URL-based user selection: /wetty/ssh/<username>"
+  - Docker container support with docker-compose examples
+  - File download support from terminal sessions
+  - Mobile keyboard support
+  - Prometheus metrics endpoint (/wetty/metrics) with connection gauge and GC stats
+  - Flow control preventing WebSocket buffer overflow
+  - JSON5 config file support
+  - iframe embedding control (same-origin default, configurable)
+
+key_files:
+  - path: src/main.ts
+    purpose: CLI entry point with yargs argument parsing and config loading
+  - path: src/server.ts
+    purpose: "Exported start() and decorateServerWithSsh() functions - main server creation"
+  - path: src/server/socketServer.ts
+    purpose: Express middleware stack and Socket.IO server creation
+  - path: src/server/spawn.ts
+    purpose: PTY spawning via node-pty with flow control bridging to Socket.IO
+  - path: src/server/command.ts
+    purpose: "SSH command builder - determines login vs ssh based on host and root status"
+  - path: src/server/flowcontrol.ts
+    purpose: Flow control implementation for PTY-to-WebSocket throughput management
+  - path: src/client/wetty.ts
+    purpose: Browser client - xterm.js terminal with Socket.IO, file download, mobile keyboard
+  - path: src/shared/interfaces.ts
+    purpose: "TypeScript interfaces: SSH, SSL, SSLBuffer, Server, Config"
+  - path: src/shared/defaults.ts
+    purpose: Default configuration values with environment variable overrides
+  - path: build.js
+    purpose: esbuild-based build script for server and client bundles
+  - path: conf/
+    purpose: Default configuration files for development
+
+implementation_patterns:
+  - pattern: PTY-to-WebSocket Bridge
+    description: "node-pty spawns shell process; onData pipes to Socket.IO via tinybuffer; socket input/resize/disconnect events control PTY"
+    location: src/server/spawn.ts
+  - pattern: Flow Control Protocol
+    description: "Server pauses PTY when buffer exceeds 524KB; client sends 'commit' events to acknowledge bytes; server resumes PTY on commit"
+    location: src/server/spawn.ts, src/client/wetty.ts
+  - pattern: Environment-Based Defaults
+    description: "All defaults read from env vars (SSHHOST, SSHPORT, SSHUSER, SSHAUTH, PORT, BASE, TITLE) with sensible fallbacks"
+    location: src/shared/defaults.ts
+  - pattern: Conditional SSH vs Login
+    description: "When running as root on localhost, uses /bin/login; otherwise uses ssh with full option chain"
+    location: src/server/command.ts
+  - pattern: Prometheus Metrics
+    description: prom-client collectDefaultMetrics plus custom wetty_connections gauge and GC stats
+    location: src/server.ts, src/server/metrics.ts
+  - pattern: Security Middleware Stack
+    description: "helmet for HTTP headers, compression, express-winston logging, iframe policy control"
+    location: src/server/socketServer.ts
+
+configuration:
+  file: "conf/config.json5 (JSON5 format, path via --conf flag)"
+  options:
+    - name: ssh-host
+      type: string
+      default: "localhost (SSHHOST env)"
+      description: SSH server host to connect to
+    - name: ssh-port
+      type: number
+      default: "22 (SSHPORT env)"
+      description: SSH server port
+    - name: ssh-user
+      type: string
+      default: "empty (SSHUSER env)"
+      description: SSH username
+    - name: ssh-auth
+      type: string
+      default: "password (SSHAUTH env)"
+      description: "SSH auth method (password, publickey,password)"
+    - name: port
+      type: number
+      default: "3000 (PORT env)"
+      description: WeTTY listen port
+    - name: host
+      type: string
+      default: "0.0.0.0"
+      description: WeTTY listen host
+    - name: base
+      type: string
+      default: "/wetty/ (BASE env)"
+      description: Base URL path for reverse proxy setups
+    - name: title
+      type: string
+      default: "WeTTY - The Web Terminal Emulator (TITLE env)"
+      description: Browser window title
+    - name: ssl-key
+      type: string
+      default: none
+      description: Path to SSL private key
+    - name: ssl-cert
+      type: string
+      default: none
+      description: Path to SSL certificate
+    - name: force-ssh
+      type: boolean
+      default: "false (FORCESSH env)"
+      description: Force SSH even when running as root
+    - name: command
+      type: string
+      default: "login (COMMAND env)"
+      description: Command to run in shell
+    - name: allow-iframe
+      type: boolean
+      default: "false (ALLOWIFRAME env)"
+      description: Allow embedding in iframes
+    - name: allow-remote-hosts
+      type: boolean
+      default: false
+      description: Allow URL params to set SSH destination host/port
+    - name: allow-remote-command
+      type: boolean
+      default: false
+      description: Allow URL params to set command and working directory
+
+tech_stack:
+  runtime: Node.js >= 18
+  language: TypeScript (ESM)
+  build: esbuild (build.js) with esbuild-sass-plugin
+  server_dependencies:
+    - "express (^4.17.1) - HTTP server framework"
+    - "socket.io (^4.5.1) - WebSocket server"
+    - "node-pty (^0.10.0) - pseudo-terminal spawning"
+    - "helmet (^4.1.0) - HTTP security headers"
+    - "winston (^3.3.3) - structured logging"
+    - "prom-client (^14.0.1) - Prometheus metrics"
+    - "yargs (^17.7.2) - CLI argument parsing"
+    - "json5 (^2.1.3) - JSON5 config file parsing"
+    - "compression (^1.7.4) - HTTP response compression"
+  client_dependencies:
+    - "@xterm/xterm (^5.2.0) - terminal emulator"
+    - "@xterm/addon-fit (^0.10.0) - auto-resize terminal"
+    - "@xterm/addon-web-links (^0.11.0) - clickable links"
+    - "@xterm/addon-image (^0.8.0) - inline image support"
+    - "socket.io-client (^4.5.1) - WebSocket client"
+    - "toastify-js (^1.9.1) - toast notifications"
+  dev_dependencies:
+    - "typescript (^5.1.3)"
+    - "mocha (^10.0.0) - test framework"
+    - "eslint, prettier, husky, lint-staged"
+
+testing:
+  framework: Mocha with Chai assertions and Sinon mocking
+  structure: test/ directory
+  coverage_areas:
+    - Server configuration merging
+    - Command generation logic

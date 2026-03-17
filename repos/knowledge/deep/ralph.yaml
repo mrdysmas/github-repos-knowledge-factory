@@ -1,0 +1,125 @@
+name: ralph
+node_id: "repo::snarktank/ralph"
+github_full_name: snarktank/ralph
+html_url: https://github.com/snarktank/ralph
+source: remote_metadata
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep/ralph.yaml
+  as_of: "2026-03-17"
+  sourcing_method: code_verified
+directory: "remote::snarktank/ralph"
+category: agent_cli
+
+summary: |
+  Autonomous AI agent loop that runs Amp or Claude Code repeatedly until all
+  PRD items are complete. Based on Geoffrey Huntley's Ralph pattern. Each
+  iteration is a fresh AI instance with clean context; memory persists via
+  git history, progress.txt, and prd.json. Includes PRD generation and
+  conversion skills, plus an interactive React Flow flowchart.
+
+architecture:
+  style: single_script_loop
+  entry_point: "ralph.sh — bash loop that spawns fresh AI instances per iteration"
+  loop_flow: |
+    1. Parse --tool flag (amp or claude) and max_iterations
+    2. Archive previous run if branch changed (via prd.json branchName comparison)
+    3. Initialize progress.txt if needed
+    4. For each iteration: pipe prompt to AI tool, capture output
+    5. Check for <promise>COMPLETE</promise> completion signal
+    6. Exit on completion or max iterations
+  memory_model: "Stateless per-iteration; persistence via git history, progress.txt, and prd.json"
+
+key_features:
+  - title: Dual AI tool support
+    detail: "Supports both Amp (default) and Claude Code via --tool flag"
+  - title: PRD-driven development
+    detail: "Reads prd.json for user stories with priority ordering, passes/fails tracking, and acceptance criteria"
+  - title: Automatic run archiving
+    detail: "Archives previous prd.json and progress.txt when branch changes, creating dated archive folders"
+  - title: Skills system
+    detail: "Two Amp/Claude skills (prd and ralph) for PRD generation and JSON conversion"
+  - title: Interactive flowchart
+    detail: "React Flow visualization in flowchart/ directory explaining the Ralph loop process"
+  - title: Progress consolidation
+    detail: "Agents append progress reports to progress.txt with learnings section and update Codebase Patterns"
+
+key_files:
+  - path: ralph.sh
+    role: "Main bash loop script (113 lines) supporting --tool amp|claude, branch archiving, and completion detection"
+  - path: prompt.md
+    role: "Instructions for Amp instances defining the 10-step autonomous agent workflow"
+  - path: CLAUDE.md
+    role: "Instructions for Claude Code instances (same workflow as prompt.md)"
+  - path: AGENTS.md
+    role: "Developer reference with commands, key files, and patterns"
+  - path: prd.json.example
+    role: "Example PRD JSON format showing project, branchName, description, and userStories array"
+  - path: skills/prd/SKILL.md
+    role: "PRD Generator skill with clarifying questions workflow and structured PRD template"
+  - path: skills/ralph/SKILL.md
+    role: "PRD-to-JSON converter skill with story sizing rules, dependency ordering, and acceptance criteria standards"
+
+core_modules:
+  - module: ralph.sh
+    responsibility: "Core loop logic"
+    implementation_details:
+      - "Parses --tool (amp|claude) and max_iterations arguments"
+      - "Uses jq to read branchName from prd.json for archive decisions"
+      - "Amp mode: pipes prompt.md to amp --dangerously-allow-all"
+      - "Claude mode: pipes CLAUDE.md to claude --dangerously-skip-permissions --print"
+      - "Completion detection via grep for <promise>COMPLETE</promise>"
+  - module: skills/prd/
+    responsibility: "PRD generation skill"
+    workflow: "Receive feature description, ask 3-5 clarifying questions with lettered options, generate structured PRD, save to tasks/prd-[name].md"
+  - module: skills/ralph/
+    responsibility: "PRD to prd.json converter skill"
+    rules:
+      - "Each story must be completable in one context window"
+      - "Stories ordered by dependency (schema, then backend, then UI)"
+      - "All stories get 'Typecheck passes' as acceptance criterion"
+      - "UI stories additionally require browser verification"
+  - module: flowchart/
+    responsibility: "Interactive React Flow visualization of the Ralph process"
+    tech: "React 19, @xyflow/react 12, Vite 7, TypeScript 5.9"
+
+tech_stack:
+  language: Bash (ralph.sh) and TypeScript/React (flowchart)
+  ai_tools:
+    - "Amp CLI (default)"
+    - "Claude Code CLI (alternative via --tool claude)"
+  dependencies:
+    - jq (JSON processing)
+    - git (version control and memory persistence)
+  flowchart_stack:
+    framework: "React 19 with @xyflow/react (React Flow)"
+    bundler: "Vite 7"
+    language: TypeScript
+
+implementation_patterns:
+  - pattern: Stateless iteration model
+    detail: "Each AI instance starts fresh with no memory of previous iterations. Context comes from reading git history, progress.txt, and prd.json at the start of each loop."
+  - pattern: Progress-driven learning
+    detail: "Agents append learnings to progress.txt and consolidate reusable patterns into a Codebase Patterns section at the top, creating institutional memory across iterations."
+  - pattern: AGENTS.md knowledge preservation
+    detail: "Agents update nearby AGENTS.md files with module-specific patterns and gotchas discovered during implementation."
+  - pattern: One story per iteration
+    detail: "Each loop iteration implements exactly one user story from prd.json, keeping changes focused and reviewable."
+  - pattern: Branch-based archiving
+    detail: "When prd.json branchName changes, previous run files are archived to archive/YYYY-MM-DD-feature-name/ before starting fresh."
+
+configuration:
+  prd_json_format:
+    fields:
+      - "project — project name"
+      - "branchName — git branch for this feature (ralph/ prefix)"
+      - "description — feature description"
+      - "userStories[] — array of stories with id, title, description, acceptanceCriteria, priority, passes, notes"
+
+commands:
+  - command: "./ralph.sh"
+    description: "Run Ralph with Amp (default, 10 iterations)"
+  - command: "./ralph.sh --tool claude 20"
+    description: "Run Ralph with Claude Code, max 20 iterations"
+  - command: "cd flowchart && npm run dev"
+    description: "Run the interactive flowchart visualization"

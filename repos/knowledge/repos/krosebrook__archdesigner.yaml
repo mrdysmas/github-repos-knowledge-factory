@@ -6,36 +6,22 @@ source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/repos/krosebrook__archdesigner.yaml
-  as_of: '2026-03-05T05:18:49Z'
+  as_of: '2026-03-17'
 directory: remote::krosebrook/archdesigner
 category: workflow_builder
-summary: Phase 4 Corpus Expansion P4-B2 intake for Krosebrook/archdesigner. Workflow
-  builder repository routed explicitly to llm_repos.
+summary: Architecture workflow design tool for structured planning artifacts.
 core_concepts:
 - architecture workflow design
 - structured planning artifacts
 key_entry_points:
 - README.md
-- docs/
 build_run:
   language: mixed
-  build: See upstream README for build steps.
-  test: See upstream README for test steps.
+  build: See upstream README for project build steps.
+  test: See upstream README for project test steps.
 local_cache_dir: null
 extras:
-  intake:
-    pilot_batch_id: PHASE-4-P4-B2
-    repo_id: repo::Krosebrook/archdesigner
-    queue_id: intake::Krosebrook/archdesigner
-    domain_hint: workflow_builder
-    source_mode: remote_metadata
-    observed_at_utc: '2026-03-05T05:18:49Z'
-  remote:
-    provider: github
-    mode: metadata
-    endpoint: /repos/krosebrook/archdesigner
-    fetched_at_utc: '2026-03-05T05:18:49Z'
-    refresh:
-      precedence: api_wins_readme_for_missing_required_fields
-      fallback_source: readme_fallback
-      fallback_used: false
+  refresh:
+    precedence: api_wins_readme_for_missing_required_fields
+    fallback_source: readme_fallback
+    fallback_used: false

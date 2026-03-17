@@ -1,0 +1,115 @@
+name: archdesigner
+node_id: "repo::krosebrook/archdesigner"
+github_full_name: krosebrook/archdesigner
+html_url: https://github.com/Krosebrook/archdesigner
+source: remote_metadata
+directory: "remote::krosebrook/archdesigner"
+category: workflow_builder
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep/krosebrook__archdesigner.yaml
+  as_of: "2026-03-17"
+  sourcing_method: code_verified
+
+architecture:
+  overview: |
+    AI-powered microservices architecture design platform built on the Base44 low-code platform.
+    React/Vite frontend with Radix UI components and TailwindCSS styling. Serverless backend
+    via Base44 SDK with ~20 TypeScript/Deno cloud functions. AI agents powered by Claude
+    through the Base44 LLM abstraction layer, using 5-stage Chain-of-Thought reasoning.
+  module_breakdown:
+    - module: src/pages/
+      responsibility: 17 page components including Dashboard, Projects, Agents, Analytics, IntegrationHub, Settings
+      key_files: [src/pages/Dashboard.jsx, src/pages/ProjectDetail.jsx, src/pages/Agents.jsx]
+    - module: src/components/
+      responsibility: Reusable UI components including collaboration, architecture editing, and Radix UI primitives
+      key_files: [src/components/collaboration/ConflictResolutionModal.jsx]
+    - module: functions/
+      responsibility: ~20 serverless cloud functions (TypeScript/Deno) for AI analysis, code generation, security auditing
+      key_files: [functions/analyzeArchitecture.ts, functions/generateCode.ts, functions/securityAudit.ts]
+    - module: src/contexts/
+      responsibility: React context providers for collaboration and auth state
+      key_files: [src/contexts/CollaborationContext.jsx]
+    - module: src/lib/
+      responsibility: Shared utilities including AuthContext, VisualEditAgent, NavigationTracker, query-client
+      key_files: [src/lib/AuthContext.jsx, src/lib/VisualEditAgent.js, src/lib/query-client.js]
+  data_flow: |
+    1. User designs microservices architecture via visual drag-and-drop editor
+    2. Architecture data stored via Base44 SDK entities
+    3. AI agents (analyzeArchitecture, securityAudit, generateCode) invoke Claude via Base44 LLM integration
+    4. Real-time collaboration via socket.io-client with presence tracking and conflict detection
+    5. Results displayed in Dashboard with health scores, recommendations, and analytics
+
+key_features:
+  - AI-powered architecture analysis with 5-stage Chain-of-Thought reasoning via Claude
+  - Visual drag-and-drop microservices designer
+  - Real-time collaboration with presence tracking and conflict resolution
+  - Architecture versioning with diff viewer and safe rollback
+  - Security auditing against OWASP Top 10
+  - Code generation in TypeScript, Python, Go, Java
+  - CI/CD pipeline generation (GitHub Actions, GitLab CI, Jenkins)
+  - Multi-cloud deployment support (AWS, Azure, GCP)
+  - Architecture health scoring (0-100)
+  - Project templates for Healthcare, FinTech, E-commerce
+
+key_files:
+  - path: src/main.jsx
+    purpose: React app entry point rendering App component with Vite HMR support
+  - path: src/App.jsx
+    purpose: Root component with Router, AuthProvider, CollaborationProvider, QueryClientProvider
+  - path: src/pages.config.js
+    purpose: Auto-generated page routing config mapping 17 pages; mainPage set to Dashboard
+  - path: src/Layout.jsx
+    purpose: Shared layout wrapper applied to all pages
+  - path: functions/analyzeArchitecture.ts
+    purpose: Serverless function invoking Claude for architecture health analysis
+  - path: functions/securityAudit.ts
+    purpose: OWASP Top 10 security audit via AI
+  - path: functions/generateCode.ts
+    purpose: AI-driven code scaffolding generation
+  - path: functions/collaborationService.ts
+    purpose: Real-time collaboration backend
+  - path: vite.config.js
+    purpose: Vite build config with Base44 plugin and React plugin
+  - path: package.json
+    purpose: Dependencies including Base44 SDK, Radix UI, TanStack Query, socket.io-client, framer-motion
+
+tech_stack:
+  frontend: React 18, Vite 6, React Router DOM 6
+  styling: TailwindCSS 3, Radix UI primitives (25+ components), framer-motion
+  state_management: TanStack React Query, React Context API
+  backend: Base44 SDK serverless functions (TypeScript/Deno)
+  ai_integration: Claude via Base44 LLM abstraction layer
+  real_time: socket.io-client for collaboration
+  drag_and_drop: "@hello-pangea/dnd"
+  forms: react-hook-form with zod validation
+  export: jspdf, html2canvas, jszip, file-saver
+  testing: Jest 30, Testing Library (React, user-event, jest-dom)
+  linting: ESLint 9 with react-hooks and unused-imports plugins
+  build_platform: Base44 low-code platform
+
+configuration:
+  build_tool: Vite 6 with @base44/vite-plugin
+  vite_config: |
+    Base44 plugin with optional legacySDKImports via BASE44_LEGACY_SDK_IMPORTS env var.
+    React plugin from @vitejs/plugin-react.
+  styling_config: tailwind.config.js with postcss.config.js
+  test_config: jest.config.js with --passWithNoTests flag
+  pages_routing: src/pages.config.js auto-registers pages from src/pages/ folder
+
+implementation_patterns:
+  - pattern: Base44 SDK Integration
+    description: All backend operations go through Base44 SDK abstraction for entities, LLM calls, and integrations
+    location: functions/*.ts, vite.config.js
+  - pattern: AI Chain-of-Thought Reasoning
+    description: "5-stage CoT framework: Input Gathering, Contextual Analysis, Problem Identification, Recommendation Generation, Output Formatting"
+    location: functions/analyzeArchitecture.ts, functions/securityAudit.ts
+  - pattern: Auto-Generated Page Routing
+    description: pages.config.js auto-registers page components from src/pages/ directory with configurable mainPage
+    location: src/pages.config.js
+  - pattern: Provider Composition
+    description: App.jsx nests QueryClientProvider, AuthProvider, CollaborationProvider, and Router for global state
+    location: src/App.jsx (lines 1-14)
+  - pattern: Auth Guard
+    description: AuthenticatedApp component handles loading states, auth errors (user_not_registered, auth_required), and login redirect
+    location: src/App.jsx (lines 23-44)
