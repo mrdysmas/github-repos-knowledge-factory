@@ -1,0 +1,194 @@
+artifact_type: ws5_remote_ingestion_input_manifest
+contract_version: 1.0.0-ws1
+defaults:
+  target_shard: repos
+  as_of: '2026-03-13'
+  source: remote_metadata
+repos:
+- name: skills
+  file_stem: anthropics__skills
+  github_full_name: anthropics/skills
+  html_url: https://github.com/anthropics/skills
+  target_shard: repos
+  source: remote_metadata
+  category: agent_framework
+  summary: Anthropic's official skills repository bundles example skills, document-processing
+    skills, and the Agent Skills spec/template for Claude plugin marketplace installation
+    and custom skill authoring.
+  core_concepts:
+  - skill packaging for Claude
+  - plugin marketplace bundles
+  key_entry_points:
+  - README.md
+  - skills/
+  - spec/agent-skills-spec.md
+  build_run:
+    language: mixed
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  as_of: '2026-03-17'
+  local_cache_dir: null
+- name: agent-skills
+  file_stem: anysiteio__agent-skills
+  github_full_name: anysiteio/agent-skills
+  html_url: https://github.com/anysiteio/agent-skills
+  target_shard: repos
+  source: remote_metadata
+  category: agent_framework
+  summary: Anysite's agent-skills repository packages MCP-backed research and enrichment
+    workflows as installable Claude skills, with a small Node installer that registers
+    the marketplace in Claude Code.
+  core_concepts:
+  - MCP-backed intelligence workflows
+  - Claude marketplace skill installation
+  key_entry_points:
+  - README.md
+  - skills/
+  - bin/install.js
+  build_run:
+    language: javascript
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  as_of: '2026-03-17'
+  local_cache_dir: null
+- name: ccs
+  file_stem: ccs
+  github_full_name: kaitranntt/ccs
+  html_url: https://github.com/kaitranntt/ccs
+  target_shard: repos
+  source: remote_metadata
+  category: agent_cli
+  summary: CCS is a TypeScript CLI and dashboard for switching between Claude,
+    Codex, Gemini, GLM, and other provider profiles while managing local auth,
+    proxying, and per-target runtime behavior.
+  core_concepts:
+  - multi-provider profile switching
+  - local dashboard and target adapters
+  key_entry_points:
+  - README.md
+  - src/ccs.ts
+  - src/targets/
+  - ui/src/
+  build_run:
+    language: typescript
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  as_of: '2026-03-17'
+  local_cache_dir: null
+- name: claude-mem
+  file_stem: claude-mem
+  github_full_name: thedotmack/claude-mem
+  html_url: https://github.com/thedotmack/claude-mem
+  target_shard: repos
+  source: remote_metadata
+  category: agent_cli
+  summary: Claude-Mem is a Bun and TypeScript memory system for Claude Code that
+    ships plugin hooks, a local worker service, and search tooling to persist
+    and retrieve cross-session context.
+  core_concepts:
+  - hook-driven memory capture
+  - local search and retrieval services
+  key_entry_points:
+  - README.md
+  - plugin/
+  - src/
+  build_run:
+    language: typescript
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  as_of: '2026-03-17'
+  local_cache_dir: null
+- name: codemoot
+  file_stem: codemoot
+  github_full_name: katarmal-ram/codemoot
+  html_url: https://github.com/katarmal-ram/codemoot
+  target_shard: repos
+  source: remote_metadata
+  category: agent_cli
+  summary: CodeMoot is a pnpm TypeScript monorepo that coordinates Claude and
+    Codex through review, fix, debate, watch, and ship workflows from a single
+    CLI.
+  core_concepts:
+  - multi-model code review loops
+  - job and session orchestration
+  key_entry_points:
+  - README.md
+  - packages/cli/src/
+  - packages/core/
+  - packages/mcp-server/
+  build_run:
+    language: typescript
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  as_of: '2026-03-17'
+  local_cache_dir: null
+- name: oh-my-opencode
+  file_stem: oh-my-opencode
+  github_full_name: code-yeongyu/oh-my-opencode
+  html_url: https://github.com/code-yeongyu/oh-my-opencode
+  target_shard: repos
+  source: remote_metadata
+  category: agent_cli
+  summary: oh-my-opencode is a Bun and TypeScript OpenCode harness that packages
+    multi-agent orchestration, platform-specific binaries, and a JSON schema
+    for configuring hooks, agents, commands, and tools.
+  core_concepts:
+  - multi-agent harness configuration
+  - platform-specific CLI packaging
+  key_entry_points:
+  - README.md
+  - src/
+  - assets/oh-my-opencode.schema.json
+  build_run:
+    language: typescript
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  as_of: '2026-03-17'
+  local_cache_dir: null
+- name: ralphy
+  file_stem: ralphy
+  github_full_name: michaelshimeles/ralphy
+  html_url: https://github.com/michaelshimeles/ralphy
+  target_shard: repos
+  source: remote_metadata
+  category: agent_cli
+  summary: Ralphy is an autonomous coding loop CLI that parses task lists or PRDs,
+    then runs work across Claude, Codex, OpenCode, Cursor, Droid, and other
+    engine backends.
+  core_concepts:
+  - autonomous task loop execution
+  - multi-engine CLI dispatch
+  key_entry_points:
+  - README.md
+  - cli/src/
+  - cli/bin.js
+  - ralphy.sh
+  build_run:
+    language: typescript
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  as_of: '2026-03-17'
+  local_cache_dir: null
+- name: toolneuron
+  file_stem: toolneuron
+  github_full_name: siddhesh2377/toolneuron
+  html_url: https://github.com/Siddhesh2377/ToolNeuron
+  target_shard: repos
+  source: remote_metadata
+  category: agent_framework
+  summary: ToolNeuron is a modular Android app for fully local AI workflows, combining
+    on-device GGUF chat, Stable Diffusion, RAG, memory, encryption, and plugin-style
+    utilities across multiple Gradle modules.
+  core_concepts:
+  - on-device multimodal inference
+  - modular Android data and storage layers
+  key_entry_points:
+  - README.md
+  - app/
+  - settings.gradle.kts
+  build_run:
+    language: kotlin
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  as_of: '2026-03-17'
+  local_cache_dir: null
