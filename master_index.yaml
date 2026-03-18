@@ -478,22 +478,20 @@ repos:
   source: compiled_master
   name: awesome-go
   category: documentation
-  summary: Phase 4 B3 shallow intake for avelino/awesome-go as a curated Go ecosystem
-    reference index.
+  summary: Curated list of awesome Go frameworks, libraries, and software.
   core_concepts:
   - curated Go project catalog
   - discoverability for Go tooling and libraries
   key_entry_points:
   - README.md
-  - CONTRIBUTING.md
   build_run:
     language: markdown
-    build: No build step required for curated list repository.
-    test: No automated test suite in this repository.
+    build: No build step required.
+    test: No automated test suite.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/awesome-go.yaml
-    as_of: '2026-03-05T05:30:00Z'
+    as_of: '2026-03-17'
   local_cache_dir: null
   extras:
     directory: remote::avelino/awesome-go
@@ -771,41 +769,28 @@ repos:
   source: compiled_master
   name: awesome-claude-skills
   category: agent_framework
-  summary: Phase 4 Corpus Expansion P4-B1 intake for ComposioHQ/awesome-claude-skills.
-    Agent framework repository routed explicitly to llm_repos.
+  summary: Curated collection of Claude Code subagents, slash commands, hooks, and
+    MCP servers.
   core_concepts:
   - curated agent skill patterns
   - framework-level skill ecosystem mapping
   key_entry_points:
   - README.md
-  - docs/
   build_run:
-    language: mixed
-    build: See upstream README for build steps.
-    test: See upstream README for test steps.
+    language: markdown
+    build: No build step required.
+    test: No automated test suite.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/composiohq__awesome-claude-skills.yaml
-    as_of: '2026-03-05T04:16:38Z'
+    as_of: '2026-03-17'
   local_cache_dir: null
   extras:
     directory: remote::composiohq/awesome-claude-skills
-    intake:
-      pilot_batch_id: PHASE-4-P4-B1
-      repo_id: repo::ComposioHQ/awesome-claude-skills
-      queue_id: intake::ComposioHQ/awesome-claude-skills
-      domain_hint: agent_framework
-      source_mode: remote_metadata
-      observed_at_utc: '2026-03-05T04:16:38Z'
-    remote:
-      provider: github
-      mode: metadata
-      endpoint: /repos/composiohq/awesome-claude-skills
-      fetched_at_utc: '2026-03-05T04:16:38Z'
-      refresh:
-        precedence: api_wins_readme_for_missing_required_fields
-        fallback_source: readme_fallback
-        fallback_used: false
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::containers/podman
   github_full_name: containers/podman
   html_url: https://github.com/containers/podman
@@ -6704,23 +6689,21 @@ repos:
   source: compiled_master
   name: claude-code-tips
   category: agent_cli
-  summary: Phase 4 B5 shallow intake for ykdojo/claude-code-tips as a curated tips
-    and workflow companion for Claude Code users.
+  summary: Tips, workflows, and practical patterns for getting more out of Claude
+    Code.
   core_concepts:
   - prompt and workflow patterns
   - operator playbooks for agent coding
   key_entry_points:
   - README.md
-  - docs/
-  - examples/
   build_run:
-    language: mixed
-    build: See upstream README for project build steps.
-    test: See upstream README for project test steps.
+    language: markdown
+    build: No build step required.
+    test: No automated test suite.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/claude-code-tips.yaml
-    as_of: '2026-03-05T05:30:00Z'
+    as_of: '2026-03-17'
   local_cache_dir: null
   extras:
     directory: remote::ykdojo/claude-code-tips
