@@ -292,6 +292,31 @@ batches:
       - "sourcing_method: code_verified for all 20 deep files"
       - "Cleaned 2 old duplicate deep files (prompt_engineering_guide.yaml, self_llm.yaml)"
       - "Fixed 8 manifest entries with explicit file_stem to prevent WS5 duplicate creation"
+  b9_t3_skips:
+    status: "COMPLETE"
+    objective: "Formal skip recording for documentation/list repos with no extractable implementation."
+    repos_skipped:
+      - github_full_name: avelino/awesome-go
+        skip_reason: documentation_list
+      - github_full_name: shubhamsaboo/awesome-llm-apps
+        skip_reason: documentation_list
+      - github_full_name: composiohq/awesome-claude-skills
+        skip_reason: documentation_list
+      - github_full_name: obsidianmd/obsidian-releases
+        skip_reason: release_tracking_only
+      - github_full_name: ykdojo/claude-code-tips
+        skip_reason: documentation_list
+    notes:
+      - "No deep files generated. These repos have no implementation architecture to extract."
+  b9_mariadb_deferred:
+    status: "DEFERRED"
+    objective: "MariaDB/server deep file — deferred pending dedicated batch with custom clone size limit."
+    repo:
+      github_full_name: MariaDB/server
+      clone_size_kb: 1626004
+      defer_reason: "Clone size exceeds standard 500 MB limit. Requires explicit supervisor decision on size threshold and scope before proceeding."
+    notes:
+      - "Do not include in any batch without supervisor approval and a custom clone_size_limit_mb in the batch spec."
 
 open_threads:
   - "Case-insensitive collision handling if two repos differ only by case."
