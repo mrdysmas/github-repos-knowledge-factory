@@ -1,11 +1,11 @@
 version: 1
-as_of_utc: "2026-03-18T04:51:00Z"
+as_of_utc: "2026-03-18T06:16:36Z"
 
 phase:
   number: "4"
   name: "Corpus Expansion and Stabilization"
   status: "IN_PROGRESS"
-  workflow: "B1_COMPLETE -> STABILIZATION_COMPLETE -> B2_COMPLETE -> B3_COMPLETE_ACCEPT_WITH_NOTES -> B4_COMPLETE_ACCEPT_WITH_NOTES -> B5_COMPLETE_ACCEPT_WITH_NOTES -> TEMPLATE_STANDARDIZATION_APPROVED -> B9_T2_DEEP_COMPLETE -> B9_T3_DEEP_COMPLETE -> B9_LISTS_DEEP_COMPLETE -> B10_MARIADB_COMPLETE -> B11_INTAKE_NEXT"
+  workflow: "B1_COMPLETE -> STABILIZATION_COMPLETE -> B2_COMPLETE -> B3_COMPLETE_ACCEPT_WITH_NOTES -> B4_COMPLETE_ACCEPT_WITH_NOTES -> B5_COMPLETE_ACCEPT_WITH_NOTES -> TEMPLATE_STANDARDIZATION_APPROVED -> B9_T2_DEEP_COMPLETE -> B9_T3_DEEP_COMPLETE -> B9_LISTS_DEEP_COMPLETE -> B10_MARIADB_COMPLETE -> B11_GITNEXUS_LADYBUG_DEEPAGENTS_COMPLETE -> NEXT_BATCH_SELECTION"
   date_initiated: "2026-03-05"
   date_started: "2026-03-05"
   date_completed: null
@@ -32,23 +32,23 @@ baseline:
 
 current:
   queued_count: 0
-  already_canonical_count: 117
+  already_canonical_count: 120
   query_master:
-    repos: 119
-    nodes: 133
+    repos: 122
+    nodes: 136
     edges: 152
-    deep_facts: 5329
+    deep_facts: 5538
   deltas_vs_baseline:
     queued_count: -46
-    already_canonical_count: 46
-    repos: 46
-    nodes: 46
+    already_canonical_count: 49
+    repos: 49
+    nodes: 49
     edges: 0
-    deep_facts: 2408
+    deep_facts: 2617
   freshness:
-    master_index_generated_at_utc: "2026-03-17T00:00:00Z"
-    master_graph_generated_at_utc: "2026-03-17T00:00:00Z"
-    master_deep_facts_generated_at_utc: "2026-03-17T00:00:00Z"
+    master_index_generated_at_utc: "2026-03-18T00:00:00Z"
+    master_graph_generated_at_utc: "2026-03-18T00:00:00Z"
+    master_deep_facts_generated_at_utc: "2026-03-18T00:00:00Z"
     ws7_snapshot_status: "pass"
     ws7_force_used: true
 
@@ -391,6 +391,28 @@ batches:
       - "All WS6 gate bools true and all WS7 gates pass"
       - "Clone prep reused the existing local clone at workspace/clones/mariadb__server under clone_size_limit_mb=2000"
       - "Deep header identity was copied from the WS5-refreshed shallow file, preserving live pipeline casing and source values"
+  b11_gitnexus_ladybugdb_deepagents:
+    status: "COMPLETE"
+    objective: "GitNexus + LadybugDB + deepagents hybrid batch with explicit owner-qualified stems."
+    batch_id: "B11_gitnexus_ladybugdb_deepagents"
+    repo_count_target: 3
+    deep_repo_count: 3
+    shallow_repo_count: 3
+    mode_recommendation_used: "HYBRID"
+    ws6_gate_bools_all_true: true
+    ws7_strict_runs: 0
+    ws7_force_runs: 1
+    ws7_snapshot_status: "pass"
+    deep_success: true
+    policy_success: true
+    acceptance_decision: "COMPLETE"
+    notes:
+      - "repos: 122, nodes: 136, edges: 152"
+      - "deep_facts: 5329 -> 5538 (+209), hard deep gate passed"
+      - "All WS6 gate bools true and all WS7 gates pass"
+      - "Clone prep reused existing local clones at workspace/clones/abhigyanpatwari__GitNexus, workspace/clones/LadybugDB__ladybug, and workspace/clones/langchain-ai__deepagents"
+      - "Explicit file_stem overrides were added to the manifest after WS5 defaulted to short stems from name"
+      - "Ladybug did not require the 2000 MB large-repo path"
 
 open_threads:
   - "Case-insensitive collision handling if two repos differ only by case."

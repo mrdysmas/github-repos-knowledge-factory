@@ -1,5 +1,5 @@
 version: 1
-as_of_utc: "2026-03-18T04:51:00Z"
+as_of_utc: "2026-03-18T06:16:36Z"
 
 naming_legend:
   WS: "Workstream (pipeline lane/stage, e.g., WS1-WS7)"
@@ -182,16 +182,16 @@ canonical:
     compile: "tools/ws4_master_compiler.py"
   execution_tracker: "phase_4_progress_tracker.yaml"
   corpus_status:
-    as_of_utc: "2026-03-18T04:50:01Z"
+    as_of_utc: "2026-03-18T06:16:36Z"
     query_master:
-      repos: 119
-      nodes: 133
+      repos: 122
+      nodes: 136
       edges: 152
-      deep_facts: 5329
+      deep_facts: 5538
     latest_batch:
-      batch_id: "B10_mariadb"
+      batch_id: "B11_gitnexus_ladybugdb_deepagents"
       result: "ok"
-      deep_facts_delta: 75
+      deep_facts_delta: 209
       ws6_gate_bools_all_true: true
       ws7_snapshot_status: "pass"
       ws7_force_used: true
@@ -209,7 +209,7 @@ todo:
     - id: "B"
       topic: "Update workflow"
       status: "IN_PROGRESS"
-      note: "Three hardened runs are now completed (B3, B4, B5) with no blocking regressions. B5 was accepted with notes after supervisor review, template standardization is approved, and the next action is B11 intake selection plus next-batch execution."
+      note: "Three hardened runs are now completed (B3, B4, B5) with no blocking regressions. Template standardization is approved, B11 completed successfully, and the next action is selecting the next corpus-expansion batch."
     - id: "C"
       topic: "Quality gates"
       status: "IN_PROGRESS"
@@ -238,20 +238,20 @@ todo:
 next_agent_handoff:
   if_user_asks: "What now? What should we work on?"
   answer:
-    current_focus: "Phase 4 continues after B10_mariadb COMPLETE. Template standardization is resolved; the next action is B11 intake selection and the next corpus-expansion execution pass."
+    current_focus: "Phase 4 continues after B11_gitnexus_ladybugdb_deepagents COMPLETE. Template standardization is resolved; the next action is selecting the next corpus-expansion batch and executing the next pass."
     read_first:
       - "project_status.yaml"
       - "phase_4_progress_tracker.yaml"
       - "docs/INGESTION_WORKFLOW.md"
       - "inputs/intake/intake_queue.yaml"
       - "master_repo_list.yaml"
-      - "reports/run_batch/B10_mariadb_verdict.yaml"
-      - "inputs/ws5/B10_mariadb_manifest.yaml"
+      - "reports/run_batch/B11_gitnexus_ladybugdb_deepagents_verdict.yaml"
+      - "inputs/ws5/B11_gitnexus_ladybugdb_deepagents_manifest.yaml"
       - "tools/query_master.py"
       - "tools/run_batch.py"
     immediate_next_step:
-      id: "P4_B11_INTAKE_EXECUTION"
-      objective: "Select the next B11 intake slice, prepare a batch-local WS5 manifest, and execute the next corpus-expansion run using the approved post-standardization workflow."
+      id: "P4_NEXT_BATCH_SELECTION"
+      objective: "Select the next corpus-expansion slice, prepare a batch-local WS5 manifest, and execute the next run using the approved post-standardization workflow."
       first_commands:
         - "git status -sb"
         - "python3 tools/check_intake_queue_sync.py --workspace-root ."
