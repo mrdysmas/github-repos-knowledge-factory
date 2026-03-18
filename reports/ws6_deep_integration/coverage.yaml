@@ -2,17 +2,17 @@ artifact_type: ws6_deep_integration_coverage
 generated_at_utc: '2026-03-17T00:00:00Z'
 contract_version: 1.0.0-ws6-draft
 input_scope:
-  deep_narrative_files_total: 113
+  deep_narrative_files_total: 117
   deep_fact_draft_files_total: 0
-  repos_with_any_deep_inputs: 113
-  repos_materialized: 113
+  repos_with_any_deep_inputs: 117
+  repos_materialized: 117
 metrics:
-  facts_materialized_total: 5142
+  facts_materialized_total: 5329
   facts_with_evidence_pct: 100.0
   confidence_bounds_valid_pct: 100.0
   draft_overrides_count: 0
   derived_dedupe_merges_count: 0
-  unmapped_sections_count: 25
+  unmapped_sections_count: 21
   unmapped_sections_by_repo:
     repo::1panel-dev/maxkb: 4
     repo::anderspitman/awesome-tunneling: 1
@@ -22,7 +22,6 @@ metrics:
     repo::mindsdb/mindsdb: 1
     repo::mintplex-labs/anything-llm: 1
     repo::nexaai/nexa-sdk: 4
-    repo::shubhamsaboo/awesome-llm-apps: 4
     repo::streisandeffect/streisand: 1
   per_repo:
   - node_id: repo::1panel-dev/maxkb
@@ -142,6 +141,19 @@ metrics:
     facts_emitted: 49
     blocked_facts: 0
     unmapped_sections_count: 0
+  - node_id: repo::avelino/awesome-go
+    github_full_name: avelino/awesome-go
+    shard: repos
+    narrative_files: 1
+    draft_files: 0
+    narrative_facts_raw: 31
+    draft_facts_raw: 0
+    derived_facts_after_dedupe: 31
+    draft_overrides: 0
+    evidence_merges: 0
+    facts_emitted: 31
+    blocked_facts: 0
+    unmapped_sections_count: 0
   - node_id: repo::borgbackup/borg
     github_full_name: borgbackup/borg
     shard: repos
@@ -231,6 +243,19 @@ metrics:
     draft_overrides: 0
     evidence_merges: 0
     facts_emitted: 47
+    blocked_facts: 0
+    unmapped_sections_count: 0
+  - node_id: repo::composiohq/awesome-claude-skills
+    github_full_name: composiohq/awesome-claude-skills
+    shard: repos
+    narrative_files: 1
+    draft_files: 0
+    narrative_facts_raw: 37
+    draft_facts_raw: 0
+    derived_facts_after_dedupe: 37
+    draft_overrides: 0
+    evidence_merges: 0
+    facts_emitted: 37
     blocked_facts: 0
     unmapped_sections_count: 0
   - node_id: repo::containers/podman
@@ -714,6 +739,19 @@ metrics:
     facts_emitted: 34
     blocked_facts: 0
     unmapped_sections_count: 0
+  - node_id: repo::mariadb/server
+    github_full_name: mariadb/server
+    shard: repos
+    narrative_files: 1
+    draft_files: 0
+    narrative_facts_raw: 75
+    draft_facts_raw: 0
+    derived_facts_after_dedupe: 75
+    draft_overrides: 0
+    evidence_merges: 0
+    facts_emitted: 75
+    blocked_facts: 0
+    unmapped_sections_count: 0
   - node_id: repo::mem0ai/mem0
     github_full_name: mem0ai/mem0
     shard: repos
@@ -1187,14 +1225,14 @@ metrics:
     shard: repos
     narrative_files: 1
     draft_files: 0
-    narrative_facts_raw: 24
+    narrative_facts_raw: 35
     draft_facts_raw: 0
-    derived_facts_after_dedupe: 24
+    derived_facts_after_dedupe: 35
     draft_overrides: 0
     evidence_merges: 0
-    facts_emitted: 24
+    facts_emitted: 35
     blocked_facts: 0
-    unmapped_sections_count: 4
+    unmapped_sections_count: 0
   - node_id: repo::slackhq/nebula
     github_full_name: slackhq/nebula
     shard: repos
@@ -1468,6 +1506,19 @@ metrics:
     facts_emitted: 47
     blocked_facts: 0
     unmapped_sections_count: 0
+  - node_id: repo::ykdojo/claude-code-tips
+    github_full_name: ykdojo/claude-code-tips
+    shard: repos
+    narrative_files: 1
+    draft_files: 0
+    narrative_facts_raw: 33
+    draft_facts_raw: 0
+    derived_facts_after_dedupe: 33
+    draft_overrides: 0
+    evidence_merges: 0
+    facts_emitted: 33
+    blocked_facts: 0
+    unmapped_sections_count: 0
   - node_id: repo::yusuf-musleh/mmar
     github_full_name: yusuf-musleh/mmar
     shard: repos
@@ -1505,6 +1556,7 @@ actions:
   - repos/knowledge/deep_facts/anthropics__skills.yaml
   - repos/knowledge/deep_facts/anysiteio__agent-skills.yaml
   - repos/knowledge/deep_facts/anything_llm.yaml
+  - repos/knowledge/deep_facts/awesome-go.yaml
   - repos/knowledge/deep_facts/awesome-llm-apps.yaml
   - repos/knowledge/deep_facts/awesome-tunneling.yaml
   - repos/knowledge/deep_facts/bore.yaml
@@ -1512,10 +1564,12 @@ actions:
   - repos/knowledge/deep_facts/brianpetro__obsidian-smart-connections.yaml
   - repos/knowledge/deep_facts/capistrano__capistrano.yaml
   - repos/knowledge/deep_facts/ccs.yaml
+  - repos/knowledge/deep_facts/claude-code-tips.yaml
   - repos/knowledge/deep_facts/claude-mem.yaml
   - repos/knowledge/deep_facts/cloudflared.yaml
   - repos/knowledge/deep_facts/codemoot.yaml
   - repos/knowledge/deep_facts/coder__code-server.yaml
+  - repos/knowledge/deep_facts/composiohq__awesome-claude-skills.yaml
   - repos/knowledge/deep_facts/containers__podman.yaml
   - repos/knowledge/deep_facts/dottxt-ai__outlines.yaml
   - repos/knowledge/deep_facts/felony.yaml
@@ -1582,6 +1636,7 @@ actions:
   - repos/knowledge/deep_facts/ruvnet__claude-flow.yaml
   - repos/knowledge/deep_facts/self-hosting-guide.yaml
   - repos/knowledge/deep_facts/self-llm.yaml
+  - repos/knowledge/deep_facts/server.yaml
   - repos/knowledge/deep_facts/sharkdp__bat.yaml
   - repos/knowledge/deep_facts/sharkdp__fd.yaml
   - repos/knowledge/deep_facts/smile.yaml
@@ -1620,7 +1675,7 @@ gate_bools:
   execution_results_pending_zero: true
   ws6_hash_stable: true
 gate_metrics:
-  unmapped_sections_count: 25
+  unmapped_sections_count: 21
 execution_mode: full_validation_run
 ws6_gate_ready: true
 gate_ready: true

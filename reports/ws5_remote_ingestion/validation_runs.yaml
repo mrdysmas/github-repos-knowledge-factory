@@ -31,7 +31,7 @@ required_commands:
   expectation: validate.py exits 0
 - step: 6
   command: python3 tools/ws5_remote_ingestion.py --workspace-root /Users/szilaa/scripts/ext_sources/github_repos
-    --input inputs/ws5/B9_T3_deep_manifest.yaml --reports-dir reports/ws5_remote_ingestion
+    --input inputs/ws5/B10_mariadb_manifest.yaml --reports-dir reports/ws5_remote_ingestion
   status: PASS
   exit_code: 0
   expectation: WS5 ingestion writes deterministic reports and WS1-compatible records
@@ -61,10 +61,11 @@ required_commands:
   expectation: hashes unchanged
 artifact_hashes:
   inputs/ws5/ws5_input_manifest.yaml: 200e9a2bfa797920a28814c083a502d4ec9a3e1cbe08b779a2e3ccf115d70c65
-  reports/ws5_remote_ingestion/coverage.yaml: 27a8bc1ec6ebef602f35f3513b29849e1a4d42551f4742069feeb7148416b3e6
+  reports/ws5_remote_ingestion/coverage.yaml: 8ea7d8c77ce476ed70d167325605b6f0ebd03cd9ed4c76fe6071582e03316636
   reports/ws5_remote_ingestion/mismatch_report.yaml: 8d90f05c45e24a358fac24a88d6e1cef9ceb99416d7818de6e0066136bf0f671
   inputs/ws5/B9_T3_deep_manifest.yaml: 9894aabf0a0f970f1152e6bab722fe6107e08c1c0097b10773f7b0171b1f2b18
-input_manifest_sha256: 9894aabf0a0f970f1152e6bab722fe6107e08c1c0097b10773f7b0171b1f2b18
+  inputs/ws5/B10_mariadb_manifest.yaml: 45133f6184c2ba67a5d29b19da81d35b8b555927d54e4747bb0cf96f403dd3cf
+input_manifest_sha256: 45133f6184c2ba67a5d29b19da81d35b8b555927d54e4747bb0cf96f403dd3cf
 gate_bools:
   manifest_parseable: true
   manifest_entries_present: true

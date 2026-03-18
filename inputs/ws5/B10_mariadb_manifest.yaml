@@ -1,0 +1,28 @@
+artifact_type: ws5_remote_ingestion_input_manifest
+contract_version: 1.0.0-ws1
+defaults:
+  target_shard: repos
+  as_of: "2026-03-17"
+  source: remote_metadata
+repos:
+  - name: server
+    github_full_name: mariadb/server
+    html_url: https://github.com/MariaDB/server
+    target_shard: repos
+    source: remote_metadata
+    category: data_pipelines
+    summary: Phase 4 B6 shallow intake for MariaDB/server as a database server codebase routed per locked batch policy.
+    core_concepts:
+      - relational data processing engine
+      - database service operations
+    key_entry_points:
+      - README.md
+      - sql/
+      - storage/
+      - include/
+    build_run:
+      language: c++
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-17"
+    local_cache_dir: null
