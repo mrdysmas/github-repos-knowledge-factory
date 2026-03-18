@@ -1,0 +1,83 @@
+name: ralphy
+node_id: "repo::michaelshimeles/ralphy"
+github_full_name: michaelshimeles/ralphy
+html_url: "https://github.com/michaelshimeles/ralphy"
+source: remote_metadata
+provenance:
+  shard: repos
+  source_file: "repos/knowledge/deep/ralphy.yaml"
+  as_of: "2026-03-17"
+  sourcing_method: code_verified
+  extraction_model: gpt-5.4
+  extraction_agent: codex
+directory: "remote::michaelshimeles/ralphy"
+category: agent_cli
+key_features:
+  - feature: "Single-task mode and PRD loop mode share one CLI"
+    description: "The main entrypoint dispatches `--init`, `--config`, `--add-rule`, single brownfield task execution, or full PRD loop execution from one process."
+  - feature: "Task sources are pluggable"
+    description: "The task factory creates markdown, markdown-folder, YAML, JSON, or GitHub-backed task sources, with a cached wrapper used for loop execution."
+  - feature: "Parallel execution uses worktrees or lightweight sandboxes"
+    description: "The parallel runner creates per-agent worktrees or copied sandboxes, replays PRD inputs, executes engine prompts with retry, and later merges or cleans up results."
+  - feature: "Engine adapters cover eight backends"
+    description: "The engine registry can instantiate Claude, OpenCode, Cursor, Codex, Qwen, Droid, Copilot, and Gemini engines."
+architecture:
+  module_breakdown:
+    - module: "cli/src/cli/"
+      responsibility: "Argument parsing and command dispatch for initialization, loop execution, task mode, config edits, and telemetry commands."
+      key_files: ["cli/src/index.ts", "cli/src/cli/args.ts"]
+    - module: "cli/src/tasks/"
+      responsibility: "Task-source abstraction over markdown, folder, YAML, JSON, and GitHub issue inputs."
+      key_files: ["cli/src/tasks/index.ts", "cli/src/tasks/github.ts"]
+    - module: "cli/src/execution/"
+      responsibility: "Sequential and parallel execution, retry handling, conflict resolution, worktree management, and sandbox support."
+      key_files: ["cli/src/execution/sequential.ts", "cli/src/execution/parallel.ts"]
+    - module: "cli/src/engines/"
+      responsibility: "Adapters for the supported coding-agent backends."
+      key_files: ["cli/src/engines/index.ts", "cli/src/engines/codex.ts"]
+cli_arguments:
+  - flag: "--parallel"
+    description: "Run tasks concurrently using worktrees."
+  - flag: "--sandbox"
+    description: "Use lightweight sandboxes instead of git worktrees."
+  - flag: "--max-parallel"
+    description: "Set the maximum number of concurrent agents."
+  - flag: "--github"
+    description: "Load tasks from a GitHub repository issue source."
+  - flag: "--sync-issue"
+    description: "Sync PRD progress back to a GitHub issue body."
+  - flag: "--model"
+    description: "Override the default engine model."
+configuration:
+  - key: "aiEngine"
+    description: "Runtime option derived from engine-selection flags such as `--claude`, `--codex`, or `--gemini`."
+  - key: "prdSource"
+    description: "Runtime option derived from PRD file, folder, JSON, YAML, or GitHub inputs."
+  - key: "browserEnabled"
+    description: "Runtime option that toggles browser automation between `auto`, `true`, and `false`."
+api_surface:
+  public_functions:
+    - name: "createProgram"
+      purpose: "Build the Commander program with the full Ralphy CLI option set."
+      signature: "function createProgram(): Command"
+      location: "cli/src/cli/args.ts"
+    - name: "parseArgs"
+      purpose: "Parse CLI arguments into runtime options, task mode flags, and engine-specific passthrough arguments."
+      location: "cli/src/cli/args.ts"
+    - name: "runLoop"
+      purpose: "Execute the multi-task PRD loop in sequential or parallel mode."
+      signature: "async function runLoop(options: RuntimeOptions): Promise<void>"
+      location: "cli/src/cli/commands/run.ts"
+    - name: "createEngine"
+      purpose: "Instantiate the requested engine adapter by name."
+      signature: "function createEngine(name: AIEngineName): AIEngine"
+      location: "cli/src/engines/index.ts"
+key_files:
+  - path: "cli/src/index.ts"
+    purpose: "Bun entrypoint that selects init, config, task, or PRD loop modes."
+  - path: "cli/src/cli/args.ts"
+    purpose: "Commander option definitions and runtime option translation."
+  - path: "cli/src/execution/parallel.ts"
+    purpose: "Parallel agent execution using worktrees or sandboxes."
+  - path: "cli/src/tasks/index.ts"
+    purpose: "Factory for markdown, YAML, JSON, folder, and GitHub task sources."

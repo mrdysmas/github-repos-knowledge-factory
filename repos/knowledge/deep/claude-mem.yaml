@@ -1,0 +1,72 @@
+name: claude-mem
+node_id: "repo::thedotmack/claude-mem"
+github_full_name: thedotmack/claude-mem
+html_url: "https://github.com/thedotmack/claude-mem"
+source: remote_metadata
+provenance:
+  shard: repos
+  source_file: "repos/knowledge/deep/claude-mem.yaml"
+  as_of: "2026-03-17"
+  sourcing_method: code_verified
+  extraction_model: gpt-5.4
+  extraction_agent: codex
+directory: "remote::thedotmack/claude-mem"
+category: agent_cli
+key_features:
+  - feature: "Hook runtime degrades gracefully when the worker is unavailable"
+    description: "The hook command classifies transport failures, timeouts, HTTP 5xx, and 429 responses as transient and exits successfully instead of blocking the host editor."
+  - feature: "Context generation is exposed as a reusable service layer"
+    description: "The context module re-exports `generateContext`, token calculators, timeline builders, and observation query helpers."
+  - feature: "SQLite storage is a first-class subsystem"
+    description: "The SQLite index re-exports database initialization, migrations, CRUD modules, FTS-backed search, and transaction helpers."
+  - feature: "Transcript ingestion tails live JSONL files"
+    description: "The watcher tracks byte offsets, rescans globs or directories, and streams parsed transcript lines through `TranscriptEventProcessor`."
+  - feature: "Supervisor enforces single-worker semantics"
+    description: "The supervisor checks a PID file, starts health monitoring, and tears down stale PID records before allowing a worker to run."
+architecture:
+  module_breakdown:
+    - module: "src/cli/"
+      responsibility: "Hook command entrypoint, platform adapters, and event handlers for Claude Code integration."
+      key_files: ["src/cli/hook-command.ts", "src/cli/adapters/claude-code.ts"]
+    - module: "src/services/context/"
+      responsibility: "Builds rendered session context from observations, summaries, and timeline data."
+      key_files: ["src/services/context/index.ts", "src/services/context/ContextBuilder.ts"]
+    - module: "src/services/sqlite/"
+      responsibility: "Database lifecycle, migrations, search, and transactional persistence of sessions and observations."
+      key_files: ["src/services/sqlite/index.ts", "src/services/sqlite/Database.js"]
+    - module: "src/services/transcripts/"
+      responsibility: "Watches transcript files, parses entries, and feeds event processing."
+      key_files: ["src/services/transcripts/watcher.ts", "src/services/transcripts/processor.ts"]
+    - module: "src/supervisor/"
+      responsibility: "Worker PID validation, process registry management, signal handling, and health checker lifecycle."
+      key_files: ["src/supervisor/index.ts", "src/supervisor/process-registry.ts"]
+api_surface:
+  public_functions:
+    - name: "isWorkerUnavailableError"
+      purpose: "Classify whether a hook failure should be treated as transient worker unavailability."
+      signature: "function isWorkerUnavailableError(error: unknown): boolean"
+      location: "src/cli/hook-command.ts"
+    - name: "hookCommand"
+      purpose: "Normalize hook input, dispatch an event handler, and emit JSON output with mapped exit codes."
+      signature: "async function hookCommand(platform: string, event: string, options?: HookCommandOptions): Promise<number>"
+      location: "src/cli/hook-command.ts"
+    - name: "generateContext"
+      purpose: "Public entrypoint for assembling memory context from stored observations and summaries."
+      location: "src/services/context/index.ts"
+    - name: "initializeDatabase"
+      purpose: "Initialize the SQLite-backed storage layer exported from the package."
+      location: "src/services/sqlite/index.ts"
+    - name: "startSupervisor"
+      purpose: "Boot the worker supervisor and health checker."
+      location: "src/supervisor/index.ts"
+key_files:
+  - path: "package.json"
+    purpose: "Defines the published package, exported subpaths, and worker-oriented scripts."
+  - path: "src/cli/hook-command.ts"
+    purpose: "Implements hook execution, graceful degradation, and exit-code policy."
+  - path: "src/services/sqlite/index.ts"
+    purpose: "Barrel export for database setup, search, migrations, and transactions."
+  - path: "src/services/transcripts/watcher.ts"
+    purpose: "Tails transcript files and routes parsed events into the processor."
+  - path: "src/supervisor/index.ts"
+    purpose: "Single-worker supervisor with PID validation and shutdown handling."

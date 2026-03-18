@@ -1,0 +1,464 @@
+name: oh-my-opencode
+node_id: repo::code-yeongyu/oh-my-opencode
+github_full_name: code-yeongyu/oh-my-opencode
+html_url: https://github.com/code-yeongyu/oh-my-opencode
+source: remote_metadata
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep_facts/oh-my-opencode.yaml
+  as_of: '2026-03-17'
+  extractor_version: ws6-deep-integrator-v1
+  extraction_model: gpt-5.4
+  extraction_agent: codex
+facts:
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: key_features[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[1]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: CLI wraps install, run, version, doctor, and MCP OAuth flows
+  object_value: CLI wraps install, run, version, doctor, and MCP OAuth flows
+  note: The Commander program registers `install`, `run`, `get-local-version`, `doctor`,
+    `version`, and an OAuth helper command.
+  fact_id: fact::6ba07e1a2076878465f841c4
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: key_features[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[3]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: Distribution includes platform-specific optional binaries
+  object_value: Distribution includes platform-specific optional binaries
+  note: The package declares optional OS-specific packages and exports `./schema.json`
+    alongside the main plugin module.
+  fact_id: fact::42b2ae4f1e24258862a6d655
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: key_features[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[0]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: Plugin entrypoint assembles managers, tools, hooks, and disposal
+  object_value: Plugin entrypoint assembles managers, tools, hooks, and disposal
+  note: The default export loads plugin config, creates managers and tools, builds
+    hooks, and returns a plugin interface with extra session compaction behavior.
+  fact_id: fact::e5aab710c48ce5a1aaadad24
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: key_features[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[2]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: Project configuration is schema-driven
+  object_value: Project configuration is schema-driven
+  note: The JSON schema exposes top-level toggles such as `default_run_agent`, `disabled_mcps`,
+    `disabled_agents`, `disabled_hooks`, `disabled_commands`, and per-agent permission
+    and reasoning settings.
+  fact_id: fact::6f4ff8abbdfb62b280c68beb
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: key_files[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[3]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: assets/oh-my-opencode.schema.json
+  object_value: assets/oh-my-opencode.schema.json
+  fact_id: fact::6b7db6a19f4c257374444c97
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: architecture.module_breakdown[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[1]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: Command-line installer, runner, diagnostics, version checks, and OAuth
+      helpers.
+  object_value: src/cli/
+  note: 'responsibility: Command-line installer, runner, diagnostics, version checks,
+    and OAuth helpers.; key_files: src/cli/cli-program.ts, src/cli/run/runner.ts'
+  fact_id: fact::8eb621e749443723f58373d4
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: key_files[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[1]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: src/cli/cli-program.ts
+  object_value: src/cli/cli-program.ts
+  fact_id: fact::6b631ae11b570c3293522899
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: architecture.module_breakdown[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[2]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: Typed config loading and schema exports for plugin settings.
+  object_value: src/config/
+  note: 'responsibility: Typed config loading and schema exports for plugin settings.;
+    key_files: src/config/schema.ts, assets/oh-my-opencode.schema.json'
+  fact_id: fact::38deae1ed42955c89d25400b
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: key_files[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[2]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: src/config/schema.ts
+  object_value: src/config/schema.ts
+  fact_id: fact::d33f480e8aea10b76c8ee358
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: architecture.module_breakdown[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[3]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: Skill MCP connection management, cleanup, transport selection, and OAuth
+      handling.
+  object_value: src/features/skill-mcp-manager/
+  note: 'responsibility: Skill MCP connection management, cleanup, transport selection,
+    and OAuth handling.; key_files: src/features/skill-mcp-manager/manager.ts, src/features/skill-mcp-manager/oauth-handler.ts'
+  fact_id: fact::a92b9b113525419770710d10
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: architecture.module_breakdown[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[0]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: Plugin bootstrap that initializes config context, managers, tools, hooks,
+      and plugin disposal.
+  object_value: src/index.ts
+  note: 'responsibility: Plugin bootstrap that initializes config context, managers,
+    tools, hooks, and plugin disposal.; key_files: src/index.ts, src/plugin-interface.ts'
+  fact_id: fact::7c497ba0f5d0f7ce55516075
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: key_files[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[0]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: src/index.ts
+  object_value: src/index.ts
+  fact_id: fact::851c591961ee5d77b39e8e55
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: command
+  confidence: 0.7
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: cli_arguments[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_arguments[2]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: --agent
+  object_value: --agent
+  note: Select the agent for `run`, overriding environment and config defaults.
+  fact_id: fact::32e1e49cac2cea2297057990
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: command
+  confidence: 0.7
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: cli_arguments[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_arguments[1]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: --claude
+  object_value: --claude
+  note: Declare Claude subscription mode during installation.
+  fact_id: fact::f96f835e9c0af18ee7a26e88
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: command
+  confidence: 0.7
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: cli_arguments[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_arguments[3]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: --model
+  object_value: --model
+  note: Override the provider and model identifier for a run.
+  fact_id: fact::553abdec78519c77868d6716
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: command
+  confidence: 0.7
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: cli_arguments[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_arguments[0]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: --no-tui
+  object_value: --no-tui
+  note: Run the installer without the interactive TUI.
+  fact_id: fact::65b8bebb1200f62143dd3c30
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: command
+  confidence: 0.7
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: cli_arguments[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_arguments[4]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: --session-id
+  object_value: --session-id
+  note: Resume an existing session instead of starting a new one.
+  fact_id: fact::e58adf3959b0199432f15ef2
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: configuration[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: $schema
+  object_value: $schema
+  note: Optional schema pointer field recognized by the JSON config schema.
+  fact_id: fact::cee54cdb09699ad73549d6a1
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: configuration[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: default_run_agent
+  object_value: default_run_agent
+  note: Top-level config field for selecting the default agent used by `run`.
+  fact_id: fact::28966a633f56a3872826105b
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: configuration[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[3]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: disabled_agents
+  object_value: disabled_agents
+  note: Array of agent names disabled in the plugin configuration.
+  fact_id: fact::da233e285ec67721f86e02c3
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: configuration[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[5]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: disabled_commands
+  object_value: disabled_commands
+  note: Array of built-in command names disabled in the command layer.
+  fact_id: fact::8f2814099d5b8aae50a26d4b
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: configuration[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[4]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: disabled_hooks
+  object_value: disabled_hooks
+  note: Array of hook names disabled before hook creation.
+  fact_id: fact::d8c5e8cef7e21cc4beddd6b2
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: configuration[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[2]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: disabled_mcps
+  object_value: disabled_mcps
+  note: Array of MCP integrations disabled at runtime.
+  fact_id: fact::8af31327772813c31431595a
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: configuration[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[6]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: model_fallback
+  object_value: model_fallback
+  note: Boolean toggle for model fallback behavior.
+  fact_id: fact::2480c030041166868b54dd32
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: api_surface.public_functions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[0]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: OhMyOpenCodePlugin
+  object_value: OhMyOpenCodePlugin
+  note: Main plugin entrypoint that returns the assembled OpenCode plugin interface.;
+    src/index.ts
+  fact_id: fact::614d7911cc71cfc3f2d71eef
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: api_surface.public_functions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[1]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: runCli
+  object_value: runCli
+  note: 'Parse and execute the CLI program.; function runCli(): void; src/cli/cli-program.ts'
+  fact_id: fact::738525d97b6c47ff5c27d013

@@ -1,0 +1,64 @@
+name: codemoot
+node_id: "repo::katarmal-ram/codemoot"
+github_full_name: katarmal-ram/codemoot
+html_url: "https://github.com/katarmal-ram/codemoot"
+source: remote_metadata
+provenance:
+  shard: repos
+  source_file: "repos/knowledge/deep/codemoot.yaml"
+  as_of: "2026-03-17"
+  sourcing_method: code_verified
+  extraction_model: gpt-5.4
+  extraction_agent: codex
+directory: "remote::katarmal-ram/codemoot"
+category: agent_cli
+key_features:
+  - feature: "Monorepo split across CLI, core, MCP server, and web packages"
+    description: "The workspace root routes package builds through `packages/*`, with distinct `cli`, `core`, `mcp-server`, and `web` packages."
+  - feature: "CLI covers planning, review, debate, jobs, sessions, cleanup, and shipping"
+    description: "The Commander entrypoint registers commands such as `run`, `review`, `cleanup`, `plan`, `debate`, `jobs`, `session`, `watch`, and `shipit`."
+  - feature: "Core orchestrator composes workflow, memory, cost, and model registry services"
+    description: "The orchestrator wires `WorkflowEngine`, `EventBus`, `ContextBuilder`, `SessionStore`, `ArtifactStore`, `CostStore`, and `MemoryStore` around a project config and SQLite database."
+  - feature: "MCP server exposes five tool handlers"
+    description: "The MCP server registers `codemoot_review`, `codemoot_plan`, `codemoot_debate`, `codemoot_memory`, and `codemoot_cost` over stdio transport."
+architecture:
+  module_breakdown:
+    - module: "packages/cli/src/"
+      responsibility: "Commander-based user interface and command handlers for workflow operations."
+      key_files: ["packages/cli/src/index.ts", "packages/cli/src/commands/review.ts"]
+    - module: "packages/core/src/engine/"
+      responsibility: "Session orchestration, eventing, debate loops, workflow execution, and cancellation control."
+      key_files: ["packages/core/src/engine/orchestrator.ts", "packages/core/src/engine/workflow-engine.ts"]
+    - module: "packages/core/src/memory/"
+      responsibility: "SQLite-backed stores for sessions, jobs, artifacts, cache, and debate history."
+      key_files: ["packages/core/src/memory/database.ts", "packages/core/src/memory/session-store.ts"]
+    - module: "packages/mcp-server/src/"
+      responsibility: "MCP stdio server that wraps orchestrator capabilities as callable tools."
+      key_files: ["packages/mcp-server/src/server.ts", "packages/mcp-server/src/tools/review.ts"]
+api_surface:
+  public_functions:
+    - name: "Orchestrator.run"
+      purpose: "Execute a full plan-review, implementation, and code-review session for a task."
+      signature: "async run(task: string, options?: RunOptions): Promise<SessionResult>"
+      location: "packages/core/src/engine/orchestrator.ts"
+    - name: "Orchestrator.plan"
+      purpose: "Run only the planning loop with iterative review."
+      signature: "async plan(task: string, options?: PlanOptions): Promise<SessionResult>"
+      location: "packages/core/src/engine/orchestrator.ts"
+    - name: "Orchestrator.review"
+      purpose: "Review content with a configured model after DLP sanitization and project-context assembly."
+      signature: "async review(content: string, options?: ReviewOptions, cancellationToken?: CancellationToken): Promise<ReviewResult>"
+      location: "packages/core/src/engine/orchestrator.ts"
+    - name: "startServer"
+      purpose: "Start the MCP stdio server and register tool handlers backed by the orchestrator."
+      signature: "async function startServer(): Promise<void>"
+      location: "packages/mcp-server/src/server.ts"
+key_files:
+  - path: "package.json"
+    purpose: "Workspace root for the pnpm monorepo and shared scripts."
+  - path: "packages/cli/src/index.ts"
+    purpose: "CLI command registration for the user-facing workflow tool."
+  - path: "packages/core/src/engine/orchestrator.ts"
+    purpose: "Core workflow orchestration across models, stores, and event streams."
+  - path: "packages/mcp-server/src/server.ts"
+    purpose: "MCP server that exposes planning, review, debate, memory, and cost tools."

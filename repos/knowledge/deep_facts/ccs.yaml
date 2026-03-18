@@ -1,0 +1,266 @@
+name: ccs
+node_id: repo::kaitranntt/ccs
+github_full_name: kaitranntt/ccs
+html_url: https://github.com/kaitranntt/ccs
+source: remote_metadata
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep_facts/ccs.yaml
+  as_of: '2026-03-17'
+  extractor_version: ws6-deep-integrator-v1
+  extraction_model: gpt-5.4
+  extraction_agent: codex
+facts:
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ccs.yaml
+    source_section: key_features[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[3]
+    source_file: repos/knowledge/deep/ccs.yaml
+    excerpt: Dashboard server combines REST, SPA assets, and WebSockets
+  object_value: Dashboard server combines REST, SPA assets, and WebSockets
+  note: The web server starts Express, mounts `/api`, `/api/shared`, `/api/overview`,
+    and `/api/usage`, then attaches a WebSocket server and optional Vite middleware.
+  fact_id: fact::2129ccf1ac29884eb7d15556
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ccs.yaml
+    source_section: key_features[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[2]
+    source_file: repos/knowledge/deep/ccs.yaml
+    excerpt: Embedded proxy execution for third-party providers
+  object_value: Embedded proxy execution for third-party providers
+  note: The `execClaudeWithProxy` path starts a local proxy, injects `ANTHROPIC_BASE_URL`,
+    `ANTHROPIC_AUTH_TOKEN`, and `ANTHROPIC_MODEL`, then launches the Claude CLI with
+    profile-specific hook environments.
+  fact_id: fact::369a6e3c554ca3b50971b94a
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ccs.yaml
+    source_section: key_features[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[0]
+    source_file: repos/knowledge/deep/ccs.yaml
+    excerpt: Global CLI entrypoint with multi-command dispatch
+  object_value: Global CLI entrypoint with multi-command dispatch
+  note: The package publishes `ccs` and `ccsd` bins, and `src/ccs.ts` imports handlers
+    for install, doctor, sync, update, shell completion, API, cursor, cliproxy, and
+    config flows.
+  fact_id: fact::72ca4ef2cef712c93c39c989
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ccs.yaml
+    source_section: key_features[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[1]
+    source_file: repos/knowledge/deep/ccs.yaml
+    excerpt: Profile auto-detection from the first positional argument
+  object_value: Profile auto-detection from the first positional argument
+  note: The `detectProfile` helper treats the first non-flag token as a profile name
+    and otherwise defaults to `default`.
+  fact_id: fact::70c8e42a8d90aedf97aa24da
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ccs.yaml
+    source_section: key_files[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[0]
+    source_file: repos/knowledge/deep/ccs.yaml
+    excerpt: package.json
+  object_value: package.json
+  fact_id: fact::7707a2fa8aab8fb28e00c5cd
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ccs.yaml
+    source_section: key_files[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[3]
+    source_file: repos/knowledge/deep/ccs.yaml
+    excerpt: src/api/index.ts
+  object_value: src/api/index.ts
+  fact_id: fact::ace62e4772efdae6e7896f6a
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ccs.yaml
+    source_section: architecture.module_breakdown[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[4]
+    source_file: repos/knowledge/deep/ccs.yaml
+    excerpt: Profile lifecycle, preset, validation, and catalog services used by the
+      dashboard API.
+  object_value: src/api/services/
+  note: 'responsibility: Profile lifecycle, preset, validation, and catalog services
+    used by the dashboard API.; key_files: src/api/services/profile-lifecycle-service.ts,
+    src/api/services/openrouter-catalog.ts'
+  fact_id: fact::a48825965af3e65e7e044d62
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ccs.yaml
+    source_section: key_files[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[1]
+    source_file: repos/knowledge/deep/ccs.yaml
+    excerpt: src/ccs.ts
+  object_value: src/ccs.ts
+  fact_id: fact::4e415c616548ceea163a129b
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ccs.yaml
+    source_section: architecture.module_breakdown[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[0]
+    source_file: repos/knowledge/deep/ccs.yaml
+    excerpt: Main CLI dispatcher that detects profiles, resolves target adapters,
+      and launches proxy-backed or direct CLI execution.
+  object_value: src/ccs.ts
+  note: 'responsibility: Main CLI dispatcher that detects profiles, resolves target
+    adapters, and launches proxy-backed or direct CLI execution.; key_files: src/ccs.ts'
+  fact_id: fact::e2a19e3e987e4599890e62ac
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ccs.yaml
+    source_section: architecture.module_breakdown[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[2]
+    source_file: repos/knowledge/deep/ccs.yaml
+    excerpt: Local proxy management, quota tracking, sync, and provider-specific adapter
+      helpers.
+  object_value: src/cliproxy/
+  note: 'responsibility: Local proxy management, quota tracking, sync, and provider-specific
+    adapter helpers.; key_files: src/cliproxy/index.ts, src/cliproxy/quota-manager.ts'
+  fact_id: fact::1089cdd04b96b545dfd4d773
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ccs.yaml
+    source_section: architecture.module_breakdown[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[1]
+    source_file: repos/knowledge/deep/ccs.yaml
+    excerpt: Command handlers for setup, install, doctor, sync, cursor, cliproxy,
+      config, and persistence flows.
+  object_value: src/commands/
+  note: 'responsibility: Command handlers for setup, install, doctor, sync, cursor,
+    cliproxy, config, and persistence flows.; key_files: src/commands/install-command.ts,
+    src/commands/doctor-command.ts'
+  fact_id: fact::32010f397130cccc0a1bd25b
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ccs.yaml
+    source_section: architecture.module_breakdown[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[3]
+    source_file: repos/knowledge/deep/ccs.yaml
+    excerpt: Express dashboard, route registration, health checks, and WebSocket updates.
+  object_value: src/web-server/
+  note: 'responsibility: Express dashboard, route registration, health checks, and
+    WebSocket updates.; key_files: src/web-server/index.ts, src/web-server/routes/index.ts'
+  fact_id: fact::bfd1eeec02935f2786c871b4
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ccs.yaml
+    source_section: key_files[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[2]
+    source_file: repos/knowledge/deep/ccs.yaml
+    excerpt: src/web-server/index.ts
+  object_value: src/web-server/index.ts
+  fact_id: fact::b06c968423457de92964ec43
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ccs.yaml
+    source_section: api_surface.public_functions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[0]
+    source_file: repos/knowledge/deep/ccs.yaml
+    excerpt: startServer
+  object_value: startServer
+  note: 'Start the dashboard HTTP server with WebSocket support, REST routes, and
+    optional Vite middleware.; async function startServer(options: ServerOptions):
+    Promise<ServerInstance>; src/web-server/index.ts'
+  fact_id: fact::2f3b3cc025483868005ce11d

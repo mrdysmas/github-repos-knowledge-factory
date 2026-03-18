@@ -1,0 +1,55 @@
+name: ccs
+node_id: "repo::kaitranntt/ccs"
+github_full_name: kaitranntt/ccs
+html_url: "https://github.com/kaitranntt/ccs"
+source: remote_metadata
+provenance:
+  shard: repos
+  source_file: "repos/knowledge/deep/ccs.yaml"
+  as_of: "2026-03-17"
+  sourcing_method: code_verified
+  extraction_model: gpt-5.4
+  extraction_agent: codex
+directory: "remote::kaitranntt/ccs"
+category: agent_cli
+key_features:
+  - feature: "Global CLI entrypoint with multi-command dispatch"
+    description: "The package publishes `ccs` and `ccsd` bins, and `src/ccs.ts` imports handlers for install, doctor, sync, update, shell completion, API, cursor, cliproxy, and config flows."
+  - feature: "Profile auto-detection from the first positional argument"
+    description: "The `detectProfile` helper treats the first non-flag token as a profile name and otherwise defaults to `default`."
+  - feature: "Embedded proxy execution for third-party providers"
+    description: "The `execClaudeWithProxy` path starts a local proxy, injects `ANTHROPIC_BASE_URL`, `ANTHROPIC_AUTH_TOKEN`, and `ANTHROPIC_MODEL`, then launches the Claude CLI with profile-specific hook environments."
+  - feature: "Dashboard server combines REST, SPA assets, and WebSockets"
+    description: "The web server starts Express, mounts `/api`, `/api/shared`, `/api/overview`, and `/api/usage`, then attaches a WebSocket server and optional Vite middleware."
+architecture:
+  module_breakdown:
+    - module: "src/ccs.ts"
+      responsibility: "Main CLI dispatcher that detects profiles, resolves target adapters, and launches proxy-backed or direct CLI execution."
+      key_files: ["src/ccs.ts"]
+    - module: "src/commands/"
+      responsibility: "Command handlers for setup, install, doctor, sync, cursor, cliproxy, config, and persistence flows."
+      key_files: ["src/commands/install-command.ts", "src/commands/doctor-command.ts"]
+    - module: "src/cliproxy/"
+      responsibility: "Local proxy management, quota tracking, sync, and provider-specific adapter helpers."
+      key_files: ["src/cliproxy/index.ts", "src/cliproxy/quota-manager.ts"]
+    - module: "src/web-server/"
+      responsibility: "Express dashboard, route registration, health checks, and WebSocket updates."
+      key_files: ["src/web-server/index.ts", "src/web-server/routes/index.ts"]
+    - module: "src/api/services/"
+      responsibility: "Profile lifecycle, preset, validation, and catalog services used by the dashboard API."
+      key_files: ["src/api/services/profile-lifecycle-service.ts", "src/api/services/openrouter-catalog.ts"]
+api_surface:
+  public_functions:
+    - name: "startServer"
+      purpose: "Start the dashboard HTTP server with WebSocket support, REST routes, and optional Vite middleware."
+      signature: "async function startServer(options: ServerOptions): Promise<ServerInstance>"
+      location: "src/web-server/index.ts"
+key_files:
+  - path: "package.json"
+    purpose: "Publishes the global CLI, build pipeline, and Node and Bun engine requirements."
+  - path: "src/ccs.ts"
+    purpose: "Primary CLI entrypoint for profile detection and command dispatch."
+  - path: "src/web-server/index.ts"
+    purpose: "Creates the Express and WebSocket dashboard server."
+  - path: "src/api/index.ts"
+    purpose: "Barrel export for API service modules."

@@ -2,8 +2,8 @@ artifact_type: ws6_master_deep_facts
 generated_at_utc: '2026-03-17T00:00:00Z'
 contract_version: 1.0.0-ws6-draft
 summary:
-  total_facts: 5013
-  repos_with_facts: 106
+  total_facts: 5142
+  repos_with_facts: 113
   source_shards:
   - repos
   draft_overrides: 0
@@ -4725,6 +4725,587 @@ facts:
   object_value: claude
   note: Launch Claude Code inside current project directory.
   fact_id: fact::56a7a76d966eea7f305eb973
+- node_id: repo::anthropics/skills
+  github_full_name: anthropics/skills
+  name: skills
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anthropics__skills.yaml
+    source_section: architecture.components[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.components[0]
+    source_file: repos/knowledge/deep/anthropics__skills.yaml
+    excerpt: Document skill helpers
+  object_value: Document skill helpers
+  note: Office-oriented skills bundle Python automation instead of relying only on
+    markdown instructions.
+  fact_id: fact::7ba9d380935a83889d80760b
+- node_id: repo::anthropics/skills
+  github_full_name: anthropics/skills
+  name: skills
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anthropics__skills.yaml
+    source_section: key_features[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[1]
+    source_file: repos/knowledge/deep/anthropics__skills.yaml
+    excerpt: Document skills ship executable helpers
+  object_value: Document skills ship executable helpers
+  note: The `skills/docx/scripts/accept_changes.py` helper copies a DOCX, installs
+    a LibreOffice macro, and runs headless `soffice` to accept tracked changes.
+  fact_id: fact::aa2c3b7da9e6d49171900dd4
+- node_id: repo::anthropics/skills
+  github_full_name: anthropics/skills
+  name: skills
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anthropics__skills.yaml
+    source_section: architecture.components[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.components[1]
+    source_file: repos/knowledge/deep/anthropics__skills.yaml
+    excerpt: Skill creator toolchain
+  object_value: Skill creator toolchain
+  note: The skill-creator bundle includes packaging and evaluation scripts for iterating
+    on skills.
+  fact_id: fact::d5a140194df035992155baec
+- node_id: repo::anthropics/skills
+  github_full_name: anthropics/skills
+  name: skills
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anthropics__skills.yaml
+    source_section: key_features[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[2]
+    source_file: repos/knowledge/deep/anthropics__skills.yaml
+    excerpt: Skill packaging validates before distribution
+  object_value: Skill packaging validates before distribution
+  note: The `skills/skill-creator/scripts/package_skill.py` script runs `validate_skill`,
+    skips root `evals` plus cache artifacts, and writes a `.skill` zip.
+  fact_id: fact::8bca56e5331ad2fa6cd2bdf5
+- node_id: repo::anthropics/skills
+  github_full_name: anthropics/skills
+  name: skills
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anthropics__skills.yaml
+    source_section: key_features[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[0]
+    source_file: repos/knowledge/deep/anthropics__skills.yaml
+    excerpt: Skill packs live as self-contained folders
+  object_value: Skill packs live as self-contained folders
+  note: The repository root README and each `skills/*/SKILL.md` package skills as
+    instruction bundles with scripts and references kept beside the prompt.
+  fact_id: fact::34e4e950b81840acf2ebadf1
+- node_id: repo::anthropics/skills
+  github_full_name: anthropics/skills
+  name: skills
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anthropics__skills.yaml
+    source_section: key_features[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[3]
+    source_file: repos/knowledge/deep/anthropics__skills.yaml
+    excerpt: Spec is delegated to an external canonical site
+  object_value: Spec is delegated to an external canonical site
+  note: The `spec/agent-skills-spec.md` file is a redirect stub that points readers
+    to `agentskills.io/specification` rather than duplicating the standard in-repo.
+  fact_id: fact::868706804074d94a143fd337
+- node_id: repo::anthropics/skills
+  github_full_name: anthropics/skills
+  name: skills
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anthropics__skills.yaml
+    source_section: key_files[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[0]
+    source_file: repos/knowledge/deep/anthropics__skills.yaml
+    excerpt: README.md
+  object_value: README.md
+  fact_id: fact::94ffe55abba755dee4f785a5
+- node_id: repo::anthropics/skills
+  github_full_name: anthropics/skills
+  name: skills
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anthropics__skills.yaml
+    source_section: architecture.module_breakdown[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[0]
+    source_file: repos/knowledge/deep/anthropics__skills.yaml
+    excerpt: Top-level catalog of installable skills, each anchored by a `SKILL.md`
+      file and optional scripts or references.
+  object_value: skills/
+  note: 'responsibility: Top-level catalog of installable skills, each anchored by
+    a `SKILL.md` file and optional scripts or references.; key_files: skills/docx/SKILL.md,
+    skills/skill-creator/SKILL.md'
+  fact_id: fact::727ee0c043a47bdbfbb77fbf
+- node_id: repo::anthropics/skills
+  github_full_name: anthropics/skills
+  name: skills
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anthropics__skills.yaml
+    source_section: architecture.module_breakdown[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[1]
+    source_file: repos/knowledge/deep/anthropics__skills.yaml
+    excerpt: Python helper layer for DOCX manipulation and LibreOffice-based automation.
+  object_value: skills/docx/scripts/
+  note: 'responsibility: Python helper layer for DOCX manipulation and LibreOffice-based
+    automation.; key_files: skills/docx/scripts/accept_changes.py, skills/docx/scripts/office/soffice.py'
+  fact_id: fact::446467b5a82e029cf4f9c41b
+- node_id: repo::anthropics/skills
+  github_full_name: anthropics/skills
+  name: skills
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anthropics__skills.yaml
+    source_section: key_files[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[2]
+    source_file: repos/knowledge/deep/anthropics__skills.yaml
+    excerpt: skills/docx/scripts/accept_changes.py
+  object_value: skills/docx/scripts/accept_changes.py
+  fact_id: fact::d796be37903964dd3887b8eb
+- node_id: repo::anthropics/skills
+  github_full_name: anthropics/skills
+  name: skills
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anthropics__skills.yaml
+    source_section: architecture.module_breakdown[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[2]
+    source_file: repos/knowledge/deep/anthropics__skills.yaml
+    excerpt: Evaluation, validation, report generation, and packaging utilities for
+      authoring distributable skills.
+  object_value: skills/skill-creator/scripts/
+  note: 'responsibility: Evaluation, validation, report generation, and packaging
+    utilities for authoring distributable skills.; key_files: skills/skill-creator/scripts/package_skill.py,
+    skills/skill-creator/scripts/quick_validate.py'
+  fact_id: fact::db926770ccab11798db40c39
+- node_id: repo::anthropics/skills
+  github_full_name: anthropics/skills
+  name: skills
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anthropics__skills.yaml
+    source_section: key_files[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[3]
+    source_file: repos/knowledge/deep/anthropics__skills.yaml
+    excerpt: skills/skill-creator/scripts/package_skill.py
+  object_value: skills/skill-creator/scripts/package_skill.py
+  fact_id: fact::b72ebdff5a918a4a29c0c441
+- node_id: repo::anthropics/skills
+  github_full_name: anthropics/skills
+  name: skills
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anthropics__skills.yaml
+    source_section: architecture.module_breakdown[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[3]
+    source_file: repos/knowledge/deep/anthropics__skills.yaml
+    excerpt: Repository pointer for the Agent Skills specification.
+  object_value: spec/
+  note: 'responsibility: Repository pointer for the Agent Skills specification.; key_files:
+    spec/agent-skills-spec.md'
+  fact_id: fact::19a574fbc269384530d124a3
+- node_id: repo::anthropics/skills
+  github_full_name: anthropics/skills
+  name: skills
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anthropics__skills.yaml
+    source_section: key_files[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[1]
+    source_file: repos/knowledge/deep/anthropics__skills.yaml
+    excerpt: spec/agent-skills-spec.md
+  object_value: spec/agent-skills-spec.md
+  fact_id: fact::a6fa4d98cba4ee6c803119c9
+- node_id: repo::anthropics/skills
+  github_full_name: anthropics/skills
+  name: skills
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anthropics__skills.yaml
+    source_section: api_surface.public_functions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[0]
+    source_file: repos/knowledge/deep/anthropics__skills.yaml
+    excerpt: accept_changes
+  object_value: accept_changes
+  note: 'Copy a DOCX file to an output location and invoke LibreOffice automation
+    to accept all tracked changes.; def accept_changes(input_file: str, output_file:
+    str) -> tuple[None, str]; skills/docx/scripts/accept_changes.py'
+  fact_id: fact::f8142020d40808d42eeac29c
+- node_id: repo::anthropics/skills
+  github_full_name: anthropics/skills
+  name: skills
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anthropics__skills.yaml
+    source_section: api_surface.public_functions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[1]
+    source_file: repos/knowledge/deep/anthropics__skills.yaml
+    excerpt: package_skill
+  object_value: package_skill
+  note: Validate a skill directory and create a distributable `.skill` archive while
+    excluding caches and root evals.; def package_skill(skill_path, output_dir=None);
+    skills/skill-creator/scripts/package_skill.py
+  fact_id: fact::1ec0ecfc0b22b2182e50309d
+- node_id: repo::anysiteio/agent-skills
+  github_full_name: anysiteio/agent-skills
+  name: agent-skills
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    source_section: key_features[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[1]
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    excerpt: Installer shells out to Claude Code plugin commands
+  object_value: Installer shells out to Claude Code plugin commands
+  note: The installer tries `/plugin marketplace add https://github.com/anysiteio/agent-skills`
+    and falls back to printing the manual command.
+  fact_id: fact::0d1dcdb52fb0497871cbe40d
+- node_id: repo::anysiteio/agent-skills
+  github_full_name: anysiteio/agent-skills
+  name: agent-skills
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    source_section: key_features[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[3]
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    excerpt: Marketplace manifest exposes both bundle and single-skill entries
+  object_value: Marketplace manifest exposes both bundle and single-skill entries
+  note: The `.claude-plugin/marketplace.json` file advertises the umbrella `anysite-skills`
+    plugin plus standalone install targets for selected skills.
+  fact_id: fact::9e8c7cdd50814e70bacb8291
+- node_id: repo::anysiteio/agent-skills
+  github_full_name: anysiteio/agent-skills
+  name: agent-skills
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    source_section: key_features[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[0]
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    excerpt: NPM package exposes a marketplace installer
+  object_value: NPM package exposes a marketplace installer
+  note: The root `package.json` publishes a single `anysite-skills` bin that points
+    to `bin/install.js`.
+  fact_id: fact::111923e373379d7702dadf3d
+- node_id: repo::anysiteio/agent-skills
+  github_full_name: anysiteio/agent-skills
+  name: agent-skills
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    source_section: key_features[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[2]
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    excerpt: Plugin manifest bundles 13 skills
+  object_value: Plugin manifest bundles 13 skills
+  note: The `.claude-plugin/plugin.json` file lists thirteen `skills/*` directories,
+    including lead generation, audience analysis, skill audit, and CLI operation.
+  fact_id: fact::aca235046f7a8459529e3c60
+- node_id: repo::anysiteio/agent-skills
+  github_full_name: anysiteio/agent-skills
+  name: agent-skills
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    source_section: architecture.module_breakdown[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[2]
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    excerpt: Claude Code plugin metadata and marketplace catalog definitions.
+  object_value: .claude-plugin/
+  note: 'responsibility: Claude Code plugin metadata and marketplace catalog definitions.;
+    key_files: .claude-plugin/plugin.json, .claude-plugin/marketplace.json'
+  fact_id: fact::1cc3be524fdb6920919d72bc
+- node_id: repo::anysiteio/agent-skills
+  github_full_name: anysiteio/agent-skills
+  name: agent-skills
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    source_section: key_files[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[3]
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    excerpt: .claude-plugin/marketplace.json
+  object_value: .claude-plugin/marketplace.json
+  fact_id: fact::729c01891d2546c92d3b7099
+- node_id: repo::anysiteio/agent-skills
+  github_full_name: anysiteio/agent-skills
+  name: agent-skills
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    source_section: key_files[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[2]
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    excerpt: .claude-plugin/plugin.json
+  object_value: .claude-plugin/plugin.json
+  fact_id: fact::14a0e31ac6003160d7cc61e5
+- node_id: repo::anysiteio/agent-skills
+  github_full_name: anysiteio/agent-skills
+  name: agent-skills
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    source_section: architecture.module_breakdown[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[1]
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    excerpt: CLI installer entrypoint for marketplace registration and onboarding
+      output.
+  object_value: bin/
+  note: 'responsibility: CLI installer entrypoint for marketplace registration and
+    onboarding output.; key_files: bin/install.js'
+  fact_id: fact::905a826792c69ce25a3c6793
+- node_id: repo::anysiteio/agent-skills
+  github_full_name: anysiteio/agent-skills
+  name: agent-skills
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    source_section: key_files[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[1]
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    excerpt: bin/install.js
+  object_value: bin/install.js
+  fact_id: fact::02b7d027db179f7c9e8e043d
+- node_id: repo::anysiteio/agent-skills
+  github_full_name: anysiteio/agent-skills
+  name: agent-skills
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    source_section: key_files[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[0]
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    excerpt: package.json
+  object_value: package.json
+  fact_id: fact::f0c8c91198e1e4dd043ccde3
+- node_id: repo::anysiteio/agent-skills
+  github_full_name: anysiteio/agent-skills
+  name: agent-skills
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    source_section: architecture.module_breakdown[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[0]
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    excerpt: Repository payload of skill directories implemented as `SKILL.md` prompts
+      with optional reference docs.
+  object_value: skills/
+  note: 'responsibility: Repository payload of skill directories implemented as `SKILL.md`
+    prompts with optional reference docs.; key_files: skills/anysite-lead-generation/SKILL.md,
+    skills/skill-audit/SKILL.md'
+  fact_id: fact::dad5b0f0116de124d01df6d5
+- node_id: repo::anysiteio/agent-skills
+  github_full_name: anysiteio/agent-skills
+  name: agent-skills
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    source_section: commands[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[0]
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    excerpt: anysite-skills
+  object_value: anysite-skills
+  note: Attempts to add the repository as a Claude Code marketplace, then prints the
+    bundled skill names and manual install command.
+  fact_id: fact::df0a5a806c03d53efcbdec88
 - node_id: repo::apernet/hysteria
   github_full_name: apernet/hysteria
   name: hysteria
@@ -11869,6 +12450,535 @@ facts:
   object_value: go test ./...
   note: testing command
   fact_id: fact::ce6642d6faef796af75fbf32
+- node_id: repo::code-yeongyu/oh-my-opencode
+  github_full_name: code-yeongyu/oh-my-opencode
+  name: oh-my-opencode
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: key_features[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[1]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: CLI wraps install, run, version, doctor, and MCP OAuth flows
+  object_value: CLI wraps install, run, version, doctor, and MCP OAuth flows
+  note: The Commander program registers `install`, `run`, `get-local-version`, `doctor`,
+    `version`, and an OAuth helper command.
+  fact_id: fact::6ba07e1a2076878465f841c4
+- node_id: repo::code-yeongyu/oh-my-opencode
+  github_full_name: code-yeongyu/oh-my-opencode
+  name: oh-my-opencode
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: key_features[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[3]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: Distribution includes platform-specific optional binaries
+  object_value: Distribution includes platform-specific optional binaries
+  note: The package declares optional OS-specific packages and exports `./schema.json`
+    alongside the main plugin module.
+  fact_id: fact::42b2ae4f1e24258862a6d655
+- node_id: repo::code-yeongyu/oh-my-opencode
+  github_full_name: code-yeongyu/oh-my-opencode
+  name: oh-my-opencode
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: key_features[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[0]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: Plugin entrypoint assembles managers, tools, hooks, and disposal
+  object_value: Plugin entrypoint assembles managers, tools, hooks, and disposal
+  note: The default export loads plugin config, creates managers and tools, builds
+    hooks, and returns a plugin interface with extra session compaction behavior.
+  fact_id: fact::e5aab710c48ce5a1aaadad24
+- node_id: repo::code-yeongyu/oh-my-opencode
+  github_full_name: code-yeongyu/oh-my-opencode
+  name: oh-my-opencode
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: key_features[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[2]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: Project configuration is schema-driven
+  object_value: Project configuration is schema-driven
+  note: The JSON schema exposes top-level toggles such as `default_run_agent`, `disabled_mcps`,
+    `disabled_agents`, `disabled_hooks`, `disabled_commands`, and per-agent permission
+    and reasoning settings.
+  fact_id: fact::6f4ff8abbdfb62b280c68beb
+- node_id: repo::code-yeongyu/oh-my-opencode
+  github_full_name: code-yeongyu/oh-my-opencode
+  name: oh-my-opencode
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: key_files[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[3]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: assets/oh-my-opencode.schema.json
+  object_value: assets/oh-my-opencode.schema.json
+  fact_id: fact::6b7db6a19f4c257374444c97
+- node_id: repo::code-yeongyu/oh-my-opencode
+  github_full_name: code-yeongyu/oh-my-opencode
+  name: oh-my-opencode
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: architecture.module_breakdown[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[1]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: Command-line installer, runner, diagnostics, version checks, and OAuth
+      helpers.
+  object_value: src/cli/
+  note: 'responsibility: Command-line installer, runner, diagnostics, version checks,
+    and OAuth helpers.; key_files: src/cli/cli-program.ts, src/cli/run/runner.ts'
+  fact_id: fact::8eb621e749443723f58373d4
+- node_id: repo::code-yeongyu/oh-my-opencode
+  github_full_name: code-yeongyu/oh-my-opencode
+  name: oh-my-opencode
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: key_files[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[1]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: src/cli/cli-program.ts
+  object_value: src/cli/cli-program.ts
+  fact_id: fact::6b631ae11b570c3293522899
+- node_id: repo::code-yeongyu/oh-my-opencode
+  github_full_name: code-yeongyu/oh-my-opencode
+  name: oh-my-opencode
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: architecture.module_breakdown[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[2]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: Typed config loading and schema exports for plugin settings.
+  object_value: src/config/
+  note: 'responsibility: Typed config loading and schema exports for plugin settings.;
+    key_files: src/config/schema.ts, assets/oh-my-opencode.schema.json'
+  fact_id: fact::38deae1ed42955c89d25400b
+- node_id: repo::code-yeongyu/oh-my-opencode
+  github_full_name: code-yeongyu/oh-my-opencode
+  name: oh-my-opencode
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: key_files[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[2]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: src/config/schema.ts
+  object_value: src/config/schema.ts
+  fact_id: fact::d33f480e8aea10b76c8ee358
+- node_id: repo::code-yeongyu/oh-my-opencode
+  github_full_name: code-yeongyu/oh-my-opencode
+  name: oh-my-opencode
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: architecture.module_breakdown[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[3]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: Skill MCP connection management, cleanup, transport selection, and OAuth
+      handling.
+  object_value: src/features/skill-mcp-manager/
+  note: 'responsibility: Skill MCP connection management, cleanup, transport selection,
+    and OAuth handling.; key_files: src/features/skill-mcp-manager/manager.ts, src/features/skill-mcp-manager/oauth-handler.ts'
+  fact_id: fact::a92b9b113525419770710d10
+- node_id: repo::code-yeongyu/oh-my-opencode
+  github_full_name: code-yeongyu/oh-my-opencode
+  name: oh-my-opencode
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: architecture.module_breakdown[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[0]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: Plugin bootstrap that initializes config context, managers, tools, hooks,
+      and plugin disposal.
+  object_value: src/index.ts
+  note: 'responsibility: Plugin bootstrap that initializes config context, managers,
+    tools, hooks, and plugin disposal.; key_files: src/index.ts, src/plugin-interface.ts'
+  fact_id: fact::7c497ba0f5d0f7ce55516075
+- node_id: repo::code-yeongyu/oh-my-opencode
+  github_full_name: code-yeongyu/oh-my-opencode
+  name: oh-my-opencode
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: key_files[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[0]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: src/index.ts
+  object_value: src/index.ts
+  fact_id: fact::851c591961ee5d77b39e8e55
+- node_id: repo::code-yeongyu/oh-my-opencode
+  github_full_name: code-yeongyu/oh-my-opencode
+  name: oh-my-opencode
+  fact_type: config_option
+  predicate: has_config_option
+  object_kind: command
+  confidence: 0.7
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: cli_arguments[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_arguments[2]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: --agent
+  object_value: --agent
+  note: Select the agent for `run`, overriding environment and config defaults.
+  fact_id: fact::32e1e49cac2cea2297057990
+- node_id: repo::code-yeongyu/oh-my-opencode
+  github_full_name: code-yeongyu/oh-my-opencode
+  name: oh-my-opencode
+  fact_type: config_option
+  predicate: has_config_option
+  object_kind: command
+  confidence: 0.7
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: cli_arguments[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_arguments[1]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: --claude
+  object_value: --claude
+  note: Declare Claude subscription mode during installation.
+  fact_id: fact::f96f835e9c0af18ee7a26e88
+- node_id: repo::code-yeongyu/oh-my-opencode
+  github_full_name: code-yeongyu/oh-my-opencode
+  name: oh-my-opencode
+  fact_type: config_option
+  predicate: has_config_option
+  object_kind: command
+  confidence: 0.7
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: cli_arguments[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_arguments[3]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: --model
+  object_value: --model
+  note: Override the provider and model identifier for a run.
+  fact_id: fact::553abdec78519c77868d6716
+- node_id: repo::code-yeongyu/oh-my-opencode
+  github_full_name: code-yeongyu/oh-my-opencode
+  name: oh-my-opencode
+  fact_type: config_option
+  predicate: has_config_option
+  object_kind: command
+  confidence: 0.7
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: cli_arguments[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_arguments[0]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: --no-tui
+  object_value: --no-tui
+  note: Run the installer without the interactive TUI.
+  fact_id: fact::65b8bebb1200f62143dd3c30
+- node_id: repo::code-yeongyu/oh-my-opencode
+  github_full_name: code-yeongyu/oh-my-opencode
+  name: oh-my-opencode
+  fact_type: config_option
+  predicate: has_config_option
+  object_kind: command
+  confidence: 0.7
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: cli_arguments[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_arguments[4]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: --session-id
+  object_value: --session-id
+  note: Resume an existing session instead of starting a new one.
+  fact_id: fact::e58adf3959b0199432f15ef2
+- node_id: repo::code-yeongyu/oh-my-opencode
+  github_full_name: code-yeongyu/oh-my-opencode
+  name: oh-my-opencode
+  fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: configuration[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: $schema
+  object_value: $schema
+  note: Optional schema pointer field recognized by the JSON config schema.
+  fact_id: fact::cee54cdb09699ad73549d6a1
+- node_id: repo::code-yeongyu/oh-my-opencode
+  github_full_name: code-yeongyu/oh-my-opencode
+  name: oh-my-opencode
+  fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: configuration[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: default_run_agent
+  object_value: default_run_agent
+  note: Top-level config field for selecting the default agent used by `run`.
+  fact_id: fact::28966a633f56a3872826105b
+- node_id: repo::code-yeongyu/oh-my-opencode
+  github_full_name: code-yeongyu/oh-my-opencode
+  name: oh-my-opencode
+  fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: configuration[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[3]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: disabled_agents
+  object_value: disabled_agents
+  note: Array of agent names disabled in the plugin configuration.
+  fact_id: fact::da233e285ec67721f86e02c3
+- node_id: repo::code-yeongyu/oh-my-opencode
+  github_full_name: code-yeongyu/oh-my-opencode
+  name: oh-my-opencode
+  fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: configuration[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[5]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: disabled_commands
+  object_value: disabled_commands
+  note: Array of built-in command names disabled in the command layer.
+  fact_id: fact::8f2814099d5b8aae50a26d4b
+- node_id: repo::code-yeongyu/oh-my-opencode
+  github_full_name: code-yeongyu/oh-my-opencode
+  name: oh-my-opencode
+  fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: configuration[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[4]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: disabled_hooks
+  object_value: disabled_hooks
+  note: Array of hook names disabled before hook creation.
+  fact_id: fact::d8c5e8cef7e21cc4beddd6b2
+- node_id: repo::code-yeongyu/oh-my-opencode
+  github_full_name: code-yeongyu/oh-my-opencode
+  name: oh-my-opencode
+  fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: configuration[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[2]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: disabled_mcps
+  object_value: disabled_mcps
+  note: Array of MCP integrations disabled at runtime.
+  fact_id: fact::8af31327772813c31431595a
+- node_id: repo::code-yeongyu/oh-my-opencode
+  github_full_name: code-yeongyu/oh-my-opencode
+  name: oh-my-opencode
+  fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: configuration[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[6]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: model_fallback
+  object_value: model_fallback
+  note: Boolean toggle for model fallback behavior.
+  fact_id: fact::2480c030041166868b54dd32
+- node_id: repo::code-yeongyu/oh-my-opencode
+  github_full_name: code-yeongyu/oh-my-opencode
+  name: oh-my-opencode
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: api_surface.public_functions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[0]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: OhMyOpenCodePlugin
+  object_value: OhMyOpenCodePlugin
+  note: Main plugin entrypoint that returns the assembled OpenCode plugin interface.;
+    src/index.ts
+  fact_id: fact::614d7911cc71cfc3f2d71eef
+- node_id: repo::code-yeongyu/oh-my-opencode
+  github_full_name: code-yeongyu/oh-my-opencode
+  name: oh-my-opencode
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    source_section: api_surface.public_functions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[1]
+    source_file: repos/knowledge/deep/oh-my-opencode.yaml
+    excerpt: runCli
+  object_value: runCli
+  note: 'Parse and execute the CLI program.; function runCli(): void; src/cli/cli-program.ts'
+  fact_id: fact::738525d97b6c47ff5c27d013
 - node_id: repo::coder/code-server
   github_full_name: coder/code-server
   name: code-server
@@ -38600,6 +39710,638 @@ facts:
   object_value: integration/ with Docker-based E2E tests
   note: 'testing metadata: structure'
   fact_id: fact::e1e23ca7e7e2e84190a594f5
+- node_id: repo::kaitranntt/ccs
+  github_full_name: kaitranntt/ccs
+  name: ccs
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ccs.yaml
+    source_section: key_features[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[3]
+    source_file: repos/knowledge/deep/ccs.yaml
+    excerpt: Dashboard server combines REST, SPA assets, and WebSockets
+  object_value: Dashboard server combines REST, SPA assets, and WebSockets
+  note: The web server starts Express, mounts `/api`, `/api/shared`, `/api/overview`,
+    and `/api/usage`, then attaches a WebSocket server and optional Vite middleware.
+  fact_id: fact::2129ccf1ac29884eb7d15556
+- node_id: repo::kaitranntt/ccs
+  github_full_name: kaitranntt/ccs
+  name: ccs
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ccs.yaml
+    source_section: key_features[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[2]
+    source_file: repos/knowledge/deep/ccs.yaml
+    excerpt: Embedded proxy execution for third-party providers
+  object_value: Embedded proxy execution for third-party providers
+  note: The `execClaudeWithProxy` path starts a local proxy, injects `ANTHROPIC_BASE_URL`,
+    `ANTHROPIC_AUTH_TOKEN`, and `ANTHROPIC_MODEL`, then launches the Claude CLI with
+    profile-specific hook environments.
+  fact_id: fact::369a6e3c554ca3b50971b94a
+- node_id: repo::kaitranntt/ccs
+  github_full_name: kaitranntt/ccs
+  name: ccs
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ccs.yaml
+    source_section: key_features[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[0]
+    source_file: repos/knowledge/deep/ccs.yaml
+    excerpt: Global CLI entrypoint with multi-command dispatch
+  object_value: Global CLI entrypoint with multi-command dispatch
+  note: The package publishes `ccs` and `ccsd` bins, and `src/ccs.ts` imports handlers
+    for install, doctor, sync, update, shell completion, API, cursor, cliproxy, and
+    config flows.
+  fact_id: fact::72ca4ef2cef712c93c39c989
+- node_id: repo::kaitranntt/ccs
+  github_full_name: kaitranntt/ccs
+  name: ccs
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ccs.yaml
+    source_section: key_features[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[1]
+    source_file: repos/knowledge/deep/ccs.yaml
+    excerpt: Profile auto-detection from the first positional argument
+  object_value: Profile auto-detection from the first positional argument
+  note: The `detectProfile` helper treats the first non-flag token as a profile name
+    and otherwise defaults to `default`.
+  fact_id: fact::70c8e42a8d90aedf97aa24da
+- node_id: repo::kaitranntt/ccs
+  github_full_name: kaitranntt/ccs
+  name: ccs
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ccs.yaml
+    source_section: key_files[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[0]
+    source_file: repos/knowledge/deep/ccs.yaml
+    excerpt: package.json
+  object_value: package.json
+  fact_id: fact::7707a2fa8aab8fb28e00c5cd
+- node_id: repo::kaitranntt/ccs
+  github_full_name: kaitranntt/ccs
+  name: ccs
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ccs.yaml
+    source_section: key_files[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[3]
+    source_file: repos/knowledge/deep/ccs.yaml
+    excerpt: src/api/index.ts
+  object_value: src/api/index.ts
+  fact_id: fact::ace62e4772efdae6e7896f6a
+- node_id: repo::kaitranntt/ccs
+  github_full_name: kaitranntt/ccs
+  name: ccs
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ccs.yaml
+    source_section: architecture.module_breakdown[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[4]
+    source_file: repos/knowledge/deep/ccs.yaml
+    excerpt: Profile lifecycle, preset, validation, and catalog services used by the
+      dashboard API.
+  object_value: src/api/services/
+  note: 'responsibility: Profile lifecycle, preset, validation, and catalog services
+    used by the dashboard API.; key_files: src/api/services/profile-lifecycle-service.ts,
+    src/api/services/openrouter-catalog.ts'
+  fact_id: fact::a48825965af3e65e7e044d62
+- node_id: repo::kaitranntt/ccs
+  github_full_name: kaitranntt/ccs
+  name: ccs
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ccs.yaml
+    source_section: key_files[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[1]
+    source_file: repos/knowledge/deep/ccs.yaml
+    excerpt: src/ccs.ts
+  object_value: src/ccs.ts
+  fact_id: fact::4e415c616548ceea163a129b
+- node_id: repo::kaitranntt/ccs
+  github_full_name: kaitranntt/ccs
+  name: ccs
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ccs.yaml
+    source_section: architecture.module_breakdown[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[0]
+    source_file: repos/knowledge/deep/ccs.yaml
+    excerpt: Main CLI dispatcher that detects profiles, resolves target adapters,
+      and launches proxy-backed or direct CLI execution.
+  object_value: src/ccs.ts
+  note: 'responsibility: Main CLI dispatcher that detects profiles, resolves target
+    adapters, and launches proxy-backed or direct CLI execution.; key_files: src/ccs.ts'
+  fact_id: fact::e2a19e3e987e4599890e62ac
+- node_id: repo::kaitranntt/ccs
+  github_full_name: kaitranntt/ccs
+  name: ccs
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ccs.yaml
+    source_section: architecture.module_breakdown[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[2]
+    source_file: repos/knowledge/deep/ccs.yaml
+    excerpt: Local proxy management, quota tracking, sync, and provider-specific adapter
+      helpers.
+  object_value: src/cliproxy/
+  note: 'responsibility: Local proxy management, quota tracking, sync, and provider-specific
+    adapter helpers.; key_files: src/cliproxy/index.ts, src/cliproxy/quota-manager.ts'
+  fact_id: fact::1089cdd04b96b545dfd4d773
+- node_id: repo::kaitranntt/ccs
+  github_full_name: kaitranntt/ccs
+  name: ccs
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ccs.yaml
+    source_section: architecture.module_breakdown[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[1]
+    source_file: repos/knowledge/deep/ccs.yaml
+    excerpt: Command handlers for setup, install, doctor, sync, cursor, cliproxy,
+      config, and persistence flows.
+  object_value: src/commands/
+  note: 'responsibility: Command handlers for setup, install, doctor, sync, cursor,
+    cliproxy, config, and persistence flows.; key_files: src/commands/install-command.ts,
+    src/commands/doctor-command.ts'
+  fact_id: fact::32010f397130cccc0a1bd25b
+- node_id: repo::kaitranntt/ccs
+  github_full_name: kaitranntt/ccs
+  name: ccs
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ccs.yaml
+    source_section: architecture.module_breakdown[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[3]
+    source_file: repos/knowledge/deep/ccs.yaml
+    excerpt: Express dashboard, route registration, health checks, and WebSocket updates.
+  object_value: src/web-server/
+  note: 'responsibility: Express dashboard, route registration, health checks, and
+    WebSocket updates.; key_files: src/web-server/index.ts, src/web-server/routes/index.ts'
+  fact_id: fact::bfd1eeec02935f2786c871b4
+- node_id: repo::kaitranntt/ccs
+  github_full_name: kaitranntt/ccs
+  name: ccs
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ccs.yaml
+    source_section: key_files[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[2]
+    source_file: repos/knowledge/deep/ccs.yaml
+    excerpt: src/web-server/index.ts
+  object_value: src/web-server/index.ts
+  fact_id: fact::b06c968423457de92964ec43
+- node_id: repo::kaitranntt/ccs
+  github_full_name: kaitranntt/ccs
+  name: ccs
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ccs.yaml
+    source_section: api_surface.public_functions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[0]
+    source_file: repos/knowledge/deep/ccs.yaml
+    excerpt: startServer
+  object_value: startServer
+  note: 'Start the dashboard HTTP server with WebSocket support, REST routes, and
+    optional Vite middleware.; async function startServer(options: ServerOptions):
+    Promise<ServerInstance>; src/web-server/index.ts'
+  fact_id: fact::2f3b3cc025483868005ce11d
+- node_id: repo::katarmal-ram/codemoot
+  github_full_name: katarmal-ram/codemoot
+  name: codemoot
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/codemoot.yaml
+    source_section: key_features[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[1]
+    source_file: repos/knowledge/deep/codemoot.yaml
+    excerpt: CLI covers planning, review, debate, jobs, sessions, cleanup, and shipping
+  object_value: CLI covers planning, review, debate, jobs, sessions, cleanup, and
+    shipping
+  note: The Commander entrypoint registers commands such as `run`, `review`, `cleanup`,
+    `plan`, `debate`, `jobs`, `session`, `watch`, and `shipit`.
+  fact_id: fact::863fddefcdec2abcc0003dae
+- node_id: repo::katarmal-ram/codemoot
+  github_full_name: katarmal-ram/codemoot
+  name: codemoot
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/codemoot.yaml
+    source_section: key_features[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[2]
+    source_file: repos/knowledge/deep/codemoot.yaml
+    excerpt: Core orchestrator composes workflow, memory, cost, and model registry
+      services
+  object_value: Core orchestrator composes workflow, memory, cost, and model registry
+    services
+  note: The orchestrator wires `WorkflowEngine`, `EventBus`, `ContextBuilder`, `SessionStore`,
+    `ArtifactStore`, `CostStore`, and `MemoryStore` around a project config and SQLite
+    database.
+  fact_id: fact::e77237312b7b72d5e972a167
+- node_id: repo::katarmal-ram/codemoot
+  github_full_name: katarmal-ram/codemoot
+  name: codemoot
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/codemoot.yaml
+    source_section: key_features[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[3]
+    source_file: repos/knowledge/deep/codemoot.yaml
+    excerpt: MCP server exposes five tool handlers
+  object_value: MCP server exposes five tool handlers
+  note: The MCP server registers `codemoot_review`, `codemoot_plan`, `codemoot_debate`,
+    `codemoot_memory`, and `codemoot_cost` over stdio transport.
+  fact_id: fact::0c1279f71d308094943218f4
+- node_id: repo::katarmal-ram/codemoot
+  github_full_name: katarmal-ram/codemoot
+  name: codemoot
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/codemoot.yaml
+    source_section: key_features[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[0]
+    source_file: repos/knowledge/deep/codemoot.yaml
+    excerpt: Monorepo split across CLI, core, MCP server, and web packages
+  object_value: Monorepo split across CLI, core, MCP server, and web packages
+  note: The workspace root routes package builds through `packages/*`, with distinct
+    `cli`, `core`, `mcp-server`, and `web` packages.
+  fact_id: fact::9487df87a8ac22e17b5bbfff
+- node_id: repo::katarmal-ram/codemoot
+  github_full_name: katarmal-ram/codemoot
+  name: codemoot
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/codemoot.yaml
+    source_section: key_files[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[0]
+    source_file: repos/knowledge/deep/codemoot.yaml
+    excerpt: package.json
+  object_value: package.json
+  fact_id: fact::e84817cc7e662ffbe7eeb27e
+- node_id: repo::katarmal-ram/codemoot
+  github_full_name: katarmal-ram/codemoot
+  name: codemoot
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/codemoot.yaml
+    source_section: architecture.module_breakdown[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[0]
+    source_file: repos/knowledge/deep/codemoot.yaml
+    excerpt: Commander-based user interface and command handlers for workflow operations.
+  object_value: packages/cli/src/
+  note: 'responsibility: Commander-based user interface and command handlers for workflow
+    operations.; key_files: packages/cli/src/index.ts, packages/cli/src/commands/review.ts'
+  fact_id: fact::19d3cf1b6f934ea1bb171da8
+- node_id: repo::katarmal-ram/codemoot
+  github_full_name: katarmal-ram/codemoot
+  name: codemoot
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/codemoot.yaml
+    source_section: key_files[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[1]
+    source_file: repos/knowledge/deep/codemoot.yaml
+    excerpt: packages/cli/src/index.ts
+  object_value: packages/cli/src/index.ts
+  fact_id: fact::91c353c207ef72da947d229d
+- node_id: repo::katarmal-ram/codemoot
+  github_full_name: katarmal-ram/codemoot
+  name: codemoot
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/codemoot.yaml
+    source_section: architecture.module_breakdown[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[1]
+    source_file: repos/knowledge/deep/codemoot.yaml
+    excerpt: Session orchestration, eventing, debate loops, workflow execution, and
+      cancellation control.
+  object_value: packages/core/src/engine/
+  note: 'responsibility: Session orchestration, eventing, debate loops, workflow execution,
+    and cancellation control.; key_files: packages/core/src/engine/orchestrator.ts,
+    packages/core/src/engine/workflow-engine.ts'
+  fact_id: fact::9bd6ab1c640c0576369bccf5
+- node_id: repo::katarmal-ram/codemoot
+  github_full_name: katarmal-ram/codemoot
+  name: codemoot
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/codemoot.yaml
+    source_section: key_files[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[2]
+    source_file: repos/knowledge/deep/codemoot.yaml
+    excerpt: packages/core/src/engine/orchestrator.ts
+  object_value: packages/core/src/engine/orchestrator.ts
+  fact_id: fact::24c1b738eea31bcc9f99c3cf
+- node_id: repo::katarmal-ram/codemoot
+  github_full_name: katarmal-ram/codemoot
+  name: codemoot
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/codemoot.yaml
+    source_section: architecture.module_breakdown[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[2]
+    source_file: repos/knowledge/deep/codemoot.yaml
+    excerpt: SQLite-backed stores for sessions, jobs, artifacts, cache, and debate
+      history.
+  object_value: packages/core/src/memory/
+  note: 'responsibility: SQLite-backed stores for sessions, jobs, artifacts, cache,
+    and debate history.; key_files: packages/core/src/memory/database.ts, packages/core/src/memory/session-store.ts'
+  fact_id: fact::d0b11d1d2656df331f49d6db
+- node_id: repo::katarmal-ram/codemoot
+  github_full_name: katarmal-ram/codemoot
+  name: codemoot
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/codemoot.yaml
+    source_section: architecture.module_breakdown[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[3]
+    source_file: repos/knowledge/deep/codemoot.yaml
+    excerpt: MCP stdio server that wraps orchestrator capabilities as callable tools.
+  object_value: packages/mcp-server/src/
+  note: 'responsibility: MCP stdio server that wraps orchestrator capabilities as
+    callable tools.; key_files: packages/mcp-server/src/server.ts, packages/mcp-server/src/tools/review.ts'
+  fact_id: fact::1e41368432eadd5c8178e080
+- node_id: repo::katarmal-ram/codemoot
+  github_full_name: katarmal-ram/codemoot
+  name: codemoot
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/codemoot.yaml
+    source_section: key_files[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[3]
+    source_file: repos/knowledge/deep/codemoot.yaml
+    excerpt: packages/mcp-server/src/server.ts
+  object_value: packages/mcp-server/src/server.ts
+  fact_id: fact::189cc719adbc604222d56dc8
+- node_id: repo::katarmal-ram/codemoot
+  github_full_name: katarmal-ram/codemoot
+  name: codemoot
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/codemoot.yaml
+    source_section: api_surface.public_functions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[1]
+    source_file: repos/knowledge/deep/codemoot.yaml
+    excerpt: Orchestrator.plan
+  object_value: Orchestrator.plan
+  note: 'Run only the planning loop with iterative review.; async plan(task: string,
+    options?: PlanOptions): Promise<SessionResult>; packages/core/src/engine/orchestrator.ts'
+  fact_id: fact::55d6abc305dda257aebe4ed1
+- node_id: repo::katarmal-ram/codemoot
+  github_full_name: katarmal-ram/codemoot
+  name: codemoot
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/codemoot.yaml
+    source_section: api_surface.public_functions[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[2]
+    source_file: repos/knowledge/deep/codemoot.yaml
+    excerpt: Orchestrator.review
+  object_value: Orchestrator.review
+  note: 'Review content with a configured model after DLP sanitization and project-context
+    assembly.; async review(content: string, options?: ReviewOptions, cancellationToken?:
+    CancellationToken): Promise<ReviewResult>; packages/core/src/engine/orchestrator.ts'
+  fact_id: fact::68a81279140882ad2f419b88
+- node_id: repo::katarmal-ram/codemoot
+  github_full_name: katarmal-ram/codemoot
+  name: codemoot
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/codemoot.yaml
+    source_section: api_surface.public_functions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[0]
+    source_file: repos/knowledge/deep/codemoot.yaml
+    excerpt: Orchestrator.run
+  object_value: Orchestrator.run
+  note: 'Execute a full plan-review, implementation, and code-review session for a
+    task.; async run(task: string, options?: RunOptions): Promise<SessionResult>;
+    packages/core/src/engine/orchestrator.ts'
+  fact_id: fact::c017f00a69043435127ea672
+- node_id: repo::katarmal-ram/codemoot
+  github_full_name: katarmal-ram/codemoot
+  name: codemoot
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/codemoot.yaml
+    source_section: api_surface.public_functions[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[3]
+    source_file: repos/knowledge/deep/codemoot.yaml
+    excerpt: startServer
+  object_value: startServer
+  note: 'Start the MCP stdio server and register tool handlers backed by the orchestrator.;
+    async function startServer(): Promise<void>; packages/mcp-server/src/server.ts'
+  fact_id: fact::d9ab85784b7581ff9afd482e
 - node_id: repo::khoj-ai/khoj
   github_full_name: khoj-ai/khoj
   name: khoj
@@ -43350,6 +45092,522 @@ facts:
   object_value: Vector Stores (26 Providers)
   note: quick reference topic
   fact_id: fact::d9478fc171991f2490870779
+- node_id: repo::michaelshimeles/ralphy
+  github_full_name: michaelshimeles/ralphy
+  name: ralphy
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ralphy.yaml
+    source_section: key_features[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[3]
+    source_file: repos/knowledge/deep/ralphy.yaml
+    excerpt: Engine adapters cover eight backends
+  object_value: Engine adapters cover eight backends
+  note: The engine registry can instantiate Claude, OpenCode, Cursor, Codex, Qwen,
+    Droid, Copilot, and Gemini engines.
+  fact_id: fact::443ec248b6bea4f19e4d529d
+- node_id: repo::michaelshimeles/ralphy
+  github_full_name: michaelshimeles/ralphy
+  name: ralphy
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ralphy.yaml
+    source_section: key_features[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[2]
+    source_file: repos/knowledge/deep/ralphy.yaml
+    excerpt: Parallel execution uses worktrees or lightweight sandboxes
+  object_value: Parallel execution uses worktrees or lightweight sandboxes
+  note: The parallel runner creates per-agent worktrees or copied sandboxes, replays
+    PRD inputs, executes engine prompts with retry, and later merges or cleans up
+    results.
+  fact_id: fact::1b1a826411ab5e302e5ff169
+- node_id: repo::michaelshimeles/ralphy
+  github_full_name: michaelshimeles/ralphy
+  name: ralphy
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ralphy.yaml
+    source_section: key_features[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[0]
+    source_file: repos/knowledge/deep/ralphy.yaml
+    excerpt: Single-task mode and PRD loop mode share one CLI
+  object_value: Single-task mode and PRD loop mode share one CLI
+  note: The main entrypoint dispatches `--init`, `--config`, `--add-rule`, single
+    brownfield task execution, or full PRD loop execution from one process.
+  fact_id: fact::a67e77bb62de8ae873208358
+- node_id: repo::michaelshimeles/ralphy
+  github_full_name: michaelshimeles/ralphy
+  name: ralphy
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ralphy.yaml
+    source_section: key_features[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[1]
+    source_file: repos/knowledge/deep/ralphy.yaml
+    excerpt: Task sources are pluggable
+  object_value: Task sources are pluggable
+  note: The task factory creates markdown, markdown-folder, YAML, JSON, or GitHub-backed
+    task sources, with a cached wrapper used for loop execution.
+  fact_id: fact::e06f108440436a7951c99c37
+- node_id: repo::michaelshimeles/ralphy
+  github_full_name: michaelshimeles/ralphy
+  name: ralphy
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ralphy.yaml
+    source_section: architecture.module_breakdown[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[0]
+    source_file: repos/knowledge/deep/ralphy.yaml
+    excerpt: Argument parsing and command dispatch for initialization, loop execution,
+      task mode, config edits, and telemetry commands.
+  object_value: cli/src/cli/
+  note: 'responsibility: Argument parsing and command dispatch for initialization,
+    loop execution, task mode, config edits, and telemetry commands.; key_files: cli/src/index.ts,
+    cli/src/cli/args.ts'
+  fact_id: fact::dd309e44b8cc3971d7152cb7
+- node_id: repo::michaelshimeles/ralphy
+  github_full_name: michaelshimeles/ralphy
+  name: ralphy
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ralphy.yaml
+    source_section: key_files[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[1]
+    source_file: repos/knowledge/deep/ralphy.yaml
+    excerpt: cli/src/cli/args.ts
+  object_value: cli/src/cli/args.ts
+  fact_id: fact::3ceddcb9425913a168b128d4
+- node_id: repo::michaelshimeles/ralphy
+  github_full_name: michaelshimeles/ralphy
+  name: ralphy
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ralphy.yaml
+    source_section: architecture.module_breakdown[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[3]
+    source_file: repos/knowledge/deep/ralphy.yaml
+    excerpt: Adapters for the supported coding-agent backends.
+  object_value: cli/src/engines/
+  note: 'responsibility: Adapters for the supported coding-agent backends.; key_files:
+    cli/src/engines/index.ts, cli/src/engines/codex.ts'
+  fact_id: fact::b5f067cde9f554de470a1227
+- node_id: repo::michaelshimeles/ralphy
+  github_full_name: michaelshimeles/ralphy
+  name: ralphy
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ralphy.yaml
+    source_section: architecture.module_breakdown[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[2]
+    source_file: repos/knowledge/deep/ralphy.yaml
+    excerpt: Sequential and parallel execution, retry handling, conflict resolution,
+      worktree management, and sandbox support.
+  object_value: cli/src/execution/
+  note: 'responsibility: Sequential and parallel execution, retry handling, conflict
+    resolution, worktree management, and sandbox support.; key_files: cli/src/execution/sequential.ts,
+    cli/src/execution/parallel.ts'
+  fact_id: fact::674d1697f9796c2dbff725ee
+- node_id: repo::michaelshimeles/ralphy
+  github_full_name: michaelshimeles/ralphy
+  name: ralphy
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ralphy.yaml
+    source_section: key_files[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[2]
+    source_file: repos/knowledge/deep/ralphy.yaml
+    excerpt: cli/src/execution/parallel.ts
+  object_value: cli/src/execution/parallel.ts
+  fact_id: fact::716c581e33497b610724f95f
+- node_id: repo::michaelshimeles/ralphy
+  github_full_name: michaelshimeles/ralphy
+  name: ralphy
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ralphy.yaml
+    source_section: key_files[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[0]
+    source_file: repos/knowledge/deep/ralphy.yaml
+    excerpt: cli/src/index.ts
+  object_value: cli/src/index.ts
+  fact_id: fact::b7e246760988f0cea3f62e44
+- node_id: repo::michaelshimeles/ralphy
+  github_full_name: michaelshimeles/ralphy
+  name: ralphy
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ralphy.yaml
+    source_section: architecture.module_breakdown[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[1]
+    source_file: repos/knowledge/deep/ralphy.yaml
+    excerpt: Task-source abstraction over markdown, folder, YAML, JSON, and GitHub
+      issue inputs.
+  object_value: cli/src/tasks/
+  note: 'responsibility: Task-source abstraction over markdown, folder, YAML, JSON,
+    and GitHub issue inputs.; key_files: cli/src/tasks/index.ts, cli/src/tasks/github.ts'
+  fact_id: fact::0a205bb61a079ddc4cea3601
+- node_id: repo::michaelshimeles/ralphy
+  github_full_name: michaelshimeles/ralphy
+  name: ralphy
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ralphy.yaml
+    source_section: key_files[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[3]
+    source_file: repos/knowledge/deep/ralphy.yaml
+    excerpt: cli/src/tasks/index.ts
+  object_value: cli/src/tasks/index.ts
+  fact_id: fact::141b3fb6d00e6c4c53d1024f
+- node_id: repo::michaelshimeles/ralphy
+  github_full_name: michaelshimeles/ralphy
+  name: ralphy
+  fact_type: config_option
+  predicate: has_config_option
+  object_kind: command
+  confidence: 0.7
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ralphy.yaml
+    source_section: cli_arguments[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_arguments[3]
+    source_file: repos/knowledge/deep/ralphy.yaml
+    excerpt: --github
+  object_value: --github
+  note: Load tasks from a GitHub repository issue source.
+  fact_id: fact::086e16275ea66e997396d751
+- node_id: repo::michaelshimeles/ralphy
+  github_full_name: michaelshimeles/ralphy
+  name: ralphy
+  fact_type: config_option
+  predicate: has_config_option
+  object_kind: command
+  confidence: 0.7
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ralphy.yaml
+    source_section: cli_arguments[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_arguments[2]
+    source_file: repos/knowledge/deep/ralphy.yaml
+    excerpt: --max-parallel
+  object_value: --max-parallel
+  note: Set the maximum number of concurrent agents.
+  fact_id: fact::93915a1807920ad2d48d8989
+- node_id: repo::michaelshimeles/ralphy
+  github_full_name: michaelshimeles/ralphy
+  name: ralphy
+  fact_type: config_option
+  predicate: has_config_option
+  object_kind: command
+  confidence: 0.7
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ralphy.yaml
+    source_section: cli_arguments[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_arguments[5]
+    source_file: repos/knowledge/deep/ralphy.yaml
+    excerpt: --model
+  object_value: --model
+  note: Override the default engine model.
+  fact_id: fact::00252d51eaa247b9f622fd7f
+- node_id: repo::michaelshimeles/ralphy
+  github_full_name: michaelshimeles/ralphy
+  name: ralphy
+  fact_type: config_option
+  predicate: has_config_option
+  object_kind: command
+  confidence: 0.7
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ralphy.yaml
+    source_section: cli_arguments[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_arguments[0]
+    source_file: repos/knowledge/deep/ralphy.yaml
+    excerpt: --parallel
+  object_value: --parallel
+  note: Run tasks concurrently using worktrees.
+  fact_id: fact::39e51e89d4a7aa77508175f0
+- node_id: repo::michaelshimeles/ralphy
+  github_full_name: michaelshimeles/ralphy
+  name: ralphy
+  fact_type: config_option
+  predicate: has_config_option
+  object_kind: command
+  confidence: 0.7
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ralphy.yaml
+    source_section: cli_arguments[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_arguments[1]
+    source_file: repos/knowledge/deep/ralphy.yaml
+    excerpt: --sandbox
+  object_value: --sandbox
+  note: Use lightweight sandboxes instead of git worktrees.
+  fact_id: fact::594c26fe4e98b5fcb153be75
+- node_id: repo::michaelshimeles/ralphy
+  github_full_name: michaelshimeles/ralphy
+  name: ralphy
+  fact_type: config_option
+  predicate: has_config_option
+  object_kind: command
+  confidence: 0.7
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ralphy.yaml
+    source_section: cli_arguments[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_arguments[4]
+    source_file: repos/knowledge/deep/ralphy.yaml
+    excerpt: --sync-issue
+  object_value: --sync-issue
+  note: Sync PRD progress back to a GitHub issue body.
+  fact_id: fact::04257cb24b706bea656e9773
+- node_id: repo::michaelshimeles/ralphy
+  github_full_name: michaelshimeles/ralphy
+  name: ralphy
+  fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ralphy.yaml
+    source_section: configuration[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[0]
+    source_file: repos/knowledge/deep/ralphy.yaml
+    excerpt: aiEngine
+  object_value: aiEngine
+  note: Runtime option derived from engine-selection flags such as `--claude`, `--codex`,
+    or `--gemini`.
+  fact_id: fact::393bd7266cf03597b50e623b
+- node_id: repo::michaelshimeles/ralphy
+  github_full_name: michaelshimeles/ralphy
+  name: ralphy
+  fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ralphy.yaml
+    source_section: configuration[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[2]
+    source_file: repos/knowledge/deep/ralphy.yaml
+    excerpt: browserEnabled
+  object_value: browserEnabled
+  note: Runtime option that toggles browser automation between `auto`, `true`, and
+    `false`.
+  fact_id: fact::316682c64aa2f128091dc5a5
+- node_id: repo::michaelshimeles/ralphy
+  github_full_name: michaelshimeles/ralphy
+  name: ralphy
+  fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ralphy.yaml
+    source_section: configuration[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration[1]
+    source_file: repos/knowledge/deep/ralphy.yaml
+    excerpt: prdSource
+  object_value: prdSource
+  note: Runtime option derived from PRD file, folder, JSON, YAML, or GitHub inputs.
+  fact_id: fact::b98ea00d562cee2a1f391081
+- node_id: repo::michaelshimeles/ralphy
+  github_full_name: michaelshimeles/ralphy
+  name: ralphy
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ralphy.yaml
+    source_section: api_surface.public_functions[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[3]
+    source_file: repos/knowledge/deep/ralphy.yaml
+    excerpt: createEngine
+  object_value: createEngine
+  note: 'Instantiate the requested engine adapter by name.; function createEngine(name:
+    AIEngineName): AIEngine; cli/src/engines/index.ts'
+  fact_id: fact::ca664d7e5abf05bf66f261b2
+- node_id: repo::michaelshimeles/ralphy
+  github_full_name: michaelshimeles/ralphy
+  name: ralphy
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ralphy.yaml
+    source_section: api_surface.public_functions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[0]
+    source_file: repos/knowledge/deep/ralphy.yaml
+    excerpt: createProgram
+  object_value: createProgram
+  note: 'Build the Commander program with the full Ralphy CLI option set.; function
+    createProgram(): Command; cli/src/cli/args.ts'
+  fact_id: fact::d830d97f68305f6ccf3a8e39
+- node_id: repo::michaelshimeles/ralphy
+  github_full_name: michaelshimeles/ralphy
+  name: ralphy
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ralphy.yaml
+    source_section: api_surface.public_functions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[1]
+    source_file: repos/knowledge/deep/ralphy.yaml
+    excerpt: parseArgs
+  object_value: parseArgs
+  note: Parse CLI arguments into runtime options, task mode flags, and engine-specific
+    passthrough arguments.; cli/src/cli/args.ts
+  fact_id: fact::8456f1f9398de0c83e5a8d0b
+- node_id: repo::michaelshimeles/ralphy
+  github_full_name: michaelshimeles/ralphy
+  name: ralphy
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ralphy.yaml
+    source_section: api_surface.public_functions[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[2]
+    source_file: repos/knowledge/deep/ralphy.yaml
+    excerpt: runLoop
+  object_value: runLoop
+  note: 'Execute the multi-task PRD loop in sequential or parallel mode.; async function
+    runLoop(options: RuntimeOptions): Promise<void>; cli/src/cli/commands/run.ts'
+  fact_id: fact::2081b31edcd977726d7f4651
 - node_id: repo::microsoft/graphrag
   github_full_name: microsoft/graphrag
   name: graphrag
@@ -86957,6 +89215,420 @@ facts:
   object_value: go test ./...
   note: Run Go test suites across the repo.
   fact_id: fact::8357f52df048538b511da7f6
+- node_id: repo::thedotmack/claude-mem
+  github_full_name: thedotmack/claude-mem
+  name: claude-mem
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    source_section: key_features[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[1]
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    excerpt: Context generation is exposed as a reusable service layer
+  object_value: Context generation is exposed as a reusable service layer
+  note: The context module re-exports `generateContext`, token calculators, timeline
+    builders, and observation query helpers.
+  fact_id: fact::611595e6efa7cad6f73ba958
+- node_id: repo::thedotmack/claude-mem
+  github_full_name: thedotmack/claude-mem
+  name: claude-mem
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    source_section: key_features[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[0]
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    excerpt: Hook runtime degrades gracefully when the worker is unavailable
+  object_value: Hook runtime degrades gracefully when the worker is unavailable
+  note: The hook command classifies transport failures, timeouts, HTTP 5xx, and 429
+    responses as transient and exits successfully instead of blocking the host editor.
+  fact_id: fact::aa2d4668ad9a222eb1b6fc8b
+- node_id: repo::thedotmack/claude-mem
+  github_full_name: thedotmack/claude-mem
+  name: claude-mem
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    source_section: key_features[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[2]
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    excerpt: SQLite storage is a first-class subsystem
+  object_value: SQLite storage is a first-class subsystem
+  note: The SQLite index re-exports database initialization, migrations, CRUD modules,
+    FTS-backed search, and transaction helpers.
+  fact_id: fact::0f4e391d2a794080da29b974
+- node_id: repo::thedotmack/claude-mem
+  github_full_name: thedotmack/claude-mem
+  name: claude-mem
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    source_section: key_features[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[4]
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    excerpt: Supervisor enforces single-worker semantics
+  object_value: Supervisor enforces single-worker semantics
+  note: The supervisor checks a PID file, starts health monitoring, and tears down
+    stale PID records before allowing a worker to run.
+  fact_id: fact::8684cc67cbe09eb226a8e2e4
+- node_id: repo::thedotmack/claude-mem
+  github_full_name: thedotmack/claude-mem
+  name: claude-mem
+  fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    source_section: key_features[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[3]
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    excerpt: Transcript ingestion tails live JSONL files
+  object_value: Transcript ingestion tails live JSONL files
+  note: The watcher tracks byte offsets, rescans globs or directories, and streams
+    parsed transcript lines through `TranscriptEventProcessor`.
+  fact_id: fact::830f653c53214bbbf202b62e
+- node_id: repo::thedotmack/claude-mem
+  github_full_name: thedotmack/claude-mem
+  name: claude-mem
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    source_section: key_files[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[0]
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    excerpt: package.json
+  object_value: package.json
+  fact_id: fact::35673202f6c8114bf9aca7f2
+- node_id: repo::thedotmack/claude-mem
+  github_full_name: thedotmack/claude-mem
+  name: claude-mem
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    source_section: architecture.module_breakdown[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[0]
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    excerpt: Hook command entrypoint, platform adapters, and event handlers for Claude
+      Code integration.
+  object_value: src/cli/
+  note: 'responsibility: Hook command entrypoint, platform adapters, and event handlers
+    for Claude Code integration.; key_files: src/cli/hook-command.ts, src/cli/adapters/claude-code.ts'
+  fact_id: fact::b8352269a4ccd0515fc5bc86
+- node_id: repo::thedotmack/claude-mem
+  github_full_name: thedotmack/claude-mem
+  name: claude-mem
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    source_section: key_files[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[1]
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    excerpt: src/cli/hook-command.ts
+  object_value: src/cli/hook-command.ts
+  fact_id: fact::9496f89d1ebf5cecd9930f09
+- node_id: repo::thedotmack/claude-mem
+  github_full_name: thedotmack/claude-mem
+  name: claude-mem
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    source_section: architecture.module_breakdown[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[1]
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    excerpt: Builds rendered session context from observations, summaries, and timeline
+      data.
+  object_value: src/services/context/
+  note: 'responsibility: Builds rendered session context from observations, summaries,
+    and timeline data.; key_files: src/services/context/index.ts, src/services/context/ContextBuilder.ts'
+  fact_id: fact::5df30793c2823532ad5746d5
+- node_id: repo::thedotmack/claude-mem
+  github_full_name: thedotmack/claude-mem
+  name: claude-mem
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    source_section: architecture.module_breakdown[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[2]
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    excerpt: Database lifecycle, migrations, search, and transactional persistence
+      of sessions and observations.
+  object_value: src/services/sqlite/
+  note: 'responsibility: Database lifecycle, migrations, search, and transactional
+    persistence of sessions and observations.; key_files: src/services/sqlite/index.ts,
+    src/services/sqlite/Database.js'
+  fact_id: fact::48e600a354c9bb4bf9da93db
+- node_id: repo::thedotmack/claude-mem
+  github_full_name: thedotmack/claude-mem
+  name: claude-mem
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    source_section: key_files[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[2]
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    excerpt: src/services/sqlite/index.ts
+  object_value: src/services/sqlite/index.ts
+  fact_id: fact::e41c45913f3decca9dfb28b4
+- node_id: repo::thedotmack/claude-mem
+  github_full_name: thedotmack/claude-mem
+  name: claude-mem
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    source_section: architecture.module_breakdown[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[3]
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    excerpt: Watches transcript files, parses entries, and feeds event processing.
+  object_value: src/services/transcripts/
+  note: 'responsibility: Watches transcript files, parses entries, and feeds event
+    processing.; key_files: src/services/transcripts/watcher.ts, src/services/transcripts/processor.ts'
+  fact_id: fact::5e307a7ecd9e7c05ffa66809
+- node_id: repo::thedotmack/claude-mem
+  github_full_name: thedotmack/claude-mem
+  name: claude-mem
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    source_section: key_files[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[3]
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    excerpt: src/services/transcripts/watcher.ts
+  object_value: src/services/transcripts/watcher.ts
+  fact_id: fact::eb3d928130ead1ccd5ddebf8
+- node_id: repo::thedotmack/claude-mem
+  github_full_name: thedotmack/claude-mem
+  name: claude-mem
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    source_section: architecture.module_breakdown[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[4]
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    excerpt: Worker PID validation, process registry management, signal handling,
+      and health checker lifecycle.
+  object_value: src/supervisor/
+  note: 'responsibility: Worker PID validation, process registry management, signal
+    handling, and health checker lifecycle.; key_files: src/supervisor/index.ts, src/supervisor/process-registry.ts'
+  fact_id: fact::314aa7c5ed68ea34ab1b2b2f
+- node_id: repo::thedotmack/claude-mem
+  github_full_name: thedotmack/claude-mem
+  name: claude-mem
+  fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    source_section: key_files[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[4]
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    excerpt: src/supervisor/index.ts
+  object_value: src/supervisor/index.ts
+  fact_id: fact::56a9401bd33b6b95c99d4175
+- node_id: repo::thedotmack/claude-mem
+  github_full_name: thedotmack/claude-mem
+  name: claude-mem
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    source_section: api_surface.public_functions[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[2]
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    excerpt: generateContext
+  object_value: generateContext
+  note: Public entrypoint for assembling memory context from stored observations and
+    summaries.; src/services/context/index.ts
+  fact_id: fact::3eb94b3f0a5aa5a49a671fde
+- node_id: repo::thedotmack/claude-mem
+  github_full_name: thedotmack/claude-mem
+  name: claude-mem
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    source_section: api_surface.public_functions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[1]
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    excerpt: hookCommand
+  object_value: hookCommand
+  note: 'Normalize hook input, dispatch an event handler, and emit JSON output with
+    mapped exit codes.; async function hookCommand(platform: string, event: string,
+    options?: HookCommandOptions): Promise<number>; src/cli/hook-command.ts'
+  fact_id: fact::aaa56a8fd41145a114afc61d
+- node_id: repo::thedotmack/claude-mem
+  github_full_name: thedotmack/claude-mem
+  name: claude-mem
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    source_section: api_surface.public_functions[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[3]
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    excerpt: initializeDatabase
+  object_value: initializeDatabase
+  note: Initialize the SQLite-backed storage layer exported from the package.; src/services/sqlite/index.ts
+  fact_id: fact::1a0266cdab12d3fe56fa622a
+- node_id: repo::thedotmack/claude-mem
+  github_full_name: thedotmack/claude-mem
+  name: claude-mem
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    source_section: api_surface.public_functions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[0]
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    excerpt: isWorkerUnavailableError
+  object_value: isWorkerUnavailableError
+  note: 'Classify whether a hook failure should be treated as transient worker unavailability.;
+    function isWorkerUnavailableError(error: unknown): boolean; src/cli/hook-command.ts'
+  fact_id: fact::b2011a70d1db944dcb1dcf75
+- node_id: repo::thedotmack/claude-mem
+  github_full_name: thedotmack/claude-mem
+  name: claude-mem
+  fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    source_section: api_surface.public_functions[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[4]
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    excerpt: startSupervisor
+  object_value: startSupervisor
+  note: Boot the worker supervisor and health checker.; src/supervisor/index.ts
+  fact_id: fact::a9e313753f5c9506eda8c6cd
 - node_id: repo::thephpleague/fractal
   github_full_name: thephpleague/fractal
   name: fractal

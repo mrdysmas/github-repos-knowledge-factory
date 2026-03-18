@@ -1,0 +1,61 @@
+name: skills
+node_id: "repo::anthropics/skills"
+github_full_name: anthropics/skills
+html_url: "https://github.com/anthropics/skills"
+source: remote_metadata
+provenance:
+  shard: repos
+  source_file: "repos/knowledge/deep/anthropics__skills.yaml"
+  as_of: "2026-03-17"
+  sourcing_method: code_verified
+  extraction_model: gpt-5.4
+  extraction_agent: codex
+directory: "remote::anthropics/skills"
+category: agent_framework
+key_features:
+  - feature: "Skill packs live as self-contained folders"
+    description: "The repository root README and each `skills/*/SKILL.md` package skills as instruction bundles with scripts and references kept beside the prompt."
+  - feature: "Document skills ship executable helpers"
+    description: "The `skills/docx/scripts/accept_changes.py` helper copies a DOCX, installs a LibreOffice macro, and runs headless `soffice` to accept tracked changes."
+  - feature: "Skill packaging validates before distribution"
+    description: "The `skills/skill-creator/scripts/package_skill.py` script runs `validate_skill`, skips root `evals` plus cache artifacts, and writes a `.skill` zip."
+  - feature: "Spec is delegated to an external canonical site"
+    description: "The `spec/agent-skills-spec.md` file is a redirect stub that points readers to `agentskills.io/specification` rather than duplicating the standard in-repo."
+architecture:
+  module_breakdown:
+    - module: "skills/"
+      responsibility: "Top-level catalog of installable skills, each anchored by a `SKILL.md` file and optional scripts or references."
+      key_files: ["skills/docx/SKILL.md", "skills/skill-creator/SKILL.md"]
+    - module: "skills/docx/scripts/"
+      responsibility: "Python helper layer for DOCX manipulation and LibreOffice-based automation."
+      key_files: ["skills/docx/scripts/accept_changes.py", "skills/docx/scripts/office/soffice.py"]
+    - module: "skills/skill-creator/scripts/"
+      responsibility: "Evaluation, validation, report generation, and packaging utilities for authoring distributable skills."
+      key_files: ["skills/skill-creator/scripts/package_skill.py", "skills/skill-creator/scripts/quick_validate.py"]
+    - module: "spec/"
+      responsibility: "Repository pointer for the Agent Skills specification."
+      key_files: ["spec/agent-skills-spec.md"]
+  components:
+    - name: "Document skill helpers"
+      description: "Office-oriented skills bundle Python automation instead of relying only on markdown instructions."
+    - name: "Skill creator toolchain"
+      description: "The skill-creator bundle includes packaging and evaluation scripts for iterating on skills."
+api_surface:
+  public_functions:
+    - name: "accept_changes"
+      purpose: "Copy a DOCX file to an output location and invoke LibreOffice automation to accept all tracked changes."
+      signature: "def accept_changes(input_file: str, output_file: str) -> tuple[None, str]"
+      location: "skills/docx/scripts/accept_changes.py"
+    - name: "package_skill"
+      purpose: "Validate a skill directory and create a distributable `.skill` archive while excluding caches and root evals."
+      signature: "def package_skill(skill_path, output_dir=None)"
+      location: "skills/skill-creator/scripts/package_skill.py"
+key_files:
+  - path: "README.md"
+    purpose: "Explains skill packaging, marketplace installation paths, and the repository layout."
+  - path: "spec/agent-skills-spec.md"
+    purpose: "Redirect stub for the external Agent Skills specification."
+  - path: "skills/docx/scripts/accept_changes.py"
+    purpose: "Headless LibreOffice helper that accepts tracked changes in DOCX files."
+  - path: "skills/skill-creator/scripts/package_skill.py"
+    purpose: "Validator and archive builder for `.skill` distribution artifacts."

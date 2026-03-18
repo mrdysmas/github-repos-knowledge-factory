@@ -1,0 +1,81 @@
+name: oh-my-opencode
+node_id: "repo::code-yeongyu/oh-my-opencode"
+github_full_name: code-yeongyu/oh-my-opencode
+html_url: "https://github.com/code-yeongyu/oh-my-opencode"
+source: remote_metadata
+provenance:
+  shard: repos
+  source_file: "repos/knowledge/deep/oh-my-opencode.yaml"
+  as_of: "2026-03-17"
+  sourcing_method: code_verified
+  extraction_model: gpt-5.4
+  extraction_agent: codex
+directory: "remote::code-yeongyu/oh-my-opencode"
+category: agent_cli
+key_features:
+  - feature: "Plugin entrypoint assembles managers, tools, hooks, and disposal"
+    description: "The default export loads plugin config, creates managers and tools, builds hooks, and returns a plugin interface with extra session compaction behavior."
+  - feature: "CLI wraps install, run, version, doctor, and MCP OAuth flows"
+    description: "The Commander program registers `install`, `run`, `get-local-version`, `doctor`, `version`, and an OAuth helper command."
+  - feature: "Project configuration is schema-driven"
+    description: "The JSON schema exposes top-level toggles such as `default_run_agent`, `disabled_mcps`, `disabled_agents`, `disabled_hooks`, `disabled_commands`, and per-agent permission and reasoning settings."
+  - feature: "Distribution includes platform-specific optional binaries"
+    description: "The package declares optional OS-specific packages and exports `./schema.json` alongside the main plugin module."
+architecture:
+  module_breakdown:
+    - module: "src/index.ts"
+      responsibility: "Plugin bootstrap that initializes config context, managers, tools, hooks, and plugin disposal."
+      key_files: ["src/index.ts", "src/plugin-interface.ts"]
+    - module: "src/cli/"
+      responsibility: "Command-line installer, runner, diagnostics, version checks, and OAuth helpers."
+      key_files: ["src/cli/cli-program.ts", "src/cli/run/runner.ts"]
+    - module: "src/config/"
+      responsibility: "Typed config loading and schema exports for plugin settings."
+      key_files: ["src/config/schema.ts", "assets/oh-my-opencode.schema.json"]
+    - module: "src/features/skill-mcp-manager/"
+      responsibility: "Skill MCP connection management, cleanup, transport selection, and OAuth handling."
+      key_files: ["src/features/skill-mcp-manager/manager.ts", "src/features/skill-mcp-manager/oauth-handler.ts"]
+configuration:
+  - key: "$schema"
+    description: "Optional schema pointer field recognized by the JSON config schema."
+  - key: "default_run_agent"
+    description: "Top-level config field for selecting the default agent used by `run`."
+  - key: "disabled_mcps"
+    description: "Array of MCP integrations disabled at runtime."
+  - key: "disabled_agents"
+    description: "Array of agent names disabled in the plugin configuration."
+  - key: "disabled_hooks"
+    description: "Array of hook names disabled before hook creation."
+  - key: "disabled_commands"
+    description: "Array of built-in command names disabled in the command layer."
+  - key: "model_fallback"
+    description: "Boolean toggle for model fallback behavior."
+api_surface:
+  public_functions:
+    - name: "OhMyOpenCodePlugin"
+      purpose: "Main plugin entrypoint that returns the assembled OpenCode plugin interface."
+      location: "src/index.ts"
+    - name: "runCli"
+      purpose: "Parse and execute the CLI program."
+      signature: "function runCli(): void"
+      location: "src/cli/cli-program.ts"
+cli_arguments:
+  - flag: "--no-tui"
+    description: "Run the installer without the interactive TUI."
+  - flag: "--claude"
+    description: "Declare Claude subscription mode during installation."
+  - flag: "--agent"
+    description: "Select the agent for `run`, overriding environment and config defaults."
+  - flag: "--model"
+    description: "Override the provider and model identifier for a run."
+  - flag: "--session-id"
+    description: "Resume an existing session instead of starting a new one."
+key_files:
+  - path: "src/index.ts"
+    purpose: "Primary plugin bootstrap and compaction hook wiring."
+  - path: "src/cli/cli-program.ts"
+    purpose: "Commander-based CLI entrypoint for install and run flows."
+  - path: "src/config/schema.ts"
+    purpose: "Aggregated exports for config schema modules."
+  - path: "assets/oh-my-opencode.schema.json"
+    purpose: "Machine-readable config schema with agent, permission, and command settings."

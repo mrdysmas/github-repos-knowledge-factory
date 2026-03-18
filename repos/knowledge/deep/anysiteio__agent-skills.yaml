@@ -1,0 +1,47 @@
+name: agent-skills
+node_id: "repo::anysiteio/agent-skills"
+github_full_name: anysiteio/agent-skills
+html_url: "https://github.com/anysiteio/agent-skills"
+source: remote_metadata
+provenance:
+  shard: repos
+  source_file: "repos/knowledge/deep/anysiteio__agent-skills.yaml"
+  as_of: "2026-03-17"
+  sourcing_method: code_verified
+  extraction_model: gpt-5.4
+  extraction_agent: codex
+directory: "remote::anysiteio/agent-skills"
+category: agent_framework
+key_features:
+  - feature: "NPM package exposes a marketplace installer"
+    description: "The root `package.json` publishes a single `anysite-skills` bin that points to `bin/install.js`."
+  - feature: "Installer shells out to Claude Code plugin commands"
+    description: "The installer tries `/plugin marketplace add https://github.com/anysiteio/agent-skills` and falls back to printing the manual command."
+  - feature: "Plugin manifest bundles 13 skills"
+    description: "The `.claude-plugin/plugin.json` file lists thirteen `skills/*` directories, including lead generation, audience analysis, skill audit, and CLI operation."
+  - feature: "Marketplace manifest exposes both bundle and single-skill entries"
+    description: "The `.claude-plugin/marketplace.json` file advertises the umbrella `anysite-skills` plugin plus standalone install targets for selected skills."
+architecture:
+  module_breakdown:
+    - module: "skills/"
+      responsibility: "Repository payload of skill directories implemented as `SKILL.md` prompts with optional reference docs."
+      key_files: ["skills/anysite-lead-generation/SKILL.md", "skills/skill-audit/SKILL.md"]
+    - module: "bin/"
+      responsibility: "CLI installer entrypoint for marketplace registration and onboarding output."
+      key_files: ["bin/install.js"]
+    - module: ".claude-plugin/"
+      responsibility: "Claude Code plugin metadata and marketplace catalog definitions."
+      key_files: [".claude-plugin/plugin.json", ".claude-plugin/marketplace.json"]
+commands:
+  - name: "anysite-skills"
+    description: "Attempts to add the repository as a Claude Code marketplace, then prints the bundled skill names and manual install command."
+    usage: "npx @anysiteio/agent-skills"
+key_files:
+  - path: "package.json"
+    purpose: "Defines the published package, Node engine floor, and installer bin."
+  - path: "bin/install.js"
+    purpose: "Shells out to Claude Code plugin commands and prints bundled skill guidance."
+  - path: ".claude-plugin/plugin.json"
+    purpose: "Declares the bundled skill plugin and enumerates included skill directories."
+  - path: ".claude-plugin/marketplace.json"
+    purpose: "Publishes marketplace entries for the bundle and selected standalone skills."

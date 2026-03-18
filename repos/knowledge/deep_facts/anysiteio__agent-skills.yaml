@@ -1,0 +1,224 @@
+name: agent-skills
+node_id: repo::anysiteio/agent-skills
+github_full_name: anysiteio/agent-skills
+html_url: https://github.com/anysiteio/agent-skills
+source: remote_metadata
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep_facts/anysiteio__agent-skills.yaml
+  as_of: '2026-03-17'
+  extractor_version: ws6-deep-integrator-v1
+  extraction_model: gpt-5.4
+  extraction_agent: codex
+facts:
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    source_section: key_features[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[1]
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    excerpt: Installer shells out to Claude Code plugin commands
+  object_value: Installer shells out to Claude Code plugin commands
+  note: The installer tries `/plugin marketplace add https://github.com/anysiteio/agent-skills`
+    and falls back to printing the manual command.
+  fact_id: fact::0d1dcdb52fb0497871cbe40d
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    source_section: key_features[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[3]
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    excerpt: Marketplace manifest exposes both bundle and single-skill entries
+  object_value: Marketplace manifest exposes both bundle and single-skill entries
+  note: The `.claude-plugin/marketplace.json` file advertises the umbrella `anysite-skills`
+    plugin plus standalone install targets for selected skills.
+  fact_id: fact::9e8c7cdd50814e70bacb8291
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    source_section: key_features[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[0]
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    excerpt: NPM package exposes a marketplace installer
+  object_value: NPM package exposes a marketplace installer
+  note: The root `package.json` publishes a single `anysite-skills` bin that points
+    to `bin/install.js`.
+  fact_id: fact::111923e373379d7702dadf3d
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    source_section: key_features[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[2]
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    excerpt: Plugin manifest bundles 13 skills
+  object_value: Plugin manifest bundles 13 skills
+  note: The `.claude-plugin/plugin.json` file lists thirteen `skills/*` directories,
+    including lead generation, audience analysis, skill audit, and CLI operation.
+  fact_id: fact::aca235046f7a8459529e3c60
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    source_section: architecture.module_breakdown[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[2]
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    excerpt: Claude Code plugin metadata and marketplace catalog definitions.
+  object_value: .claude-plugin/
+  note: 'responsibility: Claude Code plugin metadata and marketplace catalog definitions.;
+    key_files: .claude-plugin/plugin.json, .claude-plugin/marketplace.json'
+  fact_id: fact::1cc3be524fdb6920919d72bc
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    source_section: key_files[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[3]
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    excerpt: .claude-plugin/marketplace.json
+  object_value: .claude-plugin/marketplace.json
+  fact_id: fact::729c01891d2546c92d3b7099
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    source_section: key_files[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[2]
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    excerpt: .claude-plugin/plugin.json
+  object_value: .claude-plugin/plugin.json
+  fact_id: fact::14a0e31ac6003160d7cc61e5
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    source_section: architecture.module_breakdown[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[1]
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    excerpt: CLI installer entrypoint for marketplace registration and onboarding
+      output.
+  object_value: bin/
+  note: 'responsibility: CLI installer entrypoint for marketplace registration and
+    onboarding output.; key_files: bin/install.js'
+  fact_id: fact::905a826792c69ce25a3c6793
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    source_section: key_files[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[1]
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    excerpt: bin/install.js
+  object_value: bin/install.js
+  fact_id: fact::02b7d027db179f7c9e8e043d
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    source_section: key_files[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[0]
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    excerpt: package.json
+  object_value: package.json
+  fact_id: fact::f0c8c91198e1e4dd043ccde3
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    source_section: architecture.module_breakdown[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[0]
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    excerpt: Repository payload of skill directories implemented as `SKILL.md` prompts
+      with optional reference docs.
+  object_value: skills/
+  note: 'responsibility: Repository payload of skill directories implemented as `SKILL.md`
+    prompts with optional reference docs.; key_files: skills/anysite-lead-generation/SKILL.md,
+    skills/skill-audit/SKILL.md'
+  fact_id: fact::dad5b0f0116de124d01df6d5
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    source_section: commands[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[0]
+    source_file: repos/knowledge/deep/anysiteio__agent-skills.yaml
+    excerpt: anysite-skills
+  object_value: anysite-skills
+  note: Attempts to add the repository as a Claude Code marketplace, then prints the
+    bundled skill names and manual install command.
+  fact_id: fact::df0a5a806c03d53efcbdec88
