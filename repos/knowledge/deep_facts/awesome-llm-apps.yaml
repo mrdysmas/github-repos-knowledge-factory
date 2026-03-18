@@ -8,26 +8,9 @@ provenance:
   source_file: repos/knowledge/deep_facts/awesome-llm-apps.yaml
   as_of: '2026-02-25'
   extractor_version: ws6-deep-integrator-v1
-  extraction_model: glm-5
-  extraction_agent: kgraph-repos
+  extraction_model: gpt-5.4
+  extraction_agent: codex
 facts:
-- fact_type: component
-  predicate: has_component
-  object_kind: concept
-  confidence: 0.61
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    source_section: technology_stack.agent_frameworks[0].version.line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: technology_stack.agent_frameworks[0].version.line[0]
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    excerpt: 2+
-  object_value: 2+
-  note: technology stack (technology_stack)
-  fact_id: fact::d313bb6aff4819ad6c73f8b4
 - fact_type: component
   predicate: has_component
   object_kind: concept
@@ -81,57 +64,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: concept
-  confidence: 0.61
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    source_section: technology_stack.agent_frameworks[0].name.line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: technology_stack.agent_frameworks[0].name.line[0]
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    excerpt: Agno
-  object_value: Agno
-  note: technology stack (technology_stack)
-  fact_id: fact::4604af028f7452938604db51
-- fact_type: component
-  predicate: has_component
-  object_kind: concept
-  confidence: 0.61
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    source_section: technology_stack.agent_frameworks[1].purpose.line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: technology_stack.agent_frameworks[1].purpose.line[0]
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    excerpt: Alternative for some examples
-  object_value: Alternative for some examples
-  note: technology stack (technology_stack)
-  fact_id: fact::94099c89818826e672ec062c
-- fact_type: component
-  predicate: has_component
-  object_kind: concept
-  confidence: 0.61
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    source_section: technology_stack.llm_providers.cloud[1].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: technology_stack.llm_providers.cloud[1].line[0]
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    excerpt: Anthropic (Claude)
-  object_value: Anthropic (Claude)
-  note: technology stack (technology_stack)
-  fact_id: fact::b1a9100089aa378d8883fc95
-- fact_type: component
-  predicate: has_component
-  object_kind: concept
   confidence: 0.69
   as_of: '2026-03-17'
   provenance:
@@ -146,23 +78,6 @@ facts:
   object_value: Chat with X Tutorials
   note: 'depth: moderate, resources: 6'
   fact_id: fact::764d252e66ee16907d670b7e
-- fact_type: component
-  predicate: has_component
-  object_kind: concept
-  confidence: 0.61
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    source_section: technology_stack.vector_databases[1].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: technology_stack.vector_databases[1].line[0]
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    excerpt: Chroma
-  object_value: Chroma
-  note: technology stack (technology_stack)
-  fact_id: fact::8753aa9e88d6fda77502ec85
 - fact_type: component
   predicate: has_component
   object_kind: concept
@@ -181,40 +96,6 @@ facts:
   object_value: Curated showcase of runnable LLM applications spanning starter agents,
     advanced agents, multi-agent teams, RAG, MCP, voice, and memory workflows.
   fact_id: fact::25cdc820f6e49de924191478
-- fact_type: component
-  predicate: has_component
-  object_kind: concept
-  confidence: 0.61
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    source_section: technology_stack.rag_frameworks[0].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: technology_stack.rag_frameworks[0].line[0]
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    excerpt: Embedchain
-  object_value: Embedchain
-  note: technology stack (technology_stack)
-  fact_id: fact::97bd87d6bb5846a46d76e1c1
-- fact_type: component
-  predicate: has_component
-  object_kind: concept
-  confidence: 0.61
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    source_section: technology_stack.vector_databases[2].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: technology_stack.vector_databases[2].line[0]
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    excerpt: FAISS
-  object_value: FAISS
-  note: technology stack (technology_stack)
-  fact_id: fact::354844d68b69382e29e36f57
 - fact_type: component
   predicate: has_component
   object_kind: concept
@@ -268,23 +149,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: concept
-  confidence: 0.61
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    source_section: technology_stack.llm_providers.cloud[2].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: technology_stack.llm_providers.cloud[2].line[0]
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    excerpt: Google (Gemini)
-  object_value: Google (Gemini)
-  note: technology stack (technology_stack)
-  fact_id: fact::6c65cacacb47deb2c638ef72
-- fact_type: component
-  predicate: has_component
-  object_kind: concept
   confidence: 0.69
   as_of: '2026-03-17'
   provenance:
@@ -316,40 +180,6 @@ facts:
   object_value: LLM Fine-tuning Tutorials
   note: 'depth: light, resources: 2'
   fact_id: fact::e21002ef66e9659a8997fe02
-- fact_type: component
-  predicate: has_component
-  object_kind: concept
-  confidence: 0.61
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    source_section: technology_stack.agent_frameworks[1].name.line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: technology_stack.agent_frameworks[1].name.line[0]
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    excerpt: LangChain
-  object_value: LangChain
-  note: technology stack (technology_stack)
-  fact_id: fact::c47b8563e551b9794b5f8309
-- fact_type: component
-  predicate: has_component
-  object_kind: concept
-  confidence: 0.61
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    source_section: technology_stack.agent_frameworks[2].name.line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: technology_stack.agent_frameworks[2].name.line[0]
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    excerpt: LlamaIndex
-  object_value: LlamaIndex
-  note: technology stack (technology_stack)
-  fact_id: fact::3acce1a8f6c33f238557f66f
 - fact_type: component
   predicate: has_component
   object_kind: concept
@@ -403,74 +233,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: concept
-  confidence: 0.61
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    source_section: technology_stack.llm_providers.local[0].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: technology_stack.llm_providers.local[0].line[0]
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    excerpt: Ollama
-  object_value: Ollama
-  note: technology stack (technology_stack)
-  fact_id: fact::4b3e658b42238c48d409c47f
-- fact_type: component
-  predicate: has_component
-  object_kind: concept
-  confidence: 0.61
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    source_section: technology_stack.llm_providers.cloud[0].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: technology_stack.llm_providers.cloud[0].line[0]
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    excerpt: OpenAI (GPT-4, GPT-3.5)
-  object_value: OpenAI (GPT-4, GPT-3.5)
-  note: technology stack (technology_stack)
-  fact_id: fact::acc1b6232a60fe52ae792c10
-- fact_type: component
-  predicate: has_component
-  object_kind: concept
-  confidence: 0.61
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    source_section: technology_stack.agent_frameworks[0].purpose.line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: technology_stack.agent_frameworks[0].purpose.line[0]
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    excerpt: Primary agent framework
-  object_value: Primary agent framework
-  note: technology stack (technology_stack)
-  fact_id: fact::86bc10b7189fe12c23da26e8
-- fact_type: component
-  predicate: has_component
-  object_kind: concept
-  confidence: 0.61
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    source_section: technology_stack.vector_databases[0].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: technology_stack.vector_databases[0].line[0]
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    excerpt: Qdrant
-  object_value: Qdrant
-  note: technology stack (technology_stack)
-  fact_id: fact::2d0b834d73eb197e9cd3d755
-- fact_type: component
-  predicate: has_component
-  object_kind: concept
   confidence: 0.69
   as_of: '2026-03-17'
   provenance:
@@ -504,23 +266,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: concept
-  confidence: 0.61
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    source_section: technology_stack.agent_frameworks[2].purpose.line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: technology_stack.agent_frameworks[2].purpose.line[0]
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    excerpt: RAG-focused examples
-  object_value: RAG-focused examples
-  note: technology stack (technology_stack)
-  fact_id: fact::d800ed00adce0951cc3fa533
-- fact_type: component
-  predicate: has_component
-  object_kind: concept
   confidence: 0.67
   as_of: '2026-03-17'
   provenance:
@@ -539,40 +284,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: concept
-  confidence: 0.61
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    source_section: technology_stack.ui_framework[0].purpose.line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: technology_stack.ui_framework[0].purpose.line[0]
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    excerpt: Rapid UI prototyping
-  object_value: Rapid UI prototyping
-  note: technology stack (technology_stack)
-  fact_id: fact::58a01f583079388d65af4d03
-- fact_type: component
-  predicate: has_component
-  object_kind: concept
-  confidence: 0.61
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    source_section: technology_stack.ui_framework[0].name.line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: technology_stack.ui_framework[0].name.line[0]
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    excerpt: Streamlit
-  object_value: Streamlit
-  note: technology stack (technology_stack)
-  fact_id: fact::2693d0c22530d7c67999b168
-- fact_type: component
-  predicate: has_component
-  object_kind: concept
   confidence: 0.69
   as_of: '2026-03-17'
   provenance:
@@ -587,125 +298,6 @@ facts:
   object_value: Voice AI Agents
   note: 'depth: moderate, resources: 4+'
   fact_id: fact::746c99aebc40f815dc4be68a
-- fact_type: component
-  predicate: has_component
-  object_kind: concept
-  confidence: 0.6
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    source_section: type.line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: type.line[0]
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    excerpt: examples_collection
-  object_value: examples_collection
-  note: repository type classification
-  fact_id: fact::35f85f899c1ea98e3ec3bed5
-- fact_type: component
-  predicate: has_component
-  object_kind: concept
-  confidence: 0.61
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    source_section: technology_stack.llm_providers.local[1].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: technology_stack.llm_providers.local[1].line[0]
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    excerpt: vLLM
-  object_value: vLLM
-  note: technology stack (technology_stack)
-  fact_id: fact::c428d474c66ee58dac153807
-- fact_type: component
-  predicate: has_component
-  object_kind: concept
-  confidence: 0.61
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    source_section: technology_stack.llm_providers.cloud[3].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: technology_stack.llm_providers.cloud[3].line[0]
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    excerpt: xAI (Grok)
-  object_value: xAI (Grok)
-  note: technology stack (technology_stack)
-  fact_id: fact::d4ba0b0e306f429aea80acff
-- fact_type: component
-  predicate: has_component
-  object_kind: concept
-  confidence: 0.61
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    source_section: technology_stack.ui_framework[0].usage.line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: technology_stack.ui_framework[0].usage.line[0]
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    excerpt: ~90% of examples
-  object_value: ~90% of examples
-  note: technology stack (technology_stack)
-  fact_id: fact::cbeb17c4bd37f91b0c918603
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    source_section: key_files[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[0]
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    excerpt: README.md
-  object_value: README.md
-  note: Collection overview and navigation
-  fact_id: fact::569aa5dd26df8551a948aae3
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    source_section: key_files[2]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[2]
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    excerpt: rag_tutorials/
-  object_value: rag_tutorials/
-  note: Most comprehensive RAG examples
-  fact_id: fact::de61029590e076bc6dd6b031
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    source_section: key_files[1]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[1]
-    source_file: repos/knowledge/deep/awesome_llm_apps.yaml
-    excerpt: starter_ai_agents/
-  object_value: starter_ai_agents/
-  note: Entry point for beginners
-  fact_id: fact::c111451c282952304b3a495e
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: external_tool
