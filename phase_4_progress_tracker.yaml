@@ -1,5 +1,5 @@
 version: 1
-as_of_utc: "2026-03-18T02:35:46Z"
+as_of_utc: "2026-03-18T03:51:46Z"
 
 phase:
   number: "4"
@@ -37,14 +37,14 @@ current:
     repos: 119
     nodes: 133
     edges: 152
-    deep_facts: 5142
+    deep_facts: 5278
   deltas_vs_baseline:
     queued_count: -46
     already_canonical_count: 46
     repos: 46
     nodes: 46
     edges: 0
-    deep_facts: 2221
+    deep_facts: 2357
   freshness:
     master_index_generated_at_utc: "2026-03-17T00:00:00Z"
     master_graph_generated_at_utc: "2026-03-17T00:00:00Z"
@@ -313,6 +313,28 @@ batches:
       - "All WS6 gate bools true and all WS7 gates pass"
       - "Clone-only sourcing held for all 7 repos; clone prep reused existing local clones and reported repos_failed=0"
       - "ToolNeuron was removed from the manifest and deferred after the earlier 747187 KB clone-size finding"
+  b9_lists_deep:
+    status: "COMPLETE"
+    objective: "Deep file generation for 4 curated list and documentation repos focused on ecosystem cross references instead of implementation architecture."
+    batch_id: "B9_lists_deep"
+    repo_count_target: 4
+    deep_repo_count: 4
+    shallow_repo_count: 3
+    mode_recommendation_used: "HYBRID"
+    ws6_gate_bools_all_true: true
+    ws7_strict_runs: 0
+    ws7_force_runs: 1
+    ws7_snapshot_status: "pass"
+    deep_success: true
+    policy_success: true
+    acceptance_decision: "COMPLETE"
+    notes:
+      - "repos: 119, nodes: 133, edges: 152"
+      - "deep_facts: 5142 -> 5278 (+136), hard deep gate passed"
+      - "All WS6 gate bools true and all WS7 gates pass"
+      - "Stems confirmed from shallow files: awesome-go, awesome-llm-apps, composiohq__awesome-claude-skills, claude-code-tips"
+      - "awesome-llm-apps stayed out of the WS5 manifest to preserve its richer shallow metadata; deep file was written from a manual clone"
+      - "WS6 clone prep reused existing clones for the 3 manifest repos; manual clone added workspace/clones/shubhamsaboo__awesome-llm-apps"
   b9_t3_skips:
     status: "COMPLETE"
     objective: "Formal skip recording for documentation/list repos with no extractable implementation."
@@ -328,7 +350,8 @@ batches:
       - github_full_name: ykdojo/claude-code-tips
         skip_reason: documentation_list
     notes:
-      - "No deep files generated. These repos have no implementation architecture to extract."
+      - "Initial skip record before the list-repo deep narrative policy change."
+      - "Superseded for awesome-go, awesome-llm-apps, awesome-claude-skills, and claude-code-tips by B9_lists_deep, which generated deep narratives and deep_facts focused on ecosystem cross references."
   b9_toolneuron_permanent_skip:
     status: "SKIP_PERMANENT"
     repo:
