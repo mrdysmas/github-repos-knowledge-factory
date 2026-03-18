@@ -1,0 +1,75 @@
+artifact_type: ws5_remote_ingestion_input_manifest
+contract_version: 1.0.0-ws1
+defaults:
+  target_shard: repos
+  as_of: "2026-03-18"
+  source: remote_metadata
+repos:
+  - name: gitnexus
+    github_full_name: abhigyanpatwari/GitNexus
+    file_stem: abhigyanpatwari__gitnexus
+    html_url: https://github.com/abhigyanpatwari/GitNexus
+    target_shard: repos
+    source: remote_metadata
+    category: agent_cli
+    summary: Zero-server code intelligence engine using Tree-sitter parsing and LadybugDB, exposed through MCP tools and a browser UI.
+    core_concepts:
+      - code intelligence
+      - tree-sitter parsing
+      - mcp tools
+      - browser ui
+    key_entry_points:
+      - README.md
+      - gitnexus/src/
+      - gitnexus-web/src/
+    build_run:
+      language: TypeScript
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-18"
+    local_cache_dir: null
+  - name: ladybug
+    github_full_name: LadybugDB/ladybug
+    file_stem: ladybugdb__ladybug
+    html_url: https://github.com/LadybugDB/ladybug
+    target_shard: repos
+    source: remote_metadata
+    category: vector_database
+    summary: Embedded columnar graph database with a property graph model and Cypher query language, forked from Kuzu.
+    core_concepts:
+      - embedded database
+      - property graph
+      - cypher query language
+      - columnar storage
+    key_entry_points:
+      - README.md
+      - src/
+    build_run:
+      language: C++
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-18"
+    local_cache_dir: null
+  - name: deepagents
+    github_full_name: langchain-ai/deepagents
+    file_stem: langchain-ai__deepagents
+    html_url: https://github.com/langchain-ai/deepagents
+    target_shard: repos
+    source: remote_metadata
+    category: agent_framework
+    summary: LangChain and LangGraph agent harness with planning, filesystem access, sub-agent spawning, context summarization, and a terminal CLI.
+    core_concepts:
+      - agent harness
+      - planning
+      - sub-agents
+      - terminal cli
+    key_entry_points:
+      - README.md
+      - libs/deepagents/deepagents/
+      - libs/cli/deepagents_cli/
+    build_run:
+      language: Python
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-18"
+    local_cache_dir: null

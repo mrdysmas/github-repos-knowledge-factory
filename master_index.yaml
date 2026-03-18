@@ -1,15 +1,15 @@
 artifact_type: ws4_master_index
-generated_at_utc: '2026-03-17T00:00:00Z'
+generated_at_utc: '2026-03-18T00:00:00Z'
 contract_version: 1.0.0-ws1
 metadata:
   source_shards:
   - repos
-  total_repos: 119
+  total_repos: 122
   repo_counts_by_shard:
-    repos: 119
+    repos: 122
   category_counts:
-    agent_cli: 14
-    agent_framework: 8
+    agent_cli: 15
+    agent_framework: 9
     agent_frameworks: 3
     agent_orchestration: 3
     agent_platform: 1
@@ -41,7 +41,7 @@ metadata:
     terminal_ui: 1
     tunneling: 9
     ui_tools: 5
-    vector_database: 8
+    vector_database: 9
     vector_databases: 1
     vpn_mesh: 5
     web_framework: 1
@@ -148,6 +148,38 @@ repos:
     - Corporate internal knowledge base
     - Academic research assistance
     - Educational chatbots
+- node_id: repo::abhigyanpatwari/gitnexus
+  github_full_name: abhigyanpatwari/gitnexus
+  html_url: https://github.com/abhigyanpatwari/GitNexus
+  source: compiled_master
+  name: gitnexus
+  category: agent_cli
+  summary: Zero-server code intelligence engine using Tree-sitter parsing and LadybugDB,
+    exposed through MCP tools and a browser UI.
+  core_concepts:
+  - code intelligence
+  - tree-sitter parsing
+  - mcp tools
+  - browser ui
+  key_entry_points:
+  - README.md
+  - gitnexus/src/
+  - gitnexus-web/src/
+  build_run:
+    language: TypeScript
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  provenance:
+    shard: merged
+    source_file: repos/knowledge/repos/abhigyanpatwari__gitnexus.yaml
+    as_of: '2026-03-18'
+  local_cache_dir: null
+  extras:
+    directory: remote::abhigyanpatwari/gitnexus
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::airtable/airtable.js
   github_full_name: airtable/airtable.js
   html_url: https://github.com/airtable/airtable.js
@@ -2921,6 +2953,37 @@ repos:
       precedence: api_wins_readme_for_missing_required_fields
       fallback_source: readme_fallback
       fallback_used: false
+- node_id: repo::ladybugdb/ladybug
+  github_full_name: ladybugdb/ladybug
+  html_url: https://github.com/LadybugDB/ladybug
+  source: compiled_master
+  name: ladybug
+  category: vector_database
+  summary: Embedded columnar graph database with a property graph model and Cypher
+    query language, forked from Kuzu.
+  core_concepts:
+  - embedded database
+  - property graph
+  - cypher query language
+  - columnar storage
+  key_entry_points:
+  - README.md
+  - src/
+  build_run:
+    language: C++
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  provenance:
+    shard: merged
+    source_file: repos/knowledge/repos/ladybugdb__ladybug.yaml
+    as_of: '2026-03-18'
+  local_cache_dir: null
+  extras:
+    directory: remote::ladybugdb/ladybug
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::lancedb/lancedb
   github_full_name: lancedb/lancedb
   html_url: https://github.com/lancedb/lancedb
@@ -2966,6 +3029,38 @@ repos:
         precedence: api_wins_readme_for_missing_required_fields
         fallback_source: readme_fallback
         fallback_used: false
+- node_id: repo::langchain-ai/deepagents
+  github_full_name: langchain-ai/deepagents
+  html_url: https://github.com/langchain-ai/deepagents
+  source: compiled_master
+  name: deepagents
+  category: agent_framework
+  summary: LangChain and LangGraph agent harness with planning, filesystem access,
+    sub-agent spawning, context summarization, and a terminal CLI.
+  core_concepts:
+  - agent harness
+  - planning
+  - sub-agents
+  - terminal cli
+  key_entry_points:
+  - README.md
+  - libs/deepagents/deepagents/
+  - libs/cli/deepagents_cli/
+  build_run:
+    language: Python
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  provenance:
+    shard: merged
+    source_file: repos/knowledge/repos/langchain-ai__deepagents.yaml
+    as_of: '2026-03-18'
+  local_cache_dir: null
+  extras:
+    directory: remote::langchain-ai/deepagents
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::langchain-ai/langchain
   github_full_name: langchain-ai/langchain
   html_url: https://github.com/langchain-ai/langchain

@@ -1,16 +1,16 @@
 artifact_type: intake_repo_queue
 contract_version: 1.0.0-intake
-generated_at_utc: '2026-03-13T05:28:09Z'
+generated_at_utc: '2026-03-18T06:02:04Z'
 source:
   catalog_file: master_repo_list.yaml
   master_index_file: master_index.yaml
   notes: Queue entries are deduplicated by github_full_name.
 summary:
-  source_rows_total: 124
+  source_rows_total: 127
   source_rows_missing_github_url: 5
   source_rows_invalid_full_name: 0
-  deduped_entries_total: 117
-  already_canonical_count: 117
+  deduped_entries_total: 120
+  already_canonical_count: 120
   queued_count: 0
 policies:
   scan_mode_default: shallow_first
@@ -31,6 +31,19 @@ entries:
   needs_review_count: 0
   source_row_indexes:
   - 109
+- queue_id: intake::abhigyanpatwari/gitnexus
+  github_full_name: abhigyanpatwari/gitnexus
+  html_url: https://github.com/abhigyanpatwari/GitNexus
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: repos
+  source_categories:
+  - agent_cli
+  source_local_paths: []
+  needs_review_count: 0
+  source_row_indexes:
+  - 125
 - queue_id: intake::airtable/airtable.js
   github_full_name: airtable/airtable.js
   html_url: https://github.com/airtable/airtable.js
@@ -720,6 +733,19 @@ entries:
   needs_review_count: 0
   source_row_indexes:
   - 20
+- queue_id: intake::ladybugdb/ladybug
+  github_full_name: ladybugdb/ladybug
+  html_url: https://github.com/LadybugDB/ladybug
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: repos
+  source_categories:
+  - vector_database
+  source_local_paths: []
+  needs_review_count: 0
+  source_row_indexes:
+  - 126
 - queue_id: intake::lancedb/lancedb
   github_full_name: lancedb/lancedb
   html_url: https://github.com/lancedb/lancedb
@@ -734,6 +760,19 @@ entries:
   needs_review_count: 0
   source_row_indexes:
   - 51
+- queue_id: intake::langchain-ai/deepagents
+  github_full_name: langchain-ai/deepagents
+  html_url: https://github.com/langchain-ai/deepagents
+  canonical_status: already_canonical
+  intake_status: hold
+  recommended_action: skip_existing_canonical
+  target_shard_hint: repos
+  source_categories:
+  - agent_framework
+  source_local_paths: []
+  needs_review_count: 0
+  source_row_indexes:
+  - 124
 - queue_id: intake::langchain-ai/langchain
   github_full_name: langchain-ai/langchain
   html_url: https://github.com/langchain-ai/langchain

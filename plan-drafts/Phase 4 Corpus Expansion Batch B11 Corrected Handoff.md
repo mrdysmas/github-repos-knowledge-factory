@@ -59,6 +59,11 @@ TARGET DEEP FILES:
 - `repos/knowledge/deep/ladybugdb__ladybug.yaml`
 - `repos/knowledge/deep/langchain-ai__deepagents.yaml`
 
+TARGET SHALLOW FILES:
+- `repos/knowledge/repos/abhigyanpatwari__gitnexus.yaml`
+- `repos/knowledge/repos/ladybugdb__ladybug.yaml`
+- `repos/knowledge/repos/langchain-ai__deepagents.yaml`
+
 STEP 0 — PREFLIGHT DUPLICATE AND OVERWRITE CHECKS:
 
 Run:
@@ -128,6 +133,7 @@ defaults:
 repos:
   - name: ...
     github_full_name: ...
+    file_stem: ...
     html_url: ...
     target_shard: repos
     source: remote_metadata
@@ -150,6 +156,7 @@ Content guidance:
 1. GitNexus
 - `name: gitnexus`
 - `github_full_name: abhigyanpatwari/GitNexus`
+- `file_stem: abhigyanpatwari__gitnexus`
 - `html_url: https://github.com/abhigyanpatwari/GitNexus`
 - Summary: zero-server code intelligence engine using Tree-sitter parsing and LadybugDB, exposed through MCP tools and a browser UI
 - `key_entry_points`: `README.md`, `gitnexus/src/`, `gitnexus-web/src/`
@@ -158,6 +165,7 @@ Content guidance:
 2. LadybugDB
 - `name: ladybug`
 - `github_full_name: LadybugDB/ladybug`
+- `file_stem: ladybugdb__ladybug`
 - `html_url: https://github.com/LadybugDB/ladybug`
 - Summary: embedded columnar graph database with a property graph model and Cypher query language, forked from Kuzu
 - `key_entry_points`: `README.md`, `src/`
@@ -166,6 +174,7 @@ Content guidance:
 3. deepagents
 - `name: deepagents`
 - `github_full_name: langchain-ai/deepagents`
+- `file_stem: langchain-ai__deepagents`
 - `html_url: https://github.com/langchain-ai/deepagents`
 - Summary: LangChain/LangGraph agent harness with planning, filesystem access, sub-agent spawning, context summarization, plus a terminal CLI
 - `key_entry_points`: `README.md`, `libs/deepagents/deepagents/`, `libs/cli/deepagents_cli/`

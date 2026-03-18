@@ -1,5 +1,5 @@
 artifact_type: ws5_remote_ingestion_validation_runs
-generated_at_utc: '2026-03-17T00:00:00Z'
+generated_at_utc: '2026-03-18T00:00:00Z'
 contract_version: 1.0.0-ws1
 required_commands:
 - step: 1
@@ -30,8 +30,8 @@ required_commands:
   exit_code: null
   expectation: validate.py exits 0
 - step: 6
-  command: python3 tools/ws5_remote_ingestion.py --workspace-root /Users/szilaa/scripts/ext_sources/github_repos
-    --input inputs/ws5/B10_mariadb_manifest.yaml --reports-dir reports/ws5_remote_ingestion
+  command: python3 tools/ws5_remote_ingestion.py --workspace-root . --input inputs/ws5/B11_gitnexus_ladybugdb_deepagents_manifest.yaml
+    --reports-dir reports/ws5_remote_ingestion
   status: PASS
   exit_code: 0
   expectation: WS5 ingestion writes deterministic reports and WS1-compatible records
@@ -61,11 +61,12 @@ required_commands:
   expectation: hashes unchanged
 artifact_hashes:
   inputs/ws5/ws5_input_manifest.yaml: 200e9a2bfa797920a28814c083a502d4ec9a3e1cbe08b779a2e3ccf115d70c65
-  reports/ws5_remote_ingestion/coverage.yaml: 8ea7d8c77ce476ed70d167325605b6f0ebd03cd9ed4c76fe6071582e03316636
-  reports/ws5_remote_ingestion/mismatch_report.yaml: 8d90f05c45e24a358fac24a88d6e1cef9ceb99416d7818de6e0066136bf0f671
+  reports/ws5_remote_ingestion/coverage.yaml: 07593ac42d75a0372233232b7c507a153c424929cee31c5a6440a837b7326cce
+  reports/ws5_remote_ingestion/mismatch_report.yaml: 8da0b25ec7930c8ed5be782c77cd03914d15334c63b9633698151b638f2d97a4
   inputs/ws5/B9_T3_deep_manifest.yaml: 9894aabf0a0f970f1152e6bab722fe6107e08c1c0097b10773f7b0171b1f2b18
   inputs/ws5/B10_mariadb_manifest.yaml: 45133f6184c2ba67a5d29b19da81d35b8b555927d54e4747bb0cf96f403dd3cf
-input_manifest_sha256: 45133f6184c2ba67a5d29b19da81d35b8b555927d54e4747bb0cf96f403dd3cf
+  inputs/ws5/B11_gitnexus_ladybugdb_deepagents_manifest.yaml: 2b124ee24952442c38983204ae8b3aae012e763363a312e5bf0ada57aa9f31f3
+input_manifest_sha256: 2b124ee24952442c38983204ae8b3aae012e763363a312e5bf0ada57aa9f31f3
 gate_bools:
   manifest_parseable: true
   manifest_entries_present: true
