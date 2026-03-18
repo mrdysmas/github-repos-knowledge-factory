@@ -5,7 +5,7 @@ phase:
   number: "4"
   name: "Corpus Expansion and Stabilization"
   status: "IN_PROGRESS"
-  workflow: "B1_COMPLETE -> STABILIZATION_COMPLETE -> B2_COMPLETE -> B3_COMPLETE_ACCEPT_WITH_NOTES -> B4_COMPLETE_ACCEPT_WITH_NOTES -> B5_COMPLETE_ACCEPT_WITH_NOTES -> TEMPLATE_STANDARDIZATION_PENDING -> TEMPLATE_STANDARDIZATION_APPROVED"
+  workflow: "B1_COMPLETE -> STABILIZATION_COMPLETE -> B2_COMPLETE -> B3_COMPLETE_ACCEPT_WITH_NOTES -> B4_COMPLETE_ACCEPT_WITH_NOTES -> B5_COMPLETE_ACCEPT_WITH_NOTES -> TEMPLATE_STANDARDIZATION_APPROVED -> B9_T2_DEEP_COMPLETE -> B9_T3_DEEP_COMPLETE -> B9_LISTS_DEEP_COMPLETE -> B10_MARIADB_COMPLETE -> B11_INTAKE_NEXT"
   date_initiated: "2026-03-05"
   date_started: "2026-03-05"
   date_completed: null
@@ -160,8 +160,8 @@ milestones:
       - "B5 executed as HYBRID (6 shallow + 4 deep) and accepted with notes after supervisor review."
       - "Hard gates passed in all three hardened runs; deep_facts deltas were +204 (B3), +201 (B4), and +183 (B5)."
       - "B5 verified canonical unmapped-section sourcing from WS6 coverage metrics (33 -> 33) and strict-only WS7 semantics."
-      - "Remaining action is governance: decide whether to standardize the template now that B5 evidence and control-plane sync are complete."
-      - "Template standardization decision approved by supervisor. Decision ref: docs/decisions/phase4_prompt_template_standardization_decision.md"
+      - "Template standardization decision approved by supervisor and carried forward into subsequent corpus-expansion execution."
+      - "Decision ref: docs/decisions/phase4_prompt_template_standardization_decision.md"
     date_started: "2026-03-05"
     date_completed: "2026-03-12"
 

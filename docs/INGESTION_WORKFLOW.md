@@ -60,33 +60,45 @@ This step writes to `master_repo_list.yaml` and regenerates
 
 ## Step 2 — Build the WS5 manifest entry
 
-WS5 reads from `inputs/ws5/ws5_input_manifest.yaml`. Add an entry for the new
-repo manually or via an agent. Each entry requires:
+WS5 reads the manifest specified by the batch spec. The normal current pattern
+is a batch-local manifest such as `inputs/ws5/<batch_id>_manifest.yaml`.
+`inputs/ws5/ws5_input_manifest.yaml` remains the default/legacy path.
+
+Create or update the manifest file manually or via an agent. Each manifest uses
+the standard WS5 wrapper and a `repos:` list:
 
 ```yaml
-- name: <short_name>
-  github_full_name: <owner>/<repo>
-  html_url: https://github.com/<owner>/<repo>
+artifact_type: ws5_remote_ingestion_input_manifest
+contract_version: 1.0.0-ws1
+defaults:
   target_shard: repos
-  source: remote_metadata
-  category: <category>
-  summary: <one or two sentence description>
-  core_concepts:
-    - <concept 1>
-    - <concept 2>
-  key_entry_points:
-    - README.md
-    - <primary source directory>
-  build_run:
-    language: <primary language>
-    build: See upstream README for project build steps.
-    test: See upstream README for project test steps.
   as_of: <current UTC date>
-  local_cache_dir: null
+  source: remote_metadata
+repos:
+  - name: <short_name>
+    github_full_name: <owner>/<repo>
+    html_url: https://github.com/<owner>/<repo>
+    target_shard: repos
+    source: remote_metadata
+    category: <category>
+    summary: <one or two sentence description>
+    core_concepts:
+      - <concept 1>
+      - <concept 2>
+    key_entry_points:
+      - README.md
+      - <primary source directory>
+    build_run:
+      language: <primary language>
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: <current UTC date>
+    local_cache_dir: null
 ```
 
-`local_cache_dir: null` tells WS5 to clone from GitHub rather than use a local
-copy. This is the standard mode for remote ingestion.
+`local_cache_dir: null` keeps clone prep in remote-clone mode instead of
+pointing at a pre-existing local cache. This is the standard mode for remote
+ingestion.
 
 Run the queue sync gate to confirm the manifest is coherent before proceeding:
 
@@ -100,14 +112,34 @@ This must pass before executing the pipeline.
 
 ## Step 3 — Clone the repos
 
-`ws6_clone_prep.py` acquires source code for each repo in the manifest before
-WS6 runs. It is called automatically by `run_batch.py` — you do not need to
-invoke it manually.
+`ws6_clone_prep.py` acquires source code for each repo in the manifest selected
+by the batch spec before WS6 runs. In the normal path it is called
+automatically by `run_batch.py`.
 
 If any repo exceeds the `clone_size_limit_mb` threshold in `batch_spec.yaml`
 (default: 500 MB), the tool halts with exit code 2 before cloning anything and
-prints the offending repo and its size. To proceed, either remove the repo from
-the manifest or re-run with `--force-large` added to the clone prep args.
+prints the offending repo and its size.
+
+`tools/run_batch.py` does not expose `--force-large` on its documented main
+path. For supervisor-approved oversized repos, use this exception path:
+
+1. Run `tools/ws6_clone_prep.py` manually with `--force-large` against the same
+   manifest you will use for the batch.
+2. Then run `tools/run_batch.py` with `clone_size_limit_mb` set high enough for
+   the run-batch clone-prep step to hit the already-cloned path instead of
+   halting on size.
+
+Example:
+
+```bash
+python3 tools/ws6_clone_prep.py \
+  --workspace-root . \
+  --manifest inputs/ws5/<batch_id>_manifest.yaml \
+  --clone-workdir workspace/clones \
+  --size-limit-mb <approved_limit_mb> \
+  --batch-id <batch_id> \
+  --force-large
+```
 
 The clone manifest is written to:
 
@@ -193,7 +225,8 @@ reference copy lives at `tools/batch_spec.example.yaml`):
 
 ```yaml
 batch_id: <batch_id>
-manifest: inputs/ws5/ws5_input_manifest.yaml
+manifest: inputs/ws5/<batch_id>_manifest.yaml
+clone_size_limit_mb: 500
 gates:
   ws6_fail_on_any_false: true
   ws7_fail_on_any_non_pass: false
@@ -201,6 +234,10 @@ dry_run: false
 ```
 
 Choose a batch ID that is unique and descriptive (e.g. `B9_myrepo`).
+
+Batch-local manifests are the normal current pattern. Use
+`inputs/ws5/ws5_input_manifest.yaml` only when you intentionally want the
+default/legacy manifest path.
 
 Run the pipeline:
 
@@ -296,7 +333,7 @@ before any pipeline run — each deep file is independent.
 | `contracts/deep_narrative_contract.md` | Deep YAML output contract — authoritative spec |
 | `tools/add_repo_candidate.py` | Register new repo in master_repo_list |
 | `tools/check_intake_queue_sync.py` | Preflight gate — run before pipeline |
-| `inputs/ws5/ws5_input_manifest.yaml` | WS5 input — add manifest entries here |
+| `inputs/ws5/<batch_id>_manifest.yaml` | WS5 input — normal current pattern; `inputs/ws5/ws5_input_manifest.yaml` is the default/legacy path |
 | `tools/run_batch.py` | Pipeline orchestrator — single command for WS5→WS7 |
 | `tools/batch_spec.example.yaml` | Reference batch spec |
 | `tools/query_master.py` | Query the knowledge base (9 commands) |
