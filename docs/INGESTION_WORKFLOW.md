@@ -304,3 +304,35 @@ before any pipeline run — each deep file is independent.
 | `reports/ws6_clone_prep/` | Clone manifests from each batch run |
 | `reports/run_batch/` | Verdict files from orchestrator runs |
 | `project_status.yaml` | Current project state |
+
+---
+
+## Antipatterns
+
+These are known failure modes from past batches. Treat them as hard stops,
+not judgment calls.
+
+**Do not add a manifest entry for a repo that already has a canonical shallow
+file without reading that file first.**
+WS5 will unconditionally overwrite an existing shallow file with
+manifest-derived output. If the existing file has richer content (structured
+core_concepts, named key_entry_points, ecosystem_connections, etc.), adding a
+manifest entry will degrade it. Check: read the shallow file at
+repos/knowledge/repos/<stem>.yaml before writing any manifest entry. If the
+file is richer than the manifest entry you are about to write, the repo is
+already ingested — skip the manifest step and proceed directly to writing the
+deep file.
+
+**Do not modify pipeline config thresholds during a run.**
+clone_size_limit_mb, gate settings, and batch spec fields are set by the
+supervisor before the run starts. If the clone step halts due to a size limit,
+stop and report it — do not raise the threshold to unblock. The halt is
+intentional. Escalate to the supervisor with the repo name and size, and wait
+for explicit instruction.
+
+**Do not resolve gate failures by modifying the artifacts being gated.**
+If WS6 or WS7 report a mismatch between a deep file and its corresponding
+shallow file, the correct response is to investigate why they diverged — not
+to update one to match the other. A source mismatch between a deep file and a
+shallow file usually means the shallow file was overwritten. Check git history
+before modifying anything.
