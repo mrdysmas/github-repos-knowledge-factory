@@ -338,82 +338,62 @@ repos:
   source: compiled_master
   name: skills
   category: agent_framework
-  summary: Phase 4 Corpus Expansion P4-B1 intake for anthropics/skills. Agent framework
-    repository routed explicitly to llm_repos.
+  summary: Anthropic's official skills repository bundles example skills, document-processing
+    skills, and the Agent Skills spec/template for Claude plugin marketplace installation
+    and custom skill authoring.
   core_concepts:
-  - reusable agent skills
-  - framework-level capability packaging
+  - skill packaging for Claude
+  - plugin marketplace bundles
   key_entry_points:
   - README.md
   - skills/
+  - spec/agent-skills-spec.md
   build_run:
     language: mixed
-    build: See upstream README for build steps.
-    test: See upstream README for test steps.
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/anthropics__skills.yaml
-    as_of: '2026-03-05T04:16:38Z'
+    as_of: '2026-03-17'
   local_cache_dir: null
   extras:
     directory: remote::anthropics/skills
-    intake:
-      pilot_batch_id: PHASE-4-P4-B1
-      repo_id: repo::anthropics/skills
-      queue_id: intake::anthropics/skills
-      domain_hint: agent_framework
-      source_mode: remote_metadata
-      observed_at_utc: '2026-03-05T04:16:38Z'
-    remote:
-      provider: github
-      mode: metadata
-      endpoint: /repos/anthropics/skills
-      fetched_at_utc: '2026-03-05T04:16:38Z'
-      refresh:
-        precedence: api_wins_readme_for_missing_required_fields
-        fallback_source: readme_fallback
-        fallback_used: false
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::anysiteio/agent-skills
   github_full_name: anysiteio/agent-skills
   html_url: https://github.com/anysiteio/agent-skills
   source: compiled_master
   name: agent-skills
   category: agent_framework
-  summary: Phase 4 Corpus Expansion P4-B1 intake for anysiteio/agent-skills. Agent
-    framework repository routed explicitly to llm_repos.
+  summary: Anysite's agent-skills repository packages MCP-backed research and enrichment
+    workflows as installable Claude skills, with a small Node installer that registers
+    the marketplace in Claude Code.
   core_concepts:
-  - reusable agent skills
-  - framework-level capability packaging
+  - MCP-backed intelligence workflows
+  - Claude marketplace skill installation
   key_entry_points:
   - README.md
   - skills/
+  - bin/install.js
   build_run:
-    language: mixed
-    build: See upstream README for build steps.
-    test: See upstream README for test steps.
+    language: javascript
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/anysiteio__agent-skills.yaml
-    as_of: '2026-03-05T04:16:38Z'
+    as_of: '2026-03-17'
   local_cache_dir: null
   extras:
     directory: remote::anysiteio/agent-skills
-    intake:
-      pilot_batch_id: PHASE-4-P4-B1
-      repo_id: repo::anysiteio/agent-skills
-      queue_id: intake::anysiteio/agent-skills
-      domain_hint: agent_framework
-      source_mode: remote_metadata
-      observed_at_utc: '2026-03-05T04:16:38Z'
-    remote:
-      provider: github
-      mode: metadata
-      endpoint: /repos/anysiteio/agent-skills
-      fetched_at_utc: '2026-03-05T04:16:38Z'
-      refresh:
-        precedence: api_wins_readme_for_missing_required_fields
-        fallback_source: readme_fallback
-        fallback_used: false
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::apernet/hysteria
   github_full_name: apernet/hysteria
   html_url: https://github.com/apernet/hysteria
@@ -719,22 +699,24 @@ repos:
   source: compiled_master
   name: oh-my-opencode
   category: agent_cli
-  summary: Phase 4 B3 shallow intake for code-yeongyu/oh-my-opencode as an extension
-    pack around agent CLI workflows.
+  summary: oh-my-opencode is a Bun and TypeScript OpenCode harness that packages multi-agent
+    orchestration, platform-specific binaries, and a JSON schema for configuring hooks,
+    agents, commands, and tools.
   core_concepts:
-  - agent cli customization
-  - extension and prompt packaging
+  - multi-agent harness configuration
+  - platform-specific CLI packaging
   key_entry_points:
   - README.md
-  - docs/
+  - src/
+  - assets/oh-my-opencode.schema.json
   build_run:
-    language: mixed
+    language: typescript
     build: See upstream README for project build steps.
     test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/oh-my-opencode.yaml
-    as_of: '2026-03-05T05:30:00Z'
+    as_of: '2026-03-17'
   local_cache_dir: null
   extras:
     directory: remote::code-yeongyu/oh-my-opencode
@@ -934,56 +916,139 @@ repos:
   source: compiled_master
   name: Prompt-Engineering-Guide
   category: educational
-  summary: Comprehensive guide to prompt engineering techniques, patterns, and best
-    practices covering basics through advanced techniques.
+  summary: 'Comprehensive guide to prompt engineering techniques, patterns, and best
+
+    practices. Covers basics, advanced techniques (CoT, ToT, GoT), applications,
+
+    and model-specific guidance. Available in multiple languages with web version
+
+    at promptingguide.ai.
+
+    '
   core_concepts:
-  - prompt engineering fundamentals
-  - advanced prompting techniques
+  - Prompting Basics
+  - Advanced Techniques
+  - Applications
+  - Model Guides
   key_entry_points:
   - README.md
+  - guides/
+  - papers/
+  - models/
   build_run:
-    language: markdown
-    build: See upstream README for project build steps.
-    test: See upstream README for project test steps.
+    language: Markdown/Documentation
+    manager: none
+    build: N/A - static documentation
+    test: N/A
   provenance:
     shard: merged
-    source_file: repos/knowledge/repos/prompt-engineering-guide.yaml
-    as_of: '2026-03-17'
-  local_cache_dir: null
+    source_file: repos/knowledge/repos/Prompt-Engineering-Guide.yaml
+    as_of: '2026-02-25'
+  ecosystem_connections:
+  - target: langchain
+    relation: related_to
+    note: Prompt patterns applicable to LangChain development
+  - target: llama_index
+    relation: related_to
+    note: RAG prompting techniques
+  - target: open_webui
+    relation: related_to
+    note: Practical prompting for chat applications
   extras:
-    directory: remote::dair-ai/prompt-engineering-guide
-    refresh:
-      precedence: api_wins_readme_for_missing_required_fields
-      fallback_source: readme_fallback
-      fallback_used: false
+    directory: Prompt-Engineering-Guide-main
+    further_reading:
+    - README.md
+    - https://www.promptingguide.ai/
+    raw_core_concepts_structured:
+    - name: Prompting Basics
+      description: Introduction to prompt engineering fundamentals
+      location: guides/prompts.md
+    - name: Advanced Techniques
+      description: Chain-of-thought, Tree-of-thought, Graph-of-thought prompting
+      location: guides/adv_prompting.md
+    - name: Applications
+      description: Real-world use cases and patterns
+      location: guides/applications.md
+    - name: Model Guides
+      description: Specific guidance for different LLM providers
+      location: guides/models.md
+    raw_key_entry_points_structured:
+    - path: README.md
+      purpose: Main index and navigation
+    - path: guides/
+      purpose: Core learning materials
+    - path: papers/
+      purpose: Academic paper references
+    - path: models/
+      purpose: Model-specific resources
 - node_id: repo::datawhalechina/self-llm
   github_full_name: datawhalechina/self-llm
   html_url: https://github.com/datawhalechina/self-llm
   source: compiled_master
   name: self-llm
   category: educational
-  summary: Chinese-language tutorial collection for learning and deploying open-source
-    LLMs including model deployment and fine-tuning.
+  summary: 'Chinese-language tutorial collection for learning and deploying open-source
+
+    LLMs. Covers model deployment (Llama, Qwen, ChatGLM), fine-tuning (LoRA,
+
+    P-Tuning), and application development. Includes hands-on guides with code
+
+    examples and practical exercises.
+
+    '
   core_concepts:
-  - LLM deployment tutorials
-  - model fine-tuning guides
+  - Model Deployment
+  - Fine-tuning
+  - RAG Applications
+  - Prompt Engineering
   key_entry_points:
   - README.md
+  - llm-universe-main/
   build_run:
-    language: python
-    build: See upstream README for project build steps.
-    test: See upstream README for project test steps.
+    language: Python/Markdown
+    manager: pip
+    build: pip install -r requirements.txt (per project)
+    test: Varies by tutorial
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/self-llm.yaml
-    as_of: '2026-03-17'
-  local_cache_dir: null
+    as_of: '2026-02-25'
+  ecosystem_connections:
+  - target: llamafactory
+    relation: related_to
+    note: Fine-tuning concepts overlap
+  - target: langchain
+    relation: related_to
+    note: Application development tutorials use LangChain
+  - target: vllm
+    relation: related_to
+    note: Deployment guides may reference vLLM
+  - target: ollama
+    relation: related_to
+    note: Local deployment alternatives
   extras:
-    directory: remote::datawhalechina/self-llm
-    refresh:
-      precedence: api_wins_readme_for_missing_required_fields
-      fallback_source: readme_fallback
-      fallback_used: false
+    directory: self-llm_HOW-TO
+    further_reading:
+    - README.md
+    - llm-universe-main/README.md
+    raw_core_concepts_structured:
+    - name: Model Deployment
+      description: Guides for deploying various open-source models
+      location: (distributed by model)
+    - name: Fine-tuning
+      description: LoRA, P-Tuning, and full fine-tuning tutorials
+      location: (fine-tuning section)
+    - name: RAG Applications
+      description: Building RAG systems with open-source models
+      location: (RAG section)
+    - name: Prompt Engineering
+      description: Chinese-language prompting guides
+      location: (prompting section)
+    raw_key_entry_points_structured:
+    - path: README.md
+      purpose: Index of all tutorials
+    - path: llm-universe-main/
+      purpose: Core learning materials and code examples
 - node_id: repo::dottxt-ai/outlines
   github_full_name: dottxt-ai/outlines
   html_url: https://github.com/dottxt-ai/outlines
@@ -2694,23 +2759,25 @@ repos:
   source: compiled_master
   name: ccs
   category: agent_cli
-  summary: Phase 4 B6 shallow intake for kaitranntt/ccs as a Claude-adjacent command-line
-    workflow utility.
+  summary: CCS is a TypeScript CLI and dashboard for switching between Claude, Codex,
+    Gemini, GLM, and other provider profiles while managing local auth, proxying,
+    and per-target runtime behavior.
   core_concepts:
-  - terminal-first agent workflows
-  - command orchestration helpers
+  - multi-provider profile switching
+  - local dashboard and target adapters
   key_entry_points:
   - README.md
-  - src/
-  - scripts/
+  - src/ccs.ts
+  - src/targets/
+  - ui/src/
   build_run:
-    language: mixed
+    language: typescript
     build: See upstream README for project build steps.
     test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/ccs.yaml
-    as_of: '2026-03-13T04:28:53Z'
+    as_of: '2026-03-17'
   local_cache_dir: null
   extras:
     directory: remote::kaitranntt/ccs
@@ -2724,23 +2791,24 @@ repos:
   source: compiled_master
   name: codemoot
   category: agent_cli
-  summary: Phase 4 B6 shallow intake for katarmal-ram/codemoot as a command-line assistant
-    workflow project.
+  summary: CodeMoot is a pnpm TypeScript monorepo that coordinates Claude and Codex
+    through review, fix, debate, watch, and ship workflows from a single CLI.
   core_concepts:
-  - prompt-driven terminal workflows
-  - helper commands for coding loops
+  - multi-model code review loops
+  - job and session orchestration
   key_entry_points:
   - README.md
-  - docs/
-  - src/
+  - packages/cli/src/
+  - packages/core/
+  - packages/mcp-server/
   build_run:
-    language: mixed
+    language: typescript
     build: See upstream README for project build steps.
     test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/codemoot.yaml
-    as_of: '2026-03-13T04:28:53Z'
+    as_of: '2026-03-17'
   local_cache_dir: null
   extras:
     directory: remote::katarmal-ram/codemoot
@@ -3207,23 +3275,25 @@ repos:
   source: compiled_master
   name: ralphy
   category: agent_cli
-  summary: Phase 4 B6 shallow intake for michaelshimeles/ralphy as a lightweight agent
-    CLI helper.
+  summary: Ralphy is an autonomous coding loop CLI that parses task lists or PRDs,
+    then runs work across Claude, Codex, OpenCode, Cursor, Droid, and other engine
+    backends.
   core_concepts:
-  - task-oriented agent commands
-  - developer workflow shortcuts
+  - autonomous task loop execution
+  - multi-engine CLI dispatch
   key_entry_points:
   - README.md
-  - src/
-  - examples/
+  - cli/src/
+  - cli/bin.js
+  - ralphy.sh
   build_run:
-    language: mixed
+    language: typescript
     build: See upstream README for project build steps.
     test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/ralphy.yaml
-    as_of: '2026-03-13T04:28:53Z'
+    as_of: '2026-03-17'
   local_cache_dir: null
   extras:
     directory: remote::michaelshimeles/ralphy
@@ -5424,23 +5494,24 @@ repos:
   source: compiled_master
   name: toolneuron
   category: agent_framework
-  summary: Phase 4 B5 shallow intake for Siddhesh2377/ToolNeuron as a framework-oriented
-    repository for tool-using agent workflows.
+  summary: ToolNeuron is a modular Android app for fully local AI workflows, combining
+    on-device GGUF chat, Stable Diffusion, RAG, memory, encryption, and plugin-style
+    utilities across multiple Gradle modules.
   core_concepts:
-  - tool selection for agent loops
-  - workflow automation patterns
+  - on-device multimodal inference
+  - modular Android data and storage layers
   key_entry_points:
   - README.md
-  - docs/
-  - examples/
+  - app/
+  - settings.gradle.kts
   build_run:
-    language: mixed
+    language: kotlin
     build: See upstream README for project build steps.
     test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/toolneuron.yaml
-    as_of: '2026-03-05T05:30:00Z'
+    as_of: '2026-03-17'
   local_cache_dir: null
   extras:
     directory: remote::siddhesh2377/toolneuron
@@ -5941,23 +6012,24 @@ repos:
   source: compiled_master
   name: claude-mem
   category: agent_cli
-  summary: Phase 4 B5 shallow intake for thedotmack/claude-mem as memory tooling around
-    Claude workflow usage.
+  summary: Claude-Mem is a Bun and TypeScript memory system for Claude Code that ships
+    plugin hooks, a local worker service, and search tooling to persist and retrieve
+    cross-session context.
   core_concepts:
-  - conversational memory persistence
-  - context retrieval utilities
+  - hook-driven memory capture
+  - local search and retrieval services
   key_entry_points:
   - README.md
+  - plugin/
   - src/
-  - docs/
   build_run:
-    language: mixed
+    language: typescript
     build: See upstream README for project build steps.
     test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/claude-mem.yaml
-    as_of: '2026-03-05T05:30:00Z'
+    as_of: '2026-03-17'
   local_cache_dir: null
   extras:
     directory: remote::thedotmack/claude-mem

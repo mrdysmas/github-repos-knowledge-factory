@@ -1,0 +1,77 @@
+batch_id: B9_T3_deep
+result: halted
+halted_at: ws6_clone_prep
+ws6_gate_bools: {}
+ws7_gate_summary: {}
+exit_code: 2
+step_logs:
+- step: ws5
+  command: python3 tools/ws5_remote_ingestion.py --workspace-root /Users/szilaa/scripts/ext_sources/github_repos
+    --input inputs/ws5/B9_T3_deep_manifest.yaml
+  exit_code: 0
+  stdout_tail: 'WS5_REMOTE_INGESTION_SUMMARY
+
+    workspace_root: /Users/szilaa/scripts/ext_sources/github_repos
+
+    input_manifest: /Users/szilaa/scripts/ext_sources/github_repos/inputs/ws5/B9_T3_deep_manifest.yaml
+
+    reports_dir: /Users/szilaa/scripts/ext_sources/github_repos/reports/ws5_remote_ingestion
+
+    generated_at_utc: 2026-03-17T00:00:00Z
+
+    entries_total: 8
+
+    entries_valid: 8
+
+    entries_invalid: 0
+
+    files_added: 0
+
+    files_updated: 0
+
+    files_unchanged: 8
+
+    gate_ready: true
+
+    '
+  stderr_tail: ''
+- step: ws4
+  command: python3 tools/ws4_master_compiler.py --workspace-root /Users/szilaa/scripts/ext_sources/github_repos
+  exit_code: 0
+  stdout_tail: 'WS4_MASTER_BUILD_SUMMARY
+
+    workspace_root: /Users/szilaa/scripts/ext_sources/github_repos
+
+    master_index: /Users/szilaa/scripts/ext_sources/github_repos/master_index.yaml
+
+    master_graph: /Users/szilaa/scripts/ext_sources/github_repos/master_graph.yaml
+
+    reports_dir: /Users/szilaa/scripts/ext_sources/github_repos/reports/ws4_master_build
+
+    generated_at_utc: 2026-03-17T00:00:00Z
+
+    gate_ready: true
+
+    unmapped_relation_types: 0
+
+    unknown_repo_node_refs_dst_kind_repo: 0
+
+    stale_records: 0
+
+    compile_errors: 0
+
+    '
+  stderr_tail: ''
+- step: ws6_clone_prep
+  command: python3 tools/ws6_clone_prep.py --workspace-root /Users/szilaa/scripts/ext_sources/github_repos
+    --manifest inputs/ws5/B9_T3_deep_manifest.yaml --clone-workdir /Users/szilaa/scripts/ext_sources/github_repos/workspace/clones
+    --size-limit-mb 500 --batch-id B9_T3_deep
+  exit_code: 2
+  stdout_tail: '
+
+    SIZE LIMIT EXCEEDED: siddhesh2377/toolneuron is 730 MB (limit: 500 MB).
+
+    To proceed, re-run with --force-large or remove the repo from the manifest.
+
+    '
+  stderr_tail: ''

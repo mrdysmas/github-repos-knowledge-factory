@@ -6,19 +6,21 @@ source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/repos/oh-my-opencode.yaml
-  as_of: '2026-03-05T05:30:00Z'
+  as_of: '2026-03-17'
 directory: remote::code-yeongyu/oh-my-opencode
 category: agent_cli
-summary: Phase 4 B3 shallow intake for code-yeongyu/oh-my-opencode as an extension
-  pack around agent CLI workflows.
+summary: oh-my-opencode is a Bun and TypeScript OpenCode harness that packages multi-agent
+  orchestration, platform-specific binaries, and a JSON schema for configuring hooks,
+  agents, commands, and tools.
 core_concepts:
-- agent cli customization
-- extension and prompt packaging
+- multi-agent harness configuration
+- platform-specific CLI packaging
 key_entry_points:
 - README.md
-- docs/
+- src/
+- assets/oh-my-opencode.schema.json
 build_run:
-  language: mixed
+  language: typescript
   build: See upstream README for project build steps.
   test: See upstream README for project test steps.
 local_cache_dir: null

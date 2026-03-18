@@ -6,20 +6,21 @@ source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/repos/codemoot.yaml
-  as_of: '2026-03-13T04:28:53Z'
+  as_of: '2026-03-17'
 directory: remote::katarmal-ram/codemoot
 category: agent_cli
-summary: Phase 4 B6 shallow intake for katarmal-ram/codemoot as a command-line assistant
-  workflow project.
+summary: CodeMoot is a pnpm TypeScript monorepo that coordinates Claude and Codex
+  through review, fix, debate, watch, and ship workflows from a single CLI.
 core_concepts:
-- prompt-driven terminal workflows
-- helper commands for coding loops
+- multi-model code review loops
+- job and session orchestration
 key_entry_points:
 - README.md
-- docs/
-- src/
+- packages/cli/src/
+- packages/core/
+- packages/mcp-server/
 build_run:
-  language: mixed
+  language: typescript
   build: See upstream README for project build steps.
   test: See upstream README for project test steps.
 local_cache_dir: null

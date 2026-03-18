@@ -6,20 +6,22 @@ source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/repos/ccs.yaml
-  as_of: '2026-03-13T04:28:53Z'
+  as_of: '2026-03-17'
 directory: remote::kaitranntt/ccs
 category: agent_cli
-summary: Phase 4 B6 shallow intake for kaitranntt/ccs as a Claude-adjacent command-line
-  workflow utility.
+summary: CCS is a TypeScript CLI and dashboard for switching between Claude, Codex,
+  Gemini, GLM, and other provider profiles while managing local auth, proxying, and
+  per-target runtime behavior.
 core_concepts:
-- terminal-first agent workflows
-- command orchestration helpers
+- multi-provider profile switching
+- local dashboard and target adapters
 key_entry_points:
 - README.md
-- src/
-- scripts/
+- src/ccs.ts
+- src/targets/
+- ui/src/
 build_run:
-  language: mixed
+  language: typescript
   build: See upstream README for project build steps.
   test: See upstream README for project test steps.
 local_cache_dir: null

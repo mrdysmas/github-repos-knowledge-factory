@@ -6,20 +6,21 @@ source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/repos/ralphy.yaml
-  as_of: '2026-03-13T04:28:53Z'
+  as_of: '2026-03-17'
 directory: remote::michaelshimeles/ralphy
 category: agent_cli
-summary: Phase 4 B6 shallow intake for michaelshimeles/ralphy as a lightweight agent
-  CLI helper.
+summary: Ralphy is an autonomous coding loop CLI that parses task lists or PRDs, then
+  runs work across Claude, Codex, OpenCode, Cursor, Droid, and other engine backends.
 core_concepts:
-- task-oriented agent commands
-- developer workflow shortcuts
+- autonomous task loop execution
+- multi-engine CLI dispatch
 key_entry_points:
 - README.md
-- src/
-- examples/
+- cli/src/
+- cli/bin.js
+- ralphy.sh
 build_run:
-  language: mixed
+  language: typescript
   build: See upstream README for project build steps.
   test: See upstream README for project test steps.
 local_cache_dir: null

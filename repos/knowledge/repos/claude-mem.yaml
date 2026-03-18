@@ -6,20 +6,21 @@ source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/repos/claude-mem.yaml
-  as_of: '2026-03-05T05:30:00Z'
+  as_of: '2026-03-17'
 directory: remote::thedotmack/claude-mem
 category: agent_cli
-summary: Phase 4 B5 shallow intake for thedotmack/claude-mem as memory tooling around
-  Claude workflow usage.
+summary: Claude-Mem is a Bun and TypeScript memory system for Claude Code that ships
+  plugin hooks, a local worker service, and search tooling to persist and retrieve
+  cross-session context.
 core_concepts:
-- conversational memory persistence
-- context retrieval utilities
+- hook-driven memory capture
+- local search and retrieval services
 key_entry_points:
 - README.md
+- plugin/
 - src/
-- docs/
 build_run:
-  language: mixed
+  language: typescript
   build: See upstream README for project build steps.
   test: See upstream README for project test steps.
 local_cache_dir: null
