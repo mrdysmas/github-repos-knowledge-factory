@@ -96,8 +96,10 @@ def run(
     github_token: str | None,
 ) -> int:
     ws_root = Path(workspace_root).resolve()
-    manifest = ws_root / manifest_path
-    workdir = Path(clone_workdir).resolve()
+    manifest_arg = Path(manifest_path)
+    manifest = manifest_arg if manifest_arg.is_absolute() else (ws_root / manifest_arg).resolve()
+    workdir_arg = Path(clone_workdir)
+    workdir = workdir_arg if workdir_arg.is_absolute() else (ws_root / workdir_arg).resolve()
     report_dir = ws_root / "reports" / "ws6_clone_prep"
 
     repos = load_manifest(manifest)
