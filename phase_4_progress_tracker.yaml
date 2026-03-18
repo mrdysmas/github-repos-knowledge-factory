@@ -1,5 +1,5 @@
 version: 1
-as_of_utc: "2026-03-18T04:11:55Z"
+as_of_utc: "2026-03-18T04:51:00Z"
 
 phase:
   number: "4"
@@ -37,14 +37,14 @@ current:
     repos: 119
     nodes: 133
     edges: 152
-    deep_facts: 5254
+    deep_facts: 5329
   deltas_vs_baseline:
     queued_count: -46
     already_canonical_count: 46
     repos: 46
     nodes: 46
     edges: 0
-    deep_facts: 2333
+    deep_facts: 2408
   freshness:
     master_index_generated_at_utc: "2026-03-17T00:00:00Z"
     master_graph_generated_at_utc: "2026-03-17T00:00:00Z"
@@ -370,15 +370,27 @@ batches:
     notes:
       - "Previously listed in b9_t3_skips as release_tracking_only."
       - "Supervisor decision: permanent skip, not a future batch candidate."
-  b9_mariadb_deferred:
-    status: "DEFERRED"
-    objective: "MariaDB/server deep file — deferred pending dedicated batch with custom clone size limit."
-    repo:
-      github_full_name: MariaDB/server
-      clone_size_kb: 1626004
-      defer_reason: "Clone size exceeds standard 500 MB limit. Requires explicit supervisor decision on size threshold and scope before proceeding."
+  b10_mariadb_deep:
+    status: "COMPLETE"
+    objective: "MariaDB/server deep file generation and full WS5 -> WS7 pipeline run under a dedicated oversized-repo batch."
+    batch_id: "B10_mariadb"
+    repo_count_target: 1
+    deep_repo_count: 1
+    shallow_repo_count: 1
+    mode_recommendation_used: "HYBRID"
+    ws6_gate_bools_all_true: true
+    ws7_strict_runs: 0
+    ws7_force_runs: 1
+    ws7_snapshot_status: "pass"
+    deep_success: true
+    policy_success: true
+    acceptance_decision: "COMPLETE"
     notes:
-      - "Do not include in any batch without supervisor approval and a custom clone_size_limit_mb in the batch spec."
+      - "repos: 119, nodes: 133, edges: 152"
+      - "deep_facts: 5254 -> 5329 (+75), hard deep gate passed"
+      - "All WS6 gate bools true and all WS7 gates pass"
+      - "Clone prep reused the existing local clone at workspace/clones/mariadb__server under clone_size_limit_mb=2000"
+      - "Deep header identity was copied from the WS5-refreshed shallow file, preserving live pipeline casing and source values"
 
 open_threads:
   - "Case-insensitive collision handling if two repos differ only by case."

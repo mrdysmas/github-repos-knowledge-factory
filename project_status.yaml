@@ -1,5 +1,5 @@
 version: 1
-as_of_utc: "2026-03-18T04:11:55Z"
+as_of_utc: "2026-03-18T04:51:00Z"
 
 naming_legend:
   WS: "Workstream (pipeline lane/stage, e.g., WS1-WS7)"
@@ -181,6 +181,20 @@ canonical:
       - "tools/ws7_read_model_compiler.py"
     compile: "tools/ws4_master_compiler.py"
   execution_tracker: "phase_4_progress_tracker.yaml"
+  corpus_status:
+    as_of_utc: "2026-03-18T04:50:01Z"
+    query_master:
+      repos: 119
+      nodes: 133
+      edges: 152
+      deep_facts: 5329
+    latest_batch:
+      batch_id: "B10_mariadb"
+      result: "ok"
+      deep_facts_delta: 75
+      ws6_gate_bools_all_true: true
+      ws7_snapshot_status: "pass"
+      ws7_force_used: true
 
 non_canonical:
   kgraph_repos:
@@ -224,7 +238,7 @@ todo:
 next_agent_handoff:
   if_user_asks: "What now? What should we work on?"
   answer:
-    current_focus: "Phase 4 continues after B5 ACCEPT_WITH_NOTES. Execution evidence and control-plane state are now aligned; the next decision is whether the hardened prompt template should be standardized."
+    current_focus: "Phase 4 continues after B10_mariadb COMPLETE. Corpus stats and execution evidence are aligned; the next decision is whether the hardened prompt template should be standardized."
     read_first:
       - "project_status.yaml"
       - "phase_4_progress_tracker.yaml"
