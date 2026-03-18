@@ -1,5 +1,5 @@
 version: 1
-as_of_utc: "2026-03-18T03:51:46Z"
+as_of_utc: "2026-03-18T04:11:55Z"
 
 phase:
   number: "4"
@@ -37,14 +37,14 @@ current:
     repos: 119
     nodes: 133
     edges: 152
-    deep_facts: 5278
+    deep_facts: 5254
   deltas_vs_baseline:
     queued_count: -46
     already_canonical_count: 46
     repos: 46
     nodes: 46
     edges: 0
-    deep_facts: 2357
+    deep_facts: 2333
   freshness:
     master_index_generated_at_utc: "2026-03-17T00:00:00Z"
     master_graph_generated_at_utc: "2026-03-17T00:00:00Z"
@@ -330,11 +330,12 @@ batches:
     acceptance_decision: "COMPLETE"
     notes:
       - "repos: 119, nodes: 133, edges: 152"
-      - "deep_facts: 5142 -> 5278 (+136), hard deep gate passed"
+      - "deep_facts: 5142 -> 5254 (+112), hard deep gate passed"
       - "All WS6 gate bools true and all WS7 gates pass"
       - "Stems confirmed from shallow files: awesome-go, awesome-llm-apps, composiohq__awesome-claude-skills, claude-code-tips"
       - "awesome-llm-apps stayed out of the WS5 manifest to preserve its richer shallow metadata; deep file was written from a manual clone"
       - "WS6 clone prep reused existing clones for the 3 manifest repos; manual clone added workspace/clones/shubhamsaboo__awesome-llm-apps"
+      - "Corrective rerun removed stale duplicate deep file repos/knowledge/deep/awesome_llm_apps.yaml before recomputing deep facts"
   b9_t3_skips:
     status: "COMPLETE"
     objective: "Formal skip recording for documentation/list repos with no extractable implementation."
