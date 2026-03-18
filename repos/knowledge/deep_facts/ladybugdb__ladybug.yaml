@@ -1,0 +1,1108 @@
+name: ladybug
+node_id: repo::ladybugdb/ladybug
+github_full_name: ladybugdb/ladybug
+html_url: https://github.com/LadybugDB/ladybug
+source: remote_metadata
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep_facts/ladybugdb__ladybug.yaml
+  as_of: '2026-03-18'
+  extractor_version: ws6-deep-integrator-v1
+  extraction_agent: codex
+facts:
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: key_features[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[4]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: C embedding surface
+  object_value: C embedding surface
+  note: The C API wraps database init, default config generation, connection query,
+    prepare, execute, interrupt, and timeout operations.
+  fact_id: fact::8c044b42801b272feb9be87f
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: key_features[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[2]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: Checkpointed WAL durability path
+  object_value: Checkpointed WAL durability path
+  note: Write transactions log begin/commit activity and feed checkpoint decisions
+    through the transaction manager.
+  fact_id: fact::4e438db2d52bd2988ecf373c
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: architecture.key_abstractions[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[2]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: Thread-safe execution interface for query, prepare, execute, interrupt,
+      and timeout operations.
+  object_value: Connection
+  note: Thread-safe execution interface for query, prepare, execute, interrupt, and
+    timeout operations.
+  fact_id: fact::c30b5fbbdd87b798af131e9f
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: key_features[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[1]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: Cypher graph query pipeline
+  object_value: Cypher graph query pipeline
+  note: The source tree includes grammar, binder, planner, optimizer, and processor
+    layers for Cypher execution.
+  fact_id: fact::e7735f794e6759d648db47d7
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: architecture.key_abstractions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[1]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: Primary embedded engine object that initializes storage, query processing,
+      transactions, and extensions.
+  object_value: Database
+  note: Primary embedded engine object that initializes storage, query processing,
+    transactions, and extensions.
+  fact_id: fact::43c77e87df179393bac025cf
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: key_features[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[0]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: Embedded deployment model
+  object_value: Embedded deployment model
+  note: The core API is a Database plus Connection pair designed to run in-process
+    without a separate server.
+  fact_id: fact::421de1c59bda2d3c71f2f37e
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: architecture.components[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.components[0]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: Embedded runtime
+  object_value: Embedded runtime
+  note: A Database object owns storage, memory, query processing, catalog, transactions,
+    and extension managers inside the host process.
+  fact_id: fact::d69c90e744d6393409b05536
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: key_features[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[5]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: Extension support
+  object_value: Extension support
+  note: Extension manager code covers installation, loading, replay, and extension-specific
+    storage handling.
+  fact_id: fact::4e0ee82346292a86bc2dcd60
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: key_features[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[3]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: Interactive shell
+  object_value: Interactive shell
+  note: The shell supports history, output-mode selection, startup scripts, schema
+    printing, and shell-only commands like `:help` and `:schema`.
+  fact_id: fact::ad9908a494ef33f1ccdc31dc
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: architecture.components[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.components[1]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: Query compilation pipeline
+  object_value: Query compilation pipeline
+  note: Cypher text flows through parser, binder, planner, optimizer, and processor
+    stages before execution.
+  fact_id: fact::d778f289fd9a0dd5ffe34742
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: architecture.components[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.components[4]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: Shell and C API
+  object_value: Shell and C API
+  note: An embedded REPL and a C FFI wrap the core Database and Connection classes
+    for interactive or external integration.
+  fact_id: fact::25debb789f62e29312ed0503
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: architecture.components[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.components[2]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: Storage engine
+  object_value: Storage engine
+  note: Columnar on-disk tables, adjacency indexes, buffer management, checkpointing,
+    and WAL-backed recovery are implemented inside src/storage.
+  fact_id: fact::f759e5ca6607f2d8852f8f51
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: architecture.key_abstractions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[0]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: Open-time configuration for buffer sizing, threading, compression, read-only
+      mode, and checkpoint/WAL behavior.
+  object_value: SystemConfig
+  note: Open-time configuration for buffer sizing, threading, compression, read-only
+    mode, and checkpoint/WAL behavior.
+  fact_id: fact::13b993dcf2833b7b9cf29ede
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: architecture.components[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.components[3]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: Transaction layer
+  object_value: Transaction layer
+  note: TransactionManager mediates read-only and write transactions and coordinates
+    checkpointing.
+  fact_id: fact::66e59c3ebf5bc200762991c0
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: architecture.key_abstractions[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[3]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: Serializes writes, tracks active transactions, and triggers checkpoints.
+  object_value: TransactionManager
+  note: Serializes writes, tracks active transactions, and triggers checkpoints.
+  fact_id: fact::0efdd506c3177d2f6e2b2b04
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: architecture.key_abstractions[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[4]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: Append-only write-ahead log used for committed changes and checkpoint
+      markers.
+  object_value: WAL
+  note: Append-only write-ahead log used for committed changes and checkpoint markers.
+  fact_id: fact::12ffa729d8f50fc5e59ae0bb
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: key_files[10]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[10]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: src/antlr4/Cypher.g4
+  object_value: src/antlr4/Cypher.g4
+  fact_id: fact::1b771bc96bcbcaaee60b5593
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: architecture.module_breakdown[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[4]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: C bindings plus the interactive shell and its printer/completion stack.
+  object_value: src/c_api/ and tools/shell/
+  note: 'responsibility: C bindings plus the interactive shell and its printer/completion
+    stack.; key_files: src/c_api/database.cpp, src/c_api/connection.cpp, tools/shell/shell_runner.cpp,
+    tools/shell/embedded_shell.cpp'
+  fact_id: fact::1d14387022865023c41d74ae
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: key_files[7]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[7]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: src/c_api/connection.cpp
+  object_value: src/c_api/connection.cpp
+  fact_id: fact::5b017d03b9ab84c371e2a784
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: key_files[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[6]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: src/c_api/database.cpp
+  object_value: src/c_api/database.cpp
+  fact_id: fact::0804f12eb68b771e6d83f14c
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: architecture.module_breakdown[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[5]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: Load, install, register, and replay extensions.
+  object_value: src/extension/
+  note: 'responsibility: Load, install, register, and replay extensions.; key_files:
+    src/extension/extension_manager.cpp, src/extension/extension_installer.cpp'
+  fact_id: fact::4f890083c29ba80ec9fd0d31
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: key_files[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[1]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: src/include/main/connection.h
+  object_value: src/include/main/connection.h
+  fact_id: fact::418cf0b4272fd2a70d257f6f
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: key_files[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[0]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: src/include/main/database.h
+  object_value: src/include/main/database.h
+  fact_id: fact::9112e92bba20ec99ac6325a1
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: architecture.module_breakdown[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[0]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: Database lifecycle, connection entrypoints, client context, prepared
+      statements, and runtime configuration.
+  object_value: src/main/
+  note: 'responsibility: Database lifecycle, connection entrypoints, client context,
+    prepared statements, and runtime configuration.; key_files: src/main/database.cpp,
+    src/main/connection.cpp, src/main/db_config.cpp, src/main/settings.cpp'
+  fact_id: fact::ca2eeeb587ba2485c283b767
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: key_files[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[2]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: src/main/database.cpp
+  object_value: src/main/database.cpp
+  fact_id: fact::bebf58ee79309715731d35ab
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: key_files[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[3]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: src/main/settings.cpp
+  object_value: src/main/settings.cpp
+  fact_id: fact::577017e8e5e47671600c23bc
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: architecture.module_breakdown[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[1]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: Cypher parsing, semantic binding, logical planning, plan optimization,
+      and physical execution.
+  object_value: src/parser/, src/binder/, src/planner/, src/optimizer/, src/processor/
+  note: 'responsibility: Cypher parsing, semantic binding, logical planning, plan
+    optimization, and physical execution.; key_files: src/antlr4/Cypher.g4, src/parser/parser.cpp,
+    src/binder/binder.cpp, src/planner/planner.cpp'
+  fact_id: fact::eed44a43be5782a19f3e07a8
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: architecture.module_breakdown[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[2]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: Persistent storage, buffer manager, WAL, checkpointing, table layouts,
+      and compression.
+  object_value: src/storage/
+  note: 'responsibility: Persistent storage, buffer manager, WAL, checkpointing, table
+    layouts, and compression.; key_files: src/storage/storage_manager.cpp, src/storage/wal/wal.cpp,
+    src/storage/checkpointer.cpp, src/storage/table/node_table.cpp'
+  fact_id: fact::3adcf03833040dc23f288b04
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: key_files[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[5]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: src/storage/wal/wal.cpp
+  object_value: src/storage/wal/wal.cpp
+  fact_id: fact::5649b03a4874c8ce003d0a84
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: architecture.module_breakdown[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[3]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: Transaction begin, commit, rollback, serialization, and checkpoint coordination.
+  object_value: src/transaction/
+  note: 'responsibility: Transaction begin, commit, rollback, serialization, and checkpoint
+    coordination.; key_files: src/transaction/transaction_manager.cpp, src/transaction/transaction.cpp'
+  fact_id: fact::f4f5c515da0b07616cffba36
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: key_files[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[4]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: src/transaction/transaction_manager.cpp
+  object_value: src/transaction/transaction_manager.cpp
+  fact_id: fact::f9a1150e215073ca7cbf1f19
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: key_files[9]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[9]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: tools/shell/embedded_shell.cpp
+  object_value: tools/shell/embedded_shell.cpp
+  fact_id: fact::f676c71e6778d767c7c42cc5
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: key_files[8]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[8]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: tools/shell/shell_runner.cpp
+  object_value: tools/shell/shell_runner.cpp
+  fact_id: fact::9fdfee0a85ce0f702150249b
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: configuration.system_config.options[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.system_config.options[5]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: autoCheckpoint
+  object_value: autoCheckpoint
+  note: 'default: true; Checkpoint automatically when WAL size crosses the threshold.'
+  fact_id: fact::66c473e35dea1dfc9b3ce66b
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: configuration.system_config.options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.system_config.options[0]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: bufferPoolSize
+  object_value: bufferPoolSize
+  note: Maximum buffer-pool size in bytes; defaults to a fraction of physical memory
+    when unset.
+  fact_id: fact::718051d9ff2f01780f0fff84
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: configuration.system_config.options[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.system_config.options[6]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: checkpointThreshold
+  object_value: checkpointThreshold
+  note: 'default: 16777216; WAL size threshold in bytes for auto-checkpointing.'
+  fact_id: fact::b742e2c5a3479f571538beb1
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: configuration.system_config.options[8]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.system_config.options[8]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: enableChecksums
+  object_value: enableChecksums
+  note: 'default: true; Write and verify WAL checksums.'
+  fact_id: fact::12375c01e67deba7a9df0ac6
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: configuration.system_config.options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.system_config.options[2]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: enableCompression
+  object_value: enableCompression
+  note: 'default: true; Enable on-disk compression for supported types.'
+  fact_id: fact::6a1c6c2fb155912e06d9c2cf
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: configuration.session_settings.options[7]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.session_settings.options[7]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: enable_internal_catalog
+  object_value: enable_internal_catalog
+  note: Expose or hide internal catalog metadata.
+  fact_id: fact::5c92be1edae13021211c2516
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: configuration.session_settings.options[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.session_settings.options[4]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: enable_mvcc
+  object_value: enable_mvcc
+  note: Toggle multi-write behavior; code comments note it is currently a temporary
+    testing-oriented switch.
+  fact_id: fact::9839851f7e29f9f8ae66055f
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: configuration.session_settings.options[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.session_settings.options[6]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: enable_optimizer
+  object_value: enable_optimizer
+  note: Toggle logical plan optimization.
+  fact_id: fact::650f3b3f788565501884d2ad
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: configuration.system_config.options[7]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.system_config.options[7]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: forceCheckpointOnClose
+  object_value: forceCheckpointOnClose
+  note: 'default: true; Force a checkpoint when closing a writable database.'
+  fact_id: fact::a97cc3f2a5848214839af849
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: configuration.system_config.options[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.system_config.options[4]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: maxDBSize
+  object_value: maxDBSize
+  note: Upper bound for database virtual address space.
+  fact_id: fact::bcef77aa93ef1c82aa7a43a4
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: configuration.system_config.options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.system_config.options[1]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: maxNumThreads
+  object_value: maxNumThreads
+  note: Maximum query-execution threads, with zero meaning hardware-concurrency default.
+  fact_id: fact::1b311ec11d5af5bcc27b120a
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: configuration.session_settings.options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.session_settings.options[3]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: progress_bar
+  object_value: progress_bar
+  note: Toggle progress display for long-running work.
+  fact_id: fact::39f21f1ac4580aa71095f743
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: configuration.system_config.options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.system_config.options[3]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: readOnly
+  object_value: readOnly
+  note: 'default: false; Open the database without allowing writes.'
+  fact_id: fact::45e461f940a34d49e36d363a
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: configuration.session_settings.options[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.session_settings.options[5]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: spill_to_disk
+  object_value: spill_to_disk
+  note: Enable or disable spill files for memory pressure handling.
+  fact_id: fact::42839d471479e4eea62dc47c
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: configuration.session_settings.options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.session_settings.options[0]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: threads
+  object_value: threads
+  note: Per-connection execution thread count.
+  fact_id: fact::dc9ca915cb937fe9d02dcbb3
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: configuration.session_settings.options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.session_settings.options[1]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: timeout
+  object_value: timeout
+  note: Per-connection timeout in milliseconds.
+  fact_id: fact::b6d319c0f7f40a2f53d470d3
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: configuration.session_settings.options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.session_settings.options[2]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: warning_limit
+  object_value: warning_limit
+  note: Maximum warning count retained by the client context.
+  fact_id: fact::b9a73b1a3d67e2e07b9fab9b
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: api_surface.public_functions[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[3]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: Connection::executeWithParams
+  object_value: Connection::executeWithParams
+  note: Execute a prepared statement with bound parameters.; std::unique_ptr<QueryResult>
+    executeWithParams(PreparedStatement* preparedStatement, std::unordered_map<std::string,
+    std::unique_ptr<common::Value>> inputParams); src/include/main/connection.h
+  fact_id: fact::21df0b4345be1a87391587a8
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: api_surface.public_functions[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[2]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: Connection::prepare
+  object_value: Connection::prepare
+  note: Prepare a query for parameterized execution.; std::unique_ptr<PreparedStatement>
+    prepare(std::string_view query); src/include/main/connection.h
+  fact_id: fact::97de0ac1fa7a7547b8d9290f
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: api_surface.public_functions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[1]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: Connection::query
+  object_value: Connection::query
+  note: Execute a query string and return a QueryResult.; std::unique_ptr<QueryResult>
+    query(std::string_view query); src/include/main/connection.h
+  fact_id: fact::6bb5f9fa1372e7d8ccb16172
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: api_surface.public_functions[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[4]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: Connection::queryAsArrow
+  object_value: Connection::queryAsArrow
+  note: Run a query and stream results as Arrow chunks.; std::unique_ptr<QueryResult>
+    queryAsArrow(std::string_view query, int64_t chunkSize); src/include/main/connection.h
+  fact_id: fact::8e290b784b2eae067ddf7179
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: api_surface.public_functions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[0]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: Database::Database
+  object_value: Database::Database
+  note: Open a persistent or in-memory database with SystemConfig.; explicit Database(std::string_view
+    databasePath, SystemConfig systemConfig = SystemConfig()); src/include/main/database.h
+  fact_id: fact::81c79cb81afdf906959f5710
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: api_surface.public_functions[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[6]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: lbug_connection_query
+  object_value: lbug_connection_query
+  note: Execute a C API query through a connection wrapper.; lbug_state lbug_connection_query(lbug_connection*
+    connection, const char* query, lbug_query_result* out_query_result); src/c_api/connection.cpp
+  fact_id: fact::6f07ea4c82632c89dc4c03ce
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: api_surface.public_functions[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[5]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: lbug_database_init
+  object_value: lbug_database_init
+  note: Initialize the C API database handle from lbug_system_config.; lbug_state
+    lbug_database_init(const char* database_path, lbug_system_config config, lbug_database*
+    out_database); src/c_api/database.cpp
+  fact_id: fact::0f3e16ab2bed149269c4247e
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: implementation_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: src/storage/wal/wal.cpp
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: Committed local WAL fragments are appended to a shared WAL file, which
+      is flushed and synced before checkpoint decisions.
+  object_value: Append-only WAL with checkpoint records
+  note: 'description: Committed local WAL fragments are appended to a shared WAL file,
+    which is flushed and synced before checkpoint decisions.; location: src/storage/wal/wal.cpp'
+  fact_id: fact::5de6eade10afd85e7c76d8de
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: implementation_patterns[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: src/main/database.cpp
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: SystemConfig derives buffer pool size from physical memory when the caller
+      leaves it unset.
+  object_value: Auto-sized buffer pool
+  note: 'description: SystemConfig derives buffer pool size from physical memory when
+    the caller leaves it unset.; location: src/main/database.cpp'
+  fact_id: fact::033bb148778526085b7bd665
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: implementation_patterns[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: src/main/database.cpp
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: Storage, planner, mapper, binder, and transformer extensions are registered
+      on the Database object and auto-loaded where supported.
+  object_value: Extension-mediated capabilities
+  note: 'description: Storage, planner, mapper, binder, and transformer extensions
+    are registered on the Database object and auto-loaded where supported.; location:
+    src/main/database.cpp'
+  fact_id: fact::d293f749e0fe7eaab045b4ea
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: implementation_patterns[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: src/main/database.cpp
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: Database initialization rejects in-memory and nonexistent paths when
+      read-only mode is requested.
+  object_value: Read-only path enforcement
+  note: 'description: Database initialization rejects in-memory and nonexistent paths
+    when read-only mode is requested.; location: src/main/database.cpp'
+  fact_id: fact::87c45c1ebe8afa354863d059
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: implementation_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: src/transaction/transaction_manager.cpp
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: Write transactions are serialized unless multi-write mode is explicitly
+      enabled.
+  object_value: Single-writer transaction gate
+  note: 'description: Write transactions are serialized unless multi-write mode is
+    explicitly enabled.; location: src/transaction/transaction_manager.cpp'
+  fact_id: fact::9c7132d5dbd963d4f5aa73d5

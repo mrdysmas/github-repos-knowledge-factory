@@ -1,0 +1,270 @@
+name: gitnexus
+node_id: "repo::abhigyanpatwari/gitnexus"
+github_full_name: abhigyanpatwari/gitnexus
+html_url: "https://github.com/abhigyanpatwari/GitNexus"
+source: remote_metadata
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep/abhigyanpatwari__gitnexus.yaml
+  as_of: "2026-03-18"
+  sourcing_method: code_verified
+  extraction_agent: codex
+directory: "remote::abhigyanpatwari/gitnexus"
+category: agent_cli
+summary: |
+  Zero-server code intelligence system that indexes repositories into a LadybugDB-backed
+  code graph, exposes analysis through MCP tools and resources, and can bridge a local
+  multi-repo index into a browser UI over HTTP.
+
+architecture:
+  components:
+    - name: CLI entrypoints
+      description: "Commander-based commands for setup, indexing, serving, MCP stdio, direct query helpers, wiki generation, and eval mode."
+    - name: Ingestion pipeline
+      description: "Scans repository paths, parses code with Tree-sitter, resolves imports and calls, computes communities and processes, then produces a knowledge graph."
+    - name: LadybugDB storage layer
+      description: "Loads graph nodes and relations into typed node tables plus a single CodeRelation table, then builds FTS and optional embedding indexes."
+    - name: MCP server
+      description: "Serves indexed repositories over stdio with tool, resource, and prompt handlers backed by a multi-repo registry."
+    - name: HTTP bridge server
+      description: "Exposes REST endpoints for graph download, search, file fetches, processes, and clusters, and also mounts MCP over HTTP."
+    - name: Web UI
+      description: "Browser application that can analyze repos in-browser or connect to the local server for multi-repo browsing."
+  module_breakdown:
+    - module: gitnexus/src/cli/
+      responsibility: "Top-level command registration and command-specific orchestration for analyze, setup, serve, mcp, wiki, and direct query commands."
+      key_files:
+        - gitnexus/src/cli/index.ts
+        - gitnexus/src/cli/analyze.ts
+        - gitnexus/src/cli/setup.ts
+        - gitnexus/src/cli/serve.ts
+    - module: gitnexus/src/core/ingestion/
+      responsibility: "Repository walk, parse, import resolution, call tracing, inheritance analysis, community detection, and process extraction."
+      key_files:
+        - gitnexus/src/core/ingestion/pipeline.ts
+        - gitnexus/src/core/ingestion/parsing-processor.ts
+        - gitnexus/src/core/ingestion/call-processor.ts
+        - gitnexus/src/core/ingestion/process-processor.ts
+    - module: gitnexus/src/core/lbug/
+      responsibility: "LadybugDB schema creation, CSV export, bulk loading, FTS setup, and embedding cache/loading support."
+      key_files:
+        - gitnexus/src/core/lbug/schema.ts
+        - gitnexus/src/core/lbug/lbug-adapter.ts
+        - gitnexus/src/core/lbug/csv-generator.ts
+    - module: gitnexus/src/mcp/
+      responsibility: "Tool definitions, resource templates, prompt wiring, stdio transport, staleness hints, and backend dispatch."
+      key_files:
+        - gitnexus/src/mcp/server.ts
+        - gitnexus/src/mcp/tools.ts
+        - gitnexus/src/mcp/resources.ts
+        - gitnexus/src/mcp/local/local-backend.ts
+    - module: gitnexus/src/server/ and gitnexus-web/src/
+      responsibility: "HTTP API surface and browser-side graph/search clients, including backend probing and local-server attachment."
+      key_files:
+        - gitnexus/src/server/api.ts
+        - gitnexus/src/server/mcp-http.ts
+        - gitnexus-web/src/services/backend.ts
+        - gitnexus-web/src/services/server-connection.ts
+  key_abstractions:
+    - name: KnowledgeGraph
+      purpose: "In-memory intermediate graph built by the ingestion pipeline before persistence."
+    - name: LocalBackend
+      purpose: "Multi-repo MCP backend that resolves a repo from the global registry and executes search, context, impact, diff, rename, and Cypher operations."
+    - name: RegistryEntry
+      purpose: "Global ~/.gitnexus registry record that lets one MCP server serve multiple analyzed repositories."
+    - name: CodeRelation
+      purpose: "Single LadybugDB relation table that stores relationship type and metadata for graph traversals."
+  data_flow: |
+    `gitnexus analyze` resolves the target Git repo, walks the filesystem, chunks parseable files,
+    parses them with available Tree-sitter parsers, resolves imports/calls/heritage, computes
+    communities and processes, and writes the resulting graph into `.gitnexus/lbug`. The analyzer
+    then creates search indexes, optionally reuses or generates embeddings, stores repo metadata,
+    and registers the repo in the global registry. `gitnexus mcp` and `gitnexus serve` both use
+    that registry so agents or the web UI can target one or many indexed repos without reindexing.
+
+core_modules:
+  modules:
+    - name: cli
+      path: gitnexus/src/cli/
+      purpose: "User-facing command surface and one-time editor integration setup."
+    - name: ingestion
+      path: gitnexus/src/core/ingestion/
+      purpose: "Static analysis pipeline from repository scan through graph enrichment."
+    - name: lbug
+      path: gitnexus/src/core/lbug/
+      purpose: "LadybugDB persistence, schema management, CSV loading, and embedding support."
+    - name: mcp
+      path: gitnexus/src/mcp/
+      purpose: "Agent-facing protocol layer with tool, resource, and prompt definitions."
+    - name: server
+      path: gitnexus/src/server/
+      purpose: "HTTP bridge for browser clients and MCP-over-HTTP transport."
+    - name: web-ui
+      path: gitnexus-web/src/
+      purpose: "Browser graph explorer, backend connector, and in-browser analysis client."
+    - name: storage
+      path: gitnexus/src/storage/
+      purpose: "Repo-local `.gitnexus` storage paths plus global multi-repo registry management."
+
+api_surface:
+  public_functions:
+    - name: runPipelineFromRepo
+      purpose: "Build the in-memory knowledge graph from a local Git checkout."
+      signature: "async (repoPath: string, onProgress: (progress: PipelineProgress) => void, options?: PipelineOptions) => Promise<PipelineResult>"
+      location: "gitnexus/src/core/ingestion/pipeline.ts"
+    - name: createMCPServer
+      purpose: "Construct the stdio MCP server with list, call, resource, and prompt handlers."
+      signature: "createMCPServer(backend: LocalBackend): Server"
+      location: "gitnexus/src/mcp/server.ts"
+    - name: createServer
+      purpose: "Start the local HTTP server and mount REST plus MCP-over-HTTP endpoints."
+      signature: "createServer(port: number, host?: string)"
+      location: "gitnexus/src/server/api.ts"
+  endpoints:
+    - path: /api/repos
+      method: GET
+      description: "List registered indexed repositories from the global registry."
+    - path: /api/repo
+      method: GET
+      description: "Return metadata and stats for a selected repo."
+    - path: /api/graph
+      method: GET
+      description: "Stream the full node and relationship graph for a repo."
+    - path: /api/query
+      method: POST
+      description: "Execute raw Cypher against the repo's LadybugDB database."
+    - path: /api/search
+      method: POST
+      description: "Run hybrid search over the indexed graph."
+    - path: /api/file
+      method: GET
+      description: "Return file contents from the indexed repository."
+    - path: /api/processes
+      method: GET
+      description: "List execution-flow processes."
+    - path: /api/process
+      method: GET
+      description: "Return a single process trace."
+    - path: /api/clusters
+      method: GET
+      description: "List detected functional clusters."
+    - path: /api/cluster
+      method: GET
+      description: "Return one cluster detail view."
+
+configuration:
+  analyze:
+    options:
+      - key: force
+        default: "false"
+        description: "Force a full re-index even when the last indexed commit matches."
+      - key: embeddings
+        default: "false"
+        description: "Enable embedding generation for semantic search instead of staying BM25-only."
+      - key: skills
+        default: "false"
+        description: "Generate repo-specific Claude skills from detected communities."
+      - key: verbose
+        default: "false"
+        description: "Enable extra ingestion warnings such as unavailable parsers."
+  serve:
+    options:
+      - key: port
+        default: "4747"
+        description: "HTTP bridge port for the local browser/backend integration."
+      - key: host
+        default: "127.0.0.1"
+        description: "Bind address for the local server."
+  storage:
+    options:
+      - key: ".gitnexus"
+        description: "Per-repo storage root containing the LadybugDB file, CSVs, and metadata."
+      - key: "~/.gitnexus/registry.json"
+        description: "Global registry used by the multi-repo MCP and HTTP server."
+
+implementation_patterns:
+  - pattern: "Chunked parse pipeline"
+    description: "The ingestion pipeline caps source loaded per chunk, reuses a worker pool when the repo is large enough, and resolves imports/calls/heritage after each chunk."
+    location: "gitnexus/src/core/ingestion/pipeline.ts"
+  - pattern: "Heap re-exec for heavy indexing"
+    description: "The analyze command respawns itself with an 8 GB V8 heap when Node starts below the expected memory ceiling."
+    location: "gitnexus/src/cli/analyze.ts"
+  - pattern: "Single relation-table graph schema"
+    description: "LadybugDB stores typed node tables plus one CodeRelation table keyed by relation type, which keeps Cypher queries uniform across languages."
+    location: "gitnexus/src/core/lbug/schema.ts"
+  - pattern: "Global multi-repo registry"
+    description: "Indexed repos are discoverable through a shared ~/.gitnexus registry so one MCP process can serve many repositories."
+    location: "gitnexus/src/storage/repo-manager.ts"
+  - pattern: "Self-guiding MCP responses"
+    description: "Tool responses append next-step hints so agents are nudged toward context, impact, process, or schema lookups after each call."
+    location: "gitnexus/src/mcp/server.ts"
+  - pattern: "Local-first browser bridge"
+    description: "The browser client probes a local backend and can attach to the HTTP server instead of re-indexing inside the browser."
+    location: "gitnexus-web/src/services/backend.ts"
+
+key_features:
+  - feature: "Dual local modes"
+    description: "Supports both CLI plus MCP usage and a browser UI, with `gitnexus serve` bridging the two."
+  - feature: "MCP analysis surface"
+    description: "Exposes `list_repos`, `query`, `cypher`, `context`, `detect_changes`, `rename`, and `impact` tools."
+  - feature: "Resource-driven navigation"
+    description: "Defines `gitnexus://repos`, `gitnexus://setup`, and repo-scoped context, cluster, process, and schema resources."
+  - feature: "Prompt helpers"
+    description: "Publishes `detect_impact` and `generate_map` MCP prompts."
+  - feature: "Optional embeddings"
+    description: "Can cache and reuse embeddings, but keeps embedding imports lazy so plain indexing avoids native runtime crashes."
+  - feature: "Editor bootstrap"
+    description: "Setup logic writes or merges MCP config for Cursor and prints/manual-installs Claude Code integration with skills and hooks."
+
+commands:
+  - name: "gitnexus setup"
+    description: "Configure editor MCP integration and install Claude skills/hooks where supported."
+  - name: "gitnexus analyze [path]"
+    description: "Index a Git repository into `.gitnexus/lbug`."
+  - name: "gitnexus serve"
+    description: "Run the local HTTP bridge for the browser UI."
+  - name: "gitnexus mcp"
+    description: "Run the stdio MCP server over all registered repos."
+  - name: "gitnexus list"
+    description: "List indexed repositories."
+  - name: "gitnexus status"
+    description: "Show index status for the current repository."
+  - name: "gitnexus clean"
+    description: "Delete the current repo index, or all indexes with `--all`."
+  - name: "gitnexus wiki [path]"
+    description: "Generate repository wiki output from the knowledge graph."
+  - name: "gitnexus query <search_query>"
+    description: "Run a direct graph search without going through MCP."
+  - name: "gitnexus context [name]"
+    description: "Inspect one symbol with callers, callees, and process membership."
+  - name: "gitnexus impact <target>"
+    description: "Compute blast radius for a symbol."
+  - name: "gitnexus cypher <query>"
+    description: "Execute raw Cypher against the knowledge graph."
+  - name: "gitnexus eval-server"
+    description: "Run the lightweight evaluation HTTP server for scripted tool calls."
+
+key_files:
+  - path: gitnexus/src/cli/index.ts
+    purpose: "Commander command registration for the CLI."
+  - path: gitnexus/src/cli/analyze.ts
+    purpose: "End-to-end indexing command, progress UI, Ladybug load, and registry update."
+  - path: gitnexus/src/core/ingestion/pipeline.ts
+    purpose: "Chunked repository analysis pipeline."
+  - path: gitnexus/src/core/lbug/schema.ts
+    purpose: "LadybugDB graph schema with typed node tables plus CodeRelation."
+  - path: gitnexus/src/core/lbug/lbug-adapter.ts
+    purpose: "LadybugDB init, graph load, and query helpers."
+  - path: gitnexus/src/mcp/tools.ts
+    purpose: "Canonical MCP tool definitions."
+  - path: gitnexus/src/mcp/resources.ts
+    purpose: "Canonical MCP resource templates and resource readers."
+  - path: gitnexus/src/mcp/server.ts
+    purpose: "Stdio MCP server wiring and prompt registration."
+  - path: gitnexus/src/server/api.ts
+    purpose: "HTTP API and MCP-over-HTTP bridge."
+  - path: gitnexus/src/storage/repo-manager.ts
+    purpose: "Repo-local storage helpers and the global multi-repo registry."
+  - path: gitnexus-web/src/services/backend.ts
+    purpose: "Browser-side HTTP client for local server mode."
+

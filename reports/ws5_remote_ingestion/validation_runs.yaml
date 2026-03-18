@@ -30,8 +30,9 @@ required_commands:
   exit_code: null
   expectation: validate.py exits 0
 - step: 6
-  command: python3 tools/ws5_remote_ingestion.py --workspace-root . --input inputs/ws5/B11_gitnexus_ladybugdb_deepagents_manifest.yaml
-    --reports-dir reports/ws5_remote_ingestion
+  command: python3 tools/ws5_remote_ingestion.py --workspace-root /Users/szilaa/scripts/ext_sources/github_repos
+    --input inputs/ws5/B11_gitnexus_ladybugdb_deepagents_manifest.yaml --reports-dir
+    reports/ws5_remote_ingestion
   status: PASS
   exit_code: 0
   expectation: WS5 ingestion writes deterministic reports and WS1-compatible records

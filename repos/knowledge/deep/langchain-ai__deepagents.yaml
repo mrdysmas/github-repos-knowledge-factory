@@ -1,0 +1,252 @@
+name: deepagents
+node_id: "repo::langchain-ai/deepagents"
+github_full_name: langchain-ai/deepagents
+html_url: "https://github.com/langchain-ai/deepagents"
+source: remote_metadata
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+  as_of: "2026-03-18"
+  sourcing_method: code_verified
+  extraction_agent: codex
+directory: "remote::langchain-ai/deepagents"
+category: agent_framework
+summary: |
+  Python agent harness that composes a LangGraph-backed agent from middleware for planning,
+  filesystem access, subagents, memory, skills, and conversation compaction, plus a CLI that
+  can run locally or through a LangGraph dev server with sandbox and MCP integration.
+
+architecture:
+  components:
+    - name: Core agent factory
+      description: "create_deep_agent assembles a compiled LangGraph agent by layering middleware around LangChain's create_agent."
+    - name: Backend layer
+      description: "Filesystem, local-shell, sandbox, state, store, and composite backends provide file and execution capabilities behind a common protocol."
+    - name: Middleware stack
+      description: "Planning, filesystem tools, subagents, memory, skills, tool-call patching, prompt caching, and summarization are added as composable middleware."
+    - name: CLI runtime
+      description: "The CLI can run as an interactive TUI, a non-interactive one-shot command, or a LangGraph server-backed session."
+    - name: Server graph
+      description: "A module-level graph builder loads tools, MCP config, and sandbox providers from environment-derived server configuration."
+  module_breakdown:
+    - module: libs/deepagents/deepagents/
+      responsibility: "Package exports, create_deep_agent graph assembly, built-in backends, and middleware."
+      key_files:
+        - libs/deepagents/deepagents/__init__.py
+        - libs/deepagents/deepagents/graph.py
+        - libs/deepagents/deepagents/backends/protocol.py
+    - module: libs/deepagents/deepagents/backends/
+      responsibility: "Filesystem, local shell, sandbox, composite, state, and store backends."
+      key_files:
+        - libs/deepagents/deepagents/backends/filesystem.py
+        - libs/deepagents/deepagents/backends/local_shell.py
+        - libs/deepagents/deepagents/backends/sandbox.py
+        - libs/deepagents/deepagents/backends/composite.py
+    - module: libs/deepagents/deepagents/middleware/
+      responsibility: "Filesystem tools, subagent spawning, skills loading, memory loading, async subagents, and summarization."
+      key_files:
+        - libs/deepagents/deepagents/middleware/filesystem.py
+        - libs/deepagents/deepagents/middleware/subagents.py
+        - libs/deepagents/deepagents/middleware/skills.py
+        - libs/deepagents/deepagents/middleware/summarization.py
+    - module: libs/cli/deepagents_cli/
+      responsibility: "CLI argument parsing, server lifecycle, app UI, agent construction, approvals, MCP loading, and sandbox integration."
+      key_files:
+        - libs/cli/deepagents_cli/main.py
+        - libs/cli/deepagents_cli/ui.py
+        - libs/cli/deepagents_cli/agent.py
+        - libs/cli/deepagents_cli/server_graph.py
+  key_abstractions:
+    - name: create_deep_agent
+      purpose: "Primary factory that returns a compiled LangGraph state graph with built-in deep-agent middleware."
+    - name: BackendProtocol
+      purpose: "Pluggable storage and execution contract used by all backend implementations."
+    - name: CompositeBackend
+      purpose: "Route-based backend that remaps path prefixes to different backend implementations."
+    - name: SubAgent and CompiledSubAgent
+      purpose: "Specs for task-tool delegation targets."
+    - name: AsyncSubAgent
+      purpose: "Remote LangGraph deployment descriptor for background job style delegation."
+  data_flow: |
+    `create_deep_agent` resolves the requested model, constructs default middleware for todos,
+    filesystem tools, subagents, summarization, and prompt caching, optionally adds memory,
+    skills, async subagents, and HITL interrupts, then calls LangChain's `create_agent` and
+    returns the compiled LangGraph with a high recursion limit. The CLI builds on that by calling
+    `create_cli_agent`, which chooses a local shell backend or remote sandbox backend, layers in
+    CLI-specific memory, skills, local context, approvals, and summarization-tool routing, and
+    optionally runs the resulting graph inside a LangGraph dev server via `server_graph.py`.
+
+core_modules:
+  modules:
+    - name: graph
+      path: libs/deepagents/deepagents/graph.py
+      purpose: "Deep-agent factory and default middleware ordering."
+    - name: backends
+      path: libs/deepagents/deepagents/backends/
+      purpose: "Filesystem and execution abstractions, including local and sandbox implementations."
+    - name: middleware
+      path: libs/deepagents/deepagents/middleware/
+      purpose: "Behavioral layers for file tools, delegation, memory, skills, and context compaction."
+    - name: cli
+      path: libs/cli/deepagents_cli/
+      purpose: "Interactive and non-interactive command-line runtime."
+    - name: server-graph
+      path: libs/cli/deepagents_cli/server_graph.py
+      purpose: "Environment-driven server-side graph assembly for langgraph dev."
+
+api_surface:
+  public_functions:
+    - name: create_deep_agent
+      purpose: "Build and return the default compiled deep-agent graph."
+      signature: "create_deep_agent(model: str | BaseChatModel | None = None, tools: Sequence[...] | None = None, *, system_prompt: str | SystemMessage | None = None, middleware: Sequence[AgentMiddleware] = (), subagents: Sequence[SubAgent | CompiledSubAgent] | None = None, async_subagents: list[AsyncSubAgent] | None = None, skills: list[str] | None = None, memory: list[str] | None = None, response_format: ResponseFormat | None = None, context_schema: type[Any] | None = None, checkpointer: Checkpointer | None = None, store: BaseStore | None = None, backend: BackendProtocol | BackendFactory | None = None, interrupt_on: dict[str, bool | InterruptOnConfig] | None = None, debug: bool = False, name: str | None = None, cache: BaseCache | None = None) -> CompiledStateGraph"
+      location: "libs/deepagents/deepagents/graph.py"
+    - name: create_cli_agent
+      purpose: "Create a CLI-flavored deep agent with filesystem, sandbox, memory, skills, and approval defaults."
+      signature: "create_cli_agent(model, assistant_id, *, tools=None, sandbox=None, sandbox_type=None, system_prompt=None, interactive=True, auto_approve=False, enable_memory=True, enable_skills=True, enable_shell=True, checkpointer=None, mcp_server_info=None, cwd=None, project_context=None, async_subagents=None) -> tuple[Pregel, CompositeBackend]"
+      location: "libs/cli/deepagents_cli/agent.py"
+    - name: load_async_subagents
+      purpose: "Load remote async subagent definitions from `~/.deepagents/config.toml`."
+      signature: "load_async_subagents(config_path: Path | None = None) -> list[AsyncSubAgent]"
+      location: "libs/cli/deepagents_cli/agent.py"
+
+configuration:
+  python_api:
+    options:
+      - key: model
+        description: "Model spec or chat model instance passed to create_deep_agent."
+      - key: tools
+        description: "Additional tools appended to the built-in planning, filesystem, and task surfaces."
+      - key: system_prompt
+        description: "Custom instructions prepended to the base deep-agent prompt."
+      - key: backend
+        description: "Backend instance or backend factory used for file and execute tools."
+      - key: subagents
+        description: "Static subagent specs for the `task` tool."
+      - key: async_subagents
+        description: "Remote LangGraph subagents exposed as background-job style tools."
+      - key: skills
+        description: "Skill source paths loaded through SkillsMiddleware."
+      - key: memory
+        description: "AGENTS.md memory file paths loaded into the system prompt."
+      - key: interrupt_on
+        description: "Tool-specific HITL pause configuration."
+      - key: checkpointer
+        description: "LangGraph checkpointer used for persisted thread state."
+      - key: store
+        description: "Persistent LangGraph store needed by some backends."
+  cli:
+    options:
+      - key: resume
+        description: "Resume the latest or a specific thread."
+      - key: non_interactive
+        description: "Run a single prompt and exit instead of opening the TUI."
+      - key: auto_approve
+        default: "false"
+        description: "Disable HITL pauses and approve tool calls automatically."
+      - key: sandbox
+        description: "Use a remote sandbox provider instead of the local shell backend."
+      - key: sandbox_id
+        description: "Reuse an existing sandbox instead of creating a fresh one."
+      - key: sandbox_setup
+        description: "Run a setup script after sandbox creation."
+      - key: mcp_config
+        description: "Merge MCP tools from an explicit config file."
+      - key: no_mcp
+        default: "false"
+        description: "Disable MCP tool loading."
+      - key: trust_project_mcp
+        default: "false"
+        description: "Skip approval for project-level MCP configs."
+      - key: json
+        default: "false"
+        description: "Emit machine-readable JSON for supported commands."
+      - key: acp
+        default: "false"
+        description: "Run as an ACP server over stdio."
+
+implementation_patterns:
+  - pattern: "Middleware-first graph assembly"
+    description: "The core factory builds a standard middleware stack around LangChain's create_agent, then appends optional memory, skills, async subagents, and HITL layers."
+    location: "libs/deepagents/deepagents/graph.py"
+  - pattern: "Pluggable backend protocol"
+    description: "Filesystem and execution tools target BackendProtocol or SandboxBackendProtocol so local shell, sandbox, state, and composite backends can be swapped without changing middleware."
+    location: "libs/deepagents/deepagents/backends/protocol.py"
+  - pattern: "Route-based storage composition"
+    description: "CompositeBackend remaps path prefixes so one logical agent filesystem can combine default storage with special routes such as `/conversation_history/`."
+    location: "libs/deepagents/deepagents/backends/composite.py"
+  - pattern: "Conversation offload and compaction"
+    description: "Summarization middleware trims old context and stores evicted history as markdown under `/conversation_history/{thread_id}.md`."
+    location: "libs/deepagents/deepagents/middleware/summarization.py"
+  - pattern: "Task-tool delegation"
+    description: "SubAgentMiddleware exposes a `task` tool for isolated one-shot subagent runs and ships detailed prompt guidance inside the middleware."
+    location: "libs/deepagents/deepagents/middleware/subagents.py"
+  - pattern: "Local versus sandbox execution split"
+    description: "The CLI chooses LocalShellBackend for local mode or keeps a sandbox backend open for the lifetime of the server process in remote mode."
+    location: "libs/cli/deepagents_cli/agent.py"
+  - pattern: "Server graph boot from env"
+    description: "The langgraph dev server imports a module-level graph assembled from serialized server configuration and optional MCP plus sandbox setup."
+    location: "libs/cli/deepagents_cli/server_graph.py"
+
+key_features:
+  - feature: "Batteries-included agent harness"
+    description: "Built-in planning, filesystem, shell, subagents, and context management are enabled by default."
+  - feature: "Provider-agnostic graph"
+    description: "Model resolution is abstracted, while the default model remains Anthropic Claude Sonnet 4.6."
+  - feature: "Skills and memory"
+    description: "AGENTS.md files and layered skill sources are injected through dedicated middleware."
+  - feature: "CLI plus server mode"
+    description: "The CLI can run as an interactive thread, a one-shot non-interactive command, or a server-backed LangGraph session."
+  - feature: "Sandbox and MCP integration"
+    description: "CLI/server startup can attach remote sandboxes and merge MCP tools into the agent tool list."
+  - feature: "Approval-aware execution"
+    description: "Tool calls can pause for human review unless auto-approve is enabled."
+
+commands:
+  - name: "deepagents"
+    description: "Start an interactive thread in the CLI."
+  - name: "deepagents list"
+    description: "List available agents."
+  - name: "deepagents reset --agent AGENT"
+    description: "Reset an agent prompt."
+  - name: "deepagents skills <list|create|info|delete>"
+    description: "Manage agent skills."
+  - name: "deepagents threads <list|delete>"
+    description: "Manage saved conversation threads."
+  - name: "deepagents -r [ID]"
+    description: "Resume the most recent or a specific thread."
+  - name: "deepagents -n <message>"
+    description: "Run a single non-interactive task and exit."
+  - name: "deepagents --sandbox TYPE"
+    description: "Run with a remote sandbox provider."
+  - name: "deepagents --mcp-config PATH"
+    description: "Load MCP tools from a config file."
+  - name: "deepagents --acp"
+    description: "Run the CLI as an ACP server over stdio."
+
+key_files:
+  - path: libs/deepagents/deepagents/__init__.py
+    purpose: "Package export surface."
+  - path: libs/deepagents/deepagents/graph.py
+    purpose: "Core create_deep_agent factory and default middleware stack."
+  - path: libs/deepagents/deepagents/backends/protocol.py
+    purpose: "Backend contract and result types."
+  - path: libs/deepagents/deepagents/backends/composite.py
+    purpose: "Prefix-routed backend composition."
+  - path: libs/deepagents/deepagents/backends/local_shell.py
+    purpose: "Local filesystem plus unrestricted shell backend."
+  - path: libs/deepagents/deepagents/middleware/filesystem.py
+    purpose: "File and execute tool middleware."
+  - path: libs/deepagents/deepagents/middleware/subagents.py
+    purpose: "Task-tool delegation middleware."
+  - path: libs/deepagents/deepagents/middleware/summarization.py
+    purpose: "Automatic conversation compaction and offload logic."
+  - path: libs/deepagents/deepagents/middleware/skills.py
+    purpose: "Layered skill loading from backend paths."
+  - path: libs/cli/deepagents_cli/main.py
+    purpose: "CLI entrypoint and dependency checks."
+  - path: libs/cli/deepagents_cli/ui.py
+    purpose: "Help text and CLI command/option descriptions."
+  - path: libs/cli/deepagents_cli/agent.py
+    purpose: "CLI-specific agent construction, approvals, memory, skills, and backend routing."
+  - path: libs/cli/deepagents_cli/server_graph.py
+    purpose: "Environment-driven LangGraph server graph assembly."

@@ -1,26 +1,26 @@
 compile_run:
-  started_at_utc: '2026-03-18T04:49:57Z'
-  finished_at_utc: '2026-03-18T04:50:01Z'
-  duration_ms: 3714
+  started_at_utc: '2026-03-18T06:16:32Z'
+  finished_at_utc: '2026-03-18T06:16:36Z'
+  duration_ms: 3887
   result: ok
   force_flag: true
 source_files:
   index:
     path: master_index.yaml
-    sha256: b9226b65202b4754ab84d1712f2618b271a54e8f47cd8d63695c6ebd8f94a360
-    generated_at_utc: '2026-03-17T00:00:00Z'
-    repo_count: 119
+    sha256: ddbac672c08f2931affa39a6fedad064d7e5bc665ace81af34319d6518c9c2be
+    generated_at_utc: '2026-03-18T00:00:00Z'
+    repo_count: 122
   graph:
     path: master_graph.yaml
-    sha256: 86b8979a3a57332701260aaeef6dd3b126554f9df0350efba0e55b6ef5f756dd
-    generated_at_utc: '2026-03-17T00:00:00Z'
-    node_count: 133
+    sha256: 7b25670bc74a9504a451c6e736dc1781f2528e7ff8739004ec5bd6e4da7b746d
+    generated_at_utc: '2026-03-18T00:00:00Z'
+    node_count: 136
     edge_count: 152
   facts:
     path: master_deep_facts.yaml
-    sha256: 49170077483273f66cfdc57e8e030817e21954ef95382862b7c565e710615319
-    generated_at_utc: '2026-03-17T00:00:00Z'
-    fact_count: 5329
+    sha256: de3469b864d3fe0987f53624bb5d2b3d4449d0abcd13113f2a40eddac898007a
+    generated_at_utc: '2026-03-18T00:00:00Z'
+    fact_count: 5538
 gates:
   snapshot_consistency:
     status: pass
@@ -28,15 +28,15 @@ gates:
   row_count_parity:
     status: pass
     expected:
-      repos: 119
-      nodes: 133
+      repos: 122
+      nodes: 136
       edges: 152
-      facts: 5329
+      facts: 5538
     actual:
-      repos: 119
-      nodes: 133
+      repos: 122
+      nodes: 136
       edges: 152
-      facts: 5329
+      facts: 5538
   orphan_edge_detection:
     status: pass
     orphan_count: 0
@@ -46,8 +46,8 @@ gates:
     checks:
     - check: repos_count
       status: pass
-      expected: 119
-      actual: 119
+      expected: 122
+      actual: 122
     - check: first_repo_lookup
       status: pass
       node_id: repo::1panel-dev/maxkb
@@ -66,10 +66,10 @@ gates:
     detail: all compared tables match
 output:
   path: knowledge.db
-  size_bytes: 7667712
+  size_bytes: 7970816
   table_counts:
-    repos: 119
-    nodes: 133
+    repos: 122
+    nodes: 136
     edges: 152
-    facts: 5329
+    facts: 5538
     compile_metadata: 1

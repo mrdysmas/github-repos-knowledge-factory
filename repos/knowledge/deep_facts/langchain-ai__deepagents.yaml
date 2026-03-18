@@ -1,0 +1,1326 @@
+name: deepagents
+node_id: repo::langchain-ai/deepagents
+github_full_name: langchain-ai/deepagents
+html_url: https://github.com/langchain-ai/deepagents
+source: remote_metadata
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep_facts/langchain-ai__deepagents.yaml
+  as_of: '2026-03-18'
+  extractor_version: ws6-deep-integrator-v1
+  extraction_agent: codex
+facts:
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: key_features[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[5]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: Approval-aware execution
+  object_value: Approval-aware execution
+  note: Tool calls can pause for human review unless auto-approve is enabled.
+  fact_id: fact::ad9a2c093ce1e9b5c264ffc5
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: architecture.key_abstractions[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[4]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: Remote LangGraph deployment descriptor for background job style delegation.
+  object_value: AsyncSubAgent
+  note: Remote LangGraph deployment descriptor for background job style delegation.
+  fact_id: fact::42b6d47860c0e848e94362c0
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: architecture.components[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.components[1]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: Backend layer
+  object_value: Backend layer
+  note: Filesystem, local-shell, sandbox, state, store, and composite backends provide
+    file and execution capabilities behind a common protocol.
+  fact_id: fact::e1d4effe38192731b29727c7
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: architecture.key_abstractions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[1]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: Pluggable storage and execution contract used by all backend implementations.
+  object_value: BackendProtocol
+  note: Pluggable storage and execution contract used by all backend implementations.
+  fact_id: fact::33f5fecf8ff9859e49156b1c
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: key_features[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[0]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: Batteries-included agent harness
+  object_value: Batteries-included agent harness
+  note: Built-in planning, filesystem, shell, subagents, and context management are
+    enabled by default.
+  fact_id: fact::a40820e78c0992b5ce6eb603
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: key_features[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[3]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: CLI plus server mode
+  object_value: CLI plus server mode
+  note: The CLI can run as an interactive thread, a one-shot non-interactive command,
+    or a server-backed LangGraph session.
+  fact_id: fact::58ea8237cabb4ae120e392e8
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: architecture.components[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.components[3]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: CLI runtime
+  object_value: CLI runtime
+  note: The CLI can run as an interactive TUI, a non-interactive one-shot command,
+    or a LangGraph server-backed session.
+  fact_id: fact::24013f3e28c5408b928672ce
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: architecture.key_abstractions[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[2]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: Route-based backend that remaps path prefixes to different backend implementations.
+  object_value: CompositeBackend
+  note: Route-based backend that remaps path prefixes to different backend implementations.
+  fact_id: fact::56821b8f8b5bf2069fe76f7d
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: architecture.components[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.components[0]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: Core agent factory
+  object_value: Core agent factory
+  note: create_deep_agent assembles a compiled LangGraph agent by layering middleware
+    around LangChain's create_agent.
+  fact_id: fact::48e61d9d144024e211ae7196
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: architecture.components[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.components[2]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: Middleware stack
+  object_value: Middleware stack
+  note: Planning, filesystem tools, subagents, memory, skills, tool-call patching,
+    prompt caching, and summarization are added as composable middleware.
+  fact_id: fact::6c0daab830a76bef845d60a3
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: key_features[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[1]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: Provider-agnostic graph
+  object_value: Provider-agnostic graph
+  note: Model resolution is abstracted, while the default model remains Anthropic
+    Claude Sonnet 4.6.
+  fact_id: fact::b40848fdf17978182524b1b1
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: key_features[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[4]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: Sandbox and MCP integration
+  object_value: Sandbox and MCP integration
+  note: CLI/server startup can attach remote sandboxes and merge MCP tools into the
+    agent tool list.
+  fact_id: fact::705381872d1586c157348480
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: architecture.components[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.components[4]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: Server graph
+  object_value: Server graph
+  note: A module-level graph builder loads tools, MCP config, and sandbox providers
+    from environment-derived server configuration.
+  fact_id: fact::7fc1be243bd9a716e0f9cf5b
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: key_features[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[2]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: Skills and memory
+  object_value: Skills and memory
+  note: AGENTS.md files and layered skill sources are injected through dedicated middleware.
+  fact_id: fact::2221da2b9161493e5d1a11f4
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: architecture.key_abstractions[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[3]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: Specs for task-tool delegation targets.
+  object_value: SubAgent and CompiledSubAgent
+  note: Specs for task-tool delegation targets.
+  fact_id: fact::811080e0ba80c7c9472eba72
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: architecture.key_abstractions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[0]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: Primary factory that returns a compiled LangGraph state graph with built-in
+      deep-agent middleware.
+  object_value: create_deep_agent
+  note: Primary factory that returns a compiled LangGraph state graph with built-in
+    deep-agent middleware.
+  fact_id: fact::4cd3586c0fa513e14831f64a
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: architecture.module_breakdown[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[3]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: CLI argument parsing, server lifecycle, app UI, agent construction, approvals,
+      MCP loading, and sandbox integration.
+  object_value: libs/cli/deepagents_cli/
+  note: 'responsibility: CLI argument parsing, server lifecycle, app UI, agent construction,
+    approvals, MCP loading, and sandbox integration.; key_files: libs/cli/deepagents_cli/main.py,
+    libs/cli/deepagents_cli/ui.py, libs/cli/deepagents_cli/agent.py, libs/cli/deepagents_cli/server_gra...'
+  fact_id: fact::6ccb85658df3ce43156c92b2
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: key_files[11]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[11]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: libs/cli/deepagents_cli/agent.py
+  object_value: libs/cli/deepagents_cli/agent.py
+  fact_id: fact::8121500c07eef970ec40f3a7
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: key_files[9]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[9]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: libs/cli/deepagents_cli/main.py
+  object_value: libs/cli/deepagents_cli/main.py
+  fact_id: fact::30ab886ea89958bdbdb5b4f1
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: key_files[12]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[12]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: libs/cli/deepagents_cli/server_graph.py
+  object_value: libs/cli/deepagents_cli/server_graph.py
+  fact_id: fact::067df974a050a3ac65d9f07f
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: key_files[10]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[10]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: libs/cli/deepagents_cli/ui.py
+  object_value: libs/cli/deepagents_cli/ui.py
+  fact_id: fact::97abdae9cec71b2fbcfe7004
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: architecture.module_breakdown[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[0]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: Package exports, create_deep_agent graph assembly, built-in backends,
+      and middleware.
+  object_value: libs/deepagents/deepagents/
+  note: 'responsibility: Package exports, create_deep_agent graph assembly, built-in
+    backends, and middleware.; key_files: libs/deepagents/deepagents/__init__.py,
+    libs/deepagents/deepagents/graph.py, libs/deepagents/deepagents/backends/protocol.py'
+  fact_id: fact::35f3a21c6d57c7479ea67348
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: key_files[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[0]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: libs/deepagents/deepagents/__init__.py
+  object_value: libs/deepagents/deepagents/__init__.py
+  fact_id: fact::28f54764219cba4b0acb898f
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: architecture.module_breakdown[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[1]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: Filesystem, local shell, sandbox, composite, state, and store backends.
+  object_value: libs/deepagents/deepagents/backends/
+  note: 'responsibility: Filesystem, local shell, sandbox, composite, state, and store
+    backends.; key_files: libs/deepagents/deepagents/backends/filesystem.py, libs/deepagents/deepagents/backends/local_shell.py,
+    libs/deepagents/deepagents/backends/sandbox.py, libs/deepagents/deepagents...'
+  fact_id: fact::118b4c76e41273eabf388077
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: key_files[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[3]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: libs/deepagents/deepagents/backends/composite.py
+  object_value: libs/deepagents/deepagents/backends/composite.py
+  fact_id: fact::2a139bf94ba836060f9f8cf7
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: key_files[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[4]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: libs/deepagents/deepagents/backends/local_shell.py
+  object_value: libs/deepagents/deepagents/backends/local_shell.py
+  fact_id: fact::aea8a9c6436bc24ac9c3b990
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: key_files[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[2]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: libs/deepagents/deepagents/backends/protocol.py
+  object_value: libs/deepagents/deepagents/backends/protocol.py
+  fact_id: fact::ce6401267288ecedb8670a46
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: key_files[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[1]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: libs/deepagents/deepagents/graph.py
+  object_value: libs/deepagents/deepagents/graph.py
+  fact_id: fact::ef03e838e64325b5a6ca1fb6
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: architecture.module_breakdown[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[2]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: Filesystem tools, subagent spawning, skills loading, memory loading,
+      async subagents, and summarization.
+  object_value: libs/deepagents/deepagents/middleware/
+  note: 'responsibility: Filesystem tools, subagent spawning, skills loading, memory
+    loading, async subagents, and summarization.; key_files: libs/deepagents/deepagents/middleware/filesystem.py,
+    libs/deepagents/deepagents/middleware/subagents.py, libs/deepagents/deepagents/middleware/s...'
+  fact_id: fact::d5d11de5b7fd4e0ba52ea4df
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: key_files[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[5]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: libs/deepagents/deepagents/middleware/filesystem.py
+  object_value: libs/deepagents/deepagents/middleware/filesystem.py
+  fact_id: fact::ccd5f8f0e25d9198a3f87870
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: key_files[8]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[8]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: libs/deepagents/deepagents/middleware/skills.py
+  object_value: libs/deepagents/deepagents/middleware/skills.py
+  fact_id: fact::6d5a714e88446192e305d9f0
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: key_files[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[6]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: libs/deepagents/deepagents/middleware/subagents.py
+  object_value: libs/deepagents/deepagents/middleware/subagents.py
+  fact_id: fact::89cdbe7b05c8a79a94e8af50
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: key_files[7]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[7]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: libs/deepagents/deepagents/middleware/summarization.py
+  object_value: libs/deepagents/deepagents/middleware/summarization.py
+  fact_id: fact::aa788a77fed72a1b48cc9e15
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: configuration.cli.options[10]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.cli.options[10]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: acp
+  object_value: acp
+  note: 'default: false; Run as an ACP server over stdio.'
+  fact_id: fact::853dd5adb8207a1015795b3e
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: configuration.python_api.options[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.python_api.options[5]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: async_subagents
+  object_value: async_subagents
+  note: Remote LangGraph subagents exposed as background-job style tools.
+  fact_id: fact::b3b80abaf6d7e3b70176da0e
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: configuration.cli.options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.cli.options[2]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: auto_approve
+  object_value: auto_approve
+  note: 'default: false; Disable HITL pauses and approve tool calls automatically.'
+  fact_id: fact::340c1c48b937e9962f884bdf
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: configuration.python_api.options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.python_api.options[3]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: backend
+  object_value: backend
+  note: Backend instance or backend factory used for file and execute tools.
+  fact_id: fact::83a201711e07a99d001b0ecb
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: configuration.python_api.options[9]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.python_api.options[9]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: checkpointer
+  object_value: checkpointer
+  note: LangGraph checkpointer used for persisted thread state.
+  fact_id: fact::13ff9c6adaee4d4394fab7f9
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: configuration.python_api.options[8]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.python_api.options[8]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: interrupt_on
+  object_value: interrupt_on
+  note: Tool-specific HITL pause configuration.
+  fact_id: fact::a574f587894b5865048488fb
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: configuration.cli.options[9]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.cli.options[9]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: json
+  object_value: json
+  note: 'default: false; Emit machine-readable JSON for supported commands.'
+  fact_id: fact::a7d5c4da2821e8a800e5996c
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: configuration.cli.options[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.cli.options[6]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: mcp_config
+  object_value: mcp_config
+  note: Merge MCP tools from an explicit config file.
+  fact_id: fact::42599f2ea5abf3cdab66a46c
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: configuration.python_api.options[7]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.python_api.options[7]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: memory
+  object_value: memory
+  note: AGENTS.md memory file paths loaded into the system prompt.
+  fact_id: fact::20577f570808d98044f48c31
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: configuration.python_api.options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.python_api.options[0]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: model
+  object_value: model
+  note: Model spec or chat model instance passed to create_deep_agent.
+  fact_id: fact::e609f06165cc3396d5eb838e
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: configuration.cli.options[7]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.cli.options[7]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: no_mcp
+  object_value: no_mcp
+  note: 'default: false; Disable MCP tool loading.'
+  fact_id: fact::733957895b34a9efcdd430bc
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: configuration.cli.options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.cli.options[1]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: non_interactive
+  object_value: non_interactive
+  note: Run a single prompt and exit instead of opening the TUI.
+  fact_id: fact::d954ece576fd77c4af37ff05
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: configuration.cli.options[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.cli.options[0]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: resume
+  object_value: resume
+  note: Resume the latest or a specific thread.
+  fact_id: fact::cfaddb2246154a4ffed065be
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: configuration.cli.options[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.cli.options[3]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: sandbox
+  object_value: sandbox
+  note: Use a remote sandbox provider instead of the local shell backend.
+  fact_id: fact::9ea81c6c10024e101a8f1f20
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: configuration.cli.options[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.cli.options[4]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: sandbox_id
+  object_value: sandbox_id
+  note: Reuse an existing sandbox instead of creating a fresh one.
+  fact_id: fact::47ac3b847030ff89519987f8
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: configuration.cli.options[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.cli.options[5]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: sandbox_setup
+  object_value: sandbox_setup
+  note: Run a setup script after sandbox creation.
+  fact_id: fact::a68440386fcbbabd1e7c4bf3
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: configuration.python_api.options[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.python_api.options[6]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: skills
+  object_value: skills
+  note: Skill source paths loaded through SkillsMiddleware.
+  fact_id: fact::be3707287544f4f18ee68148
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: configuration.python_api.options[10]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.python_api.options[10]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: store
+  object_value: store
+  note: Persistent LangGraph store needed by some backends.
+  fact_id: fact::7ff31496c0a644db006ebc5d
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: configuration.python_api.options[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.python_api.options[4]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: subagents
+  object_value: subagents
+  note: Static subagent specs for the `task` tool.
+  fact_id: fact::547ec9947c7d145990dd7c89
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: configuration.python_api.options[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.python_api.options[2]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: system_prompt
+  object_value: system_prompt
+  note: Custom instructions prepended to the base deep-agent prompt.
+  fact_id: fact::a8ad9c12a07a5db46bf2a6ee
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: configuration.python_api.options[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.python_api.options[1]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: tools
+  object_value: tools
+  note: Additional tools appended to the built-in planning, filesystem, and task surfaces.
+  fact_id: fact::da306a9777d2e35f361cda63
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: configuration.cli.options[8]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.cli.options[8]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: trust_project_mcp
+  object_value: trust_project_mcp
+  note: 'default: false; Skip approval for project-level MCP configs.'
+  fact_id: fact::0b8ccbc95330d535ab6c29a5
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: api_surface.public_functions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[1]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: create_cli_agent
+  object_value: create_cli_agent
+  note: Create a CLI-flavored deep agent with filesystem, sandbox, memory, skills,
+    and approval defaults.; create_cli_agent(model, assistant_id, *, tools=None, sandbox=None,
+    sandbox_type=None, system_prompt=None, interactive=True, auto_approve=False, enable_memory=True,
+    enable_skills=...
+  fact_id: fact::2ae2a00a0ee496691a832f5c
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: api_surface.public_functions[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[0]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: create_deep_agent
+  object_value: create_deep_agent
+  note: 'Build and return the default compiled deep-agent graph.; create_deep_agent(model:
+    str | BaseChatModel | None = None, tools: Sequence[...] | None = None, *, system_prompt:
+    str | SystemMessage | None = None, middleware: Sequence[AgentMiddleware] = (),
+    subagents: Sequence[SubAgen...'
+  fact_id: fact::2a360eb0da935575b3eb9ae4
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.73
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: api_surface.public_functions[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_surface.public_functions[2]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: load_async_subagents
+  object_value: load_async_subagents
+  note: 'Load remote async subagent definitions from `~/.deepagents/config.toml`.;
+    load_async_subagents(config_path: Path | None = None) -> list[AsyncSubAgent];
+    libs/cli/deepagents_cli/agent.py'
+  fact_id: fact::37206719a15007b68856f12f
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: implementation_patterns[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: libs/deepagents/deepagents/middleware/summarization.py
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: Summarization middleware trims old context and stores evicted history
+      as markdown under `/conversation_history/{thread_id}.md`.
+  object_value: Conversation offload and compaction
+  note: 'description: Summarization middleware trims old context and stores evicted
+    history as markdown under `/conversation_history/{thread_id}.md`.; location: libs/deepagents/deepagents/middleware/summarization.py'
+  fact_id: fact::b6fddba7e48203c215920698
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: implementation_patterns[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: libs/cli/deepagents_cli/agent.py
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: The CLI chooses LocalShellBackend for local mode or keeps a sandbox backend
+      open for the lifetime of the server process in remote mode.
+  object_value: Local versus sandbox execution split
+  note: 'description: The CLI chooses LocalShellBackend for local mode or keeps a
+    sandbox backend open for the lifetime of the server process in remote mode.; location:
+    libs/cli/deepagents_cli/agent.py'
+  fact_id: fact::4cb6602c84ea76b9fd977acc
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: implementation_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: libs/deepagents/deepagents/graph.py
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: The core factory builds a standard middleware stack around LangChain's
+      create_agent, then appends optional memory, skills, async subagents, and HITL
+      layers.
+  object_value: Middleware-first graph assembly
+  note: 'description: The core factory builds a standard middleware stack around LangChain''s
+    create_agent, then appends optional memory, skills, async subagents, and HITL
+    layers.; location: libs/deepagents/deepagents/graph.py'
+  fact_id: fact::7aef4ab893d6110b69268925
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: implementation_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: libs/deepagents/deepagents/backends/protocol.py
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: Filesystem and execution tools target BackendProtocol or SandboxBackendProtocol
+      so local shell, sandbox, state, and composite backends can be swapped without
+      changing middleware.
+  object_value: Pluggable backend protocol
+  note: 'description: Filesystem and execution tools target BackendProtocol or SandboxBackendProtocol
+    so local shell, sandbox, state, and composite backends can be swapped without
+    changing middleware.; location: libs/deepagents/deepagents/backends/protocol.py'
+  fact_id: fact::687723d19d621bfaad846511
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: implementation_patterns[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: libs/deepagents/deepagents/backends/composite.py
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: CompositeBackend remaps path prefixes so one logical agent filesystem
+      can combine default storage with special routes such as `/conversation_history/`.
+  object_value: Route-based storage composition
+  note: 'description: CompositeBackend remaps path prefixes so one logical agent filesystem
+    can combine default storage with special routes such as `/conversation_history/`.;
+    location: libs/deepagents/deepagents/backends/composite.py'
+  fact_id: fact::5c0eb815fe98cf1c2a347842
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: implementation_patterns[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: libs/cli/deepagents_cli/server_graph.py
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: The langgraph dev server imports a module-level graph assembled from
+      serialized server configuration and optional MCP plus sandbox setup.
+  object_value: Server graph boot from env
+  note: 'description: The langgraph dev server imports a module-level graph assembled
+    from serialized server configuration and optional MCP plus sandbox setup.; location:
+    libs/cli/deepagents_cli/server_graph.py'
+  fact_id: fact::3e8258059d1f20057126fb61
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: implementation_patterns[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: libs/deepagents/deepagents/middleware/subagents.py
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: SubAgentMiddleware exposes a `task` tool for isolated one-shot subagent
+      runs and ships detailed prompt guidance inside the middleware.
+  object_value: Task-tool delegation
+  note: 'description: SubAgentMiddleware exposes a `task` tool for isolated one-shot
+    subagent runs and ships detailed prompt guidance inside the middleware.; location:
+    libs/deepagents/deepagents/middleware/subagents.py'
+  fact_id: fact::05a5f9d03c7d8abd63e53471
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: commands[9]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[9]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: deepagents --acp
+  object_value: deepagents --acp
+  note: Run the CLI as an ACP server over stdio.
+  fact_id: fact::3e621a1d0e28d37eefd51134
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: commands[8]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[8]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: deepagents --mcp-config PATH
+  object_value: deepagents --mcp-config PATH
+  note: Load MCP tools from a config file.
+  fact_id: fact::b8d15d1d9d019bd43aa1a7d3
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: commands[7]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[7]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: deepagents --sandbox TYPE
+  object_value: deepagents --sandbox TYPE
+  note: Run with a remote sandbox provider.
+  fact_id: fact::4e1f46bb35e4954eab55364a
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: commands[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[2]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: deepagents reset --agent AGENT
+  object_value: deepagents reset --agent AGENT
+  note: Reset an agent prompt.
+  fact_id: fact::c2e6b711f5365bd07cce289d
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: commands[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[3]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: deepagents skills <list|create|info|delete>
+  object_value: deepagents skills <list|create|info|delete>
+  note: Manage agent skills.
+  fact_id: fact::234eb11eda1f6ef1669e4cc2
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: commands[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[4]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: deepagents threads <list|delete>
+  object_value: deepagents threads <list|delete>
+  note: Manage saved conversation threads.
+  fact_id: fact::75af66dfc5dd9bc40b45b5a4
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: commands[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[0]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: deepagents
+  object_value: deepagents
+  note: Start an interactive thread in the CLI.
+  fact_id: fact::f4733f5778587b04029b8d8a
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: commands[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[6]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: deepagents -n <message>
+  object_value: deepagents -n <message>
+  note: Run a single non-interactive task and exit.
+  fact_id: fact::e939def2e3d7e5cbb596cd5b
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: commands[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[5]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: deepagents -r [ID]
+  object_value: deepagents -r [ID]
+  note: Resume the most recent or a specific thread.
+  fact_id: fact::5a5d35eb1e3e20ddf98de883
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    source_section: commands[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[1]
+    source_file: repos/knowledge/deep/langchain-ai__deepagents.yaml
+    excerpt: deepagents list
+  object_value: deepagents list
+  note: List available agents.
+  fact_id: fact::6c14840486afb3d9f4b6e135

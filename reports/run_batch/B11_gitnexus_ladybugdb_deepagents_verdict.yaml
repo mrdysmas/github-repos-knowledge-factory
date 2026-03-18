@@ -1,0 +1,146 @@
+batch_id: B11_gitnexus_ladybugdb_deepagents
+result: ok
+halted_at: null
+ws6_gate_bools: &id001
+  deep_facts_parseable: true
+  deep_fact_identity_coverage_100pct: true
+  facts_with_evidence_100pct: true
+  confidence_bounds_valid: true
+  unmapped_deep_predicates_zero: true
+  duplicate_fact_ids_zero: true
+  execution_results_pending_zero: true
+  ws6_hash_stable: true
+ws7_gate_summary: &id002
+  snapshot_consistency: pass
+  row_count_parity: pass
+  orphan_edge_detection: pass
+  query_parity: pass
+  deterministic_rebuild: pass
+exit_code: 0
+step_logs:
+- step: ws5
+  command: python3 tools/ws5_remote_ingestion.py --workspace-root /Users/szilaa/scripts/ext_sources/github_repos
+    --input inputs/ws5/B11_gitnexus_ladybugdb_deepagents_manifest.yaml
+  exit_code: 0
+  stdout_tail: 'WS5_REMOTE_INGESTION_SUMMARY
+
+    workspace_root: /Users/szilaa/scripts/ext_sources/github_repos
+
+    input_manifest: /Users/szilaa/scripts/ext_sources/github_repos/inputs/ws5/B11_gitnexus_ladybugdb_deepagents_manifest.yaml
+
+    reports_dir: /Users/szilaa/scripts/ext_sources/github_repos/reports/ws5_remote_ingestion
+
+    generated_at_utc: 2026-03-18T00:00:00Z
+
+    entries_total: 3
+
+    entries_valid: 3
+
+    entries_invalid: 0
+
+    files_added: 0
+
+    files_updated: 0
+
+    files_unchanged: 3
+
+    gate_ready: true
+
+    '
+  stderr_tail: ''
+- step: ws4
+  command: python3 tools/ws4_master_compiler.py --workspace-root /Users/szilaa/scripts/ext_sources/github_repos
+  exit_code: 0
+  stdout_tail: 'WS4_MASTER_BUILD_SUMMARY
+
+    workspace_root: /Users/szilaa/scripts/ext_sources/github_repos
+
+    master_index: /Users/szilaa/scripts/ext_sources/github_repos/master_index.yaml
+
+    master_graph: /Users/szilaa/scripts/ext_sources/github_repos/master_graph.yaml
+
+    reports_dir: /Users/szilaa/scripts/ext_sources/github_repos/reports/ws4_master_build
+
+    generated_at_utc: 2026-03-18T00:00:00Z
+
+    gate_ready: true
+
+    unmapped_relation_types: 0
+
+    unknown_repo_node_refs_dst_kind_repo: 0
+
+    stale_records: 0
+
+    compile_errors: 0
+
+    '
+  stderr_tail: ''
+- step: ws6_clone_prep
+  command: python3 tools/ws6_clone_prep.py --workspace-root /Users/szilaa/scripts/ext_sources/github_repos
+    --manifest inputs/ws5/B11_gitnexus_ladybugdb_deepagents_manifest.yaml --clone-workdir
+    /Users/szilaa/scripts/ext_sources/github_repos/workspace/clones --size-limit-mb
+    500 --batch-id B11_gitnexus_ladybugdb_deepagents
+  exit_code: 0
+  stdout_tail: "  SKIP abhigyanpatwari/GitNexus: already cloned at /Users/szilaa/scripts/ext_sources/github_repos/workspace/clones/abhigyanpatwari__GitNexus\n\
+    \  SKIP LadybugDB/ladybug: already cloned at /Users/szilaa/scripts/ext_sources/github_repos/workspace/clones/LadybugDB__ladybug\n\
+    \  SKIP langchain-ai/deepagents: already cloned at /Users/szilaa/scripts/ext_sources/github_repos/workspace/clones/langchain-ai__deepagents\n\
+    \nWS6_CLONE_PREP_SUMMARY\n  batch_id: B11_gitnexus_ladybugdb_deepagents\n  manifest:\
+    \ /Users/szilaa/scripts/ext_sources/github_repos/inputs/ws5/B11_gitnexus_ladybugdb_deepagents_manifest.yaml\n\
+    \  clone_workdir: /Users/szilaa/scripts/ext_sources/github_repos/workspace/clones\n\
+    \  repos_total: 3\n  repos_cloned: 0\n  repos_skipped: 3\n  repos_failed: 0\n\
+    \  size_limit_mb: 500\n  report: /Users/szilaa/scripts/ext_sources/github_repos/reports/ws6_clone_prep/B11_gitnexus_ladybugdb_deepagents_clones.yaml\n\
+    \  gate_ready: true\n"
+  stderr_tail: ''
+- step: ws6
+  command: python3 tools/ws6_deep_integrator.py --workspace-root /Users/szilaa/scripts/ext_sources/github_repos
+    --run-validation-suite
+  exit_code: 0
+  stdout_tail: 'WS6_DEEP_INTEGRATION_SUMMARY
+
+    workspace_root: /Users/szilaa/scripts/ext_sources/github_repos
+
+    reports_dir: /Users/szilaa/scripts/ext_sources/github_repos/reports/ws6_deep_integration
+
+    contract_version: 1.0.0-ws6-draft
+
+    deep_narrative_files: 120
+
+    deep_fact_draft_files: 0
+
+    repos_materialized: 120
+
+    facts_materialized: 5538
+
+    unmapped_sections_count: 21
+
+    blocking_mismatches: 0
+
+    writes_changed: 10
+
+    validation_mode: full_validation_run
+
+    validation_steps_executed: 6
+
+    validation_steps_failed: 0
+
+    ws6_gate_ready: true
+
+    gate_ready: true
+
+    '
+  stderr_tail: ''
+- step: ws6_gate
+  gate_bools: *id001
+  false_gates: []
+- step: ws7
+  command: python3 tools/ws7_read_model_compiler.py --workspace-root /Users/szilaa/scripts/ext_sources/github_repos
+    --force
+  exit_code: 0
+  stdout_tail: "NOTE: --force is compatibility-only (no-op). Snapshot timestamp divergence\
+    \ is warning-only.\ncompile: ok\n  schema_version: 1.1.0\n  repos: 122\n  nodes:\
+    \ 136\n  edges: 152\n  facts: 5538\n  duration_ms: 3887\n  output: knowledge.db\n"
+  stderr_tail: ''
+- step: ws7_gate
+  gate_summary: *id002
+  fail_gates: []
+  warn_gates: []

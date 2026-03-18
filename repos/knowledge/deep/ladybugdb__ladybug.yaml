@@ -1,0 +1,255 @@
+name: ladybug
+node_id: "repo::ladybugdb/ladybug"
+github_full_name: ladybugdb/ladybug
+html_url: "https://github.com/LadybugDB/ladybug"
+source: remote_metadata
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+  as_of: "2026-03-18"
+  sourcing_method: code_verified
+  extraction_agent: codex
+directory: "remote::ladybugdb/ladybug"
+category: vector_database
+summary: |
+  Embedded graph database runtime with a property-graph and Cypher surface, organized as
+  a C++ engine with parser, binder, planner, processor, storage, transaction, shell, and
+  C API layers in one source tree.
+
+architecture:
+  components:
+    - name: Embedded runtime
+      description: "A Database object owns storage, memory, query processing, catalog, transactions, and extension managers inside the host process."
+    - name: Query compilation pipeline
+      description: "Cypher text flows through parser, binder, planner, optimizer, and processor stages before execution."
+    - name: Storage engine
+      description: "Columnar on-disk tables, adjacency indexes, buffer management, checkpointing, and WAL-backed recovery are implemented inside src/storage."
+    - name: Transaction layer
+      description: "TransactionManager mediates read-only and write transactions and coordinates checkpointing."
+    - name: Shell and C API
+      description: "An embedded REPL and a C FFI wrap the core Database and Connection classes for interactive or external integration."
+  module_breakdown:
+    - module: src/main/
+      responsibility: "Database lifecycle, connection entrypoints, client context, prepared statements, and runtime configuration."
+      key_files:
+        - src/main/database.cpp
+        - src/main/connection.cpp
+        - src/main/db_config.cpp
+        - src/main/settings.cpp
+    - module: src/parser/, src/binder/, src/planner/, src/optimizer/, src/processor/
+      responsibility: "Cypher parsing, semantic binding, logical planning, plan optimization, and physical execution."
+      key_files:
+        - src/antlr4/Cypher.g4
+        - src/parser/parser.cpp
+        - src/binder/binder.cpp
+        - src/planner/planner.cpp
+        - src/optimizer/optimizer.cpp
+    - module: src/storage/
+      responsibility: "Persistent storage, buffer manager, WAL, checkpointing, table layouts, and compression."
+      key_files:
+        - src/storage/storage_manager.cpp
+        - src/storage/wal/wal.cpp
+        - src/storage/checkpointer.cpp
+        - src/storage/table/node_table.cpp
+    - module: src/transaction/
+      responsibility: "Transaction begin, commit, rollback, serialization, and checkpoint coordination."
+      key_files:
+        - src/transaction/transaction_manager.cpp
+        - src/transaction/transaction.cpp
+    - module: src/c_api/ and tools/shell/
+      responsibility: "C bindings plus the interactive shell and its printer/completion stack."
+      key_files:
+        - src/c_api/database.cpp
+        - src/c_api/connection.cpp
+        - tools/shell/shell_runner.cpp
+        - tools/shell/embedded_shell.cpp
+    - module: src/extension/
+      responsibility: "Load, install, register, and replay extensions."
+      key_files:
+        - src/extension/extension_manager.cpp
+        - src/extension/extension_installer.cpp
+  key_abstractions:
+    - name: SystemConfig
+      purpose: "Open-time configuration for buffer sizing, threading, compression, read-only mode, and checkpoint/WAL behavior."
+    - name: Database
+      purpose: "Primary embedded engine object that initializes storage, query processing, transactions, and extensions."
+    - name: Connection
+      purpose: "Thread-safe execution interface for query, prepare, execute, interrupt, and timeout operations."
+    - name: TransactionManager
+      purpose: "Serializes writes, tracks active transactions, and triggers checkpoints."
+    - name: WAL
+      purpose: "Append-only write-ahead log used for committed changes and checkpoint markers."
+  data_flow: |
+    A host process constructs `Database(databasePath, systemConfig)`, which expands the path,
+    validates read-only constraints, creates the buffer manager, storage manager, transaction
+    manager, query processor, catalog, and extension manager, then recovers from storage when the
+    database is persistent. A `Connection` wraps a `ClientContext`; `Connection::query` delegates
+    to that context, which drives parse, bind, plan, optimize, and execute phases. Write
+    transactions are serialized through `TransactionManager`, and committed local WAL fragments are
+    flushed into the shared WAL before checkpointing decisions are made.
+
+core_modules:
+  modules:
+    - name: main
+      path: src/main/
+      purpose: "Engine entrypoints, config objects, and connection-level execution APIs."
+    - name: parser
+      path: src/parser/ and src/antlr4/
+      purpose: "Cypher grammar and parse-tree transformation."
+    - name: binder
+      path: src/binder/
+      purpose: "Semantic binding and statement rewriting."
+    - name: planner
+      path: src/planner/
+      purpose: "Logical and physical planning."
+    - name: optimizer
+      path: src/optimizer/
+      purpose: "Rule-based plan rewrites and join/order optimizations."
+    - name: storage
+      path: src/storage/
+      purpose: "Persistent tables, WAL, checkpointing, buffer management, and compression."
+    - name: transaction
+      path: src/transaction/
+      purpose: "Read and write transaction orchestration."
+    - name: c_api
+      path: src/c_api/
+      purpose: "C-facing initialization, query, prepare, execute, and config wrappers."
+    - name: shell
+      path: tools/shell/
+      purpose: "Interactive CLI with history, printing modes, and shell-only commands."
+    - name: extension
+      path: src/extension/
+      purpose: "Loadable extension lifecycle and extension-backed storage hooks."
+
+api_surface:
+  public_functions:
+    - name: Database::Database
+      purpose: "Open a persistent or in-memory database with SystemConfig."
+      signature: "explicit Database(std::string_view databasePath, SystemConfig systemConfig = SystemConfig())"
+      location: "src/include/main/database.h"
+    - name: Connection::query
+      purpose: "Execute a query string and return a QueryResult."
+      signature: "std::unique_ptr<QueryResult> query(std::string_view query)"
+      location: "src/include/main/connection.h"
+    - name: Connection::prepare
+      purpose: "Prepare a query for parameterized execution."
+      signature: "std::unique_ptr<PreparedStatement> prepare(std::string_view query)"
+      location: "src/include/main/connection.h"
+    - name: Connection::executeWithParams
+      purpose: "Execute a prepared statement with bound parameters."
+      signature: "std::unique_ptr<QueryResult> executeWithParams(PreparedStatement* preparedStatement, std::unordered_map<std::string, std::unique_ptr<common::Value>> inputParams)"
+      location: "src/include/main/connection.h"
+    - name: Connection::queryAsArrow
+      purpose: "Run a query and stream results as Arrow chunks."
+      signature: "std::unique_ptr<QueryResult> queryAsArrow(std::string_view query, int64_t chunkSize)"
+      location: "src/include/main/connection.h"
+    - name: lbug_database_init
+      purpose: "Initialize the C API database handle from lbug_system_config."
+      signature: "lbug_state lbug_database_init(const char* database_path, lbug_system_config config, lbug_database* out_database)"
+      location: "src/c_api/database.cpp"
+    - name: lbug_connection_query
+      purpose: "Execute a C API query through a connection wrapper."
+      signature: "lbug_state lbug_connection_query(lbug_connection* connection, const char* query, lbug_query_result* out_query_result)"
+      location: "src/c_api/connection.cpp"
+
+configuration:
+  system_config:
+    options:
+      - key: bufferPoolSize
+        description: "Maximum buffer-pool size in bytes; defaults to a fraction of physical memory when unset."
+      - key: maxNumThreads
+        description: "Maximum query-execution threads, with zero meaning hardware-concurrency default."
+      - key: enableCompression
+        default: "true"
+        description: "Enable on-disk compression for supported types."
+      - key: readOnly
+        default: "false"
+        description: "Open the database without allowing writes."
+      - key: maxDBSize
+        description: "Upper bound for database virtual address space."
+      - key: autoCheckpoint
+        default: "true"
+        description: "Checkpoint automatically when WAL size crosses the threshold."
+      - key: checkpointThreshold
+        default: "16777216"
+        description: "WAL size threshold in bytes for auto-checkpointing."
+      - key: forceCheckpointOnClose
+        default: "true"
+        description: "Force a checkpoint when closing a writable database."
+      - key: enableChecksums
+        default: "true"
+        description: "Write and verify WAL checksums."
+  session_settings:
+    options:
+      - key: threads
+        description: "Per-connection execution thread count."
+      - key: timeout
+        description: "Per-connection timeout in milliseconds."
+      - key: warning_limit
+        description: "Maximum warning count retained by the client context."
+      - key: progress_bar
+        description: "Toggle progress display for long-running work."
+      - key: enable_mvcc
+        description: "Toggle multi-write behavior; code comments note it is currently a temporary testing-oriented switch."
+      - key: spill_to_disk
+        description: "Enable or disable spill files for memory pressure handling."
+      - key: enable_optimizer
+        description: "Toggle logical plan optimization."
+      - key: enable_internal_catalog
+        description: "Expose or hide internal catalog metadata."
+
+implementation_patterns:
+  - pattern: "Single-writer transaction gate"
+    description: "Write transactions are serialized unless multi-write mode is explicitly enabled."
+    location: "src/transaction/transaction_manager.cpp"
+  - pattern: "Append-only WAL with checkpoint records"
+    description: "Committed local WAL fragments are appended to a shared WAL file, which is flushed and synced before checkpoint decisions."
+    location: "src/storage/wal/wal.cpp"
+  - pattern: "Read-only path enforcement"
+    description: "Database initialization rejects in-memory and nonexistent paths when read-only mode is requested."
+    location: "src/main/database.cpp"
+  - pattern: "Auto-sized buffer pool"
+    description: "SystemConfig derives buffer pool size from physical memory when the caller leaves it unset."
+    location: "src/main/database.cpp"
+  - pattern: "Extension-mediated capabilities"
+    description: "Storage, planner, mapper, binder, and transformer extensions are registered on the Database object and auto-loaded where supported."
+    location: "src/main/database.cpp"
+
+key_features:
+  - feature: "Embedded deployment model"
+    description: "The core API is a Database plus Connection pair designed to run in-process without a separate server."
+  - feature: "Cypher graph query pipeline"
+    description: "The source tree includes grammar, binder, planner, optimizer, and processor layers for Cypher execution."
+  - feature: "Checkpointed WAL durability path"
+    description: "Write transactions log begin/commit activity and feed checkpoint decisions through the transaction manager."
+  - feature: "Interactive shell"
+    description: "The shell supports history, output-mode selection, startup scripts, schema printing, and shell-only commands like `:help` and `:schema`."
+  - feature: "C embedding surface"
+    description: "The C API wraps database init, default config generation, connection query, prepare, execute, interrupt, and timeout operations."
+  - feature: "Extension support"
+    description: "Extension manager code covers installation, loading, replay, and extension-specific storage handling."
+
+key_files:
+  - path: src/include/main/database.h
+    purpose: "Public C++ Database and SystemConfig API."
+  - path: src/include/main/connection.h
+    purpose: "Public C++ Connection API."
+  - path: src/main/database.cpp
+    purpose: "Database initialization, storage-manager wiring, recovery, and extension setup."
+  - path: src/main/settings.cpp
+    purpose: "Runtime setting names and setters for client and DB config."
+  - path: src/transaction/transaction_manager.cpp
+    purpose: "Transaction begin, commit, rollback, and checkpoint orchestration."
+  - path: src/storage/wal/wal.cpp
+    purpose: "WAL append, sync, header, and reset logic."
+  - path: src/c_api/database.cpp
+    purpose: "C API database initialization and default config bridging."
+  - path: src/c_api/connection.cpp
+    purpose: "C API query, prepare, execute, interrupt, and timeout operations."
+  - path: tools/shell/shell_runner.cpp
+    purpose: "CLI argument parsing and shell bootstrap."
+  - path: tools/shell/embedded_shell.cpp
+    purpose: "REPL behavior, completion, shell commands, and output formatting."
+  - path: src/antlr4/Cypher.g4
+    purpose: "Cypher grammar entrypoint."
+
