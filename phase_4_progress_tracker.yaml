@@ -329,15 +329,23 @@ batches:
         skip_reason: documentation_list
     notes:
       - "No deep files generated. These repos have no implementation architecture to extract."
-  b9_toolneuron_deferred:
-    status: "DEFERRED"
+  b9_toolneuron_permanent_skip:
+    status: "SKIP_PERMANENT"
     repo:
       github_full_name: siddhesh2377/ToolNeuron
       clone_size_kb: 747187
-      defer_reason: "Clone size 730 MB exceeds 500 MB limit. Repo is an Android app with bundled model weights — unexpectedly large for its declared scope. Requires supervisor decision before proceeding."
+      skip_reason: "Android app with bundled model weights. 730 MB clone size is outside the scope and size policy of this knowledge base. No deep file will be generated."
     notes:
-      - "Discovered during B9_T3_deep clone prep."
-      - "Shallow file was refreshed by WS5 in the halted run and is current."
+      - "Previously deferred after B9_T3_deep clone prep halt."
+      - "Supervisor decision: permanent skip, not a future batch candidate."
+  b9_obsidian_permanent_skip:
+    status: "SKIP_PERMANENT"
+    repo:
+      github_full_name: obsidianmd/obsidian-releases
+      skip_reason: "Release changelog and binary distribution repo. No source code, no implementation architecture, no extractable facts. No deep file will be generated."
+    notes:
+      - "Previously listed in b9_t3_skips as release_tracking_only."
+      - "Supervisor decision: permanent skip, not a future batch candidate."
   b9_mariadb_deferred:
     status: "DEFERRED"
     objective: "MariaDB/server deep file — deferred pending dedicated batch with custom clone size limit."
