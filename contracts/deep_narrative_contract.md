@@ -1,12 +1,21 @@
 # Deep Narrative Generation Contract
 
-**Version:** 1.2
-**Created:** 2026-03-04
+**Version:** 2.0
+**Created:** 2026-03-18
 **Status:** Active — governs all deep narrative YAML production for WS6 extraction.
 
 This document defines the output contract for deep narrative YAML files. Any agent producing deep narratives must follow this contract. WS6 (`tools/ws6_deep_integrator.py`) consumes these files and extracts structured facts from them. If the narrative doesn't follow this contract, WS6 either skips the content (unmapped section) or fails (parse error).
 
-This is not a style guide. It's an interface specification between narrative generation and fact extraction.
+This is not a style guide. It is an interface specification between narrative generation and fact extraction. It also defines what the post-generation soft audit checks.
+
+### What changed from v1.2
+
+The Tier 1/2/3 section ranking is replaced entirely. That system ranked sections by extraction ease, which caused structural inventory (`has_component`, `has_config_option`) to dominate the corpus at the expense of operationally useful facts (`has_failure_mode`, `supports_task`, `uses_protocol`). v2.0 replaces tiers with two things:
+
+1. **Evidence families** — four named families that group sections by the kind of knowledge they produce. Every deep narrative is evaluated against families, not a tier ranking.
+2. **Archetype requirements** — three repo archetypes (`inference_serving`, `vector_database`, `tunneling`) each have required evidence families. A compliant file for those archetypes must cover those families. All other repos follow global defaults.
+
+The header fields, YAML quoting rules, section shapes, and sourcing requirements are unchanged from v1.2.
 
 ---
 
@@ -26,7 +35,7 @@ Deep narrative generation is an LLM task — it requires reading and understandi
 
 ## File Location and Naming
 
-Deep narratives live in `{shard}/knowledge/deep/`. The filename must use the `file_stem` from the repo's shallow file with a `.yaml` extension.
+Deep narratives live in `repos/knowledge/deep/`. The filename must use the `file_stem` from the repo's shallow file with a `.yaml` extension.
 
 ```
 repos/knowledge/deep/{file_stem}.yaml
@@ -38,7 +47,7 @@ The `file_stem` follows the pattern `owner__repo` with the GitHub `/` replaced b
 - `sharkdp/bat` → `sharkdp__bat.yaml`
 - `FlowiseAI/Flowise` → `flowiseai__flowise.yaml`
 
-Match the existing shallow file's stem exactly. Don't guess — read it from the shallow file at `{shard}/knowledge/repos/{file_stem}.yaml`.
+Match the existing shallow file's stem exactly. Don't guess — read it from the shallow file at `repos/knowledge/repos/{file_stem}.yaml`.
 
 ---
 
@@ -55,7 +64,7 @@ source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep/bore.yaml
-  as_of: "2026-03-04"
+  as_of: "2026-03-18"
   sourcing_method: code_verified        # or training_knowledge
   extraction_model: claude-opus-4-6    # optional
   extraction_agent: codex              # optional
@@ -70,13 +79,13 @@ These rules are non-negotiable. Violating them causes WS4 or WS1 gate failures.
 - `node_id` must match the shallow file character-for-character. Copy it, don't retype it.
 - `github_full_name` must match the shallow file character-for-character. Case matters (`FlowiseAI/Flowise` ≠ `flowiseai/flowise`).
 - `html_url` must match the shallow file character-for-character. Same casing rule.
-- `source` must match the shallow file's `source` field. For repos ingested via WS5, this is typically `remote_metadata`, not the shard name. Read it from the shallow file.
+- `source` must match the shallow file's `source` field. For repos ingested via WS5, this is typically `remote_metadata`. Read it from the shallow file.
 - `provenance.shard` is the canonical shard name (`repos`).
 - `provenance.source_file` is the path to this deep file relative to the repo root.
 - `provenance.as_of` is the current UTC date.
 - `provenance.sourcing_method` records whether the narrative was generated from verified code or training knowledge.
-- `provenance.extraction_model` is optional and records the model identifier used to generate this deep file (for example `claude-opus-4-6` or `claude-sonnet-4-6`). Omit if unknown.
-- `provenance.extraction_agent` is optional and records the agent or tool that invoked the model (for example `codex` or `manual`). Omit if unknown.
+- `provenance.extraction_model` is optional. Records the model identifier (e.g. `claude-opus-4-6`). Omit if unknown.
+- `provenance.extraction_agent` is optional. Records the invoking agent or tool (e.g. `codex`). Omit if unknown.
 - `directory` should match the shallow file's `directory` field.
 - `category` should match the shallow file's `category` field.
 
@@ -115,82 +124,298 @@ When in doubt, quote the value. Quoting a value that doesn't need it is harmless
 
 ---
 
-## Section Names
+## Evidence Families
 
-WS6 has an extractor for each recognized section name. Any top-level key in the deep narrative that isn't in the identity/ignored lists and isn't in the extractor map becomes an unmapped section in the mismatch report. Unmapped sections don't block the pipeline, but they produce no facts and add noise.
+Every recognized section belongs to one of four evidence families. The families define what kind of knowledge a deep narrative is expected to produce, and they are the unit used in archetype requirements and the soft audit.
+
+### Family 1 — Structure
+
+**What it covers:** What the repo is made of and how it is configured.
+
+**Predicates produced:** `has_component`, `has_config_option`
+
+**Sections:** `architecture`, `configuration`, `cli_arguments`, `environment` / `environment_variables`, `key_features`, `key_files`, `core_modules`, `tech_stack` / `technology_stack`, `ports`, `primary_language`, `languages`, `type`
+
+Structure is the easiest family to populate and is expected in every deep narrative. It should not crowd out the other families. Write it efficiently — a few well-chosen components and configuration options are more useful than an exhaustive inventory.
+
+---
+
+### Family 2 — Tasks
+
+**What it covers:** What the repo can be directed to do. Discrete operations, workflows, and CLI interactions.
+
+**Predicates produced:** `supports_task`
+
+**Sections:** `commands` / `cli_commands`, `common_tasks`, `procedures`, `quick_reference`
+
+Tasks are the primary interface between a repo and an agent that wants to use it. Every repo that has a CLI, a meaningful workflow, or documented operational patterns should have Tasks coverage. A debugging agent asking "what can this tool do?" is querying this family.
+
+`quick_reference` counts toward Tasks family coverage, but only when entries describe actionable operations — serving commands, workflow steps, common invocations. A `quick_reference` limited to lookup values ("Default port: 8080", "Config path: ~/.config/...") does not satisfy Tasks intent. When using `quick_reference` as the primary Tasks section, ensure it contains command-oriented entries with enough description to be agent-discoverable.
+
+---
+
+### Family 3 — Failures
+
+**What it covers:** What can go wrong, why, and how to recover.
+
+**Predicates produced:** `has_failure_mode`
+
+**Sections:** `troubleshooting`
+
+Failures are the highest-value family for planning and debugging use cases. They are also the most under-represented in the current corpus. A `troubleshooting` section with five concrete symptom/cause/fix entries produces five `has_failure_mode` facts that a debugging agent can directly surface. Treat this section as first-class, not optional.
+
+---
+
+### Family 4 — Protocols & Integrations
+
+**What it covers:** How the repo speaks to other systems — protocols it implements, APIs it exposes, extension points it defines, and external systems it integrates with.
+
+**Predicates produced:** `uses_protocol`, `exposes_api_endpoint`, `has_extension_point`
+
+**Sections:** `supported_protocols` / `vpn_protocols` / `api_protocols`, `api_surface`, `api_structure`, `integrations`, `extension_points`, `sdk_usage`, `cross_references`
+
+This family is mandatory for any repo whose primary function involves network communication, data exchange, or pluggable architecture. For network tools, this family is as important as Structure.
+
+---
+
+### Cross-cutting sections
+
+Some sections span families or produce `implements_pattern`, which doesn't map cleanly to a single family:
+
+- `code_patterns` / `implementation_patterns` → `implements_pattern`
+- `testing` → `implements_pattern` (test structure), `supports_task` (test commands)
+
+These sections are valuable and should be included when the repo has substantive content for them. They are not assigned to a family requirement but count toward overall predicate coverage.
+
+---
+
+## Archetype Requirements
+
+Three repo archetypes have required evidence families. A deep narrative for a repo in one of these archetypes is considered behaviorally thin if it is missing a required family. The soft audit flags thin files — it does not block ingestion.
+
+For archetypes not listed here, the global default applies: Family 1 (Structure) is expected; all other families are optional but encouraged.
+
+---
+
+### Archetype: `inference_serving`
+
+Categories: `inference_serving`
+
+| Family | Requirement |
+|---|---|
+| Structure | Required |
+| Tasks | Required |
+| Failures | Required |
+| Protocols & Integrations | Recommended |
+
+**Rationale:** Inference servers have discrete serving commands, known operational failure modes (memory pressure, CUDA errors, concurrency limits), and expose APIs. A file lacking Tasks or Failures for this archetype is missing its highest-value content. `inference_serving` is currently the only category with meaningful `has_failure_mode` coverage — use those files as positive examples.
+
+**Reference files:**
+- `repos/knowledge/deep/vllm.yaml` — strong Failures coverage via `troubleshooting:`
+- `repos/knowledge/deep/ollama.yaml` — good Tasks coverage
+
+---
+
+### Archetype: `vector_database`
+
+Categories: `vector_database`, `vector_databases`
+
+> **Note:** Both category strings are active in the corpus. `vector_databases` (plural) is a legacy inconsistency affecting at least `milvus-io/milvus`. Both are treated identically by the soft audit.
+
+| Family | Requirement |
+|---|---|
+| Structure | Required |
+| Failures | Required |
+| Tasks | Recommended |
+| Protocols & Integrations | Recommended |
+
+**Rationale:** Databases have operationally significant failure modes — buffer pool sizing, WAL checkpoint pressure, transaction gate enforcement, read-only path behavior. These are the facts that distinguish a database entry in the knowledge base from a generic component inventory. Currently zero `vector_database` repos have `has_failure_mode` coverage. Every vector database file should include a `troubleshooting:` section grounded in the database's known operational constraints.
+
+**Reference files:**
+- `repos/knowledge/deep/ladybugdb__ladybug.yaml` — example of what to improve: good Structure, zero Failures
+- `repos/knowledge/deep/milvus.yaml` — has some failure coverage to learn from
+
+---
+
+### Archetype: `tunneling`
+
+Categories: `tunneling`, `vpn_mesh`, `network_infrastructure`
+
+| Family | Requirement |
+|---|---|
+| Structure | Required |
+| Protocols & Integrations | Required |
+| Failures | Recommended |
+| Tasks | Recommended |
+
+**Rationale:** Tunneling and network tools implement protocols by definition. Currently nine tunneling repos have zero `uses_protocol` facts — the worst coverage gap in the corpus by category. A tunneling deep file that doesn't name the protocols the tool speaks is not useful for cross-repo protocol discovery. Every network tool should have a `supported_protocols:` or `vpn_protocols:` section naming each protocol and the repo's role in it.
+
+**Audit enforcement note:** The Protocols & Integrations family includes sections like `extension_points` and `cross_references` that produce `has_extension_point`, not `uses_protocol`. For the tunneling archetype specifically, the soft audit must check for at least one `uses_protocol` fact — family presence alone is not sufficient. A tunneling repo that satisfies the family requirement through extension point entries only is still flagged as `behavioral_coverage: thin`.
+
+**Reference files:**
+- `repos/knowledge/deep/bore.yaml` — small, balanced, good reference shape
+- `repos/knowledge/deep/hiddify-app.yaml` — strong `supported_protocols:` coverage
+
+---
+
+## Behavioral Entry Standards
+
+Structural sections (Family 1) are relatively forgiving — a list of modules or config keys is useful even without much context. Behavioral sections (Families 2, 3, 4) are not. A weak behavioral entry produces a fact that no agent will usefully reach for. A strong one produces a fact that directly answers a planning or debugging query.
+
+These standards apply to all behavioral sections.
+
+### troubleshooting — Failures family
+
+Each entry must name a concrete failure mode, not a vague pain point.
+
+**Required fields:** `symptom`, `cause`, `fix`
+
+**Strong entry:**
+```yaml
+troubleshooting:
+  - symptom: KV cache memory exhausted under high concurrency
+    cause: "max_num_seqs exceeds available GPU memory for the KV cache allocation"
+    fix: "Reduce max_num_seqs, decrease max_model_len, or increase swap_space"
+```
+
+**Weak entry (do not write this):**
+```yaml
+troubleshooting:
+  - symptom: Memory issues
+    cause: Not enough memory
+    fix: Add more memory
+```
+
+The symptom should be the error condition an operator would actually observe. The cause should name the specific mechanism. The fix should be actionable — a flag, a config key, a specific mitigation.
+
+If a repo has a troubleshooting doc, read it. If it has known operational constraints documented in its README or issue tracker, those are valid sources. Don't invent failure modes that aren't documented — but don't leave `troubleshooting:` empty because the source code doesn't have a dedicated troubleshooting file. README warnings, known limitations sections, and operational notes all count.
+
+---
+
+### commands / common_tasks / procedures — Tasks family
+
+Each entry must name the task and its operational purpose, not just the command string.
+
+**Required fields:** `name`, `description`
+
+**Strong entry:**
+```yaml
+commands:
+  - name: "vllm serve"
+    description: "Launch an OpenAI-compatible inference server for a local or HuggingFace model"
+    usage: "vllm serve <model-name> --host 0.0.0.0 --port 8000"
+  - name: "borg create"
+    description: "Create a deduplicated, compressed backup archive from a source path"
+    usage: "borg create /path/to/repo::archive-name /source/path"
+```
+
+**Weak entry (do not write this):**
+```yaml
+commands:
+  - name: run
+    description: Runs the application
+```
+
+The description should tell an agent why it would invoke this command, not just confirm it exists. Think of it as answering: "if an agent is trying to accomplish X, would this entry help it find the right command?"
+
+---
+
+### supported_protocols / vpn_protocols / api_protocols — Protocols & Integrations family
+
+Each entry must name the protocol and the repo's role in it.
+
+**Required fields:** `name` (minimum); `role` or `context` strongly recommended
+
+**Strong entry:**
+```yaml
+supported_protocols:
+  - name: WireGuard
+    role: server-side peer management and key exchange
+  - name: "SOCKS5"
+    role: outbound proxy endpoint exposed to local clients
+  - name: "gRPC"
+    role: primary inter-service communication protocol
+```
+
+**Weak entry (do not write this):**
+```yaml
+supported_protocols:
+  - name: WireGuard
+  - name: HTTP
+```
+
+A bare protocol name without context is nearly useless for cross-repo discovery. "This repo uses HTTP" describes almost everything. "This repo exposes an HTTP/REST API for model inference with OpenAI-compatible endpoints" is a fact worth storing.
+
+---
+
+## Source Selection Strategy
+
+Behavioral sections require reading different sources than structural sections. Before writing any behavioral content, prioritize these sources in order:
+
+1. **README** — operational warnings, known limitations, quick-start commands
+2. **docs/** — troubleshooting guides, operational runbooks, deployment notes
+3. **CLI help text** (`--help` output or documented flags) — task and command coverage
+4. **Test files** — integration tests often reveal how the system is actually operated
+5. **Known limitations and documented issues** — README warnings, "known issues" sections, and operational notes checked into the repo often encode real failure modes. This means content committed to the repo itself, not live issue tracker browsing.
+6. **Config files and examples** — protocol names, integration endpoints, environment requirements
+7. **Source code** — for structural sections; less reliable for behavioral sections unless the code has inline documentation
+
+Do not default to reading source code first for behavioral sections. Source code is the right starting point for component inventory. For tasks, failures, and protocols, the documentation layer is more reliable and more directly useful.
+
+---
+
+## Section Reference
+
+All sections recognized by WS6. Any top-level key not in the identity/ignored lists and not in this reference becomes an unmapped section — it produces no facts and adds noise to the mismatch report.
 
 ### Identity Keys (skipped by WS6)
 
-These are read for identity matching, not extraction. They're required in the header but produce no facts:
+Required in the header but produce no facts:
 
 `name`, `node_id`, `github_full_name`, `html_url`, `source`, `provenance`
 
 ### Ignored Keys (skipped by WS6)
 
-These are allowed but not extracted. Use them for narrative context if needed:
+Allowed but not extracted:
 
 `sparse`, `directory`, `category`, `summary`, `description`, `notes`, `metadata`
 
-### Recognized Section Names (extracted by WS6)
+### Recognized Sections by Family
 
-These are the top-level YAML keys that WS6 knows how to extract facts from. Use only these names. The expected YAML shape for each section is documented below.
+**Structure family:**
+`architecture`, `configuration`, `cli_arguments`, `environment` / `environment_variables`, `key_features`, `key_files`, `core_modules`, `tech_stack` / `technology_stack`, `ports`, `type`, `primary_language`, `languages`
 
-**Tier 1 — high fact yield, use whenever the repo has the relevant content:**
+**Tasks family:**
+`commands` / `cli_commands`, `common_tasks`, `procedures`, `quick_reference`
 
-- `architecture`
-- `code_patterns`
-- `implementation_patterns`
-- `configuration`
-- `cli_arguments`
-- `api_surface`
-- `key_features`
-- `key_files`
-- `core_modules`
+**Failures family:**
+`troubleshooting`
 
-**Tier 2 — moderate fact yield:**
+**Protocols & Integrations family:**
+`supported_protocols` / `vpn_protocols` / `api_protocols`, `api_surface`, `api_structure`, `integrations`, `extension_points`, `sdk_usage`, `cross_references`
 
-- `environment` / `environment_variables`
-- `tech_stack` / `technology_stack`
-- `testing`
-- `extension_points`
-- `integrations`
-- `commands` / `cli_commands`
-- `common_tasks`
-- `procedures`
-- `quick_reference`
-- `sdk_usage`
+**Cross-cutting (implements_pattern):**
+`code_patterns` / `implementation_patterns`, `testing`
 
-**Tier 3 — lower fact yield, use when applicable:**
-
-- `cross_references`
-- `key_sections`
-- `content_coverage`
-- `supplementary_files`
-- `supported_protocols` / `vpn_protocols` / `api_protocols`
-- `troubleshooting`
-- `ports`
-- `related_repos`
-- `api_structure`
-- `type`
-- `primary_language`
-- `languages`
+**Remaining recognized sections:**
+`key_sections`, `content_coverage`, `supplementary_files`, `related_repos`
 
 ---
 
 ## Expected Shapes Per Section
 
-Each section has a specific YAML shape that WS6 knows how to parse. If the shape is wrong (e.g., a string where a list of dicts was expected), WS6 silently skips it — no crash, but no facts either.
+Each section has a specific YAML shape that WS6 knows how to parse. If the shape is wrong, WS6 silently skips it — no crash, but no facts either.
 
 ### architecture
 
-The richest section. Supports three sub-structures, any or all of which can be present.
+Supports three sub-structures, any or all of which can be present.
 
 ```yaml
 architecture:
   module_breakdown:
-    - module: src/client.rs              # module name or path
+    - module: src/client.rs
       responsibility: "Handles client connections"
-      key_files: [src/client.rs]         # list of strings
+      key_files: [src/client.rs]
     - module: src/server.rs
       responsibility: "Manages server state"
       key_files: [src/server.rs]
@@ -208,21 +433,20 @@ architecture:
       description: "Background job processing with Redis queue"
 
   data_flow: |
-    Optional free-text description of how data moves through the system.
-    This field is ignored by WS6 (no extractor) but useful for narrative context.
+    Optional free-text. Ignored by WS6 but useful for narrative context.
 ```
 
 Each entry in `module_breakdown` needs at least `module` or `key_files`. Each entry in `key_abstractions` needs `name`. Each entry in `components` needs `name`.
 
 ### code_patterns / implementation_patterns
 
-Both use the same extractor. List of pattern entries.
+Both use the same extractor.
 
 ```yaml
 code_patterns:
-  - pattern: Factory Pattern            # or name: or title:
+  - pattern: Factory Pattern
     description: "Creates provider instances based on config"
-    location: src/factory.py:45         # or file_reference:
+    location: src/factory.py:45
   - pattern: Observer Pattern
     description: "Event-driven plugin notification"
     location: src/events.py:120
@@ -232,56 +456,41 @@ Each entry needs at least `pattern` (or `name` or `title`).
 
 ### configuration
 
-Flexible shape — supports flat lists, nested groups, and dict-shaped options.
+Supports flat lists, nested groups, and dict-shaped options.
 
 ```yaml
-# Flat list (simplest)
+# Flat list
 configuration:
-  - key: max_connections              # or name:
+  - key: max_connections
     type: integer
     default: "100"
     description: "Maximum concurrent connections"
-  - key: log_level
-    default: "info"
-    description: "Logging verbosity"
 
-# Grouped (also works)
+# Grouped
 configuration:
   server:
     options:
       - key: bind_address
         default: "0.0.0.0"
         description: "Address to bind"
-  client:
-    options:
-      - key: timeout
-        default: "30"
-        description: "Connection timeout in seconds"
 ```
 
 Each option needs at least `key` (or `name`).
 
 ### cli_arguments
 
-List of CLI flags/arguments.
-
 ```yaml
 cli_arguments:
-  - flag: "--verbose"                  # or name:
+  - flag: "--verbose"
     description: "Enable verbose output"
     default: "false"
   - flag: "--output"
     description: "Output file path"
-  - flag: "--format"
-    description: "Output format"
-    default: "json"
 ```
 
 Each entry needs at least `flag` (or `name`).
 
 ### api_surface
-
-Supports `public_functions` and endpoint sub-keys.
 
 ```yaml
 api_surface:
@@ -290,42 +499,29 @@ api_surface:
       purpose: "Establish connection to server"
       signature: "pub async fn connect(addr: &str) -> Result<Self>"
       location: src/client.rs
-    - name: "Server.listen"
-      purpose: "Start listening for connections"
 
   endpoints:
     - path: /api/v1/users
       method: GET
       description: "List all users"
-    - path: /api/v1/users/:id
-      method: DELETE
-      description: "Delete a user"
 ```
 
-**Quality rule:** Only list genuinely public/exported symbols in `public_functions`. Do not include private/internal functions. This was a confirmed quality issue in the Phase 2B spot-check audit — misclassifying private symbols as public API was the primary hallucination pattern.
+**Quality rule:** Only list genuinely public/exported symbols in `public_functions`. Do not include private/internal functions.
 
 ### key_features
 
-Simple list. Can be plain strings or dicts.
-
 ```yaml
-# Plain strings (works)
 key_features:
   - "Syntax highlighting for 100+ languages"
   - "Git integration shows file modifications"
-  - "Automatic paging"
 
-# Dicts (also works)
+# Or as dicts:
 key_features:
   - feature: "Syntax highlighting"
     description: "Supports 100+ languages via syntect"
-  - feature: "Git integration"
-    description: "Shows file modifications in the gutter"
 ```
 
 ### key_files
-
-List of important files with purposes.
 
 ```yaml
 key_files:
@@ -339,22 +535,15 @@ Each entry needs at least `path` (or `name` or `file`).
 
 ### core_modules
 
-Dict or list describing major modules.
-
 ```yaml
 core_modules:
   modules:
     - name: parser
       path: src/parser/
       purpose: "Markdown parsing and AST generation"
-    - name: renderer
-      path: src/renderer/
-      purpose: "HTML output generation"
 ```
 
 ### environment / environment_variables
-
-Environment variables with descriptions.
 
 ```yaml
 environment:
@@ -365,22 +554,14 @@ environment:
     - key: LOG_LEVEL
       default: "info"
       description: "Logging verbosity"
-```
 
-Also works as a flat list:
-
-```yaml
+# Or flat list:
 environment_variables:
   - key: API_KEY
     description: "Authentication key"
-  - key: PORT
-    default: "8080"
-    description: "Server port"
 ```
 
 ### tech_stack / technology_stack
-
-List of technologies.
 
 ```yaml
 tech_stack:
@@ -388,13 +569,9 @@ tech_stack:
     role: "Primary language"
   - name: Tokio
     role: "Async runtime"
-  - name: Clap
-    role: "CLI argument parsing"
 ```
 
 ### testing
-
-Test infrastructure description.
 
 ```yaml
 testing:
@@ -403,17 +580,11 @@ testing:
     - name: "Integration tests"
       location: tests/integration/
       description: "End-to-end API tests"
-    - name: "Unit tests"
-      location: tests/unit/
-      description: "Per-module unit tests"
   key_files:
     - tests/conftest.py
-    - tests/integration/test_api.py
 ```
 
 ### extension_points
-
-List of extensibility hooks.
 
 ```yaml
 extension_points:
@@ -425,20 +596,16 @@ extension_points:
 
 ### commands / cli_commands / common_tasks / procedures
 
-All use the same extractor shape — list of task-like entries.
+All use the same extractor. See Behavioral Entry Standards above for quality guidance.
 
 ```yaml
 commands:
   - name: "borg create"
-    description: "Create a new backup archive"
-    usage: "borg create /path/to/repo::archive-name /path/to/source"
-  - name: "borg extract"
-    description: "Extract archive contents"
+    description: "Create a deduplicated backup archive from a source path"
+    usage: "borg create /path/to/repo::archive-name /source/path"
 ```
 
 ### quick_reference
-
-Quick lookup entries.
 
 ```yaml
 quick_reference:
@@ -448,9 +615,32 @@ quick_reference:
     value: "~/.config/app/config.toml"
 ```
 
+### troubleshooting
+
+See Behavioral Entry Standards above for quality guidance. The `symptom` / `cause` / `fix` shape is required.
+
+```yaml
+troubleshooting:
+  - symptom: OutOfMemoryError during model loading
+    cause: "Model too large for GPU memory given current gpu_memory_utilization setting"
+    fix: "Reduce gpu_memory_utilization, use quantization, or increase tensor_parallel_size"
+```
+
+### supported_protocols / vpn_protocols / api_protocols
+
+See Behavioral Entry Standards above for quality guidance.
+
+```yaml
+supported_protocols:
+  - name: WireGuard
+    role: "server-side peer management and key exchange"
+  - name: "SOCKS5"
+    role: "outbound proxy endpoint exposed to local clients"
+```
+
 ### Remaining Sections
 
-`cross_references`, `key_sections`, `content_coverage`, `supplementary_files`, `integrations`, `sdk_usage`, `supported_protocols`, `troubleshooting`, `ports`, `related_repos`, `type`, `primary_language`, `languages` — these all follow similar list-of-dicts or simple-value patterns. If unsure of the shape, look at the corresponding `extract_*` function in `tools/ws6_deep_integrator.py`.
+`cross_references`, `key_sections`, `content_coverage`, `supplementary_files`, `integrations`, `sdk_usage`, `ports`, `related_repos`, `api_structure`, `type`, `primary_language`, `languages` — follow similar list-of-dicts or simple-value patterns. If unsure of the shape, look at the corresponding `extract_*` function in `tools/ws6_deep_integrator.py`.
 
 ---
 
@@ -458,26 +648,26 @@ quick_reference:
 
 ### Ground everything in source code
 
-Every claim in a deep narrative must be verifiable against the repo's actual source code. Do not:
+Every claim in a deep narrative must be verifiable against the repo's actual source code or documentation. Do not:
 
 - Invent file paths that don't exist in the repo
 - Describe functions or methods that aren't in the source
-- Attribute behavior to the project that you haven't confirmed by reading the code
+- Attribute behavior to the project that you haven't confirmed
 
-If you're unsure whether something exists, leave it out. A shorter, accurate narrative produces fewer but trustworthy facts. A longer narrative with fabricated content produces facts that fail ground-truth audits.
+If you're unsure whether something exists, leave it out. A shorter, accurate narrative produces fewer but trustworthy facts.
 
 ### Don't pad small repos
 
-Some repos are genuinely small or simple. A <500 LOC CLI tool might produce a 50-line narrative. That's correct. Don't inflate the narrative with speculative content just to hit a line count. The pipeline handles zero or low fact counts gracefully — they're valid findings, not failures.
+Some repos are genuinely small or simple. A <500 LOC CLI tool might produce a 50-line narrative. That's correct. Don't inflate the narrative with speculative content just to satisfy family coverage — if a small tool has no meaningful failure modes documented, leave `troubleshooting:` out rather than invent entries.
 
 ### Size guidance
 
-- Large repos (wezterm, hugo, puppeteer): 150–300 lines
+- Large repos (wezterm, hugo, vllm): 150–300 lines
 - Medium repos (tmux, capistrano, borg): 100–200 lines
 - Small repos (bore, pgvector, annoy): 80–150 lines
 - Tiny repos (glm, 1loc): 30–80 lines
 
-These are guidelines, not targets. The narrative should be as long as the source code justifies and no longer.
+These are guidelines, not targets.
 
 ### Sourcing requirements
 
@@ -488,37 +678,75 @@ Deep file content must be grounded in actual source code. The standard method is
 Training knowledge may be used only when all of the following are true:
 
 1. No local clone is available (the repo is absent from the clone manifest or `cloned: false`)
-2. The repo is a well-known, widely-documented public library with stable APIs (examples: pydantic, qdrant, instructor, numpy)
+2. The repo is a well-known, widely-documented public library with stable APIs
 3. The batch supervisor has explicitly opted in by setting `sourcing_fallback: training_knowledge_permitted` in the batch spec
 
-When training knowledge is used, the deep file must declare this in its provenance block:
+When training knowledge is used:
 
 ```yaml
 provenance:
-  shard: repos
-  source_file: repos/knowledge/deep/<file_stem>.yaml
-  as_of: "<current UTC date>"
-  sourcing_method: code_verified        # or training_knowledge
-  extraction_model: claude-opus-4-6    # optional
-  extraction_agent: codex              # optional
+  sourcing_method: training_knowledge
 ```
 
-Code-verified files should declare:
+When code-verified:
 
 ```yaml
+provenance:
   sourcing_method: code_verified
 ```
 
-Files without a `sourcing_method` field are assumed to be unverified. Do not
-omit it in new files.
+Files without a `sourcing_method` field are assumed unverified. Do not omit it in new files.
+
+---
+
+## Soft Audit
+
+After WS6 extraction, a post-generation audit checks behavioral coverage for each repo. The audit does not block ingestion — it produces a coverage report.
+
+The audit is not yet implemented as a standalone tool. When it is built, it should check the following:
+
+### What the audit checks
+
+**For all repos:**
+- No unmapped sections (all top-level keys are recognized or identity/ignored)
+- All behavioral entries in `troubleshooting`, `commands`/`common_tasks`, and `supported_protocols` have at least the minimum required fields (`symptom`/`cause`/`fix`; `name`/`description`; `name` respectively)
+
+**For archetype-matched repos** (`inference_serving`, `vector_database`/`vector_databases`, `tunneling`/`vpn_mesh`/`network_infrastructure`):
+- Required families are present (at least one section from each required family produced at least one fact)
+- For the `tunneling`/`vpn_mesh`/`network_infrastructure` archetypes specifically: at least one `uses_protocol` fact must be present, not just any Protocols & Integrations family fact. Family presence via `has_extension_point` alone does not satisfy this check.
+- Flagged as `behavioral_coverage: thin` if a required family is absent or if the archetype-specific predicate check fails
+
+### What the audit does not check
+
+- Whether entries are accurate — that requires a ground-truth audit against source code
+- Whether fact count meets a minimum threshold — thin is flagged, not blocked
+- Repos in categories without archetype definitions — they are audited for unmapped sections only
+
+### Audit output shape
+
+The audit produces a per-repo coverage record. Proposed shape:
+
+```yaml
+- repo: ladybugdb/ladybug
+  archetype: vector_database
+  families_present: [structure]
+  families_missing: [failures, tasks]
+  behavioral_coverage: thin
+  flags:
+    - "required family 'failures' absent — no troubleshooting section"
+    - "recommended family 'tasks' absent — no commands or common_tasks section"
+```
 
 ---
 
 ## Reference Files
 
 - **Extractor source:** `tools/ws6_deep_integrator.py` (search for `extractor_map` near line 2513)
-- **Example small deep file:** `repos/knowledge/deep/bore.yaml` (~174 lines, Rust CLI)
-- **Example large deep file:** `repos/knowledge/deep/anything_llm.yaml` (Node.js monorepo)
+- **Strong Failures example:** `repos/knowledge/deep/vllm.yaml` — `troubleshooting:` with 5 concrete entries
+- **Strong Tasks example:** `repos/knowledge/deep/openai__codex.yaml` — `commands:` section
+- **Strong Protocols example:** `repos/knowledge/deep/hiddify-app.yaml` — `supported_protocols:`
+- **Balanced small file:** `repos/knowledge/deep/bore.yaml`
+- **Example of thin file to improve:** `repos/knowledge/deep/ladybugdb__ladybug.yaml`
 - **WS1 schema contracts:** `contracts/ws1/` (read-only — do not modify)
 - **Unmapped section debt:** `reports/ws6_deep_integration/mismatch_report.yaml`
 
@@ -528,6 +756,7 @@ omit it in new files.
 
 | Version | Date | Change |
 |---------|------|--------|
-| 1.0 | 2026-03-04 | Initial contract. Covers header matching, YAML quoting, recognized sections, expected shapes, quality guidelines. Derived from Phase 2B SB1–SB3 kickoff prompts and spot-check audit findings. |
-| 1.1 | 2026-03-17 | Add sourcing requirements section. Narrow training-knowledge permission to explicit opt-in. Add sourcing_method provenance field. |
-| 1.2 | 2026-03-17 | Add optional extraction_model and extraction_agent provenance fields and document their pass-through expectations. |
+| 1.0 | 2026-03-04 | Initial contract. Header matching, YAML quoting, recognized sections, expected shapes, quality guidelines. |
+| 1.1 | 2026-03-17 | Sourcing requirements. Training-knowledge opt-in. `sourcing_method` provenance field. |
+| 1.2 | 2026-03-17 | Optional `extraction_model` and `extraction_agent` provenance fields. |
+| 2.0 | 2026-03-18 | Replace Tier 1/2/3 ranking with evidence families and archetype requirements. Add behavioral entry standards. Add source selection strategy. Add soft audit spec. Archetypes defined: `inference_serving`, `vector_database`, `tunneling`/`vpn_mesh`/`network_infrastructure`. |
