@@ -2,7 +2,7 @@ artifact_type: ws6_master_deep_facts
 generated_at_utc: '2026-03-18T00:00:00Z'
 contract_version: 1.0.0-ws6-draft
 summary:
-  total_facts: 5687
+  total_facts: 5697
   repos_with_facts: 120
   source_shards:
   - repos
@@ -41556,6 +41556,126 @@ facts:
     of CUDA 11.2; fix: Upgrade CUDA toolkit to 11.2 or later, or install the CUDA
     11.8-specific wheel with the cu118 prebuilt package'
   fact_id: fact::0c32dc7805340ceb0aa92cdd
+- node_id: repo::internlm/lmdeploy
+  github_full_name: internlm/lmdeploy
+  name: lmdeploy
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/lmdeploy.yaml
+    source_section: cli_commands[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_commands[0]
+    source_file: repos/knowledge/deep/lmdeploy.yaml
+    excerpt: lmdeploy chat
+  object_value: lmdeploy chat
+  note: Interactive chat with a local model
+  fact_id: fact::aacd2129e063ab65e116acb0
+- node_id: repo::internlm/lmdeploy
+  github_full_name: internlm/lmdeploy
+  name: lmdeploy
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/lmdeploy.yaml
+    source_section: cli_commands[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_commands[5]
+    source_file: repos/knowledge/deep/lmdeploy.yaml
+    excerpt: lmdeploy check_env
+  object_value: lmdeploy check_env
+  note: Verify environment configuration and dependencies
+  fact_id: fact::1f31ebdc408441b363ce9820
+- node_id: repo::internlm/lmdeploy
+  github_full_name: internlm/lmdeploy
+  name: lmdeploy
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/lmdeploy.yaml
+    source_section: cli_commands[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_commands[2]
+    source_file: repos/knowledge/deep/lmdeploy.yaml
+    excerpt: lmdeploy convert
+  object_value: lmdeploy convert
+  note: Convert a HuggingFace model to TurboMind format for optimized inference
+  fact_id: fact::b38b8369ca5d2b5c80f87d20
+- node_id: repo::internlm/lmdeploy
+  github_full_name: internlm/lmdeploy
+  name: lmdeploy
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/lmdeploy.yaml
+    source_section: cli_commands[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_commands[3]
+    source_file: repos/knowledge/deep/lmdeploy.yaml
+    excerpt: lmdeploy lite auto_awq
+  object_value: lmdeploy lite auto_awq
+  note: Quantize a model to 4-bit AWQ format for reduced memory usage
+  fact_id: fact::bdfec3fd739a9af4183eb2dd
+- node_id: repo::internlm/lmdeploy
+  github_full_name: internlm/lmdeploy
+  name: lmdeploy
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/lmdeploy.yaml
+    source_section: cli_commands[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_commands[4]
+    source_file: repos/knowledge/deep/lmdeploy.yaml
+    excerpt: lmdeploy lite auto_gptq
+  object_value: lmdeploy lite auto_gptq
+  note: Quantize a model to 4-bit GPTQ format
+  fact_id: fact::a399fe06447f5a120f8b8ade
+- node_id: repo::internlm/lmdeploy
+  github_full_name: internlm/lmdeploy
+  name: lmdeploy
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/lmdeploy.yaml
+    source_section: cli_commands[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_commands[1]
+    source_file: repos/knowledge/deep/lmdeploy.yaml
+    excerpt: lmdeploy serve api_server
+  object_value: lmdeploy serve api_server
+  note: Start an OpenAI-compatible API server for model inference
+  fact_id: fact::bcabd05f7394e1f9dfa254a6
 - node_id: repo::jeecgboot/jeecgboot
   github_full_name: jeecgboot/jeecgboot
   name: JeecgBoot
@@ -64817,6 +64937,86 @@ facts:
     fix: Set NEXA_HOST environment variable to an alternative host:port (e.g. NEXA_HOST=127.0.0.1:18182)
     before running ''nexa serve'''
   fact_id: fact::0956e909b949455bbfc14206
+- node_id: repo::nexaai/nexa-sdk
+  github_full_name: nexaai/nexa-sdk
+  name: nexa_sdk
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/nexa_sdk.yaml
+    source_section: cli_commands[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_commands[3]
+    source_file: repos/knowledge/deep/nexa_sdk.yaml
+    excerpt: nexa config set license
+  object_value: nexa config set license
+  note: Set the Nexa license token for authenticated model access
+  fact_id: fact::6f60fcc9c8cf3671813b5c2f
+- node_id: repo::nexaai/nexa-sdk
+  github_full_name: nexaai/nexa-sdk
+  name: nexa_sdk
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/nexa_sdk.yaml
+    source_section: cli_commands[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_commands[1]
+    source_file: repos/knowledge/deep/nexa_sdk.yaml
+    excerpt: nexa infer
+  object_value: nexa infer
+  note: Run interactive inference with a local model
+  fact_id: fact::558706f5c42c6623d2616c95
+- node_id: repo::nexaai/nexa-sdk
+  github_full_name: nexaai/nexa-sdk
+  name: nexa_sdk
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/nexa_sdk.yaml
+    source_section: cli_commands[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_commands[0]
+    source_file: repos/knowledge/deep/nexa_sdk.yaml
+    excerpt: nexa pull
+  object_value: nexa pull
+  note: Download a model from the Nexa model hub with optional quantization
+  fact_id: fact::6c86b16f4d4192d2b555106d
+- node_id: repo::nexaai/nexa-sdk
+  github_full_name: nexaai/nexa-sdk
+  name: nexa_sdk
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/nexa_sdk.yaml
+    source_section: cli_commands[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_commands[2]
+    source_file: repos/knowledge/deep/nexa_sdk.yaml
+    excerpt: nexa serve
+  object_value: nexa serve
+  note: Start the OpenAI-compatible REST API server on port 18181
+  fact_id: fact::72b3ab76f8f67971349bda11
 - node_id: repo::obra/superpowers
   github_full_name: obra/superpowers
   name: superpowers

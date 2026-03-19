@@ -328,3 +328,71 @@ facts:
     fix: Set NEXA_HOST environment variable to an alternative host:port (e.g. NEXA_HOST=127.0.0.1:18182)
     before running ''nexa serve'''
   fact_id: fact::0956e909b949455bbfc14206
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/nexa_sdk.yaml
+    source_section: cli_commands[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_commands[3]
+    source_file: repos/knowledge/deep/nexa_sdk.yaml
+    excerpt: nexa config set license
+  object_value: nexa config set license
+  note: Set the Nexa license token for authenticated model access
+  fact_id: fact::6f60fcc9c8cf3671813b5c2f
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/nexa_sdk.yaml
+    source_section: cli_commands[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_commands[1]
+    source_file: repos/knowledge/deep/nexa_sdk.yaml
+    excerpt: nexa infer
+  object_value: nexa infer
+  note: Run interactive inference with a local model
+  fact_id: fact::558706f5c42c6623d2616c95
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/nexa_sdk.yaml
+    source_section: cli_commands[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_commands[0]
+    source_file: repos/knowledge/deep/nexa_sdk.yaml
+    excerpt: nexa pull
+  object_value: nexa pull
+  note: Download a model from the Nexa model hub with optional quantization
+  fact_id: fact::6c86b16f4d4192d2b555106d
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/nexa_sdk.yaml
+    source_section: cli_commands[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cli_commands[2]
+    source_file: repos/knowledge/deep/nexa_sdk.yaml
+    excerpt: nexa serve
+  object_value: nexa serve
+  note: Start the OpenAI-compatible REST API server on port 18181
+  fact_id: fact::72b3ab76f8f67971349bda11

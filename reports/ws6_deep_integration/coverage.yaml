@@ -7,7 +7,7 @@ input_scope:
   repos_with_any_deep_inputs: 120
   repos_materialized: 120
 metrics:
-  facts_materialized_total: 5687
+  facts_materialized_total: 5697
   facts_with_evidence_pct: 100.0
   confidence_bounds_valid_pct: 100.0
   draft_overrides_count: 0
@@ -614,12 +614,12 @@ metrics:
     shard: repos
     narrative_files: 1
     draft_files: 0
-    narrative_facts_raw: 11
+    narrative_facts_raw: 17
     draft_facts_raw: 0
-    derived_facts_after_dedupe: 11
+    derived_facts_after_dedupe: 17
     draft_overrides: 0
     evidence_merges: 0
-    facts_emitted: 11
+    facts_emitted: 17
     blocked_facts: 0
     unmapped_sections_count: 6
   - node_id: repo::jeecgboot/jeecgboot
@@ -965,12 +965,12 @@ metrics:
     shard: repos
     narrative_files: 1
     draft_files: 0
-    narrative_facts_raw: 18
+    narrative_facts_raw: 22
     draft_facts_raw: 0
-    derived_facts_after_dedupe: 18
+    derived_facts_after_dedupe: 22
     draft_overrides: 0
     evidence_merges: 0
-    facts_emitted: 18
+    facts_emitted: 22
     blocked_facts: 0
     unmapped_sections_count: 4
   - node_id: repo::obra/superpowers
@@ -1718,6 +1718,6 @@ gate_bools:
   ws6_hash_stable: true
 gate_metrics:
   unmapped_sections_count: 21
-execution_mode: full_validation_run
+execution_mode: materialize_only
 ws6_gate_ready: true
 gate_ready: true
