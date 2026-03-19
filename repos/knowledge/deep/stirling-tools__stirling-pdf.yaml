@@ -198,3 +198,34 @@ testing:
   - Docker variant testing via test.sh (validates ultra-lite, standard, and fat builds)
   - Cucumber integration tests for API endpoints
   - No unit test suite; relies on UI and API testing
+
+common_tasks:
+- name: Merge PDFs via the web UI
+  description: Open the Stirling-PDF URL in a browser, navigate to General > Merge PDFs, upload two or more PDF files, then click Merge to download the combined output.
+- name: Merge PDFs via the REST API
+  description: "POST multipart/form-data with the PDF files to /api/v1/general/merge-pdfs; the response body is the merged PDF binary."
+- name: Convert a PDF to images
+  description: "Use POST /api/v1/convert/pdf/img with the PDF file and desired image format (PNG, JPEG) and DPI; the endpoint returns a ZIP archive of per-page images."
+- name: Add password protection to a PDF
+  description: "POST to /api/v1/security/add-password with the PDF and password fields; the endpoint returns an encrypted PDF that requires the password to open."
+- name: Chain operations using the pipeline system
+  description: Use the Pipeline feature in the UI or POST a pipeline JSON definition to /api/v1/pipeline/run to chain multiple PDF operations (e.g., merge then compress) into a single automated workflow.
+- name: Deploy with Docker Compose
+  description: "Pull the standard image and run with docker compose up -d; set DOCKER_ENABLE_SECURITY=true in the compose env to enable authentication, and mount /configs for persistent settings."
+
+troubleshooting:
+- symptom: Docker container exits immediately on startup with a Spring Boot error
+  cause: DOCKER_ENABLE_SECURITY is set to true but no admin credentials are configured, causing the security layer to fail initialization.
+  fix: Either set DOCKER_ENABLE_SECURITY=false to disable security, or provide SECURITY_INITIALLOGIN_USERNAME and SECURITY_INITIALLOGIN_PASSWORD environment variables before starting the container.
+- symptom: Office format conversion (DOCX, XLSX) fails with a LibreOffice error
+  cause: The ultra-lite Docker image does not include LibreOffice; format conversions requiring LibreOffice are only available in the standard or fat images.
+  fix: Switch to the stirlingtools/stirling-pdf:latest (standard) or stirlingtools/stirling-pdf:latest-fat image; verify with docker inspect that the image tag is not ultra-lite.
+- symptom: OCR operation returns the original PDF unchanged or produces empty text
+  cause: OCR requires Tesseract, which is not present in the ultra-lite image; or the selected language pack is not installed.
+  fix: Use the standard image; pass the correct language code (e.g., eng) in the API request; confirm Tesseract is available by exec-ing into the container and running tesseract --version.
+- symptom: API call returns 401 Unauthorized
+  cause: DOCKER_ENABLE_SECURITY is enabled and the request is missing a valid session cookie or API key.
+  fix: Log in via the web UI first and include the session cookie in API calls, or generate an API key in the user settings panel and pass it as the X-API-Key header.
+- symptom: Large PDF merge or conversion runs out of memory and the container is killed
+  cause: The JVM heap is bounded by the container memory limit; processing many large pages exceeds the default allocation.
+  fix: Increase the Docker memory limit (--memory flag or mem_limit in compose) and optionally set JAVA_TOOL_OPTIONS=-Xmx2g to raise the JVM heap ceiling.

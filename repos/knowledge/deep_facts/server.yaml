@@ -1351,3 +1351,212 @@ facts:
   note: 'default: 256; sql/sys_vars.cc declares DEFAULT(256), and sql/mysqld.cc clamps
     it down if it exceeds max_connections during startup.'
   fact_id: fact::2f6a3505e027ddb90c1800da
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/server.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/server.yaml
+    excerpt: Access denied for user 'root'@'localhost'
+  object_value: Access denied for user 'root'@'localhost'
+  note: 'cause: Wrong password, or the root account uses the unix_socket plugin which
+    requires OS-level root rather than a password.; fix: Connect as the OS root user
+    with sudo mariadb to bypass password auth; then reset the password with ALTER
+    USER or switch to mysql_native_password i...'
+  fact_id: fact::27bd8328bf63776785df4ac1
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/server.yaml
+    source_section: troubleshooting[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[4]
+    source_file: repos/knowledge/deep/server.yaml
+    excerpt: MyISAM table is marked as crashed and needs repair
+  object_value: MyISAM table is marked as crashed and needs repair
+  note: 'cause: Unclean shutdown or disk error corrupted the MyISAM index file.; fix:
+    Run CHECK TABLE table_name; followed by REPAIR TABLE table_name; from the mariadb
+    CLI; for severe corruption use myisamchk --recover on the .MYI file with the server
+    stopped.'
+  fact_id: fact::9e530c07740b3e32a90ff4b3
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/server.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/server.yaml
+    excerpt: Replication stopped with Replica_SQL_Running showing No
+  object_value: Replication stopped with Replica_SQL_Running showing No
+  note: 'cause: A SQL error on the replica (e.g., duplicate key, row not found) halted
+    the SQL thread; the relay log may also be corrupt after an unclean shutdown.;
+    fix: Read Last_SQL_Error from SHOW REPLICA STATUS\G; resolve the data inconsistency;
+    run STOP REPLICA; SET GLOBAL SQL_SLA...'
+  fact_id: fact::42d592a9bf3ed1ab014fef2c
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/server.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/server.yaml
+    excerpt: Server fails to start and logs show permission denied or socket error
+  object_value: Server fails to start and logs show permission denied or socket error
+  note: 'cause: Data directory ownership does not match the mysql user, or the socket
+    path conflicts with an existing file from a previous crash.; fix: Ensure the data
+    directory is owned by the mysql user (chown -R mysql:mysql /var/lib/mysql); remove
+    stale socket and PID files; check t...'
+  fact_id: fact::f9963562d3da1440b0f6d815
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/server.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: repos/knowledge/deep/server.yaml
+    excerpt: Too many connections error when connecting
+  object_value: Too many connections error when connecting
+  note: 'cause: All slots in max_connections are occupied; connection pooling is absent
+    or leaking connections.; fix: Run SHOW PROCESSLIST to identify idle or stuck connections;
+    increase max_connections in my.cnf; implement a connection pool on the application
+    side to cap concurrent co...'
+  fact_id: fact::3d3e5de3238b4f5e73910a63
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/server.yaml
+    source_section: common_tasks[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[2]
+    source_file: repos/knowledge/deep/server.yaml
+    excerpt: Backup a database with mariadb-dump
+  object_value: Backup a database with mariadb-dump
+  note: Run `mariadb-dump -u root -p --single-transaction db_name > backup.sql` to
+    produce a consistent logical dump; add --all-databases for a full instance backup.
+  fact_id: fact::7aa23a97035bb693ac330427
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/server.yaml
+    source_section: common_tasks[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[5]
+    source_file: repos/knowledge/deep/server.yaml
+    excerpt: Change a server variable at runtime
+  object_value: Change a server variable at runtime
+  note: Run SET GLOBAL variable_name = value; to apply a change without restart; add
+    the same setting to my.cnf/mariadb.conf.d for persistence across restarts.
+  fact_id: fact::98a9a685bbe5ea96970bb4ac
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/server.yaml
+    source_section: common_tasks[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[4]
+    source_file: repos/knowledge/deep/server.yaml
+    excerpt: Check replication status on a replica
+  object_value: Check replication status on a replica
+  note: Run SHOW REPLICA STATUS\G and inspect Seconds_Behind_Source, Replica_SQL_Running,
+    and Last_SQL_Error to assess replication health and diagnose lag or errors.
+  fact_id: fact::81fc38554e7046f9211e905e
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/server.yaml
+    source_section: common_tasks[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[0]
+    source_file: repos/knowledge/deep/server.yaml
+    excerpt: Connect to a running server via CLI
+  object_value: Connect to a running server via CLI
+  note: Run `mariadb -u root -p` to open an interactive SQL session; use -h, -P, and
+    --socket to target remote hosts or non-default sockets.
+  fact_id: fact::fd5dfc6c1c88a6774f860b26
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/server.yaml
+    source_section: common_tasks[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[1]
+    source_file: repos/knowledge/deep/server.yaml
+    excerpt: Create a database and grant user access
+  object_value: Create a database and grant user access
+  note: Run CREATE DATABASE db_name; then CREATE USER 'user'@'host' IDENTIFIED BY
+    'password'; GRANT ALL PRIVILEGES ON db_name.* TO 'user'@'host'; FLUSH PRIVILEGES;
+    to provision a new database with a dedicated user.
+  fact_id: fact::fd922e23d9acbfd2218331cd
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/server.yaml
+    source_section: common_tasks[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[3]
+    source_file: repos/knowledge/deep/server.yaml
+    excerpt: Restore from a SQL dump
+  object_value: Restore from a SQL dump
+  note: Run `mariadb -u root -p db_name < backup.sql` to replay a logical dump; create
+    the target database first if it does not already exist.
+  fact_id: fact::6dddcc7f1e8a6d012df5d328

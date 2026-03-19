@@ -217,3 +217,32 @@ extension_points:
   - location: typings/xterm.d.ts
     hook: IDecorationOptions via registerDecoration
     example: Visual overlays, underlines, highlights
+
+common_tasks:
+- name: Instantiate and mount a terminal in the DOM
+  description: Create new Terminal(options), call terminal.open(containerElement) where containerElement is an already-visible HTMLElement with non-zero dimensions, and import the xterm CSS for correct rendering.
+- name: Pipe backend data into the terminal
+  description: Call terminal.write(data) whenever data arrives from the backend (e.g., WebSocket onmessage or pty output); data can be a string or Uint8Array of raw bytes.
+- name: Forward user input back to the backend
+  description: Subscribe with terminal.onData(data => ws.send(data)) to capture all keyboard input and mouse events and forward them to the remote process or pty.
+- name: Resize the terminal to fit its container
+  description: Load the FitAddon (loadAddon), call fitAddon.fit() whenever the container dimensions change; this updates terminal.cols and terminal.rows which should then be forwarded to the backend pty via a resize message.
+- name: Load an extension addon
+  description: Instantiate the addon (e.g., new WebLinksAddon()), call terminal.loadAddon(addon), and if the addon uses proposed APIs set allowProposedApi to true in the Terminal constructor options.
+
+troubleshooting:
+- symptom: Terminal renders as a blank rectangle or shows no cursor
+  cause: open() was called before the container element was attached to the DOM or had zero width/height; or the xterm CSS stylesheet was not imported.
+  fix: Ensure the container has explicit width and height in CSS before calling open(); import xterm/css/xterm.css (or the ESM equivalent) in the application bundle.
+- symptom: User typing produces no output and keystrokes are ignored
+  cause: The onData handler is not connected to a backend pty, or the handler was added after data was already buffered.
+  fix: Register the onData listener immediately after open() and before writing any data; verify the WebSocket or IPC channel is open and the handler actually sends data to the backend process.
+- symptom: Colors and theme settings have no visible effect
+  cause: Application-level CSS (e.g., color overrides on the container) is overriding xterm's inline styles; or the theme option was passed after the terminal was opened.
+  fix: Set the theme option in the Terminal constructor before calling open(); check for CSS specificity conflicts that override .xterm .xterm-screen color rules.
+- symptom: Terminal size does not match the backend pty after window resize
+  cause: The onResize callback is not forwarding the new cols/rows to the backend pty via a resize message.
+  fix: Subscribe to terminal.onResize(({cols, rows}) => sendResizeToBackend(cols, rows)) and ensure the backend pty (e.g., node-pty) calls resize(cols, rows) in response.
+- symptom: allowProposedApi must be set to true error when loading an addon
+  cause: The addon uses APIs marked as experimental which require explicit opt-in via the allowProposedApi constructor option.
+  fix: Pass allowProposedApi true in the Terminal constructor options; note that proposed APIs may change between minor releases.

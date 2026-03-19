@@ -976,6 +976,109 @@ facts:
   object_value: ultra-lite
   note: 'default: N/A; Dockerfile.ultra-lite for basic PDF operations only.'
   fact_id: fact::f82a673a8643ed5d4d1d0276
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    excerpt: API call returns 401 Unauthorized
+  object_value: API call returns 401 Unauthorized
+  note: 'cause: DOCKER_ENABLE_SECURITY is enabled and the request is missing a valid
+    session cookie or API key.; fix: Log in via the web UI first and include the session
+    cookie in API calls, or generate an API key in the user settings panel and pass
+    it as the X-API-Key header.'
+  fact_id: fact::a3b619b5714057c752f80630
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    excerpt: Docker container exits immediately on startup with a Spring Boot error
+  object_value: Docker container exits immediately on startup with a Spring Boot error
+  note: 'cause: DOCKER_ENABLE_SECURITY is set to true but no admin credentials are
+    configured, causing the security layer to fail initialization.; fix: Either set
+    DOCKER_ENABLE_SECURITY=false to disable security, or provide SECURITY_INITIALLOGIN_USERNAME
+    and SECURITY_INITIALLOGIN_PASSW...'
+  fact_id: fact::ba32402c6a1b8a78dc0e21ef
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    source_section: troubleshooting[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[4]
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    excerpt: Large PDF merge or conversion runs out of memory and the container is
+      killed
+  object_value: Large PDF merge or conversion runs out of memory and the container
+    is killed
+  note: 'cause: The JVM heap is bounded by the container memory limit; processing
+    many large pages exceeds the default allocation.; fix: Increase the Docker memory
+    limit (--memory flag or mem_limit in compose) and optionally set JAVA_TOOL_OPTIONS=-Xmx2g
+    to raise the JVM heap ceiling.'
+  fact_id: fact::96ed81f4edcf0c90a495822c
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    excerpt: OCR operation returns the original PDF unchanged or produces empty text
+  object_value: OCR operation returns the original PDF unchanged or produces empty
+    text
+  note: 'cause: OCR requires Tesseract, which is not present in the ultra-lite image;
+    or the selected language pack is not installed.; fix: Use the standard image;
+    pass the correct language code (e.g., eng) in the API request; confirm Tesseract
+    is available by exec-ing into the contain...'
+  fact_id: fact::d6c13edf1370a9c3c68efc1b
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    excerpt: Office format conversion (DOCX, XLSX) fails with a LibreOffice error
+  object_value: Office format conversion (DOCX, XLSX) fails with a LibreOffice error
+  note: 'cause: The ultra-lite Docker image does not include LibreOffice; format conversions
+    requiring LibreOffice are only available in the standard or fat images.; fix:
+    Switch to the stirlingtools/stirling-pdf:latest (standard) or stirlingtools/stirling-pdf:latest-fat
+    image; verify w...'
+  fact_id: fact::cfd7455b18beb01be8926d8a
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
@@ -1109,3 +1212,113 @@ facts:
     orchestrates validation, API calls, error handling, and resource cleanup.; location:
     frontend/src/core/hooks/tools/shared/useToolOperation.ts'
   fact_id: fact::1f95551f19554e0b6cd596d5
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    source_section: common_tasks[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[3]
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    excerpt: Add password protection to a PDF
+  object_value: Add password protection to a PDF
+  note: POST to /api/v1/security/add-password with the PDF and password fields; the
+    endpoint returns an encrypted PDF that requires the password to open.
+  fact_id: fact::49da7131f6083cb71aa3472d
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    source_section: common_tasks[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[4]
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    excerpt: Chain operations using the pipeline system
+  object_value: Chain operations using the pipeline system
+  note: Use the Pipeline feature in the UI or POST a pipeline JSON definition to /api/v1/pipeline/run
+    to chain multiple PDF operations (e.g., merge then compress) into a single automated
+    workflow.
+  fact_id: fact::1b36b2e1634072b5022ed03e
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    source_section: common_tasks[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[2]
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    excerpt: Convert a PDF to images
+  object_value: Convert a PDF to images
+  note: Use POST /api/v1/convert/pdf/img with the PDF file and desired image format
+    (PNG, JPEG) and DPI; the endpoint returns a ZIP archive of per-page images.
+  fact_id: fact::7b96c121fc1283a980d5dcc2
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    source_section: common_tasks[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[5]
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    excerpt: Deploy with Docker Compose
+  object_value: Deploy with Docker Compose
+  note: Pull the standard image and run with docker compose up -d; set DOCKER_ENABLE_SECURITY=true
+    in the compose env to enable authentication, and mount /configs for persistent
+    settings.
+  fact_id: fact::4b9f5c66f1ef4ac2784014cc
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    source_section: common_tasks[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[1]
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    excerpt: Merge PDFs via the REST API
+  object_value: Merge PDFs via the REST API
+  note: POST multipart/form-data with the PDF files to /api/v1/general/merge-pdfs;
+    the response body is the merged PDF binary.
+  fact_id: fact::7c9ea25961dbce77ff993518
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    source_section: common_tasks[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[0]
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    excerpt: Merge PDFs via the web UI
+  object_value: Merge PDFs via the web UI
+  note: Open the Stirling-PDF URL in a browser, navigate to General > Merge PDFs,
+    upload two or more PDF files, then click Merge to download the combined output.
+  fact_id: fact::1cd6b64b112ec52d2bd4256b

@@ -244,6 +244,197 @@ facts:
   object_value: mem0
   note: related repository
   fact_id: fact::7ceb6044ab27508be439724b
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    excerpt: CREATE DATABASE fails with a handler not found error
+  object_value: CREATE DATABASE fails with a handler not found error
+  note: 'cause: The handler for the target engine (e.g., snowflake, mongodb) is not
+    installed in the current environment.; fix: Run `make install_handler HANDLER_NAME=<name>`
+    or `pip install mindsdb[<handler>]` to install the handler, then restart the server.'
+  fact_id: fact::f86b103db09ade90b547ea86
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    excerpt: CREATE MODEL or model training hangs indefinitely
+  object_value: CREATE MODEL or model training hangs indefinitely
+  note: 'cause: The LLM provider API key (e.g., OPENAI_API_KEY, ANTHROPIC_API_KEY)
+    is missing from the environment, causing the request to the provider to fail silently.;
+    fix: Set the required API key as an environment variable before starting MindsDB;
+    check model status with SELECT *...'
+  fact_id: fact::7d32a27f591c967fd923d747
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    source_section: troubleshooting[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[4]
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    excerpt: MySQL proxy connection refused or client cannot connect on port 47335
+  object_value: MySQL proxy connection refused or client cannot connect on port 47335
+  note: 'cause: MINDSDB_APIS does not include ''mysql'' so the proxy listener was
+    not started.; fix: Set MINDSDB_APIS=http,mysql (or http,mysql,mcp,a2a for all
+    interfaces) in the environment before starting the server.'
+  fact_id: fact::44733ad75f123a51c9a96575
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    excerpt: Prediction query returns NULL or empty results
+  object_value: Prediction query returns NULL or empty results
+  note: 'cause: Model training failed or was not completed; or the input column names
+    in the WHERE clause do not match the expected feature names.; fix: Inspect the
+    model status with DESCRIBE model_name; ensure STATUS is ''complete''; verify column
+    names match the training SELECT statement.'
+  fact_id: fact::0628532f920a230c4966bf98
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    excerpt: Server fails to start with a database connection error
+  object_value: Server fails to start with a database connection error
+  note: 'cause: MINDSDB_DB_CON is not set or points to an unreachable PostgreSQL instance;
+    MindsDB requires PostgreSQL as its metadata store.; fix: Export a valid MINDSDB_DB_CON
+    connection string (e.g., postgresql://user:pass@host/mindsdb) and ensure the PostgreSQL
+    server is reachable...'
+  fact_id: fact::d5bbae2f1a8851954e109d1f
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    source_section: common_tasks[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[1]
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    excerpt: Connect a data source
+  object_value: Connect a data source
+  note: 'Use the SQL interface to run CREATE DATABASE my_source WITH ENGINE=''postgres'',
+    PARAMETERS={host: ''...'', user: ''...'', ...}; the connected source can then
+    be queried with SELECT.'
+  fact_id: fact::4b531934fd93da79be22a7b5
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    source_section: common_tasks[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[2]
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    excerpt: Create a predictive model
+  object_value: Create a predictive model
+  note: Run CREATE MODEL model_name FROM datasource (SELECT ...) PREDICT target_column
+    USING engine='openai', model_name='gpt-4o'; MindsDB trains or connects the model
+    in the background.
+  fact_id: fact::54d54c8ef911e33c4be9e500
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    source_section: common_tasks[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[4]
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    excerpt: Create an AI agent with a knowledge base
+  object_value: Create an AI agent with a knowledge base
+  note: Run CREATE KNOWLEDGE BASE kb_name USING model='...'; INSERT INTO kb_name SELECT
+    ... to load documents; then CREATE AGENT agent_name USING model='...', knowledge_bases=['kb_name']
+    to enable RAG over the stored content.
+  fact_id: fact::2e955c16114cd6ab610be436
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    source_section: common_tasks[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[3]
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    excerpt: Query predictions via SQL
+  object_value: Query predictions via SQL
+  note: SELECT predicted_col, confidence FROM model_name WHERE input_col='value';
+    MindsDB routes the query to the underlying model and returns results as SQL rows.
+  fact_id: fact::9a65b798e03cfcaa85a8cc58
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    source_section: common_tasks[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[0]
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    excerpt: Start the MindsDB server
+  object_value: Start the MindsDB server
+  note: Set MINDSDB_DB_CON to a PostgreSQL connection string, then run `python -m
+    mindsdb`; the HTTP API is available at port 47334 and the MySQL proxy at 47335.
+  fact_id: fact::27bf9a343faae10606a74137
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol

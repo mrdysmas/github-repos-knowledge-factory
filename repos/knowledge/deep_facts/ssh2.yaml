@@ -825,6 +825,106 @@ facts:
   object_value: username
   note: 'type: string; default: required; Username for authentication'
   fact_id: fact::3e3c380f0d6013c32b835370
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ssh2.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/ssh2.yaml
+    excerpt: All configured authentication methods failed
+  object_value: All configured authentication methods failed
+  note: 'cause: The private key format is not supported (e.g., new OpenSSH format
+    with bcrypt headers requires passphrase even when not encrypted), or the server
+    does not accept publickey auth for that user.; fix: Confirm the key is readable
+    by passing it through utils.parseKey(key, pa...'
+  fact_id: fact::a5e0452a182722b585a840bf
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ssh2.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/ssh2.yaml
+    excerpt: Connection times out or drops silently during idle periods
+  object_value: Connection times out or drops silently during idle periods
+  note: 'cause: Intermediate firewalls or NAT gateways close idle TCP connections;
+    no keepalive is configured to prevent this.; fix: Set keepaliveInterval (e.g.,
+    10000 ms) and keepaliveCountMax in connect() options to send periodic keepalive
+    packets and detect dead connections promptly.'
+  fact_id: fact::cf91d8e9c5adb3ffec643b8f
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ssh2.yaml
+    source_section: troubleshooting[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[4]
+    source_file: repos/knowledge/deep/ssh2.yaml
+    excerpt: ECONNREFUSED when calling client.connect()
+  object_value: ECONNREFUSED when calling client.connect()
+  note: 'cause: The SSH server is not running on the target host/port combination,
+    or a firewall is blocking port 22.; fix: Verify the host and port values; confirm
+    the SSH daemon is running on the server (systemctl status sshd); test reachability
+    with a plain TCP connect before debugg...'
+  fact_id: fact::0f25831a77c50114cb2182f3
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ssh2.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: repos/knowledge/deep/ssh2.yaml
+    excerpt: 'Handshake failed: no matching key exchange algorithm'
+  object_value: 'Handshake failed: no matching key exchange algorithm'
+  note: 'cause: The remote server only supports older kex algorithms (e.g., diffie-hellman-group1-sha1)
+    that are not in ssh2''s default list.; fix: Pass an algorithms option in connect()
+    with the required kex entries added; e.g., algorithms.kex includes ''diffie-hellman-group14-sha1''
+    for...'
+  fact_id: fact::ebee68327e9441821a0b5abc
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ssh2.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/ssh2.yaml
+    excerpt: SFTP read or write operation hangs and never calls back
+  object_value: SFTP read or write operation hangs and never calls back
+  note: "cause: The SSH channel window is exhausted \u2014 data is queued but the\
+    \ remote side has not sent a window-adjust message, usually because buffered data\
+    \ is not being consumed.; fix: Always consume (pipe or read) data from exec/shell\
+    \ streams even when only SFTP is needed; ensure SFT..."
+  fact_id: fact::eb7cee22e9c069c10f4dcf11
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
@@ -1005,3 +1105,97 @@ facts:
   object_value: test/test.js
   note: 'testing metadata: structure'
   fact_id: fact::89ba31452de6d127ab54ae0a
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ssh2.yaml
+    source_section: common_tasks[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[4]
+    source_file: repos/knowledge/deep/ssh2.yaml
+    excerpt: Authenticate with an SSH key
+  object_value: Authenticate with an SSH key
+  note: Pass privateKey as a Buffer or string (fs.readFileSync) in the connect() options;
+    use passphrase if the key is encrypted; alternatively set agent to process.env.SSH_AUTH_SOCK
+    to delegate to the system SSH agent.
+  fact_id: fact::8d380d04a00ec4eefc636cb3
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ssh2.yaml
+    source_section: common_tasks[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[0]
+    source_file: repos/knowledge/deep/ssh2.yaml
+    excerpt: Execute a remote command and capture output
+  object_value: Execute a remote command and capture output
+  note: Call client.exec(command, (err, stream) => ...) after the 'ready' event; pipe
+    stream to collect stdout/stderr and listen for the 'close' event to get the exit
+    code.
+  fact_id: fact::4fdffe7c944de0507cfe6feb
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ssh2.yaml
+    source_section: common_tasks[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[1]
+    source_file: repos/knowledge/deep/ssh2.yaml
+    excerpt: Open an interactive shell session
+  object_value: Open an interactive shell session
+  note: Call client.shell((err, stream) => ...) to get a bidirectional Channel stream;
+    pipe stdin to stream and stream to stdout; send resize signals via stream.setWindow(rows,
+    cols).
+  fact_id: fact::a10f160e2f4e12fa27647d97
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ssh2.yaml
+    source_section: common_tasks[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[3]
+    source_file: repos/knowledge/deep/ssh2.yaml
+    excerpt: Set up local port forwarding
+  object_value: Set up local port forwarding
+  note: Call client.forwardOut(srcHost, srcPort, dstHost, dstPort, (err, channel)
+    => ...) to open a forwarded channel and pipe it to a local TCP socket for tunneling
+    database or HTTP connections through SSH.
+  fact_id: fact::1bc4aec626703f339e53ff1a
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ssh2.yaml
+    source_section: common_tasks[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[2]
+    source_file: repos/knowledge/deep/ssh2.yaml
+    excerpt: Upload or download files over SFTP
+  object_value: Upload or download files over SFTP
+  note: Call client.sftp((err, sftp) => ...) to open an SFTP session; use sftp.fastPut(localPath,
+    remotePath, cb) for uploads and sftp.fastGet(remotePath, localPath, cb) for downloads.
+  fact_id: fact::00156bb7c40e5820ab81d744

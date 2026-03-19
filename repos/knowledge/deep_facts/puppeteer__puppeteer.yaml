@@ -1394,6 +1394,105 @@ facts:
   object_value: puppeteer.launch
   note: Launches a browser process and returns Browser instance.; packages/puppeteer/src/puppeteer.ts
   fact_id: fact::66b1088ccd6cc1b20a6c10f7
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    excerpt: Browser crashes or won't launch in Docker / CI environments
+  object_value: Browser crashes or won't launch in Docker / CI environments
+  note: 'cause: Chrome''s sandboxing requires kernel capabilities not available in
+    most container environments.; fix: Pass args: [''--no-sandbox'', ''--disable-setuid-sandbox'']
+    to puppeteer.launch(); or run the container with --cap-add=SYS_ADMIN.'
+  fact_id: fact::94121dee425e8976e41e9273
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    excerpt: 'Error: Failed to launch the browser process / executable doesn''t exist'
+  object_value: 'Error: Failed to launch the browser process / executable doesn''t
+    exist'
+  note: 'cause: The managed Chrome binary was not downloaded, or PUPPETEER_EXECUTABLE_PATH
+    points to a missing binary.; fix: Run `npx puppeteer browsers install chrome`
+    to install the managed browser, or set PUPPETEER_EXECUTABLE_PATH to a valid Chrome/Chromium
+    binary path.'
+  fact_id: fact::d0d8795b0b059a628039214c
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    excerpt: Memory grows unbounded during long-running automation
+  object_value: Memory grows unbounded during long-running automation
+  note: 'cause: Pages or browser instances are not closed after each task, leaving
+    orphaned Chrome processes.; fix: Always call page.close() after scraping and browser.close()
+    when the session is done; use try/finally to ensure cleanup on errors.'
+  fact_id: fact::3fcc91e96e76391bd8936b68
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    excerpt: TimeoutError waiting for selector or navigation never resolves
+  object_value: TimeoutError waiting for selector or navigation never resolves
+  note: 'cause: The element is rendered asynchronously after the default timeout;
+    or the expected network event (load/networkidle) never fires for SPAs.; fix: Increase
+    the timeout option on waitForSelector; switch waitUntil to ''domcontentloaded''
+    for faster resolution; use page.waitForF...'
+  fact_id: fact::cf77fea2ee1d37cd1a54e352
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    source_section: troubleshooting[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[4]
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    excerpt: page.evaluate returns undefined or throws a serialization error
+  object_value: page.evaluate returns undefined or throws a serialization error
+  note: 'cause: The return value is a DOM node, function, or non-serializable object;
+    or the evaluated expression throws inside the page context.; fix: Return only
+    plain JSON-serializable values from page.evaluate; use ElementHandle methods for
+    DOM objects; wrap evaluate body in try/ca...'
+  fact_id: fact::fcfcaab1d46b0d1fd43b33b9
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
@@ -1627,3 +1726,113 @@ facts:
   note: 'description: LaunchOptions define browser process arguments, executable resolution,
     and headless mode.; location: packages/puppeteer-core/src/node/LaunchOptions.ts'
   fact_id: fact::56f98b766d66c219e57bc154
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    source_section: common_tasks[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[4]
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    excerpt: Fill and submit a form
+  object_value: Fill and submit a form
+  note: Use page.type(selector, text) to type into an input field and page.click(selector)
+    to trigger buttons or links; chain these with waitForNavigation for submit flows.
+  fact_id: fact::4ab7953c892f34b7d8d13364
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    source_section: common_tasks[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[5]
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    excerpt: Intercept and modify network requests
+  object_value: Intercept and modify network requests
+  note: Call page.setRequestInterception(true) then listen on page.on('request', req
+    => ...) to inspect, abort, or respond to requests before they reach the server.
+  fact_id: fact::f831b1bddb85a803419c616d
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    source_section: common_tasks[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[0]
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    excerpt: Launch browser and navigate to a URL
+  object_value: Launch browser and navigate to a URL
+  note: Call puppeteer.launch() to start a headless browser, then browser.newPage()
+    and page.goto(url) to load a page and begin automation.
+  fact_id: fact::98709917aed0ba2045e095f3
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    source_section: common_tasks[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[1]
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    excerpt: Scrape page content
+  object_value: Scrape page content
+  note: Use page.$$eval(selector, fn) to extract text or attributes from multiple
+    elements, or page.evaluate(() => ...) to run arbitrary JS in the page context
+    and return a serializable result.
+  fact_id: fact::b109d961052c4bf678464ad1
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    source_section: common_tasks[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[2]
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    excerpt: Take a screenshot or generate a PDF
+  object_value: Take a screenshot or generate a PDF
+  note: Call page.screenshot({ path, fullPage }) to capture the viewport or full page
+    as PNG/JPEG, or page.pdf({ path, format }) to render the page to a PDF file.
+  fact_id: fact::4e770fc1950b141a965838b2
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    source_section: common_tasks[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[3]
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    excerpt: Wait for dynamic content
+  object_value: Wait for dynamic content
+  note: Use page.waitForSelector(selector) to pause until an element appears; use
+    page.waitForNavigation() around actions that trigger a page load to ensure the
+    new page is ready before continuing.
+  fact_id: fact::1236d5bf870883a4360c721f

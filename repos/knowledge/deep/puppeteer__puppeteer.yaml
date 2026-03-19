@@ -276,3 +276,34 @@ core_modules:
   browser_binary_layer:
     path: packages/browsers/
     description: Browser download and binary management utilities.
+
+common_tasks:
+- name: Launch browser and navigate to a URL
+  description: Call puppeteer.launch() to start a headless browser, then browser.newPage() and page.goto(url) to load a page and begin automation.
+- name: Scrape page content
+  description: Use page.$$eval(selector, fn) to extract text or attributes from multiple elements, or page.evaluate(() => ...) to run arbitrary JS in the page context and return a serializable result.
+- name: Take a screenshot or generate a PDF
+  description: Call page.screenshot({ path, fullPage }) to capture the viewport or full page as PNG/JPEG, or page.pdf({ path, format }) to render the page to a PDF file.
+- name: Wait for dynamic content
+  description: Use page.waitForSelector(selector) to pause until an element appears; use page.waitForNavigation() around actions that trigger a page load to ensure the new page is ready before continuing.
+- name: Fill and submit a form
+  description: Use page.type(selector, text) to type into an input field and page.click(selector) to trigger buttons or links; chain these with waitForNavigation for submit flows.
+- name: Intercept and modify network requests
+  description: Call page.setRequestInterception(true) then listen on page.on('request', req => ...) to inspect, abort, or respond to requests before they reach the server.
+
+troubleshooting:
+- symptom: "Error: Failed to launch the browser process / executable doesn't exist"
+  cause: The managed Chrome binary was not downloaded, or PUPPETEER_EXECUTABLE_PATH points to a missing binary.
+  fix: Run `npx puppeteer browsers install chrome` to install the managed browser, or set PUPPETEER_EXECUTABLE_PATH to a valid Chrome/Chromium binary path.
+- symptom: TimeoutError waiting for selector or navigation never resolves
+  cause: The element is rendered asynchronously after the default timeout; or the expected network event (load/networkidle) never fires for SPAs.
+  fix: Increase the timeout option on waitForSelector; switch waitUntil to 'domcontentloaded' for faster resolution; use page.waitForFunction for custom readiness conditions.
+- symptom: Browser crashes or won't launch in Docker / CI environments
+  cause: Chrome's sandboxing requires kernel capabilities not available in most container environments.
+  fix: "Pass args: ['--no-sandbox', '--disable-setuid-sandbox'] to puppeteer.launch(); or run the container with --cap-add=SYS_ADMIN."
+- symptom: Memory grows unbounded during long-running automation
+  cause: Pages or browser instances are not closed after each task, leaving orphaned Chrome processes.
+  fix: Always call page.close() after scraping and browser.close() when the session is done; use try/finally to ensure cleanup on errors.
+- symptom: page.evaluate returns undefined or throws a serialization error
+  cause: The return value is a DOM node, function, or non-serializable object; or the evaluated expression throws inside the page context.
+  fix: Return only plain JSON-serializable values from page.evaluate; use ElementHandle methods for DOM objects; wrap evaluate body in try/catch and log inside the page to surface errors.

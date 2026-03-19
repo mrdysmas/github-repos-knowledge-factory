@@ -989,6 +989,107 @@ facts:
   object_value: PaddleX
   note: 'integration group: items'
   fact_id: fact::dddd7bc42a7bf1a2a5fac14d
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    excerpt: CUDA out-of-memory error during inference
+  object_value: CUDA out-of-memory error during inference
+  note: 'cause: Input image resolution is too high, or batch size exceeds available
+    GPU memory.; fix: Resize images to a smaller maximum dimension before inference;
+    reduce batch size; or set use_gpu=False to run on CPU if GPU memory is insufficient.'
+  fact_id: fact::4da8d47c8486a3a522af9d4d
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    excerpt: ImportError or ModuleNotFoundError for paddlepaddle on import
+  object_value: ImportError or ModuleNotFoundError for paddlepaddle on import
+  note: 'cause: PaddlePaddle is not installed; the GPU and CPU wheels are separate
+    packages and the wrong one (or none) was installed.; fix: Install the correct
+    wheel for your environment with `pip install paddlepaddle` for CPU or `pip install
+    paddlepaddle-gpu` for CUDA; check the Padd...'
+  fact_id: fact::943edafe87c9b94636c3eb8d
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    excerpt: Model weights fail to download with a network or SSL error
+  object_value: Model weights fail to download with a network or SSL error
+  note: 'cause: The model download endpoint (bj.bcebos.com) is unreachable from the
+    current network, or a corporate proxy is blocking the request.; fix: Set the PADDLE_SERVER_FILE
+    environment variable to point to an internal mirror, or download the model archive
+    manually and pass the l...'
+  fact_id: fact::7f95f816123c11d6cafe520a
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    excerpt: Recognition accuracy is low on domain-specific text (receipts, handwriting,
+      industry labels)
+  object_value: Recognition accuracy is low on domain-specific text (receipts, handwriting,
+    industry labels)
+  note: "cause: The default PP-OCRv5 model is trained on general text; domain fonts\
+    \ or layouts diverge from the training distribution.; fix: Switch to a task-specific\
+    \ pre-trained model from the model zoo; if no matching model exists, fine-tune\
+    \ on 300\u2013500 annotated domain images using t..."
+  fact_id: fact::9d43c8947a3a1fa5c9cc4f1f
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    source_section: troubleshooting[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[4]
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    excerpt: paddleocr CLI command not found after pip install
+  object_value: paddleocr CLI command not found after pip install
+  note: 'cause: The console_scripts entry point is installed to a directory not on
+    PATH, or the package was installed in a virtual environment that is not activated.;
+    fix: Activate the virtual environment where PaddleOCR was installed; alternatively
+    invoke the CLI as `python -m paddleo...'
+  fact_id: fact::bf339d3c4d1bbf201c3dfd0d
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
@@ -1122,3 +1223,97 @@ facts:
   object_value: pytest
   note: testing command
   fact_id: fact::829c8859bbe4b52be7aefb37
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    source_section: common_tasks[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[2]
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    excerpt: Batch inference via CLI
+  object_value: Batch inference via CLI
+  note: Run `paddleocr ocr --input /path/to/images/` to process a directory of images
+    with the default PP-OCRv5 pipeline; output is written as JSON result files.
+  fact_id: fact::bec3f926e147ba87ea8e3eac
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    source_section: common_tasks[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[4]
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    excerpt: Export a trained model to ONNX
+  object_value: Export a trained model to ONNX
+  note: Use `python tools/export_model.py -c <config>.yaml -o Global.pretrained_model=<checkpoint>`
+    to export to Paddle static graph format, then run `paddle2onnx --model_dir <dir>`
+    to produce an ONNX model for deployment outside PaddlePaddle.
+  fact_id: fact::99d48adce4800ff76909c4e2
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    source_section: common_tasks[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[3]
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    excerpt: Fine-tune a detection model with custom data
+  object_value: Fine-tune a detection model with custom data
+  note: Prepare labeled data in the PaddleOCR annotation format, select a config from
+    configs/det/, set Global.pretrained_model to a pre-trained checkpoint, and run
+    `python tools/train.py -c configs/det/<config>.yaml`.
+  fact_id: fact::c12c3af7766ee8050ed92d7b
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    source_section: common_tasks[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[0]
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    excerpt: Run OCR on a single image
+  object_value: Run OCR on a single image
+  note: Import PaddleOCR, instantiate with PaddleOCR(use_angle_cls=True, lang='en'),
+    then call ocr.predict('image.jpg') to get bounding boxes, text, and confidence
+    scores.
+  fact_id: fact::1d69ca09000eefc9e717db3b
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    source_section: common_tasks[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[1]
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    excerpt: Run document structure analysis
+  object_value: Run document structure analysis
+  note: Instantiate PPStructureV3() and call parser.predict('document.pdf') to extract
+    layout regions, tables, and formulas and convert the document to structured Markdown
+    or JSON output.
+  fact_id: fact::f24d6949fb2199a0d91279b7

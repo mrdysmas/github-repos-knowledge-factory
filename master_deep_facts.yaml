@@ -2,7 +2,7 @@ artifact_type: ws6_master_deep_facts
 generated_at_utc: '2026-03-19T00:00:00Z'
 contract_version: 1.0.0-ws6-draft
 summary:
-  total_facts: 5985
+  total_facts: 6058
   repos_with_facts: 120
   source_shards:
   - repos
@@ -57354,6 +57354,248 @@ facts:
   note: 'default: 256; sql/sys_vars.cc declares DEFAULT(256), and sql/mysqld.cc clamps
     it down if it exceeds max_connections during startup.'
   fact_id: fact::2f6a3505e027ddb90c1800da
+- node_id: repo::mariadb/server
+  github_full_name: mariadb/server
+  name: server
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/server.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/server.yaml
+    excerpt: Access denied for user 'root'@'localhost'
+  object_value: Access denied for user 'root'@'localhost'
+  note: 'cause: Wrong password, or the root account uses the unix_socket plugin which
+    requires OS-level root rather than a password.; fix: Connect as the OS root user
+    with sudo mariadb to bypass password auth; then reset the password with ALTER
+    USER or switch to mysql_native_password i...'
+  fact_id: fact::27bd8328bf63776785df4ac1
+- node_id: repo::mariadb/server
+  github_full_name: mariadb/server
+  name: server
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/server.yaml
+    source_section: troubleshooting[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[4]
+    source_file: repos/knowledge/deep/server.yaml
+    excerpt: MyISAM table is marked as crashed and needs repair
+  object_value: MyISAM table is marked as crashed and needs repair
+  note: 'cause: Unclean shutdown or disk error corrupted the MyISAM index file.; fix:
+    Run CHECK TABLE table_name; followed by REPAIR TABLE table_name; from the mariadb
+    CLI; for severe corruption use myisamchk --recover on the .MYI file with the server
+    stopped.'
+  fact_id: fact::9e530c07740b3e32a90ff4b3
+- node_id: repo::mariadb/server
+  github_full_name: mariadb/server
+  name: server
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/server.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/server.yaml
+    excerpt: Replication stopped with Replica_SQL_Running showing No
+  object_value: Replication stopped with Replica_SQL_Running showing No
+  note: 'cause: A SQL error on the replica (e.g., duplicate key, row not found) halted
+    the SQL thread; the relay log may also be corrupt after an unclean shutdown.;
+    fix: Read Last_SQL_Error from SHOW REPLICA STATUS\G; resolve the data inconsistency;
+    run STOP REPLICA; SET GLOBAL SQL_SLA...'
+  fact_id: fact::42d592a9bf3ed1ab014fef2c
+- node_id: repo::mariadb/server
+  github_full_name: mariadb/server
+  name: server
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/server.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/server.yaml
+    excerpt: Server fails to start and logs show permission denied or socket error
+  object_value: Server fails to start and logs show permission denied or socket error
+  note: 'cause: Data directory ownership does not match the mysql user, or the socket
+    path conflicts with an existing file from a previous crash.; fix: Ensure the data
+    directory is owned by the mysql user (chown -R mysql:mysql /var/lib/mysql); remove
+    stale socket and PID files; check t...'
+  fact_id: fact::f9963562d3da1440b0f6d815
+- node_id: repo::mariadb/server
+  github_full_name: mariadb/server
+  name: server
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/server.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: repos/knowledge/deep/server.yaml
+    excerpt: Too many connections error when connecting
+  object_value: Too many connections error when connecting
+  note: 'cause: All slots in max_connections are occupied; connection pooling is absent
+    or leaking connections.; fix: Run SHOW PROCESSLIST to identify idle or stuck connections;
+    increase max_connections in my.cnf; implement a connection pool on the application
+    side to cap concurrent co...'
+  fact_id: fact::3d3e5de3238b4f5e73910a63
+- node_id: repo::mariadb/server
+  github_full_name: mariadb/server
+  name: server
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/server.yaml
+    source_section: common_tasks[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[2]
+    source_file: repos/knowledge/deep/server.yaml
+    excerpt: Backup a database with mariadb-dump
+  object_value: Backup a database with mariadb-dump
+  note: Run `mariadb-dump -u root -p --single-transaction db_name > backup.sql` to
+    produce a consistent logical dump; add --all-databases for a full instance backup.
+  fact_id: fact::7aa23a97035bb693ac330427
+- node_id: repo::mariadb/server
+  github_full_name: mariadb/server
+  name: server
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/server.yaml
+    source_section: common_tasks[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[5]
+    source_file: repos/knowledge/deep/server.yaml
+    excerpt: Change a server variable at runtime
+  object_value: Change a server variable at runtime
+  note: Run SET GLOBAL variable_name = value; to apply a change without restart; add
+    the same setting to my.cnf/mariadb.conf.d for persistence across restarts.
+  fact_id: fact::98a9a685bbe5ea96970bb4ac
+- node_id: repo::mariadb/server
+  github_full_name: mariadb/server
+  name: server
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/server.yaml
+    source_section: common_tasks[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[4]
+    source_file: repos/knowledge/deep/server.yaml
+    excerpt: Check replication status on a replica
+  object_value: Check replication status on a replica
+  note: Run SHOW REPLICA STATUS\G and inspect Seconds_Behind_Source, Replica_SQL_Running,
+    and Last_SQL_Error to assess replication health and diagnose lag or errors.
+  fact_id: fact::81fc38554e7046f9211e905e
+- node_id: repo::mariadb/server
+  github_full_name: mariadb/server
+  name: server
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/server.yaml
+    source_section: common_tasks[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[0]
+    source_file: repos/knowledge/deep/server.yaml
+    excerpt: Connect to a running server via CLI
+  object_value: Connect to a running server via CLI
+  note: Run `mariadb -u root -p` to open an interactive SQL session; use -h, -P, and
+    --socket to target remote hosts or non-default sockets.
+  fact_id: fact::fd5dfc6c1c88a6774f860b26
+- node_id: repo::mariadb/server
+  github_full_name: mariadb/server
+  name: server
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/server.yaml
+    source_section: common_tasks[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[1]
+    source_file: repos/knowledge/deep/server.yaml
+    excerpt: Create a database and grant user access
+  object_value: Create a database and grant user access
+  note: Run CREATE DATABASE db_name; then CREATE USER 'user'@'host' IDENTIFIED BY
+    'password'; GRANT ALL PRIVILEGES ON db_name.* TO 'user'@'host'; FLUSH PRIVILEGES;
+    to provision a new database with a dedicated user.
+  fact_id: fact::fd922e23d9acbfd2218331cd
+- node_id: repo::mariadb/server
+  github_full_name: mariadb/server
+  name: server
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/server.yaml
+    source_section: common_tasks[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[3]
+    source_file: repos/knowledge/deep/server.yaml
+    excerpt: Restore from a SQL dump
+  object_value: Restore from a SQL dump
+  note: Run `mariadb -u root -p db_name < backup.sql` to replay a logical dump; create
+    the target database first if it does not already exist.
+  fact_id: fact::6dddcc7f1e8a6d012df5d328
 - node_id: repo::mem0ai/mem0
   github_full_name: mem0ai/mem0
   name: mem0
@@ -62672,6 +62914,227 @@ facts:
   object_value: mem0
   note: related repository
   fact_id: fact::7ceb6044ab27508be439724b
+- node_id: repo::mindsdb/mindsdb
+  github_full_name: mindsdb/mindsdb
+  name: mindsdb
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    excerpt: CREATE DATABASE fails with a handler not found error
+  object_value: CREATE DATABASE fails with a handler not found error
+  note: 'cause: The handler for the target engine (e.g., snowflake, mongodb) is not
+    installed in the current environment.; fix: Run `make install_handler HANDLER_NAME=<name>`
+    or `pip install mindsdb[<handler>]` to install the handler, then restart the server.'
+  fact_id: fact::f86b103db09ade90b547ea86
+- node_id: repo::mindsdb/mindsdb
+  github_full_name: mindsdb/mindsdb
+  name: mindsdb
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    excerpt: CREATE MODEL or model training hangs indefinitely
+  object_value: CREATE MODEL or model training hangs indefinitely
+  note: 'cause: The LLM provider API key (e.g., OPENAI_API_KEY, ANTHROPIC_API_KEY)
+    is missing from the environment, causing the request to the provider to fail silently.;
+    fix: Set the required API key as an environment variable before starting MindsDB;
+    check model status with SELECT *...'
+  fact_id: fact::7d32a27f591c967fd923d747
+- node_id: repo::mindsdb/mindsdb
+  github_full_name: mindsdb/mindsdb
+  name: mindsdb
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    source_section: troubleshooting[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[4]
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    excerpt: MySQL proxy connection refused or client cannot connect on port 47335
+  object_value: MySQL proxy connection refused or client cannot connect on port 47335
+  note: 'cause: MINDSDB_APIS does not include ''mysql'' so the proxy listener was
+    not started.; fix: Set MINDSDB_APIS=http,mysql (or http,mysql,mcp,a2a for all
+    interfaces) in the environment before starting the server.'
+  fact_id: fact::44733ad75f123a51c9a96575
+- node_id: repo::mindsdb/mindsdb
+  github_full_name: mindsdb/mindsdb
+  name: mindsdb
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    excerpt: Prediction query returns NULL or empty results
+  object_value: Prediction query returns NULL or empty results
+  note: 'cause: Model training failed or was not completed; or the input column names
+    in the WHERE clause do not match the expected feature names.; fix: Inspect the
+    model status with DESCRIBE model_name; ensure STATUS is ''complete''; verify column
+    names match the training SELECT statement.'
+  fact_id: fact::0628532f920a230c4966bf98
+- node_id: repo::mindsdb/mindsdb
+  github_full_name: mindsdb/mindsdb
+  name: mindsdb
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    excerpt: Server fails to start with a database connection error
+  object_value: Server fails to start with a database connection error
+  note: 'cause: MINDSDB_DB_CON is not set or points to an unreachable PostgreSQL instance;
+    MindsDB requires PostgreSQL as its metadata store.; fix: Export a valid MINDSDB_DB_CON
+    connection string (e.g., postgresql://user:pass@host/mindsdb) and ensure the PostgreSQL
+    server is reachable...'
+  fact_id: fact::d5bbae2f1a8851954e109d1f
+- node_id: repo::mindsdb/mindsdb
+  github_full_name: mindsdb/mindsdb
+  name: mindsdb
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    source_section: common_tasks[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[1]
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    excerpt: Connect a data source
+  object_value: Connect a data source
+  note: 'Use the SQL interface to run CREATE DATABASE my_source WITH ENGINE=''postgres'',
+    PARAMETERS={host: ''...'', user: ''...'', ...}; the connected source can then
+    be queried with SELECT.'
+  fact_id: fact::4b531934fd93da79be22a7b5
+- node_id: repo::mindsdb/mindsdb
+  github_full_name: mindsdb/mindsdb
+  name: mindsdb
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    source_section: common_tasks[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[2]
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    excerpt: Create a predictive model
+  object_value: Create a predictive model
+  note: Run CREATE MODEL model_name FROM datasource (SELECT ...) PREDICT target_column
+    USING engine='openai', model_name='gpt-4o'; MindsDB trains or connects the model
+    in the background.
+  fact_id: fact::54d54c8ef911e33c4be9e500
+- node_id: repo::mindsdb/mindsdb
+  github_full_name: mindsdb/mindsdb
+  name: mindsdb
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    source_section: common_tasks[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[4]
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    excerpt: Create an AI agent with a knowledge base
+  object_value: Create an AI agent with a knowledge base
+  note: Run CREATE KNOWLEDGE BASE kb_name USING model='...'; INSERT INTO kb_name SELECT
+    ... to load documents; then CREATE AGENT agent_name USING model='...', knowledge_bases=['kb_name']
+    to enable RAG over the stored content.
+  fact_id: fact::2e955c16114cd6ab610be436
+- node_id: repo::mindsdb/mindsdb
+  github_full_name: mindsdb/mindsdb
+  name: mindsdb
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    source_section: common_tasks[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[3]
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    excerpt: Query predictions via SQL
+  object_value: Query predictions via SQL
+  note: SELECT predicted_col, confidence FROM model_name WHERE input_col='value';
+    MindsDB routes the query to the underlying model and returns results as SQL rows.
+  fact_id: fact::9a65b798e03cfcaa85a8cc58
+- node_id: repo::mindsdb/mindsdb
+  github_full_name: mindsdb/mindsdb
+  name: mindsdb
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    source_section: common_tasks[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[0]
+    source_file: repos/knowledge/deep/mindsdb.yaml
+    excerpt: Start the MindsDB server
+  object_value: Start the MindsDB server
+  note: Set MINDSDB_DB_CON to a PostgreSQL connection string, then run `python -m
+    mindsdb`; the HTTP API is available at port 47334 and the MySQL proxy at 47335.
+  fact_id: fact::27bf9a343faae10606a74137
 - node_id: repo::mindsdb/mindsdb
   github_full_name: mindsdb/mindsdb
   name: mindsdb
@@ -69109,6 +69572,121 @@ facts:
 - node_id: repo::mscdex/ssh2
   github_full_name: mscdex/ssh2
   name: ssh2
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ssh2.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/ssh2.yaml
+    excerpt: All configured authentication methods failed
+  object_value: All configured authentication methods failed
+  note: 'cause: The private key format is not supported (e.g., new OpenSSH format
+    with bcrypt headers requires passphrase even when not encrypted), or the server
+    does not accept publickey auth for that user.; fix: Confirm the key is readable
+    by passing it through utils.parseKey(key, pa...'
+  fact_id: fact::a5e0452a182722b585a840bf
+- node_id: repo::mscdex/ssh2
+  github_full_name: mscdex/ssh2
+  name: ssh2
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ssh2.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/ssh2.yaml
+    excerpt: Connection times out or drops silently during idle periods
+  object_value: Connection times out or drops silently during idle periods
+  note: 'cause: Intermediate firewalls or NAT gateways close idle TCP connections;
+    no keepalive is configured to prevent this.; fix: Set keepaliveInterval (e.g.,
+    10000 ms) and keepaliveCountMax in connect() options to send periodic keepalive
+    packets and detect dead connections promptly.'
+  fact_id: fact::cf91d8e9c5adb3ffec643b8f
+- node_id: repo::mscdex/ssh2
+  github_full_name: mscdex/ssh2
+  name: ssh2
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ssh2.yaml
+    source_section: troubleshooting[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[4]
+    source_file: repos/knowledge/deep/ssh2.yaml
+    excerpt: ECONNREFUSED when calling client.connect()
+  object_value: ECONNREFUSED when calling client.connect()
+  note: 'cause: The SSH server is not running on the target host/port combination,
+    or a firewall is blocking port 22.; fix: Verify the host and port values; confirm
+    the SSH daemon is running on the server (systemctl status sshd); test reachability
+    with a plain TCP connect before debugg...'
+  fact_id: fact::0f25831a77c50114cb2182f3
+- node_id: repo::mscdex/ssh2
+  github_full_name: mscdex/ssh2
+  name: ssh2
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ssh2.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: repos/knowledge/deep/ssh2.yaml
+    excerpt: 'Handshake failed: no matching key exchange algorithm'
+  object_value: 'Handshake failed: no matching key exchange algorithm'
+  note: 'cause: The remote server only supports older kex algorithms (e.g., diffie-hellman-group1-sha1)
+    that are not in ssh2''s default list.; fix: Pass an algorithms option in connect()
+    with the required kex entries added; e.g., algorithms.kex includes ''diffie-hellman-group14-sha1''
+    for...'
+  fact_id: fact::ebee68327e9441821a0b5abc
+- node_id: repo::mscdex/ssh2
+  github_full_name: mscdex/ssh2
+  name: ssh2
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ssh2.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/ssh2.yaml
+    excerpt: SFTP read or write operation hangs and never calls back
+  object_value: SFTP read or write operation hangs and never calls back
+  note: "cause: The SSH channel window is exhausted \u2014 data is queued but the\
+    \ remote side has not sent a window-adjust message, usually because buffered data\
+    \ is not being consumed.; fix: Always consume (pipe or read) data from exec/shell\
+    \ streams even when only SFTP is needed; ensure SFT..."
+  fact_id: fact::eb7cee22e9c069c10f4dcf11
+- node_id: repo::mscdex/ssh2
+  github_full_name: mscdex/ssh2
+  name: ssh2
   fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
@@ -69316,6 +69894,115 @@ facts:
   object_value: test/test.js
   note: 'testing metadata: structure'
   fact_id: fact::89ba31452de6d127ab54ae0a
+- node_id: repo::mscdex/ssh2
+  github_full_name: mscdex/ssh2
+  name: ssh2
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ssh2.yaml
+    source_section: common_tasks[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[4]
+    source_file: repos/knowledge/deep/ssh2.yaml
+    excerpt: Authenticate with an SSH key
+  object_value: Authenticate with an SSH key
+  note: Pass privateKey as a Buffer or string (fs.readFileSync) in the connect() options;
+    use passphrase if the key is encrypted; alternatively set agent to process.env.SSH_AUTH_SOCK
+    to delegate to the system SSH agent.
+  fact_id: fact::8d380d04a00ec4eefc636cb3
+- node_id: repo::mscdex/ssh2
+  github_full_name: mscdex/ssh2
+  name: ssh2
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ssh2.yaml
+    source_section: common_tasks[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[0]
+    source_file: repos/knowledge/deep/ssh2.yaml
+    excerpt: Execute a remote command and capture output
+  object_value: Execute a remote command and capture output
+  note: Call client.exec(command, (err, stream) => ...) after the 'ready' event; pipe
+    stream to collect stdout/stderr and listen for the 'close' event to get the exit
+    code.
+  fact_id: fact::4fdffe7c944de0507cfe6feb
+- node_id: repo::mscdex/ssh2
+  github_full_name: mscdex/ssh2
+  name: ssh2
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ssh2.yaml
+    source_section: common_tasks[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[1]
+    source_file: repos/knowledge/deep/ssh2.yaml
+    excerpt: Open an interactive shell session
+  object_value: Open an interactive shell session
+  note: Call client.shell((err, stream) => ...) to get a bidirectional Channel stream;
+    pipe stdin to stream and stream to stdout; send resize signals via stream.setWindow(rows,
+    cols).
+  fact_id: fact::a10f160e2f4e12fa27647d97
+- node_id: repo::mscdex/ssh2
+  github_full_name: mscdex/ssh2
+  name: ssh2
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ssh2.yaml
+    source_section: common_tasks[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[3]
+    source_file: repos/knowledge/deep/ssh2.yaml
+    excerpt: Set up local port forwarding
+  object_value: Set up local port forwarding
+  note: Call client.forwardOut(srcHost, srcPort, dstHost, dstPort, (err, channel)
+    => ...) to open a forwarded channel and pipe it to a local TCP socket for tunneling
+    database or HTTP connections through SSH.
+  fact_id: fact::1bc4aec626703f339e53ff1a
+- node_id: repo::mscdex/ssh2
+  github_full_name: mscdex/ssh2
+  name: ssh2
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/ssh2.yaml
+    source_section: common_tasks[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[2]
+    source_file: repos/knowledge/deep/ssh2.yaml
+    excerpt: Upload or download files over SFTP
+  object_value: Upload or download files over SFTP
+  note: Call client.sftp((err, sftp) => ...) to open an SFTP session; use sftp.fastPut(localPath,
+    remotePath, cb) for uploads and sftp.fastGet(remotePath, localPath, cb) for downloads.
+  fact_id: fact::00156bb7c40e5820ab81d744
 - node_id: repo::nexaai/nexa-sdk
   github_full_name: nexaai/nexa-sdk
   name: nexa_sdk
@@ -77180,6 +77867,122 @@ facts:
 - node_id: repo::paddlepaddle/paddleocr
   github_full_name: paddlepaddle/paddleocr
   name: PaddleOCR
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    excerpt: CUDA out-of-memory error during inference
+  object_value: CUDA out-of-memory error during inference
+  note: 'cause: Input image resolution is too high, or batch size exceeds available
+    GPU memory.; fix: Resize images to a smaller maximum dimension before inference;
+    reduce batch size; or set use_gpu=False to run on CPU if GPU memory is insufficient.'
+  fact_id: fact::4da8d47c8486a3a522af9d4d
+- node_id: repo::paddlepaddle/paddleocr
+  github_full_name: paddlepaddle/paddleocr
+  name: PaddleOCR
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    excerpt: ImportError or ModuleNotFoundError for paddlepaddle on import
+  object_value: ImportError or ModuleNotFoundError for paddlepaddle on import
+  note: 'cause: PaddlePaddle is not installed; the GPU and CPU wheels are separate
+    packages and the wrong one (or none) was installed.; fix: Install the correct
+    wheel for your environment with `pip install paddlepaddle` for CPU or `pip install
+    paddlepaddle-gpu` for CUDA; check the Padd...'
+  fact_id: fact::943edafe87c9b94636c3eb8d
+- node_id: repo::paddlepaddle/paddleocr
+  github_full_name: paddlepaddle/paddleocr
+  name: PaddleOCR
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    excerpt: Model weights fail to download with a network or SSL error
+  object_value: Model weights fail to download with a network or SSL error
+  note: 'cause: The model download endpoint (bj.bcebos.com) is unreachable from the
+    current network, or a corporate proxy is blocking the request.; fix: Set the PADDLE_SERVER_FILE
+    environment variable to point to an internal mirror, or download the model archive
+    manually and pass the l...'
+  fact_id: fact::7f95f816123c11d6cafe520a
+- node_id: repo::paddlepaddle/paddleocr
+  github_full_name: paddlepaddle/paddleocr
+  name: PaddleOCR
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    excerpt: Recognition accuracy is low on domain-specific text (receipts, handwriting,
+      industry labels)
+  object_value: Recognition accuracy is low on domain-specific text (receipts, handwriting,
+    industry labels)
+  note: "cause: The default PP-OCRv5 model is trained on general text; domain fonts\
+    \ or layouts diverge from the training distribution.; fix: Switch to a task-specific\
+    \ pre-trained model from the model zoo; if no matching model exists, fine-tune\
+    \ on 300\u2013500 annotated domain images using t..."
+  fact_id: fact::9d43c8947a3a1fa5c9cc4f1f
+- node_id: repo::paddlepaddle/paddleocr
+  github_full_name: paddlepaddle/paddleocr
+  name: PaddleOCR
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    source_section: troubleshooting[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[4]
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    excerpt: paddleocr CLI command not found after pip install
+  object_value: paddleocr CLI command not found after pip install
+  note: 'cause: The console_scripts entry point is installed to a directory not on
+    PATH, or the package was installed in a virtual environment that is not activated.;
+    fix: Activate the virtual environment where PaddleOCR was installed; alternatively
+    invoke the CLI as `python -m paddleo...'
+  fact_id: fact::bf339d3c4d1bbf201c3dfd0d
+- node_id: repo::paddlepaddle/paddleocr
+  github_full_name: paddlepaddle/paddleocr
+  name: PaddleOCR
   fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
@@ -77331,6 +78134,115 @@ facts:
   object_value: pytest
   note: testing command
   fact_id: fact::829c8859bbe4b52be7aefb37
+- node_id: repo::paddlepaddle/paddleocr
+  github_full_name: paddlepaddle/paddleocr
+  name: PaddleOCR
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    source_section: common_tasks[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[2]
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    excerpt: Batch inference via CLI
+  object_value: Batch inference via CLI
+  note: Run `paddleocr ocr --input /path/to/images/` to process a directory of images
+    with the default PP-OCRv5 pipeline; output is written as JSON result files.
+  fact_id: fact::bec3f926e147ba87ea8e3eac
+- node_id: repo::paddlepaddle/paddleocr
+  github_full_name: paddlepaddle/paddleocr
+  name: PaddleOCR
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    source_section: common_tasks[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[4]
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    excerpt: Export a trained model to ONNX
+  object_value: Export a trained model to ONNX
+  note: Use `python tools/export_model.py -c <config>.yaml -o Global.pretrained_model=<checkpoint>`
+    to export to Paddle static graph format, then run `paddle2onnx --model_dir <dir>`
+    to produce an ONNX model for deployment outside PaddlePaddle.
+  fact_id: fact::99d48adce4800ff76909c4e2
+- node_id: repo::paddlepaddle/paddleocr
+  github_full_name: paddlepaddle/paddleocr
+  name: PaddleOCR
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    source_section: common_tasks[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[3]
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    excerpt: Fine-tune a detection model with custom data
+  object_value: Fine-tune a detection model with custom data
+  note: Prepare labeled data in the PaddleOCR annotation format, select a config from
+    configs/det/, set Global.pretrained_model to a pre-trained checkpoint, and run
+    `python tools/train.py -c configs/det/<config>.yaml`.
+  fact_id: fact::c12c3af7766ee8050ed92d7b
+- node_id: repo::paddlepaddle/paddleocr
+  github_full_name: paddlepaddle/paddleocr
+  name: PaddleOCR
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    source_section: common_tasks[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[0]
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    excerpt: Run OCR on a single image
+  object_value: Run OCR on a single image
+  note: Import PaddleOCR, instantiate with PaddleOCR(use_angle_cls=True, lang='en'),
+    then call ocr.predict('image.jpg') to get bounding boxes, text, and confidence
+    scores.
+  fact_id: fact::1d69ca09000eefc9e717db3b
+- node_id: repo::paddlepaddle/paddleocr
+  github_full_name: paddlepaddle/paddleocr
+  name: PaddleOCR
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    source_section: common_tasks[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[1]
+    source_file: repos/knowledge/deep/paddlepaddle__paddleocr.yaml
+    excerpt: Run document structure analysis
+  object_value: Run document structure analysis
+  note: Instantiate PPStructureV3() and call parser.predict('document.pdf') to extract
+    layout regions, tables, and formulas and convert the document to structured Markdown
+    or JSON output.
+  fact_id: fact::f24d6949fb2199a0d91279b7
 - node_id: repo::pathwaycom/llm-app
   github_full_name: pathwaycom/llm-app
   name: llm-app
@@ -82628,6 +83540,120 @@ facts:
 - node_id: repo::puppeteer/puppeteer
   github_full_name: puppeteer/puppeteer
   name: puppeteer
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    excerpt: Browser crashes or won't launch in Docker / CI environments
+  object_value: Browser crashes or won't launch in Docker / CI environments
+  note: 'cause: Chrome''s sandboxing requires kernel capabilities not available in
+    most container environments.; fix: Pass args: [''--no-sandbox'', ''--disable-setuid-sandbox'']
+    to puppeteer.launch(); or run the container with --cap-add=SYS_ADMIN.'
+  fact_id: fact::94121dee425e8976e41e9273
+- node_id: repo::puppeteer/puppeteer
+  github_full_name: puppeteer/puppeteer
+  name: puppeteer
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    excerpt: 'Error: Failed to launch the browser process / executable doesn''t exist'
+  object_value: 'Error: Failed to launch the browser process / executable doesn''t
+    exist'
+  note: 'cause: The managed Chrome binary was not downloaded, or PUPPETEER_EXECUTABLE_PATH
+    points to a missing binary.; fix: Run `npx puppeteer browsers install chrome`
+    to install the managed browser, or set PUPPETEER_EXECUTABLE_PATH to a valid Chrome/Chromium
+    binary path.'
+  fact_id: fact::d0d8795b0b059a628039214c
+- node_id: repo::puppeteer/puppeteer
+  github_full_name: puppeteer/puppeteer
+  name: puppeteer
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    excerpt: Memory grows unbounded during long-running automation
+  object_value: Memory grows unbounded during long-running automation
+  note: 'cause: Pages or browser instances are not closed after each task, leaving
+    orphaned Chrome processes.; fix: Always call page.close() after scraping and browser.close()
+    when the session is done; use try/finally to ensure cleanup on errors.'
+  fact_id: fact::3fcc91e96e76391bd8936b68
+- node_id: repo::puppeteer/puppeteer
+  github_full_name: puppeteer/puppeteer
+  name: puppeteer
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    excerpt: TimeoutError waiting for selector or navigation never resolves
+  object_value: TimeoutError waiting for selector or navigation never resolves
+  note: 'cause: The element is rendered asynchronously after the default timeout;
+    or the expected network event (load/networkidle) never fires for SPAs.; fix: Increase
+    the timeout option on waitForSelector; switch waitUntil to ''domcontentloaded''
+    for faster resolution; use page.waitForF...'
+  fact_id: fact::cf77fea2ee1d37cd1a54e352
+- node_id: repo::puppeteer/puppeteer
+  github_full_name: puppeteer/puppeteer
+  name: puppeteer
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    source_section: troubleshooting[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[4]
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    excerpt: page.evaluate returns undefined or throws a serialization error
+  object_value: page.evaluate returns undefined or throws a serialization error
+  note: 'cause: The return value is a DOM node, function, or non-serializable object;
+    or the evaluated expression throws inside the page context.; fix: Return only
+    plain JSON-serializable values from page.evaluate; use ElementHandle methods for
+    DOM objects; wrap evaluate body in try/ca...'
+  fact_id: fact::fcfcaab1d46b0d1fd43b33b9
+- node_id: repo::puppeteer/puppeteer
+  github_full_name: puppeteer/puppeteer
+  name: puppeteer
   fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
@@ -82897,6 +83923,134 @@ facts:
   note: 'description: LaunchOptions define browser process arguments, executable resolution,
     and headless mode.; location: packages/puppeteer-core/src/node/LaunchOptions.ts'
   fact_id: fact::56f98b766d66c219e57bc154
+- node_id: repo::puppeteer/puppeteer
+  github_full_name: puppeteer/puppeteer
+  name: puppeteer
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    source_section: common_tasks[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[4]
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    excerpt: Fill and submit a form
+  object_value: Fill and submit a form
+  note: Use page.type(selector, text) to type into an input field and page.click(selector)
+    to trigger buttons or links; chain these with waitForNavigation for submit flows.
+  fact_id: fact::4ab7953c892f34b7d8d13364
+- node_id: repo::puppeteer/puppeteer
+  github_full_name: puppeteer/puppeteer
+  name: puppeteer
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    source_section: common_tasks[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[5]
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    excerpt: Intercept and modify network requests
+  object_value: Intercept and modify network requests
+  note: Call page.setRequestInterception(true) then listen on page.on('request', req
+    => ...) to inspect, abort, or respond to requests before they reach the server.
+  fact_id: fact::f831b1bddb85a803419c616d
+- node_id: repo::puppeteer/puppeteer
+  github_full_name: puppeteer/puppeteer
+  name: puppeteer
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    source_section: common_tasks[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[0]
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    excerpt: Launch browser and navigate to a URL
+  object_value: Launch browser and navigate to a URL
+  note: Call puppeteer.launch() to start a headless browser, then browser.newPage()
+    and page.goto(url) to load a page and begin automation.
+  fact_id: fact::98709917aed0ba2045e095f3
+- node_id: repo::puppeteer/puppeteer
+  github_full_name: puppeteer/puppeteer
+  name: puppeteer
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    source_section: common_tasks[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[1]
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    excerpt: Scrape page content
+  object_value: Scrape page content
+  note: Use page.$$eval(selector, fn) to extract text or attributes from multiple
+    elements, or page.evaluate(() => ...) to run arbitrary JS in the page context
+    and return a serializable result.
+  fact_id: fact::b109d961052c4bf678464ad1
+- node_id: repo::puppeteer/puppeteer
+  github_full_name: puppeteer/puppeteer
+  name: puppeteer
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    source_section: common_tasks[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[2]
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    excerpt: Take a screenshot or generate a PDF
+  object_value: Take a screenshot or generate a PDF
+  note: Call page.screenshot({ path, fullPage }) to capture the viewport or full page
+    as PNG/JPEG, or page.pdf({ path, format }) to render the page to a PDF file.
+  fact_id: fact::4e770fc1950b141a965838b2
+- node_id: repo::puppeteer/puppeteer
+  github_full_name: puppeteer/puppeteer
+  name: puppeteer
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    source_section: common_tasks[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[3]
+    source_file: repos/knowledge/deep/puppeteer__puppeteer.yaml
+    excerpt: Wait for dynamic content
+  object_value: Wait for dynamic content
+  note: Use page.waitForSelector(selector) to pause until an element appears; use
+    page.waitForNavigation() around actions that trigger a page load to ensure the
+    new page is ready before continuing.
+  fact_id: fact::1236d5bf870883a4360c721f
 - node_id: repo::pydantic/pydantic
   github_full_name: pydantic/pydantic
   name: pydantic
@@ -101690,6 +102844,124 @@ facts:
 - node_id: repo::stirling-tools/stirling-pdf
   github_full_name: stirling-tools/stirling-pdf
   name: Stirling-PDF
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    excerpt: API call returns 401 Unauthorized
+  object_value: API call returns 401 Unauthorized
+  note: 'cause: DOCKER_ENABLE_SECURITY is enabled and the request is missing a valid
+    session cookie or API key.; fix: Log in via the web UI first and include the session
+    cookie in API calls, or generate an API key in the user settings panel and pass
+    it as the X-API-Key header.'
+  fact_id: fact::a3b619b5714057c752f80630
+- node_id: repo::stirling-tools/stirling-pdf
+  github_full_name: stirling-tools/stirling-pdf
+  name: Stirling-PDF
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    excerpt: Docker container exits immediately on startup with a Spring Boot error
+  object_value: Docker container exits immediately on startup with a Spring Boot error
+  note: 'cause: DOCKER_ENABLE_SECURITY is set to true but no admin credentials are
+    configured, causing the security layer to fail initialization.; fix: Either set
+    DOCKER_ENABLE_SECURITY=false to disable security, or provide SECURITY_INITIALLOGIN_USERNAME
+    and SECURITY_INITIALLOGIN_PASSW...'
+  fact_id: fact::ba32402c6a1b8a78dc0e21ef
+- node_id: repo::stirling-tools/stirling-pdf
+  github_full_name: stirling-tools/stirling-pdf
+  name: Stirling-PDF
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    source_section: troubleshooting[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[4]
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    excerpt: Large PDF merge or conversion runs out of memory and the container is
+      killed
+  object_value: Large PDF merge or conversion runs out of memory and the container
+    is killed
+  note: 'cause: The JVM heap is bounded by the container memory limit; processing
+    many large pages exceeds the default allocation.; fix: Increase the Docker memory
+    limit (--memory flag or mem_limit in compose) and optionally set JAVA_TOOL_OPTIONS=-Xmx2g
+    to raise the JVM heap ceiling.'
+  fact_id: fact::96ed81f4edcf0c90a495822c
+- node_id: repo::stirling-tools/stirling-pdf
+  github_full_name: stirling-tools/stirling-pdf
+  name: Stirling-PDF
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    excerpt: OCR operation returns the original PDF unchanged or produces empty text
+  object_value: OCR operation returns the original PDF unchanged or produces empty
+    text
+  note: 'cause: OCR requires Tesseract, which is not present in the ultra-lite image;
+    or the selected language pack is not installed.; fix: Use the standard image;
+    pass the correct language code (e.g., eng) in the API request; confirm Tesseract
+    is available by exec-ing into the contain...'
+  fact_id: fact::d6c13edf1370a9c3c68efc1b
+- node_id: repo::stirling-tools/stirling-pdf
+  github_full_name: stirling-tools/stirling-pdf
+  name: Stirling-PDF
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    excerpt: Office format conversion (DOCX, XLSX) fails with a LibreOffice error
+  object_value: Office format conversion (DOCX, XLSX) fails with a LibreOffice error
+  note: 'cause: The ultra-lite Docker image does not include LibreOffice; format conversions
+    requiring LibreOffice are only available in the standard or fat images.; fix:
+    Switch to the stirlingtools/stirling-pdf:latest (standard) or stirlingtools/stirling-pdf:latest-fat
+    image; verify w...'
+  fact_id: fact::cfd7455b18beb01be8926d8a
+- node_id: repo::stirling-tools/stirling-pdf
+  github_full_name: stirling-tools/stirling-pdf
+  name: Stirling-PDF
   fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
@@ -101841,6 +103113,134 @@ facts:
     orchestrates validation, API calls, error handling, and resource cleanup.; location:
     frontend/src/core/hooks/tools/shared/useToolOperation.ts'
   fact_id: fact::1f95551f19554e0b6cd596d5
+- node_id: repo::stirling-tools/stirling-pdf
+  github_full_name: stirling-tools/stirling-pdf
+  name: Stirling-PDF
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    source_section: common_tasks[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[3]
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    excerpt: Add password protection to a PDF
+  object_value: Add password protection to a PDF
+  note: POST to /api/v1/security/add-password with the PDF and password fields; the
+    endpoint returns an encrypted PDF that requires the password to open.
+  fact_id: fact::49da7131f6083cb71aa3472d
+- node_id: repo::stirling-tools/stirling-pdf
+  github_full_name: stirling-tools/stirling-pdf
+  name: Stirling-PDF
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    source_section: common_tasks[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[4]
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    excerpt: Chain operations using the pipeline system
+  object_value: Chain operations using the pipeline system
+  note: Use the Pipeline feature in the UI or POST a pipeline JSON definition to /api/v1/pipeline/run
+    to chain multiple PDF operations (e.g., merge then compress) into a single automated
+    workflow.
+  fact_id: fact::1b36b2e1634072b5022ed03e
+- node_id: repo::stirling-tools/stirling-pdf
+  github_full_name: stirling-tools/stirling-pdf
+  name: Stirling-PDF
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    source_section: common_tasks[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[2]
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    excerpt: Convert a PDF to images
+  object_value: Convert a PDF to images
+  note: Use POST /api/v1/convert/pdf/img with the PDF file and desired image format
+    (PNG, JPEG) and DPI; the endpoint returns a ZIP archive of per-page images.
+  fact_id: fact::7b96c121fc1283a980d5dcc2
+- node_id: repo::stirling-tools/stirling-pdf
+  github_full_name: stirling-tools/stirling-pdf
+  name: Stirling-PDF
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    source_section: common_tasks[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[5]
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    excerpt: Deploy with Docker Compose
+  object_value: Deploy with Docker Compose
+  note: Pull the standard image and run with docker compose up -d; set DOCKER_ENABLE_SECURITY=true
+    in the compose env to enable authentication, and mount /configs for persistent
+    settings.
+  fact_id: fact::4b9f5c66f1ef4ac2784014cc
+- node_id: repo::stirling-tools/stirling-pdf
+  github_full_name: stirling-tools/stirling-pdf
+  name: Stirling-PDF
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    source_section: common_tasks[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[1]
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    excerpt: Merge PDFs via the REST API
+  object_value: Merge PDFs via the REST API
+  note: POST multipart/form-data with the PDF files to /api/v1/general/merge-pdfs;
+    the response body is the merged PDF binary.
+  fact_id: fact::7c9ea25961dbce77ff993518
+- node_id: repo::stirling-tools/stirling-pdf
+  github_full_name: stirling-tools/stirling-pdf
+  name: Stirling-PDF
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    source_section: common_tasks[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[0]
+    source_file: repos/knowledge/deep/stirling-tools__stirling-pdf.yaml
+    excerpt: Merge PDFs via the web UI
+  object_value: Merge PDFs via the web UI
+  note: Open the Stirling-PDF URL in a browser, navigate to General > Merge PDFs,
+    upload two or more PDF files, then click Merge to download the combined output.
+  fact_id: fact::1cd6b64b112ec52d2bd4256b
 - node_id: repo::streisandeffect/streisand
   github_full_name: streisandeffect/streisand
   name: streisand
@@ -116692,6 +118092,121 @@ facts:
 - node_id: repo::xtermjs/xterm.js
   github_full_name: xtermjs/xterm.js
   name: xtermjs
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    excerpt: Colors and theme settings have no visible effect
+  object_value: Colors and theme settings have no visible effect
+  note: 'cause: Application-level CSS (e.g., color overrides on the container) is
+    overriding xterm''s inline styles; or the theme option was passed after the terminal
+    was opened.; fix: Set the theme option in the Terminal constructor before calling
+    open(); check for CSS specificity conf...'
+  fact_id: fact::1063dd39f08b221d7a752920
+- node_id: repo::xtermjs/xterm.js
+  github_full_name: xtermjs/xterm.js
+  name: xtermjs
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    excerpt: Terminal renders as a blank rectangle or shows no cursor
+  object_value: Terminal renders as a blank rectangle or shows no cursor
+  note: 'cause: open() was called before the container element was attached to the
+    DOM or had zero width/height; or the xterm CSS stylesheet was not imported.; fix:
+    Ensure the container has explicit width and height in CSS before calling open();
+    import xterm/css/xterm.css (or the ESM e...'
+  fact_id: fact::91450bfa6dd2d739fdaabd3c
+- node_id: repo::xtermjs/xterm.js
+  github_full_name: xtermjs/xterm.js
+  name: xtermjs
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    excerpt: Terminal size does not match the backend pty after window resize
+  object_value: Terminal size does not match the backend pty after window resize
+  note: 'cause: The onResize callback is not forwarding the new cols/rows to the backend
+    pty via a resize message.; fix: Subscribe to terminal.onResize(({cols, rows})
+    => sendResizeToBackend(cols, rows)) and ensure the backend pty (e.g., node-pty)
+    calls resize(cols, rows) in response.'
+  fact_id: fact::0e635a2a2697f2510cbc56ed
+- node_id: repo::xtermjs/xterm.js
+  github_full_name: xtermjs/xterm.js
+  name: xtermjs
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    excerpt: User typing produces no output and keystrokes are ignored
+  object_value: User typing produces no output and keystrokes are ignored
+  note: 'cause: The onData handler is not connected to a backend pty, or the handler
+    was added after data was already buffered.; fix: Register the onData listener
+    immediately after open() and before writing any data; verify the WebSocket or
+    IPC channel is open and the handler actually...'
+  fact_id: fact::11c5bc07a11776fa5ce67e14
+- node_id: repo::xtermjs/xterm.js
+  github_full_name: xtermjs/xterm.js
+  name: xtermjs
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    source_section: troubleshooting[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[4]
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    excerpt: allowProposedApi must be set to true error when loading an addon
+  object_value: allowProposedApi must be set to true error when loading an addon
+  note: 'cause: The addon uses APIs marked as experimental which require explicit
+    opt-in via the allowProposedApi constructor option.; fix: Pass allowProposedApi
+    true in the Terminal constructor options; note that proposed APIs may change between
+    minor releases.'
+  fact_id: fact::78ec9eb1f3f1f0c3c2918df1
+- node_id: repo::xtermjs/xterm.js
+  github_full_name: xtermjs/xterm.js
+  name: xtermjs
   fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
@@ -117014,6 +118529,114 @@ facts:
   object_value: test/ directory with unit and integration tests
   note: 'testing metadata: structure'
   fact_id: fact::35cc422811e63e48c45ac0e9
+- node_id: repo::xtermjs/xterm.js
+  github_full_name: xtermjs/xterm.js
+  name: xtermjs
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    source_section: common_tasks[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[2]
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    excerpt: Forward user input back to the backend
+  object_value: Forward user input back to the backend
+  note: Subscribe with terminal.onData(data => ws.send(data)) to capture all keyboard
+    input and mouse events and forward them to the remote process or pty.
+  fact_id: fact::38d21fb294ea6c98d94d49b8
+- node_id: repo::xtermjs/xterm.js
+  github_full_name: xtermjs/xterm.js
+  name: xtermjs
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    source_section: common_tasks[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[0]
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    excerpt: Instantiate and mount a terminal in the DOM
+  object_value: Instantiate and mount a terminal in the DOM
+  note: Create new Terminal(options), call terminal.open(containerElement) where containerElement
+    is an already-visible HTMLElement with non-zero dimensions, and import the xterm
+    CSS for correct rendering.
+  fact_id: fact::6d45ae4fa302da0797ccf5fe
+- node_id: repo::xtermjs/xterm.js
+  github_full_name: xtermjs/xterm.js
+  name: xtermjs
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    source_section: common_tasks[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[4]
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    excerpt: Load an extension addon
+  object_value: Load an extension addon
+  note: Instantiate the addon (e.g., new WebLinksAddon()), call terminal.loadAddon(addon),
+    and if the addon uses proposed APIs set allowProposedApi to true in the Terminal
+    constructor options.
+  fact_id: fact::573ac2a63c9bb0c0723230a2
+- node_id: repo::xtermjs/xterm.js
+  github_full_name: xtermjs/xterm.js
+  name: xtermjs
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    source_section: common_tasks[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[1]
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    excerpt: Pipe backend data into the terminal
+  object_value: Pipe backend data into the terminal
+  note: Call terminal.write(data) whenever data arrives from the backend (e.g., WebSocket
+    onmessage or pty output); data can be a string or Uint8Array of raw bytes.
+  fact_id: fact::4d3210129ca4a32506ce9873
+- node_id: repo::xtermjs/xterm.js
+  github_full_name: xtermjs/xterm.js
+  name: xtermjs
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    source_section: common_tasks[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[3]
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    excerpt: Resize the terminal to fit its container
+  object_value: Resize the terminal to fit its container
+  note: Load the FitAddon (loadAddon), call fitAddon.fit() whenever the container
+    dimensions change; this updates terminal.cols and terminal.rows which should then
+    be forwarded to the backend pty via a resize message.
+  fact_id: fact::1d7970f7a21dc22456bcb49d
 - node_id: repo::yahoojapan/ngt
   github_full_name: yahoojapan/ngt
   name: ngt

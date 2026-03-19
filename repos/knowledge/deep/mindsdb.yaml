@@ -110,3 +110,32 @@ related_repos:
   - langchain
   - llama_index
   - mem0
+
+common_tasks:
+- name: Start the MindsDB server
+  description: Set MINDSDB_DB_CON to a PostgreSQL connection string, then run `python -m mindsdb`; the HTTP API is available at port 47334 and the MySQL proxy at 47335.
+- name: Connect a data source
+  description: "Use the SQL interface to run CREATE DATABASE my_source WITH ENGINE='postgres', PARAMETERS={host: '...', user: '...', ...}; the connected source can then be queried with SELECT."
+- name: Create a predictive model
+  description: "Run CREATE MODEL model_name FROM datasource (SELECT ...) PREDICT target_column USING engine='openai', model_name='gpt-4o'; MindsDB trains or connects the model in the background."
+- name: Query predictions via SQL
+  description: "SELECT predicted_col, confidence FROM model_name WHERE input_col='value'; MindsDB routes the query to the underlying model and returns results as SQL rows."
+- name: Create an AI agent with a knowledge base
+  description: "Run CREATE KNOWLEDGE BASE kb_name USING model='...'; INSERT INTO kb_name SELECT ... to load documents; then CREATE AGENT agent_name USING model='...', knowledge_bases=['kb_name'] to enable RAG over the stored content."
+
+troubleshooting:
+- symptom: Server fails to start with a database connection error
+  cause: MINDSDB_DB_CON is not set or points to an unreachable PostgreSQL instance; MindsDB requires PostgreSQL as its metadata store.
+  fix: Export a valid MINDSDB_DB_CON connection string (e.g., postgresql://user:pass@host/mindsdb) and ensure the PostgreSQL server is reachable before starting.
+- symptom: CREATE DATABASE fails with a handler not found error
+  cause: The handler for the target engine (e.g., snowflake, mongodb) is not installed in the current environment.
+  fix: Run `make install_handler HANDLER_NAME=<name>` or `pip install mindsdb[<handler>]` to install the handler, then restart the server.
+- symptom: CREATE MODEL or model training hangs indefinitely
+  cause: The LLM provider API key (e.g., OPENAI_API_KEY, ANTHROPIC_API_KEY) is missing from the environment, causing the request to the provider to fail silently.
+  fix: Set the required API key as an environment variable before starting MindsDB; check model status with SELECT * FROM information_schema.models WHERE name='model_name' to see the training error.
+- symptom: Prediction query returns NULL or empty results
+  cause: Model training failed or was not completed; or the input column names in the WHERE clause do not match the expected feature names.
+  fix: "Inspect the model status with DESCRIBE model_name; ensure STATUS is 'complete'; verify column names match the training SELECT statement."
+- symptom: MySQL proxy connection refused or client cannot connect on port 47335
+  cause: MINDSDB_APIS does not include 'mysql' so the proxy listener was not started.
+  fix: Set MINDSDB_APIS=http,mysql (or http,mysql,mcp,a2a for all interfaces) in the environment before starting the server.

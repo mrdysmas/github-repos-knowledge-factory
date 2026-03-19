@@ -215,3 +215,32 @@ integrations:
   description: Model Context Protocol server enabling integration with AI agents like Claude Desktop.
 - name: LangChain
   description: Integration via langchain-paddleocr/ for use in LLM-based RAG pipelines.
+
+common_tasks:
+- name: Run OCR on a single image
+  description: "Import PaddleOCR, instantiate with PaddleOCR(use_angle_cls=True, lang='en'), then call ocr.predict('image.jpg') to get bounding boxes, text, and confidence scores."
+- name: Run document structure analysis
+  description: Instantiate PPStructureV3() and call parser.predict('document.pdf') to extract layout regions, tables, and formulas and convert the document to structured Markdown or JSON output.
+- name: Batch inference via CLI
+  description: "Run `paddleocr ocr --input /path/to/images/` to process a directory of images with the default PP-OCRv5 pipeline; output is written as JSON result files."
+- name: Fine-tune a detection model with custom data
+  description: Prepare labeled data in the PaddleOCR annotation format, select a config from configs/det/, set Global.pretrained_model to a pre-trained checkpoint, and run `python tools/train.py -c configs/det/<config>.yaml`.
+- name: Export a trained model to ONNX
+  description: "Use `python tools/export_model.py -c <config>.yaml -o Global.pretrained_model=<checkpoint>` to export to Paddle static graph format, then run `paddle2onnx --model_dir <dir>` to produce an ONNX model for deployment outside PaddlePaddle."
+
+troubleshooting:
+- symptom: ImportError or ModuleNotFoundError for paddlepaddle on import
+  cause: PaddlePaddle is not installed; the GPU and CPU wheels are separate packages and the wrong one (or none) was installed.
+  fix: Install the correct wheel for your environment with `pip install paddlepaddle` for CPU or `pip install paddlepaddle-gpu` for CUDA; check the PaddlePaddle installation guide for CUDA version compatibility.
+- symptom: Model weights fail to download with a network or SSL error
+  cause: The model download endpoint (bj.bcebos.com) is unreachable from the current network, or a corporate proxy is blocking the request.
+  fix: Set the PADDLE_SERVER_FILE environment variable to point to an internal mirror, or download the model archive manually and pass the local path via Global.pretrained_model in the config.
+- symptom: Recognition accuracy is low on domain-specific text (receipts, handwriting, industry labels)
+  cause: The default PP-OCRv5 model is trained on general text; domain fonts or layouts diverge from the training distribution.
+  fix: Switch to a task-specific pre-trained model from the model zoo; if no matching model exists, fine-tune on 300–500 annotated domain images using the training pipeline.
+- symptom: CUDA out-of-memory error during inference
+  cause: Input image resolution is too high, or batch size exceeds available GPU memory.
+  fix: Resize images to a smaller maximum dimension before inference; reduce batch size; or set use_gpu=False to run on CPU if GPU memory is insufficient.
+- symptom: paddleocr CLI command not found after pip install
+  cause: The console_scripts entry point is installed to a directory not on PATH, or the package was installed in a virtual environment that is not activated.
+  fix: Activate the virtual environment where PaddleOCR was installed; alternatively invoke the CLI as `python -m paddleocr` which does not rely on the PATH entry point.

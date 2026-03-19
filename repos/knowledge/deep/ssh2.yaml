@@ -191,3 +191,32 @@ testing:
     - Client connection and authentication
     - SFTP operations
     - Key parsing and generation
+
+common_tasks:
+- name: Execute a remote command and capture output
+  description: Call client.exec(command, (err, stream) => ...) after the 'ready' event; pipe stream to collect stdout/stderr and listen for the 'close' event to get the exit code.
+- name: Open an interactive shell session
+  description: Call client.shell((err, stream) => ...) to get a bidirectional Channel stream; pipe stdin to stream and stream to stdout; send resize signals via stream.setWindow(rows, cols).
+- name: Upload or download files over SFTP
+  description: Call client.sftp((err, sftp) => ...) to open an SFTP session; use sftp.fastPut(localPath, remotePath, cb) for uploads and sftp.fastGet(remotePath, localPath, cb) for downloads.
+- name: Set up local port forwarding
+  description: Call client.forwardOut(srcHost, srcPort, dstHost, dstPort, (err, channel) => ...) to open a forwarded channel and pipe it to a local TCP socket for tunneling database or HTTP connections through SSH.
+- name: Authenticate with an SSH key
+  description: Pass privateKey as a Buffer or string (fs.readFileSync) in the connect() options; use passphrase if the key is encrypted; alternatively set agent to process.env.SSH_AUTH_SOCK to delegate to the system SSH agent.
+
+troubleshooting:
+- symptom: All configured authentication methods failed
+  cause: The private key format is not supported (e.g., new OpenSSH format with bcrypt headers requires passphrase even when not encrypted), or the server does not accept publickey auth for that user.
+  fix: "Confirm the key is readable by passing it through utils.parseKey(key, passphrase); verify that authorized_keys on the server contains the matching public key; check /var/log/auth.log on the server for the specific rejection reason."
+- symptom: SFTP read or write operation hangs and never calls back
+  cause: The SSH channel window is exhausted — data is queued but the remote side has not sent a window-adjust message, usually because buffered data is not being consumed.
+  fix: Always consume (pipe or read) data from exec/shell streams even when only SFTP is needed; ensure SFTP stream data events are processed and not left buffered.
+- symptom: Connection times out or drops silently during idle periods
+  cause: Intermediate firewalls or NAT gateways close idle TCP connections; no keepalive is configured to prevent this.
+  fix: Set keepaliveInterval (e.g., 10000 ms) and keepaliveCountMax in connect() options to send periodic keepalive packets and detect dead connections promptly.
+- symptom: "Handshake failed: no matching key exchange algorithm"
+  cause: The remote server only supports older kex algorithms (e.g., diffie-hellman-group1-sha1) that are not in ssh2's default list.
+  fix: Pass an algorithms option in connect() with the required kex entries added; e.g., algorithms.kex includes 'diffie-hellman-group14-sha1' for legacy servers.
+- symptom: ECONNREFUSED when calling client.connect()
+  cause: The SSH server is not running on the target host/port combination, or a firewall is blocking port 22.
+  fix: Verify the host and port values; confirm the SSH daemon is running on the server (systemctl status sshd); test reachability with a plain TCP connect before debugging authentication.

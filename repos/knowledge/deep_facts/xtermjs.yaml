@@ -760,6 +760,106 @@ facts:
   object_value: typings/xterm.d.ts
   note: Custom link detection (URLs, file paths, etc.); ILinkProvider interface
   fact_id: fact::b7dd075e0cb3e48d8871326a
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    excerpt: Colors and theme settings have no visible effect
+  object_value: Colors and theme settings have no visible effect
+  note: 'cause: Application-level CSS (e.g., color overrides on the container) is
+    overriding xterm''s inline styles; or the theme option was passed after the terminal
+    was opened.; fix: Set the theme option in the Terminal constructor before calling
+    open(); check for CSS specificity conf...'
+  fact_id: fact::1063dd39f08b221d7a752920
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    excerpt: Terminal renders as a blank rectangle or shows no cursor
+  object_value: Terminal renders as a blank rectangle or shows no cursor
+  note: 'cause: open() was called before the container element was attached to the
+    DOM or had zero width/height; or the xterm CSS stylesheet was not imported.; fix:
+    Ensure the container has explicit width and height in CSS before calling open();
+    import xterm/css/xterm.css (or the ESM e...'
+  fact_id: fact::91450bfa6dd2d739fdaabd3c
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    excerpt: Terminal size does not match the backend pty after window resize
+  object_value: Terminal size does not match the backend pty after window resize
+  note: 'cause: The onResize callback is not forwarding the new cols/rows to the backend
+    pty via a resize message.; fix: Subscribe to terminal.onResize(({cols, rows})
+    => sendResizeToBackend(cols, rows)) and ensure the backend pty (e.g., node-pty)
+    calls resize(cols, rows) in response.'
+  fact_id: fact::0e635a2a2697f2510cbc56ed
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    excerpt: User typing produces no output and keystrokes are ignored
+  object_value: User typing produces no output and keystrokes are ignored
+  note: 'cause: The onData handler is not connected to a backend pty, or the handler
+    was added after data was already buffered.; fix: Register the onData listener
+    immediately after open() and before writing any data; verify the WebSocket or
+    IPC channel is open and the handler actually...'
+  fact_id: fact::11c5bc07a11776fa5ce67e14
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    source_section: troubleshooting[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[4]
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    excerpt: allowProposedApi must be set to true error when loading an addon
+  object_value: allowProposedApi must be set to true error when loading an addon
+  note: 'cause: The addon uses APIs marked as experimental which require explicit
+    opt-in via the allowProposedApi constructor option.; fix: Pass allowProposedApi
+    true in the Terminal constructor options; note that proposed APIs may change between
+    minor releases.'
+  fact_id: fact::78ec9eb1f3f1f0c3c2918df1
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
@@ -1037,3 +1137,96 @@ facts:
   object_value: test/ directory with unit and integration tests
   note: 'testing metadata: structure'
   fact_id: fact::35cc422811e63e48c45ac0e9
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    source_section: common_tasks[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[2]
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    excerpt: Forward user input back to the backend
+  object_value: Forward user input back to the backend
+  note: Subscribe with terminal.onData(data => ws.send(data)) to capture all keyboard
+    input and mouse events and forward them to the remote process or pty.
+  fact_id: fact::38d21fb294ea6c98d94d49b8
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    source_section: common_tasks[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[0]
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    excerpt: Instantiate and mount a terminal in the DOM
+  object_value: Instantiate and mount a terminal in the DOM
+  note: Create new Terminal(options), call terminal.open(containerElement) where containerElement
+    is an already-visible HTMLElement with non-zero dimensions, and import the xterm
+    CSS for correct rendering.
+  fact_id: fact::6d45ae4fa302da0797ccf5fe
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    source_section: common_tasks[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[4]
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    excerpt: Load an extension addon
+  object_value: Load an extension addon
+  note: Instantiate the addon (e.g., new WebLinksAddon()), call terminal.loadAddon(addon),
+    and if the addon uses proposed APIs set allowProposedApi to true in the Terminal
+    constructor options.
+  fact_id: fact::573ac2a63c9bb0c0723230a2
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    source_section: common_tasks[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[1]
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    excerpt: Pipe backend data into the terminal
+  object_value: Pipe backend data into the terminal
+  note: Call terminal.write(data) whenever data arrives from the backend (e.g., WebSocket
+    onmessage or pty output); data can be a string or Uint8Array of raw bytes.
+  fact_id: fact::4d3210129ca4a32506ce9873
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    source_section: common_tasks[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[3]
+    source_file: repos/knowledge/deep/xtermjs.yaml
+    excerpt: Resize the terminal to fit its container
+  object_value: Resize the terminal to fit its container
+  note: Load the FitAddon (loadAddon), call fitAddon.fit() whenever the container
+    dimensions change; this updates terminal.cols and terminal.rows which should then
+    be forwarded to the backend pty via a resize message.
+  fact_id: fact::1d7970f7a21dc22456bcb49d
