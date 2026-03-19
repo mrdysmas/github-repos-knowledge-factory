@@ -7,7 +7,7 @@ report_semantics:
   execution_results: Observed outcomes recorded by this WS6 invocation; statuses are
     PASS/FAIL/NOT_RUN only.
   pending_status_allowed: false
-execution_mode: full_validation_run
+execution_mode: materialize_only
 required_commands:
 - step: 1
   command: python3 tools/ws1_contract_validator.py --workspace-root . --external-node-policy
@@ -47,103 +47,52 @@ execution_results:
 - step: 1
   command: python3 tools/ws1_contract_validator.py --workspace-root . --external-node-policy
     first_class
-  status: PASS
-  exit_code: 0
-  ran_at_utc: '2026-03-19T04:38:34Z'
-  duration_ms: 988
-  observation: exit_code=0; ws1_contract_status_pass=true
-  output_tail: "stdout_tail:\ncontracts_dir: /Users/szilaa/scripts/ext_sources/github_repos/contracts/ws1\n\
-    external_node_policy: first_class\n\nPASS checks:\n  - Contract version aligned\
-    \ across WS1 artifacts: 1.0.0-ws1\n  - Source enums aligned and remote-first ready:\
-    \ ['compiled_master', 'remote_api', 'remote_metadata', 'repos']\n  - Shallow/deep\
-    \ identity contract OK for repos: shallow=122 deep=120 local_deep_coverage=100%\n\
-    \  - Relation mapping coverage OK: unique=12/12 rows=12/12\n  - External node\
-    \ policy mode selected: first_class\n  - Edge/node consistency OK for policy 'first_class'\
-    \ (dst_kind integrity enforced)\n\nWS1_CONTRACT_STATUS: PASS"
+  status: NOT_RUN
+  exit_code: null
+  ran_at_utc: null
+  duration_ms: null
+  observation: not executed in this ws6 invocation
 - step: 2
   command: python3 tools/trust_gates.py repos/knowledge --production
-  status: PASS
-  exit_code: 0
-  ran_at_utc: '2026-03-19T04:38:35Z'
-  duration_ms: 1044
-  observation: exit_code=0; overall_pass=true; ready_state_allowed_true=true
-  output_tail: 'stdout_tail:
-
-    Knowledge dir: /Users/szilaa/scripts/ext_sources/github_repos/repos/knowledge
-
-    Report: /Users/szilaa/scripts/ext_sources/github_repos/repos/knowledge/trust-gates-report.yaml
-
-    G1 Parse Integrity: PASS (0 errors)
-
-    G2 Status Semantics: PASS (0 violations)
-
-    G3 Spec/Validator Contract: PASS (0 findings)
-
-    Overall: PASS
-
-    ready_state_allowed: true'
+  status: NOT_RUN
+  exit_code: null
+  ran_at_utc: null
+  duration_ms: null
+  observation: not executed in this ws6 invocation
 - step: 4
   command: python3 tools/ws6_deep_integrator.py --workspace-root . --reports-dir reports/ws6_deep_integration
     --materialize-spec reports/ws6_deep_integration/spec.yaml
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-19T04:38:33Z'
+  ran_at_utc: '2026-03-19T04:54:14Z'
   duration_ms: 0
   observation: ws6_gate_ready=true blocking_mismatches=0 facts_materialized=5860
 - step: 5
   command: python3 tools/ws4_master_compiler.py --workspace-root . --master-index
     master_index.yaml --master-graph master_graph.yaml --reports-dir reports/ws4_master_build
-  status: PASS
-  exit_code: 0
-  ran_at_utc: '2026-03-19T04:38:41Z'
-  duration_ms: 6452
-  observation: exit_code=0; ws4_gate_ready=true
-  output_tail: 'stdout_tail:
-
-    WS4_MASTER_BUILD_SUMMARY
-
-    workspace_root: /Users/szilaa/scripts/ext_sources/github_repos
-
-    master_index: /Users/szilaa/scripts/ext_sources/github_repos/master_index.yaml
-
-    master_graph: /Users/szilaa/scripts/ext_sources/github_repos/master_graph.yaml
-
-    reports_dir: /Users/szilaa/scripts/ext_sources/github_repos/reports/ws4_master_build
-
-    generated_at_utc: 2026-03-18T00:00:00Z
-
-    gate_ready: true
-
-    unmapped_relation_types: 0
-
-    unknown_repo_node_refs_dst_kind_repo: 0
-
-    stale_records: 0
-
-    compile_errors: 0'
+  status: NOT_RUN
+  exit_code: null
+  ran_at_utc: null
+  duration_ms: null
+  observation: not executed in this ws6 invocation
 - step: 6
   command: python3 tools/query_master.py --source yaml stats
-  status: PASS
-  exit_code: 0
-  ran_at_utc: '2026-03-19T04:38:46Z'
-  duration_ms: 4279
-  observation: exit_code=0; deep_facts=5860
-  output_tail: "stdout_tail:\nartifact_type: master_query_stats\ncounts:\n  repos:\
-    \ 122\n  nodes: 136\n  edges: 152\n  deep_facts: 5860\nsources:\n  master_index:\
-    \ /Users/szilaa/scripts/ext_sources/github_repos/master_index.yaml\n  master_graph:\
-    \ /Users/szilaa/scripts/ext_sources/github_repos/master_graph.yaml\n  master_deep_facts:\
-    \ /Users/szilaa/scripts/ext_sources/github_repos/master_deep_facts.yaml"
+  status: NOT_RUN
+  exit_code: null
+  ran_at_utc: null
+  duration_ms: null
+  observation: not executed in this ws6 invocation
 - step: 7
   command: Re-run WS6 command with identical input and verify output hashes unchanged
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-19T04:38:33Z'
+  ran_at_utc: '2026-03-19T04:54:14Z'
   duration_ms: 0
   observation: hash_stability=true
 artifact_hashes:
   master_deep_facts.yaml: 92f0bb97cae386f0228f7a8f033004638f37c33abaca5ead347cba9ff069a4c8
-  reports/ws6_deep_integration/coverage.yaml: 4b5d97b20a5ca7cf5a85a7967bd8ad16fe506913068c69fd8f41581b6bb16c6f
-  reports/ws6_deep_integration/mismatch_report.yaml: 7dbba93140e0a185ede06d38beb6ae33eb67531c9e7f70ea21e870e3105306c6
+  reports/ws6_deep_integration/coverage.yaml: 8225a8b53c533511858a6a640c2e80b92e76588b340db56cce65f4297abe6c31
+  reports/ws6_deep_integration/mismatch_report.yaml: 74956740d4c9a3b45577003c721d035ff6284d40a6c99a15b3fa6ef4885a472f
   repos/knowledge/deep_facts/JeecgBoot.yaml: d262275eb1cd29cc0ebcc53fe545e9c04378fab39f5034bdcb2c494b8df78242
   repos/knowledge/deep_facts/Prompt-Engineering-Guide.yaml: 51ba3af34fc1c235cee9f04d3cfc10a14a43e857928c2147c6384588ef255e80
   repos/knowledge/deep_facts/abhigyanpatwari__gitnexus.yaml: f3097fca86984467b7485f70224256bde2f7f7831e9ed3a80fd0c5bc7ec0f1d3
@@ -276,6 +225,6 @@ gate_bools:
 gate_metrics:
   unmapped_sections_count: 21
 ws6_gate_ready: true
-validation_suite_complete: true
-validation_suite_passed: true
+validation_suite_complete: false
+validation_suite_passed: null
 gate_ready: true
