@@ -5,7 +5,7 @@ phase:
   number: "4"
   name: "Corpus Expansion and Stabilization"
   status: "IN_PROGRESS"
-  workflow: "B1_COMPLETE -> STABILIZATION_COMPLETE -> B2_COMPLETE -> B3_COMPLETE_ACCEPT_WITH_NOTES -> B4_COMPLETE_ACCEPT_WITH_NOTES -> B5_COMPLETE_ACCEPT_WITH_NOTES -> TEMPLATE_STANDARDIZATION_APPROVED -> B9_T2_DEEP_COMPLETE -> B9_T3_DEEP_COMPLETE -> B9_LISTS_DEEP_COMPLETE -> B10_MARIADB_COMPLETE -> B11_GITNEXUS_LADYBUG_DEEPAGENTS_COMPLETE -> NEXT_BATCH_SELECTION"
+  workflow: "B1_COMPLETE -> STABILIZATION_COMPLETE -> B2_COMPLETE -> B3_COMPLETE_ACCEPT_WITH_NOTES -> B4_COMPLETE_ACCEPT_WITH_NOTES -> B5_COMPLETE_ACCEPT_WITH_NOTES -> TEMPLATE_STANDARDIZATION_APPROVED -> B9_T2_DEEP_COMPLETE -> B9_T3_DEEP_COMPLETE -> B9_LISTS_DEEP_COMPLETE -> B10_MARIADB_COMPLETE -> B11_GITNEXUS_LADYBUG_DEEPAGENTS_COMPLETE -> B12_V2_BACKFILL_COMPLETE -> NEXT_BATCH_SELECTION"
   date_initiated: "2026-03-05"
   date_started: "2026-03-05"
   date_completed: null
@@ -37,14 +37,14 @@ current:
     repos: 122
     nodes: 136
     edges: 152
-    deep_facts: 5538
+    deep_facts: 5687
   deltas_vs_baseline:
     queued_count: -46
     already_canonical_count: 49
     repos: 49
     nodes: 49
     edges: 0
-    deep_facts: 2617
+    deep_facts: 2766
   freshness:
     master_index_generated_at_utc: "2026-03-18T00:00:00Z"
     master_graph_generated_at_utc: "2026-03-18T00:00:00Z"
@@ -413,6 +413,41 @@ batches:
       - "Clone prep reused existing local clones at workspace/clones/abhigyanpatwari__GitNexus, workspace/clones/LadybugDB__ladybug, and workspace/clones/langchain-ai__deepagents"
       - "Explicit file_stem overrides were added to the manifest after WS5 defaulted to short stems from name"
       - "Ladybug did not require the 2000 MB large-repo path"
+
+  b12_v2_backfill:
+    status: "COMPLETE"
+    objective: "Contract v2.0 backfill — add missing evidence families (Protocols & Integrations, Failures) to 27 existing deep files across tunneling, vpn_mesh, vector_database, and inference_serving archetypes."
+    batch_id: "B12_v2_backfill"
+    repo_count_target: 27
+    deep_repo_count: 27
+    shallow_repo_count: 0
+    mode_recommendation_used: "BACKFILL"
+    ws6_gate_bools_all_true: true
+    ws7_strict_runs: 0
+    ws7_force_runs: 1
+    ws7_snapshot_status: "pass"
+    deep_success: true
+    policy_success: true
+    acceptance_decision: "COMPLETE"
+    predicate_baselines:
+      has_failure_mode: 78
+      uses_protocol: 47
+    predicate_post_run:
+      has_failure_mode: 128
+      uses_protocol: 146
+    notes:
+      - "repos: 122, nodes: 136, edges: 152 (unchanged — backfill only)"
+      - "deep_facts: 5538 -> 5687 (+149), hard deep gate passed"
+      - "All WS6 gate bools true and all WS7 gates pass"
+      - "Group A (16 tunneling/vpn_mesh/network_infra): supported_protocols or vpn_protocols sections added; all training_knowledge"
+      - "Group B (9 vector_database): troubleshooting sections added; qdrant/lancedb/weaviate/ladybugdb code_verified from live clones"
+      - "Group C (2 inference_serving): troubleshooting sections added; lmdeploy/nexa_sdk code_verified from live clones"
+      - "WS5 fix: source: repos -> source: remote_metadata for 16 manifest entries (WS5 only accepts remote_api/remote_metadata)"
+      - "WS1 fix: deep files source field and html_url case synced to match WS5-normalized shallow files"
+      - "weaviate clone exceeded 600 MB limit (1039 MB); batch spec raised to 1200 MB as force-large equivalent"
+      - "Subagent note: infinity.yaml provenance kept as code_verified from prior extraction; supervisor should verify if per-session strictness required"
+      - "Subagent note: zilliztech/vectordbbench failure modes are benchmark-execution oriented, not storage-engine level"
+      - "Subagent note: nexa_sdk silent-CPU-fallback entry is moderate confidence"
 
 open_threads:
   - "Case-insensitive collision handling if two repos differ only by case."

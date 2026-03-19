@@ -182,16 +182,16 @@ canonical:
     compile: "tools/ws4_master_compiler.py"
   execution_tracker: "phase_4_progress_tracker.yaml"
   corpus_status:
-    as_of_utc: "2026-03-18T06:16:36Z"
+    as_of_utc: "2026-03-18T00:00:00Z"
     query_master:
       repos: 122
       nodes: 136
       edges: 152
-      deep_facts: 5538
+      deep_facts: 5687
     latest_batch:
-      batch_id: "B11_gitnexus_ladybugdb_deepagents"
+      batch_id: "B12_v2_backfill"
       result: "ok"
-      deep_facts_delta: 209
+      deep_facts_delta: 149
       ws6_gate_bools_all_true: true
       ws7_snapshot_status: "pass"
       ws7_force_used: true
@@ -238,15 +238,15 @@ todo:
 next_agent_handoff:
   if_user_asks: "What now? What should we work on?"
   answer:
-    current_focus: "Phase 4 continues after B11_gitnexus_ladybugdb_deepagents COMPLETE. Template standardization is resolved; the next action is selecting the next corpus-expansion batch and executing the next pass."
+    current_focus: "Phase 4 continues after B12_v2_backfill COMPLETE. Contract v2.0 evidence-family backfill is done; has_failure_mode is 128 (+50) and uses_protocol is 146 (+99). The next action is selecting the next corpus-expansion batch."
     read_first:
       - "project_status.yaml"
       - "phase_4_progress_tracker.yaml"
       - "docs/INGESTION_WORKFLOW.md"
       - "inputs/intake/intake_queue.yaml"
       - "master_repo_list.yaml"
-      - "reports/run_batch/B11_gitnexus_ladybugdb_deepagents_verdict.yaml"
-      - "inputs/ws5/B11_gitnexus_ladybugdb_deepagents_manifest.yaml"
+      - "reports/run_batch/B12_v2_backfill_verdict.yaml"
+      - "inputs/ws5/B12_v2_backfill_manifest.yaml"
       - "tools/query_master.py"
       - "tools/run_batch.py"
     immediate_next_step:
