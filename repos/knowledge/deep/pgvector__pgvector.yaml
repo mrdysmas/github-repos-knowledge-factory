@@ -187,3 +187,17 @@ core_modules:
   sql_layer:
     path: sql/vector.sql
     description: SQL bindings for extension objects.
+
+troubleshooting:
+  - symptom: "ANN index is not used and query falls back to sequential scan despite index existing"
+    cause: "The query planner bypasses the ANN index when no LIMIT clause is present, when the ORDER BY operator does not match the indexed operator class, or when enable_indexscan is off"
+    fix: "Always pair ORDER BY with a LIMIT clause; ensure the operator in ORDER BY matches the index's operator class (e.g. vector_l2_ops for <->); run EXPLAIN to confirm index scan is selected"
+  - symptom: "Index build runs out of memory or is killed on large datasets"
+    cause: "HNSW and IVFFlat index builds load data into memory; HNSW in particular requires memory proportional to dataset size × m parameter; default maintenance_work_mem may be too small"
+    fix: "Increase maintenance_work_mem before building the index (SET maintenance_work_mem = '8GB'); reduce m (HNSW) or lists (IVFFlat) parameters; build on a machine with more RAM for very large datasets"
+  - symptom: "Dimension mismatch error when inserting vectors or querying against an indexed column"
+    cause: "pgvector enforces a fixed dimension for vector-typed columns; inserting a vector with a different number of dimensions than declared in the column definition raises an error"
+    fix: "Ensure all vectors inserted have exactly the dimension declared in CREATE TABLE (e.g. vector(1536)); truncate or pad embeddings if switching models, and recreate the column if the dimension changes"
+  - symptom: "Low recall when using IVFFlat index even with correct operator class"
+    cause: "ivfflat.probes defaults to a small value (1); with many lists, only a fraction of the data is scanned per query, which degrades recall significantly on dense datasets"
+    fix: "Increase ivfflat.probes (SET ivfflat.probes = 10 or higher) before querying; a common guideline is sqrt(lists) probes; trade off latency for recall as needed"

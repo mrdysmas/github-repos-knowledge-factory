@@ -64,9 +64,9 @@ execution_results:
     --materialize-spec reports/ws6_deep_integration/spec.yaml
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-19T05:36:59Z'
+  ran_at_utc: '2026-03-19T05:39:31Z'
   duration_ms: 0
-  observation: ws6_gate_ready=true blocking_mismatches=0 facts_materialized=5917
+  observation: ws6_gate_ready=true blocking_mismatches=0 facts_materialized=5921
 - step: 5
   command: python3 tools/ws4_master_compiler.py --workspace-root . --master-index
     master_index.yaml --master-graph master_graph.yaml --reports-dir reports/ws4_master_build
@@ -86,12 +86,12 @@ execution_results:
   command: Re-run WS6 command with identical input and verify output hashes unchanged
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-19T05:36:59Z'
+  ran_at_utc: '2026-03-19T05:39:31Z'
   duration_ms: 0
   observation: hash_stability=true
 artifact_hashes:
-  master_deep_facts.yaml: f32ab9a65cd54768ab473772e9ed2189d7a6774998ca86cfa20e42caafb7a726
-  reports/ws6_deep_integration/coverage.yaml: 4eae0a1f920fb02d38449d5420842c16b9a6f177b03523663fce0cf3a6f81e10
+  master_deep_facts.yaml: 82981d6dbda50bbe86fd25820ba19508ee42f833d75993eb67c26136302b8eac
+  reports/ws6_deep_integration/coverage.yaml: 7fd09a794634856ecb4d9da84dac08278623844baa1704c605edec7aa5db0d45
   reports/ws6_deep_integration/mismatch_report.yaml: 74956740d4c9a3b45577003c721d035ff6284d40a6c99a15b3fa6ef4885a472f
   repos/knowledge/deep_facts/JeecgBoot.yaml: d262275eb1cd29cc0ebcc53fe545e9c04378fab39f5034bdcb2c494b8df78242
   repos/knowledge/deep_facts/Prompt-Engineering-Guide.yaml: 51ba3af34fc1c235cee9f04d3cfc10a14a43e857928c2147c6384588ef255e80
@@ -169,7 +169,7 @@ artifact_hashes:
   repos/knowledge/deep_facts/pangolin.yaml: 3cb075f264fb5662b98bf5c0545e69c995f782369f688d30943e95099130276f
   repos/knowledge/deep_facts/parlant.yaml: 2c1ed9c7963b5773b73676fa43499959754677be397248a4e57558931120320d
   repos/knowledge/deep_facts/pathway.yaml: b9cefb938a25b03cbf471be052bc4d0bc96582654a4ed27ffef919a3ef4a90c7
-  repos/knowledge/deep_facts/pgvector__pgvector.yaml: 36f607d822fe7d5f4fbad922e73c9a2612071e06c8d7dbf938355fe2d3afd898
+  repos/knowledge/deep_facts/pgvector__pgvector.yaml: 826c8084d38e5ef44f8a2200517a98493c63811b407b0db035f2e82401773d6e
   repos/knowledge/deep_facts/phuocng__1loc.yaml: cac3baa6c6e450e3e18c187623a2c57891a6461d2d70b117f9b74cb356d4fcfe
   repos/knowledge/deep_facts/puppeteer__puppeteer.yaml: 540731c1405ae3644e4005de910012533841c88b424084ea3c99363be6f8d007
   repos/knowledge/deep_facts/pydantic__pydantic-ai.yaml: 6f11db35602e1a410e4dc644ad94ec236ad511dc4bc82d4320dbe3a045ffbc97
