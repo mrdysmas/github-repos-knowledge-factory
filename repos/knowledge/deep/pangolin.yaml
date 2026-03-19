@@ -2,12 +2,12 @@ name: pangolin
 node_id: repo::fosrl/pangolin
 github_full_name: fosrl/pangolin
 html_url: https://github.com/fosrl/pangolin
-source: repos
+source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep/pangolin.yaml
-  as_of: '2026-02-25'
-  sourcing_method: code_verified
+  as_of: '2026-03-18'
+  sourcing_method: training_knowledge
   extraction_model: glm-5
   extraction_agent: kgraph-repos
 directory: pangolin-main
@@ -214,3 +214,17 @@ extension_points:
   - location: Feature flags in config
     hook: flags.* configuration
     example: Toggle features without code changes
+
+supported_protocols:
+  - name: WireGuard
+    role: "VPN data-plane protocol used for site-to-site connectivity; each Pangolin site corresponds to a WireGuard peer, managed via the Gerbil companion process starting on port 51820"
+  - name: HTTPS
+    role: "all public-facing resource access is proxied over HTTPS via Traefik with Let's Encrypt certificate management; internal API server also operates over HTTPS"
+  - name: HTTP
+    role: "Traefik HTTP entrypoint for plain-text traffic; used in conjunction with HTTPS for redirect and ingress rule handling"
+  - name: WebSocket
+    role: "real-time communication channel used between browser clients and the Next.js dashboard, and for site-to-control-plane signaling via the internal server"
+  - name: OIDC
+    role: "identity provider integration for user authentication; Pangolin supports OIDC alongside email and WebAuthn for login"
+  - name: "REST over HTTPS"
+    role: "external API protocol (port 3000) for all management operations including organization, resource, site, and client CRUD via Express routes"

@@ -6,7 +6,7 @@ source: remote_api
 provenance:
   shard: repos
   source_file: repos/knowledge/deep_facts/tailscale.yaml
-  as_of: '2026-02-24'
+  as_of: '2026-03-18'
   extractor_version: ws6-deep-integrator-v1
   extraction_model: gpt-unknown
   extraction_agent: codex
@@ -15,7 +15,7 @@ facts:
   predicate: has_component
   object_kind: concept
   confidence: 0.67
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: key_features[1]
@@ -27,12 +27,12 @@ facts:
     excerpt: Identity-aware access control
   object_value: Identity-aware access control
   note: Connects node behavior and policy to control-plane identity and configuration.
-  fact_id: fact::6470d18c036d0d0b461b8f8a
+  fact_id: fact::87413f0746560cd50ba2c114
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.67
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: key_features[2]
@@ -44,12 +44,12 @@ facts:
     excerpt: Local API and daemon management
   object_value: Local API and daemon management
   note: Supports client commands through a daemon-backed local API.
-  fact_id: fact::6c493d2ba1c02fb0b70bddf7
+  fact_id: fact::1580e8042e5cef1d084bc4e0
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: architecture.key_abstractions[2]
@@ -61,12 +61,12 @@ facts:
     excerpt: Serves local management endpoints used by clients and integrations.
   object_value: LocalAPI
   note: Serves local management endpoints used by clients and integrations.
-  fact_id: fact::c29fd86b779e146460aab103
+  fact_id: fact::6ad15cc66a31cf846e4faa28
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: architecture.key_abstractions[0]
@@ -79,12 +79,12 @@ facts:
       interactions.
   object_value: LocalBackend
   note: Coordinates node state, preferences, and authenticated control-plane interactions.
-  fact_id: fact::eefe2af2bfc9050a50b1423a
+  fact_id: fact::39721fa033d28997a37642c0
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.67
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: key_features[0]
@@ -96,12 +96,12 @@ facts:
     excerpt: Mesh VPN connectivity
   object_value: Mesh VPN connectivity
   note: Builds WireGuard-based mesh networking between authenticated nodes.
-  fact_id: fact::36985f9052474a738908321b
+  fact_id: fact::73e40188d1233cafb37ef99d
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.67
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: key_features[3]
@@ -113,12 +113,12 @@ facts:
     excerpt: Relay and fallback connectivity
   object_value: Relay and fallback connectivity
   note: Uses discovery and DERP relay subsystems when direct connectivity is unavailable.
-  fact_id: fact::207f2456c978511d57529a69
+  fact_id: fact::540fe11c718ec3b7df0536f0
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.78
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: architecture.module_breakdown[1]
@@ -131,12 +131,12 @@ facts:
   object_value: ipn
   note: 'responsibility: Node state management, local API serving, preferences, and
     backend orchestration.; key_files: ipn/ipnlocal, ipn/localapi, ipn/ipnserver'
-  fact_id: fact::6bb23031708c7d6b69e6b419
+  fact_id: fact::ac7865303bdbf748b104d6e3
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.78
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: architecture.module_breakdown[3]
@@ -150,12 +150,29 @@ facts:
   object_value: net and tailcfg
   note: 'responsibility: Network utilities, DERP/discovery coordination, and shared
     control-plane types.; key_files: net, tailcfg, derp'
-  fact_id: fact::eca8f17c873f941112a9b820
+  fact_id: fact::d351778cdd3b7317c213b4cb
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.74
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/tailscale.yaml
+    source_section: architecture.key_abstractions[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.key_abstractions[1]
+    source_file: repos/knowledge/deep/tailscale.yaml
+    excerpt: Encapsulates WireGuard dataplane and peer connectivity behavior.
+  object_value: wgengine
+  note: Encapsulates WireGuard dataplane and peer connectivity behavior.
+  fact_id: fact::5de78d8534cccfee3bbb8862
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.78
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: architecture.module_breakdown[2]
@@ -168,29 +185,12 @@ facts:
   object_value: wgengine
   note: 'responsibility: WireGuard engine integration, peer connectivity, and dataplane
     behavior.; key_files: wgengine'
-  fact_id: fact::8c350f37c087a147278c5048
-- fact_type: component
-  predicate: has_component
-  object_kind: concept
-  confidence: 0.74
-  as_of: '2026-03-13'
-  provenance:
-    source_file: repos/knowledge/deep/tailscale.yaml
-    source_section: architecture.key_abstractions[1]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: architecture.key_abstractions[1]
-    source_file: repos/knowledge/deep/tailscale.yaml
-    excerpt: Encapsulates WireGuard dataplane and peer connectivity behavior.
-  object_value: wgengine
-  note: Encapsulates WireGuard dataplane and peer connectivity behavior.
-  fact_id: fact::cf077a38919c3c3ec37610b2
+  fact_id: fact::7716685679f806ee28eac7d1
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.72
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: key_files[0]
@@ -202,12 +202,12 @@ facts:
     excerpt: README.md
   object_value: README.md
   note: Project overview and user entry points.
-  fact_id: fact::67f4f2823d7c5f318e77a3dd
+  fact_id: fact::a923b44441a0bb93c8f177ea
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.74
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: core_modules.cli_and_daemon
@@ -219,12 +219,12 @@ facts:
     excerpt: cmd
   object_value: cmd
   note: User-facing CLI and daemon binaries.
-  fact_id: fact::7746106d07c36db35d2b7371
+  fact_id: fact::61ebe310e36ceb7444b35e33
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.72
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: key_files[1]
@@ -236,12 +236,12 @@ facts:
     excerpt: cmd/tailscale
   object_value: cmd/tailscale
   note: Primary CLI command implementation.
-  fact_id: fact::a3747d9dfff2fe854546c0ea
+  fact_id: fact::a3c8756b98c8a0cb29b31edf
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: architecture.module_breakdown[0]
@@ -255,12 +255,12 @@ facts:
   object_value: cmd/tailscale and cmd/tailscaled
   note: 'responsibility: CLI and daemon entrypoints for node control, login, and background
     networking services.; key_files: cmd/tailscale, cmd/tailscaled'
-  fact_id: fact::03a6a5bef52db4d04a8a3c72
+  fact_id: fact::8447c61e8d987bff2486fa79
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.72
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: key_files[2]
@@ -272,12 +272,12 @@ facts:
     excerpt: cmd/tailscaled
   object_value: cmd/tailscaled
   note: Daemon entrypoint.
-  fact_id: fact::4815c525dbceb4bbc7509513
+  fact_id: fact::10efc83931870642b3562483
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.74
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: core_modules.state_backend
@@ -289,12 +289,12 @@ facts:
     excerpt: ipn
   object_value: ipn
   note: State management, preferences, auth, and local API surfaces.
-  fact_id: fact::a81c63f22c6aa1a2aae60675
+  fact_id: fact::7e50a8b2455b70c534149a41
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.72
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: key_files[3]
@@ -306,12 +306,12 @@ facts:
     excerpt: ipn/localapi
   object_value: ipn/localapi
   note: Local API implementation.
-  fact_id: fact::21587ef42b6df4f0fc1b915f
+  fact_id: fact::3a4ec5f9b82822f270010cc0
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.74
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: core_modules.shared_networking
@@ -323,12 +323,12 @@ facts:
     excerpt: net
   object_value: net
   note: Discovery, DNS, proxy, and network monitoring helpers.
-  fact_id: fact::e30996425d82150921c0e006
+  fact_id: fact::940630c6d4294fd89db715e6
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.72
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: key_files[4]
@@ -340,12 +340,12 @@ facts:
     excerpt: wgengine
   object_value: wgengine
   note: WireGuard engine integration.
-  fact_id: fact::08b100fe86171d6328949423
+  fact_id: fact::9931033b293eac7d53527f1d
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.74
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: core_modules.dataplane
@@ -357,12 +357,12 @@ facts:
     excerpt: wgengine
   object_value: wgengine
   note: WireGuard engine integration and peer networking.
-  fact_id: fact::e973dfa65e0a331b11cb5437
+  fact_id: fact::e23106bc320d6f84e1c6b4f4
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: configuration[0].options[2]
@@ -374,12 +374,12 @@ facts:
     excerpt: advertise_routes
   object_value: advertise_routes
   note: Network route advertisement behavior.
-  fact_id: fact::84e8dc1280d236708ee28c27
+  fact_id: fact::6e4a832ba772549863f117eb
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: configuration[0].options[0]
@@ -391,12 +391,12 @@ facts:
     excerpt: authkey
   object_value: authkey
   note: Authentication key used for device enrollment workflows.
-  fact_id: fact::d3c2b57667ff3f2341a9b781
+  fact_id: fact::eddc1abcf120811b1685323d
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: configuration[0].options[1]
@@ -408,12 +408,12 @@ facts:
     excerpt: control_url
   object_value: control_url
   note: Control-plane endpoint selection.
-  fact_id: fact::dc9c81d38fb539e4aa2cbf6a
+  fact_id: fact::14359a0c97623a44a5ac4898
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: configuration[0].options[3]
@@ -425,12 +425,12 @@ facts:
     excerpt: exit_node
   object_value: exit_node
   note: Exit-node selection for egress routing.
-  fact_id: fact::b95b0a24d3e3329cb6aad4f9
+  fact_id: fact::d01dae151c9888aa7aa9ab6d
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: integrations.platforms[1].line[0]
@@ -442,12 +442,12 @@ facts:
     excerpt: CLI environments
   object_value: CLI environments
   note: 'integration group: platforms'
-  fact_id: fact::99abe86685a776dcc03dc926
+  fact_id: fact::6ca6d16f5b2fefbdb127c812
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: integrations.networking[1].line[0]
@@ -459,12 +459,12 @@ facts:
     excerpt: DERP relay network
   object_value: DERP relay network
   note: 'integration group: networking'
-  fact_id: fact::d76dba0922e125432ef25156
+  fact_id: fact::0df0fe8d8d32d89fc983253e
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: integrations.platforms[2].line[0]
@@ -476,12 +476,12 @@ facts:
     excerpt: Kubernetes operator tooling
   object_value: Kubernetes operator tooling
   note: 'integration group: platforms'
-  fact_id: fact::1f6fe47146b23eefa87ac969
+  fact_id: fact::2a17be81c30242a108963e45
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: api_surface.public_functions[2]
@@ -493,12 +493,12 @@ facts:
     excerpt: LocalAPI
   object_value: LocalAPI
   note: Serve local management requests for clients and integrations.; ipn/localapi
-  fact_id: fact::fcb7b453f177eeaff8ce873b
+  fact_id: fact::127efd8c726a21c39df36ed6
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: integrations.networking[0].line[0]
@@ -510,12 +510,12 @@ facts:
     excerpt: WireGuard
   object_value: WireGuard
   note: 'integration group: networking'
-  fact_id: fact::8cc28315df90e30557f5449c
+  fact_id: fact::e3ad500502e6a485bb03ef08
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: integrations.platforms[0].line[0]
@@ -527,12 +527,12 @@ facts:
     excerpt: desktop clients
   object_value: desktop clients
   note: 'integration group: platforms'
-  fact_id: fact::0a97ecfc4a4a5d14f3c54e5b
+  fact_id: fact::8c7e579afeadd80986fb7ef2
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: integrations.networking[2].line[0]
@@ -544,12 +544,12 @@ facts:
     excerpt: local API consumers
   object_value: local API consumers
   note: 'integration group: networking'
-  fact_id: fact::87cb63e80ac2297a7d878d85
+  fact_id: fact::5fb8c4ac058f7c54ab214359
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: api_surface.public_functions[0]
@@ -561,12 +561,12 @@ facts:
     excerpt: tailscale CLI
   object_value: tailscale CLI
   note: Expose user-facing node management and networking commands.; cmd/tailscale
-  fact_id: fact::da7fc428094215c3a0d5bb48
+  fact_id: fact::9f2d83d8565c5ce7358e0d7a
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: api_surface.public_functions[1]
@@ -578,12 +578,12 @@ facts:
     excerpt: tailscaled
   object_value: tailscaled
   note: Run the background daemon responsible for connectivity and state.; cmd/tailscaled
-  fact_id: fact::f172574aba601ea83c1ac914
+  fact_id: fact::f695c984beac3cfa355f535d
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: code_patterns[1]
@@ -597,12 +597,12 @@ facts:
   object_value: Control-plane and dataplane separation
   note: 'description: Configuration/state logic lives in ipn while packet transport
     concerns live in wgengine and net.; location: ipn'
-  fact_id: fact::e05f6eb09475d73d9632a8c5
+  fact_id: fact::78d971c9c246a81312888e8c
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: implementation_patterns[1]
@@ -616,12 +616,12 @@ facts:
   object_value: DERP fallback networking
   note: 'description: Relay and discovery support is organized as explicit subsystems
     for peer connectivity fallback.; location: derp'
-  fact_id: fact::48321e6e20ffbb80c703da3e
+  fact_id: fact::659e268d1085e889080b4525
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: code_patterns[0]
@@ -634,12 +634,12 @@ facts:
   object_value: Daemon-plus-CLI split
   note: 'description: Operational commands are separated from the long-running networking
     daemon.; location: cmd/tailscale'
-  fact_id: fact::ed800c51128c52e4692673ab
+  fact_id: fact::62f5e2dd064ce917dc10b37b
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: testing.coverage_areas[0].line[0]
@@ -651,12 +651,12 @@ facts:
     excerpt: Local API and backend behavior
   object_value: Local API and backend behavior
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::b6b9266e458e05192e361d30
+  fact_id: fact::9c5efbe923c26512a13dfbd9
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: implementation_patterns[0]
@@ -670,12 +670,12 @@ facts:
   object_value: Local API mediation
   note: 'description: Client-facing commands route through a local API/backend layer
     instead of mutating daemon state directly.; location: ipn/localapi'
-  fact_id: fact::031c1a767dbd43f2b647feae
+  fact_id: fact::a42e5d0ce65fe7f1313528b3
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: testing.coverage_areas[2].line[0]
@@ -687,12 +687,12 @@ facts:
     excerpt: Network utilities and discovery logic
   object_value: Network utilities and discovery logic
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::718be7334f0b9ab2eeb966bf
+  fact_id: fact::30cc6196c40e0c43175c404c
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: code_patterns[2]
@@ -706,12 +706,12 @@ facts:
   object_value: Package-oriented networking utilities
   note: 'description: Network checks, DNS handling, and discovery paths are factored
     into dedicated subpackages.; location: net'
-  fact_id: fact::3e79eb21d444f2a392ebc240
+  fact_id: fact::cbfe5e92c5f9d794ff5ff122
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: testing.structure.line[0]
@@ -725,12 +725,12 @@ facts:
   object_value: Repository includes package-level tests across networking, control-plane,
     and client modules.
   note: 'testing metadata: structure'
-  fact_id: fact::4501ad685132db1ccd54bc68
+  fact_id: fact::5bc84944e51df72a3b665875
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: testing.coverage_areas[1].line[0]
@@ -742,12 +742,12 @@ facts:
     excerpt: WireGuard engine and peer connectivity
   object_value: WireGuard engine and peer connectivity
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::e0883c09f7a2e71d73ca67d1
+  fact_id: fact::3aa0d9e7f7ac6fd18e030b06
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
   confidence: 0.67
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: quick_reference[0].line[0]
@@ -759,12 +759,12 @@ facts:
     excerpt: go build ./cmd/tailscale ./cmd/tailscaled
   object_value: go build ./cmd/tailscale ./cmd/tailscaled
   note: 'topic: Build CLI and daemon'
-  fact_id: fact::2b3d493d4ff419d4c4630b22
+  fact_id: fact::7465b90ffc1c8ca050e7fe9e
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
   confidence: 0.68
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: commands[0]
@@ -776,12 +776,12 @@ facts:
     excerpt: go build ./cmd/tailscale ./cmd/tailscaled
   object_value: go build ./cmd/tailscale ./cmd/tailscaled
   note: Build CLI and daemon binaries.
-  fact_id: fact::f7b6ba6330ee97c637969a78
+  fact_id: fact::adae1d79eb51c1787c8491e7
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
   confidence: 0.67
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: testing.framework.line[0]
@@ -793,12 +793,12 @@ facts:
     excerpt: go test
   object_value: go test
   note: testing command
-  fact_id: fact::cb4c4e69dc031c7d3dcde71b
+  fact_id: fact::61ece38a6bfda50429dacf26
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
   confidence: 0.67
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: testing.test_patterns[0].line[0]
@@ -810,12 +810,12 @@ facts:
     excerpt: go test ./...
   object_value: go test ./...
   note: testing command
-  fact_id: fact::2d581156c50a6030053c1294
+  fact_id: fact::0cc0ea20f7180c10f3f8cadd
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
   confidence: 0.67
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: quick_reference[1].line[0]
@@ -827,12 +827,12 @@ facts:
     excerpt: go test ./...
   object_value: go test ./...
   note: 'topic: Run tests'
-  fact_id: fact::5082990758943605572e62fa
+  fact_id: fact::21a0973a935b58160f93d7c8
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
   confidence: 0.68
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tailscale.yaml
     source_section: commands[1]
@@ -844,4 +844,84 @@ facts:
     excerpt: go test ./...
   object_value: go test ./...
   note: Run Go test suites across the repo.
-  fact_id: fact::8357f52df048538b511da7f6
+  fact_id: fact::49590b818a34f3a5ee150f43
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/tailscale.yaml
+    source_section: vpn_protocols[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: vpn_protocols[0]
+    source_file: repos/knowledge/deep/tailscale.yaml
+    excerpt: DERP
+  object_value: DERP
+  fact_id: fact::c48d530906222c2ce6e93f9c
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/tailscale.yaml
+    source_section: vpn_protocols[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: vpn_protocols[1]
+    source_file: repos/knowledge/deep/tailscale.yaml
+    excerpt: MagicDNS
+  object_value: MagicDNS
+  fact_id: fact::2715c3bf799cea8511ab6186
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/tailscale.yaml
+    source_section: vpn_protocols[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: vpn_protocols[2]
+    source_file: repos/knowledge/deep/tailscale.yaml
+    excerpt: Tailscale SSH
+  object_value: Tailscale SSH
+  fact_id: fact::83e562b8da8d0bba34ac4fc7
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/tailscale.yaml
+    source_section: vpn_protocols[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: vpn_protocols[3]
+    source_file: repos/knowledge/deep/tailscale.yaml
+    excerpt: Tailscale control protocol (HTTPS/JSON)
+  object_value: Tailscale control protocol (HTTPS/JSON)
+  fact_id: fact::886e6b530d71c4760832ab83
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/tailscale.yaml
+    source_section: vpn_protocols[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: vpn_protocols[4]
+    source_file: repos/knowledge/deep/tailscale.yaml
+    excerpt: WireGuard
+  object_value: WireGuard
+  fact_id: fact::d412a14657aed8791ad74797

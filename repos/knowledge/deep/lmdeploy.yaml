@@ -2,11 +2,11 @@ name: lmdeploy
 node_id: repo::internlm/lmdeploy
 github_full_name: internlm/lmdeploy
 html_url: https://github.com/internlm/lmdeploy
-source: repos
+source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep/lmdeploy.yaml
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   sourcing_method: code_verified
   extraction_model: glm-5
   extraction_agent: kgraph-repos
@@ -208,3 +208,28 @@ notes:
   - TurboMind generally faster but PyTorch more flexible
   - Supports both local and remote model loading
   - OpenAI-compatible API simplifies integration
+
+troubleshooting:
+  - symptom: "RuntimeError: [TM][ERROR] CUDA runtime error: out of memory"
+    cause: "KV cache allocation ratio is too large for available GPU memory; controlled by TurbomindEngineConfig.cache_max_entry_count"
+    fix: "Reduce cache_max_entry_count (e.g. backend_config = TurbomindEngineConfig(cache_max_entry_count=0.2)) or pass --cache-max-entry-count 0.2 on the CLI"
+
+  - symptom: "ModuleNotFoundError: No module named '_turbomind'"
+    cause: "TurboMind C++ pybind package not installed, or command is being run from the lmdeploy source root directory which shadows the installed package"
+    fix: "Install the precompiled package with 'pip install lmdeploy[all]', then change to a different working directory before running"
+
+  - symptom: "libnccl.so.2 not found at runtime"
+    cause: "NCCL library is not on LD_LIBRARY_PATH after pip install; required for multi-GPU tensor parallelism via TurboMind"
+    fix: "Run 'pip show nvidia-nccl-cu11 | grep Location' to find the library path, then export LD_LIBRARY_PATH={Location}/nvidia/nccl/lib:$LD_LIBRARY_PATH"
+
+  - symptom: "symbol cudaFreeAsync version libcudart.so.11.0 not defined"
+    cause: "CUDA toolkit version below 11.2; LMDeploy runtime requires a minimum of CUDA 11.2"
+    fix: "Upgrade CUDA toolkit to 11.2 or later, or install the CUDA 11.8-specific wheel with the cu118 prebuilt package"
+
+  - symptom: "RuntimeError: [enforce fail at inline_container.cc:337] unexpected pos during quantization"
+    cause: "Insufficient disk space when saving quantized weights; commonly occurs when quantizing 70B+ models"
+    fix: "Free disk space before running quantization; verify available space is at least 2x the model size in float16"
+
+  - symptom: API server image URL fetch hangs or times out during vision-language inference
+    cause: "Default fetch timeout for image URLs in the VL pipeline is 10 seconds; slow or unreachable URLs exceed this"
+    fix: "Set the LMDEPLOY_FETCH_TIMEOUT environment variable to a higher value in seconds before starting the api_server"

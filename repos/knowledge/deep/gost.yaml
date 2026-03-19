@@ -2,12 +2,12 @@ name: gost
 node_id: repo::go-gost/gost
 github_full_name: go-gost/gost
 html_url: https://github.com/go-gost/gost
-source: repos
+source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep/gost.yaml
-  as_of: '2026-02-25'
-  sourcing_method: code_verified
+  as_of: '2026-03-18'
+  sourcing_method: training_knowledge
   extraction_model: glm-5
   extraction_agent: kgraph-repos
 directory: gost-master
@@ -201,3 +201,27 @@ extension_points:
   - location: cmd/gost/register.go
     hook: Blank import section
     example: Add _ "your-module/connector" to register custom protocol
+
+supported_protocols:
+  - name: "SOCKS5"
+    role: "inbound handler and outbound connector for SOCKS5 proxy; supports username/password authentication"
+  - name: "HTTP CONNECT"
+    role: "inbound HTTP proxy handler and outbound HTTP CONNECT tunnel connector"
+  - name: TCP
+    role: "raw TCP listener and dialer used as the baseline transport for chained hops"
+  - name: TLS
+    role: "TLS-wrapped TCP transport for encrypted dialer and listener connections"
+  - name: WebSocket
+    role: "WebSocket transport (ws/wss) for traversing HTTP-only infrastructure or firewalls"
+  - name: QUIC
+    role: "QUIC-based listener and dialer providing multiplexed UDP transport with lower latency"
+  - name: KCP
+    role: "KCP reliable UDP transport for lower-latency tunneling over lossy links"
+  - name: Shadowsocks
+    role: "Shadowsocks inbound handler and outbound connector for obfuscated proxy transport"
+  - name: SSH
+    role: "SSH tunnel handler allowing traffic forwarding over SSH connections"
+  - name: DNS
+    role: "DNS service handler for DNS-over-TCP/UDP/TLS/HTTPS forwarding and routing"
+  - name: "gRPC"
+    role: "gRPC transport layer for tunneling traffic inside gRPC streams"

@@ -2,11 +2,11 @@ name: mmar
 node_id: repo::yusuf-musleh/mmar
 github_full_name: yusuf-musleh/mmar
 html_url: https://github.com/yusuf-musleh/mmar
-source: repos
+source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep_facts/mmar.yaml
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   extractor_version: ws6-deep-integrator-v1
   extraction_model: glm-5
   extraction_agent: kgraph-repos
@@ -15,7 +15,7 @@ facts:
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: architecture.key_abstractions[2]
@@ -27,12 +27,12 @@ facts:
     excerpt: Tunnel wrapper with incoming/outgoing channels and request tracking
   object_value: ClientTunnel
   note: Tunnel wrapper with incoming/outgoing channels and request tracking
-  fact_id: fact::f6ce13f0304541499d525c34
+  fact_id: fact::9e34b53c9d7e62ab1cf8a4a4
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: architecture.key_abstractions[0]
@@ -44,12 +44,12 @@ facts:
     excerpt: Client struct with embedded Tunnel, ConfigOptions, and subdomain
   object_value: MmarClient
   note: Client struct with embedded Tunnel, ConfigOptions, and subdomain
-  fact_id: fact::a064f5f69f115257bcd37ceb
+  fact_id: fact::a9882c65b284bef8139f9931
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: architecture.key_abstractions[1]
@@ -61,12 +61,12 @@ facts:
     excerpt: Server managing clients map, tunnelsPerIP limits, and handlers
   object_value: MmarServer
   note: Server managing clients map, tunnelsPerIP limits, and handlers
-  fact_id: fact::7038053c640cedb75df2ab9d
+  fact_id: fact::bdf043738505a68921284920
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: architecture.key_abstractions[3]
@@ -78,12 +78,12 @@ facts:
     excerpt: Protocol message with version, type, length, and data
   object_value: TunnelMessage
   note: Protocol message with version, type, length, and data
-  fact_id: fact::72c1eba06695b63983367e1a
+  fact_id: fact::f77d6cde5349036b2f23996d
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: architecture.module_breakdown[6]
@@ -96,12 +96,12 @@ facts:
   object_value: constants
   note: 'responsibility: Default ports, timeouts, environment variable names; key_files:
     constants/main.go'
-  fact_id: fact::e01be6a022b41d281b5b4956
+  fact_id: fact::51f5ec79bf367391ddf37c5d
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: architecture.module_breakdown[0]
@@ -114,12 +114,12 @@ facts:
   object_value: cmd/mmar
   note: 'responsibility: CLI entry point with server/client/version subcommands; key_files:
     cmd/mmar/main.go'
-  fact_id: fact::59b9534ddebbd924a7a4f06d
+  fact_id: fact::291fcc11b2bf2540b780fb3e
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: architecture.module_breakdown[1]
@@ -132,12 +132,12 @@ facts:
   object_value: internal/client
   note: 'responsibility: MmarClient with TCP connection, tunnel creation, request
     processing; key_files: internal/client/main.go'
-  fact_id: fact::c3ce2dd2d91321a0185b8f4f
+  fact_id: fact::a6a0b63fc3f2b2a232568b3c
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: architecture.module_breakdown[5]
@@ -149,12 +149,12 @@ facts:
     excerpt: Colored logging utilities
   object_value: internal/logger
   note: 'responsibility: Colored logging utilities; key_files: internal/logger/main.go'
-  fact_id: fact::7e7913975ae2a1754e9d2500
+  fact_id: fact::c62c5875409ed6994b1ce938
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: architecture.module_breakdown[3]
@@ -167,12 +167,12 @@ facts:
   object_value: internal/protocol
   note: 'responsibility: Tunnel struct and message serialization/deserialization;
     key_files: internal/protocol/main.go'
-  fact_id: fact::cbd1c38d3c16170c3c71592b
+  fact_id: fact::b52c2076a869d029a8c3f3ad
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: architecture.module_breakdown[2]
@@ -185,12 +185,12 @@ facts:
   object_value: internal/server
   note: 'responsibility: MmarServer with HTTP server for public requests, TCP server
     for clients; key_files: internal/server/main.go'
-  fact_id: fact::0f3b1fae3effad9e29bc37b4
+  fact_id: fact::2511f833d03d1efc1440d485
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: architecture.module_breakdown[4]
@@ -203,12 +203,12 @@ facts:
   object_value: internal/utils
   note: 'responsibility: Subdomain extraction, ID generation utilities; key_files:
     internal/utils/main.go'
-  fact_id: fact::f8257a0f9518b302e6674faf
+  fact_id: fact::023563d38b3746b2ee74fcfb
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: configuration.file
@@ -220,12 +220,12 @@ facts:
     excerpt: file
   object_value: file
   note: 'default: CLI flags and environment variables; configuration default for file'
-  fact_id: fact::d948502cfee82019ff1f2d95
+  fact_id: fact::3cc93e0cf52cc3194f001878
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: configuration.options[0]
@@ -237,12 +237,12 @@ facts:
     excerpt: http-port
   object_value: http-port
   note: 'type: int; Server HTTP port for public requests'
-  fact_id: fact::d4ec5b7968264b53d7180927
+  fact_id: fact::9f3c10c111fb0a6c738d144a
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: configuration.options[2]
@@ -254,12 +254,12 @@ facts:
     excerpt: local-port
   object_value: local-port
   note: 'type: int; Client''s local port to forward'
-  fact_id: fact::b776f62ccf62584cbebe80a2
+  fact_id: fact::7c7ebf555c746053e950693a
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: configuration.options[1]
@@ -271,12 +271,12 @@ facts:
     excerpt: tcp-port
   object_value: tcp-port
   note: 'type: int; Server TCP port for client connections'
-  fact_id: fact::f5ef5a28535e418092f269f8
+  fact_id: fact::202c3a1774edfd8a58355973
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: configuration.options[3]
@@ -288,12 +288,12 @@ facts:
     excerpt: tunnel-host
   object_value: tunnel-host
   note: 'type: string; default: mmar.dev; Tunnel server hostname'
-  fact_id: fact::9852ce0e71df04ee24b69bda
+  fact_id: fact::c119e28cc954db40802be770
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: configuration.options[4]
@@ -305,12 +305,12 @@ facts:
     excerpt: tunnel-http-port
   object_value: tunnel-http-port
   note: 'type: int; Tunnel server HTTP port'
-  fact_id: fact::aab38c498985c8420f40fcab
+  fact_id: fact::04383bc6315aa269afa96e15
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: configuration.options[5]
@@ -322,12 +322,12 @@ facts:
     excerpt: tunnel-tcp-port
   object_value: tunnel-tcp-port
   note: 'type: int; Tunnel server TCP port'
-  fact_id: fact::34920560b573fd01025320b0
+  fact_id: fact::b149b1d4a2caafbbbe6b14f2
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: api_surface.public_functions[2]
@@ -340,12 +340,12 @@ facts:
   object_value: Tunnel.SendMessage
   note: Send message through tunnel; func (t *Tunnel) SendMessage(msg TunnelMessage);
     internal/protocol/main.go
-  fact_id: fact::936c9732b82ecca29ed5ca6b
+  fact_id: fact::547078a658322a30ad0a37da
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: api_surface.public_functions[0]
@@ -357,12 +357,12 @@ facts:
     excerpt: client.Run
   object_value: client.Run
   note: Start client and establish tunnel; func Run(config ConfigOptions); internal/client/main.go:283
-  fact_id: fact::fd99c77a9a92dd202b55daae
+  fact_id: fact::947e6ce5e815b14525cc5610
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: api_surface.public_functions[1]
@@ -375,12 +375,12 @@ facts:
   object_value: server.Run
   note: Start server with HTTP and TCP listeners; func Run(config ConfigOptions);
     internal/server/main.go:582
-  fact_id: fact::2ea9fe20d267a3258bab4d33
+  fact_id: fact::d018e4ec784d3698c1c2fd2a
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: extension_points[2]
@@ -393,12 +393,12 @@ facts:
   object_value: internal/protocol/main.go
   note: Update range check for new message types; isValidTunnelMessageType() (lines
     39-49)
-  fact_id: fact::c4c34fa6e9843e7ef2894edf
+  fact_id: fact::04753188dff453c5e4c249ea
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: extension_points[0]
@@ -411,12 +411,12 @@ facts:
   object_value: internal/protocol/main.go
   note: Add new message types (NEW_MESSAGE_TYPE = uint8(iota + 35)); Message type
     constants (lines 20-34)
-  fact_id: fact::fdac1fe3bad8149b3d4f22d6
+  fact_id: fact::ab5e7a9bc7e1ec65a4da3814
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: extension_points[3]
@@ -429,12 +429,12 @@ facts:
   object_value: internal/server/main.go
   note: Add authentication, rate limiting, request transformation; ServeHTTP() (lines
     171-246)
-  fact_id: fact::63c02ca34e8eca890a6ea248
+  fact_id: fact::b9db49b1321812c42c42d109
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: extension_points[1]
@@ -447,12 +447,12 @@ facts:
   object_value: internal/server/main.go
   note: Custom naming schemes, user-provided subdomains, hash-based generation; GenerateUniqueSubdomain()
     (lines 248-257)
-  fact_id: fact::d949a7a0d4e6e7f35bae7e19
+  fact_id: fact::d7872b227aaa1714e7fdd678
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: implementation_patterns[2]
@@ -466,12 +466,12 @@ facts:
   object_value: Auto-Reconnect with Reclamation
   note: 'description: Client detects disconnection, reconnects, sends RECLAIM_TUNNEL
     with previous subdomain; location: internal/client/main.go:174-203'
-  fact_id: fact::211ef2c03ca3a53cb74291f2
+  fact_id: fact::7ef4fde01fe72923c30899df
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: implementation_patterns[0]
@@ -485,12 +485,12 @@ facts:
   object_value: Binary Protocol
   note: 'description: Version (1 byte) + MsgType (1 byte) + Length (varies) + Delimiter
     (1 byte) + Data; location: internal/protocol/main.go:99-126'
-  fact_id: fact::942f65db6f8570438c48a3a0
+  fact_id: fact::383cc025cb8b074fea9eba35
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: testing.coverage_areas[4].line[0]
@@ -502,12 +502,12 @@ facts:
     excerpt: Concurrency (multiple clients, subdomain allocation)
   object_value: Concurrency (multiple clients, subdomain allocation)
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::c39a972b029f341958965bcd
+  fact_id: fact::c7c23347c9aa8011b96ae8c8
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: testing.coverage_areas[3].line[0]
@@ -519,12 +519,12 @@ facts:
     excerpt: Connection issues (timeouts, crashes, invalid responses)
   object_value: Connection issues (timeouts, crashes, invalid responses)
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::3c60c791c88a36078e77a661
+  fact_id: fact::77c51773a74f3cddb53b8348
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: testing.coverage_areas[1].line[0]
@@ -536,12 +536,12 @@ facts:
     excerpt: Error handling (invalid headers, protocol versions, content-length)
   object_value: Error handling (invalid headers, protocol versions, content-length)
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::88844b166a3f6f4f9e807e48
+  fact_id: fact::7e7c0d35ead78422b797d455
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: testing.framework.line[0]
@@ -553,12 +553,12 @@ facts:
     excerpt: Go testing with simulation framework
   object_value: Go testing with simulation framework
   note: 'testing metadata: framework'
-  fact_id: fact::1eaa6ee0b4d3957b0471c7fa
+  fact_id: fact::cc6dc44929f34caef17af6b8
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: testing.coverage_areas[0].line[0]
@@ -570,12 +570,12 @@ facts:
     excerpt: HTTP method testing (GET, POST, redirects, invalid methods)
   object_value: HTTP method testing (GET, POST, redirects, invalid methods)
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::3136ac70362468438360da5b
+  fact_id: fact::ee72d72d25245547d073d5b5
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: implementation_patterns[3]
@@ -588,12 +588,12 @@ facts:
   object_value: Heartbeat Mechanism
   note: 'description: Bidirectional heartbeats with read deadline extension; location:
     internal/client/main.go:211-231, internal/server/main.go:449-463'
-  fact_id: fact::a1baf6b9ef83e462349990e6
+  fact_id: fact::6115a272528c0bd6640f8632
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: testing.coverage_areas[2].line[0]
@@ -605,12 +605,12 @@ facts:
     excerpt: Load testing (10MB request limit)
   object_value: Load testing (10MB request limit)
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::9e711b1a19dcc0554bab2dd9
+  fact_id: fact::c6484cedd26e0ffbb0a792c0
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: implementation_patterns[4]
@@ -623,12 +623,12 @@ facts:
   object_value: Request Serialization
   note: 'description: HTTP request serialized to bytes for tunnel transport; location:
     internal/server/main.go:171-246'
-  fact_id: fact::f3514376957c27f50430e149
+  fact_id: fact::5f29b3f88f12c1fd3d9e35da
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: testing.coverage_areas[5].line[0]
@@ -640,12 +640,12 @@ facts:
     excerpt: Security (stats endpoint authentication)
   object_value: Security (stats endpoint authentication)
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::deedf370f5f6e3b2ee3b5d0f
+  fact_id: fact::199b6847b88270d135ffdfbd
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: implementation_patterns[1]
@@ -658,12 +658,12 @@ facts:
   object_value: Subdomain Generation
   note: 'description: Random ID generation with reserved subdomain exclusion (admin,
     stats); location: internal/server/main.go:248-257'
-  fact_id: fact::860ec4948cabd56ff01bc9c5
+  fact_id: fact::dc0355941c878afd098641ce
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/mmar.yaml
     source_section: testing.structure.line[0]
@@ -675,4 +675,68 @@ facts:
     excerpt: simulations/
   object_value: simulations/
   note: 'testing metadata: structure'
-  fact_id: fact::6ba0ed80798bf4968fcb4f3a
+  fact_id: fact::3a571b6fd3229b969446bc2e
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/mmar.yaml
+    source_section: supported_protocols[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[0]
+    source_file: repos/knowledge/deep/mmar.yaml
+    excerpt: HTTP
+  object_value: HTTP
+  fact_id: fact::1094415b8954661fb83c04c6
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/mmar.yaml
+    source_section: supported_protocols[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[1]
+    source_file: repos/knowledge/deep/mmar.yaml
+    excerpt: TCP
+  object_value: TCP
+  fact_id: fact::b1f260e7b3993f1ac614f5c5
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/mmar.yaml
+    source_section: supported_protocols[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[2]
+    source_file: repos/knowledge/deep/mmar.yaml
+    excerpt: custom binary tunnel protocol
+  object_value: custom binary tunnel protocol
+  fact_id: fact::f2ca8000b7ac460a6483d0b9
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/mmar.yaml
+    source_section: supported_protocols[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[3]
+    source_file: repos/knowledge/deep/mmar.yaml
+    excerpt: heartbeat protocol
+  object_value: heartbeat protocol
+  fact_id: fact::3f840965895cf353b2b68039

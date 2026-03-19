@@ -2,12 +2,12 @@ name: mmar
 node_id: repo::yusuf-musleh/mmar
 github_full_name: yusuf-musleh/mmar
 html_url: https://github.com/yusuf-musleh/mmar
-source: repos
+source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep/mmar.yaml
-  as_of: '2026-02-25'
-  sourcing_method: code_verified
+  as_of: '2026-03-18'
+  sourcing_method: training_knowledge
   extraction_model: glm-5
   extraction_agent: kgraph-repos
 directory: mmar-master
@@ -184,3 +184,13 @@ extension_points:
   - location: internal/server/main.go
     hook: ServeHTTP() (lines 171-246)
     example: Add authentication, rate limiting, request transformation
+
+supported_protocols:
+  - name: TCP
+    role: "transport for the control channel between mmar client and server; all tunnel signaling and HTTP request/response data is carried over persistent TCP connections"
+  - name: HTTP
+    role: "inbound protocol on the server's public-facing listener; HTTP requests arrive at the auto-generated subdomain URL and are serialized into the custom binary protocol for forwarding to the client"
+  - name: "custom binary tunnel protocol"
+    role: "application-layer framing over TCP using a version byte, message-type byte, length field, delimiter, and data payload for tunnel lifecycle messages (CREATE_TUNNEL, REQUEST, RESPONSE, HEARTBEAT, etc.)"
+  - name: "heartbeat protocol"
+    role: "bidirectional keepalive exchange between client and server using HEARTBEAT_PING/HEARTBEAT_PONG messages to detect stale connections and extend read deadlines"

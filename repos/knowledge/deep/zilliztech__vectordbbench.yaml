@@ -1,12 +1,12 @@
 name: vectordbbench
 node_id: "repo::zilliztech/vectordbbench"
 github_full_name: zilliztech/vectordbbench
-html_url: https://github.com/zilliztech/VectorDBBench
+html_url: https://github.com/zilliztech/vectordbbench
 source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep/zilliztech__vectordbbench.yaml
-  as_of: "2026-03-17"
+  as_of: "2026-03-18"
   sourcing_method: training_knowledge
   extraction_model: claude-sonnet-4-6
   extraction_agent: codex
@@ -111,3 +111,17 @@ testing:
     - name: Unit tests
       location: tests/
       description: Tests for metric computation and case configuration logic
+
+troubleshooting:
+  - symptom: "Benchmark run exits with connection refused or client timeout before load phase completes"
+    cause: "The database under test is not ready or fully initialized when the VectorDB.ready() check returns; slow index build or cold-start latency in the target database causes the client adapter to time out"
+    fix: "Increase the client adapter's timeout or retry count in the database-specific client module under vectordb_bench/backend/clients/; ensure the target database has finished loading or building its index before starting the benchmark"
+  - symptom: "Recall metric is reported as 0.0 or NaN even though search results are returned"
+    cause: "Recall computation in vectordb_bench/metric.py compares search result IDs against ground-truth nearest neighbors from the dataset; if the ground-truth file is missing or the dataset download was incomplete, the comparison produces zero matches"
+    fix: "Re-run dataset download and verify the ground-truth file is present and matches the expected format; check the dataset path configuration in the TaskConfig before re-running"
+  - symptom: "Streamlit dashboard shows no results after a completed benchmark run"
+    cause: "Results are written to a local directory by the runner and read by the dashboard; if the run failed mid-benchmark or results were saved to a non-default path, the dashboard finds no result files to display"
+    fix: "Check the results directory (default: results/) for JSON output files; re-run the benchmark to completion and confirm the runner logs show a successful CaseResult write before launching the dashboard"
+  - symptom: "OOM during the load phase for large datasets (LAION-100M, Cohere-1M)"
+    cause: "The runner loads dataset vectors in batches via NumPy arrays; if the batch size is too large relative to available RAM, the process is killed by the OS before the load phase completes"
+    fix: "Reduce the batch_size parameter in the TaskConfig or the database client adapter; process the load phase in smaller chunks by adjusting the dataset slice parameters"

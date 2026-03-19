@@ -2,12 +2,12 @@ name: rathole
 node_id: repo::rapiz1/rathole
 github_full_name: rapiz1/rathole
 html_url: https://github.com/rapiz1/rathole
-source: repos
+source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep/rathole.yaml
-  as_of: '2026-02-25'
-  sourcing_method: code_verified
+  as_of: '2026-03-18'
+  sourcing_method: training_knowledge
   extraction_model: glm-5
   extraction_agent: kgraph-repos
 directory: rathole-main
@@ -192,3 +192,17 @@ extension_points:
   - location: src/config_watcher.rs:25-89
     hook: ConfigChange enum
     example: Custom reload behaviors for specific config changes
+
+supported_protocols:
+  - name: TCP
+    role: "default transport for the control channel and data channels between rathole client and server; used for both the heartbeat exchange and proxied service traffic"
+  - name: TLS
+    role: "optional encrypted transport (transport_type=Tls) wrapping TCP connections between client and server using rustls"
+  - name: "Noise Protocol (Noise_NK_25519_ChaChaPoly_BLAKE2s)"
+    role: "optional cryptographic transport (transport_type=Noise) providing authenticated encryption between client and server without requiring certificate management"
+  - name: WebSocket
+    role: "optional HTTP-upgrade-based transport (transport_type=Websocket) for traversing HTTP proxies or firewalls that restrict raw TCP"
+  - name: UDP
+    role: "forwarded service protocol; rathole supports proxying UDP services by applying custom framing (SocketAddr + length header) over TCP data channels"
+  - name: "SHA256 token authentication"
+    role: "service-level authentication using hashed tokens; client sends SHA256(service_name) as a digest and authenticates with SHA256(token) before data forwarding begins"

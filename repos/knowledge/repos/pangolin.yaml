@@ -2,53 +2,29 @@ name: pangolin
 node_id: repo::fosrl/pangolin
 github_full_name: fosrl/pangolin
 html_url: https://github.com/fosrl/pangolin
-source: repos
+source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/repos/pangolin.yaml
-  as_of: '2026-02-25'
-directory: pangolin-main
+  as_of: '2026-03-18'
+directory: remote::fosrl/pangolin
 category: network_infrastructure
-summary: |
-  Open-source identity-aware VPN and reverse proxy platform built on WireGuard that combines zero-trust network access with browser-based web application access, enabling secure connectivity to private resources without exposing networks to the internet.
+summary: Self-hosted tunneled reverse proxy with zero-trust access control, identity-aware
+  resource exposure, and automatic SSL via Traefik.
 core_concepts:
-  - name: sites
-    description: Lightweight connectors that create secure tunnels from remote networks without requiring public IPs or open ports, making any network available for authorized access
-  - name: targets
-    description: Resources (web apps, SSH servers, databases) exposed through Pangolin with identity-based access control, health checking, and automatic SSL certificate management via Traefik
-  - name: zero-trust access
-    description: Users get access to specific resources rather than entire networks; integrates with OIDC identity providers and supports granular role-based permissions
+- sites
+- targets
+- zero-trust access
 key_entry_points:
-  - path: server/index.ts:27
-    purpose: Main entry point that initializes config, licensing, and starts all servers (API, Next.js, internal, integration)
-  - path: server/apiServer.ts:29
-    purpose: Creates Express API server handling authentication, rate limiting, WebSocket upgrades, and REST endpoints
-  - path: server/nextServer.ts:10
-    purpose: Creates Next.js server for the web dashboard UI
-  - path: server/internalServer.ts
-    purpose: Internal server for site-to-control-plane communication (WireGuard tunnel management)
-  - path: server/lib/traefik/TraefikConfigManager.ts:15
-    purpose: Manages Traefik reverse proxy configuration, SSL certificates, and dynamic routing
-  - path: src/app/
-    purpose: Next.js App Router pages for the web dashboard
+- README.md
+- src/
 build_run:
   language: typescript
-  package_manager: npm
-  build_command: npm run build
-  run_command: npm run dev (development) or npm run start (production)
-  test_command: docker run -it -p 3000:3000 -p 3001:3001 -p 3002:3002 fosrl/pangolin:latest
-ecosystem_connections:
-  similar_to:
-    - Tailscale (mesh VPN with identity)
-    - Cloudflare Access (zero-trust proxy)
-    - Twingate (secure access platform)
-    - NetBird (WireGuard-based VPN)
-  alternatives:
-    - OpenZiti (zero-trust networking)
-    - Teleport (access plane)
-    - strongDM (secure infrastructure access)
-  used_with:
-    - WireGuard (underlying VPN protocol)
-    - Traefik (reverse proxy/load balancer)
-    - Docker (containerized deployment)
-    - PostgreSQL or SQLite (database options)
+  build: See upstream README for project build steps.
+  test: See upstream README for project test steps.
+local_cache_dir: null
+extras:
+  refresh:
+    precedence: api_wins_readme_for_missing_required_fields
+    fallback_source: readme_fallback
+    fallback_used: false

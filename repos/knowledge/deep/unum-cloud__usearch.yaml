@@ -6,7 +6,7 @@ source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep/unum-cloud__usearch.yaml
-  as_of: "2026-03-17"
+  as_of: "2026-03-18"
   sourcing_method: training_knowledge
   extraction_model: claude-sonnet-4-6
   extraction_agent: codex
@@ -137,3 +137,17 @@ integrations:
     description: Batch vector input/output via ndarray interface
   - name: LangChain / LlamaIndex
     description: Community integrations using usearch as a vector store backend
+
+troubleshooting:
+  - symptom: "Index.add() silently drops vectors or raises capacity error after reaching reserved size"
+    cause: "usearch HNSW indices must be reserved for a capacity at construction time or via index.reserve(); adding beyond the reserved capacity either fails or triggers an internal reallocation that may not succeed under memory pressure"
+    fix: "Call index.reserve(expected_size) before bulk add operations; if the final dataset size is unknown, reserve conservatively large and call index.save() followed by index.load() to compact"
+  - symptom: "Metric mismatch: search results differ from expected nearest neighbors despite correct vectors"
+    cause: "The metric (cos, ip, l2sq) is fixed at index construction time and cannot be changed without rebuilding; loading a saved index and searching with a different metric in mind produces meaningless results"
+    fix: "Confirm the metric passed to Index(ndim=..., metric=...) matches the intended similarity semantics; rebuild the index with the correct metric if the wrong one was used"
+  - symptom: "Index.view() on a saved file causes incorrect search results or segfaults"
+    cause: "Index.view() memory-maps the file without loading it into RAM; if the backing file is modified or deleted while the view is active, the mapped memory becomes inconsistent"
+    fix: "Do not modify or delete the file while a view is open; use Index.load() for a fully in-memory copy when the file needs to be replaced or updated"
+  - symptom: "CMake build fails with missing SIMD intrinsics on a non-x86 architecture"
+    cause: "usearch compile-time SIMD paths (AVX2, AVX-512) are selected by TARGET_CPU; building on ARM or unsupported ISA without disabling the SIMD flags causes missing intrinsic errors"
+    fix: "Pass -DUSEARCH_USE_SIMSIMD=OFF or set the appropriate CMake flags to disable SIMD acceleration; performance degrades but correctness is maintained"

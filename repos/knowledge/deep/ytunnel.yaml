@@ -2,12 +2,12 @@ name: ytunnel
 node_id: repo::yetidevworks/ytunnel
 github_full_name: yetidevworks/ytunnel
 html_url: https://github.com/yetidevworks/ytunnel
-source: repos
+source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep/ytunnel.yaml
-  as_of: '2026-02-25'
-  sourcing_method: code_verified
+  as_of: '2026-03-18'
+  sourcing_method: training_knowledge
   extraction_model: glm-5
   extraction_agent: kgraph-repos
 directory: ytunnel-master
@@ -198,3 +198,13 @@ extension_points:
   - location: src/config.rs
     hook: Configuration management
     example: Environment variables, configuration profiles
+
+supported_protocols:
+  - name: "Cloudflare Tunnel protocol (QUIC/HTTP/2)"
+    role: "ytunnel spawns and manages the cloudflared binary to establish Cloudflare Tunnels; ytunnel is a lifecycle manager rather than implementing the tunnel protocol itself — cloudflared handles the actual QUIC/HTTP2 connection to Cloudflare edge"
+  - name: "Cloudflare API (REST over HTTPS)"
+    role: "ytunnel calls the Cloudflare REST API for tunnel CRUD operations, DNS record management, and zone lookups using API tokens stored in the multi-account config"
+  - name: "Prometheus metrics (HTTP)"
+    role: "ytunnel reads tunnel health and request metrics from the cloudflared Prometheus endpoint; port assigned via hash-based calculation in the 21000-21999 range"
+  - name: "launchd / systemd service protocol"
+    role: "ytunnel generates platform-specific service unit files (launchd plist on macOS, systemd unit on Linux) to manage cloudflared as a persistent background daemon"

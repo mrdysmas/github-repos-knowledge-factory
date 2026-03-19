@@ -2,11 +2,11 @@ name: hsync
 node_id: repo::monteslu/hsync
 github_full_name: monteslu/hsync
 html_url: https://github.com/monteslu/hsync
-source: repos
+source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep_facts/hsync.yaml
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   extractor_version: ws6-deep-integrator-v1
   extraction_model: glm-5
   extraction_agent: kgraph-repos
@@ -15,7 +15,7 @@ facts:
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: architecture.key_abstractions[1]
@@ -27,12 +27,12 @@ facts:
     excerpt: WebRTC-based P2P connection with JSON-RPC methods
   object_value: Peer
   note: WebRTC-based P2P connection with JSON-RPC methods
-  fact_id: fact::6ae383bda1d73dbbd06b2c41
+  fact_id: fact::18633e6ede38a24c1d7c61ef
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: architecture.key_abstractions[3]
@@ -44,12 +44,12 @@ facts:
     excerpt: TCP port forwarding in both directions
   object_value: SocketListener/Relay
   note: TCP port forwarding in both directions
-  fact_id: fact::c4c727e2a0c50839375ecb84
+  fact_id: fact::8ac1d83e19616fa340ac4265
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: architecture.key_abstractions[2]
@@ -61,12 +61,12 @@ facts:
     excerpt: HTTP request proxy from MQTT messages to local server
   object_value: WebHandler
   note: HTTP request proxy from MQTT messages to local server
-  fact_id: fact::f1a8d933bd6f5bfd7472c04c
+  fact_id: fact::037e6dfc664dc46747f15474
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: architecture.key_abstractions[0]
@@ -78,12 +78,12 @@ facts:
     excerpt: Main client object exposing events, peer access, listener/relay management
   object_value: hsyncClient
   note: Main client object exposing events, peer access, listener/relay management
-  fact_id: fact::1c9ca6e0cc2306be36b3e47f
+  fact_id: fact::6b4623f2b2bc385db2c55ef5
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: architecture.module_breakdown[2]
@@ -96,12 +96,12 @@ facts:
   object_value: cli.js / shell.js
   note: 'responsibility: CLI and interactive shell interfaces with Commander; key_files:
     cli.js, shell.js'
-  fact_id: fact::baa98fed68ab498242571fbf
+  fact_id: fact::793e558196372dedf7a34d6a
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: architecture.module_breakdown[1]
@@ -114,12 +114,12 @@ facts:
   object_value: connection.js
   note: 'responsibility: Core createHsync() factory orchestrating MQTT, peers, listeners,
     relays; key_files: connection.js'
-  fact_id: fact::74ccb419ba866fc5f304d28a
+  fact_id: fact::80d807fd05eac49029561b21
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: architecture.module_breakdown[0]
@@ -132,12 +132,12 @@ facts:
   object_value: hsync.js / hsync-web.js
   note: 'responsibility: Main exports for Node.js and browser environments; key_files:
     hsync.js, hsync-web.js'
-  fact_id: fact::62a034a819ec589aed39bdfe
+  fact_id: fact::0a8b83452a867b30cb7410c4
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: architecture.module_breakdown[3]
@@ -150,12 +150,12 @@ facts:
   object_value: lib/peers.js
   note: 'responsibility: WebRTC peer management, RPC method handling via rawr library;
     key_files: lib/peers.js'
-  fact_id: fact::12db40d0048beaeea36c3e27
+  fact_id: fact::0d3e4fcd75675f5146b6c3ab
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: architecture.module_breakdown[5]
@@ -168,12 +168,12 @@ facts:
   object_value: lib/socket-listeners.js
   note: 'responsibility: Accepts local connections, forwards to remote targets; key_files:
     lib/socket-listeners.js'
-  fact_id: fact::7295a97d9339c0568eac473b
+  fact_id: fact::4b787be23d4ba53de78b12a9
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: architecture.module_breakdown[6]
@@ -186,12 +186,12 @@ facts:
   object_value: lib/socket-relays.js
   note: 'responsibility: Accepts remote requests, connects to local TCP sockets; key_files:
     lib/socket-relays.js'
-  fact_id: fact::2b2597e5872cb5bfb0e2599f
+  fact_id: fact::26958ee41f8ba264a76ef75c
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: architecture.module_breakdown[4]
@@ -204,12 +204,12 @@ facts:
   object_value: lib/web-handler.js
   note: 'responsibility: HTTP proxy with WebSocket support for web request tunneling;
     key_files: lib/web-handler.js'
-  fact_id: fact::ba011ff733ac1f8e91350f8d
+  fact_id: fact::7b6e075400364ab6950bb513
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: configuration.options[6]
@@ -221,12 +221,12 @@ facts:
     excerpt: dynamicHost
   object_value: dynamicHost
   note: 'type: string; Dynamic host URL override'
-  fact_id: fact::2900d0b4f939b59ef96fd3e9
+  fact_id: fact::b4ffb1cb98fca99ef1007abe
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: configuration.file
@@ -238,12 +238,12 @@ facts:
     excerpt: file
   object_value: file
   note: 'default: Environment variables and CLI flags; configuration default for file'
-  fact_id: fact::846aab43a690882b5cbc7724
+  fact_id: fact::ae5b592cb75559550ac6d2c8
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: configuration.options[4]
@@ -255,12 +255,12 @@ facts:
     excerpt: hsyncBase
   object_value: hsyncBase
   note: 'type: string; default: _hs; Base path for routing'
-  fact_id: fact::b645d2b18acfccc473965e26
+  fact_id: fact::290166f6f85f85329067625d
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: configuration.options[1]
@@ -272,12 +272,12 @@ facts:
     excerpt: hsyncSecret
   object_value: hsyncSecret
   note: 'type: string; default: env.HSYNC_SECRET; Authentication secret'
-  fact_id: fact::05fbd948537715a8222583b3
+  fact_id: fact::407ca9284095e058a219f6c1
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: configuration.options[0]
@@ -289,12 +289,12 @@ facts:
     excerpt: hsyncServer
   object_value: hsyncServer
   note: 'type: string; default: env.HSYNC_SERVER; WebSocket URL to hsync-server'
-  fact_id: fact::2a284e0b1804f77ad8a79357
+  fact_id: fact::d3813e22650b8b6371ac3f7e
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: configuration.options[5]
@@ -306,12 +306,12 @@ facts:
     excerpt: keepalive
   object_value: keepalive
   note: 'type: number; MQTT keepalive interval (seconds)'
-  fact_id: fact::4f2561560e1081fc47ebbdc5
+  fact_id: fact::a42434f9fa203c5e2c391175
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: configuration.options[2]
@@ -323,12 +323,12 @@ facts:
     excerpt: localHost
   object_value: localHost
   note: 'type: string; default: localhost; Local server host'
-  fact_id: fact::4b05d120ca80add28f6d3675
+  fact_id: fact::3f185db174bc05bb16fbad67
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: configuration.options[3]
@@ -340,12 +340,12 @@ facts:
     excerpt: port
   object_value: port
   note: 'type: number; Local server port'
-  fact_id: fact::23ffd075805dc285b278f55e
+  fact_id: fact::d248fba441c412f37da8e6f7
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: extension_points[0]
@@ -357,12 +357,12 @@ facts:
     excerpt: connection.js:117
   object_value: connection.js:117
   note: Custom web handler for HTTP proxy logic; config.webHandler
-  fact_id: fact::c06c7d47f67256fa0d8e2aff
+  fact_id: fact::d6f7212fdc34a4d3514acedc
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: extension_points[2]
@@ -374,12 +374,12 @@ facts:
     excerpt: connection.js:19-23
   object_value: connection.js:19-23
   note: Custom network stack (useful for testing); setNet(netImpl)
-  fact_id: fact::c57cd9b176c77683737e00b2
+  fact_id: fact::6129d7e68d619fd8674965be
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: extension_points[5]
@@ -391,12 +391,12 @@ facts:
     excerpt: connection.js:191-242
   object_value: connection.js:191-242
   note: Add custom server-side RPC handlers; serverReplyMethods
-  fact_id: fact::080e73f3d149a5b2bd0ee2a2
+  fact_id: fact::05ee009cda516530f08aeedc
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: extension_points[4]
@@ -408,12 +408,12 @@ facts:
     excerpt: connection.js:244-258
   object_value: connection.js:244-258
   note: Override or extend RPC methods for peers; peerMethods
-  fact_id: fact::216e9832f07e34ae4dd9d39a
+  fact_id: fact::2a990b6a6abaf5251c13adcf
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: extension_points[3]
@@ -425,12 +425,12 @@ facts:
     excerpt: connection.js:25-27
   object_value: connection.js:25-27
   note: Custom MQTT client implementation; setMqtt(mqttImpl)
-  fact_id: fact::6ce13462b2599083ec7f05e1
+  fact_id: fact::4e96781259b03f4c4ea41e71
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: api_surface.public_functions[0]
@@ -443,12 +443,12 @@ facts:
   object_value: createConnection
   note: Main entry point to create hsync client; export async function createConnection(config);
     hsync.js:31
-  fact_id: fact::89c9788655ebba0a894f4c47
+  fact_id: fact::f4e066c3664858cd461aaa7d
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: api_surface.public_functions[2]
@@ -461,12 +461,12 @@ facts:
   object_value: createHsync
   note: Factory function for full client setup; export function createHsync(config);
     connection.js:29
-  fact_id: fact::a61311d4c0b8975dc3530476
+  fact_id: fact::02e5f9ca14aeffc2921c0cbc
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: api_surface.public_functions[1]
@@ -478,12 +478,12 @@ facts:
     excerpt: dynamicConnect
   object_value: dynamicConnect
   note: Connect to dynamic host; export async function dynamicConnect(config); hsync.js:32
-  fact_id: fact::e3b39aee3c6109eb11db62c7
+  fact_id: fact::40f3673fdae98b9bd2007ad2
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: extension_points[1]
@@ -495,12 +495,12 @@ facts:
     excerpt: lib/peers.js:36-38
   object_value: lib/peers.js:36-38
   note: Custom WebRTC implementation; setRTC(rtcImpl)
-  fact_id: fact::d48cb15e1a859b3bf7b236a4
+  fact_id: fact::3dece1d1acfc81b90c95cb8e
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: testing.coverage.line[0]
@@ -512,12 +512,12 @@ facts:
     excerpt: 85%+ with v8 profiler
   object_value: 85%+ with v8 profiler
   note: 'testing metadata: coverage'
-  fact_id: fact::83f1a538593c967701aeb026
+  fact_id: fact::68cf5bfa57845b8ea3a58f55
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: testing.coverage_areas[5].line[0]
@@ -529,12 +529,12 @@ facts:
     excerpt: API client utilities
   object_value: API client utilities
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::1d0aedc9468b5930c0f2e503
+  fact_id: fact::a45fd96fbb5471b91f6dcf87
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: implementation_patterns[4]
@@ -547,12 +547,12 @@ facts:
   object_value: Access Control Lists
   note: 'description: Whitelist/blacklist with wildcard matching for relay security;
     location: lib/socket-relays.js:35-57'
-  fact_id: fact::7d42961309e991e893393300
+  fact_id: fact::337167b1011bedc063a83e56
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: testing.coverage_areas[4].line[0]
@@ -564,12 +564,12 @@ facts:
     excerpt: Configuration parsing
   object_value: Configuration parsing
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::c7893f4258177fbfa4bf63ce
+  fact_id: fact::434200496a85336e048e830d
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: implementation_patterns[0]
@@ -582,12 +582,12 @@ facts:
   object_value: Dependency Injection
   note: 'description: setNet(), setMqtt(), setRTC() allow swapping implementations;
     location: connection.js:19-27'
-  fact_id: fact::eff114aba2a38d69f7ab035c
+  fact_id: fact::36af49a34d11b4f64118dcfd
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: implementation_patterns[2]
@@ -600,12 +600,12 @@ facts:
   object_value: Event-Driven Architecture
   note: 'description: EventEmitter for connected, json, external_message, connect_error
     events; location: connection.js:86-91'
-  fact_id: fact::9aa2ae1c1a8c355d6dfe3b01
+  fact_id: fact::7b8e1ad829011b956ab662d4
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: implementation_patterns[1]
@@ -618,12 +618,12 @@ facts:
   object_value: Factory Pattern
   note: 'description: createHsync(config) creates and wires all components; location:
     connection.js:29-319'
-  fact_id: fact::5f8dd38b19e14eec430b422c
+  fact_id: fact::9f45bf0731b0d5eaa4d8aa36
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: testing.coverage_areas[3].line[0]
@@ -635,12 +635,12 @@ facts:
     excerpt: HTTP proxy handling
   object_value: HTTP proxy handling
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::1f0e5eda8e43359193cac447
+  fact_id: fact::338f8e13d9c8d2fc8206c633
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: testing.coverage_areas[0].line[0]
@@ -652,12 +652,12 @@ facts:
     excerpt: Peer management and RPC
   object_value: Peer management and RPC
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::bdbe4c84d68c963a4f6f6b84
+  fact_id: fact::bf698e587bae99f3c45ff0c7
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: testing.coverage_areas[2].line[0]
@@ -669,12 +669,12 @@ facts:
     excerpt: Socket listeners
   object_value: Socket listeners
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::2286f201e2c8d1a0fa2ed445
+  fact_id: fact::373a4ab74d3f76b3c1c361ad
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: testing.coverage_areas[1].line[0]
@@ -686,12 +686,12 @@ facts:
     excerpt: Socket relay functionality
   object_value: Socket relay functionality
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::526bebf3e8f8edb1800f9600
+  fact_id: fact::08a33b0dcbb73a4e67b207dc
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: implementation_patterns[3]
@@ -705,12 +705,12 @@ facts:
   object_value: Strategy Pattern for RTC
   note: 'description: WebRTC uses native API in browser (rtc-web.js), node-datachannel
     in Node.js (rtc-node.js); location: lib/rtc-web.js'
-  fact_id: fact::1e4211d4d656941b292d1b86
+  fact_id: fact::ceb5781a7f97404941f6390f
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: testing.framework.line[0]
@@ -722,12 +722,12 @@ facts:
     excerpt: Vitest with ES modules
   object_value: Vitest with ES modules
   note: 'testing metadata: framework'
-  fact_id: fact::11f18dd9ffcf8e3defc88c6d
+  fact_id: fact::79328ee605e7f0b3ea4f4af5
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hsync.yaml
     source_section: testing.structure.line[0]
@@ -739,4 +739,100 @@ facts:
     excerpt: test/unit/
   object_value: test/unit/
   note: 'testing metadata: structure'
-  fact_id: fact::02c94e3313aca078ede460b9
+  fact_id: fact::9fb82fcb0b61c7c4ec070823
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/hsync.yaml
+    source_section: supported_protocols[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[0]
+    source_file: repos/knowledge/deep/hsync.yaml
+    excerpt: HTTP
+  object_value: HTTP
+  fact_id: fact::2088f7776117285d6b261207
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/hsync.yaml
+    source_section: supported_protocols[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[1]
+    source_file: repos/knowledge/deep/hsync.yaml
+    excerpt: JSON-RPC over WebRTC
+  object_value: JSON-RPC over WebRTC
+  fact_id: fact::4af8bd279cb4806cb8422f4d
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/hsync.yaml
+    source_section: supported_protocols[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[2]
+    source_file: repos/knowledge/deep/hsync.yaml
+    excerpt: MQTT over WebSocket
+  object_value: MQTT over WebSocket
+  fact_id: fact::e342cc57fe9426151f852612
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/hsync.yaml
+    source_section: supported_protocols[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[3]
+    source_file: repos/knowledge/deep/hsync.yaml
+    excerpt: TCP
+  object_value: TCP
+  fact_id: fact::eae951c8a8b48f30dc19d352
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/hsync.yaml
+    source_section: supported_protocols[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[4]
+    source_file: repos/knowledge/deep/hsync.yaml
+    excerpt: WebRTC
+  object_value: WebRTC
+  fact_id: fact::87967fbdcfb0ecb9f07c430c
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/hsync.yaml
+    source_section: supported_protocols[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[5]
+    source_file: repos/knowledge/deep/hsync.yaml
+    excerpt: WebSocket
+  object_value: WebSocket
+  fact_id: fact::d5b1c962baa47aa33fc0abfe

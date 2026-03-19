@@ -2,12 +2,12 @@ name: hysteria
 node_id: repo::apernet/hysteria
 github_full_name: apernet/hysteria
 html_url: https://github.com/apernet/hysteria
-source: repos
+source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep/hysteria.yaml
-  as_of: '2026-02-25'
-  sourcing_method: code_verified
+  as_of: '2026-03-18'
+  sourcing_method: training_knowledge
   extraction_model: glm-5
   extraction_agent: kgraph-repos
 directory: hysteria-master
@@ -195,3 +195,17 @@ extension_points:
   - location: server.TrafficLogger
     hook: TrafficLogger interface
     example: Custom traffic accounting, bandwidth limiting
+
+vpn_protocols:
+  - name: QUIC
+    role: "sole transport layer for all tunneled traffic; Hysteria runs an HTTP/3 server over QUIC, using QUIC streams for TCP proxying and QUIC unreliable datagrams for UDP proxying"
+  - name: "HTTP/3"
+    role: "masquerade protocol — the server presents as a standard HTTP/3 endpoint to unauthenticated clients to evade detection; authenticated sessions use HTTP/3 CONNECT-style frames (type 0x401) for TCP tunneling"
+  - name: TLS
+    role: "transport security wrapping the QUIC connection; requires server certificate and key configuration; clients can optionally skip verification via tls.insecure"
+  - name: "SOCKS5"
+    role: "outbound proxy endpoint exposed by the Hysteria client for routing application TCP/UDP traffic through the QUIC tunnel"
+  - name: "HTTP proxy"
+    role: "outbound HTTP CONNECT proxy endpoint exposed by the client (http.listen) as an alternative to SOCKS5 for browser and tool compatibility"
+  - name: "Brutal congestion control"
+    role: "custom fixed-rate bandwidth protocol layered on QUIC; bypasses standard loss-based congestion control by transmitting at the configured rate regardless of packet loss signals"

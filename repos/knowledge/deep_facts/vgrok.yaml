@@ -2,11 +2,11 @@ name: vgrok
 node_id: repo::styfle/vgrok
 github_full_name: styfle/vgrok
 html_url: https://github.com/styfle/vgrok
-source: repos
+source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep_facts/vgrok.yaml
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   extractor_version: ws6-deep-integrator-v1
   extraction_model: glm-5
   extraction_agent: kgraph-repos
@@ -15,7 +15,7 @@ facts:
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/vgrok.yaml
     source_section: architecture.key_abstractions[2]
@@ -27,12 +27,12 @@ facts:
     excerpt: "Manages local \u2194 sandbox connection and lifecycle"
   object_value: Client
   note: "Manages local \u2194 sandbox connection and lifecycle"
-  fact_id: fact::a2c1df7684e180ee108ef4c1
+  fact_id: fact::4d7e4c4a509118cf49261cc3
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/vgrok.yaml
     source_section: architecture.key_abstractions[0]
@@ -44,12 +44,12 @@ facts:
     excerpt: Isolated Node.js environment on Vercel infrastructure
   object_value: Sandbox
   note: Isolated Node.js environment on Vercel infrastructure
-  fact_id: fact::d64a837c2cf518f8facdd379
+  fact_id: fact::cb67f0912daf9f2727302c4e
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/vgrok.yaml
     source_section: architecture.key_abstractions[1]
@@ -61,12 +61,12 @@ facts:
     excerpt: WebSocket bidirectional channel for request/response relay
   object_value: Tunnel
   note: WebSocket bidirectional channel for request/response relay
-  fact_id: fact::6961a76b8b50577bdc85450f
+  fact_id: fact::02a9aa0598a1c261cedd11aa
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/vgrok.yaml
     source_section: architecture.module_breakdown[1]
@@ -80,12 +80,12 @@ facts:
   object_value: src/client.ts
   note: 'responsibility: Core tunnel client - manages Vercel sandbox, WebSocket tunnel,
     request forwarding; key_files: src/client.ts'
-  fact_id: fact::8e1451f700e24632541dbffb
+  fact_id: fact::8cf83b253d86f150f6e46ab2
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/vgrok.yaml
     source_section: architecture.module_breakdown[2]
@@ -98,12 +98,12 @@ facts:
   object_value: src/server.ts
   note: 'responsibility: HTTP/WebSocket server deployed to Vercel sandbox for public
     access; key_files: src/server.ts'
-  fact_id: fact::f8ad7c068a3158bb939ed0b4
+  fact_id: fact::04e593660b7bab848e0d9fba
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/vgrok.yaml
     source_section: architecture.module_breakdown[3]
@@ -116,12 +116,12 @@ facts:
   object_value: src/vercel-cli-auth.ts
   note: 'responsibility: Extracts Vercel credentials from CLI config or environment;
     key_files: src/vercel-cli-auth.ts'
-  fact_id: fact::d62a94fd3066c869784c1b1d
+  fact_id: fact::f5263bd31799424a88990d01
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/vgrok.yaml
     source_section: architecture.module_breakdown[0]
@@ -134,12 +134,12 @@ facts:
   object_value: src/vgrok.ts
   note: 'responsibility: CLI entry point - parses args, manages tunnel lifecycle with
     start/stop; key_files: src/vgrok.ts'
-  fact_id: fact::e8ae160e2ba47881cc9a870d
+  fact_id: fact::c8620893d951d50f83948757
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/vgrok.yaml
     source_section: configuration.constants[0]
@@ -151,12 +151,12 @@ facts:
     excerpt: SANDBOX_PORT
   object_value: SANDBOX_PORT
   note: Fixed port for tunnel server
-  fact_id: fact::8ba4d7b8a73f229ecc1edaf3
+  fact_id: fact::23796b40af742db3c3673f61
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/vgrok.yaml
     source_section: configuration.options[2]
@@ -168,12 +168,12 @@ facts:
     excerpt: VERCEL_PROJECT_ID
   object_value: VERCEL_PROJECT_ID
   note: 'type: string; Project ID override'
-  fact_id: fact::62ca9de074806d962323bb61
+  fact_id: fact::455fa9049e080f2efa9e894b
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/vgrok.yaml
     source_section: configuration.options[1]
@@ -185,12 +185,12 @@ facts:
     excerpt: VERCEL_TEAM_ID
   object_value: VERCEL_TEAM_ID
   note: 'type: string; Team ID override'
-  fact_id: fact::eda3c0d78def1e3ba02503ab
+  fact_id: fact::026341d71fa853776908df05
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/vgrok.yaml
     source_section: configuration.options[0]
@@ -202,12 +202,12 @@ facts:
     excerpt: VERCEL_TOKEN
   object_value: VERCEL_TOKEN
   note: 'type: string; Vercel authentication token'
-  fact_id: fact::6ed029460796fe8eafe5bcd6
+  fact_id: fact::b8e2887ce5b0bc7a9a065132
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/vgrok.yaml
     source_section: configuration.constants[1]
@@ -219,12 +219,12 @@ facts:
     excerpt: WS_PATH
   object_value: WS_PATH
   note: WebSocket endpoint path
-  fact_id: fact::b2850db40437abaec00390ba
+  fact_id: fact::85789c15f3ed614a769364ec
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/vgrok.yaml
     source_section: configuration.file
@@ -236,12 +236,12 @@ facts:
     excerpt: file
   object_value: file
   note: 'default: Environment variables; configuration default for file'
-  fact_id: fact::c006833c365891ee364fac83
+  fact_id: fact::4efb2c3fb07dccbbe124e52e
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/vgrok.yaml
     source_section: configuration.runtime_config[0]
@@ -254,12 +254,12 @@ facts:
   object_value: localPortToSandbox
   note: 'type: Record<string, {id, createdAt}>; Mapping of local ports to sandbox
     IDs'
-  fact_id: fact::9c0f6ebc4494b471fe869e00
+  fact_id: fact::c21e95f02e14e718c54c6fbd
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/vgrok.yaml
     source_section: configuration.constants[3]
@@ -271,12 +271,12 @@ facts:
     excerpt: runtime
   object_value: runtime
   note: Node.js version in sandbox
-  fact_id: fact::933f144bb59420c02d1c9ef9
+  fact_id: fact::16c59a2d88801f9c723af168
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/vgrok.yaml
     source_section: configuration.constants[2]
@@ -288,12 +288,12 @@ facts:
     excerpt: timeout
   object_value: timeout
   note: Sandbox lifetime
-  fact_id: fact::92ff39d38683053ffc3945e3
+  fact_id: fact::fa2d30aeac4a08cd6e54a910
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/vgrok.yaml
     source_section: api_surface.public_functions[0]
@@ -305,12 +305,12 @@ facts:
     excerpt: client
   object_value: client
   note: Create tunnel to local port; async function client({port, timeout}); src/client.ts:33
-  fact_id: fact::0810272af793a3940a0eb3a5
+  fact_id: fact::dbfe257119eba802a46de1c8
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/vgrok.yaml
     source_section: api_surface.public_functions[1]
@@ -322,29 +322,12 @@ facts:
     excerpt: shutdown
   object_value: shutdown
   note: Cleanup tunnel resources; tunnel.shutdown(); src/client.ts
-  fact_id: fact::a2d6f4be3fd6e351051ecf4f
+  fact_id: fact::305511d2c5756abf0c0660f6
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/vgrok.yaml
-    source_section: extension_points[4]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: extension_points[4]
-    source_file: repos/knowledge/deep/vgrok.yaml
-    excerpt: src/client.ts
-  object_value: src/client.ts
-  note: Database/cloud storage instead of temp file; Persistence strategies
-  fact_id: fact::0456cec1a06ad8643b66f476
-- fact_type: extension_point
-  predicate: has_extension_point
-  object_kind: path
-  confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/vgrok.yaml
     source_section: extension_points[1]
@@ -356,12 +339,29 @@ facts:
     excerpt: src/client.ts
   object_value: src/client.ts
   note: Currently single-port per sandbox; could add multi-port; Multiple port support
-  fact_id: fact::054b9cec042d38cdb8b4500f
+  fact_id: fact::1e9ee043e130d0be7a08db15
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/vgrok.yaml
+    source_section: extension_points[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: extension_points[4]
+    source_file: repos/knowledge/deep/vgrok.yaml
+    excerpt: src/client.ts
+  object_value: src/client.ts
+  note: Database/cloud storage instead of temp file; Persistence strategies
+  fact_id: fact::79bb255ec71f5793bfced1bc
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: path
+  confidence: 0.71
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/vgrok.yaml
     source_section: extension_points[5]
@@ -374,12 +374,12 @@ facts:
   object_value: src/client.ts
   note: Modify requests before forwarding or responses before returning; Transformation
     hooks for request/response pipeline
-  fact_id: fact::91cc511daacce3ea65d5b22f
+  fact_id: fact::85f796117613bdc8f192336a
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/vgrok.yaml
     source_section: extension_points[0]
@@ -391,12 +391,12 @@ facts:
     excerpt: src/client.ts:Sandbox.create()
   object_value: src/client.ts:Sandbox.create()
   note: Custom resource allocation (vcpus, memory); Sandbox options
-  fact_id: fact::7fbf228571437a423176588e
+  fact_id: fact::3cc3cfc8c42a35bd2aa3e2fa
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/vgrok.yaml
     source_section: extension_points[3]
@@ -408,12 +408,12 @@ facts:
     excerpt: src/server.ts
   object_value: src/server.ts
   note: HTTP long-polling, SSE, gRPC as alternatives to WebSocket; Transport protocol
-  fact_id: fact::606116e1dc7a2bc735e2d5a2
+  fact_id: fact::e3c79fc9be8da86d5e4dc691
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/vgrok.yaml
     source_section: extension_points[2]
@@ -425,12 +425,12 @@ facts:
     excerpt: src/vercel-cli-auth.ts
   object_value: src/vercel-cli-auth.ts
   note: OAuth, GitHub auth, etc.; Authentication providers
-  fact_id: fact::aa686d7eb6180ca03ae7b643
+  fact_id: fact::4d7fad3cc26ba70c52e6b8d4
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/vgrok.yaml
     source_section: implementation_patterns[3]
@@ -442,12 +442,12 @@ facts:
     excerpt: Body encoding for safe WebSocket transmission
   object_value: Base64URL Encoding
   note: 'description: Body encoding for safe WebSocket transmission; location: src/client.ts:80,141'
-  fact_id: fact::b500bd215a90db35307ec7fa
+  fact_id: fact::99e35ea304a3eb3af9b101f7
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/vgrok.yaml
     source_section: implementation_patterns[2]
@@ -460,12 +460,12 @@ facts:
   object_value: Detached Process Pattern
   note: 'description: Server runs detached in sandbox, independent of client; location:
     src/client.ts:97-107'
-  fact_id: fact::c68bf783ed6bae22d348dc96
+  fact_id: fact::2dcde9d5e89d45c1d5d79c80
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/vgrok.yaml
     source_section: implementation_patterns[1]
@@ -478,12 +478,12 @@ facts:
   object_value: File Injection Pattern
   note: 'description: Deploys tunnel server code dynamically to sandbox; location:
     src/client.ts:83-92'
-  fact_id: fact::fd5bd387fc730bbf6b8caa05
+  fact_id: fact::e7a43fa17d189b9adfd0f149
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/vgrok.yaml
     source_section: implementation_patterns[4]
@@ -495,12 +495,12 @@ facts:
     excerpt: Only 4 core files with clear separation of concerns
   object_value: Minimalist Design
   note: 'description: Only 4 core files with clear separation of concerns'
-  fact_id: fact::f0f137d53a223899c2aa8b11
+  fact_id: fact::1991dfcd71c2565167ea2d94
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/vgrok.yaml
     source_section: testing.structure.line[0]
@@ -512,12 +512,12 @@ facts:
     excerpt: No tests present
   object_value: No tests present
   note: 'testing metadata: structure'
-  fact_id: fact::7689143e76ce3b4a5305315f
+  fact_id: fact::b23db9170cf95de4321064a0
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/vgrok.yaml
     source_section: testing.framework.line[0]
@@ -529,12 +529,12 @@ facts:
     excerpt: None
   object_value: None
   note: 'testing metadata: framework'
-  fact_id: fact::869dbf9dd12782acd7f4d06e
+  fact_id: fact::516d60e13c702d07e1415168
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/vgrok.yaml
     source_section: implementation_patterns[0]
@@ -547,4 +547,52 @@ facts:
   object_value: Sandbox Reuse Pattern
   note: 'description: Reuses existing sandbox if running and not expired; location:
     src/client.ts:42-54'
-  fact_id: fact::e3acac4b3fcd1e7d1d78b759
+  fact_id: fact::200bddae8849060fbdbc8a2c
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/vgrok.yaml
+    source_section: supported_protocols[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[0]
+    source_file: repos/knowledge/deep/vgrok.yaml
+    excerpt: HTTP
+  object_value: HTTP
+  fact_id: fact::ea619a38d1f2def9095faca3
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/vgrok.yaml
+    source_section: supported_protocols[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[1]
+    source_file: repos/knowledge/deep/vgrok.yaml
+    excerpt: HTTPS
+  object_value: HTTPS
+  fact_id: fact::21b2299fa71be2c78c786d54
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/vgrok.yaml
+    source_section: supported_protocols[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[2]
+    source_file: repos/knowledge/deep/vgrok.yaml
+    excerpt: WebSocket
+  object_value: WebSocket
+  fact_id: fact::e193a9bf10025c37c847f607

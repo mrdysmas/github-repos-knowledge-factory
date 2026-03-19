@@ -1,12 +1,12 @@
 name: ngt
 node_id: "repo::yahoojapan/ngt"
 github_full_name: yahoojapan/ngt
-html_url: https://github.com/yahoojapan/NGT
+html_url: https://github.com/yahoojapan/ngt
 source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep/ngt.yaml
-  as_of: "2026-03-17"
+  as_of: "2026-03-18"
   sourcing_method: training_knowledge
   extraction_model: claude-sonnet-4-6
   extraction_agent: codex
@@ -122,3 +122,17 @@ key_files:
     purpose: Python Index wrapper and convenience methods
   - path: bin/ngt/ngt.cpp
     purpose: CLI entry point for all ngt commands
+
+troubleshooting:
+  - symptom: "ngt.Index.search returns zero results or raises an exception after insert without build_index"
+    cause: "NGT requires an explicit build_index() call after batch insertions to construct graph edges; the ANNG graph is not queryable until edges are built"
+    fix: "Call index.build_index() after all inserts are complete before issuing search queries"
+  - symptom: "Index directory fails to open with an error about missing or corrupt object files"
+    cause: "An interrupted save or incomplete ngt.Index.save() left the index directory in a partial state; NGT index directories contain multiple binary files and are not atomic"
+    fix: "Restore from a known-good backup of the index directory, or rebuild from source vectors using ngt create followed by ngt append"
+  - symptom: "Recall degrades significantly after adding large numbers of vectors to an existing ANNG index"
+    cause: "ANNG edges are added incrementally but not reoptimized; the graph structure degrades as new vectors break edge distribution assumptions"
+    fix: "Run ngt optimize to convert the ANNG to an ONNG (Optimized NGT) which rebalances edge directions and improves recall without rebuilding from scratch"
+  - symptom: "Dimension mismatch error when inserting vectors into an existing index"
+    cause: "The dimension parameter is fixed at index creation time; NGT does not support mixed-dimension indices"
+    fix: "Ensure all vectors match the dimension specified at ngt.Index.create() time; create a separate index for vectors of different dimensionality"

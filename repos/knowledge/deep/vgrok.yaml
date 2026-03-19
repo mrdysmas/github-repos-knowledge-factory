@@ -2,12 +2,12 @@ name: vgrok
 node_id: repo::styfle/vgrok
 github_full_name: styfle/vgrok
 html_url: https://github.com/styfle/vgrok
-source: repos
+source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep/vgrok.yaml
-  as_of: '2026-02-25'
-  sourcing_method: code_verified
+  as_of: '2026-03-18'
+  sourcing_method: training_knowledge
   extraction_model: glm-5
   extraction_agent: kgraph-repos
 directory: vgrok-main
@@ -152,3 +152,11 @@ extension_points:
   - location: src/client.ts
     hook: Transformation hooks for request/response pipeline
     example: Modify requests before forwarding or responses before returning
+
+supported_protocols:
+  - name: WebSocket
+    role: "primary bidirectional transport between vgrok client and the Vercel sandbox server; HTTP requests arriving at the public sandbox URL are serialized and forwarded to the local server via WebSocket on the /_ws path"
+  - name: HTTP
+    role: "inbound protocol on the public Vercel sandbox URL; the sandbox server receives HTTP requests, serializes them as TunnelRequest objects (with base64url-encoded bodies), and forwards them via WebSocket to the vgrok client"
+  - name: HTTPS
+    role: "all public sandbox URLs are served over HTTPS by Vercel infrastructure; the local-to-sandbox WebSocket connection also operates over wss"

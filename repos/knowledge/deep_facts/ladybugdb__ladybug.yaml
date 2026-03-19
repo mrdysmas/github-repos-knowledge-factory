@@ -1010,6 +1010,110 @@ facts:
     lbug_database_init(const char* database_path, lbug_system_config config, lbug_database*
     out_database); src/c_api/database.cpp
   fact_id: fact::0f3e16ab2bed149269c4247e
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: Buffer pool OOM or out-of-memory error during large query or ingestion
+  object_value: Buffer pool OOM or out-of-memory error during large query or ingestion
+  note: 'cause: bufferPoolSize defaults to a fraction of physical memory; workloads
+    with large result sets or bulk inserts may exceed the pool; fix: Set bufferPoolSize
+    explicitly in SystemConfig to a larger value, or reduce concurrent query volume'
+  fact_id: fact::e7cb19ed3baa98717f4a1637
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: Database initialization fails with error indicating path is in-memory
+      or does not exist when read-only mode is set
+  object_value: Database initialization fails with error indicating path is in-memory
+    or does not exist when read-only mode is set
+  note: 'cause: SystemConfig.readOnly=true rejects in-memory paths and non-existent
+    directories at open time; src/main/database.cpp enforces this before storage init;
+    fix: Open with readOnly=false if the database path must be created, or ensure
+    the persistent directory already exists b...'
+  fact_id: fact::f6b0c6fdafb85f3733e0a272
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: troubleshooting[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[4]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: Database opened read-only reports stale data after another process wrote
+      and checkpointed
+  object_value: Database opened read-only reports stale data after another process
+    wrote and checkpointed
+  note: 'cause: Read-only connections do not trigger or participate in checkpoint;
+    they read the storage state at open time; fix: Re-open the database connection
+    to pick up the latest checkpointed state'
+  fact_id: fact::fcfb607cf0cfebd44ada3ffc
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: WAL grows unboundedly and checkpoint does not trigger
+  object_value: WAL grows unboundedly and checkpoint does not trigger
+  note: 'cause: autoCheckpoint is true by default but checkpointThreshold (default
+    16 MB) may not be reached if writes are infrequent, or checkpoint is blocked by
+    an active read transaction; fix: Call checkpoint manually, lower checkpointThreshold
+    in SystemConfig, or ensure long-runnin...'
+  fact_id: fact::fa42773ad1493d285c04de77
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/ladybugdb__ladybug.yaml
+    excerpt: Write transaction rejected with single-writer gate error under concurrent
+      writes
+  object_value: Write transaction rejected with single-writer gate error under concurrent
+    writes
+  note: 'cause: TransactionManager serializes write transactions by default; multi-write
+    mode is disabled unless enable_mvcc session setting is explicitly toggled on;
+    fix: Enable multi-write via the enable_mvcc session setting, or serialize writes
+    from the application side'
+  fact_id: fact::9a0242ba1e9150a9ed70dc54
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept

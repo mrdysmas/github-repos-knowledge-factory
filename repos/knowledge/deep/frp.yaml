@@ -2,12 +2,12 @@ name: frp
 node_id: repo::fatedier/frp
 github_full_name: fatedier/frp
 html_url: https://github.com/fatedier/frp
-source: repos
+source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep/frp.yaml
-  as_of: '2026-02-25'
-  sourcing_method: code_verified
+  as_of: '2026-03-18'
+  sourcing_method: training_knowledge
   extraction_model: glm-5
   extraction_agent: kgraph-repos
 directory: frp-dev
@@ -191,3 +191,25 @@ extension_points:
   - location: pkg/msg/msg.go
     hook: msgTypeMap
     example: Add custom message types for protocol extensions
+
+supported_protocols:
+  - name: TCP
+    role: "default transport for client-server control and data connections; most proxy types use TCP as the underlying carrier"
+  - name: KCP
+    role: "optional UDP-based reliable transport (kcpBindPort) offering lower latency than TCP on lossy links"
+  - name: QUIC
+    role: "optional modern UDP multiplexed transport (quicBindPort) for reduced head-of-line blocking"
+  - name: WebSocket
+    role: "optional transport over HTTP/HTTPS (protocol=websocket) for traversing restrictive firewalls that block raw TCP"
+  - name: HTTP
+    role: "virtual-host proxying for HTTP traffic via vhostHTTPPort; frp routes by Host header to registered clients"
+  - name: HTTPS
+    role: "virtual-host proxying for HTTPS traffic via vhostHTTPSPort with TLS termination support"
+  - name: "HTTP CONNECT"
+    role: "TCP multiplexing via CONNECT method (tcpmuxHTTPConnectPort) allowing multiple tunnels over a single HTTP connection"
+  - name: "SOCKS5"
+    role: "outbound proxy mode exposed by client for routing local traffic through the frp tunnel"
+  - name: "token-based authentication"
+    role: "shared-secret authentication between frpc and frps using SHA256-hashed token comparison"
+  - name: OIDC
+    role: "OAuth2/OIDC authentication provider for client login as an alternative to static tokens"

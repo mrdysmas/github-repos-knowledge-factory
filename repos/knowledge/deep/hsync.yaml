@@ -2,12 +2,12 @@ name: hsync
 node_id: repo::monteslu/hsync
 github_full_name: monteslu/hsync
 html_url: https://github.com/monteslu/hsync
-source: repos
+source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep/hsync.yaml
-  as_of: '2026-02-25'
-  sourcing_method: code_verified
+  as_of: '2026-03-18'
+  sourcing_method: training_knowledge
   extraction_model: glm-5
   extraction_agent: kgraph-repos
 directory: hsync-master
@@ -177,3 +177,17 @@ extension_points:
   - location: connection.js:191-242
     hook: serverReplyMethods
     example: Add custom server-side RPC handlers
+
+supported_protocols:
+  - name: "MQTT over WebSocket"
+    role: "primary signaling and HTTP tunneling transport; client subscribes to topics on hsync-server via MQTT over WebSocket for request delivery and response relay"
+  - name: WebRTC
+    role: "peer-to-peer data channel transport for direct TCP tunneling between clients without server intermediary; uses ICE for NAT traversal"
+  - name: HTTP
+    role: "inbound protocol handled by the web-handler; HTTP requests arriving at the public hsync-server URL are forwarded to the local web server via MQTT"
+  - name: WebSocket
+    role: "WebSocket connections tunneled through the server by upgrading the MQTT transport; supported alongside HTTP in the web-handler"
+  - name: TCP
+    role: "raw TCP socket forwarding via socket-listeners and socket-relays for non-HTTP services using WebRTC data channels as the P2P carrier"
+  - name: "JSON-RPC over WebRTC"
+    role: "RPC method dispatch between peers using the rawr library over WebRTC data channels for coordinating listener and relay setup"

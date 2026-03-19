@@ -2,11 +2,11 @@ name: hysteria
 node_id: repo::apernet/hysteria
 github_full_name: apernet/hysteria
 html_url: https://github.com/apernet/hysteria
-source: repos
+source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep_facts/hysteria.yaml
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   extractor_version: ws6-deep-integrator-v1
   extraction_model: glm-5
   extraction_agent: kgraph-repos
@@ -15,7 +15,7 @@ facts:
   predicate: exposes_api_endpoint
   object_kind: api_route
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: api_surface.http_endpoints[0]
@@ -27,12 +27,12 @@ facts:
     excerpt: /auth
   object_value: /auth
   note: Authentication handshake
-  fact_id: fact::0f28180ae18720a394244aa8
+  fact_id: fact::02edef649b71095013d31e97
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: architecture.key_abstractions[0]
@@ -45,12 +45,12 @@ facts:
       bandwidth
   object_value: BrutalSender
   note: Fixed-rate congestion control - ignores packet loss, uses configured bandwidth
-  fact_id: fact::0b363c3641d61218634ac6c5
+  fact_id: fact::9d9e24542198b5f058604568
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: architecture.key_abstractions[2]
@@ -62,12 +62,12 @@ facts:
     excerpt: Custom header-based auth (Hysteria-Auth, Hysteria-CC-RX, Hysteria-Padding)
   object_value: HTTP/3 Auth
   note: Custom header-based auth (Hysteria-Auth, Hysteria-CC-RX, Hysteria-Padding)
-  fact_id: fact::46ebbdcaab5a65c375907285
+  fact_id: fact::e652666430e7cafed3d7e0f6
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: architecture.key_abstractions[3]
@@ -79,12 +79,12 @@ facts:
     excerpt: Outbound chain for ACL, resolver, routing on server side
   object_value: PluggableOutbound
   note: Outbound chain for ACL, resolver, routing on server side
-  fact_id: fact::115d6b3f56d473a7bedda56a
+  fact_id: fact::9aadfa70a888528031d7e345
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: architecture.key_abstractions[1]
@@ -96,12 +96,12 @@ facts:
     excerpt: UDP packet with session ID, fragmentation (PacketID, FragID, FragCount)
   object_value: UDPMessage
   note: UDP packet with session ID, fragmentation (PacketID, FragID, FragCount)
-  fact_id: fact::5a0747ddfc73e5b1ec891c2f
+  fact_id: fact::ad22fbce7510d0f305fc989e
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: architecture.module_breakdown[0]
@@ -114,12 +114,12 @@ facts:
   object_value: app/cmd/
   note: 'responsibility: CLI layer - root, client, server commands with Cobra/Viper;
     key_files: app/cmd/root.go, app/cmd/client.go, app/cmd/server.go'
-  fact_id: fact::35d5bc5f1278efa98186318c
+  fact_id: fact::fb8ab72df203b5b4f4174692
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: architecture.module_breakdown[1]
@@ -132,12 +132,12 @@ facts:
   object_value: app/internal/
   note: 'responsibility: App utilities - socks5, http, forwarding, tproxy, tun implementations;
     key_files: app/internal/socks5/, app/internal/forwarding/'
-  fact_id: fact::bd32a786235d4090cf799eb0
+  fact_id: fact::5925bd4cb88710a2c7d76900
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: architecture.module_breakdown[2]
@@ -150,12 +150,12 @@ facts:
   object_value: core/client/
   note: 'responsibility: QUIC client - connection, authentication, TCP/UDP tunneling;
     key_files: core/client/client.go, core/client/udp.go'
-  fact_id: fact::1ebf29c2f1d8487aee9359f3
+  fact_id: fact::a1f4f93a46bee805ca5c5252
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: architecture.module_breakdown[4]
@@ -168,12 +168,12 @@ facts:
   object_value: core/internal/congestion/brutal/
   note: 'responsibility: Brutal congestion control - fixed-rate pacing; key_files:
     core/internal/congestion/brutal/brutal.go'
-  fact_id: fact::c787717701e375ac20b83101
+  fact_id: fact::8dc6f4190fa3ae4d734a3b3a
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: architecture.module_breakdown[5]
@@ -186,12 +186,12 @@ facts:
   object_value: core/internal/protocol/
   note: 'responsibility: Wire protocol - HTTP auth, proxy frames, UDP fragmentation;
     key_files: core/internal/protocol/http.go, core/internal/protocol/proxy.go'
-  fact_id: fact::7ddd922502cc188858500439
+  fact_id: fact::1533928ccabcd02655c91a69
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: architecture.module_breakdown[3]
@@ -204,12 +204,12 @@ facts:
   object_value: core/server/
   note: 'responsibility: QUIC server - HTTP/3 listener, auth handling, traffic stats;
     key_files: core/server/server.go, core/server/udp.go'
-  fact_id: fact::da98b37a4a2fbb0ad0b908ec
+  fact_id: fact::26cd566e4527cb8d54a02583
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: configuration.options[16]
@@ -221,12 +221,12 @@ facts:
     excerpt: acl.file
   object_value: acl.file
   note: 'type: string; ACL file path'
-  fact_id: fact::af352783a3ff1ee5d83bcd30
+  fact_id: fact::2cab8d8c04faf85e59780293
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: configuration.options[1]
@@ -238,12 +238,12 @@ facts:
     excerpt: auth
   object_value: auth
   note: 'type: string; default: required; Authentication string (password or user:pass)'
-  fact_id: fact::5111b69f387897c533d5cda3
+  fact_id: fact::b94c971dd35dea62aa449fdf
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: configuration.options[13]
@@ -255,12 +255,12 @@ facts:
     excerpt: auth.password
   object_value: auth.password
   note: 'type: string; Password for password auth'
-  fact_id: fact::f03c740bcc37c1973a88aebd
+  fact_id: fact::6768221ed2735fc9216eff69
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: configuration.options[12]
@@ -272,12 +272,12 @@ facts:
     excerpt: auth.type
   object_value: auth.type
   note: 'type: string; default: password; password/userpass/http/command'
-  fact_id: fact::bf6b1b0c925bca06cb0e2776
+  fact_id: fact::e39519b1c7a61335e81d783b
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: configuration.options[3]
@@ -289,12 +289,12 @@ facts:
     excerpt: bandwidth.down
   object_value: bandwidth.down
   note: 'type: string; default: required; Download bandwidth'
-  fact_id: fact::96a77f59205760856bc22e6b
+  fact_id: fact::23305383bbe2557844fafabc
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: configuration.options[2]
@@ -306,12 +306,12 @@ facts:
     excerpt: bandwidth.up
   object_value: bandwidth.up
   note: 'type: string; default: required; Upload bandwidth (e.g., "100M", "1G")'
-  fact_id: fact::7898478eaf9e6b61571c167d
+  fact_id: fact::fa3249d623378eec2acc9768
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: configuration.file
@@ -323,12 +323,12 @@ facts:
     excerpt: file
   object_value: file
   note: 'default: YAML format; configuration default for file'
-  fact_id: fact::a93a4e2454faf5ead2befaf6
+  fact_id: fact::1e4055af0e69af6b138eb96f
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: configuration.options[5]
@@ -340,12 +340,12 @@ facts:
     excerpt: http.listen
   object_value: http.listen
   note: 'type: string; HTTP proxy listen address'
-  fact_id: fact::b1ddd2111bf9099e22565430
+  fact_id: fact::170898d37dc4694f0a7214f5
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: configuration.options[9]
@@ -357,12 +357,12 @@ facts:
     excerpt: listen
   object_value: listen
   note: 'type: string; default: required; Listen address'
-  fact_id: fact::c76b769a681d09422257ee02
+  fact_id: fact::07a9925942ae489fec8767e0
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: configuration.options[14]
@@ -374,12 +374,12 @@ facts:
     excerpt: masquerade.type
   object_value: masquerade.type
   note: 'type: string; default: 404; 404/file/proxy/string'
-  fact_id: fact::7f5e18576e57014f7f4a4e20
+  fact_id: fact::fdac791ee2d0a1c66e996efe
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: configuration.options[0]
@@ -391,12 +391,12 @@ facts:
     excerpt: server
   object_value: server
   note: 'type: string; default: required; Server address'
-  fact_id: fact::82e82ce9e4a24dd224c5cb7b
+  fact_id: fact::09c65490b6172aa9a03b2fc2
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: configuration.options[4]
@@ -408,12 +408,12 @@ facts:
     excerpt: socks5.listen
   object_value: socks5.listen
   note: 'type: string; SOCKS5 listen address'
-  fact_id: fact::4b2c09e417099e844e663326
+  fact_id: fact::64b6b935f6c7d4584c8a2f30
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: configuration.options[10]
@@ -425,12 +425,12 @@ facts:
     excerpt: tls.cert
   object_value: tls.cert
   note: 'type: string; default: required; Certificate path'
-  fact_id: fact::e8e1a51e225d4447fd96836e
+  fact_id: fact::a6a724e20de128f30d3e5490
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: configuration.options[8]
@@ -442,12 +442,12 @@ facts:
     excerpt: tls.insecure
   object_value: tls.insecure
   note: 'type: bool; Skip certificate verification'
-  fact_id: fact::cdcedfd5b522a991f9a2c104
+  fact_id: fact::01217603b1850880d3da3d8f
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: configuration.options[11]
@@ -459,12 +459,12 @@ facts:
     excerpt: tls.key
   object_value: tls.key
   note: 'type: string; default: required; Private key path'
-  fact_id: fact::c9aeea447d2051d5b7d90ad9
+  fact_id: fact::6530292682ae12fa58db7ba7
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: configuration.options[7]
@@ -476,12 +476,12 @@ facts:
     excerpt: tls.sni
   object_value: tls.sni
   note: 'type: string; Server name for TLS'
-  fact_id: fact::24b2be677514c3ae2f2befaf
+  fact_id: fact::fc8895268bbc8d95a56f1036
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: configuration.options[15]
@@ -493,12 +493,12 @@ facts:
     excerpt: trafficStats.listen
   object_value: trafficStats.listen
   note: 'type: string; Traffic stats API address'
-  fact_id: fact::0fbf6b1283dc3a957701a6ef
+  fact_id: fact::c7ac1bc93ecc57a40a488bb6
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: configuration.options[6]
@@ -510,12 +510,12 @@ facts:
     excerpt: tun.name
   object_value: tun.name
   note: 'type: string; TUN interface name for VPN mode'
-  fact_id: fact::ff7c5543171614d6908cf8e1
+  fact_id: fact::10ba63170e79de928408df22
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: api_surface.public_functions[1]
@@ -528,12 +528,12 @@ facts:
   object_value: client.Client.DialTCP
   note: Establish TCP tunnel; func (c *Client) DialTCP(addr string) (net.Conn, error);
     core/client/client.go
-  fact_id: fact::a4b6438e7281dfbedc8478e3
+  fact_id: fact::aa3f3edaaae60cc564d5cfc1
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: api_surface.public_functions[0]
@@ -545,12 +545,12 @@ facts:
     excerpt: client.New
   object_value: client.New
   note: Create QUIC client; func New(config *Config) (*Client, error); core/client/client.go:43
-  fact_id: fact::77b94e1f9da08139802219e9
+  fact_id: fact::f7a9299bd79f6f5402ef922d
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: api_surface.public_functions[2]
@@ -562,12 +562,12 @@ facts:
     excerpt: server.New
   object_value: server.New
   note: Create QUIC server; func New(config *Config) (*Server, error); core/server/server.go:45
-  fact_id: fact::94c04f21bfb03aa25c99d25e
+  fact_id: fact::17921b9cfa5a6436c9207e44
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: extension_points[3]
@@ -579,12 +579,12 @@ facts:
     excerpt: server.RequestHook
   object_value: server.RequestHook
   note: Protocol sniffing, traffic modification; RequestHook interface
-  fact_id: fact::91a22b93d84fcddae6ebedc5
+  fact_id: fact::2afb71352b8636120a1d800a
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: extension_points[4]
@@ -596,12 +596,12 @@ facts:
     excerpt: server.TrafficLogger
   object_value: server.TrafficLogger
   note: Custom traffic accounting, bandwidth limiting; TrafficLogger interface
-  fact_id: fact::2c8425ba6881c1a0b170f4e8
+  fact_id: fact::391a0ade252bcf430dcc469e
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: extension_points[2]
@@ -613,12 +613,12 @@ facts:
     excerpt: core/internal/congestion/
   object_value: core/internal/congestion/
   note: Alternative congestion control (BBR available); CongestionControl interface
-  fact_id: fact::2c6e9ae7fb760c8a309ccfca
+  fact_id: fact::dee67d3cb8426569ee333d39
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: extension_points[0]
@@ -630,12 +630,12 @@ facts:
     excerpt: extras/auth/
   object_value: extras/auth/
   note: Custom auth backends (LDAP, OAuth, etc.); Authenticator interface
-  fact_id: fact::1dc6c82e52d4a7d060e492b8
+  fact_id: fact::a74f21b70e69d26c539e5f15
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: extension_points[1]
@@ -647,12 +647,12 @@ facts:
     excerpt: extras/outbounds/
   object_value: extras/outbounds/
   note: Custom outbound routing (e.g., per-user routing); PluggableOutbound interface
-  fact_id: fact::01f9b1b44f6cd44706525336
+  fact_id: fact::ae69641edcc44a34e14ce963
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: testing.structure.line[0]
@@ -664,12 +664,12 @@ facts:
     excerpt: '*_test.go files'
   object_value: '*_test.go files'
   note: 'testing metadata: structure'
-  fact_id: fact::614771b8972b1538a51f7fa9
+  fact_id: fact::8eae7422cc7139bbb021df0b
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: testing.coverage_areas[0].line[0]
@@ -681,12 +681,12 @@ facts:
     excerpt: Brutal congestion control algorithm
   object_value: Brutal congestion control algorithm
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::c927842e89d3d3a6beaa52a5
+  fact_id: fact::d93550e27a81c749b17d2041
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: implementation_patterns[0]
@@ -699,12 +699,12 @@ facts:
   object_value: Fixed-Rate Congestion Control
   note: 'description: Token bucket pacing, cwnd = bps * RTT * 2 / ack_rate; location:
     core/internal/congestion/brutal/brutal.go:46'
-  fact_id: fact::bf9dc91982641f0dadaa24e1
+  fact_id: fact::013c719bc2d6f17f6dcb2e2c
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: testing.framework.line[0]
@@ -716,12 +716,12 @@ facts:
     excerpt: Go testing
   object_value: Go testing
   note: 'testing metadata: framework'
-  fact_id: fact::2cd167297e0114fe94e7da9a
+  fact_id: fact::98850a8530a5475a59d839c1
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: testing.coverage_areas[2].line[0]
@@ -733,12 +733,12 @@ facts:
     excerpt: HTTP auth protocol
   object_value: HTTP auth protocol
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::48227dee2cd7776c2c2d84b3
+  fact_id: fact::7c825768547990029c530613
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: implementation_patterns[1]
@@ -751,12 +751,12 @@ facts:
   object_value: HTTP/3 Masquerading
   note: 'description: POST /auth with custom headers, status 233 response; location:
     core/internal/protocol/http.go'
-  fact_id: fact::f5bb8a88a5f9a3f871daf204
+  fact_id: fact::72e7d2335b736ba7a4dc6ffb
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: testing.test_patterns[1].line[0]
@@ -768,12 +768,12 @@ facts:
     excerpt: Integration tests for client-server communication
   object_value: Integration tests for client-server communication
   note: 'testing metadata: test_patterns'
-  fact_id: fact::c1f633083affd7cb5f140706
+  fact_id: fact::edaa6b0c0dac3e5901c1dfc3
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: implementation_patterns[3]
@@ -785,12 +785,12 @@ facts:
     excerpt: Proper full-duplex close handling
   object_value: QUIC Stream Wrapper
   note: 'description: Proper full-duplex close handling; location: core/internal/utils/qstream.go'
-  fact_id: fact::97dbdc8dae756ffb84855c4c
+  fact_id: fact::28dfb2898bce42fad9e023b5
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: implementation_patterns[4]
@@ -802,12 +802,12 @@ facts:
     excerpt: 32-bit session ID, 60s timeout cleanup
   object_value: Session-based UDP
   note: 'description: 32-bit session ID, 60s timeout cleanup; location: core/client/udp.go'
-  fact_id: fact::a66978c3af421c3de32cb9b6
+  fact_id: fact::4f2f9b482631c740cb1a9465
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: implementation_patterns[2]
@@ -819,12 +819,12 @@ facts:
     excerpt: Automatic splitting when datagram > 1200 bytes
   object_value: UDP Fragmentation
   note: 'description: Automatic splitting when datagram > 1200 bytes; location: core/internal/frag/'
-  fact_id: fact::136c69215121eeee12d5ef37
+  fact_id: fact::7eb43b9302d28e7661c611fe
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: testing.coverage_areas[1].line[0]
@@ -836,12 +836,12 @@ facts:
     excerpt: UDP fragmentation/reassembly
   object_value: UDP fragmentation/reassembly
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::df35843eadb62fa52d3788d4
+  fact_id: fact::6b7ef245eea3cb284a634aef
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/hysteria.yaml
     source_section: testing.test_patterns[0].line[0]
@@ -853,4 +853,100 @@ facts:
     excerpt: Unit tests for protocol parsing
   object_value: Unit tests for protocol parsing
   note: 'testing metadata: test_patterns'
-  fact_id: fact::3643bdb870fe8a4b53f77f37
+  fact_id: fact::88fe4a699bd48bae0254ce91
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/hysteria.yaml
+    source_section: vpn_protocols[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: vpn_protocols[0]
+    source_file: repos/knowledge/deep/hysteria.yaml
+    excerpt: Brutal congestion control
+  object_value: Brutal congestion control
+  fact_id: fact::dd8ae35d46f0f041b7ba144d
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/hysteria.yaml
+    source_section: vpn_protocols[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: vpn_protocols[1]
+    source_file: repos/knowledge/deep/hysteria.yaml
+    excerpt: HTTP proxy
+  object_value: HTTP proxy
+  fact_id: fact::8b965a50d13ae10cb9a7b846
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/hysteria.yaml
+    source_section: vpn_protocols[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: vpn_protocols[2]
+    source_file: repos/knowledge/deep/hysteria.yaml
+    excerpt: HTTP/3
+  object_value: HTTP/3
+  fact_id: fact::58efd45e4853c160c7cf83f8
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/hysteria.yaml
+    source_section: vpn_protocols[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: vpn_protocols[3]
+    source_file: repos/knowledge/deep/hysteria.yaml
+    excerpt: QUIC
+  object_value: QUIC
+  fact_id: fact::c0363698faafccfe2c790f3b
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/hysteria.yaml
+    source_section: vpn_protocols[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: vpn_protocols[4]
+    source_file: repos/knowledge/deep/hysteria.yaml
+    excerpt: SOCKS5
+  object_value: SOCKS5
+  fact_id: fact::c92030d9ffb54e601e2c4435
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/hysteria.yaml
+    source_section: vpn_protocols[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: vpn_protocols[5]
+    source_file: repos/knowledge/deep/hysteria.yaml
+    excerpt: TLS
+  object_value: TLS
+  fact_id: fact::6344d1017f22c8f56a50ceda

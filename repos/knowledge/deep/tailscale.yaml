@@ -6,8 +6,8 @@ source: remote_api
 provenance:
   shard: repos
   source_file: repos/knowledge/deep/tailscale.yaml
-  as_of: '2026-03-13'
-  sourcing_method: mixed
+  as_of: '2026-03-18'
+  sourcing_method: training_knowledge
   extraction_model: gpt-unknown
   extraction_agent: codex
 directory: remote::tailscale/tailscale
@@ -156,3 +156,15 @@ api_surface:
   - name: LocalAPI
     purpose: "Serve local management requests for clients and integrations."
     location: ipn/localapi
+
+vpn_protocols:
+  - name: WireGuard
+    role: "data-plane VPN protocol forming the encrypted peer-to-peer mesh; the wgengine package integrates the WireGuard stack and manages peer key exchange and session lifecycle"
+  - name: DERP
+    role: "Designated Encrypted Relay for Packets — Tailscale's relay protocol used as a fallback when direct WireGuard UDP connectivity cannot be established; derp package implements the relay client and server"
+  - name: "Tailscale control protocol (HTTPS/JSON)"
+    role: "proprietary control-plane protocol over HTTPS used by nodes to authenticate, register, and receive peer maps from the coordination server (or headscale); implemented in ipn/localapi and tailcfg packages"
+  - name: "MagicDNS"
+    role: "DNS-based name resolution protocol for tailnet nodes; Tailscale nodes resolve each other by hostname within the 100.x.x.x address space via integrated DNS handling in the net package"
+  - name: "Tailscale SSH"
+    role: "SSH access protocol mediated through the tailnet; Tailscale routes SSH connections through the WireGuard mesh with identity from the coordination server, bypassing traditional SSH key management"

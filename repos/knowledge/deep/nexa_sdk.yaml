@@ -6,11 +6,11 @@ name: nexa_sdk
 node_id: repo::nexaai/nexa-sdk
 github_full_name: nexaai/nexa-sdk
 html_url: https://github.com/nexaai/nexa-sdk
-source: repos
+source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep/nexa_sdk.yaml
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   sourcing_method: code_verified
   extraction_model: glm-5
   extraction_agent: kgraph-repos
@@ -114,3 +114,28 @@ related_repos:
   - ollama
   - vllm
   - lmdeploy
+
+troubleshooting:
+  - symptom: "SDKError(ML_ERROR_COMMON_PLUGIN_LOAD) when specifying plugin_id 'npu'"
+    cause: "The NPU backend shared library for the target hardware (Qualcomm Hexagon, Apple ANE, Intel NPU, AMD NPU) is not present or not loadable on the current device"
+    fix: "Verify the device matches a supported NPU platform; run 'nexa infer' without plugin_id to fall back to CPU/GPU; on Android ensure extractNativeLibs=true in AndroidManifest.xml"
+
+  - symptom: "SDKError(ML_ERROR_COMMON_MODEL_LOAD) during model initialization"
+    cause: "Model file is corrupted, the quantization level requested is not present in the downloaded artifact, or the model format (GGUF, MLX, NEXA) is not compatible with the selected backend"
+    fix: "Re-download the model with 'nexa pull <model>', confirm the quant tag matches an available variant, and verify the format is supported by the target plugin"
+
+  - symptom: "ML_ERROR_LLM_TOKENIZATION_CONTEXT_LENGTH error during inference"
+    cause: "Input token count exceeds the model's configured context length limit"
+    fix: "Shorten the prompt or set a smaller max_tokens in GenerationConfig; for longer contexts use a model variant with a larger context window"
+
+  - symptom: "NPU inference silently falls back to CPU with no error message"
+    cause: "NEXA_TOKEN environment variable is not set or holds an invalid license key; NPU components require a valid per-device license token"
+    fix: "Set NEXA_TOKEN to the key from sdk.nexa.ai/model, or run 'nexa config set license <token>' to persist it; free personal-use keys are available for single-device activation"
+
+  - symptom: "nexa serve fails to start with 'address already in use' on port 18181"
+    cause: "Another process is already bound to the default server port 18181"
+    fix: "Set NEXA_HOST environment variable to an alternative host:port (e.g. NEXA_HOST=127.0.0.1:18182) before running 'nexa serve'"
+
+  - symptom: "'model type not support' error returned by the chat API endpoint"
+    cause: "The loaded model type does not implement the chat completion handler; e.g. an ASR or image-gen model is addressed via the /v1/chat/completions route"
+    fix: "Use the correct API endpoint for the model type (e.g. /v1/audio/transcriptions for ASR, /v1/images/generations for image gen)"

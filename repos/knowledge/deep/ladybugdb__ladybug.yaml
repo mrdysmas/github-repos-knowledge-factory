@@ -253,3 +253,19 @@ key_files:
   - path: src/antlr4/Cypher.g4
     purpose: "Cypher grammar entrypoint."
 
+troubleshooting:
+  - symptom: "Database initialization fails with error indicating path is in-memory or does not exist when read-only mode is set"
+    cause: "SystemConfig.readOnly=true rejects in-memory paths and non-existent directories at open time; src/main/database.cpp enforces this before storage init"
+    fix: "Open with readOnly=false if the database path must be created, or ensure the persistent directory already exists before opening in read-only mode"
+  - symptom: "Write transaction rejected with single-writer gate error under concurrent writes"
+    cause: "TransactionManager serializes write transactions by default; multi-write mode is disabled unless enable_mvcc session setting is explicitly toggled on"
+    fix: "Enable multi-write via the enable_mvcc session setting, or serialize writes from the application side"
+  - symptom: "Buffer pool OOM or out-of-memory error during large query or ingestion"
+    cause: "bufferPoolSize defaults to a fraction of physical memory; workloads with large result sets or bulk inserts may exceed the pool"
+    fix: "Set bufferPoolSize explicitly in SystemConfig to a larger value, or reduce concurrent query volume"
+  - symptom: "WAL grows unboundedly and checkpoint does not trigger"
+    cause: "autoCheckpoint is true by default but checkpointThreshold (default 16 MB) may not be reached if writes are infrequent, or checkpoint is blocked by an active read transaction"
+    fix: "Call checkpoint manually, lower checkpointThreshold in SystemConfig, or ensure long-running read transactions are closed promptly"
+  - symptom: "Database opened read-only reports stale data after another process wrote and checkpointed"
+    cause: "Read-only connections do not trigger or participate in checkpoint; they read the storage state at open time"
+    fix: "Re-open the database connection to pick up the latest checkpointed state"

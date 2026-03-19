@@ -2,11 +2,11 @@ name: tunnelite
 node_id: repo::cristipufu/tunnelite
 github_full_name: cristipufu/tunnelite
 html_url: https://github.com/cristipufu/tunnelite
-source: repos
+source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep_facts/tunnelite.yaml
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   extractor_version: ws6-deep-integrator-v1
   extraction_model: glm-5
   extraction_agent: kgraph-repos
@@ -15,7 +15,7 @@ facts:
   predicate: exposes_api_endpoint
   object_kind: api_route
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: api_surface.server_endpoints[3]
@@ -27,12 +27,12 @@ facts:
     excerpt: DELETE /tunnelite/request/{requestId}
   object_value: DELETE /tunnelite/request/{requestId}
   note: Handle error cases
-  fact_id: fact::3b9dbd1b9770a6148d3d5981
+  fact_id: fact::02d9ecc7cfa56f1c878480ce
 - fact_type: api_endpoint
   predicate: exposes_api_endpoint
   object_kind: api_route
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: api_surface.server_endpoints[1]
@@ -44,12 +44,12 @@ facts:
     excerpt: GET /tunnelite/request/{requestId}
   object_value: GET /tunnelite/request/{requestId}
   note: Get deferred request details
-  fact_id: fact::14ca9f1c616e59be38bde177
+  fact_id: fact::876eb661b476e0f71e192788
 - fact_type: api_endpoint
   predicate: exposes_api_endpoint
   object_kind: api_route
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: api_surface.server_endpoints[2]
@@ -61,12 +61,12 @@ facts:
     excerpt: POST /tunnelite/request/{requestId}
   object_value: POST /tunnelite/request/{requestId}
   note: Forward response back
-  fact_id: fact::ba2011c839c5cc1423dbeed5
+  fact_id: fact::f99c487dd5a401fe49203e72
 - fact_type: api_endpoint
   predicate: exposes_api_endpoint
   object_kind: api_route
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: api_surface.server_endpoints[0]
@@ -78,12 +78,12 @@ facts:
     excerpt: POST /tunnelite/tunnel
   object_value: POST /tunnelite/tunnel
   note: Register new tunnel
-  fact_id: fact::232e8bbe598be703b2a5069c
+  fact_id: fact::3aa0258227058e40550f1f5a
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: architecture.key_abstractions[1]
@@ -95,12 +95,12 @@ facts:
     excerpt: SignalR connection with MessagePack for bidirectional communication
   object_value: HubConnection
   note: SignalR connection with MessagePack for bidirectional communication
-  fact_id: fact::9eba26eed57d207677f0010e
+  fact_id: fact::dd95b2030f212ec13bf1e976
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: architecture.key_abstractions[0]
@@ -112,12 +112,12 @@ facts:
     excerpt: Core interface for all tunnel clients
   object_value: ITunnelClient
   note: Core interface for all tunnel clients
-  fact_id: fact::bbab2e703efcd24cbebc3ad8
+  fact_id: fact::d05d620e9dc5577fea06812a
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: architecture.key_abstractions[2]
@@ -129,12 +129,12 @@ facts:
     excerpt: Deferred request handling with completion tracking
   object_value: Request Queue
   note: Deferred request handling with completion tracking
-  fact_id: fact::f90746aecb824daeea76ae3b
+  fact_id: fact::5366c3e24352d2f1a4b708e5
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: architecture.module_breakdown[3]
@@ -147,12 +147,12 @@ facts:
   object_value: src/Tunnelite.AspNetCore/
   note: 'responsibility: Extension method for seamless ASP.NET Core integration; key_files:
     src/Tunnelite.AspNetCore/TunneliteExtensions.cs'
-  fact_id: fact::f07193fcefa71816cdea4866
+  fact_id: fact::2efe94f04bc83022e97768d0
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: architecture.module_breakdown[1]
@@ -165,12 +165,12 @@ facts:
   object_value: src/Tunnelite.Client/
   note: 'responsibility: CLI tool using Spectre.Console for user interface; key_files:
     src/Tunnelite.Client/Program.cs'
-  fact_id: fact::84895c0b31143c7b72a917cf
+  fact_id: fact::4b1f46789bc28e416591c254
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: architecture.module_breakdown[0]
@@ -183,12 +183,12 @@ facts:
   object_value: src/Tunnelite.Sdk/
   note: 'responsibility: Core client SDK with SignalR implementations for all tunnel
     types; key_files: src/Tunnelite.Sdk/ITunnelClient.cs, src/Tunnelite.Sdk/HttpTunnel/HttpTunnelClient.cs'
-  fact_id: fact::3450037fc401fff4bbfd82a1
+  fact_id: fact::b5b20d5cae543a7207251488
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: architecture.module_breakdown[2]
@@ -201,12 +201,12 @@ facts:
   object_value: src/Tunnelite.Server/
   note: 'responsibility: ASP.NET Core server with SignalR hub middleware; key_files:
     src/Tunnelite.Server/Program.cs, src/Tunnelite.Server/HttpTunnel/HttpTunnelHub.cs'
-  fact_id: fact::a4eba80e1062d7f2f6bd957d
+  fact_id: fact::851b63ac58f7a0057bfdcb12
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: configuration.server_options[1]
@@ -218,12 +218,12 @@ facts:
     excerpt: AllowedHosts
   object_value: AllowedHosts
   note: 'type: string; default: *; CORS allowed hosts'
-  fact_id: fact::de58fab9c93c2b2eb90d86e7
+  fact_id: fact::d52d951efbe2a2c4ffe02ccb
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: configuration.server_options[0]
@@ -235,12 +235,12 @@ facts:
     excerpt: Azure:SignalR:ConnectionString
   object_value: Azure:SignalR:ConnectionString
   note: 'type: string; Azure SignalR service for scalability'
-  fact_id: fact::451973904288fcfe11f5467e
+  fact_id: fact::dee15141f54bfc7a630921d5
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: configuration.tunnel_config[1]
@@ -252,12 +252,12 @@ facts:
     excerpt: ClientId
   object_value: ClientId
   note: 'type: Guid; Unique client identifier'
-  fact_id: fact::ab3ed23fca8ea5ed8f89ad7e
+  fact_id: fact::9412915c57661ce327c17821
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: configuration.tunnel_config[2]
@@ -269,12 +269,12 @@ facts:
     excerpt: LocalPort
   object_value: LocalPort
   note: 'type: int; For TCP tunnels, local port to forward'
-  fact_id: fact::af70082cfc83443f9d6da63d
+  fact_id: fact::1dd48ba6159ddbafbf141c8c
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: configuration.tunnel_config[3]
@@ -286,12 +286,12 @@ facts:
     excerpt: PublicPort
   object_value: PublicPort
   note: 'type: int; For TCP tunnels, public port (auto-assigned if null)'
-  fact_id: fact::67ccf56dbe8a0ff21c119cda
+  fact_id: fact::7211f7445783b7bead4201c8
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: configuration.tunnel_config[0]
@@ -303,12 +303,12 @@ facts:
     excerpt: Subdomain
   object_value: Subdomain
   note: 'type: string; Auto-generated or specified subdomain'
-  fact_id: fact::d53a1b439e6264114b8fc515
+  fact_id: fact::1f4ce7a997cde729c3dc2adf
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: configuration.file
@@ -320,12 +320,12 @@ facts:
     excerpt: file
   object_value: file
   note: 'default: appsettings.json and CLI arguments; configuration default for file'
-  fact_id: fact::70feb54274ac02f1a8acd10d
+  fact_id: fact::dff2d1a1ebd07cd8adc1fa90
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: configuration.options[0]
@@ -337,12 +337,12 @@ facts:
     excerpt: localUrl
   object_value: localUrl
   note: 'type: string; The local URL to tunnel to'
-  fact_id: fact::69f43cebcf36f413120a61d7
+  fact_id: fact::57dfe3af20b82b9f77eb04b6
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: configuration.options[2]
@@ -355,12 +355,12 @@ facts:
   object_value: log
   note: 'type: LogLevel; Logging level (Trace, Debug, Information, Warning, Error,
     Critical)'
-  fact_id: fact::b0a74f81db6caafc40f7a852
+  fact_id: fact::76c523fa912166e36f1a6eac
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: configuration.options[1]
@@ -372,12 +372,12 @@ facts:
     excerpt: publicUrl
   object_value: publicUrl
   note: 'type: string; default: https://tunnelite.com; Public server URL'
-  fact_id: fact::a044c5ab9f108e97c26f31cc
+  fact_id: fact::c9cf208b1b26ee30583de9ac
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: extension_points[4]
@@ -389,12 +389,12 @@ facts:
     excerpt: Azure SignalR integration
   object_value: Azure SignalR integration
   note: Scale to multiple instances; Connection string configuration
-  fact_id: fact::1647a4e2d09bfa333e5954d7
+  fact_id: fact::3cb75949d9dde1a1b7b8960c
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: api_surface.public_functions[2]
@@ -407,12 +407,12 @@ facts:
   object_value: HttpTunnelClient.TunnelHttpConnectionAsync
   note: Handle HTTP tunnel streaming; Task TunnelHttpConnectionAsync(HttpConnection);
     src/Tunnelite.Sdk/HttpTunnel/HttpTunnelClient.cs
-  fact_id: fact::d82f24a9ac06491304f8ace3
+  fact_id: fact::184f4ee00825723add8b413b
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: api_surface.public_functions[3]
@@ -425,12 +425,12 @@ facts:
   object_value: HttpTunnelClient.TunnelWsConnectionAsync
   note: Handle WebSocket tunnel streaming; Task TunnelWsConnectionAsync(WsConnection);
     src/Tunnelite.Sdk/HttpTunnel/HttpTunnelClient.cs
-  fact_id: fact::0a43da3485b43cd674754b38
+  fact_id: fact::9c8c3573ca5d4239b1c41c79
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: api_surface.public_functions[0]
@@ -442,12 +442,12 @@ facts:
     excerpt: ITunnelClient.ConnectAsync
   object_value: ITunnelClient.ConnectAsync
   note: Establish connection to tunnel server; Task ConnectAsync(); src/Tunnelite.Sdk/ITunnelClient.cs:5-19
-  fact_id: fact::4d68fbfc99ac158e8d1167c5
+  fact_id: fact::0bb818c2843efbcaaeb2027a
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: api_surface.public_functions[1]
@@ -459,12 +459,12 @@ facts:
     excerpt: ITunnelClient.TunnelUrl
   object_value: ITunnelClient.TunnelUrl
   note: Public URL after connection; string? TunnelUrl { get; }; src/Tunnelite.Sdk/ITunnelClient.cs
-  fact_id: fact::1417a3d0ed9d9809a4e57ddb
+  fact_id: fact::e2ab3c70d0725031edce2af3
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: api_surface.public_functions[4]
@@ -477,12 +477,12 @@ facts:
   object_value: TcpTunnelClient.HandleNewTcpConnectionAsync
   note: Handle TCP tunnel connections; Task HandleNewTcpConnectionAsync(TcpConnection);
     src/Tunnelite.Sdk/TcpTunnel/TcpTunnelClient.cs
-  fact_id: fact::6a1e7badd5538fabd6a2fb26
+  fact_id: fact::c5afbd067bfe7529fd8550cf
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: extension_points[2]
@@ -494,12 +494,12 @@ facts:
     excerpt: src/Tunnelite.AspNetCore/TunneliteExtensions.cs:15-56
   object_value: src/Tunnelite.AspNetCore/TunneliteExtensions.cs:15-56
   note: Custom middleware pipeline; UseTunnelite() middleware
-  fact_id: fact::a4c5786c6f73167a8aebcc4f
+  fact_id: fact::ad7d67b4e7c23311a26eecb2
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: extension_points[0]
@@ -511,12 +511,12 @@ facts:
     excerpt: src/Tunnelite.Sdk/ITunnelClient.cs
   object_value: src/Tunnelite.Sdk/ITunnelClient.cs
   note: Implement custom tunnel types; ITunnelClient interface
-  fact_id: fact::71d1413c3984aadde1571646
+  fact_id: fact::91efbf4af214f150f8a8baae
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: extension_points[3]
@@ -528,12 +528,12 @@ facts:
     excerpt: src/Tunnelite.Server/
   object_value: src/Tunnelite.Server/
   note: Custom storage backends; HttpTunnelStore, HttpRequestsQueue
-  fact_id: fact::efea92a5e1b7f1ca019bda2a
+  fact_id: fact::90787febdc6d39dfd88b7306
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: extension_points[1]
@@ -545,12 +545,12 @@ facts:
     excerpt: src/Tunnelite.Server/HttpTunnel/HttpAppExtensions.cs
   object_value: src/Tunnelite.Server/HttpTunnel/HttpAppExtensions.cs
   note: Modify header filtering; NotAllowedHeaders array
-  fact_id: fact::a874d49b0b2770a5104d9bd6
+  fact_id: fact::6f6ede65ed397deae34b0040
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: implementation_patterns[0]
@@ -563,12 +563,12 @@ facts:
   object_value: Bidirectional Streaming
   note: 'description: IAsyncEnumerable for streaming data between client and server;
     location: src/Tunnelite.Sdk/HttpTunnel/HttpTunnelClient.cs:214-232'
-  fact_id: fact::f5f77d7b97d04174e8b6b3b3
+  fact_id: fact::4c2fb2fd87b1f567239bf6f9
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: implementation_patterns[1]
@@ -581,12 +581,12 @@ facts:
   object_value: Buffer Pooling
   note: 'description: ArrayPool<byte>.Shared for efficient memory management; location:
     src/Tunnelite.Sdk/HttpTunnel/HttpTunnelClient.cs:248'
-  fact_id: fact::52daeba758cca0d5e83f4296
+  fact_id: fact::06bf0ca398ad949363b08735
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: implementation_patterns[2]
@@ -598,12 +598,12 @@ facts:
     excerpt: Automatic reconnection with exponential backoff
   object_value: Connection Resilience
   note: 'description: Automatic reconnection with exponential backoff; location: src/Tunnelite.Sdk/HttpTunnel/HttpTunnelClient.cs'
-  fact_id: fact::ef7acb5659284af3b5ab39e0
+  fact_id: fact::1dbe9bae871447a579757dc6
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: implementation_patterns[3]
@@ -616,12 +616,12 @@ facts:
   object_value: Deferred Request Middleware
   note: 'description: Requests queued while waiting for client connection; location:
     src/Tunnelite.Server/HttpTunnel/HttpAppExtensions.cs'
-  fact_id: fact::8d3d5cdfc4ad78652565d8b3
+  fact_id: fact::4de87c9b5620f99778b15f00
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: implementation_patterns[4]
@@ -634,12 +634,12 @@ facts:
   object_value: Header Passthrough
   note: 'description: Custom headers prefixed with X-TR- and X-TC- for metadata; location:
     src/Tunnelite.Server/HttpTunnel/HttpAppExtensions.cs'
-  fact_id: fact::afaa2f9b55d5697ac10fbfdf
+  fact_id: fact::ae2d854f488367938896b7db
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: testing.structure.line[0]
@@ -651,12 +651,12 @@ facts:
     excerpt: test/ with sample applications
   object_value: test/ with sample applications
   note: 'testing metadata: structure'
-  fact_id: fact::1042f9c842588abd4e19ecc7
+  fact_id: fact::8de27679d83b411476e0da16
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/tunnelite.yaml
     source_section: testing.framework.line[0]
@@ -668,4 +668,100 @@ facts:
     excerpt: xUnit (inferred from .NET ecosystem)
   object_value: xUnit (inferred from .NET ecosystem)
   note: 'testing metadata: framework'
-  fact_id: fact::5e4eb6d9fdbd422bbbd6c9f8
+  fact_id: fact::d40e69b6d38d1768e24c0ba1
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/tunnelite.yaml
+    source_section: supported_protocols[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[0]
+    source_file: repos/knowledge/deep/tunnelite.yaml
+    excerpt: HTTP
+  object_value: HTTP
+  fact_id: fact::f51da2d88a933936b2364887
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/tunnelite.yaml
+    source_section: supported_protocols[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[1]
+    source_file: repos/knowledge/deep/tunnelite.yaml
+    excerpt: HTTPS
+  object_value: HTTPS
+  fact_id: fact::9044f69cb300eec597477bcb
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/tunnelite.yaml
+    source_section: supported_protocols[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[2]
+    source_file: repos/knowledge/deep/tunnelite.yaml
+    excerpt: Server-Sent Events (SSE)
+  object_value: Server-Sent Events (SSE)
+  fact_id: fact::2a3be176c49b8bcb25751a7b
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/tunnelite.yaml
+    source_section: supported_protocols[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[3]
+    source_file: repos/knowledge/deep/tunnelite.yaml
+    excerpt: SignalR over WebSocket
+  object_value: SignalR over WebSocket
+  fact_id: fact::9d271ca4b3a9898671ca4fff
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/tunnelite.yaml
+    source_section: supported_protocols[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[4]
+    source_file: repos/knowledge/deep/tunnelite.yaml
+    excerpt: TCP
+  object_value: TCP
+  fact_id: fact::3a964e1250f80e967de41177
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/tunnelite.yaml
+    source_section: supported_protocols[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[5]
+    source_file: repos/knowledge/deep/tunnelite.yaml
+    excerpt: WebSocket
+  object_value: WebSocket
+  fact_id: fact::fe33ab3714ac5273867bfa77

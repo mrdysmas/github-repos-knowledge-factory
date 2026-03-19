@@ -6,8 +6,8 @@ source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep/cloudflared.yaml
-  as_of: '2026-03-13'
-  sourcing_method: mixed
+  as_of: '2026-03-18'
+  sourcing_method: training_knowledge
   extraction_model: gpt-unknown
   extraction_agent: codex
 directory: remote::cloudflare/cloudflared
@@ -155,3 +155,17 @@ api_surface:
   - name: connection manager
     purpose: "Maintain and supervise edge connectivity."
     location: connection
+
+supported_protocols:
+  - name: QUIC
+    role: "primary transport for cloudflared-to-Cloudflare-edge connections; tunnel traffic is carried over QUIC for reduced latency and multiplexing; cloudflared falls back to HTTP/2 if QUIC is unavailable"
+  - name: "HTTP/2"
+    role: "fallback transport for the outbound tunnel connection to Cloudflare edge when QUIC cannot be established; both QUIC and HTTP/2 connections are managed by the connection package"
+  - name: "HTTP CONNECT / HTTPS"
+    role: "cloudflared exposes ingress-routed local services over HTTPS to Cloudflare edge; the ingress package matches hostname rules and proxies HTTP/HTTPS traffic to configured origin URLs"
+  - name: WebSocket
+    role: "WebSocket connections to origin services are supported by the ingress stack and proxied transparently through the tunnel to remote clients"
+  - name: SSH
+    role: "SSH access to origin hosts is supported as a tunnel ingress type; cloudflared can proxy SSH connections with short-lived certificate-based authentication from Cloudflare Access"
+  - name: "Cloudflare Access JWT"
+    role: "application-layer authentication protocol for protected resources; cloudflared validates Cloudflare Access JWTs on incoming requests before forwarding to origins when Access policies are enforced"

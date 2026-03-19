@@ -2,11 +2,11 @@ name: lmdeploy
 node_id: repo::internlm/lmdeploy
 github_full_name: internlm/lmdeploy
 html_url: https://github.com/internlm/lmdeploy
-source: repos
+source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep_facts/lmdeploy.yaml
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   extractor_version: ws6-deep-integrator-v1
   extraction_model: glm-5
   extraction_agent: kgraph-repos
@@ -15,7 +15,7 @@ facts:
   predicate: has_component
   object_kind: concept
   confidence: 0.6
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/lmdeploy.yaml
     source_section: type.line[0]
@@ -27,12 +27,12 @@ facts:
     excerpt: inference_deployment
   object_value: inference_deployment
   note: repository type classification
-  fact_id: fact::ec16d4759b8342b177f7d8af
+  fact_id: fact::7de396d5c7d75b969818d0da
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.7
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/lmdeploy.yaml
     source_section: environment_variables[1]
@@ -44,12 +44,12 @@ facts:
     excerpt: CUDA_VISIBLE_DEVICES
   object_value: CUDA_VISIBLE_DEVICES
   note: GPU device selection
-  fact_id: fact::8f5b76274e3e4e0059807c64
+  fact_id: fact::220436da892081df44dcbabb
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.7
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/lmdeploy.yaml
     source_section: environment_variables[0]
@@ -61,12 +61,12 @@ facts:
     excerpt: LMDEPLOY_TARGET_DEVICE
   object_value: LMDEPLOY_TARGET_DEVICE
   note: 'Target device (cuda, ascend); default: cuda'
-  fact_id: fact::a263b84007e20474b5d7be10
+  fact_id: fact::1546ce3f622e27c117b931e9
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.7
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/lmdeploy.yaml
     source_section: environment_variables[3]
@@ -78,12 +78,12 @@ facts:
     excerpt: LMDEPLOY_USE_MODELSCOPE
   object_value: LMDEPLOY_USE_MODELSCOPE
   note: 'Enable ModelScope model loading; default: false'
-  fact_id: fact::e89f2a522c9e3261ec9dd2f8
+  fact_id: fact::d77a75e41777c659d9d57af5
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.7
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/lmdeploy.yaml
     source_section: environment_variables[2]
@@ -95,4 +95,124 @@ facts:
     excerpt: TM_LOG_LEVEL
   object_value: TM_LOG_LEVEL
   note: 'TurboMind log level (DEBUG, INFO, WARNING, ERROR); default: INFO'
-  fact_id: fact::e6d49e167a33ae2ebd667a9c
+  fact_id: fact::9acd8b8d928d813fcb2b9c69
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/lmdeploy.yaml
+    source_section: troubleshooting[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[5]
+    source_file: repos/knowledge/deep/lmdeploy.yaml
+    excerpt: API server image URL fetch hangs or times out during vision-language
+      inference
+  object_value: API server image URL fetch hangs or times out during vision-language
+    inference
+  note: 'cause: Default fetch timeout for image URLs in the VL pipeline is 10 seconds;
+    slow or unreachable URLs exceed this; fix: Set the LMDEPLOY_FETCH_TIMEOUT environment
+    variable to a higher value in seconds before starting the api_server'
+  fact_id: fact::11783bedcefea2b50d63f5e3
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/lmdeploy.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/lmdeploy.yaml
+    excerpt: 'ModuleNotFoundError: No module named ''_turbomind'''
+  object_value: 'ModuleNotFoundError: No module named ''_turbomind'''
+  note: 'cause: TurboMind C++ pybind package not installed, or command is being run
+    from the lmdeploy source root directory which shadows the installed package; fix:
+    Install the precompiled package with ''pip install lmdeploy[all]'', then change
+    to a different working directory before ru...'
+  fact_id: fact::3de60a598a4b369042d5fddc
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/lmdeploy.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/lmdeploy.yaml
+    excerpt: 'RuntimeError: [TM][ERROR] CUDA runtime error: out of memory'
+  object_value: 'RuntimeError: [TM][ERROR] CUDA runtime error: out of memory'
+  note: 'cause: KV cache allocation ratio is too large for available GPU memory; controlled
+    by TurbomindEngineConfig.cache_max_entry_count; fix: Reduce cache_max_entry_count
+    (e.g. backend_config = TurbomindEngineConfig(cache_max_entry_count=0.2)) or pass
+    --cache-max-entry-count 0.2 on...'
+  fact_id: fact::ad0a514ad18ed2b67103aa54
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/lmdeploy.yaml
+    source_section: troubleshooting[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[4]
+    source_file: repos/knowledge/deep/lmdeploy.yaml
+    excerpt: 'RuntimeError: [enforce fail at inline_container.cc:337] unexpected pos
+      during quantization'
+  object_value: 'RuntimeError: [enforce fail at inline_container.cc:337] unexpected
+    pos during quantization'
+  note: 'cause: Insufficient disk space when saving quantized weights; commonly occurs
+    when quantizing 70B+ models; fix: Free disk space before running quantization;
+    verify available space is at least 2x the model size in float16'
+  fact_id: fact::c5a0d2e36bd5c8bfbf96aff3
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/lmdeploy.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/lmdeploy.yaml
+    excerpt: libnccl.so.2 not found at runtime
+  object_value: libnccl.so.2 not found at runtime
+  note: 'cause: NCCL library is not on LD_LIBRARY_PATH after pip install; required
+    for multi-GPU tensor parallelism via TurboMind; fix: Run ''pip show nvidia-nccl-cu11
+    | grep Location'' to find the library path, then export LD_LIBRARY_PATH={Location}/nvidia/nccl/lib:$LD_LIBRARY_PATH'
+  fact_id: fact::fa4bff427e012a2758d93a97
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/lmdeploy.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: repos/knowledge/deep/lmdeploy.yaml
+    excerpt: symbol cudaFreeAsync version libcudart.so.11.0 not defined
+  object_value: symbol cudaFreeAsync version libcudart.so.11.0 not defined
+  note: 'cause: CUDA toolkit version below 11.2; LMDeploy runtime requires a minimum
+    of CUDA 11.2; fix: Upgrade CUDA toolkit to 11.2 or later, or install the CUDA
+    11.8-specific wheel with the cu118 prebuilt package'
+  fact_id: fact::0c32dc7805340ceb0aa92cdd

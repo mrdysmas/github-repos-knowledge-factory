@@ -6,36 +6,25 @@ source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/repos/unum-cloud__usearch.yaml
-  as_of: '2026-03-05T04:16:38Z'
+  as_of: '2026-03-18'
 directory: remote::unum-cloud/usearch
 category: vector_database
-summary: Phase 4 Corpus Expansion P4-B1 intake for unum-cloud/usearch. Vector database
-  repository routed explicitly to llm_repos.
+summary: Fast vector similarity search engine with HNSW indexing, multi-language bindings,
+  and hardware-optimized distance computation primitives.
 core_concepts:
 - vector similarity search engine
 - high-performance retrieval primitives
 key_entry_points:
 - README.md
-- docs/
+- include/
+- python/
 build_run:
   language: mixed
-  build: See upstream README for build steps.
-  test: See upstream README for test steps.
+  build: See upstream README for project build steps.
+  test: See upstream README for project test steps.
 local_cache_dir: null
 extras:
-  intake:
-    pilot_batch_id: PHASE-4-P4-B1
-    repo_id: repo::unum-cloud/usearch
-    queue_id: intake::unum-cloud/usearch
-    domain_hint: vector_database
-    source_mode: remote_metadata
-    observed_at_utc: '2026-03-05T04:16:38Z'
-  remote:
-    provider: github
-    mode: metadata
-    endpoint: /repos/unum-cloud/usearch
-    fetched_at_utc: '2026-03-05T04:16:38Z'
-    refresh:
-      precedence: api_wins_readme_for_missing_required_fields
-      fallback_source: readme_fallback
-      fallback_used: false
+  refresh:
+    precedence: api_wins_readme_for_missing_required_fields
+    fallback_source: readme_fallback
+    fallback_used: false

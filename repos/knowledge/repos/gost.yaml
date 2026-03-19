@@ -2,54 +2,29 @@ name: gost
 node_id: repo::go-gost/gost
 github_full_name: go-gost/gost
 html_url: https://github.com/go-gost/gost
-source: repos
+source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/repos/gost.yaml
-  as_of: '2026-02-25'
-directory: gost-master
+  as_of: '2026-03-18'
+directory: remote::go-gost/gost
 category: tunneling
-summary: |
-  GO Simple Tunnel - a versatile Go-based tunneling tool that functions as a forward proxy, port forwarder, and reverse proxy with multi-protocol support and chaining capabilities for secure network traversal.
+summary: Go-based security tunnel supporting 40+ protocols with multi-hop forwarding
+  chains, hot-reload config, and modular connector/dialer architecture.
 core_concepts:
-  - name: Forwarding Chain
-    description: Multi-hop proxy chains allowing composition of different protocols (SOCKS, HTTP, SS, SSH, etc.) in sequence for layered network traversal.
-  - name: Protocol Diversity
-    description: Supports 40+ protocols including SOCKS4/5, HTTP/HTTPS, Shadowsocks, SSH, QUIC, WebSocket, gRPC, KCP, WireGuard, and TUN/TAP devices.
-  - name: Service Architecture
-    description: Modular design with connectors, dialers, handlers, and listeners registered via dependency injection; enables dynamic configuration and hot-reload via SIGHUP.
+- Forwarding Chain
+- Protocol Diversity
+- Service Architecture
 key_entry_points:
-  - path: cmd/gost/main.go:106
-    purpose: Application entry point; initializes logger and runs the program service lifecycle.
-  - path: cmd/gost/program.go:35
-    purpose: Service lifecycle management (Init/Start/Stop); configures parser, loads config, and orchestrates API/metrics/profiling services.
-  - path: cmd/gost/register.go:1
-    purpose: Blank imports that register all available connectors, dialers, handlers, and listeners via init() functions.
+- README.md
+- cmd/
 build_run:
   language: go
-  go_version: "1.24"
-  package_manager: go mod
-  build_command: cd cmd/gost && go build
-  run_command: ./gost -L [service] -F [chain] or ./gost -C [config.yaml]
-  test_command: go test ./...
-  docker_command: docker run --rm gogost/gost -V
-ecosystem_connections:
-  similar_to:
-    - frp (fast reverse proxy)
-    - ngrok (tunneling service)
-    - shadowsocks (proxy)
-    - v2ray/xray (proxy platform)
-    - wireguard (VPN tunnel)
-    - chisel (HTTP tunneling)
-  alternatives:
-    - frp
-    - ngrok
-    - cloudflared (Argo tunnels)
-    - trojan
-    - trojan-go
-  used_with:
-    - Prometheus (metrics monitoring)
-    - Docker/Kubernetes (containerized deployment)
-    - gostctl (GUI client)
-    - gost-ui (Web UI)
-    - Shadowsocks Android (mobile plugin)
+  build: See upstream README for project build steps.
+  test: See upstream README for project test steps.
+local_cache_dir: null
+extras:
+  refresh:
+    precedence: api_wins_readme_for_missing_required_fields
+    fallback_source: readme_fallback
+    fallback_used: false

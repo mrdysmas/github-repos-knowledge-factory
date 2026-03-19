@@ -2,12 +2,12 @@ name: bore
 node_id: repo::ekzhang/bore
 github_full_name: ekzhang/bore
 html_url: https://github.com/ekzhang/bore
-source: repos
+source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep/bore.yaml
-  as_of: '2026-02-25'
-  sourcing_method: code_verified
+  as_of: '2026-03-18'
+  sourcing_method: training_knowledge
   extraction_model: glm-5
   extraction_agent: kgraph-repos
 directory: bore-main
@@ -175,3 +175,11 @@ extension_points:
   - location: Transport layer
     hook: TCP replacement
     example: Replace with WebSockets, QUIC, or add TLS
+
+supported_protocols:
+  - name: TCP
+    role: "sole transport layer — client and server communicate exclusively over persistent TCP connections for both control and proxied data channels"
+  - name: "null-delimited JSON framing (custom wire protocol)"
+    role: "application-layer framing over TCP for control messages (Hello, Auth, Connection, Accept) using null-byte delimiters"
+  - name: "HMAC-SHA256 challenge-response"
+    role: "optional authentication protocol where server sends UUID challenge and client responds with HMAC-SHA256(secret, challenge)"

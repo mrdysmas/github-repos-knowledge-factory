@@ -6,29 +6,25 @@ source: remote_api
 provenance:
   shard: repos
   source_file: repos/knowledge/repos/tailscale.yaml
-  as_of: '2026-02-24'
+  as_of: '2026-03-18'
 directory: remote::tailscale/tailscale
 category: vpn_mesh
-summary: WireGuard-based mesh networking platform with identity-aware connectivity
-  controls.
+summary: WireGuard-based mesh VPN with identity-aware access control, DERP relay fallback,
+  and MagicDNS for zero-config device discovery.
 core_concepts:
 - Mesh VPN over WireGuard
 - Identity-aware network access
 key_entry_points:
-- cmd/tailscale
-- cmd/tailscaled
+- README.md
+- cmd/tailscale/
+- wgengine/
 build_run:
   language: go
-  build: go build ./cmd/tailscale ./cmd/tailscaled
-  test: go test ./...
+  build: See upstream README for project build steps.
+  test: See upstream README for project test steps.
 local_cache_dir: null
 extras:
-  remote:
-    provider: github
-    mode: api
-    endpoint: /repos/tailscale/tailscale
-    fetched_at_utc: '2026-02-23T03:20:00Z'
-    refresh:
-      precedence: api_wins_readme_for_missing_required_fields
-      fallback_source: readme_fallback
-      fallback_used: false
+  refresh:
+    precedence: api_wins_readme_for_missing_required_fields
+    fallback_source: readme_fallback
+    fallback_used: false

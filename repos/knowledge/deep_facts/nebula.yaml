@@ -2,11 +2,11 @@ name: nebula
 node_id: repo::slackhq/nebula
 github_full_name: slackhq/nebula
 html_url: https://github.com/slackhq/nebula
-source: repos
+source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep_facts/nebula.yaml
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   extractor_version: ws6-deep-integrator-v1
   extraction_model: glm-5
   extraction_agent: kgraph-repos
@@ -15,7 +15,7 @@ facts:
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: architecture.key_abstractions[2]
@@ -27,12 +27,12 @@ facts:
     excerpt: Stateful packet filtering with certificate-based auth
   object_value: Firewall
   note: Stateful packet filtering with certificate-based auth
-  fact_id: fact::f8e769b23bc99952c1810ad1
+  fact_id: fact::7d9e6489f904d7ede9602fee
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: architecture.key_abstractions[3]
@@ -44,12 +44,12 @@ facts:
     excerpt: Connection establishment and handshake retry management
   object_value: HandshakeManager
   note: Connection establishment and handshake retry management
-  fact_id: fact::9fbe01affcb6a24bcee6f770
+  fact_id: fact::8a40e4ca38275f5188a3462e
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: architecture.key_abstractions[4]
@@ -61,12 +61,12 @@ facts:
     excerpt: Active tunnel state and peer information
   object_value: HostMap
   note: Active tunnel state and peer information
-  fact_id: fact::b3d400dc2698b899e3851533
+  fact_id: fact::0efabd9418f9bbfaf2d3623e
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: architecture.key_abstractions[0]
@@ -78,12 +78,12 @@ facts:
     excerpt: Main networking engine bridging TUN device and UDP transport
   object_value: Interface
   note: Main networking engine bridging TUN device and UDP transport
-  fact_id: fact::7894af2a46a83c2cbe26a57e
+  fact_id: fact::0826ca066372510b4019b08d
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: architecture.key_abstractions[1]
@@ -95,12 +95,12 @@ facts:
     excerpt: Distributed peer discovery system (client or server mode)
   object_value: LightHouse
   note: Distributed peer discovery system (client or server mode)
-  fact_id: fact::b013702cd3168d06e4bb2b02
+  fact_id: fact::642fc359703a92042fec15a0
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: architecture.module_breakdown[5]
@@ -113,12 +113,12 @@ facts:
   object_value: cert/
   note: 'responsibility: X.509-style certificates (v1 protobuf, v2 ASN.1), PKI; key_files:
     cert/cert.go'
-  fact_id: fact::f0f3a35dc1213af03d781436
+  fact_id: fact::daaeedd675421be3cf68099f
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: architecture.module_breakdown[8]
@@ -131,12 +131,12 @@ facts:
   object_value: cmd/nebula-cert/
   note: 'responsibility: Certificate utility (ca, keygen, sign, verify); key_files:
     cmd/nebula-cert/main.go'
-  fact_id: fact::de0a6d90f7ebad08ed620c8a
+  fact_id: fact::85128008f4de2d297fbc82aa
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: architecture.module_breakdown[7]
@@ -148,12 +148,12 @@ facts:
     excerpt: Main CLI entry point
   object_value: cmd/nebula/
   note: 'responsibility: Main CLI entry point; key_files: cmd/nebula/main.go'
-  fact_id: fact::0c502f6c29c7238a2c7fa8dc
+  fact_id: fact::772d32447fdbbc2447833945
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: architecture.module_breakdown[6]
@@ -165,12 +165,12 @@ facts:
     excerpt: YAML configuration loading with hot-reload
   object_value: config/
   note: 'responsibility: YAML configuration loading with hot-reload; key_files: config/config.go'
-  fact_id: fact::13f30daa254839f151d5b218
+  fact_id: fact::81e1b4c1b320b4f75ebc5600
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: architecture.module_breakdown[2]
@@ -183,12 +183,12 @@ facts:
   object_value: firewall.go
   note: 'responsibility: Stateful packet filtering with conntrack support; key_files:
     firewall.go'
-  fact_id: fact::377b2f1de68de99debdac7d8
+  fact_id: fact::57329f0a83e59a48ab7b7014
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: architecture.module_breakdown[3]
@@ -201,12 +201,12 @@ facts:
   object_value: handshake_manager.go
   note: 'responsibility: Connection establishment, IX-PSK0 handshake, retry logic;
     key_files: handshake_manager.go'
-  fact_id: fact::bb431d44b70057c3e4947fdc
+  fact_id: fact::7a37147e45e08369af735b7d
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: architecture.module_breakdown[4]
@@ -219,12 +219,12 @@ facts:
   object_value: hostmap.go
   note: 'responsibility: Maintains active tunnel state and peer information; key_files:
     hostmap.go'
-  fact_id: fact::c3198a33afdabef6aced519a
+  fact_id: fact::ce1b2308512e948680995b78
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: architecture.module_breakdown[0]
@@ -237,12 +237,12 @@ facts:
   object_value: interface.go
   note: 'responsibility: Core networking engine - routes packets between TUN and UDP;
     key_files: interface.go'
-  fact_id: fact::a50e31d2cd72cfcae3456393
+  fact_id: fact::894fef76912f51ff44530ac4
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: architecture.module_breakdown[1]
@@ -255,12 +255,12 @@ facts:
   object_value: lighthouse.go
   note: 'responsibility: Peer discovery service, address caching, NAT hole punching;
     key_files: lighthouse.go'
-  fact_id: fact::4bd919c73debde86ec3a4b17
+  fact_id: fact::7610d33db5d6d2e5a2cfab11
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: configuration.file
@@ -272,12 +272,12 @@ facts:
     excerpt: file
   object_value: file
   note: 'default: config.yml (YAML); configuration default for file'
-  fact_id: fact::df4aa554fcd2a713109819c0
+  fact_id: fact::4f15467e5af41017c21ee37b
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: configuration.options[9]
@@ -289,12 +289,12 @@ facts:
     excerpt: firewall.inbound
   object_value: firewall.inbound
   note: 'type: array; Inbound firewall rules'
-  fact_id: fact::22e2b7c8d2c6e81c1f2d071f
+  fact_id: fact::34aa41a0a3d2fdd33fa7dce2
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: configuration.options[8]
@@ -306,12 +306,12 @@ facts:
     excerpt: firewall.outbound
   object_value: firewall.outbound
   note: 'type: array; Outbound firewall rules'
-  fact_id: fact::f7540a59335a50400b9bcdb8
+  fact_id: fact::0f16d4614b283d88ae0b35f2
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: configuration.options[3]
@@ -323,12 +323,12 @@ facts:
     excerpt: lighthouse.am_lighthouse
   object_value: lighthouse.am_lighthouse
   note: 'type: bool; Run as lighthouse (discovery server)'
-  fact_id: fact::d63ea6eaabf527c2d6bcdd3c
+  fact_id: fact::098a1b09e2d51e54fa5243f4
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: configuration.options[4]
@@ -340,12 +340,12 @@ facts:
     excerpt: lighthouse.hosts
   object_value: lighthouse.hosts
   note: 'type: map; Static lighthouse host mappings'
-  fact_id: fact::72a813e42085210c6bf47e12
+  fact_id: fact::8fd42c701cd37b40d6b9370c
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: configuration.options[5]
@@ -357,12 +357,12 @@ facts:
     excerpt: listen.host
   object_value: listen.host
   note: 'type: string; default: 0.0.0.0; UDP listen address'
-  fact_id: fact::0b140f8fed2055dd99b207aa
+  fact_id: fact::3dce963602db098ab30b39ef
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: configuration.options[6]
@@ -374,12 +374,12 @@ facts:
     excerpt: listen.port
   object_value: listen.port
   note: 'type: int; UDP listen port'
-  fact_id: fact::a81fe59e91ff3e26e279dac5
+  fact_id: fact::1d783dc441a6f1776a153d23
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: configuration.options[0]
@@ -391,12 +391,12 @@ facts:
     excerpt: pki.ca
   object_value: pki.ca
   note: 'type: string; default: required; Path to CA certificate'
-  fact_id: fact::393700cc24f3fd91b91a76d4
+  fact_id: fact::d54f304aed8e7a52744f7472
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: configuration.options[1]
@@ -408,12 +408,12 @@ facts:
     excerpt: pki.cert
   object_value: pki.cert
   note: 'type: string; default: required; Path to node certificate'
-  fact_id: fact::559fdc81b73ef885abaa07c4
+  fact_id: fact::e965722e681aa4c2e7914f81
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: configuration.options[2]
@@ -425,12 +425,12 @@ facts:
     excerpt: pki.key
   object_value: pki.key
   note: 'type: string; default: required; Path to node private key'
-  fact_id: fact::e8412d4bc91aea55a6ef7c26
+  fact_id: fact::85c3512e703c698b6d422abe
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: configuration.options[10]
@@ -442,12 +442,12 @@ facts:
     excerpt: relay.am_relay
   object_value: relay.am_relay
   note: 'type: bool; Act as relay node'
-  fact_id: fact::f118475e8b2648d6caa0c694
+  fact_id: fact::f1b49cb31d8cca5e60823ead
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: configuration.options[11]
@@ -459,12 +459,12 @@ facts:
     excerpt: stats.type
   object_value: stats.type
   note: 'type: string; Stats export type (prometheus, graphite)'
-  fact_id: fact::9540de85d16d8e5685e798e1
+  fact_id: fact::8ccbb32f266f735049c34d71
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: configuration.options[7]
@@ -476,12 +476,12 @@ facts:
     excerpt: tun.dev
   object_value: tun.dev
   note: 'type: string; default: nebula1; TUN device name'
-  fact_id: fact::b3e523b3df735418726f55c4
+  fact_id: fact::3fc3d0755870c1b5eeebf171
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: api_surface.public_functions[3]
@@ -494,12 +494,12 @@ facts:
   object_value: Firewall.Drop
   note: Main packet filtering decision; func (f *Firewall) Drop(p packet.Packet, c
     *cert.Certificate, incoming bool) bool; firewall.go
-  fact_id: fact::9e436cfd6ee78867809d6c7c
+  fact_id: fact::2739d5818bf59232fd249f3c
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: api_surface.public_functions[1]
@@ -512,12 +512,12 @@ facts:
   object_value: Interface.Run
   note: Start packet processing goroutines; func (f *Interface) Run(ctx context.Context)
     error; interface.go
-  fact_id: fact::6df2a5dcf715665ad2d2ce11
+  fact_id: fact::03f926c179c5344d4289bd74
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: api_surface.public_functions[2]
@@ -530,12 +530,12 @@ facts:
   object_value: LightHouse.Query
   note: Request peer addresses from lighthouse; func (lh *LightHouse) Query(vpnIp
     netip.Addr) ([]netip.AddrPort, error); lighthouse.go
-  fact_id: fact::026568a78185e35b0e342a81
+  fact_id: fact::2cd0c5100791843c5ea1005e
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: extension_points[4]
@@ -547,12 +547,12 @@ facts:
     excerpt: MessageMetrics
   object_value: MessageMetrics
   note: Custom metrics collection, observability integration; Metrics interface
-  fact_id: fact::18b10224eadfcd5c9914dac7
+  fact_id: fact::a005a23edb1f86554d723ae6
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: api_surface.public_functions[0]
@@ -565,12 +565,12 @@ facts:
   object_value: NewInterface
   note: Create and configure the network interface; func NewInterface(ctx context.Context,
     config *Config, l *logrus.Logger) (*Interface, error); interface.go:148
-  fact_id: fact::4f9c8ccf2fe00c283f07aa72
+  fact_id: fact::9ad535262c6ebe321ec63bea
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: api_surface.public_functions[4]
@@ -583,12 +583,12 @@ facts:
   object_value: cert.UnmarshalCertificate
   note: Parse certificate from bytes; func UnmarshalCertificate(b []byte) (Certificate,
     error); cert/cert.go
-  fact_id: fact::a03ebf061247da56eb84d7f1
+  fact_id: fact::765745f69c5d3407c65dfa40
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: extension_points[2]
@@ -600,12 +600,12 @@ facts:
     excerpt: udp.Conn
   object_value: udp.Conn
   note: Replace with QUIC, WebSockets; UDP transport interface
-  fact_id: fact::caf0f5ce0f48ef7debaefd34
+  fact_id: fact::7b9a89e10d1e2317fded9c72
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: extension_points[3]
@@ -617,12 +617,12 @@ facts:
     excerpt: cert/cert.go
   object_value: cert/cert.go
   note: Custom certificate validation, external CA integration; CAPool
-  fact_id: fact::78043611e6a83e25504a5886
+  fact_id: fact::6d32a10eb59c4356eec49885
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: extension_points[0]
@@ -634,12 +634,12 @@ facts:
     excerpt: firewall.go
   object_value: firewall.go
   note: Custom protocol support, extended rule types; FirewallInterface
-  fact_id: fact::0a018e2e2575bfd0491c58d5
+  fact_id: fact::9c4743aa356a99454e19b2fe
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: extension_points[1]
@@ -651,12 +651,12 @@ facts:
     excerpt: handshake_manager.go
   object_value: handshake_manager.go
   note: Custom handshake protocols, new packet types; HandleIncoming
-  fact_id: fact::08aaf905eb12ba731c6f8059
+  fact_id: fact::ef27087313fa3809b589f982
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: testing.structure.line[0]
@@ -668,12 +668,12 @@ facts:
     excerpt: '*_test.go files, test/ helpers, e2e/ suite'
   object_value: '*_test.go files, test/ helpers, e2e/ suite'
   note: 'testing metadata: structure'
-  fact_id: fact::603cb40f5b10a535fcece2a1
+  fact_id: fact::c1e356f053c6999302e7b3d1
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: implementation_patterns[0]
@@ -686,12 +686,12 @@ facts:
   object_value: Actor Model
   note: 'description: Each peer managed as independent actor in HostMap with message
     passing; location: hostmap.go'
-  fact_id: fact::4515bbda552767b6947adfae
+  fact_id: fact::005331d6d53a7b9d7111302d
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: implementation_patterns[3]
@@ -704,12 +704,12 @@ facts:
   object_value: Adaptive Timeout Management
   note: 'description: Protocol-specific timeouts, exponential backoff for handshakes;
     location: handshake_manager.go'
-  fact_id: fact::98a1f4afcf0e381d24fa19bd
+  fact_id: fact::95da40b7c0372af193870ce1
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: testing.coverage_areas[4].line[0]
@@ -721,12 +721,12 @@ facts:
     excerpt: Certificate validation
   object_value: Certificate validation
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::a1d440c064c978f57619b567
+  fact_id: fact::7619ca341ec15f76e5933f38
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: implementation_patterns[1]
@@ -739,12 +739,12 @@ facts:
   object_value: Connection Pooling
   note: 'description: Connection tracking in firewall, tunnel promotion to preferred
     addresses; location: firewall.go'
-  fact_id: fact::17bfda89349aa1dba75f5a3a
+  fact_id: fact::f4355f6eb814bb5313417d34
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: testing.coverage_areas[0].line[0]
@@ -756,12 +756,12 @@ facts:
     excerpt: Firewall rule evaluation and conntrack
   object_value: Firewall rule evaluation and conntrack
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::7ab498350b25dbc7150c1be9
+  fact_id: fact::2a40849f33179c98cf0b408f
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: testing.framework.line[0]
@@ -773,12 +773,12 @@ facts:
     excerpt: Go testing
   object_value: Go testing
   note: 'testing metadata: framework'
-  fact_id: fact::0e09098e9518ff1b1992b9b4
+  fact_id: fact::bcdff7905a960e5c1c0e766d
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: testing.coverage_areas[1].line[0]
@@ -790,12 +790,12 @@ facts:
     excerpt: Handshake lifecycle and retries
   object_value: Handshake lifecycle and retries
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::7663d7e7f114ac8656c43050
+  fact_id: fact::c544c44665047ded8f9f5945
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: testing.coverage_areas[3].line[0]
@@ -807,12 +807,12 @@ facts:
     excerpt: HostMap peer state management
   object_value: HostMap peer state management
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::f57f4592635783e061a55024
+  fact_id: fact::d7e3e573fd19ff705aed11d0
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: implementation_patterns[4]
@@ -825,12 +825,12 @@ facts:
   object_value: Hot-Reload Configuration
   note: 'description: SIGHUP triggers config reload with change detection callbacks;
     location: config/config.go:123-164'
-  fact_id: fact::891fedb4ddb47c00225ce4c6
+  fact_id: fact::dc2301bd2b78056d73bb8749
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: testing.coverage_areas[2].line[0]
@@ -842,12 +842,12 @@ facts:
     excerpt: Lighthouse discovery
   object_value: Lighthouse discovery
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::9a0014612277880d475c0c4e
+  fact_id: fact::3967b58152cce8623be3cf8a
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: testing.coverage_areas[5].line[0]
@@ -859,12 +859,12 @@ facts:
     excerpt: Relay functionality
   object_value: Relay functionality
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::ce544a9c29aa84dc150969a5
+  fact_id: fact::ea1892149121ce6651ffe849
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: testing.coverage_areas[6].line[0]
@@ -876,12 +876,12 @@ facts:
     excerpt: TUN device interaction
   object_value: TUN device interaction
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::216957ca2a96c5b3352e8a4e
+  fact_id: fact::8b53147a6a2725b9fa75554d
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nebula.yaml
     source_section: implementation_patterns[2]
@@ -895,4 +895,84 @@ facts:
   object_value: Zero Trust Architecture
   note: 'description: All packets verified through certificate validation, firewall
     on all traffic; location: firewall.go'
-  fact_id: fact::d03756fb2a23a1531fd2f1ee
+  fact_id: fact::588b44713865e21e938821ee
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/nebula.yaml
+    source_section: vpn_protocols[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: vpn_protocols[0]
+    source_file: repos/knowledge/deep/nebula.yaml
+    excerpt: Nebula certificate protocol
+  object_value: Nebula certificate protocol
+  fact_id: fact::38ea125a1e502163453b9a9d
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/nebula.yaml
+    source_section: vpn_protocols[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: vpn_protocols[1]
+    source_file: repos/knowledge/deep/nebula.yaml
+    excerpt: Noise Protocol Framework (IX-PSK0)
+  object_value: Noise Protocol Framework (IX-PSK0)
+  fact_id: fact::5c44bcff9d7ccc315f436e62
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/nebula.yaml
+    source_section: vpn_protocols[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: vpn_protocols[2]
+    source_file: repos/knowledge/deep/nebula.yaml
+    excerpt: UDP
+  object_value: UDP
+  fact_id: fact::6be5e4fdd7755fb812c77929
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/nebula.yaml
+    source_section: vpn_protocols[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: vpn_protocols[3]
+    source_file: repos/knowledge/deep/nebula.yaml
+    excerpt: custom overlay protocol
+  object_value: custom overlay protocol
+  fact_id: fact::499166fbde596fce530686a7
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/nebula.yaml
+    source_section: vpn_protocols[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: vpn_protocols[4]
+    source_file: repos/knowledge/deep/nebula.yaml
+    excerpt: lighthouse discovery protocol
+  object_value: lighthouse discovery protocol
+  fact_id: fact::88df94f5c6e7c0496ed47fef

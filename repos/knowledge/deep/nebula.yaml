@@ -2,12 +2,12 @@ name: nebula
 node_id: repo::slackhq/nebula
 github_full_name: slackhq/nebula
 html_url: https://github.com/slackhq/nebula
-source: repos
+source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep/nebula.yaml
-  as_of: '2026-02-25'
-  sourcing_method: code_verified
+  as_of: '2026-03-18'
+  sourcing_method: training_knowledge
   extraction_model: glm-5
   extraction_agent: kgraph-repos
 directory: nebula-master
@@ -200,3 +200,15 @@ notes: |
   - Certificate v1 uses protobuf, v2 uses ASN.1
   - Security groups enable cloud-style firewall rules without provider lock-in
   - Built-in Prometheus metrics support
+
+vpn_protocols:
+  - name: "Noise Protocol Framework (IX-PSK0)"
+    role: "mutual authentication and session establishment for encrypted peer-to-peer tunnels; handshakes managed by HandshakeManager using the IX pattern with a pre-shared key of zero"
+  - name: UDP
+    role: "sole underlay transport for all Nebula overlay traffic; encrypted tunnel packets are sent as UDP datagrams between peers on the configured listen port (default 4242)"
+  - name: "custom overlay protocol"
+    role: "Nebula's own encrypted packet format wrapping application traffic; packets are decrypted and verified by the Interface before being written to the TUN device"
+  - name: "Nebula certificate protocol"
+    role: "custom PKI using protobuf-encoded (v1) or ASN.1-encoded (v2) certificates for node identity; CA-signed certs bind IP addresses and security group tags to nodes"
+  - name: "lighthouse discovery protocol"
+    role: "UDP-based peer discovery protocol where lighthouse nodes maintain address mappings and respond to queries, enabling direct peer connections and NAT hole punching"

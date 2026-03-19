@@ -2,64 +2,29 @@ name: rathole
 node_id: repo::rapiz1/rathole
 github_full_name: rapiz1/rathole
 html_url: https://github.com/rapiz1/rathole
-source: repos
+source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/repos/rathole.yaml
-  as_of: '2026-02-25'
-directory: rathole-main
+  as_of: '2026-03-18'
+directory: remote::rapiz1/rathole
 category: tunneling
-summary: |
-  A high-performance reverse proxy for NAT traversal written in Rust, designed to expose services behind NAT/firewalls to the public internet with lower resource consumption and higher throughput than alternatives like frp or ngrok.
-
+summary: High-performance NAT traversal reverse proxy in Rust with per-service token
+  auth and pluggable transport layer (TCP, TLS, Noise, WebSocket).
 core_concepts:
-  - name: client-server tunnel architecture
-    description: Client runs behind NAT, connects outbound to a public server; server forwards incoming traffic back through the persistent tunnel. Auto-detects mode based on config.
-  - name: service-based token authentication
-    description: Each forwarded service has its own mandatory token for authentication. Tokens are validated during handshake, preventing unauthorized access.
-  - name: transport layer abstraction
-    description: Supports multiple transport types (TCP, TLS, Noise protocol, WebSocket) with a unified interface. Noise protocol provides encryption without certificate management.
-  - name: hot reload
-    description: Configuration can be reloaded at runtime to add/remove services without restarting, using file watcher and service update channels.
-
+- client-server tunnel architecture
+- service-based token authentication
+- transport layer abstraction
 key_entry_points:
-  - path: src/main.rs:8
-    purpose: Binary entry point; parses CLI args, sets up signal handling, initializes logging, calls run()
-  - path: src/lib.rs:62
-    purpose: Core run() function; handles genkey command, creates config watcher, manages instance lifecycle and hot reload
-  - path: src/client.rs:34
-    purpose: run_client() - client entry point; creates Client with appropriate transport type and runs the tunnel
-  - path: src/server.rs:42
-    purpose: run_server() - server entry point; creates Server with appropriate transport type and handles incoming connections
-  - path: src/config.rs
-    purpose: Configuration parsing and validation for client/server/services/transport settings
-  - path: src/protocol.rs
-    purpose: Wire protocol definitions (Hello, Auth, Ack, ControlChannelCmd, DataChannelCmd) for client-server communication
-  - path: src/transport/mod.rs
-    purpose: Transport trait and implementations for TCP/TLS/Noise/WebSocket abstraction
-
+- README.md
+- src/
 build_run:
   language: rust
-  package_manager: cargo
-  build_command: cargo build --release
-  run_command: rathole <config.toml>  # or rathole --server/--client <config.toml>
-  test_command: cargo test
-  extra_info: |
-    Feature flags control included functionality:
-    - default: server, client, native-tls, noise, websocket-native-tls, hot-reload
-    - embedded: minimal build for routers (~500KB with strip + LTO)
-    - Build minimal: cargo build --release --no-default-features --features server,client,noise
-
-ecosystem_connections:
-  similar_to:
-    - frp (fatedier/frp) - Go-based reverse proxy, most feature-complete alternative
-    - ngrok - Commercial tunneling service with hosted option
-    - cloudflared - Cloudflare Tunnel, managed zero-trust access
-  alternatives:
-    - wireguard - Full VPN, not application-level tunneling
-    - ssh -R - Reverse port forwarding, no multiplexing
-    - zerotier/tailscale - Mesh VPN for network-level access
-  used_with:
-    - systemd - Running as a service on Linux servers
-    - docker - Official image rapiz1/rathole available
-    - nginx/caddy - Often placed in front for HTTP routing/SSL termination
+  build: See upstream README for project build steps.
+  test: See upstream README for project test steps.
+local_cache_dir: null
+extras:
+  refresh:
+    precedence: api_wins_readme_for_missing_required_fields
+    fallback_source: readme_fallback
+    fallback_used: false

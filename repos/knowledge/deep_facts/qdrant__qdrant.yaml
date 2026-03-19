@@ -6,7 +6,7 @@ source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep_facts/qdrant__qdrant.yaml
-  as_of: '2026-02-24T19:46:56Z'
+  as_of: '2026-03-18'
   extractor_version: ws6-deep-integrator-v1
   extraction_model: glm-5
   extraction_agent: kgraph-repos
@@ -15,23 +15,7 @@ facts:
   predicate: exposes_api_endpoint
   object_kind: api_route
   confidence: 0.73
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/qdrant__qdrant.yaml
-    source_section: api_structure.rest[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: api_structure.rest[0]
-    source_file: repos/knowledge/deep/qdrant__qdrant.yaml
-    excerpt: /collections
-  object_value: /collections
-  fact_id: fact::415d93d539cc286dd4b86fcf
-- fact_type: api_endpoint
-  predicate: exposes_api_endpoint
-  object_kind: api_route
-  confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     source_section: integrations.api_endpoints[0]
@@ -43,12 +27,28 @@ facts:
     excerpt: /collections
   object_value: /collections
   note: GET; list collections
-  fact_id: fact::6c9af0bb3223d10f93767c1c
+  fact_id: fact::0a8348fa63ee6f0599d7d3c7
 - fact_type: api_endpoint
   predicate: exposes_api_endpoint
   object_kind: api_route
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: api_structure.rest[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_structure.rest[0]
+    source_file: repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: /collections
+  object_value: /collections
+  fact_id: fact::458d371ff4eedeb8d937baf1
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.73
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     source_section: api_structure.rest[1]
@@ -59,12 +59,12 @@ facts:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     excerpt: /collections/{collection_name}
   object_value: /collections/{collection_name}
-  fact_id: fact::36a594a1900587b4bdcdf138
+  fact_id: fact::527621a880e55adc2f39fc6e
 - fact_type: api_endpoint
   predicate: exposes_api_endpoint
   object_kind: api_route
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     source_section: integrations.api_endpoints[1]
@@ -76,12 +76,12 @@ facts:
     excerpt: /collections/{collection_name}/points/query
   object_value: /collections/{collection_name}/points/query
   note: POST; query points with vector and filter
-  fact_id: fact::c22fb740993ee812b071e466
+  fact_id: fact::289c155d2a6b360b53fda629
 - fact_type: api_endpoint
   predicate: exposes_api_endpoint
   object_kind: api_route
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     source_section: api_structure.rest[2]
@@ -92,12 +92,12 @@ facts:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     excerpt: /collections/{collection_name}/points/query
   object_value: /collections/{collection_name}/points/query
-  fact_id: fact::cc25373c134de1546f9b0042
+  fact_id: fact::396ef4fc03242000e18efb4d
 - fact_type: api_endpoint
   predicate: exposes_api_endpoint
   object_kind: api_route
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     source_section: api_structure.rest[4]
@@ -108,28 +108,12 @@ facts:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     excerpt: /collections/{collection_name}/points/scroll
   object_value: /collections/{collection_name}/points/scroll
-  fact_id: fact::caa16703554cb4a386d95de3
+  fact_id: fact::cb2f6c1adfcdf587d8c81a9e
 - fact_type: api_endpoint
   predicate: exposes_api_endpoint
   object_kind: api_route
   confidence: 0.73
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/qdrant__qdrant.yaml
-    source_section: api_structure.rest[3]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: api_structure.rest[3]
-    source_file: repos/knowledge/deep/qdrant__qdrant.yaml
-    excerpt: /collections/{collection_name}/points/search
-  object_value: /collections/{collection_name}/points/search
-  fact_id: fact::5880758c77d53c6d8c96a5ca
-- fact_type: api_endpoint
-  predicate: exposes_api_endpoint
-  object_kind: api_route
-  confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     source_section: integrations.api_endpoints[2]
@@ -141,12 +125,28 @@ facts:
     excerpt: /collections/{collection_name}/points/search
   object_value: /collections/{collection_name}/points/search
   note: POST; nearest-neighbor point search
-  fact_id: fact::ad304e3b616880f92ce0e89c
+  fact_id: fact::507a71bc66925592602cabc4
 - fact_type: api_endpoint
   predicate: exposes_api_endpoint
   object_kind: api_route
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: api_structure.rest[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_structure.rest[3]
+    source_file: repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: /collections/{collection_name}/points/search
+  object_value: /collections/{collection_name}/points/search
+  fact_id: fact::9e92846398fd4b7f7f058909
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.73
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     source_section: api_structure.grpc[0]
@@ -157,12 +157,12 @@ facts:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     excerpt: /grpc/Collections/List
   object_value: /grpc/Collections/List
-  fact_id: fact::a1f501a37ac077369b63c3d7
+  fact_id: fact::588c18d681b443dd4d10e79a
 - fact_type: api_endpoint
   predicate: exposes_api_endpoint
   object_kind: api_route
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     source_section: api_structure.grpc[1]
@@ -173,12 +173,12 @@ facts:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     excerpt: /grpc/Points/Upsert
   object_value: /grpc/Points/Upsert
-  fact_id: fact::0a85b1c3139190d941be1e3e
+  fact_id: fact::d500d710797f603a102196eb
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.61
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     source_section: tech_stack[1].line[0]
@@ -190,12 +190,12 @@ facts:
     excerpt: Actix Web
   object_value: Actix Web
   note: technology stack (tech_stack)
-  fact_id: fact::0325c2bd71928f5e690edaaa
+  fact_id: fact::57164e0afb5f9c004f7d1253
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.61
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     source_section: tech_stack[4].line[0]
@@ -207,12 +207,12 @@ facts:
     excerpt: Docker
   object_value: Docker
   note: technology stack (tech_stack)
-  fact_id: fact::81e09f8ded78ce11cef2e2e9
+  fact_id: fact::70e6351866453c3cc4299d2b
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.61
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     source_section: tech_stack[3].line[0]
@@ -224,12 +224,12 @@ facts:
     excerpt: OpenAPI 3.0
   object_value: OpenAPI 3.0
   note: technology stack (tech_stack)
-  fact_id: fact::17d410b750a124fae488151a
+  fact_id: fact::cf7b081c5d2ebe1c08b82925
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.61
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     source_section: tech_stack[0].line[0]
@@ -241,12 +241,12 @@ facts:
     excerpt: Rust
   object_value: Rust
   note: technology stack (tech_stack)
-  fact_id: fact::69341a7431540db475c3f2bf
+  fact_id: fact::1824c25e99a64e0d4ea47c9c
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.61
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     source_section: tech_stack[2].line[0]
@@ -258,12 +258,12 @@ facts:
     excerpt: gRPC
   object_value: gRPC
   note: technology stack (tech_stack)
-  fact_id: fact::8b2f36f5572b8b342c9c7aa4
+  fact_id: fact::2c0b4430c5938f9703de2295
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     source_section: integrations.ecosystem[3].line[0]
@@ -275,12 +275,12 @@ facts:
     excerpt: Cohere
   object_value: Cohere
   note: 'integration group: ecosystem'
-  fact_id: fact::dde0bed32cac81396e013cd3
+  fact_id: fact::754a8bf2e85bba93cbdfe064
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     source_section: integrations.clients[1].line[0]
@@ -292,12 +292,12 @@ facts:
     excerpt: Go client
   object_value: Go client
   note: 'integration group: clients'
-  fact_id: fact::0233d6da71fc0655342f54b7
+  fact_id: fact::30c70df6e378c45e2ae8af0a
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     source_section: integrations.ecosystem[2].line[0]
@@ -309,12 +309,12 @@ facts:
     excerpt: Haystack
   object_value: Haystack
   note: 'integration group: ecosystem'
-  fact_id: fact::0e56fab7b63e8c96c6a5bc71
+  fact_id: fact::d536b2c4655bc31dc897766c
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     source_section: integrations.clients[4].line[0]
@@ -326,12 +326,12 @@ facts:
     excerpt: Java client
   object_value: Java client
   note: 'integration group: clients'
-  fact_id: fact::90e5786acc9109093d6a8c30
+  fact_id: fact::2dabcfafdedc748c334fc48b
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     source_section: integrations.clients[2].line[0]
@@ -343,12 +343,12 @@ facts:
     excerpt: JavaScript/TypeScript client
   object_value: JavaScript/TypeScript client
   note: 'integration group: clients'
-  fact_id: fact::b9e46d0d07a87efe69e79a02
+  fact_id: fact::444f04b82dc5aa3cab409eb8
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     source_section: integrations.ecosystem[0].line[0]
@@ -360,12 +360,12 @@ facts:
     excerpt: LangChain
   object_value: LangChain
   note: 'integration group: ecosystem'
-  fact_id: fact::023597533191460236613b25
+  fact_id: fact::f18af696bc606283076d08b3
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     source_section: integrations.ecosystem[1].line[0]
@@ -377,12 +377,12 @@ facts:
     excerpt: LlamaIndex
   object_value: LlamaIndex
   note: 'integration group: ecosystem'
-  fact_id: fact::e884c62e5d4bdd2dc4f381dd
+  fact_id: fact::4af71a0362092eace6495fb5
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     source_section: integrations.clients[0].line[0]
@@ -394,12 +394,12 @@ facts:
     excerpt: Python client
   object_value: Python client
   note: 'integration group: clients'
-  fact_id: fact::720d6f1d9ed9314266a61f9a
+  fact_id: fact::161699a62df89d8796f467d8
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     source_section: integrations.clients[3].line[0]
@@ -411,12 +411,116 @@ facts:
     excerpt: Rust client
   object_value: Rust client
   note: 'integration group: clients'
-  fact_id: fact::90ba1ec2e7e6487d7e0b0f14
+  fact_id: fact::d411cbb01d0cf09d94f1a34c
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: Collection search returns stale results or HNSW index is not used after
+      bulk upsert
+  object_value: Collection search returns stale results or HNSW index is not used
+    after bulk upsert
+  note: "cause: Optimizer has not finished building the HNSW index; segments below\
+    \ indexing_threshold_kb (default 10 MB) use plain brute-force scan rather than\
+    \ the graph index; fix: Wait for optimizer to complete \u2014 poll GET /collections/{name}\
+    \ until optimizer_status is ok \u2014 or lower in..."
+  fact_id: fact::06d9a07add972e2b9f0e4a1e
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: troubleshooting[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[4]
+    source_file: repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: Disk full causes Qdrant to stop accepting writes but REST API remains
+      up
+  object_value: Disk full causes Qdrant to stop accepting writes but REST API remains
+    up
+  note: 'cause: Qdrant writes WAL and segment files to storage_path; when disk is
+    exhausted it cannot flush and returns storage errors on write paths; fix: Free
+    disk space or mount a larger volume at the storage_path; Qdrant will resume writes
+    automatically once space is available'
+  fact_id: fact::0a4cb29aacc3c450eaf69f2b
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: Service fails to start with address already in use on port 6333 or 6334
+  object_value: Service fails to start with address already in use on port 6333 or
+    6334
+  note: 'cause: Another process is bound to the REST port (6333) or gRPC port (6334)
+    configured in service.http_port / service.grpc_port; fix: Change http_port and
+    grpc_port in production.yaml, or stop the conflicting process before starting
+    Qdrant'
+  fact_id: fact::c228a34ac4719c7ef003049b
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: Vector dimension mismatch error on point upsert
+  object_value: Vector dimension mismatch error on point upsert
+  note: 'cause: Points were inserted with a vector length that does not match the
+    dimension declared when the collection was created; fix: Delete and recreate the
+    collection with the correct dimension, or re-embed data to match the existing
+    collection''s vector size'
+  fact_id: fact::077e0279faa004907e3195ab
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: WAL segment fills causing write latency spikes
+  object_value: WAL segment fills causing write latency spikes
+  note: 'cause: wal_capacity_mb (default 32 MB) segments fill quickly under high write
+    throughput, stalling upserts while a new segment is created; fix: Increase storage.wal.wal_capacity_mb
+    in config.yaml, or reduce write batch sizes to spread segment boundaries'
+  fact_id: fact::f6f947693cd5fc9f2840e180
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     source_section: testing.structure.line[0]
@@ -428,12 +532,12 @@ facts:
     excerpt: Rust unit tests with HTTP/gRPC integration scripts in tests/
   object_value: Rust unit tests with HTTP/gRPC integration scripts in tests/
   note: 'testing metadata: structure'
-  fact_id: fact::ad051906b615e2e598f42827
+  fact_id: fact::e65cb175d314ca9325bbb45e
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     source_section: testing.coverage_areas[0].line[0]
@@ -445,12 +549,12 @@ facts:
     excerpt: collections and point query APIs
   object_value: collections and point query APIs
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::008227f1b928fc38a170d877
+  fact_id: fact::7422fec02ac26d69e8f996b2
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     source_section: testing.coverage_areas[1].line[0]
@@ -462,12 +566,12 @@ facts:
     excerpt: gRPC parity with REST behavior
   object_value: gRPC parity with REST behavior
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::401371c1c4b1deafd2dc040d
+  fact_id: fact::ec1bac5307ee3375491715ea
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     source_section: testing.coverage_areas[2].line[0]
@@ -479,12 +583,12 @@ facts:
     excerpt: snapshot and cluster-related operations
   object_value: snapshot and cluster-related operations
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::67974e534a9fa4b73eed5ecd
+  fact_id: fact::2c3ea670504ccf984ccc1d67
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
   confidence: 0.67
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     source_section: testing.test_patterns[2].line[0]
@@ -496,12 +600,12 @@ facts:
     excerpt: ./tests/basic_grpc_test.sh
   object_value: ./tests/basic_grpc_test.sh
   note: testing command
-  fact_id: fact::3c86cd1d92d6a32be2bb1044
+  fact_id: fact::422e94574175b758a3411d68
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
   confidence: 0.67
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     source_section: testing.test_patterns[3].line[0]
@@ -513,12 +617,12 @@ facts:
     excerpt: ./tests/basic_query_grpc_test.sh
   object_value: ./tests/basic_query_grpc_test.sh
   note: testing command
-  fact_id: fact::cce4fda38ae9f6b01f6082fe
+  fact_id: fact::562134877f7ea4ec8ad94191
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
   confidence: 0.67
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     source_section: testing.test_patterns[0].line[0]
@@ -530,12 +634,12 @@ facts:
     excerpt: cargo test
   object_value: cargo test
   note: testing command
-  fact_id: fact::b4f694c2eda08926cd597929
+  fact_id: fact::eb44c8460868092e2de23c5f
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
   confidence: 0.67
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     source_section: testing.framework.line[0]
@@ -547,12 +651,12 @@ facts:
     excerpt: cargo test plus integration shell and pytest/openapi checks
   object_value: cargo test plus integration shell and pytest/openapi checks
   note: testing command
-  fact_id: fact::2e06ab43465c1884eb8511af
+  fact_id: fact::d11997217e80e8c7e229fbce
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
   confidence: 0.67
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     source_section: quick_reference[1].line[0]
@@ -564,12 +668,12 @@ facts:
     excerpt: curl -X PUT http://localhost:6333/collections/test_collection
   object_value: curl -X PUT http://localhost:6333/collections/test_collection
   note: 'topic: Basic REST examples'
-  fact_id: fact::8398e9565f1cd5ae28727175
+  fact_id: fact::780c3fc0ca432ea81a22dbf9
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
   confidence: 0.67
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     source_section: quick_reference[1].line[1]
@@ -581,12 +685,12 @@ facts:
     excerpt: curl http://localhost:6333/collections/test_collection
   object_value: curl http://localhost:6333/collections/test_collection
   note: 'topic: Basic REST examples'
-  fact_id: fact::24b18718e6aa1dcad02dcd19
+  fact_id: fact::332907884044f6670eca7375
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
   confidence: 0.67
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     source_section: quick_reference[0].line[0]
@@ -598,12 +702,12 @@ facts:
     excerpt: docker run -p 6333:6333 qdrant/qdrant
   object_value: docker run -p 6333:6333 qdrant/qdrant
   note: 'topic: Local run'
-  fact_id: fact::d7c4c4cfcafdba03c96e51ac
+  fact_id: fact::a0a073a1e482bde0f7b41cfd
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
   confidence: 0.67
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     source_section: testing.test_patterns[1].line[0]
@@ -615,12 +719,12 @@ facts:
     excerpt: pytest tests/openapi --durations=10
   object_value: pytest tests/openapi --durations=10
   note: testing command
-  fact_id: fact::76717439adff7935713f7483
+  fact_id: fact::f6b7feea3c6722b5b12f1d9c
 - fact_type: operational_task
   predicate: supports_task
   object_kind: text
   confidence: 0.58
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     source_section: quick_reference[2]
@@ -632,4 +736,4 @@ facts:
     excerpt: Default ports
   object_value: Default ports
   note: quick reference topic
-  fact_id: fact::584a60dd6179c1085c6a5ec1
+  fact_id: fact::d4baacefaa183d08f5097198

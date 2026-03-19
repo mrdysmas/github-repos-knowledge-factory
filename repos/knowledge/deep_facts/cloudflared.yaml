@@ -6,7 +6,7 @@ source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep_facts/cloudflared.yaml
-  as_of: '2026-02-24'
+  as_of: '2026-03-18'
   extractor_version: ws6-deep-integrator-v1
   extraction_model: gpt-unknown
   extraction_agent: codex
@@ -15,7 +15,7 @@ facts:
   predicate: has_component
   object_kind: concept
   confidence: 0.67
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: key_features[0]
@@ -27,12 +27,12 @@ facts:
     excerpt: Cloudflare Tunnel client
   object_value: Cloudflare Tunnel client
   note: Publishes local services through outbound connections to Cloudflare edge.
-  fact_id: fact::624ecd14c263d58b176203f1
+  fact_id: fact::913b01cb5371e20b7262d802
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: architecture.key_abstractions[2]
@@ -44,12 +44,12 @@ facts:
     excerpt: Maintains outbound connectivity to Cloudflare edge services.
   object_value: Connection manager
   note: Maintains outbound connectivity to Cloudflare edge services.
-  fact_id: fact::ca1eb44141e4bca13ef03252
+  fact_id: fact::ead01c762da95bddc7e0a623
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.67
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: key_features[1]
@@ -61,12 +61,12 @@ facts:
     excerpt: Ingress rule routing
   object_value: Ingress rule routing
   note: Maps incoming traffic to configured origins and middleware chains.
-  fact_id: fact::aba2d9826d5c71eb26a3502f
+  fact_id: fact::3c7071531dc00996a3dee7e1
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: architecture.key_abstractions[1]
@@ -78,12 +78,12 @@ facts:
     excerpt: Map incoming requests to configured origin services.
   object_value: Ingress rules
   note: Map incoming requests to configured origin services.
-  fact_id: fact::ecea760518907458fa2a2d29
+  fact_id: fact::48a6b63bf509b9c80fbc3281
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.67
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: key_features[2]
@@ -95,12 +95,12 @@ facts:
     excerpt: Managed credentials and tokens
   object_value: Managed credentials and tokens
   note: Separates token handling and credential workflows from tunnel runtime.
-  fact_id: fact::27c35a382dd1dfaeff5a6f8b
+  fact_id: fact::3a550684085934a624b4c136
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.67
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: key_features[3]
@@ -112,12 +112,12 @@ facts:
     excerpt: Operational metrics and management
   object_value: Operational metrics and management
   note: Exposes observability and management surfaces for tunnel processes.
-  fact_id: fact::605c1ba892fcff2354c67d9a
+  fact_id: fact::d692c2f3ea5f9c0aa2f7eb42
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: architecture.key_abstractions[0]
@@ -129,12 +129,12 @@ facts:
     excerpt: Configures and runs Cloudflare Tunnel client workflows.
   object_value: Tunnel command surface
   note: Configures and runs Cloudflare Tunnel client workflows.
-  fact_id: fact::b758e8e9df6340b4dcb0c75f
+  fact_id: fact::cebb4e3cb15dc3d9d6e383e1
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.78
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: architecture.module_breakdown[2]
@@ -147,12 +147,12 @@ facts:
   object_value: connection and orchestration
   note: 'responsibility: Tunnel connection lifecycle, coordination, and process supervision.;
     key_files: connection, orchestration, supervisor'
-  fact_id: fact::f4396a595be6d7da5b9de205
+  fact_id: fact::632e384afba7d0e51d297f71
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.78
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: architecture.module_breakdown[1]
@@ -165,12 +165,12 @@ facts:
   object_value: ingress and proxy
   note: 'responsibility: Ingress rule handling and upstream proxy behavior for exposed
     services.; key_files: ingress, proxy'
-  fact_id: fact::c828bba108969b14a5ed1c72
+  fact_id: fact::a95ca0343582e72787e7ec54
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.78
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: architecture.module_breakdown[3]
@@ -183,12 +183,12 @@ facts:
   object_value: token, metrics, and management
   note: 'responsibility: Credential handling, observability, and operational control
     surfaces.; key_files: token, metrics, management'
-  fact_id: fact::6cb7810bd79c7a6ad245be41
+  fact_id: fact::43665bdd534e7e75e9ddd5ab
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.72
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: key_files[0]
@@ -200,12 +200,46 @@ facts:
     excerpt: README.md
   object_value: README.md
   note: Project overview and tunnel usage guidance.
-  fact_id: fact::23e83aa0876485d4ab8b0172
+  fact_id: fact::8d82bd0fab4dcada5c5113ec
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/cloudflared.yaml
+    source_section: key_files[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[2]
+    source_file: repos/knowledge/deep/cloudflared.yaml
+    excerpt: cmd/cloudflared
+  object_value: cmd/cloudflared
+  note: CLI command tree.
+  fact_id: fact::3cf9c1da1d2c8de25f02a4c5
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.74
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/cloudflared.yaml
+    source_section: core_modules.cli
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: core_modules.cli
+    source_file: repos/knowledge/deep/cloudflared.yaml
+    excerpt: cmd/cloudflared
+  object_value: cmd/cloudflared
+  note: Command-line entrypoints and subcommands.
+  fact_id: fact::da710ba5faff4c1fd24790c4
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: architecture.module_breakdown[0]
@@ -218,46 +252,12 @@ facts:
   object_value: cmd/cloudflared
   note: 'responsibility: CLI entrypoint, subcommands, flags, and tunnel management
     workflows.; key_files: cmd/cloudflared'
-  fact_id: fact::109f78186fdda09e8c3b5132
+  fact_id: fact::fe5c1d516a8bfa609ef13669
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.72
-  as_of: '2026-03-13'
-  provenance:
-    source_file: repos/knowledge/deep/cloudflared.yaml
-    source_section: key_files[2]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[2]
-    source_file: repos/knowledge/deep/cloudflared.yaml
-    excerpt: cmd/cloudflared
-  object_value: cmd/cloudflared
-  note: CLI command tree.
-  fact_id: fact::89025c5b93663e1de95ede97
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-13'
-  provenance:
-    source_file: repos/knowledge/deep/cloudflared.yaml
-    source_section: core_modules.cli
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.cli
-    source_file: repos/knowledge/deep/cloudflared.yaml
-    excerpt: cmd/cloudflared
-  object_value: cmd/cloudflared
-  note: Command-line entrypoints and subcommands.
-  fact_id: fact::8da98ad62e12ad544d090796
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: key_files[4]
@@ -269,12 +269,12 @@ facts:
     excerpt: connection
   object_value: connection
   note: Tunnel connection runtime.
-  fact_id: fact::356519fb6d2b36aea502f4f6
+  fact_id: fact::4adf4a740431d11ae56170dd
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.74
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: core_modules.tunnel_runtime
@@ -286,12 +286,12 @@ facts:
     excerpt: connection
   object_value: connection
   note: Connection lifecycle and tunnel transport behavior.
-  fact_id: fact::4181b63efc09deb16f5ea796
+  fact_id: fact::cf9eeb9ef96c963281fc01ae
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.72
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: key_files[1]
@@ -303,29 +303,12 @@ facts:
     excerpt: go.mod
   object_value: go.mod
   note: Go module and dependency declarations.
-  fact_id: fact::bde61a63f8c914da0ec1bacf
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-13'
-  provenance:
-    source_file: repos/knowledge/deep/cloudflared.yaml
-    source_section: key_files[3]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[3]
-    source_file: repos/knowledge/deep/cloudflared.yaml
-    excerpt: ingress
-  object_value: ingress
-  note: Ingress routing implementation.
-  fact_id: fact::0dabdac1fa870e5ccd71f855
+  fact_id: fact::3755dd99bb652c0a6ff00dfc
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.74
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: core_modules.ingress_stack
@@ -337,12 +320,29 @@ facts:
     excerpt: ingress
   object_value: ingress
   note: Ingress rule parsing, middleware, and origin selection.
-  fact_id: fact::b234e7c15d50e5a5e39c276e
+  fact_id: fact::4d7845d8b3dc96dd9d1395f6
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/cloudflared.yaml
+    source_section: key_files[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[3]
+    source_file: repos/knowledge/deep/cloudflared.yaml
+    excerpt: ingress
+  object_value: ingress
+  note: Ingress routing implementation.
+  fact_id: fact::c3301b36343252ee065dbb91
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.74
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: core_modules.operations
@@ -354,12 +354,12 @@ facts:
     excerpt: orchestration
   object_value: orchestration
   note: Supervision and runtime coordination.
-  fact_id: fact::3a1477a7279af457e255b38e
+  fact_id: fact::f41708dee7e5580d122f38da
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: configuration[0].options[2]
@@ -371,12 +371,12 @@ facts:
     excerpt: config
   object_value: config
   note: YAML configuration file for ingress and operational settings.
-  fact_id: fact::8cca41db16b27cae66e43488
+  fact_id: fact::c6d4c036254319236e44378a
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: configuration[0].options[1]
@@ -388,12 +388,12 @@ facts:
     excerpt: credentials-file
   object_value: credentials-file
   note: Credential file used for authenticated tunnel operation.
-  fact_id: fact::8a67279a3ac0f6dc1c78f4d8
+  fact_id: fact::484679f74675659f17aad16d
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: configuration[0].options[0]
@@ -405,12 +405,12 @@ facts:
     excerpt: tunnel
   object_value: tunnel
   note: Named tunnel selection or identifier.
-  fact_id: fact::ac4c7a58a02f824449ff680a
+  fact_id: fact::242dc918b8bc5b7c9d142f1a
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: configuration[0].options[3]
@@ -422,12 +422,12 @@ facts:
     excerpt: url
   object_value: url
   note: Origin service URL for local exposure.
-  fact_id: fact::6d841779b447260b4884a400
+  fact_id: fact::2140e4f184aecfbd442f2061
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: integrations.networking[0].line[0]
@@ -439,12 +439,12 @@ facts:
     excerpt: Cloudflare edge
   object_value: Cloudflare edge
   note: 'integration group: networking'
-  fact_id: fact::9471e838a900abc81228c0ca
+  fact_id: fact::e0ef378622c9760dc36687af
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: api_surface.public_functions[0]
@@ -456,12 +456,12 @@ facts:
     excerpt: cloudflared CLI
   object_value: cloudflared CLI
   note: Provide tunnel lifecycle and ingress commands.; cmd/cloudflared
-  fact_id: fact::a55169509aea45c912b27fbd
+  fact_id: fact::d3d9c644c25fda248160212e
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: api_surface.public_functions[2]
@@ -473,12 +473,12 @@ facts:
     excerpt: connection manager
   object_value: connection manager
   note: Maintain and supervise edge connectivity.; connection
-  fact_id: fact::4b20a3f56b9b1474e36390b7
+  fact_id: fact::34f63310738301a820383c7c
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: integrations.networking[2].line[0]
@@ -490,12 +490,12 @@ facts:
     excerpt: ingress middleware
   object_value: ingress middleware
   note: 'integration group: networking'
-  fact_id: fact::978289ab10272784accd6571
+  fact_id: fact::705929045b5ccc56ac5ad6ea
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: api_surface.public_functions[1]
@@ -507,12 +507,12 @@ facts:
     excerpt: ingress rules
   object_value: ingress rules
   note: Define request routing from tunnel edges to origin services.; ingress
-  fact_id: fact::d1c6466be9dc9c1bf58cf148
+  fact_id: fact::3dad1bd136b92ce77b738a5e
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: integrations.networking[1].line[0]
@@ -524,12 +524,12 @@ facts:
     excerpt: local origin services
   object_value: local origin services
   note: 'integration group: networking'
-  fact_id: fact::9b2a8413c0c5b8ecb7e795a7
+  fact_id: fact::6d5fa4e1e3a962f5f1cc73a3
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: integrations.operations[0].line[0]
@@ -541,12 +541,12 @@ facts:
     excerpt: management APIs
   object_value: management APIs
   note: 'integration group: operations'
-  fact_id: fact::3dcddf88d892b0fbe512494e
+  fact_id: fact::d17210c9a294b2b43ac29c8d
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: integrations.operations[1].line[0]
@@ -558,12 +558,12 @@ facts:
     excerpt: metrics pipelines
   object_value: metrics pipelines
   note: 'integration group: operations'
-  fact_id: fact::747667c5fbc064a716d05096
+  fact_id: fact::731a053358aa8dd0775294e3
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: testing.coverage_areas[2].line[0]
@@ -575,12 +575,12 @@ facts:
     excerpt: CLI command workflows
   object_value: CLI command workflows
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::77c13380e0bd17340b9616b5
+  fact_id: fact::86f04ddfcde05dabf0149754
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: code_patterns[0]
@@ -594,12 +594,12 @@ facts:
   object_value: CLI subcommand fan-out
   note: 'description: Operational behaviors are grouped into CLI-focused command packages
     under cmd/cloudflared.; location: cmd/cloudflared'
-  fact_id: fact::4e93aa3bf834be9e4337f439
+  fact_id: fact::fc65241ad712167bd79f09e4
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: implementation_patterns[0]
@@ -613,12 +613,12 @@ facts:
   object_value: Credential-backed tunnel startup
   note: 'description: Token and credential packages separate authentication concerns
     from transport logic.; location: token'
-  fact_id: fact::f112ba46bcc58b535b060beb
+  fact_id: fact::1af3c31c2e82958b5946b392
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: testing.structure.line[0]
@@ -630,12 +630,12 @@ facts:
     excerpt: Go packages cover tunnel runtime, ingress behavior, and command surfaces.
   object_value: Go packages cover tunnel runtime, ingress behavior, and command surfaces.
   note: 'testing metadata: structure'
-  fact_id: fact::dc8f8a9a607c0a1b8e19990d
+  fact_id: fact::027889d7a6b4e2d1f892a7e3
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: testing.coverage_areas[1].line[0]
@@ -647,12 +647,12 @@ facts:
     excerpt: Ingress rule handling
   object_value: Ingress rule handling
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::ac81bd3a26710ea052a50f3e
+  fact_id: fact::c2e7f98470b1a47ff8801312
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: code_patterns[1]
@@ -665,12 +665,12 @@ facts:
   object_value: Ingress-to-origin routing
   note: 'description: Ingress definitions and middleware map tunnel traffic to origin
     services.; location: ingress'
-  fact_id: fact::8366865f86ec60e869931422
+  fact_id: fact::1201a65be3dc1f7ef56c4b3a
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: implementation_patterns[1]
@@ -684,12 +684,12 @@ facts:
   object_value: Operational metrics emission
   note: 'description: Metrics and management modules expose runtime observability
     around tunnel behavior.; location: metrics'
-  fact_id: fact::6e3dc1b2b4406b2b166f4765
+  fact_id: fact::b899a57b443c1560ddceee21
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: code_patterns[2]
@@ -703,12 +703,12 @@ facts:
   object_value: Supervised connection lifecycle
   note: 'description: Tunnel processes and edge connections are coordinated through
     dedicated connection and orchestration packages.; location: connection'
-  fact_id: fact::2ca0a395e116e17e0880acfd
+  fact_id: fact::81f5968a6fc1800be056acd9
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: testing.coverage_areas[0].line[0]
@@ -720,29 +720,12 @@ facts:
     excerpt: Tunnel startup and connection behavior
   object_value: Tunnel startup and connection behavior
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::fc88b0581bc288b30f068c64
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.68
-  as_of: '2026-03-13'
-  provenance:
-    source_file: repos/knowledge/deep/cloudflared.yaml
-    source_section: commands[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: commands[0]
-    source_file: repos/knowledge/deep/cloudflared.yaml
-    excerpt: go build ./cmd/cloudflared
-  object_value: go build ./cmd/cloudflared
-  note: Build the cloudflared binary.
-  fact_id: fact::94630fabd329a73992cae1dc
+  fact_id: fact::b0de9aa0d2fc00e30d7b2cb5
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
   confidence: 0.67
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: quick_reference[0].line[0]
@@ -754,12 +737,29 @@ facts:
     excerpt: go build ./cmd/cloudflared
   object_value: go build ./cmd/cloudflared
   note: 'topic: Build cloudflared'
-  fact_id: fact::d60874178f112c8613dcebb8
+  fact_id: fact::11219b661f0eb42a8f52acf3
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/cloudflared.yaml
+    source_section: commands[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[0]
+    source_file: repos/knowledge/deep/cloudflared.yaml
+    excerpt: go build ./cmd/cloudflared
+  object_value: go build ./cmd/cloudflared
+  note: Build the cloudflared binary.
+  fact_id: fact::5fd54bc0c1b09c22b031e055
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
   confidence: 0.67
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: testing.framework.line[0]
@@ -771,12 +771,12 @@ facts:
     excerpt: go test
   object_value: go test
   note: testing command
-  fact_id: fact::d71a0477e13f245d64af912d
+  fact_id: fact::c479b49bd4f8b00b9bc4f128
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
   confidence: 0.68
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: commands[1]
@@ -788,29 +788,12 @@ facts:
     excerpt: go test ./...
   object_value: go test ./...
   note: Run Go test suites across the repo.
-  fact_id: fact::017740148da3dccbe8aaf5ea
+  fact_id: fact::0f10449743bbf7f19962e39f
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
   confidence: 0.67
-  as_of: '2026-03-13'
-  provenance:
-    source_file: repos/knowledge/deep/cloudflared.yaml
-    source_section: quick_reference[1].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[1].line[0]
-    source_file: repos/knowledge/deep/cloudflared.yaml
-    excerpt: go test ./...
-  object_value: go test ./...
-  note: 'topic: Run tests'
-  fact_id: fact::788852fc63f2470ef050c8ce
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-13'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/cloudflared.yaml
     source_section: testing.test_patterns[0].line[0]
@@ -822,4 +805,117 @@ facts:
     excerpt: go test ./...
   object_value: go test ./...
   note: testing command
-  fact_id: fact::ce6642d6faef796af75fbf32
+  fact_id: fact::3ae870fac4de026c4e497881
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.67
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/cloudflared.yaml
+    source_section: quick_reference[1].line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: quick_reference[1].line[0]
+    source_file: repos/knowledge/deep/cloudflared.yaml
+    excerpt: go test ./...
+  object_value: go test ./...
+  note: 'topic: Run tests'
+  fact_id: fact::99f37ed64c928481c79de83f
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/cloudflared.yaml
+    source_section: supported_protocols[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[0]
+    source_file: repos/knowledge/deep/cloudflared.yaml
+    excerpt: Cloudflare Access JWT
+  object_value: Cloudflare Access JWT
+  fact_id: fact::ccabc7229cf12bcd75335f7e
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/cloudflared.yaml
+    source_section: supported_protocols[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[1]
+    source_file: repos/knowledge/deep/cloudflared.yaml
+    excerpt: HTTP CONNECT / HTTPS
+  object_value: HTTP CONNECT / HTTPS
+  fact_id: fact::88c40342fea9b5330d81a792
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/cloudflared.yaml
+    source_section: supported_protocols[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[2]
+    source_file: repos/knowledge/deep/cloudflared.yaml
+    excerpt: HTTP/2
+  object_value: HTTP/2
+  fact_id: fact::ae257cd84a092e476e87c3b1
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/cloudflared.yaml
+    source_section: supported_protocols[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[3]
+    source_file: repos/knowledge/deep/cloudflared.yaml
+    excerpt: QUIC
+  object_value: QUIC
+  fact_id: fact::02b4dff8877a07a9b8f6ea26
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/cloudflared.yaml
+    source_section: supported_protocols[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[4]
+    source_file: repos/knowledge/deep/cloudflared.yaml
+    excerpt: SSH
+  object_value: SSH
+  fact_id: fact::9907be0adc3a75c511727a42
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/cloudflared.yaml
+    source_section: supported_protocols[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[5]
+    source_file: repos/knowledge/deep/cloudflared.yaml
+    excerpt: WebSocket
+  object_value: WebSocket
+  fact_id: fact::647e2f4728e604958e869884

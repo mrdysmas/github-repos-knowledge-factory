@@ -2,12 +2,12 @@ name: headscale
 node_id: repo::juanfont/headscale
 github_full_name: juanfont/headscale
 html_url: https://github.com/juanfont/headscale
-source: repos
+source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep/headscale.yaml
-  as_of: '2026-02-25'
-  sourcing_method: code_verified
+  as_of: '2026-03-18'
+  sourcing_method: training_knowledge
   extraction_model: glm-5
   extraction_agent: kgraph-repos
 directory: headscale-main
@@ -186,3 +186,15 @@ notes: |
   - Tags-as-identity model: nodes are either tagged OR user-owned
   - Database migrations are immutable - new migrations only at end
   - First-class NixOS module support
+
+vpn_protocols:
+  - name: WireGuard
+    role: "data-plane VPN protocol managed by headscale; headscale distributes WireGuard peer configs and public keys to all nodes via the control plane"
+  - name: "Noise Protocol (Noise_IK)"
+    role: "control-plane transport securing client-to-headscale communication on the /ts2021 endpoint, replacing the legacy HTTP-based Tailscale control protocol"
+  - name: DERP
+    role: "Designated Encrypted Relay for Packets — headscale embeds a DERP server for relaying WireGuard traffic when direct peer-to-peer UDP holes cannot be punched"
+  - name: "gRPC"
+    role: "admin API protocol exposed by headscale for CLI management operations (node, user, route, policy management)"
+  - name: "MagicDNS / Split DNS"
+    role: "DNS protocol integration that headscale manages for node name resolution within the tailnet"

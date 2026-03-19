@@ -214,10 +214,8 @@ repos:
   source: compiled_master
   name: awesome-tunneling
   category: documentation
-  summary: 'Curated list of tunneling tools and solutions for exposing local services
-    publicly, with focus on self-hosting and NAT traversal.
-
-    '
+  summary: Curated list of tunneling tools and services covering reverse tunnels,
+    overlay networks, and protocol multiplexing solutions.
   core_concepts:
   - Reverse Tunnels
   - Overlay Networks
@@ -225,35 +223,20 @@ repos:
   key_entry_points:
   - README.md
   build_run:
-    format: markdown
-    primary_language: n/a
-    organization: Categorized into Open Source tools, Commercial/Closed Source, Overlay
-      Networks/Advanced Tools, and Reference materials
+    language: unknown
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/awesome-tunneling.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-03-18'
+  local_cache_dir: null
   extras:
-    directory: awesome-tunneling-master
-    notable_insights:
-    - Author's "dream" tool would combine domain registration, DNS management, auto
-      HTTPS certs, and simple GUI - no single tool achieves this yet
-    - Minimum 100 GitHub stars required for new additions (as of 2026-02-16)
-    - Primary use case is self-hosters and developers exposing local services
-    raw_core_concepts_structured:
-    - name: Reverse Tunnels
-      description: Tools that expose local webservers/ports via public domain names
-        with automatic HTTPS, even behind NAT or restricted networks.
-    - name: Overlay Networks
-      description: Peer-to-peer mesh networks (Tailscale, ZeroTier, Nebula) that create
-        virtual private networks with NAT traversal.
-    - name: Protocol Multiplexing
-      description: Techniques for carrying multiple connections over a single transport
-        (HTTP/2, QUIC, WebSocket, SSH).
-    raw_key_entry_points_structured:
-    - path: README.md
-      purpose: Main curated list organized by license type (open source, commercial,
-        overlay networks)
+    directory: remote::anderspitman/awesome-tunneling
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::anomalyco/opencode
   github_full_name: anomalyco/opencode
   html_url: https://github.com/anomalyco/opencode
@@ -432,78 +415,31 @@ repos:
   source: compiled_master
   name: hysteria
   category: vpn_mesh
-  summary: 'A QUIC-based proxy/VPN designed for high performance over unreliable networks
-    and censorship resistance through HTTP/3 traffic masquerading.
-
-    '
+  summary: High-performance proxy and VPN tool using QUIC with custom congestion control,
+    HTTP/3 masquerading, and TLS 1.3 for censorship circumvention.
   core_concepts:
   - Brutal Congestion Control
   - HTTP/3 Masquerading
   - QUIC Datagram Transport
   key_entry_points:
-  - app/main.go:1
-  - app/cmd/root.go:64
-  - app/cmd/client.go:1
-  - app/cmd/server.go:1
-  - core/server/server.go:45
-  - core/client/client.go:43
-  - core/internal/congestion/brutal/brutal.go:46
-  - core/internal/protocol/proxy.go:1
-  - core/internal/protocol/http.go:1
+  - README.md
+  - app/
+  - core/
   build_run:
     language: go
-    go_version: '1.24'
-    package_manager: go mod (workspace)
-    build_command: cd app && go build -o hysteria .
-    run_command: 'Server: hysteria server -c config.yaml
-
-      Client: hysteria client -c config.yaml (or just hysteria for client mode)
-
-      '
-    test_command: go test ./... (run from app/, core/, or root with go.work)
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/hysteria.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-03-18'
+  local_cache_dir: null
   extras:
-    directory: hysteria-master
-    raw_core_concepts_structured:
-    - name: Brutal Congestion Control
-      description: Custom bandwidth-aware congestion control that uses fixed-rate
-        transmission based on configured tx/rx limits, unlike traditional BBR/Cubic.
-        Designed for lossy networks where packet loss should not throttle throughput.
-    - name: HTTP/3 Masquerading
-      description: Protocol disguise - server behaves as standard HTTP/3 web server
-        to unauthorized clients. Authentication happens via custom HTTP headers (Hysteria-Auth)
-        on a POST to /auth endpoint. Failed auth returns normal HTTP responses, making
-        detection difficult.
-    - name: QUIC Datagram Transport
-      description: TCP proxying uses QUIC streams; UDP uses QUIC unreliable datagrams
-        with fragmentation support. Both wrapped in TLS 1.3, appearing as standard
-        HTTP/3 traffic to observers.
-    raw_key_entry_points_structured:
-    - path: app/main.go:1
-      purpose: CLI entry point - imports cmd package and calls Execute()
-    - path: app/cmd/root.go:64
-      purpose: Cobra root command setup, default mode is client, config loading via
-        Viper
-    - path: app/cmd/client.go:1
-      purpose: Client mode implementation - SOCKS5, HTTP proxy, TUN, TCP/UDP forwarding
-    - path: app/cmd/server.go:1
-      purpose: Server mode implementation - QUIC listener, auth handling, traffic
-        logging
-    - path: core/server/server.go:45
-      purpose: Core server - QUIC listener setup, HTTP/3 handler, TCP/UDP proxy logic
-    - path: core/client/client.go:43
-      purpose: Core client - QUIC connection, authentication, TCP/UDP tunnel establishment
-    - path: core/internal/congestion/brutal/brutal.go:46
-      purpose: BrutalSender - custom congestion control with fixed-rate pacing based
-        on configured bandwidth
-    - path: core/internal/protocol/proxy.go:1
-      purpose: Wire protocol - TCPRequest/Response framing, UDPMessage format with
-        fragmentation
-    - path: core/internal/protocol/http.go:1
-      purpose: Auth protocol - HTTP header-based authentication exchanged during handshake
+    directory: remote::apernet/hysteria
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::avelino/awesome-go
   github_full_name: avelino/awesome-go
   html_url: https://github.com/avelino/awesome-go
@@ -695,34 +631,29 @@ repos:
   source: compiled_master
   name: cloudflared
   category: network_infrastructure
-  summary: Cloudflare Tunnel client for exposing private services through Cloudflare
-    Zero Trust.
+  summary: Cloudflare Tunnel client that creates outbound-only connections to Cloudflare's
+    edge, enabling Zero Trust service exposure without open ports.
   core_concepts:
   - Cloudflare Tunnel client
   - Zero Trust service exposure
   key_entry_points:
-  - cmd/cloudflared
   - README.md
+  - cmd/cloudflared/
   build_run:
     language: go
-    build: go build ./cmd/cloudflared
-    test: go test ./...
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/cloudflared.yaml
-    as_of: '2026-02-24'
+    as_of: '2026-03-18'
   local_cache_dir: null
   extras:
     directory: remote::cloudflare/cloudflared
-    remote:
-      provider: github
-      mode: metadata
-      endpoint: /repos/cloudflare/cloudflared
-      fetched_at_utc: '2026-02-23T03:20:00Z'
-      refresh:
-        precedence: api_wins_readme_for_missing_required_fields
-        fallback_source: readme_fallback
-        fallback_used: false
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::code-yeongyu/oh-my-opencode
   github_full_name: code-yeongyu/oh-my-opencode
   html_url: https://github.com/code-yeongyu/oh-my-opencode
@@ -870,63 +801,30 @@ repos:
   source: compiled_master
   name: tunnelite
   category: tunneling
-  summary: 'A .NET tunneling tool that exposes local applications to the internet
-    via websocket connections, supporting HTTP(S), WebSocket, SSE, and TCP tunneling
-    through a managed service or self-hosted server.
-
-    '
+  summary: ASP.NET Core / .NET 8 tunneling server using SignalR with MessagePack for
+    HTTP, WebSocket, SSE, and TCP traffic forwarding to local clients.
   core_concepts:
   - SignalR-based tunneling
   - Multi-protocol support
   - Deferred request processing
   key_entry_points:
-  - src/Tunnelite.Client/Program.cs:14
-  - src/Tunnelite.Server/Program.cs:7
-  - src/Tunnelite.Sdk/HttpTunnel/HttpTunnelClient.cs:12
-  - src/Tunnelite.Server/HttpTunnel/HttpTunnelHub.cs:9
-  - src/Tunnelite.AspNetCore/TunneliteExtensions.cs:15
+  - README.md
+  - src/
   build_run:
     language: C# / .NET 8.0
-    package_manager: NuGet
-    build_command: dotnet build Tunnelite.sln
-    run_command: dotnet run --project src/Tunnelite.Client (client) or dotnet run
-      --project src/Tunnelite.Server (server)
-    test_command: dotnet test (no test project found; test/ contains sample apps for
-      manual testing)
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/tunnelite.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-03-18'
+  local_cache_dir: null
   extras:
-    directory: tunnelite-master
-    raw_core_concepts_structured:
-    - name: SignalR-based tunneling
-      description: Uses ASP.NET Core SignalR with MessagePack protocol to establish
-        persistent bidirectional connections between local clients and the public
-        server, enabling real-time request forwarding.
-    - name: Multi-protocol support
-      description: Handles HTTP(S) requests, WebSocket connections, Server-Sent Events
-        (SSE), and raw TCP traffic through separate middleware pipelines and hub implementations.
-    - name: Deferred request processing
-      description: Incoming public requests are queued and deferred until the local
-        client streams them to the target application, with bidirectional streaming
-        for responses.
-    raw_key_entry_points_structured:
-    - path: src/Tunnelite.Client/Program.cs:14
-      purpose: CLI entry point; parses arguments and initializes HTTP or TCP tunnel
-        based on URL scheme.
-    - path: src/Tunnelite.Server/Program.cs:7
-      purpose: Server entry point; configures all tunneling middleware (HTTP, TCP,
-        WebSocket, SSE) and SignalR hubs.
-    - path: src/Tunnelite.Sdk/HttpTunnel/HttpTunnelClient.cs:12
-      purpose: Core client implementation that connects to server via SignalR and
-        handles request/response streaming for HTTP, WS, and SSE.
-    - path: src/Tunnelite.Server/HttpTunnel/HttpTunnelHub.cs:9
-      purpose: Server-side SignalR hub that coordinates tunnel registration and streams
-        WebSocket/SSE data between public requests and connected clients.
-    - path: src/Tunnelite.AspNetCore/TunneliteExtensions.cs:15
-      purpose: ASP.NET Core middleware extension for one-line integration (UseTunnelite())
-        that auto-tunnels the app on startup.
+    directory: remote::cristipufu/tunnelite
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::dair-ai/prompt-engineering-guide
   github_full_name: dair-ai/prompt-engineering-guide
   html_url: https://github.com/dair-ai/prompt-engineering-guide
@@ -1207,71 +1105,30 @@ repos:
   source: compiled_master
   name: bore
   category: tunneling
-  summary: 'A minimalist TCP tunnel (~400 lines of async Rust) that exposes local
-    ports to a public server, bypassing NAT firewalls. Designed for simplicity and
-    self-hosting with no frills.
-
-    '
+  summary: Minimalist TCP tunnel in async Rust (~400 lines) that exposes local ports
+    to a public server, bypassing NAT firewalls.
   core_concepts:
   - Control Protocol
   - Connection Proxying
   - HMAC Authentication
   key_entry_points:
-  - src/main.rs:63
-  - src/client.rs:36
-  - src/client.rs:105
-  - src/server.rs:59
-  - src/server.rs:118
-  - src/server.rs:81
-  - src/shared.rs:15
+  - README.md
+  - src/
   build_run:
     language: rust
-    package_manager: cargo
-    build_command: cargo build --release
-    run_command: bore [local <port> --to <server> | server]
-    test_command: cargo test
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/bore.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-03-18'
+  local_cache_dir: null
   extras:
-    directory: bore-main
-    raw_core_concepts_structured:
-    - name: Control Protocol
-      description: Client-server handshake over TCP port 7835 using null-delimited
-        JSON messages. Client sends Hello with desired port, server responds with
-        assigned port and forwards incoming connections via UUID-tagged messages.
-    - name: Connection Proxying
-      description: When external traffic hits the server's exposed port, server generates
-        a UUID, notifies client via control channel, client opens new TCP stream and
-        sends Accept with UUID, then server bidirectionally proxies bytes between
-        both connections.
-    - name: HMAC Authentication
-      description: Optional shared-secret auth using HMAC challenge-response. Server
-        sends random challenge (UUID), client must respond with correct HMAC-SHA256
-        to prove secret possession. Only secures handshake, not data.
-    raw_key_entry_points_structured:
-    - path: src/main.rs:63
-      purpose: CLI entry point with clap subcommands (Local, Server), spawns async
-        runtime and dispatches to Client or Server
-    - path: src/client.rs:36
-      purpose: Client::new() establishes control connection, performs auth handshake,
-        sends Hello; Client::listen() receives Connection messages and spawns handlers
-    - path: src/client.rs:105
-      purpose: handle_connection() opens new stream to server, sends Accept with UUID,
-        then bidirectionally copies bytes between local and remote
-    - path: src/server.rs:59
-      purpose: Server::listen() accepts control connections on port 7835, spawns handler
-        for each client
-    - path: src/server.rs:118
-      purpose: handle_connection() handles auth, processes Hello/Accept messages,
-        manages tunnel listener lifecycle
-    - path: src/server.rs:81
-      purpose: create_listener() binds to requested port (or finds random available
-        port via 150-attempt probabilistic search)
-    - path: src/shared.rs:15
-      purpose: CONTROL_PORT constant (7835), ClientMessage/ServerMessage enums defining
-        protocol, Delimited wrapper for null-delimited JSON framing
+    directory: remote::ekzhang/bore
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::emcie-co/parlant
   github_full_name: emcie-co/parlant
   html_url: https://github.com/emcie-co/parlant
@@ -1374,99 +1231,32 @@ repos:
   source: compiled_master
   name: frp
   category: tunneling
-  summary: 'A fast reverse proxy for NAT/firewall traversal that exposes local services
-    to the public internet. Supports TCP, UDP, HTTP, HTTPS protocols with features
-    like P2P mode, load balancing, encryption, and extensive plugin system.
-
-    '
+  summary: Fast reverse proxy enabling NAT traversal with client-server architecture
+    supporting TCP, UDP, HTTP, HTTPS, and multiplexed connection types.
   core_concepts:
   - client-server proxy architecture
   - proxy types and multiplexing
   - visitor pattern for secure access
-  - plugin extensibility
   key_entry_points:
-  - cmd/frpc/main.go:23
-  - cmd/frps/main.go:23
-  - cmd/frpc/sub/root.go:122
-  - cmd/frps/root.go:111
-  - client/service.go:144
-  - server/service.go:135
-  - pkg/config/v1/
-  - pkg/msg/
+  - README.md
+  - pkg/
+  - server/
+  - client/
   build_run:
     language: go
-    go_version: '1.24'
-    package_manager: go mod
-    build_command: make build (or go build -o bin/frps ./cmd/frps && go build -o bin/frpc
-      ./cmd/frpc)
-    run_command: 'Server: ./frps -c frps.toml
-
-      Client: ./frpc -c frpc.toml
-
-      '
-    test_command: make test (or go test -v --cover ./...)
-    extra_info: 'Build with CGO_ENABLED=0 for static binaries. Key transports:
-
-      - TCP (default) with optional TLS encryption
-
-      - KCP protocol (UDP-based, lower latency)
-
-      - QUIC protocol (modern UDP multiplexed transport)
-
-      - WebSocket for HTTP proxy compatibility
-
-
-      Hot-reload client config: frpc reload -c frpc.toml
-
-      Check proxy status: frpc status -c frpc.toml
-
-      '
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/frp.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-03-18'
+  local_cache_dir: null
   extras:
-    directory: frp-dev
-    raw_core_concepts_structured:
-    - name: client-server proxy architecture
-      description: frps (server) runs on a public-facing machine; frpc (client) runs
-        behind NAT/firewall and establishes outbound connections. Server forwards
-        incoming traffic through the persistent tunnel back to internal services.
-    - name: proxy types and multiplexing
-      description: Supports tcp, udp, http, https, stcp (secret TCP), tcpmux (HTTP
-        CONNECT multiplexing), and xtcp (P2P). TCP stream multiplexing via yamux allows
-        multiple logical connections over a single TCP connection.
-    - name: visitor pattern for secure access
-      description: STCP and XTCP modes use visitors - separate frpc instances that
-        connect to the server to access exposed services, requiring preshared keys
-        for authentication instead of opening ports publicly.
-    - name: plugin extensibility
-      description: Built-in client plugins (unix_domain_socket, http_proxy, socks5,
-        static_file, https2http) and server HTTP plugins enable custom processing
-        without modifying core code.
-    raw_key_entry_points_structured:
-    - path: cmd/frpc/main.go:23
-      purpose: frpc binary entry point; enables compatibility mode, delegates to sub.Execute()
-        for CLI handling
-    - path: cmd/frps/main.go:23
-      purpose: frps binary entry point; enables compatibility mode, delegates to Execute()
-        for CLI handling
-    - path: cmd/frpc/sub/root.go:122
-      purpose: runClient() - loads config, validates, creates and starts client Service
-    - path: cmd/frps/root.go:111
-      purpose: runServer() - initializes logging, creates and runs server Service
-    - path: client/service.go:144
-      purpose: NewService() and Run() - client service initialization, login to server,
-        control loop management
-    - path: server/service.go:135
-      purpose: NewService() and Run() - server service setup including listeners (TCP,
-        KCP, QUIC, WebSocket, TLS), vhost routers, dashboard
-    - path: pkg/config/v1/
-      purpose: Configuration structures and validation for client, server, proxy,
-        and visitor configs (TOML/YAML/JSON supported)
-    - path: pkg/msg/
-      purpose: Protocol message definitions (Login, LoginResp, NewWorkConn, StartWorkConn,
-        etc.) for client-server communication
+    directory: remote::fatedier/frp
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::flowiseai/flowise
   github_full_name: flowiseai/flowise
   html_url: https://github.com/FlowiseAI/Flowise
@@ -1517,64 +1307,30 @@ repos:
   source: compiled_master
   name: pangolin
   category: network_infrastructure
-  summary: 'Open-source identity-aware VPN and reverse proxy platform built on WireGuard
-    that combines zero-trust network access with browser-based web application access,
-    enabling secure connectivity to private resources without exposing networks to
-    the internet.
-
-    '
+  summary: Self-hosted tunneled reverse proxy with zero-trust access control, identity-aware
+    resource exposure, and automatic SSL via Traefik.
   core_concepts:
   - sites
   - targets
   - zero-trust access
   key_entry_points:
-  - server/index.ts:27
-  - server/apiServer.ts:29
-  - server/nextServer.ts:10
-  - server/internalServer.ts
-  - server/lib/traefik/TraefikConfigManager.ts:15
-  - src/app/
+  - README.md
+  - src/
   build_run:
     language: typescript
-    package_manager: npm
-    build_command: npm run build
-    run_command: npm run dev (development) or npm run start (production)
-    test_command: docker run -it -p 3000:3000 -p 3001:3001 -p 3002:3002 fosrl/pangolin:latest
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/pangolin.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-03-18'
+  local_cache_dir: null
   extras:
-    directory: pangolin-main
-    raw_core_concepts_structured:
-    - name: sites
-      description: Lightweight connectors that create secure tunnels from remote networks
-        without requiring public IPs or open ports, making any network available for
-        authorized access
-    - name: targets
-      description: Resources (web apps, SSH servers, databases) exposed through Pangolin
-        with identity-based access control, health checking, and automatic SSL certificate
-        management via Traefik
-    - name: zero-trust access
-      description: Users get access to specific resources rather than entire networks;
-        integrates with OIDC identity providers and supports granular role-based permissions
-    raw_key_entry_points_structured:
-    - path: server/index.ts:27
-      purpose: Main entry point that initializes config, licensing, and starts all
-        servers (API, Next.js, internal, integration)
-    - path: server/apiServer.ts:29
-      purpose: Creates Express API server handling authentication, rate limiting,
-        WebSocket upgrades, and REST endpoints
-    - path: server/nextServer.ts:10
-      purpose: Creates Next.js server for the web dashboard UI
-    - path: server/internalServer.ts
-      purpose: Internal server for site-to-control-plane communication (WireGuard
-        tunnel management)
-    - path: server/lib/traefik/TraefikConfigManager.ts:15
-      purpose: Manages Traefik reverse proxy configuration, SSL certificates, and
-        dynamic routing
-    - path: src/app/
-      purpose: Next.js App Router pages for the web dashboard
+    directory: remote::fosrl/pangolin
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::frankbria/ralph-claude-code
   github_full_name: frankbria/ralph-claude-code
   html_url: https://github.com/frankbria/ralph-claude-code
@@ -1757,54 +1513,30 @@ repos:
   source: compiled_master
   name: gost
   category: tunneling
-  summary: 'GO Simple Tunnel - a versatile Go-based tunneling tool that functions
-    as a forward proxy, port forwarder, and reverse proxy with multi-protocol support
-    and chaining capabilities for secure network traversal.
-
-    '
+  summary: Go-based security tunnel supporting 40+ protocols with multi-hop forwarding
+    chains, hot-reload config, and modular connector/dialer architecture.
   core_concepts:
   - Forwarding Chain
   - Protocol Diversity
   - Service Architecture
   key_entry_points:
-  - cmd/gost/main.go:106
-  - cmd/gost/program.go:35
-  - cmd/gost/register.go:1
+  - README.md
+  - cmd/
   build_run:
     language: go
-    go_version: '1.24'
-    package_manager: go mod
-    build_command: cd cmd/gost && go build
-    run_command: ./gost -L [service] -F [chain] or ./gost -C [config.yaml]
-    test_command: go test ./...
-    docker_command: docker run --rm gogost/gost -V
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/gost.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-03-18'
+  local_cache_dir: null
   extras:
-    directory: gost-master
-    raw_core_concepts_structured:
-    - name: Forwarding Chain
-      description: Multi-hop proxy chains allowing composition of different protocols
-        (SOCKS, HTTP, SS, SSH, etc.) in sequence for layered network traversal.
-    - name: Protocol Diversity
-      description: Supports 40+ protocols including SOCKS4/5, HTTP/HTTPS, Shadowsocks,
-        SSH, QUIC, WebSocket, gRPC, KCP, WireGuard, and TUN/TAP devices.
-    - name: Service Architecture
-      description: Modular design with connectors, dialers, handlers, and listeners
-        registered via dependency injection; enables dynamic configuration and hot-reload
-        via SIGHUP.
-    raw_key_entry_points_structured:
-    - path: cmd/gost/main.go:106
-      purpose: Application entry point; initializes logger and runs the program service
-        lifecycle.
-    - path: cmd/gost/program.go:35
-      purpose: Service lifecycle management (Init/Start/Stop); configures parser,
-        loads config, and orchestrates API/metrics/profiling services.
-    - path: cmd/gost/register.go:1
-      purpose: Blank imports that register all available connectors, dialers, handlers,
-        and listeners via init() functions.
+    directory: remote::go-gost/gost
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::gohugoio/hugo
   github_full_name: gohugoio/hugo
   html_url: https://github.com/gohugoio/hugo
@@ -2256,15 +1988,14 @@ repos:
   source: compiled_master
   name: infinity
   category: vector_database
-  summary: Phase 4 B3 shallow intake for infiniflow/infinity as an AI-native database
-    for vector and hybrid retrieval workloads.
+  summary: AI-native database designed for LLM applications supporting vector indexing,
+    full-text search, and hybrid retrieval infrastructure.
   core_concepts:
   - vector indexing and retrieval
   - hybrid search infrastructure
   key_entry_points:
   - README.md
   - src/
-  - python/
   build_run:
     language: mixed
     build: See upstream README for project build steps.
@@ -2272,7 +2003,7 @@ repos:
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/infinity.yaml
-    as_of: '2026-03-05T05:30:00Z'
+    as_of: '2026-03-18'
   local_cache_dir: null
   extras:
     directory: remote::infiniflow/infinity
@@ -2456,92 +2187,30 @@ repos:
   source: compiled_master
   name: lmdeploy
   category: inference_serving
-  summary: 'High-performance LLM inference toolkit from InternLM team (OpenMMLab).
-    LMDeploy offers
-
-    both TurboMind (C++ engine) and PyTorch backends with strong quantization support.
-
-    Claims 1.8x higher throughput than vLLM with 4-bit inference at 2.4x FP16 speed.
-
-    Supports Huawei Ascend in addition to NVIDIA GPUs.
-
-    '
+  summary: LLM inference and serving toolkit with TurboMind C++/CUDA engine and PyTorch
+    engine, supporting quantization, batching, and OpenAI-compatible API.
   core_concepts:
   - TurboMind Engine
   - PyTorch Engine
   - Quantization
-  - API Server
-  - Model Converter
   key_entry_points:
-  - lmdeploy/turbomind/
-  - lmdeploy/pytorch/
-  - lmdeploy/serve/
-  - lmdeploy/quantization/
-  - lmdeploy/vl/
+  - README.md
+  - lmdeploy/
   build_run:
     language: Python + C++/CUDA
-    install: pip install lmdeploy
-    run_server: lmdeploy serve api_server <model> --server-port 8000
-    cli: lmdeploy chat turbomind <model>
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/lmdeploy.yaml
-    as_of: '2026-02-25'
-  ecosystem_connections:
-  - target: vllm
-    relation: alternative_to
-    note: Both high-performance; LMDeploy claims better throughput
-  - target: xinference
-    relation: related_to
-    note: Xinference can integrate with various backends
-  - target: langchain
-    relation: integrates_with
-    note: Can be used as LangChain backend
+    as_of: '2026-03-18'
+  local_cache_dir: null
   extras:
-    directory: lmdeploy-main
-    further_reading:
-    - README.md
-    - docs: https://lmdeploy.readthedocs.io
-    - quantization: docs/en/quantization/
-    hardware_support:
-    - NVIDIA GPUs
-    - Huawei Ascend
-    - CPU fallback
-    performance_features:
-    - TurboMind engine (persistent batch, blocked KV cache)
-    - 4-bit inference (2.4x faster than FP16)
-    - AWQ quantization
-    - KV cache quantization
-    - Dynamic split&fuse
-    - FlashAttention support
-    - Tensor parallelism
-    raw_core_concepts_structured:
-    - name: TurboMind Engine
-      description: High-performance C++ inference engine
-      location: lmdeploy/turbomind/
-    - name: PyTorch Engine
-      description: Python-native engine for flexibility
-      location: lmdeploy/pytorch/
-    - name: Quantization
-      description: Weight-only and KV cache quantization (AWQ, W4A16)
-      location: lmdeploy/quantization/
-    - name: API Server
-      description: RESTful API for inference
-      location: lmdeploy/serve/
-    - name: Model Converter
-      description: Convert models for deployment
-      location: lmdeploy/convert/
-    raw_key_entry_points_structured:
-    - path: lmdeploy/turbomind/
-      purpose: TurboMind C++ inference engine
-    - path: lmdeploy/pytorch/
-      purpose: PyTorch inference engine
-    - path: lmdeploy/serve/
-      purpose: API server and gradio interfaces
-    - path: lmdeploy/quantization/
-      purpose: Model quantization utilities
-    - path: lmdeploy/vl/
-      purpose: Vision-language model support
+    directory: remote::internlm/lmdeploy
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::jeecgboot/jeecgboot
   github_full_name: jeecgboot/jeecgboot
   html_url: https://github.com/jeecgboot/jeecgboot
@@ -2694,82 +2363,31 @@ repos:
   source: compiled_master
   name: headscale
   category: vpn_mesh
-  summary: 'Open-source, self-hosted implementation of the Tailscale control server
-    - enables private WireGuard-based mesh VPNs without relying on Tailscale''s proprietary
-    control plane, ideal for self-hosters and small organizations who want full control
-    over their tailnet infrastructure.
-
-    '
+  summary: Open-source self-hosted implementation of the Tailscale control server
+    managing WireGuard key exchange, IP allocation, policy enforcement, and DERP relay
+    routing.
   core_concepts:
   - Control Server
-  - Tailnet (Network Namespace)
+  - Tailnet
   - MapRequest/MapResponse Protocol
   key_entry_points:
-  - cmd/headscale/headscale.go:13
-  - hscontrol/app.go:91
-  - hscontrol/state/state.go:67
-  - hscontrol/state/node_store.go
-  - hscontrol/poll.go
-  - hscontrol/noise.go
-  - hscontrol/mapper/mapper.go
+  - README.md
+  - hscontrol/
   build_run:
     language: go
-    go_version: '1.26'
-    package_manager: go mod
-    build_command: make build (or go build ./cmd/headscale)
-    run_command: headscale serve (daemon) or headscale [cli-commands]
-    test_command: make test (unit) or go run ./cmd/hi run "TestName" (integration
-      with Docker)
-    dev_setup: nix develop (recommended for consistent toolchain)
-    dependencies:
-    - tailscale.com (core networking/protocol libraries)
-    - gorm.io (database ORM with SQLite/PostgreSQL support)
-    - spf13/cobra (CLI framework)
-    - spf13/viper (configuration)
-    - grpc (management API)
-    - rs/zerolog (structured logging)
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/headscale.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-03-18'
+  local_cache_dir: null
   extras:
-    directory: headscale-main
-    raw_core_concepts_structured:
-    - name: Control Server
-      description: Acts as the coordination point for Tailscale networks (tailnets),
-        managing node registration, WireGuard public key exchange, IP allocation,
-        policy/ACL enforcement, and DERP relay routing - the one proprietary component
-        in Tailscale's otherwise open stack.
-    - name: Tailnet (Network Namespace)
-      description: A private network namespace containing nodes (devices) that can
-        communicate securely. Headscale implements a single tailnet suitable for personal
-        use or small organizations, with users providing logical grouping/ownership
-        within the network.
-    - name: MapRequest/MapResponse Protocol
-      description: The core Tailscale wire protocol where clients poll the control
-        server (via poll.go) to receive network topology updates, peer information,
-        and policy changes - enabling real-time mesh network coordination.
-    raw_key_entry_points_structured:
-    - path: cmd/headscale/headscale.go:13
-      purpose: Main CLI entry point - initializes logging and delegates to cobra CLI
-        for command parsing
-    - path: hscontrol/app.go:91
-      purpose: Headscale struct definition - core application with state management,
-        DERP server, and HTTP/gRPC handlers
-    - path: hscontrol/state/state.go:67
-      purpose: State coordinator - thread-safe central hub managing database, policy,
-        IP allocation, and node store
-    - path: hscontrol/state/node_store.go
-      purpose: In-memory node cache with copy-on-write semantics - performance-critical
-        for high-frequency operations
-    - path: hscontrol/poll.go
-      purpose: Handles Tailscale MapRequest/MapResponse protocol - processes client
-        updates every 15-60 seconds
-    - path: hscontrol/noise.go
-      purpose: Noise protocol implementation for secure client-to-control-server communication
-    - path: hscontrol/mapper/mapper.go
-      purpose: Converts internal Headscale state to Tailscale wire protocol format
-        for distribution to clients
+    directory: remote::juanfont/headscale
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::kaitranntt/ccs
   github_full_name: kaitranntt/ccs
   html_url: https://github.com/kaitranntt/ccs
@@ -2959,13 +2577,12 @@ repos:
   source: compiled_master
   name: ladybug
   category: vector_database
-  summary: Embedded columnar graph database with a property graph model and Cypher
-    query language, forked from Kuzu.
+  summary: Embedded graph database runtime with property-graph and Cypher query surface,
+    implemented as a C++ engine with WAL-backed storage and transaction layer.
   core_concepts:
   - embedded database
   - property graph
   - cypher query language
-  - columnar storage
   key_entry_points:
   - README.md
   - src/
@@ -2990,45 +2607,30 @@ repos:
   source: compiled_master
   name: lancedb
   category: vector_database
-  summary: Shallow intake pilot canonicalization for lancedb/lancedb in vector database
-    domain.
+  summary: Serverless vector database built on the Lance columnar format with embedded
+    and client-server modes and multi-language SDK support.
   core_concepts:
   - vector database capabilities
   - lancedb repository architecture
   key_entry_points:
   - README.md
-  - Cargo.toml
-  - docs/
+  - rust/
+  - python/
   build_run:
     language: rust
-    build: cargo build
-    test: cargo test
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/lancedb__lancedb.yaml
-    as_of: '2026-02-24T19:46:56Z'
+    as_of: '2026-03-18'
   local_cache_dir: null
   extras:
-    directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/lancedb__lancedb
-    intake:
-      pilot_batch_id: INTAKE-PILOT-1
-      repo_id: repo::lancedb/lancedb
-      queue_id: intake::lancedb/lancedb
-      intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/lancedb__lancedb
-      domain_hint: vector_database
-      source_mode: local_clone
-      source_commit: 0d3fc7860a5975238786cbc27c3a6047434568df
-      default_branch: main
-      observed_at_utc: '2026-02-24T19:46:56Z'
-    remote:
-      provider: github
-      mode: metadata
-      endpoint: /repos/lancedb/lancedb
-      fetched_at_utc: '2026-02-24T19:46:56Z'
-      refresh:
-        precedence: api_wins_readme_for_missing_required_fields
-        fallback_source: readme_fallback
-        fallback_used: false
+    directory: remote::lancedb/lancedb
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::langchain-ai/deepagents
   github_full_name: langchain-ai/deepagents
   html_url: https://github.com/langchain-ai/deepagents
@@ -3955,81 +3557,30 @@ repos:
   source: compiled_master
   name: hsync
   category: tunneling
-  summary: 'A reverse-proxy/tunneling client for Node.js and browsers that exposes
-    local webservers
-
-    as public URLs via hsync-server, with peer-to-peer TCP tunneling via WebRTC for
-    direct
-
-    client-to-client connections without server intermediary.
-
-    '
+  summary: MQTT-based reverse proxy and WebRTC peer-to-peer tunneling tool supporting
+    HTTP proxying, socket relays, and P2P connections.
   core_concepts:
   - MQTT-based reverse proxy
   - WebRTC peer-to-peer tunneling
   - Socket relays and listeners
   key_entry_points:
-  - cli.js:1
-  - hsync.js:31
-  - connection.js:29
-  - lib/peers.js:40
-  - lib/socket-relays.js:63
+  - README.md
+  - index.js
   build_run:
     language: JavaScript (ES modules)
-    package_manager: npm
-    build_command: npm run build
-    run_command: npx hsync (or npm install -g hsync && hsync)
-    test_command: npm test (uses Vitest)
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/hsync.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-03-18'
+  local_cache_dir: null
   extras:
-    directory: hsync-master
-    raw_core_concepts_structured:
-    - name: MQTT-based reverse proxy
-      description: 'Uses MQTT protocol to communicate with hsync-server for web request
-        handling.
-
-        HTTP requests to the public URL are proxied through the server via MQTT topics
-
-        (e.g., web/{hostname}/{segment}/{action}) back to the local client.
-
-        '
-    - name: WebRTC peer-to-peer tunneling
-      description: 'Establishes direct P2P connections between hsync clients using
-        WebRTC data channels.
-
-        Once connected, TCP socket data flows directly between peers, bypassing the
-        server
-
-        entirely. Uses rawr library for JSON-RPC over the data channel.
-
-        '
-    - name: Socket relays and listeners
-      description: 'Two tunneling modes: listeners (accept local connections, forward
-        to remote target)
-
-        and relays (accept remote requests, connect to local target). Supports whitelist/blacklist
-
-        for access control on relay ports.
-
-        '
-    raw_key_entry_points_structured:
-    - path: cli.js:1
-      purpose: CLI entry point using Commander; parses flags and creates tunnel connections
-    - path: hsync.js:31
-      purpose: Main export for Node.js; provides createConnection() and dynamicConnect()
-        APIs
-    - path: connection.js:29
-      purpose: Core createHsync() function that sets up MQTT connection, peer management,
-        and tunnel infrastructure
-    - path: lib/peers.js:40
-      purpose: Peer management and WebRTC connection handling; creates RPC peers for
-        P2P communication
-    - path: lib/socket-relays.js:63
-      purpose: Inbound relay handling; accepts remote connection requests and bridges
-        to local TCP sockets
+    directory: remote::monteslu/hsync
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::moonshotai/kimi-cli
   github_full_name: moonshotai/kimi-cli
   html_url: https://github.com/MoonshotAI/kimi-cli
@@ -4093,89 +3644,30 @@ repos:
   source: compiled_master
   name: nexa_sdk
   category: inference_serving
-  summary: 'On-device AI inference framework optimized for NPU, GPU, and CPU across
-    mobile
-
-    (Android, iOS), desktop, and IoT. Day-0 support for latest models (Qwen3-VL, DeepSeek-OCR).
-
-    NPU-first approach with Qualcomm Hexagon, Apple ANE, Intel NPU, AMD NPU support.
-
-    Featured by Qualcomm, IBM, Google, NVIDIA, Microsoft for cutting-edge on-device
-    AI.
-
-    '
+  summary: Multi-platform on-device AI SDK with Python, Kotlin, Swift, and Go bindings
+    supporting LLM, VLM, ASR, OCR, and embedding inference.
   core_concepts:
   - Python SDK
   - Android SDK
   - iOS SDK
-  - Runner/Engine
   key_entry_points:
-  - bindings/python/
-  - bindings/android/
-  - runner/
-  - cookbook/
+  - README.md
+  - bindings/
   build_run:
     language: Python/Kotlin/Swift/Go
-    install: pip install nexaai
-    usage: "from nexaai import LLM, GenerationConfig, LlmChatMessage\n\nllm = LLM.from_(model=\"\
-      NexaAI/Qwen3-0.6B-GGUF\")\nfor token in llm.generate_stream(prompt, GenerationConfig()):\n\
-      \    print(token, end=\"\")\n"
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/nexa_sdk.yaml
-    as_of: '2026-02-25'
-  ecosystem_connections:
-  - target: ollama
-    relation: alternative_to
-    note: NexaSDK has NPU support and mobile SDKs; Ollama is desktop-focused
-  - target: vllm
-    relation: alternative_to
-    note: vLLM is server/cloud; NexaSDK is on-device/mobile
-  - target: lmdeploy
-    relation: alternative_to
-    note: Different focus; LMDeploy for server deployment, NexaSDK for edge
+    as_of: '2026-03-18'
+  local_cache_dir: null
   extras:
-    directory: nexa-sdk-main
-    further_reading:
-    - README.md
-    - docs: https://docs.nexa.ai
-    - hub: https://sdk.nexa.ai/model
-    key_features:
-    - NPU-first (Qualcomm, Apple, Intel, AMD)
-    - Mobile SDKs (Android, iOS)
-    - Day-0 model support
-    - Multimodal (LLM, VLM, ASR, OCR, image gen)
-    - Multiple formats (GGUF, MLX, NEXA)
-    - OpenAI-compatible API
-    - Function calling support
-    - Cross-platform (desktop, mobile, IoT)
-    raw_core_concepts_structured:
-    - name: Python SDK
-      description: Python bindings for LLM, VLM, ASR, OCR, embeddings
-      location: bindings/python/
-    - name: Android SDK
-      description: Kotlin SDK for Qualcomm Snapdragon NPU
-      location: bindings/android/
-    - name: iOS SDK
-      description: Swift SDK for Apple Neural Engine
-      location: bindings/ios/
-    - name: Runner/Engine
-      description: Core inference engine (NexaML)
-      location: runner/
-    raw_key_entry_points_structured:
-    - path: bindings/python/
-      purpose: Python SDK
-    - path: bindings/android/
-      purpose: Android/Kotlin SDK
-    - path: runner/
-      purpose: Core inference engine
-    - path: cookbook/
-      purpose: Examples and tutorials
-    use_cases:
-    - On-device mobile AI apps
-    - Privacy-preserving inference
-    - Edge AI deployment
-    - Automotive/IoT AI
+    directory: remote::nexaai/nexa-sdk
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::obra/superpowers
   github_full_name: obra/superpowers
   html_url: https://github.com/obra/superpowers
@@ -5115,127 +4607,59 @@ repos:
   source: compiled_master
   name: qdrant
   category: vector_database
-  summary: Shallow intake pilot canonicalization for qdrant/qdrant in vector database
-    domain.
+  summary: Vector similarity search engine written in Rust with filtering, payload
+    indexing, distributed mode, and REST/gRPC API surface.
   core_concepts:
   - vector database capabilities
   - qdrant repository architecture
   key_entry_points:
   - README.md
-  - Cargo.toml
   - src/
-  - docs/
   build_run:
     language: rust
-    build: cargo build
-    test: cargo test
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/qdrant__qdrant.yaml
-    as_of: '2026-02-24T19:46:56Z'
+    as_of: '2026-03-18'
   local_cache_dir: null
   extras:
-    directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/qdrant__qdrant
-    intake:
-      pilot_batch_id: INTAKE-PILOT-1
-      repo_id: repo::qdrant/qdrant
-      queue_id: intake::qdrant/qdrant
-      intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/qdrant__qdrant
-      domain_hint: vector_database
-      source_mode: local_clone
-      source_commit: 09f87abbd8215031609988f3b0e220b739db2d9a
-      default_branch: master
-      observed_at_utc: '2026-02-24T19:46:56Z'
-    remote:
-      provider: github
-      mode: metadata
-      endpoint: /repos/qdrant/qdrant
-      fetched_at_utc: '2026-02-24T19:46:56Z'
-      refresh:
-        precedence: api_wins_readme_for_missing_required_fields
-        fallback_source: readme_fallback
-        fallback_used: false
+    directory: remote::qdrant/qdrant
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::rapiz1/rathole
   github_full_name: rapiz1/rathole
   html_url: https://github.com/rapiz1/rathole
   source: compiled_master
   name: rathole
   category: tunneling
-  summary: 'A high-performance reverse proxy for NAT traversal written in Rust, designed
-    to expose services behind NAT/firewalls to the public internet with lower resource
-    consumption and higher throughput than alternatives like frp or ngrok.
-
-    '
+  summary: High-performance NAT traversal reverse proxy in Rust with per-service token
+    auth and pluggable transport layer (TCP, TLS, Noise, WebSocket).
   core_concepts:
   - client-server tunnel architecture
   - service-based token authentication
   - transport layer abstraction
-  - hot reload
   key_entry_points:
-  - src/main.rs:8
-  - src/lib.rs:62
-  - src/client.rs:34
-  - src/server.rs:42
-  - src/config.rs
-  - src/protocol.rs
-  - src/transport/mod.rs
+  - README.md
+  - src/
   build_run:
     language: rust
-    package_manager: cargo
-    build_command: cargo build --release
-    run_command: rathole <config.toml>
-    test_command: cargo test
-    extra_info: 'Feature flags control included functionality:
-
-      - default: server, client, native-tls, noise, websocket-native-tls, hot-reload
-
-      - embedded: minimal build for routers (~500KB with strip + LTO)
-
-      - Build minimal: cargo build --release --no-default-features --features server,client,noise
-
-      '
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/rathole.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-03-18'
+  local_cache_dir: null
   extras:
-    directory: rathole-main
-    raw_core_concepts_structured:
-    - name: client-server tunnel architecture
-      description: Client runs behind NAT, connects outbound to a public server; server
-        forwards incoming traffic back through the persistent tunnel. Auto-detects
-        mode based on config.
-    - name: service-based token authentication
-      description: Each forwarded service has its own mandatory token for authentication.
-        Tokens are validated during handshake, preventing unauthorized access.
-    - name: transport layer abstraction
-      description: Supports multiple transport types (TCP, TLS, Noise protocol, WebSocket)
-        with a unified interface. Noise protocol provides encryption without certificate
-        management.
-    - name: hot reload
-      description: Configuration can be reloaded at runtime to add/remove services
-        without restarting, using file watcher and service update channels.
-    raw_key_entry_points_structured:
-    - path: src/main.rs:8
-      purpose: Binary entry point; parses CLI args, sets up signal handling, initializes
-        logging, calls run()
-    - path: src/lib.rs:62
-      purpose: Core run() function; handles genkey command, creates config watcher,
-        manages instance lifecycle and hot reload
-    - path: src/client.rs:34
-      purpose: run_client() - client entry point; creates Client with appropriate
-        transport type and runs the tunnel
-    - path: src/server.rs:42
-      purpose: run_server() - server entry point; creates Server with appropriate
-        transport type and handles incoming connections
-    - path: src/config.rs
-      purpose: Configuration parsing and validation for client/server/services/transport
-        settings
-    - path: src/protocol.rs
-      purpose: Wire protocol definitions (Hello, Auth, Ack, ControlChannelCmd, DataChannelCmd)
-        for client-server communication
-    - path: src/transport/mod.rs
-      purpose: Transport trait and implementations for TCP/TLS/Noise/WebSocket abstraction
+    directory: remote::rapiz1/rathole
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::run-llama/llama_index
   github_full_name: run-llama/llama_index
   html_url: https://github.com/run-llama/llama_index
@@ -5605,103 +5029,30 @@ repos:
   source: compiled_master
   name: nebula
   category: vpn_mesh
-  summary: 'Slack''s open-source scalable overlay networking tool that creates secure,
-    encrypted mesh VPNs
-
-    connecting computers anywhere in the world. Uses Noise Protocol Framework for
-    mutual authentication,
-
-    lighthouses for peer discovery, and certificate-based identity with built-in security
-    groups for
-
-    fine-grained traffic control.
-
-    '
+  summary: Scalable overlay networking tool creating encrypted mesh networks with
+    certificate-based identity, lighthouse discovery, and cloud-style firewall rules.
   core_concepts:
   - lighthouses
   - certificates
   - security groups
   key_entry_points:
-  - cmd/nebula/main.go:34
-  - cmd/nebula-cert/main.go:42
-  - cmd/nebula-service/main.go
-  - interface.go:148
-  - lighthouse.go:29
-  - cert/cert.go:19
-  - firewall.go:1
-  - handshake_manager.go:1
+  - README.md
+  - cmd/nebula/
   build_run:
     language: go
-    go_version: '1.25'
-    package_manager: go mod
-    build_command: make all (all platforms) or go build ./cmd/nebula
-    run_command: ./nebula -config /path/to/config.yml
-    test_command: go test ./...
-    key_dependencies:
-    - flynn/noise (Noise Protocol Framework implementation)
-    - golang.org/x/crypto (cryptographic primitives)
-    - google/gopacket (packet parsing)
-    - vishvananda/netlink (Linux network interfaces)
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/nebula.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-03-18'
+  local_cache_dir: null
   extras:
-    directory: nebula-master
-    raw_core_concepts_structured:
-    - name: lighthouses
-      description: 'Discovery nodes with routable IPs that help peers find each other
-        in the mesh.
-
-        Lighthouses store peer endpoints and facilitate UDP hole punching for NAT
-        traversal.
-
-        Minimal compute requirements - a $6/mo VPS suffices.
-
-        '
-    - name: certificates
-      description: 'PKI system using X.509-style certificates (v1 protobuf or v2 ASN.1)
-        that assert
-
-        a node''s IP address, name, and group membership. CAs can constrain what IPs,
-        groups,
-
-        and networks subordinate certificates may contain. Supports Curve25519 (default)
-        or P256.
-
-        '
-    - name: security groups
-      description: 'User-defined groups in certificates enable cloud-style firewall
-        rules without
-
-        provider lock-in. Rules can filter by group membership, allowing expressive
-
-        traffic policies like "allow SSH from laptop group to servers group".
-
-        '
-    raw_key_entry_points_structured:
-    - path: cmd/nebula/main.go:34
-      purpose: Main CLI entry point - loads config, initializes nebula interface,
-        starts the VPN daemon
-    - path: cmd/nebula-cert/main.go:42
-      purpose: Certificate utility - ca, keygen, sign, print, verify commands for
-        PKI management
-    - path: cmd/nebula-service/main.go
-      purpose: OS service wrapper for running nebula as a system daemon (Windows/Linux/macOS)
-    - path: interface.go:148
-      purpose: Interface struct and initialization - core networking engine managing
-        TUN device, UDP connections, hostmap, firewall
-    - path: lighthouse.go:29
-      purpose: LightHouse struct - peer discovery service, address caching, NAT hole
-        punching coordination
-    - path: cert/cert.go:19
-      purpose: Certificate interface - abstracts v1/v2 certificate versions with common
-        operations
-    - path: firewall.go:1
-      purpose: Firewall engine - rule evaluation, conntrack state, packet filtering
-        logic
-    - path: handshake_manager.go:1
-      purpose: Noise Protocol handshake orchestration - manages peer connection establishment
+    directory: remote::slackhq/nebula
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::snarktank/ralph
   github_full_name: snarktank/ralph
   html_url: https://github.com/snarktank/ralph
@@ -5780,41 +5131,30 @@ repos:
   source: compiled_master
   name: voyager
   category: vector_database
-  summary: Phase 4 Corpus Expansion P4-B1 intake for spotify/voyager. Vector database
-    repository routed explicitly to llm_repos.
+  summary: Spotify's approximate nearest-neighbor library wrapping hnswlib with Python
+    and Java bindings, optimized for production retrieval infrastructure.
   core_concepts:
   - approximate nearest-neighbor indexing
   - vector retrieval infrastructure
   key_entry_points:
   - README.md
-  - docs/
+  - python/
+  - java/
   build_run:
     language: mixed
-    build: See upstream README for build steps.
-    test: See upstream README for test steps.
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/spotify__voyager.yaml
-    as_of: '2026-03-05T04:16:38Z'
+    as_of: '2026-03-18'
   local_cache_dir: null
   extras:
     directory: remote::spotify/voyager
-    intake:
-      pilot_batch_id: PHASE-4-P4-B1
-      repo_id: repo::spotify/voyager
-      queue_id: intake::spotify/voyager
-      domain_hint: vector_database
-      source_mode: remote_metadata
-      observed_at_utc: '2026-03-05T04:16:38Z'
-    remote:
-      provider: github
-      mode: metadata
-      endpoint: /repos/spotify/voyager
-      fetched_at_utc: '2026-03-05T04:16:38Z'
-      refresh:
-        precedence: api_wins_readme_for_missing_required_fields
-        fallback_source: readme_fallback
-        fallback_used: false
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::sshuttle/sshuttle
   github_full_name: sshuttle/sshuttle
   html_url: https://github.com/sshuttle/sshuttle
@@ -6002,90 +5342,60 @@ repos:
   source: compiled_master
   name: vgrok
   category: tunneling
-  summary: 'Exposes local web servers to the public internet via Vercel sandboxes,
-    enabling webhook testing and remote access without port forwarding.
-
-    '
+  summary: TypeScript tool using ephemeral Vercel sandbox instances as public-facing
+    proxies relaying HTTP traffic via WebSocket tunnels to local servers.
   core_concepts:
   - Vercel Sandbox Proxy
   - Bidirectional WebSocket Tunnel
   - Sandbox Lifecycle Management
   key_entry_points:
-  - src/vgrok.ts:1
-  - src/client.ts:33
-  - src/server.ts:1
-  - src/vercel-cli-auth.ts:54
+  - README.md
+  - src/
   build_run:
     language: TypeScript
-    package_manager: pnpm
-    build_command: pnpm build (uses tsgo)
-    run_command: vgrok <port> or vgrok <port> start
-    test_command: Not configured
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/vgrok.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-03-18'
+  local_cache_dir: null
   extras:
-    directory: vgrok-main
-    raw_core_concepts_structured:
-    - name: Vercel Sandbox Proxy
-      description: Spins up ephemeral Vercel sandbox instances that act as public-facing
-        proxies, relaying HTTP traffic back to your local machine via WebSocket tunnels.
-    - name: Bidirectional WebSocket Tunnel
-      description: Local client connects to sandbox via WebSocket; HTTP requests hitting
-        the sandbox are serialized, sent through the tunnel, executed locally, and
-        responses streamed back.
-    - name: Sandbox Lifecycle Management
-      description: Supports ephemeral mode (sandbox dies with process) or persistent
-        mode (sandbox reused across sessions via cached config), with 45-minute timeout
-        for hobby tier.
-    raw_key_entry_points_structured:
-    - path: src/vgrok.ts:1
-      purpose: CLI entry point; parses port argument, handles start/stop commands,
-        manages process lifecycle.
-    - path: src/client.ts:33
-      purpose: Core client logic; creates/reuses sandboxes, establishes WebSocket
-        tunnel, forwards local HTTP responses.
-    - path: src/server.ts:1
-      purpose: Runs inside Vercel sandbox; HTTP server that accepts public requests
-        and WebSocket client connections, coordinates request/response routing.
-    - path: src/vercel-cli-auth.ts:54
-      purpose: Extracts Vercel credentials from CLI config files or environment variables
-        for sandbox API authentication.
+    directory: remote::styfle/vgrok
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::tailscale/tailscale
   github_full_name: tailscale/tailscale
   html_url: https://github.com/tailscale/tailscale
   source: compiled_master
   name: tailscale
   category: vpn_mesh
-  summary: WireGuard-based mesh networking platform with identity-aware connectivity
-    controls.
+  summary: WireGuard-based mesh VPN with identity-aware access control, DERP relay
+    fallback, and MagicDNS for zero-config device discovery.
   core_concepts:
   - Mesh VPN over WireGuard
   - Identity-aware network access
   key_entry_points:
-  - cmd/tailscale
-  - cmd/tailscaled
+  - README.md
+  - cmd/tailscale/
+  - wgengine/
   build_run:
     language: go
-    build: go build ./cmd/tailscale ./cmd/tailscaled
-    test: go test ./...
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/tailscale.yaml
-    as_of: '2026-02-24'
+    as_of: '2026-03-18'
   local_cache_dir: null
   extras:
     directory: remote::tailscale/tailscale
-    remote:
-      provider: github
-      mode: api
-      endpoint: /repos/tailscale/tailscale
-      fetched_at_utc: '2026-02-23T03:20:00Z'
-      refresh:
-        precedence: api_wins_readme_for_missing_required_fields
-        fallback_source: readme_fallback
-        fallback_used: false
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::thedotmack/claude-mem
   github_full_name: thedotmack/claude-mem
   html_url: https://github.com/thedotmack/claude-mem
@@ -6212,41 +5522,30 @@ repos:
   source: compiled_master
   name: usearch
   category: vector_database
-  summary: Phase 4 Corpus Expansion P4-B1 intake for unum-cloud/usearch. Vector database
-    repository routed explicitly to llm_repos.
+  summary: Fast vector similarity search engine with HNSW indexing, multi-language
+    bindings, and hardware-optimized distance computation primitives.
   core_concepts:
   - vector similarity search engine
   - high-performance retrieval primitives
   key_entry_points:
   - README.md
-  - docs/
+  - include/
+  - python/
   build_run:
     language: mixed
-    build: See upstream README for build steps.
-    test: See upstream README for test steps.
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/unum-cloud__usearch.yaml
-    as_of: '2026-03-05T04:16:38Z'
+    as_of: '2026-03-18'
   local_cache_dir: null
   extras:
     directory: remote::unum-cloud/usearch
-    intake:
-      pilot_batch_id: PHASE-4-P4-B1
-      repo_id: repo::unum-cloud/usearch
-      queue_id: intake::unum-cloud/usearch
-      domain_hint: vector_database
-      source_mode: remote_metadata
-      observed_at_utc: '2026-03-05T04:16:38Z'
-    remote:
-      provider: github
-      mode: metadata
-      endpoint: /repos/unum-cloud/usearch
-      fetched_at_utc: '2026-03-05T04:16:38Z'
-      refresh:
-        precedence: api_wins_readme_for_missing_required_fields
-        fallback_source: readme_fallback
-        fallback_used: false
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::vllm-project/vllm
   github_full_name: vllm-project/vllm
   html_url: https://github.com/vllm-project/vllm
@@ -6360,46 +5659,30 @@ repos:
   source: compiled_master
   name: weaviate
   category: vector_database
-  summary: Shallow intake pilot canonicalization for weaviate/weaviate in vector database
-    domain.
+  summary: Open-source vector database with GraphQL and REST APIs, multi-tenancy,
+    hybrid search, and module-based vectorizer integrations.
   core_concepts:
   - vector database capabilities
   - weaviate repository architecture
   key_entry_points:
   - README.md
-  - go.mod
-  - pyproject.toml
-  - cmd/
+  - usecases/
+  - modules/
   build_run:
     language: go
-    build: go build ./...
-    test: go test ./...
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/weaviate__weaviate.yaml
-    as_of: '2026-02-24T19:46:56Z'
+    as_of: '2026-03-18'
   local_cache_dir: null
   extras:
-    directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/weaviate__weaviate
-    intake:
-      pilot_batch_id: INTAKE-PILOT-1
-      repo_id: repo::weaviate/weaviate
-      queue_id: intake::weaviate/weaviate
-      intake_path: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/weaviate__weaviate
-      domain_hint: vector_database
-      source_mode: local_clone
-      source_commit: a1de69b10383114595613810acc662bfb4b2e1d4
-      default_branch: main
-      observed_at_utc: '2026-02-24T19:46:56Z'
-    remote:
-      provider: github
-      mode: metadata
-      endpoint: /repos/weaviate/weaviate
-      fetched_at_utc: '2026-02-24T19:46:56Z'
-      refresh:
-        precedence: api_wins_readme_for_missing_required_fields
-        fallback_source: readme_fallback
-        fallback_used: false
+    directory: remote::weaviate/weaviate
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::wez/wezterm
   github_full_name: wez/wezterm
   html_url: https://github.com/wez/wezterm
@@ -6662,19 +5945,18 @@ repos:
         for library consumers
 - node_id: repo::yahoojapan/ngt
   github_full_name: yahoojapan/ngt
-  html_url: https://github.com/yahoojapan/NGT
+  html_url: https://github.com/yahoojapan/ngt
   source: compiled_master
   name: ngt
   category: vector_database
-  summary: Phase 4 B5 shallow intake for yahoojapan/NGT as an approximate nearest
-    neighbor vector search engine.
+  summary: Yahoo Japan's Neighborhood Graph and Tree ANN library implementing ANNG,
+    ONNG, and PANNG index types for high-performance vector similarity retrieval.
   core_concepts:
   - ANN index construction
   - vector similarity retrieval
   key_entry_points:
   - README.md
-  - lib/
-  - python/
+  - lib/NGT/
   build_run:
     language: c++
     build: See upstream README for project build steps.
@@ -6682,7 +5964,7 @@ repos:
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/ngt.yaml
-    as_of: '2026-03-05T05:30:00Z'
+    as_of: '2026-03-18'
   local_cache_dir: null
   extras:
     directory: remote::yahoojapan/ngt
@@ -6696,88 +5978,30 @@ repos:
   source: compiled_master
   name: ytunnel
   category: tunneling
-  summary: 'TUI-first CLI for managing Cloudflare Tunnels with custom domains - ngrok
-    alternative using your own Cloudflare-managed domain with persistent URLs, multi-account
-    support, and real-time metrics dashboard.
-
-    '
+  summary: Rust CLI orchestrator for Cloudflare Tunnels that generates cloudflared
+    configs and creates launchd/systemd services for persistent background tunnels.
   core_concepts:
   - Tunnel Management Layer
   - Ephemeral vs Persistent Tunnels
   - Multi-Account/Multi-Zone Architecture
   key_entry_points:
-  - src/main.rs:17
-  - src/cli.rs:1
-  - src/tui/mod.rs
-  - src/daemon.rs
-  - src/cloudflare.rs
-  - src/tunnel.rs:20
-  - src/config.rs:120
-  - src/state.rs
+  - README.md
+  - src/
   build_run:
     language: rust
-    package_manager: cargo
-    build_command: cargo build --release
-    install_command: cargo install --path .
-    run_command: ytunnel [args]
-    test_command: cargo test
-    prerequisites:
-    - cloudflared (Cloudflare tunnel daemon installed separately)
-    - Cloudflare API token with Zone/DNS/Tunnel permissions
-    - Domain managed by Cloudflare
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/ytunnel.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-03-18'
+  local_cache_dir: null
   extras:
-    directory: ytunnel-master
-    raw_core_concepts_structured:
-    - name: Tunnel Management Layer
-      description: 'ytunnel is a management orchestrator, not a daemon itself. It
-        generates cloudflared configs, creates launchd (macOS) or systemd (Linux)
-        service files, and delegates actual tunneling to Cloudflare''s cloudflared
-        binary. The tool runs only when invoked; persistent tunnels survive via OS
-        service managers.
-
-        '
-    - name: Ephemeral vs Persistent Tunnels
-      description: 'Two modes: ephemeral (ytunnel run) creates foreground tunnels
-        that auto-cleanup on Ctrl+C - ideal for quick testing; persistent (ytunnel
-        add) creates background daemons with auto-restart, optional login auto-start,
-        and survives reboots via launchd/systemd integration.
-
-        '
-    - name: Multi-Account/Multi-Zone Architecture
-      description: 'Supports multiple Cloudflare accounts and zones per account. Each
-        tunnel is scoped to an account_name, enabling work/personal environment isolation.
-        DNS CNAME records are auto-managed per zone, and credentials are stored per-tunnel
-        in the config directory.
-
-        '
-    raw_key_entry_points_structured:
-    - path: src/main.rs:17
-      purpose: Main entry point - parses CLI args and dispatches to command handlers
-        or opens TUI
-    - path: src/cli.rs:1
-      purpose: CLI command definitions using clap - defines all subcommands (init,
-        run, add, start, stop, logs, etc.)
-    - path: src/tui/mod.rs
-      purpose: TUI dashboard implementation using ratatui - interactive tunnel management
-        with live metrics
-    - path: src/daemon.rs
-      purpose: Platform-specific daemon management - generates launchd plists (macOS)
-        and systemd units (Linux)
-    - path: src/cloudflare.rs
-      purpose: Cloudflare API client - creates tunnels, manages DNS records, handles
-        credentials
-    - path: src/tunnel.rs:20
-      purpose: Ephemeral tunnel runner - spawns cloudflared process with generated
-        config, handles Ctrl+C cleanup
-    - path: src/config.rs:120
-      purpose: Multi-account config loading/saving with legacy format migration
-    - path: src/state.rs
-      purpose: Persistent tunnel state management (tunnels.toml) tracking tunnel metadata
-        and settings
+    directory: remote::yetidevworks/ytunnel
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::ykdojo/claude-code-tips
   github_full_name: ykdojo/claude-code-tips
   html_url: https://github.com/ykdojo/claude-code-tips
@@ -6812,104 +6036,56 @@ repos:
   source: compiled_master
   name: mmar
   category: tunneling
-  summary: 'Zero-dependency, self-hostable HTTP tunnel that exposes localhost services
-    on public URLs via auto-generated subdomains - useful for quick sharing, testing
-    webhooks, or demoing work-in-progress without full deployment.
-
-    '
+  summary: Go-based localhost tunnel that assigns unique subdomains to local servers
+    via client-server TCP with custom binary protocol and auto-reconnect.
   core_concepts:
   - Client-Server Tunnel Architecture
   - Custom Tunnel Protocol
   - Auto-Reconnect with Subdomain Reclamation
   key_entry_points:
-  - cmd/mmar/main.go:14
-  - internal/client/main.go:283
-  - internal/server/main.go:582
-  - internal/protocol/main.go:77
+  - README.md
+  - main.go
   build_run:
     language: go
-    package_manager: go modules
-    build_command: go build -o mmar ./cmd/mmar
-    run_command: '# Client mode (expose localhost:8080)
-
-      ./mmar client --local-port 8080
-
-      # Server mode (self-hosted)
-
-      ./mmar server --http-port 3376 --tcp-port 6673
-
-      '
-    test_command: go test ./...
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/mmar.yaml
-    as_of: '2026-02-25'
+    as_of: '2026-03-18'
+  local_cache_dir: null
   extras:
-    directory: mmar-master
-    raw_core_concepts_structured:
-    - name: Client-Server Tunnel Architecture
-      description: Client connects to server via TCP, server assigns unique subdomain,
-        HTTP requests to subdomain are serialized and tunneled through TCP connection
-        to client which forwards to localhost
-    - name: Custom Tunnel Protocol
-      description: Binary protocol with version, message type, length delimiter, and
-        data payload; supports message types like REQUEST, RESPONSE, CREATE_TUNNEL,
-        HEARTBEAT for connection health
-    - name: Auto-Reconnect with Subdomain Reclamation
-      description: Client detects disconnection via heartbeat timeout, attempts reconnection,
-        and reclaims the same subdomain to maintain URL stability for long-running
-        sessions
-    raw_key_entry_points_structured:
-    - path: cmd/mmar/main.go:14
-      purpose: CLI entry point - parses flags and dispatches to server/client/version
-        subcommands
-    - path: internal/client/main.go:283
-      purpose: Client Run() - establishes TCP connection to server, creates tunnel,
-        processes incoming requests
-    - path: internal/server/main.go:582
-      purpose: Server Run() - starts HTTP server for public requests and TCP server
-        for client connections
-    - path: internal/protocol/main.go:77
-      purpose: Tunnel struct and message serialization/deserialization - core protocol
-        implementation
+    directory: remote::yusuf-musleh/mmar
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::zilliztech/vectordbbench
   github_full_name: zilliztech/vectordbbench
-  html_url: https://github.com/zilliztech/VectorDBBench
+  html_url: https://github.com/zilliztech/vectordbbench
   source: compiled_master
   name: vectordbbench
   category: vector_database
-  summary: Phase 4 Corpus Expansion P4-B1 intake for zilliztech/VectorDBBench. Vector
-    database repository routed explicitly to llm_repos.
+  summary: Benchmarking framework for evaluating vector database retrieval performance
+    across multiple engines with standardized dataset and metric definitions.
   core_concepts:
   - vector database benchmarking
   - retrieval performance evaluation
   key_entry_points:
   - README.md
-  - scripts/
+  - vectordb_bench/
   build_run:
     language: mixed
-    build: See upstream README for build steps.
-    test: See upstream README for test steps.
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
   provenance:
     shard: merged
     source_file: repos/knowledge/repos/zilliztech__vectordbbench.yaml
-    as_of: '2026-03-05T04:16:38Z'
+    as_of: '2026-03-18'
   local_cache_dir: null
   extras:
     directory: remote::zilliztech/vectordbbench
-    intake:
-      pilot_batch_id: PHASE-4-P4-B1
-      repo_id: repo::zilliztech/VectorDBBench
-      queue_id: intake::zilliztech/VectorDBBench
-      domain_hint: vector_database
-      source_mode: remote_metadata
-      observed_at_utc: '2026-03-05T04:16:38Z'
-    remote:
-      provider: github
-      mode: metadata
-      endpoint: /repos/zilliztech/vectordbbench
-      fetched_at_utc: '2026-03-05T04:16:38Z'
-      refresh:
-        precedence: api_wins_readme_for_missing_required_fields
-        fallback_source: readme_fallback
-        fallback_used: false
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false

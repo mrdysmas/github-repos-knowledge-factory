@@ -6,7 +6,7 @@ source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep/spotify__voyager.yaml
-  as_of: "2026-03-17"
+  as_of: "2026-03-18"
   sourcing_method: training_knowledge
   extraction_model: claude-sonnet-4-6
   extraction_agent: codex
@@ -112,3 +112,17 @@ testing:
     - name: Python API tests
       location: tests/
       description: Tests covering add, query, save/load, and metric correctness
+
+troubleshooting:
+  - symptom: "Index.add_items() raises an error about exceeding max_elements"
+    cause: "Voyager pre-allocates a fixed capacity at construction time via max_elements; inserting more items than this limit fails because the underlying hnswlib graph cannot grow beyond the declared capacity"
+    fix: "Set max_elements to a value larger than the expected dataset size at Index construction time; there is no online resize — the index must be rebuilt if the limit is reached"
+  - symptom: "Index.load_from_file() raises a dimension or space mismatch error"
+    cause: "The Space enum and num_dimensions are embedded in the serialized index file; loading a file with a different Space (e.g., Cosine vs. Euclidean) or dimension than the caller expects raises a mismatch"
+    fix: "Ensure the Space and num_dimensions passed to load_from_file match the values used when the index was originally constructed and saved"
+  - symptom: "Query results differ significantly between Float32 and E4M3 storage types for the same dataset"
+    cause: "E4M3 (8-bit float) quantization introduces precision loss; for datasets where fine-grained distance ranking matters, the reduced precision changes nearest-neighbor ordering"
+    fix: "Use StorageDataType.Float32 when recall accuracy is critical; use E4M3 or Float8 only when memory reduction is worth the recall tradeoff, and validate recall against a Float32 baseline"
+  - symptom: "Memory usage grows unexpectedly large during index construction for high-dimensional vectors"
+    cause: "HNSW graph construction allocates M * num_dimensions * 4 bytes per node across multiple layers; high M and ef_construction values multiply memory pressure during the build phase"
+    fix: "Reduce M (default 12) or ef_construction (default 200) at construction time; lower M reduces memory footprint with a modest recall tradeoff at search time"

@@ -6,8 +6,8 @@ source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep/weaviate__weaviate.yaml
-  as_of: '2026-03-13'
-  sourcing_method: mixed
+  as_of: '2026-03-18'
+  sourcing_method: code_verified
   extraction_model: gpt-unknown
   extraction_agent: codex
 directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/weaviate__weaviate
@@ -156,3 +156,17 @@ api_surface:
   - name: cluster runtime
     purpose: "Handle distributed coordination and replication."
     location: cluster
+
+troubleshooting:
+  - symptom: "Shard remains in LOADING state and queries against that collection time out"
+    cause: "Shards load concurrently on startup; database_shards_loading metric stays elevated when I/O throughput is insufficient to restore HNSW index from disk within the query timeout"
+    fix: "Monitor startup_progress and startup_diskio_throughput Prometheus metrics; reduce max_concurrent_shard_loads startup parameter or use faster storage; queries will succeed once startup_progress reaches 1.0"
+  - symptom: "Vector index tombstone count grows steadily and delete-heavy workloads slow down"
+    cause: "Deleted objects leave tombstones in the HNSW index; tombstone cleanup cycles (vector_index_tombstone_cycle_progress metric) run asynchronously and may lag behind high delete rates"
+    fix: "Monitor vector_index_tombstones gauge per shard; allow the tombstone cleanup cycle to complete before issuing more deletes in bulk; reduce delete batch sizes to let cleanup keep pace"
+  - symptom: "Batch import throughput drops to near zero under write-heavy load"
+    cause: "LSM memtable flushes and segment compaction compete with batch writes for I/O; lsm_active_segments grows until compaction catches up"
+    fix: "Monitor lsm_memtable_size and lsm_active_segments; reduce batch sizes or add rate limiting; use batch_durations_ms histogram to identify which operation (object store vs. vector index) is the bottleneck"
+  - symptom: "gRPC connection refused on port expected to be available"
+    cause: "Weaviate startup wiring in configure_api.go initializes gRPC after REST; if module registration or schema recovery fails, gRPC server may not start"
+    fix: "Check startup logs for errors in MakeAppState() module registration phase; ensure all required module environment variables are set before starting the server"

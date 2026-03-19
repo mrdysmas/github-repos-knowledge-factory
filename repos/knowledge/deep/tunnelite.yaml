@@ -2,12 +2,12 @@ name: tunnelite
 node_id: repo::cristipufu/tunnelite
 github_full_name: cristipufu/tunnelite
 html_url: https://github.com/cristipufu/tunnelite
-source: repos
+source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep/tunnelite.yaml
-  as_of: '2026-02-25'
-  sourcing_method: code_verified
+  as_of: '2026-03-18'
+  sourcing_method: training_knowledge
   extraction_model: glm-5
   extraction_agent: kgraph-repos
 directory: tunnelite-master
@@ -183,3 +183,17 @@ extension_points:
   - location: Azure SignalR integration
     hook: Connection string configuration
     example: Scale to multiple instances
+
+supported_protocols:
+  - name: "SignalR over WebSocket"
+    role: "primary bidirectional transport between Tunnelite client and server; used for tunnel registration, request notification, and streaming response data using MessagePack serialization"
+  - name: HTTP
+    role: "inbound protocol on the public server endpoint; HTTP requests are received, serialized, and queued for forwarding to the connected client via SignalR"
+  - name: HTTPS
+    role: "TLS-secured HTTP for production deployments; the managed tunnelite.com service exposes tunnels over HTTPS"
+  - name: WebSocket
+    role: "bidirectional WebSocket connections tunneled through the SignalR hub (/wsshttptunnel) with IAsyncEnumerable streaming for full-duplex WebSocket proxying"
+  - name: "Server-Sent Events (SSE)"
+    role: "unidirectional streaming protocol tunneled from local service to remote clients through the HTTP hub, preserving the SSE event stream semantics"
+  - name: TCP
+    role: "raw TCP port forwarding handled by the TCP tunnel hub (/wsstcptunnel); arbitrary TCP traffic proxied between public port and local port via SignalR streaming"

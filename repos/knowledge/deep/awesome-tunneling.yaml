@@ -2,12 +2,12 @@ name: awesome-tunneling
 node_id: repo::anderspitman/awesome-tunneling
 github_full_name: anderspitman/awesome-tunneling
 html_url: https://github.com/anderspitman/awesome-tunneling
-source: repos
+source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep/awesome-tunneling.yaml
-  as_of: '2026-02-25'
-  sourcing_method: code_verified
+  as_of: '2026-03-18'
+  sourcing_method: training_knowledge
   extraction_model: glm-5
   extraction_agent: kgraph-repos
 directory: awesome-tunneling-master
@@ -142,3 +142,17 @@ metadata:
   style: curated-list
   scope: focused
   total_tools: 126
+
+supported_protocols:
+  - name: TCP
+    role: "transport protocol covered by the majority of catalogued tunneling tools; the list annotates which tools support raw TCP port forwarding"
+  - name: HTTP/HTTPS
+    role: "HTTP-based tunneling protocol category covered extensively; many listed tools expose local HTTP services via public subdomains or reverse proxy paths"
+  - name: WebSocket
+    role: "WebSocket tunneling protocol covered by several listed tools (e.g., wstunnel) for traversing firewalls that restrict non-HTTP protocols"
+  - name: QUIC
+    role: "modern UDP-based transport catalogued among advanced tools; noted in descriptions of tools like Hysteria and newer frp configurations"
+  - name: WireGuard
+    role: "VPN overlay protocol featured in the overlay-networks section covering tools like Tailscale, Nebula, and NetBird"
+  - name: SSH
+    role: "SSH tunneling protocol documented in the list for tools like sshuttle and chisel that use SSH as the underlying transport"

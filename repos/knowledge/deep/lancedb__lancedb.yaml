@@ -6,7 +6,7 @@ source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep/lancedb__lancedb.yaml
-  as_of: '2026-03-05'
+  as_of: '2026-03-18'
   sourcing_method: code_verified
   extraction_model: gpt-unknown
   extraction_agent: codex
@@ -154,3 +154,17 @@ api_surface:
   - name: search
     purpose: "Execute vector search with optional filter constraints."
     location: python/python/lancedb/table.py
+
+troubleshooting:
+  - symptom: "Vector search returns unordered or incorrect results despite an index existing"
+    cause: "ANN index is not used when the query vector dimension does not match the indexed column dimension, or when no index has been built on the queried vector column"
+    fix: "Confirm the vector column name passed to search() matches the indexed column, and call create_index() on that column before querying; check rust/lancedb/src for index dispatch logic"
+  - symptom: "Schema validation error on table.add() when inserting new rows"
+    cause: "Incoming Arrow RecordBatch or dict rows have a schema that does not match the table's fixed schema; schema-on-write validation rejects mismatches before persistence"
+    fix: "Cast or reorder columns in the incoming data to match the table schema, or use table.merge_insert() for upsert semantics where schema drift is expected"
+  - symptom: "Remote connection fails with authentication or URI error"
+    cause: "The remote backend (LanceDB Cloud) requires an API key and a cloud URI; a local path passed to the remote connection constructor is rejected at the Rust core level"
+    fix: "Set the uri to the cloud endpoint (e.g. db://my-project) and provide the api_key parameter to lancedb.connect(); local paths use the local backend and do not accept cloud credentials"
+  - symptom: "Index build OOM or process killed during create_index on a large table"
+    cause: "IVF-PQ and other index types load partition data into memory during training; large tables with high-dimensional vectors can exhaust available RAM"
+    fix: "Reduce num_partitions or num_sub_vectors, process the table in smaller Lance fragments, or run index building on a machine with more RAM"

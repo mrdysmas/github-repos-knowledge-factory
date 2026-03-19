@@ -2,11 +2,11 @@ name: frp
 node_id: repo::fatedier/frp
 github_full_name: fatedier/frp
 html_url: https://github.com/fatedier/frp
-source: repos
+source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep_facts/frp.yaml
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   extractor_version: ws6-deep-integrator-v1
   extraction_model: glm-5
   extraction_agent: kgraph-repos
@@ -15,7 +15,7 @@ facts:
   predicate: exposes_api_endpoint
   object_kind: api_route
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: api_surface.rest_endpoints[2]
@@ -27,12 +27,12 @@ facts:
     excerpt: /api/clients
   object_value: /api/clients
   note: List connected clients
-  fact_id: fact::d2149c26acd2eeec1a816594
+  fact_id: fact::037fafc6e16b30c8bddc2736
 - fact_type: api_endpoint
   predicate: exposes_api_endpoint
   object_kind: api_route
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: api_surface.rest_endpoints[1]
@@ -44,12 +44,12 @@ facts:
     excerpt: /api/proxies
   object_value: /api/proxies
   note: List all active proxies
-  fact_id: fact::150f201440f3c143c139e16d
+  fact_id: fact::2e6929bebb487276335212d9
 - fact_type: api_endpoint
   predicate: exposes_api_endpoint
   object_kind: api_route
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: api_surface.rest_endpoints[0]
@@ -61,12 +61,12 @@ facts:
     excerpt: /api/serverinfo
   object_value: /api/serverinfo
   note: Server status and configuration
-  fact_id: fact::971d9e5c6b040ba3a9a45ae9
+  fact_id: fact::135b7953b6ac64d1b90ec291
 - fact_type: api_endpoint
   predicate: exposes_api_endpoint
   object_kind: api_route
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: api_surface.rest_endpoints[3]
@@ -78,12 +78,12 @@ facts:
     excerpt: /metrics
   object_value: /metrics
   note: Prometheus metrics when enabled
-  fact_id: fact::ba1c398236120167e6c97792
+  fact_id: fact::4194f336c7fef589ffb288b4
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: architecture.key_abstractions[2]
@@ -95,12 +95,12 @@ facts:
     excerpt: Persistent connection for control messages and heartbeats
   object_value: Control Connection
   note: Persistent connection for control messages and heartbeats
-  fact_id: fact::e717055c1457f94f548f5f91
+  fact_id: fact::7a12f87c407c4d53d7e3e9c7
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: architecture.key_abstractions[0]
@@ -114,12 +114,12 @@ facts:
   object_value: Proxy
   note: Defines how to handle work connections for different types (TCP, HTTP, STCP,
     etc.)
-  fact_id: fact::534bb6d2727950c5e3b9f46f
+  fact_id: fact::eb882f7bfa99b09e44838ee0
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: architecture.key_abstractions[1]
@@ -131,12 +131,12 @@ facts:
     excerpt: Reverse proxy connections from server to client for secure access
   object_value: Visitor
   note: Reverse proxy connections from server to client for secure access
-  fact_id: fact::83770436685c406200b34256
+  fact_id: fact::3b093584932c851d92c3687a
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: architecture.key_abstractions[3]
@@ -148,12 +148,12 @@ facts:
     excerpt: Multiplexed connections for actual data transfer
   object_value: Work Connection
   note: Multiplexed connections for actual data transfer
-  fact_id: fact::b7457010eb6ae0985c40b32c
+  fact_id: fact::9ca34600aab97d22d700333c
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: architecture.module_breakdown[0]
@@ -166,12 +166,12 @@ facts:
   object_value: client/
   note: 'responsibility: Client service orchestration, control connections, proxy/visitor
     management; key_files: client/service.go, client/control.go, client/proxy/proxy.go'
-  fact_id: fact::74449d400bfd11815074ca8f
+  fact_id: fact::9cd702c035132f87a3b3a76d
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: architecture.module_breakdown[2]
@@ -184,12 +184,12 @@ facts:
   object_value: pkg/config/v1/
   note: 'responsibility: Configuration structures and validation for all components;
     key_files: pkg/config/v1/client.go, pkg/config/v1/server.go, pkg/config/v1/proxy.go'
-  fact_id: fact::abb8675b4ed657e30e61698d
+  fact_id: fact::1c31df61bb0b0d6ae0a19edf
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: architecture.module_breakdown[3]
@@ -202,12 +202,12 @@ facts:
   object_value: pkg/msg/
   note: 'responsibility: Protocol message definitions (Login, NewProxy, WorkConn,
     heartbeats); key_files: pkg/msg/msg.go'
-  fact_id: fact::6cdb46ce14e2ad918f13b49e
+  fact_id: fact::147695edf4322b6ba5853fe4
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: architecture.module_breakdown[5]
@@ -220,12 +220,12 @@ facts:
   object_value: pkg/plugin/
   note: 'responsibility: Plugin system interfaces for client and server extensions;
     key_files: pkg/plugin/client/, pkg/plugin/server/'
-  fact_id: fact::d650f1cf2f71daae3ae2fcac
+  fact_id: fact::e182575d42b2d7732e13d182
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: architecture.module_breakdown[4]
@@ -238,12 +238,12 @@ facts:
   object_value: pkg/transport/
   note: 'responsibility: Message transport layer with multiplexing support; key_files:
     pkg/transport/'
-  fact_id: fact::9e8f87141f24eeb43de36d10
+  fact_id: fact::76da0a9ecdac5995151a177d
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: architecture.module_breakdown[1]
@@ -256,12 +256,12 @@ facts:
   object_value: server/
   note: 'responsibility: Server service with multi-protocol listeners, proxy registry,
     API endpoints; key_files: server/service.go, server/proxy/proxy.go, server/registry/'
-  fact_id: fact::ac3e088c16dddeac88114386
+  fact_id: fact::b3b2e77248ae01b1b73f24d6
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: configuration.options[7]
@@ -273,12 +273,12 @@ facts:
     excerpt: auth.method
   object_value: auth.method
   note: 'type: string; default: token; Authentication method (token, oidc)'
-  fact_id: fact::337f2a075fd0b5237bf2b102
+  fact_id: fact::4409e9d2c3f3eb30dcce64d5
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: configuration.options[8]
@@ -290,12 +290,12 @@ facts:
     excerpt: auth.token
   object_value: auth.token
   note: 'type: string; Shared secret token for authentication'
-  fact_id: fact::f1db2083d7962a0a9dcccde8
+  fact_id: fact::4f67d0fe3b64c467178b6a32
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: configuration.options[0]
@@ -307,12 +307,12 @@ facts:
     excerpt: bindAddr
   object_value: bindAddr
   note: 'type: string; default: 0.0.0.0; Address to bind server listeners'
-  fact_id: fact::7a5a9869f28bf15c65faa599
+  fact_id: fact::8c363b975e74e1ea5f40dcb9
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: configuration.options[1]
@@ -324,12 +324,12 @@ facts:
     excerpt: bindPort
   object_value: bindPort
   note: 'type: int; Main server port for client connections'
-  fact_id: fact::106071bd5e11c042e28ef5f7
+  fact_id: fact::049f7d3b47693ac4137d03be
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: configuration.file
@@ -342,12 +342,12 @@ facts:
   object_value: file
   note: 'default: frps.toml / frpc.toml (also supports YAML, JSON); configuration
     default for file'
-  fact_id: fact::7979af22a0c017dec27a6027
+  fact_id: fact::8dc6e30072e54961fe9c6b34
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: configuration.options[2]
@@ -359,12 +359,12 @@ facts:
     excerpt: kcpBindPort
   object_value: kcpBindPort
   note: 'type: int; KCP protocol port (UDP-based, lower latency)'
-  fact_id: fact::0814fdace0d8e2c3c6761bbb
+  fact_id: fact::78b42165f185876b0219a0a1
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: configuration.options[12]
@@ -376,12 +376,12 @@ facts:
     excerpt: poolCount
   object_value: poolCount
   note: 'type: int; Number of connection pool entries'
-  fact_id: fact::dd19354322b856e109d14f69
+  fact_id: fact::1ce1950d56f1e3df67cc6e12
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: configuration.options[11]
@@ -393,12 +393,12 @@ facts:
     excerpt: protocol
   object_value: protocol
   note: 'type: string; default: tcp; Transport protocol (tcp, kcp, quic, websocket)'
-  fact_id: fact::b15ccfe5f33f0f6914fa4964
+  fact_id: fact::d31bb63a770f48cbfddb3b94
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: configuration.options[3]
@@ -410,12 +410,12 @@ facts:
     excerpt: quicBindPort
   object_value: quicBindPort
   note: 'type: int; QUIC protocol port (modern UDP multiplexed)'
-  fact_id: fact::4a5095fa43763d421686bad0
+  fact_id: fact::5a86b8f4ab3ef0b2593a965a
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: configuration.options[9]
@@ -427,12 +427,12 @@ facts:
     excerpt: serverAddr
   object_value: serverAddr
   note: 'type: string; default: 0.0.0.0; Server address to connect to'
-  fact_id: fact::a422f6537e3e7b101f768ad9
+  fact_id: fact::c2c797396d4bb55e214248a8
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: configuration.options[10]
@@ -444,12 +444,12 @@ facts:
     excerpt: serverPort
   object_value: serverPort
   note: 'type: int; Server port'
-  fact_id: fact::7a33d5bbb5e78d994933a58f
+  fact_id: fact::fe7c3b8788da0bcb65c8ac8f
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: configuration.options[6]
@@ -461,12 +461,12 @@ facts:
     excerpt: tcpmuxHTTPConnectPort
   object_value: tcpmuxHTTPConnectPort
   note: 'type: int; TCP multiplexing via HTTP CONNECT'
-  fact_id: fact::aa2411849a03da8c3c30416d
+  fact_id: fact::6088676347a61a64187fd90a
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: configuration.options[14]
@@ -478,12 +478,12 @@ facts:
     excerpt: transport.useCompression
   object_value: transport.useCompression
   note: 'type: bool; Enable compression on connections'
-  fact_id: fact::f01af43aeff6af58a76a677a
+  fact_id: fact::c043e2f57be3133975831536
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: configuration.options[13]
@@ -495,12 +495,12 @@ facts:
     excerpt: transport.useEncryption
   object_value: transport.useEncryption
   note: 'type: bool; Enable encryption on connections'
-  fact_id: fact::4fb5c5bd9f18da08a28b3dd7
+  fact_id: fact::c728df5e5c5c6c6f14462f58
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: configuration.options[4]
@@ -512,12 +512,12 @@ facts:
     excerpt: vhostHTTPPort
   object_value: vhostHTTPPort
   note: 'type: int; HTTP virtual host port for HTTP proxy type'
-  fact_id: fact::51f298057ca30f0872892a44
+  fact_id: fact::8b1f51f788110ebee2ebf5da
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: configuration.options[5]
@@ -529,12 +529,12 @@ facts:
     excerpt: vhostHTTPSPort
   object_value: vhostHTTPSPort
   note: 'type: int; HTTPS virtual host port'
-  fact_id: fact::12b32b317f14c381453032a9
+  fact_id: fact::3a0b05e7ae566a708d0b8e1d
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: api_surface.public_functions[0]
@@ -547,12 +547,12 @@ facts:
   object_value: client/service.NewService
   note: Create and initialize client service; func NewService(options ServiceOptions)
     (*Service, error); client/service.go:144
-  fact_id: fact::48b6319e60a43e4df9122411
+  fact_id: fact::d661f8d6cedccecf258854ea
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: api_surface.public_functions[1]
@@ -565,12 +565,12 @@ facts:
   object_value: client/service.Run
   note: Start client service and establish server connection; func (sv *Service) Run(ctx
     context.Context) error; client/service.go:165
-  fact_id: fact::457801e991341f799b64277e
+  fact_id: fact::439088e6bbdf3a53f2334609
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: api_surface.public_functions[2]
@@ -583,12 +583,12 @@ facts:
   object_value: server/service.NewService
   note: Create and initialize server service; func NewService(cfg *v1.ServerConfig)
     (*Service, error); server/service.go:135
-  fact_id: fact::391a33fd30fb1bcdbbe21999
+  fact_id: fact::caadd9d7c0c7e3081674e396
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: api_surface.public_functions[3]
@@ -601,12 +601,12 @@ facts:
   object_value: server/service.Run
   note: Start all server listeners and handlers; func (sv *Service) Run(ctx context.Context)
     error; server/service.go:200
-  fact_id: fact::a3b13ef7536077ded18ca9a4
+  fact_id: fact::628e3406e975c82019b3f098
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: extension_points[0]
@@ -618,12 +618,12 @@ facts:
     excerpt: client/proxy/proxy.go
   object_value: client/proxy/proxy.go
   note: Register custom proxy type with factory function; RegisterProxyFactory
-  fact_id: fact::4a1fbe1b98826ad6090b0bd5
+  fact_id: fact::92920309ab2e9e07c4c6dfa4
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: extension_points[3]
@@ -635,12 +635,12 @@ facts:
     excerpt: pkg/msg/msg.go
   object_value: pkg/msg/msg.go
   note: Add custom message types for protocol extensions; msgTypeMap
-  fact_id: fact::cd9ddccb9a3b8377f143c84b
+  fact_id: fact::5c298445eb5e3e139052dc62
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: extension_points[1]
@@ -652,12 +652,12 @@ facts:
     excerpt: pkg/plugin/client/
   object_value: pkg/plugin/client/
   note: Implement Handle() for custom connection processing; Plugin interface
-  fact_id: fact::91dcf28492d0ed2b63e9ca15
+  fact_id: fact::bbea53233ba3abbee5574d7c
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: extension_points[2]
@@ -669,12 +669,12 @@ facts:
     excerpt: pkg/plugin/server/
   object_value: pkg/plugin/server/
   note: Add server-side HTTP plugins for auth hooks; HTTPPluginOptions
-  fact_id: fact::f740b35083a9584269b86166
+  fact_id: fact::8f4b028adf19289b99f5f607
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: testing.coverage_areas[5].line[0]
@@ -686,12 +686,12 @@ facts:
     excerpt: Authentication flows
   object_value: Authentication flows
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::69affdc82499e0b9e7d560fe
+  fact_id: fact::39e5a7a0d567290f7d7fa65a
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: testing.coverage_areas[2].line[0]
@@ -703,12 +703,12 @@ facts:
     excerpt: Bandwidth limiting
   object_value: Bandwidth limiting
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::20211de6dd1b4ada47914b62
+  fact_id: fact::305e13820bc205a40b4f8106
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: implementation_patterns[1]
@@ -721,12 +721,12 @@ facts:
   object_value: Base Proxy Composition
   note: 'description: Common functionality in BaseProxy struct, specialized types
     embed it; location: client/proxy/proxy.go:88-103'
-  fact_id: fact::0ab94e06deaf96dc1a8f91b7
+  fact_id: fact::adb4745399cd14a08bc9bb6a
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: implementation_patterns[0]
@@ -739,12 +739,12 @@ facts:
   object_value: Factory Registration
   note: 'description: Proxy types registered via RegisterProxyFactory() at init time;
     location: client/proxy/proxy.go:41-45'
-  fact_id: fact::0cb54e63e4852631879c4d72
+  fact_id: fact::c60c0f35ab8cb4dc3a2cc0cf
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: testing.framework.line[0]
@@ -756,12 +756,12 @@ facts:
     excerpt: Go testing + custom e2e framework
   object_value: Go testing + custom e2e framework
   note: 'testing metadata: framework'
-  fact_id: fact::016ad7c6299c62bd5e324ce0
+  fact_id: fact::60c0b852a329f9031cbe5950
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: testing.coverage_areas[3].line[0]
@@ -773,12 +773,12 @@ facts:
     excerpt: Health checks
   object_value: Health checks
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::1cea6f0fc05fd0618744f748
+  fact_id: fact::dfaca4038e08b7f019742c4e
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: testing.coverage_areas[1].line[0]
@@ -790,12 +790,12 @@ facts:
     excerpt: Load balancing and grouping
   object_value: Load balancing and grouping
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::cab734990014bee0e5133980
+  fact_id: fact::e1a8e88c8a40503d3ea64b58
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: implementation_patterns[2]
@@ -808,12 +808,12 @@ facts:
   object_value: Message Type Dispatch
   note: 'description: Single-byte type identifiers for protocol message routing; location:
     pkg/msg/msg.go:22-41'
-  fact_id: fact::987a2a9226395adb58e295bb
+  fact_id: fact::00537500457d55183f4bdff1
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: implementation_patterns[4]
@@ -826,12 +826,12 @@ facts:
   object_value: Plugin Hook System
   note: 'description: Client/server plugins intercept connections for custom processing;
     location: pkg/plugin/client/plugin.go'
-  fact_id: fact::ee406b56fc64bf4f0a9a83b4
+  fact_id: fact::226f9a600357f39a46c1e03b
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: testing.coverage_areas[4].line[0]
@@ -843,12 +843,12 @@ facts:
     excerpt: Plugin system
   object_value: Plugin system
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::3e4e4129f4d93814d3707f55
+  fact_id: fact::556ae58d17052d15299d5384
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: implementation_patterns[3]
@@ -861,12 +861,12 @@ facts:
   object_value: TCP Multiplexing
   note: 'description: Uses yamux for stream multiplexing over single TCP connection;
     location: client/control.go'
-  fact_id: fact::33884fa1d6338d2a2ee5126f
+  fact_id: fact::9ebd8602229fb2a12522fdad
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: testing.coverage_areas[0].line[0]
@@ -878,12 +878,12 @@ facts:
     excerpt: TCP/UDP/HTTP/HTTPS proxy types
   object_value: TCP/UDP/HTTP/HTTPS proxy types
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::401c4c3699a472fb0844301a
+  fact_id: fact::a623049a7613cc5bf45af488
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/frp.yaml
     source_section: testing.structure.line[0]
@@ -895,4 +895,164 @@ facts:
     excerpt: test/e2e/ with framework/, basic/, features/, plugin/
   object_value: test/e2e/ with framework/, basic/, features/, plugin/
   note: 'testing metadata: structure'
-  fact_id: fact::163e1a25e28dca21c0ec4f82
+  fact_id: fact::af92f40cca5580da2702ff3a
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/frp.yaml
+    source_section: supported_protocols[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[0]
+    source_file: repos/knowledge/deep/frp.yaml
+    excerpt: HTTP
+  object_value: HTTP
+  fact_id: fact::0e392c707b0aa0a4d0448ab0
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/frp.yaml
+    source_section: supported_protocols[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[1]
+    source_file: repos/knowledge/deep/frp.yaml
+    excerpt: HTTP CONNECT
+  object_value: HTTP CONNECT
+  fact_id: fact::d6c86437d9aeb38a94225104
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/frp.yaml
+    source_section: supported_protocols[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[2]
+    source_file: repos/knowledge/deep/frp.yaml
+    excerpt: HTTPS
+  object_value: HTTPS
+  fact_id: fact::6753bdae6032507a7d0eca8e
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/frp.yaml
+    source_section: supported_protocols[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[3]
+    source_file: repos/knowledge/deep/frp.yaml
+    excerpt: KCP
+  object_value: KCP
+  fact_id: fact::0c17fb9f3fba38bacd8a26d1
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/frp.yaml
+    source_section: supported_protocols[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[4]
+    source_file: repos/knowledge/deep/frp.yaml
+    excerpt: OIDC
+  object_value: OIDC
+  fact_id: fact::83b0b5f79f93b8543396d6dc
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/frp.yaml
+    source_section: supported_protocols[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[5]
+    source_file: repos/knowledge/deep/frp.yaml
+    excerpt: QUIC
+  object_value: QUIC
+  fact_id: fact::069d03861358b5eef6cc6438
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/frp.yaml
+    source_section: supported_protocols[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[6]
+    source_file: repos/knowledge/deep/frp.yaml
+    excerpt: SOCKS5
+  object_value: SOCKS5
+  fact_id: fact::f23a30c7a817c657bc45bd9f
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/frp.yaml
+    source_section: supported_protocols[7]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[7]
+    source_file: repos/knowledge/deep/frp.yaml
+    excerpt: TCP
+  object_value: TCP
+  fact_id: fact::08cc215056de6613ac41ab23
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/frp.yaml
+    source_section: supported_protocols[8]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[8]
+    source_file: repos/knowledge/deep/frp.yaml
+    excerpt: WebSocket
+  object_value: WebSocket
+  fact_id: fact::0930f60b3a023dc122467cda
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/frp.yaml
+    source_section: supported_protocols[9]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[9]
+    source_file: repos/knowledge/deep/frp.yaml
+    excerpt: token-based authentication
+  object_value: token-based authentication
+  fact_id: fact::253508e1d3cb7b029e7ad2b6

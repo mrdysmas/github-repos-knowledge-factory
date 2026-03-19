@@ -1,0 +1,603 @@
+artifact_type: ws5_input_manifest
+contract_version: "1.1"
+defaults:
+  target_shard: repos
+  local_cache_dir: null
+repos:
+
+  # ── Group A: Tunneling / vpn_mesh / network_infrastructure ──────────────────
+
+  - name: awesome-tunneling
+    file_stem: awesome-tunneling
+    github_full_name: anderspitman/awesome-tunneling
+    html_url: https://github.com/anderspitman/awesome-tunneling
+    target_shard: repos
+    source: remote_metadata
+    category: documentation
+    summary: "Curated list of tunneling tools and services covering reverse tunnels, overlay networks, and protocol multiplexing solutions."
+    core_concepts:
+      - Reverse Tunnels
+      - Overlay Networks
+      - Protocol Multiplexing
+    key_entry_points:
+      - README.md
+    build_run:
+      language: unknown
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-18"
+    local_cache_dir: null
+
+  - name: bore
+    file_stem: bore
+    github_full_name: ekzhang/bore
+    html_url: https://github.com/ekzhang/bore
+    target_shard: repos
+    source: remote_metadata
+    category: tunneling
+    summary: "Minimalist TCP tunnel in async Rust (~400 lines) that exposes local ports to a public server, bypassing NAT firewalls."
+    core_concepts:
+      - Control Protocol
+      - Connection Proxying
+      - HMAC Authentication
+    key_entry_points:
+      - README.md
+      - src/
+    build_run:
+      language: rust
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-18"
+    local_cache_dir: null
+
+  - name: cloudflared
+    file_stem: cloudflared
+    github_full_name: cloudflare/cloudflared
+    html_url: https://github.com/cloudflare/cloudflared
+    target_shard: repos
+    source: remote_metadata
+    category: network_infrastructure
+    summary: "Cloudflare Tunnel client that creates outbound-only connections to Cloudflare's edge, enabling Zero Trust service exposure without open ports."
+    core_concepts:
+      - Cloudflare Tunnel client
+      - Zero Trust service exposure
+    key_entry_points:
+      - README.md
+      - cmd/cloudflared/
+    build_run:
+      language: go
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-18"
+    local_cache_dir: null
+
+  - name: frp
+    file_stem: frp
+    github_full_name: fatedier/frp
+    html_url: https://github.com/fatedier/frp
+    target_shard: repos
+    source: remote_metadata
+    category: tunneling
+    summary: "Fast reverse proxy enabling NAT traversal with client-server architecture supporting TCP, UDP, HTTP, HTTPS, and multiplexed connection types."
+    core_concepts:
+      - client-server proxy architecture
+      - proxy types and multiplexing
+      - visitor pattern for secure access
+    key_entry_points:
+      - README.md
+      - pkg/
+      - server/
+      - client/
+    build_run:
+      language: go
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-18"
+    local_cache_dir: null
+
+  - name: gost
+    file_stem: gost
+    github_full_name: go-gost/gost
+    html_url: https://github.com/go-gost/gost
+    target_shard: repos
+    source: remote_metadata
+    category: tunneling
+    summary: "Go-based security tunnel supporting 40+ protocols with multi-hop forwarding chains, hot-reload config, and modular connector/dialer architecture."
+    core_concepts:
+      - Forwarding Chain
+      - Protocol Diversity
+      - Service Architecture
+    key_entry_points:
+      - README.md
+      - cmd/
+    build_run:
+      language: go
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-18"
+    local_cache_dir: null
+
+  - name: headscale
+    file_stem: headscale
+    github_full_name: juanfont/headscale
+    html_url: https://github.com/juanfont/headscale
+    target_shard: repos
+    source: remote_metadata
+    category: vpn_mesh
+    summary: "Open-source self-hosted implementation of the Tailscale control server managing WireGuard key exchange, IP allocation, policy enforcement, and DERP relay routing."
+    core_concepts:
+      - Control Server
+      - Tailnet
+      - "MapRequest/MapResponse Protocol"
+    key_entry_points:
+      - README.md
+      - hscontrol/
+    build_run:
+      language: go
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-18"
+    local_cache_dir: null
+
+  - name: hsync
+    file_stem: hsync
+    github_full_name: monteslu/hsync
+    html_url: https://github.com/monteslu/hsync
+    target_shard: repos
+    source: remote_metadata
+    category: tunneling
+    summary: "MQTT-based reverse proxy and WebRTC peer-to-peer tunneling tool supporting HTTP proxying, socket relays, and P2P connections."
+    core_concepts:
+      - MQTT-based reverse proxy
+      - WebRTC peer-to-peer tunneling
+      - Socket relays and listeners
+    key_entry_points:
+      - README.md
+      - index.js
+    build_run:
+      language: "JavaScript (ES modules)"
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-18"
+    local_cache_dir: null
+
+  - name: hysteria
+    file_stem: hysteria
+    github_full_name: apernet/hysteria
+    html_url: https://github.com/apernet/hysteria
+    target_shard: repos
+    source: remote_metadata
+    category: vpn_mesh
+    summary: "High-performance proxy and VPN tool using QUIC with custom congestion control, HTTP/3 masquerading, and TLS 1.3 for censorship circumvention."
+    core_concepts:
+      - Brutal Congestion Control
+      - "HTTP/3 Masquerading"
+      - QUIC Datagram Transport
+    key_entry_points:
+      - README.md
+      - app/
+      - core/
+    build_run:
+      language: go
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-18"
+    local_cache_dir: null
+
+  - name: mmar
+    file_stem: mmar
+    github_full_name: yusuf-musleh/mmar
+    html_url: https://github.com/yusuf-musleh/mmar
+    target_shard: repos
+    source: remote_metadata
+    category: tunneling
+    summary: "Go-based localhost tunnel that assigns unique subdomains to local servers via client-server TCP with custom binary protocol and auto-reconnect."
+    core_concepts:
+      - Client-Server Tunnel Architecture
+      - Custom Tunnel Protocol
+      - Auto-Reconnect with Subdomain Reclamation
+    key_entry_points:
+      - README.md
+      - main.go
+    build_run:
+      language: go
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-18"
+    local_cache_dir: null
+
+  - name: nebula
+    file_stem: nebula
+    github_full_name: slackhq/nebula
+    html_url: https://github.com/slackhq/nebula
+    target_shard: repos
+    source: remote_metadata
+    category: vpn_mesh
+    summary: "Scalable overlay networking tool creating encrypted mesh networks with certificate-based identity, lighthouse discovery, and cloud-style firewall rules."
+    core_concepts:
+      - lighthouses
+      - certificates
+      - security groups
+    key_entry_points:
+      - README.md
+      - cmd/nebula/
+    build_run:
+      language: go
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-18"
+    local_cache_dir: null
+
+  - name: pangolin
+    file_stem: pangolin
+    github_full_name: fosrl/pangolin
+    html_url: https://github.com/fosrl/pangolin
+    target_shard: repos
+    source: remote_metadata
+    category: network_infrastructure
+    summary: "Self-hosted tunneled reverse proxy with zero-trust access control, identity-aware resource exposure, and automatic SSL via Traefik."
+    core_concepts:
+      - sites
+      - targets
+      - zero-trust access
+    key_entry_points:
+      - README.md
+      - src/
+    build_run:
+      language: typescript
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-18"
+    local_cache_dir: null
+
+  - name: rathole
+    file_stem: rathole
+    github_full_name: rapiz1/rathole
+    html_url: https://github.com/rapiz1/rathole
+    target_shard: repos
+    source: remote_metadata
+    category: tunneling
+    summary: "High-performance NAT traversal reverse proxy in Rust with per-service token auth and pluggable transport layer (TCP, TLS, Noise, WebSocket)."
+    core_concepts:
+      - client-server tunnel architecture
+      - service-based token authentication
+      - transport layer abstraction
+    key_entry_points:
+      - README.md
+      - src/
+    build_run:
+      language: rust
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-18"
+    local_cache_dir: null
+
+  - name: tailscale
+    file_stem: tailscale
+    github_full_name: tailscale/tailscale
+    html_url: https://github.com/tailscale/tailscale
+    target_shard: repos
+    source: remote_api
+    category: vpn_mesh
+    summary: "WireGuard-based mesh VPN with identity-aware access control, DERP relay fallback, and MagicDNS for zero-config device discovery."
+    core_concepts:
+      - Mesh VPN over WireGuard
+      - Identity-aware network access
+    key_entry_points:
+      - README.md
+      - cmd/tailscale/
+      - wgengine/
+    build_run:
+      language: go
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-18"
+    local_cache_dir: null
+
+  - name: tunnelite
+    file_stem: tunnelite
+    github_full_name: cristipufu/tunnelite
+    html_url: https://github.com/cristipufu/tunnelite
+    target_shard: repos
+    source: remote_metadata
+    category: tunneling
+    summary: "ASP.NET Core / .NET 8 tunneling server using SignalR with MessagePack for HTTP, WebSocket, SSE, and TCP traffic forwarding to local clients."
+    core_concepts:
+      - SignalR-based tunneling
+      - Multi-protocol support
+      - Deferred request processing
+    key_entry_points:
+      - README.md
+      - src/
+    build_run:
+      language: "C# / .NET 8.0"
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-18"
+    local_cache_dir: null
+
+  - name: vgrok
+    file_stem: vgrok
+    github_full_name: styfle/vgrok
+    html_url: https://github.com/styfle/vgrok
+    target_shard: repos
+    source: remote_metadata
+    category: tunneling
+    summary: "TypeScript tool using ephemeral Vercel sandbox instances as public-facing proxies relaying HTTP traffic via WebSocket tunnels to local servers."
+    core_concepts:
+      - Vercel Sandbox Proxy
+      - Bidirectional WebSocket Tunnel
+      - Sandbox Lifecycle Management
+    key_entry_points:
+      - README.md
+      - src/
+    build_run:
+      language: TypeScript
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-18"
+    local_cache_dir: null
+
+  - name: ytunnel
+    file_stem: ytunnel
+    github_full_name: yetidevworks/ytunnel
+    html_url: https://github.com/yetidevworks/ytunnel
+    target_shard: repos
+    source: remote_metadata
+    category: tunneling
+    summary: "Rust CLI orchestrator for Cloudflare Tunnels that generates cloudflared configs and creates launchd/systemd services for persistent background tunnels."
+    core_concepts:
+      - Tunnel Management Layer
+      - Ephemeral vs Persistent Tunnels
+      - "Multi-Account/Multi-Zone Architecture"
+    key_entry_points:
+      - README.md
+      - src/
+    build_run:
+      language: rust
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-18"
+    local_cache_dir: null
+
+  # ── Group B: Vector databases ────────────────────────────────────────────────
+
+  - name: infinity
+    file_stem: infinity
+    github_full_name: infiniflow/infinity
+    html_url: https://github.com/infiniflow/infinity
+    target_shard: repos
+    source: remote_metadata
+    category: vector_database
+    summary: "AI-native database designed for LLM applications supporting vector indexing, full-text search, and hybrid retrieval infrastructure."
+    core_concepts:
+      - vector indexing and retrieval
+      - hybrid search infrastructure
+    key_entry_points:
+      - README.md
+      - src/
+    build_run:
+      language: mixed
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-18"
+    local_cache_dir: null
+
+  - name: ladybug
+    file_stem: ladybugdb__ladybug
+    github_full_name: ladybugdb/ladybug
+    html_url: https://github.com/LadybugDB/ladybug
+    target_shard: repos
+    source: remote_metadata
+    category: vector_database
+    summary: "Embedded graph database runtime with property-graph and Cypher query surface, implemented as a C++ engine with WAL-backed storage and transaction layer."
+    core_concepts:
+      - embedded database
+      - property graph
+      - cypher query language
+    key_entry_points:
+      - README.md
+      - src/
+    build_run:
+      language: C++
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-18"
+    local_cache_dir: null
+
+  - name: lancedb
+    file_stem: lancedb__lancedb
+    github_full_name: lancedb/lancedb
+    html_url: https://github.com/lancedb/lancedb
+    target_shard: repos
+    source: remote_metadata
+    category: vector_database
+    summary: "Serverless vector database built on the Lance columnar format with embedded and client-server modes and multi-language SDK support."
+    core_concepts:
+      - vector database capabilities
+      - lancedb repository architecture
+    key_entry_points:
+      - README.md
+      - rust/
+      - python/
+    build_run:
+      language: rust
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-18"
+    local_cache_dir: null
+
+  - name: ngt
+    file_stem: ngt
+    github_full_name: yahoojapan/ngt
+    html_url: https://github.com/yahoojapan/ngt
+    target_shard: repos
+    source: remote_metadata
+    category: vector_database
+    summary: "Yahoo Japan's Neighborhood Graph and Tree ANN library implementing ANNG, ONNG, and PANNG index types for high-performance vector similarity retrieval."
+    core_concepts:
+      - ANN index construction
+      - vector similarity retrieval
+    key_entry_points:
+      - README.md
+      - lib/NGT/
+    build_run:
+      language: c++
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-18"
+    local_cache_dir: null
+
+  - name: qdrant
+    file_stem: qdrant__qdrant
+    github_full_name: qdrant/qdrant
+    html_url: https://github.com/qdrant/qdrant
+    target_shard: repos
+    source: remote_metadata
+    category: vector_database
+    summary: "Vector similarity search engine written in Rust with filtering, payload indexing, distributed mode, and REST/gRPC API surface."
+    core_concepts:
+      - vector database capabilities
+      - qdrant repository architecture
+    key_entry_points:
+      - README.md
+      - src/
+    build_run:
+      language: rust
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-18"
+    local_cache_dir: null
+
+  - name: voyager
+    file_stem: spotify__voyager
+    github_full_name: spotify/voyager
+    html_url: https://github.com/spotify/voyager
+    target_shard: repos
+    source: remote_metadata
+    category: vector_database
+    summary: "Spotify's approximate nearest-neighbor library wrapping hnswlib with Python and Java bindings, optimized for production retrieval infrastructure."
+    core_concepts:
+      - approximate nearest-neighbor indexing
+      - vector retrieval infrastructure
+    key_entry_points:
+      - README.md
+      - python/
+      - java/
+    build_run:
+      language: mixed
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-18"
+    local_cache_dir: null
+
+  - name: usearch
+    file_stem: unum-cloud__usearch
+    github_full_name: unum-cloud/usearch
+    html_url: https://github.com/unum-cloud/usearch
+    target_shard: repos
+    source: remote_metadata
+    category: vector_database
+    summary: "Fast vector similarity search engine with HNSW indexing, multi-language bindings, and hardware-optimized distance computation primitives."
+    core_concepts:
+      - vector similarity search engine
+      - high-performance retrieval primitives
+    key_entry_points:
+      - README.md
+      - include/
+      - python/
+    build_run:
+      language: mixed
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-18"
+    local_cache_dir: null
+
+  - name: weaviate
+    file_stem: weaviate__weaviate
+    github_full_name: weaviate/weaviate
+    html_url: https://github.com/weaviate/weaviate
+    target_shard: repos
+    source: remote_metadata
+    category: vector_database
+    summary: "Open-source vector database with GraphQL and REST APIs, multi-tenancy, hybrid search, and module-based vectorizer integrations."
+    core_concepts:
+      - vector database capabilities
+      - weaviate repository architecture
+    key_entry_points:
+      - README.md
+      - usecases/
+      - modules/
+    build_run:
+      language: go
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-18"
+    local_cache_dir: null
+
+  - name: vectordbbench
+    file_stem: zilliztech__vectordbbench
+    github_full_name: zilliztech/vectordbbench
+    html_url: https://github.com/zilliztech/vectordbbench
+    target_shard: repos
+    source: remote_metadata
+    category: vector_database
+    summary: "Benchmarking framework for evaluating vector database retrieval performance across multiple engines with standardized dataset and metric definitions."
+    core_concepts:
+      - vector database benchmarking
+      - retrieval performance evaluation
+    key_entry_points:
+      - README.md
+      - vectordb_bench/
+    build_run:
+      language: mixed
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-18"
+    local_cache_dir: null
+
+  # ── Group C: Inference serving ───────────────────────────────────────────────
+
+  - name: lmdeploy
+    file_stem: lmdeploy
+    github_full_name: internlm/lmdeploy
+    html_url: https://github.com/internlm/lmdeploy
+    target_shard: repos
+    source: remote_metadata
+    category: inference_serving
+    summary: "LLM inference and serving toolkit with TurboMind C++/CUDA engine and PyTorch engine, supporting quantization, batching, and OpenAI-compatible API."
+    core_concepts:
+      - TurboMind Engine
+      - PyTorch Engine
+      - Quantization
+    key_entry_points:
+      - README.md
+      - lmdeploy/
+    build_run:
+      language: "Python + C++/CUDA"
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-18"
+    local_cache_dir: null
+
+  - name: nexa_sdk
+    file_stem: nexa_sdk
+    github_full_name: nexaai/nexa-sdk
+    html_url: https://github.com/nexaai/nexa-sdk
+    target_shard: repos
+    source: remote_metadata
+    category: inference_serving
+    summary: "Multi-platform on-device AI SDK with Python, Kotlin, Swift, and Go bindings supporting LLM, VLM, ASR, OCR, and embedding inference."
+    core_concepts:
+      - Python SDK
+      - Android SDK
+      - iOS SDK
+    key_entry_points:
+      - README.md
+      - bindings/
+    build_run:
+      language: "Python/Kotlin/Swift/Go"
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-18"
+    local_cache_dir: null

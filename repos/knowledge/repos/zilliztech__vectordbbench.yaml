@@ -1,41 +1,29 @@
 name: vectordbbench
 node_id: repo::zilliztech/vectordbbench
 github_full_name: zilliztech/vectordbbench
-html_url: https://github.com/zilliztech/VectorDBBench
+html_url: https://github.com/zilliztech/vectordbbench
 source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/repos/zilliztech__vectordbbench.yaml
-  as_of: '2026-03-05T04:16:38Z'
+  as_of: '2026-03-18'
 directory: remote::zilliztech/vectordbbench
 category: vector_database
-summary: Phase 4 Corpus Expansion P4-B1 intake for zilliztech/VectorDBBench. Vector
-  database repository routed explicitly to llm_repos.
+summary: Benchmarking framework for evaluating vector database retrieval performance
+  across multiple engines with standardized dataset and metric definitions.
 core_concepts:
 - vector database benchmarking
 - retrieval performance evaluation
 key_entry_points:
 - README.md
-- scripts/
+- vectordb_bench/
 build_run:
   language: mixed
-  build: See upstream README for build steps.
-  test: See upstream README for test steps.
+  build: See upstream README for project build steps.
+  test: See upstream README for project test steps.
 local_cache_dir: null
 extras:
-  intake:
-    pilot_batch_id: PHASE-4-P4-B1
-    repo_id: repo::zilliztech/VectorDBBench
-    queue_id: intake::zilliztech/VectorDBBench
-    domain_hint: vector_database
-    source_mode: remote_metadata
-    observed_at_utc: '2026-03-05T04:16:38Z'
-  remote:
-    provider: github
-    mode: metadata
-    endpoint: /repos/zilliztech/vectordbbench
-    fetched_at_utc: '2026-03-05T04:16:38Z'
-    refresh:
-      precedence: api_wins_readme_for_missing_required_fields
-      fallback_source: readme_fallback
-      fallback_used: false
+  refresh:
+    precedence: api_wins_readme_for_missing_required_fields
+    fallback_source: readme_fallback
+    fallback_used: false

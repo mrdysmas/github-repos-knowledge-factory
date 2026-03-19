@@ -2,11 +2,11 @@ name: bore
 node_id: repo::ekzhang/bore
 github_full_name: ekzhang/bore
 html_url: https://github.com/ekzhang/bore
-source: repos
+source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep_facts/bore.yaml
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   extractor_version: ws6-deep-integrator-v1
   extraction_model: glm-5
   extraction_agent: kgraph-repos
@@ -15,7 +15,7 @@ facts:
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: architecture.key_abstractions[1]
@@ -27,12 +27,12 @@ facts:
     excerpt: HMAC-SHA256 challenge-response authentication
   object_value: Authenticator
   note: HMAC-SHA256 challenge-response authentication
-  fact_id: fact::7bdfb3061eba60be91951203
+  fact_id: fact::75bc5bbd63ecac5c4d60210e
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: architecture.key_abstractions[2]
@@ -44,12 +44,12 @@ facts:
     excerpt: Concurrent map for pending connections on server
   object_value: DashMap<Uuid, TcpStream>
   note: Concurrent map for pending connections on server
-  fact_id: fact::5bdcd558d13867174ef3aa8f
+  fact_id: fact::a5a9e611d4942cd76bbb3848
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: architecture.key_abstractions[0]
@@ -61,12 +61,12 @@ facts:
     excerpt: Null-delimited JSON framing for control messages
   object_value: Delimited<T>
   note: Null-delimited JSON framing for control messages
-  fact_id: fact::9e33bef1f015ce4aabebdda2
+  fact_id: fact::3795a766ac9d57b2f3467a98
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: architecture.module_breakdown[3]
@@ -79,12 +79,12 @@ facts:
   object_value: src/auth.rs
   note: 'responsibility: HMAC authentication using SHA256 challenge-response; key_files:
     src/auth.rs'
-  fact_id: fact::4dba5d91ba6c8adf865ae27a
+  fact_id: fact::dfb78fdcfb9a59b133f21fcf
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: architecture.module_breakdown[0]
@@ -98,12 +98,12 @@ facts:
   object_value: src/client.rs
   note: 'responsibility: Client implementation - establishes control connection, handles
     incoming connections; key_files: src/client.rs'
-  fact_id: fact::a5353599507a85d8addf3ff8
+  fact_id: fact::9b3e800b53f40fbefef1330d
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: architecture.module_breakdown[4]
@@ -115,12 +115,12 @@ facts:
     excerpt: CLI entry point with clap subcommands
   object_value: src/main.rs
   note: 'responsibility: CLI entry point with clap subcommands; key_files: src/main.rs'
-  fact_id: fact::66e852abe5b84cc58ea2c481
+  fact_id: fact::daeab26e3d6ec3391472f119
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: architecture.module_breakdown[1]
@@ -134,12 +134,12 @@ facts:
   object_value: src/server.rs
   note: 'responsibility: Server implementation - accepts clients, manages port allocation,
     proxies connections; key_files: src/server.rs'
-  fact_id: fact::29906363aa2d360f269159f3
+  fact_id: fact::486a0379c3f1b7f6fd286ebd
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: architecture.module_breakdown[2]
@@ -152,12 +152,12 @@ facts:
   object_value: src/shared.rs
   note: 'responsibility: Protocol definitions - message types, delimited codec, constants;
     key_files: src/shared.rs'
-  fact_id: fact::081f24e13d0d00d21d9cb206
+  fact_id: fact::fde653ca69cda27c38cc532a
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: configuration.options[8]
@@ -169,12 +169,12 @@ facts:
     excerpt: bind_addr
   object_value: bind_addr
   note: 'type: IpAddr; default: 0.0.0.0; Address to bind control port'
-  fact_id: fact::5323033a9651e61aed2c6caa
+  fact_id: fact::e40bac80489a4fccf6b084a1
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: configuration.file
@@ -186,12 +186,12 @@ facts:
     excerpt: file
   object_value: file
   note: 'default: CLI flags only (no config file); configuration default for file'
-  fact_id: fact::9970a5a45a4ebe2cb5a617fc
+  fact_id: fact::2eede3844cc3a201b7f052f2
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: configuration.options[1]
@@ -203,12 +203,12 @@ facts:
     excerpt: local_host
   object_value: local_host
   note: 'type: String; default: localhost; Local host to bind'
-  fact_id: fact::0aeefed16c11932849833439
+  fact_id: fact::a56f2feae98f47e2cc21c818
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: configuration.options[0]
@@ -220,12 +220,12 @@ facts:
     excerpt: local_port
   object_value: local_port
   note: 'type: u16; default: required; Local port to expose'
-  fact_id: fact::89673d474db3c128ccc96f25
+  fact_id: fact::881b7a1dc8549e27716569e5
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: configuration.options[6]
@@ -237,12 +237,12 @@ facts:
     excerpt: max_port
   object_value: max_port
   note: 'type: u16; Maximum port in allocation range'
-  fact_id: fact::0b318263ece73ad3dc475689
+  fact_id: fact::c7e3aed451a48a666bbae026
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: configuration.options[5]
@@ -254,12 +254,12 @@ facts:
     excerpt: min_port
   object_value: min_port
   note: 'type: u16; Minimum port in allocation range'
-  fact_id: fact::402a25e9f83282d3320cba24
+  fact_id: fact::ce4e6104f1d78b561fe18ba6
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: configuration.options[3]
@@ -271,12 +271,12 @@ facts:
     excerpt: port
   object_value: port
   note: 'type: u16; Requested remote port (0 for auto-assign)'
-  fact_id: fact::bc3412d986b64bb12a437a3e
+  fact_id: fact::589d48daf4c8b2edb2992ee4
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: configuration.options[4]
@@ -288,12 +288,12 @@ facts:
     excerpt: secret
   object_value: secret
   note: 'type: Option<String>; default: None; Authentication secret'
-  fact_id: fact::6da486bc1f472638a444c1c3
+  fact_id: fact::46e4e662a30a1491be78fe3d
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: configuration.options[7]
@@ -305,12 +305,12 @@ facts:
     excerpt: secret
   object_value: secret
   note: 'type: Option<String>; default: None; Required authentication secret'
-  fact_id: fact::f1bac842d6635110f562e0e3
+  fact_id: fact::da543340b14d8caf23106add
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: configuration.options[2]
@@ -322,12 +322,12 @@ facts:
     excerpt: to
   object_value: to
   note: 'type: String; default: required; Remote server address'
-  fact_id: fact::2dcf1d3ccf45ca214897a05c
+  fact_id: fact::bcfbe953e18f2a8b401422cf
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: api_surface.public_functions[5]
@@ -339,12 +339,12 @@ facts:
     excerpt: Authenticator::new
   object_value: Authenticator::new
   note: 'Create authenticator from secret; pub fn new(secret: &str) -> Self; src/auth.rs:16'
-  fact_id: fact::16ec62179daaa3e4aad94d1d
+  fact_id: fact::860f28de605706ff6eaadd6b
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: api_surface.public_functions[6]
@@ -357,12 +357,12 @@ facts:
   object_value: Authenticator::validate
   note: 'Validate HMAC response; pub fn validate(&self, challenge: &Uuid, tag: &str)
     -> bool; src/auth.rs:40'
-  fact_id: fact::8b98d075f75ee2038c967ea8
+  fact_id: fact::e0bbb3bb359353f31b345535
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: api_surface.public_functions[1]
@@ -375,12 +375,12 @@ facts:
   object_value: Client::listen
   note: Start listening for server messages and handle connections; pub async fn listen(self)
     -> Result<()>; src/client.rs:62-119
-  fact_id: fact::1b7b41bd9985295e0f4d3291
+  fact_id: fact::3e7a4d9ba418b2eba0ce7d4f
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: api_surface.public_functions[0]
@@ -394,12 +394,12 @@ facts:
   note: 'Create client and establish control connection; pub async fn new(to: &str,
     local_port: u16, local_host: &str, port: u16, secret: Option<&str>) -> Result<Self>;
     src/client.rs:36-60'
-  fact_id: fact::704746777859d1c4eb7795a3
+  fact_id: fact::5a02d8d07e46cef23f0f401e
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: api_surface.public_functions[2]
@@ -411,12 +411,12 @@ facts:
     excerpt: Client::remote_port
   object_value: Client::remote_port
   note: Get the assigned remote port; pub fn remote_port(&self) -> u16; src/client.rs:58
-  fact_id: fact::a77e9c6e38a7cf1ab6f6d3ac
+  fact_id: fact::f8a797def2c6f45884eb8e9e
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: api_surface.public_functions[4]
@@ -429,12 +429,12 @@ facts:
   object_value: Server::listen
   note: Start accepting control connections; pub async fn listen(self) -> Result<()>;
     src/server.rs:67-187
-  fact_id: fact::2cccf0daa94fe409453d2437
+  fact_id: fact::53807213bdb9d6557fcd3b53
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: api_surface.public_functions[3]
@@ -447,12 +447,12 @@ facts:
   object_value: Server::new
   note: 'Create server with port range and optional auth; pub fn new(port_range: RangeInclusive<u16>,
     secret: Option<&str>) -> Self; src/server.rs:59'
-  fact_id: fact::943a10dd2d59d97d942f439f
+  fact_id: fact::d9a954d42340999276e4b3ae
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: extension_points[3]
@@ -464,12 +464,12 @@ facts:
     excerpt: Transport layer
   object_value: Transport layer
   note: Replace with WebSockets, QUIC, or add TLS; TCP replacement
-  fact_id: fact::1e094ca1475e1b7935adbf10
+  fact_id: fact::da276e98383a12e8e7933666
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: extension_points[1]
@@ -481,12 +481,12 @@ facts:
     excerpt: src/auth.rs:12
   object_value: src/auth.rs:12
   note: Replace with different authentication scheme; Authenticator struct
-  fact_id: fact::babbb82ca43ac9f971fa5e54
+  fact_id: fact::da423307818859e24aa2d42a
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: extension_points[2]
@@ -498,12 +498,12 @@ facts:
     excerpt: src/server.rs:107-115
   object_value: src/server.rs:107-115
   note: Override random selection with reservation system; Port allocation algorithm
-  fact_id: fact::34c09664887efde274ee9ac0
+  fact_id: fact::9f608b4b5a6a205dc96453ad
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: extension_points[0]
@@ -516,12 +516,12 @@ facts:
   object_value: src/shared.rs:24-53
   note: Add new message types for protocol extensions; ClientMessage/ServerMessage
     enums
-  fact_id: fact::8e194abd5f66883cadc9bd2e
+  fact_id: fact::d1a968cce8b70afe449d8d59
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: implementation_patterns[0]
@@ -535,12 +535,12 @@ facts:
   object_value: Async Tokio Runtime
   note: 'description: tokio::spawn for concurrent connection handling, copy_bidirectional
     for data transfer; location: src/client.rs:88, src/server.rs:67'
-  fact_id: fact::d3cdbd59b244d690e583af40
+  fact_id: fact::3317992ab254b84b81082298
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: testing.coverage_areas[1].line[0]
@@ -552,12 +552,12 @@ facts:
     excerpt: Authentication mismatch scenarios
   object_value: Authentication mismatch scenarios
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::e70a6a663b054f08bf269537
+  fact_id: fact::003518aa205c9a559fa4287e
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: testing.coverage_areas[0].line[0]
@@ -569,12 +569,12 @@ facts:
     excerpt: Basic proxy with/without secrets
   object_value: Basic proxy with/without secrets
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::7235bbb68550e6680cc86331
+  fact_id: fact::1aeadb7cee8fc3fbe5e811f9
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: implementation_patterns[3]
@@ -587,12 +587,12 @@ facts:
   object_value: Bidirectional Copy
   note: 'description: tokio::io::copy_bidirectional for efficient byte forwarding;
     location: src/client.rs:116, src/server.rs:178'
-  fact_id: fact::0ab742d0fa98b88a69c4397d
+  fact_id: fact::ed7a77c1f9eb77027e32507f
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: implementation_patterns[4]
@@ -605,12 +605,12 @@ facts:
   object_value: Connection Timeout
   note: 'description: 10-second timeout for pending connections before cleanup; location:
     src/server.rs:162-166'
-  fact_id: fact::567c5921464f9bfde2265601
+  fact_id: fact::34f0cd2817ccdeb507c8e159
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: implementation_patterns[2]
@@ -624,12 +624,12 @@ facts:
   object_value: HMAC Challenge-Response
   note: 'description: Server sends UUID challenge, client responds with HMAC-SHA256(secret,
     challenge); location: src/auth.rs:22-48'
-  fact_id: fact::c5852d653a830681e81d11a8
+  fact_id: fact::72e5d135710fba7c67ad13fd
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: testing.coverage_areas[4].line[0]
@@ -641,12 +641,12 @@ facts:
     excerpt: Half-closed TCP stream handling
   object_value: Half-closed TCP stream handling
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::e3e40f9b3f4619ceca69cda0
+  fact_id: fact::6f5c2cb8cc9ba73da818e839
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: testing.coverage_areas[2].line[0]
@@ -658,12 +658,12 @@ facts:
     excerpt: Invalid address handling
   object_value: Invalid address handling
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::b255be1d5c9388eb0eb9702d
+  fact_id: fact::39f2bf87fed4b42458e3024b
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: testing.coverage_areas[3].line[0]
@@ -675,12 +675,12 @@ facts:
     excerpt: Long frame attack prevention (1MB limit)
   object_value: Long frame attack prevention (1MB limit)
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::e6d904c5391cc6df7033bfbf
+  fact_id: fact::7478ba975d1b02218073ed93
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: implementation_patterns[1]
@@ -693,12 +693,12 @@ facts:
   object_value: Null-Delimited JSON Framing
   note: 'description: Messages framed with null byte for clean separation over TCP;
     location: src/shared.rs:65-99'
-  fact_id: fact::d166b7fde69acc66d271aa0d
+  fact_id: fact::2776492bbf941b8b7f0659cf
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: testing.test_patterns[0].line[0]
@@ -710,12 +710,12 @@ facts:
     excerpt: SERIAL_GUARD mutex for serial test execution
   object_value: SERIAL_GUARD mutex for serial test execution
   note: 'testing metadata: test_patterns'
-  fact_id: fact::2363ac9814e6962b4d58b33d
+  fact_id: fact::1bf3523a8d5a0692b4d38695
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: testing.test_patterns[1].line[0]
@@ -727,12 +727,12 @@ facts:
     excerpt: rstest for parameterized tests
   object_value: rstest for parameterized tests
   note: 'testing metadata: test_patterns'
-  fact_id: fact::21f7945d680e07f04b3eed71
+  fact_id: fact::5e789e58b6efec0607a63a70
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: testing.structure.line[0]
@@ -744,12 +744,12 @@ facts:
     excerpt: tests/e2e_test.rs, tests/auth_test.rs
   object_value: tests/e2e_test.rs, tests/auth_test.rs
   note: 'testing metadata: structure'
-  fact_id: fact::cb738fbdd5ae73af08f8eaed
+  fact_id: fact::5dd89e4461e58468570755d2
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: testing.test_patterns[2].line[0]
@@ -761,12 +761,12 @@ facts:
     excerpt: tokio::io::duplex for controlled test environment
   object_value: tokio::io::duplex for controlled test environment
   note: 'testing metadata: test_patterns'
-  fact_id: fact::8f028268f57bd1d7856e606c
+  fact_id: fact::32b2d37a710d126a65de6bd1
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
     source_section: testing.framework.line[0]
@@ -778,4 +778,52 @@ facts:
     excerpt: tokio::test, rstest for parameterization
   object_value: tokio::test, rstest for parameterization
   note: 'testing metadata: framework'
-  fact_id: fact::401e14d7596025db2e019cf8
+  fact_id: fact::9329ed863d6b8f5687f32e50
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/bore.yaml
+    source_section: supported_protocols[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[0]
+    source_file: repos/knowledge/deep/bore.yaml
+    excerpt: HMAC-SHA256 challenge-response
+  object_value: HMAC-SHA256 challenge-response
+  fact_id: fact::68ef95eea8567bc556889203
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/bore.yaml
+    source_section: supported_protocols[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[1]
+    source_file: repos/knowledge/deep/bore.yaml
+    excerpt: TCP
+  object_value: TCP
+  fact_id: fact::9350ac1916ec975f9c59c07e
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/bore.yaml
+    source_section: supported_protocols[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[2]
+    source_file: repos/knowledge/deep/bore.yaml
+    excerpt: null-delimited JSON framing (custom wire protocol)
+  object_value: null-delimited JSON framing (custom wire protocol)
+  fact_id: fact::38656db4158d9edb8e6b7d6d

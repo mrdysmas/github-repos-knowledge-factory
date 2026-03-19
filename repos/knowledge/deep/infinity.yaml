@@ -6,7 +6,7 @@ source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep/infinity.yaml
-  as_of: '2026-03-05'
+  as_of: '2026-03-18'
   sourcing_method: code_verified
   extraction_model: gpt-unknown
   extraction_agent: codex
@@ -143,3 +143,17 @@ api_surface:
   - name: upsert
     purpose: "Insert or update vectors and metadata in storage."
     location: src/core
+
+troubleshooting:
+  - symptom: "Index build fails or times out on large vector collections"
+    cause: "IndexManager must process all segments before the index is queryable; large batch ingestion fills storage segments faster than the build can complete under memory constraints"
+    fix: "Reduce batch_size configuration to ingest in smaller chunks, allow the IndexManager to complete segment optimization between batches, or increase available memory for the build process"
+  - symptom: "Vector search returns no results despite data being ingested"
+    cause: "QueryPlanner falls through to a scan-only path when no index metadata is present for the target column; index must be explicitly created after ingestion"
+    fix: "Call create_index() after bulk ingestion to trigger IndexManager to build the vector index; verify the index covers the correct distance_metric and column"
+  - symptom: "Hybrid query returns incorrect ranking when combining vector and scalar filters"
+    cause: "The hybrid query execution pipeline weights vector similarity against scalar filter scores; mismatched ef_search values cause the graph traversal to stop before collecting enough candidates to satisfy the filter"
+    fix: "Increase ef_search to ensure enough candidate vectors are evaluated before scalar filtering reduces the result set; confirm filter selectivity against the indexed data"
+  - symptom: "Storage path fills and writes fail silently during batch ingestion"
+    cause: "StorageSegments are written to the configured storage_path; when disk is exhausted, the batch ingestion path cannot flush segments and returns errors or blocks"
+    fix: "Monitor disk usage on the storage_path volume; expand disk or reduce dataset size; check ingestion error responses for storage-related status codes"

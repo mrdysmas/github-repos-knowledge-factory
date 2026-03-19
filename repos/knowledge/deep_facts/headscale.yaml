@@ -2,11 +2,11 @@ name: headscale
 node_id: repo::juanfont/headscale
 github_full_name: juanfont/headscale
 html_url: https://github.com/juanfont/headscale
-source: repos
+source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep_facts/headscale.yaml
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   extractor_version: ws6-deep-integrator-v1
   extraction_model: glm-5
   extraction_agent: kgraph-repos
@@ -15,7 +15,7 @@ facts:
   predicate: exposes_api_endpoint
   object_kind: api_route
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: api_surface.grpc_endpoints[0]
@@ -26,12 +26,12 @@ facts:
     source_file: repos/knowledge/deep/headscale.yaml
     excerpt: headscale.v1.HeadscaleService
   object_value: headscale.v1.HeadscaleService
-  fact_id: fact::6e63508ee057ce04fdede60a
+  fact_id: fact::4176bd21d188a2640a9a9fe8
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: architecture.key_abstractions[0]
@@ -43,12 +43,12 @@ facts:
     excerpt: Main application container with all subsystems
   object_value: Headscale struct
   note: Main application container with all subsystems
-  fact_id: fact::3d487db5997fc8550df1c699
+  fact_id: fact::3fe43a1c8ba3eb5fafe0a47d
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: architecture.key_abstractions[2]
@@ -60,12 +60,12 @@ facts:
     excerpt: In-memory node cache with copy-on-write for performance
   object_value: NodeStore
   note: In-memory node cache with copy-on-write for performance
-  fact_id: fact::3af4f926fedf2581f9d13176
+  fact_id: fact::48d27c2f7230311f2a2d3dad
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: architecture.key_abstractions[1]
@@ -77,12 +77,12 @@ facts:
     excerpt: Thread-safe central hub managing database, policy, IP allocation
   object_value: State
   note: Thread-safe central hub managing database, policy, IP allocation
-  fact_id: fact::748bf889045c5069dc962437
+  fact_id: fact::9242b91c733908a8d8317888
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: architecture.key_abstractions[4]
@@ -94,12 +94,12 @@ facts:
     excerpt: Per-connection session for MapRequest handling
   object_value: mapSession
   note: Per-connection session for MapRequest handling
-  fact_id: fact::9f6f069ed14be1fea18258f0
+  fact_id: fact::a25c329433a7e1d71f678600
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: architecture.key_abstractions[3]
@@ -111,12 +111,12 @@ facts:
     excerpt: HTTP/2 server over Noise protocol connection
   object_value: noiseServer
   note: HTTP/2 server over Noise protocol connection
-  fact_id: fact::1d34dfb9875da46e9f4de405
+  fact_id: fact::0636d61d8b324ea2f87bc21e
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: architecture.module_breakdown[8]
@@ -129,12 +129,12 @@ facts:
   object_value: cmd/headscale/
   note: 'responsibility: CLI commands using Cobra; key_files: cmd/headscale/cli/serve.go,
     cmd/headscale/cli/root.go'
-  fact_id: fact::ff3a494a963d496890418630
+  fact_id: fact::cc80a046c858f6e4be960670
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: architecture.module_breakdown[0]
@@ -147,12 +147,12 @@ facts:
   object_value: hscontrol/app.go
   note: 'responsibility: Main application with HTTP/gRPC handlers, DERP server, state
     management; key_files: hscontrol/app.go'
-  fact_id: fact::7cfe506439b1fc29f0b33d61
+  fact_id: fact::9a7577b86ee0cf40256fc4fa
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: architecture.module_breakdown[2]
@@ -165,12 +165,12 @@ facts:
   object_value: hscontrol/db/
   note: 'responsibility: Database layer with GORM - nodes, users, API keys, routes,
     policy; key_files: hscontrol/db/db.go, hscontrol/db/node.go, hscontrol/db/users.go'
-  fact_id: fact::dfdff028f2dadefb98a1d4ba
+  fact_id: fact::a2de1ea05c59204ebeda91c3
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: architecture.module_breakdown[7]
@@ -182,12 +182,12 @@ facts:
     excerpt: DERP server for NAT traversal relay
   object_value: hscontrol/derp/
   note: 'responsibility: DERP server for NAT traversal relay; key_files: hscontrol/derp/'
-  fact_id: fact::d58e7f50f718c36560439918
+  fact_id: fact::b16d0c39dbf197ae00b5e5b4
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: architecture.module_breakdown[5]
@@ -200,12 +200,12 @@ facts:
   object_value: hscontrol/mapper/
   note: 'responsibility: Converts internal state to Tailscale wire protocol format;
     key_files: hscontrol/mapper/mapper.go, hscontrol/mapper/builder.go'
-  fact_id: fact::6d502927b2fcbbd55dda995a
+  fact_id: fact::00440997aa5cf3a21b79b9fe
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: architecture.module_breakdown[4]
@@ -218,12 +218,12 @@ facts:
   object_value: hscontrol/noise.go
   note: 'responsibility: Noise protocol for secure client-to-control communication;
     key_files: hscontrol/noise.go'
-  fact_id: fact::3f60c094217d3bb25b96b873
+  fact_id: fact::f5831c6db98eeb450cfecd7c
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: architecture.module_breakdown[6]
@@ -236,12 +236,12 @@ facts:
   object_value: hscontrol/policy/
   note: 'responsibility: ACL evaluation, HuJSON parsing, rule matching; key_files:
     hscontrol/policy/policy.go, hscontrol/policy/v2/'
-  fact_id: fact::7a3b6ddc4f58accc8b8e0d98
+  fact_id: fact::b91edefc7a810642d9ca85ab
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: architecture.module_breakdown[3]
@@ -254,12 +254,12 @@ facts:
   object_value: hscontrol/poll.go
   note: 'responsibility: MapRequest/MapResponse protocol handling - core coordination;
     key_files: hscontrol/poll.go'
-  fact_id: fact::79c7185018b234b0789b5094
+  fact_id: fact::7d7335d97d22a872fc9e9939
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: architecture.module_breakdown[1]
@@ -272,12 +272,12 @@ facts:
   object_value: hscontrol/state/
   note: 'responsibility: Central coordinator for database, policy, IP allocation,
     node store; key_files: hscontrol/state/state.go, hscontrol/state/node_store.go'
-  fact_id: fact::72ddf14bf5fb11ee0522cee9
+  fact_id: fact::0860cd169fd3af97736f2294
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: configuration.options[6]
@@ -289,12 +289,12 @@ facts:
     excerpt: database.postgres.host
   object_value: database.postgres.host
   note: 'type: string; default: localhost; PostgreSQL host'
-  fact_id: fact::4f270b12f2fde0619a89a517
+  fact_id: fact::48ca0c1f7f00a87b6e08e456
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: configuration.options[5]
@@ -306,12 +306,12 @@ facts:
     excerpt: database.sqlite.path
   object_value: database.sqlite.path
   note: 'type: string; default: /var/lib/headscale/db.sqlite; SQLite database path'
-  fact_id: fact::a93d9b40cbc7a27090cbb3c7
+  fact_id: fact::b6190111a01ba278fdc9a9b4
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: configuration.options[4]
@@ -323,12 +323,12 @@ facts:
     excerpt: database.type
   object_value: database.type
   note: 'type: string; default: sqlite; Database type (sqlite, postgres)'
-  fact_id: fact::7d99536b20e1c36360bc7e33
+  fact_id: fact::7420ea1bb7b100b86a3513b6
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: configuration.options[8]
@@ -340,12 +340,12 @@ facts:
     excerpt: derp.server.enabled
   object_value: derp.server.enabled
   note: 'type: bool; Enable embedded DERP server'
-  fact_id: fact::f45d0d01739a73d1f2a506a1
+  fact_id: fact::3dec9ec3d558773b0b4770cb
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: configuration.options[7]
@@ -357,12 +357,12 @@ facts:
     excerpt: dns_config
   object_value: dns_config
   note: 'type: object; MagicDNS configuration'
-  fact_id: fact::66e234621c432026ed65cab5
+  fact_id: fact::e60544a907bf4288dc979cdc
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: configuration.file
@@ -374,12 +374,12 @@ facts:
     excerpt: file
   object_value: file
   note: 'default: config.yaml (YAML); configuration default for file'
-  fact_id: fact::a597befd0fb5b953150ea125
+  fact_id: fact::4b795e1023faeaf4f92fe0de
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: configuration.options[3]
@@ -391,12 +391,12 @@ facts:
     excerpt: grpc_allow_insecure
   object_value: grpc_allow_insecure
   note: 'type: bool; Allow unencrypted gRPC'
-  fact_id: fact::179ff7335449d1886740f1cb
+  fact_id: fact::d4e5a9f995893f037fa927ff
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: configuration.options[2]
@@ -408,12 +408,12 @@ facts:
     excerpt: grpc_listen_addr
   object_value: grpc_listen_addr
   note: 'type: string; gRPC server address (empty to disable)'
-  fact_id: fact::8d6f1c00962eaf0ed491cdf1
+  fact_id: fact::29125256cc2e5e650e81fe1e
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: configuration.options[1]
@@ -425,12 +425,12 @@ facts:
     excerpt: listen_addr
   object_value: listen_addr
   note: 'type: string; default: 0.0.0.0:8080; Address to bind HTTP server'
-  fact_id: fact::849a02eb1bd20e16ea9a5d48
+  fact_id: fact::9a76147235a7c859910f903c
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: configuration.options[9]
@@ -442,12 +442,12 @@ facts:
     excerpt: policy.path
   object_value: policy.path
   note: 'type: string; Path to ACL policy file'
-  fact_id: fact::cea2175db744f5107abe7e61
+  fact_id: fact::2048118d5e99e83091e99ca6
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: configuration.options[0]
@@ -459,12 +459,12 @@ facts:
     excerpt: server_url
   object_value: server_url
   note: 'type: string; default: required; Public URL of headscale server'
-  fact_id: fact::71122ba840de14976e6358c9
+  fact_id: fact::e1df46589ddea2337d07ed35
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: api_surface.public_functions[0]
@@ -476,12 +476,12 @@ facts:
     excerpt: Headscale.Serve
   object_value: Headscale.Serve
   note: Start HTTP and gRPC servers; func (h *Headscale) Serve() error; hscontrol/app.go
-  fact_id: fact::2463679cdbf631c0ff886a86
+  fact_id: fact::8313bb201b3503db559d9fa4
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: api_surface.public_functions[1]
@@ -494,12 +494,12 @@ facts:
   object_value: State.GetNodeByNodeKey
   note: Look up node by public key; func (s *State) GetNodeByNodeKey(key key.NodePublic)
     (types.NodeView, bool); hscontrol/state/state.go
-  fact_id: fact::e039218b8212cd13373e3489
+  fact_id: fact::ea987013bbcfa5f67918e6e0
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: api_surface.public_functions[2]
@@ -512,12 +512,12 @@ facts:
   object_value: newMapSession
   note: Create session for handling MapRequest; func (h *Headscale) newMapSession(...)
     *mapSession; hscontrol/poll.go
-  fact_id: fact::7a03a91bc639dd21b7e064fe
+  fact_id: fact::08117ce7f0fbc5ad9328a9b8
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: extension_points[2]
@@ -529,12 +529,12 @@ facts:
     excerpt: hscontrol/db/
   object_value: hscontrol/db/
   note: Additional database backends; Database layer
-  fact_id: fact::e04af6060f72392f18e9eee9
+  fact_id: fact::64411ba33ae8ff23ace4cde3
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: extension_points[1]
@@ -546,12 +546,12 @@ facts:
     excerpt: hscontrol/derp/
   object_value: hscontrol/derp/
   note: Custom DERP map, external DERP integration; DERP server
-  fact_id: fact::024909ba93dcd4aea64178c3
+  fact_id: fact::16e7a3adfca2af31749f03f0
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: extension_points[3]
@@ -563,12 +563,12 @@ facts:
     excerpt: hscontrol/mapper/
   object_value: hscontrol/mapper/
   note: Custom peer filtering, additional capabilities; MapResponse generation
-  fact_id: fact::dc09b1a6cdc5d4835cd9d3a2
+  fact_id: fact::45a09d18018fa238a11b69e0
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
   confidence: 0.71
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: extension_points[0]
@@ -580,12 +580,12 @@ facts:
     excerpt: hscontrol/policy/
   object_value: hscontrol/policy/
   note: Custom ACL backends, external policy sources; Policy evaluation
-  fact_id: fact::3fb2f760daa22547a1c29d96
+  fact_id: fact::2733ce7853d89dd4fde3782c
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: testing.coverage_areas[2].line[0]
@@ -597,12 +597,12 @@ facts:
     excerpt: ACL policy evaluation
   object_value: ACL policy evaluation
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::400f64c0193dc6e73edaba31
+  fact_id: fact::f6b41d66ebda9552da85ac45
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: implementation_patterns[3]
@@ -615,12 +615,12 @@ facts:
   object_value: Builder Pattern for MapResponse
   note: 'description: MapResponseBuilder constructs responses with fine-grained control;
     location: hscontrol/mapper/mapper.go'
-  fact_id: fact::b48a72dedda61f5b243e3427
+  fact_id: fact::aa7901eaf49cef13e018c422
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: implementation_patterns[0]
@@ -633,12 +633,12 @@ facts:
   object_value: Copy-on-Write NodeStore
   note: 'description: In-memory cache with atomic updates for high-frequency operations;
     location: hscontrol/state/node_store.go'
-  fact_id: fact::ec5ea8e3b2b63e7b624c6544
+  fact_id: fact::761eb202ca8143ac6b389138
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: testing.coverage_areas[5].line[0]
@@ -650,12 +650,12 @@ facts:
     excerpt: DERP relay
   object_value: DERP relay
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::661befa19c24fad30940216f
+  fact_id: fact::42c4d3ce46d0c3544e974204
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: testing.coverage_areas[3].line[0]
@@ -667,12 +667,12 @@ facts:
     excerpt: DNS resolution
   object_value: DNS resolution
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::8820b4068c340bebc72b5a04
+  fact_id: fact::3b5f277e9ccd0966389dc667
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: implementation_patterns[4]
@@ -685,12 +685,12 @@ facts:
   object_value: EventuallyWithT Testing
   note: 'description: Integration tests use EventuallyWithT for eventual consistency;
     location: integration/'
-  fact_id: fact::d28dd20b20746e04ebbb2877
+  fact_id: fact::748a73f61d5959212abe3b22
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: testing.framework.line[0]
@@ -702,12 +702,12 @@ facts:
     excerpt: Go testing + Docker integration tests
   object_value: Go testing + Docker integration tests
   note: 'testing metadata: framework'
-  fact_id: fact::ccbbe59c7bc2bcce3c183231
+  fact_id: fact::dbdc6d7f01d1a45e2e18f316
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: implementation_patterns[2]
@@ -720,12 +720,12 @@ facts:
   object_value: Incremental Log Building
   note: 'description: Build log events incrementally with conditional fields; location:
     hscontrol/db/node.go'
-  fact_id: fact::315b80d44b396d6eea608bce
+  fact_id: fact::0410bc07a92310bc8ca80d48
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: testing.coverage_areas[0].line[0]
@@ -737,12 +737,12 @@ facts:
     excerpt: Node registration and authentication
   object_value: Node registration and authentication
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::9e4137c73bed17db8dd0c0f3
+  fact_id: fact::a1fdfb0c54f19065e4b04467
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: testing.coverage_areas[1].line[0]
@@ -754,12 +754,12 @@ facts:
     excerpt: OIDC integration
   object_value: OIDC integration
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::c986f902ce102e67b0829f1e
+  fact_id: fact::fef5a923c92c2167a665fb10
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: testing.coverage_areas[6].line[0]
@@ -771,12 +771,12 @@ facts:
     excerpt: SSH access through tailnet
   object_value: SSH access through tailnet
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::70e7424c8889bb5306191709
+  fact_id: fact::60c3df43f921eda2adf52a8c
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: testing.coverage_areas[4].line[0]
@@ -788,12 +788,12 @@ facts:
     excerpt: Subnet routing
   object_value: Subnet routing
   note: 'testing metadata: coverage_areas'
-  fact_id: fact::eb506d12c7c7a60546199b3b
+  fact_id: fact::e6fb00c5bbdda07e4f0f5eab
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.8
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: implementation_patterns[1]
@@ -806,12 +806,12 @@ facts:
   object_value: Tags-as-Identity
   note: 'description: Tags and user ownership are mutually exclusive for node identification;
     location: hscontrol/types/node.go'
-  fact_id: fact::28b86c1e5c913a7d39738fb2
+  fact_id: fact::779019a441adc76fd647e89e
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/headscale.yaml
     source_section: testing.structure.line[0]
@@ -823,4 +823,84 @@ facts:
     excerpt: integration/ with Docker-based E2E tests
   object_value: integration/ with Docker-based E2E tests
   note: 'testing metadata: structure'
-  fact_id: fact::e1e23ca7e7e2e84190a594f5
+  fact_id: fact::7f29121dbba7d981c2875c0b
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/headscale.yaml
+    source_section: vpn_protocols[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: vpn_protocols[0]
+    source_file: repos/knowledge/deep/headscale.yaml
+    excerpt: DERP
+  object_value: DERP
+  fact_id: fact::f798dabe689527c79b12f215
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/headscale.yaml
+    source_section: vpn_protocols[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: vpn_protocols[1]
+    source_file: repos/knowledge/deep/headscale.yaml
+    excerpt: MagicDNS / Split DNS
+  object_value: MagicDNS / Split DNS
+  fact_id: fact::d7648f91fb5378b3e322d629
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/headscale.yaml
+    source_section: vpn_protocols[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: vpn_protocols[2]
+    source_file: repos/knowledge/deep/headscale.yaml
+    excerpt: Noise Protocol (Noise_IK)
+  object_value: Noise Protocol (Noise_IK)
+  fact_id: fact::a0d1931c26aeeb0faba9d741
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/headscale.yaml
+    source_section: vpn_protocols[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: vpn_protocols[3]
+    source_file: repos/knowledge/deep/headscale.yaml
+    excerpt: WireGuard
+  object_value: WireGuard
+  fact_id: fact::ba487687999ced42f25fadc7
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/headscale.yaml
+    source_section: vpn_protocols[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: vpn_protocols[4]
+    source_file: repos/knowledge/deep/headscale.yaml
+    excerpt: gRPC
+  object_value: gRPC
+  fact_id: fact::c47dd7fa2d1a16e188ea91bd
