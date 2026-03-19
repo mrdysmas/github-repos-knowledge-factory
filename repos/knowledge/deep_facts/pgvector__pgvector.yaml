@@ -851,6 +851,90 @@ facts:
   object_value: <~>
   note: Hamming distance for bit vectors.; README.md / sql/vector.sql
   fact_id: fact::f9a9b6805884c85096b20a07
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/pgvector__pgvector.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/pgvector__pgvector.yaml
+    excerpt: ANN index is not used and query falls back to sequential scan despite
+      index existing
+  object_value: ANN index is not used and query falls back to sequential scan despite
+    index existing
+  note: 'cause: The query planner bypasses the ANN index when no LIMIT clause is present,
+    when the ORDER BY operator does not match the indexed operator class, or when
+    enable_indexscan is off; fix: Always pair ORDER BY with a LIMIT clause; ensure
+    the operator in ORDER BY matches the in...'
+  fact_id: fact::b1faff016b5e54c15a6d9eb0
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/pgvector__pgvector.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/pgvector__pgvector.yaml
+    excerpt: Dimension mismatch error when inserting vectors or querying against an
+      indexed column
+  object_value: Dimension mismatch error when inserting vectors or querying against
+    an indexed column
+  note: 'cause: pgvector enforces a fixed dimension for vector-typed columns; inserting
+    a vector with a different number of dimensions than declared in the column definition
+    raises an error; fix: Ensure all vectors inserted have exactly the dimension declared
+    in CREATE TABLE (e.g. vect...'
+  fact_id: fact::287eb4e450cba60167fc420d
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/pgvector__pgvector.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/pgvector__pgvector.yaml
+    excerpt: Index build runs out of memory or is killed on large datasets
+  object_value: Index build runs out of memory or is killed on large datasets
+  note: "cause: HNSW and IVFFlat index builds load data into memory; HNSW in particular\
+    \ requires memory proportional to dataset size \xD7 m parameter; default maintenance_work_mem\
+    \ may be too small; fix: Increase maintenance_work_mem before building the index\
+    \ (SET maintenance_work_mem = '8..."
+  fact_id: fact::5cb66c7a1d1b13246d2a7441
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/pgvector__pgvector.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: repos/knowledge/deep/pgvector__pgvector.yaml
+    excerpt: Low recall when using IVFFlat index even with correct operator class
+  object_value: Low recall when using IVFFlat index even with correct operator class
+  note: 'cause: ivfflat.probes defaults to a small value (1); with many lists, only
+    a fraction of the data is scanned per query, which degrades recall significantly
+    on dense datasets; fix: Increase ivfflat.probes (SET ivfflat.probes = 10 or higher)
+    before querying; a common guideline i...'
+  fact_id: fact::b648f3b8f10905c498cad925
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept

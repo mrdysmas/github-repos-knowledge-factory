@@ -579,6 +579,69 @@ facts:
   object_value: podman CLI
   note: Provide user-facing container, image, pod, and machine commands.; cmd/podman
   fact_id: fact::4c11af756bb8349c65e14d0d
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: repos/knowledge/deep/containers__podman.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/containers__podman.yaml
+    excerpt: Container fails to start in rootless mode with cgroup or permission errors
+  object_value: Container fails to start in rootless mode with cgroup or permission
+    errors
+  note: 'cause: Rootless Podman requires cgroup v2 support; systems still on cgroup
+    v1 or with rootless cgroup delegation disabled will reject container resource
+    constraints; fix: Verify cgroup v2 is active (mount | grep cgroup2); enable cgroup
+    delegation for systemd users (loginctl en...'
+  fact_id: fact::4b00adfd5e630389dd2391b7
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: repos/knowledge/deep/containers__podman.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/containers__podman.yaml
+    excerpt: Image pull fails with authentication or manifest not found error
+  object_value: Image pull fails with authentication or manifest not found error
+  note: 'cause: The registry requires authentication and credentials have not been
+    stored; or the image name or tag does not exist in the target registry; fix: Run
+    podman login <registry> to store credentials; verify the full image reference
+    including tag (e.g. docker.io/library/nginx:...'
+  fact_id: fact::938cb90d933841133c84cdad
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: repos/knowledge/deep/containers__podman.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/containers__podman.yaml
+    excerpt: 'podman: command cannot connect to Podman socket when using API or remote
+      bindings'
+  object_value: 'podman: command cannot connect to Podman socket when using API or
+    remote bindings'
+  note: 'cause: The Podman REST API socket is not running; bindings require an active
+    podman system service listener on the expected socket path; fix: Start the socket
+    with podman system service --time=0 or enable the systemd socket unit (systemctl
+    --user enable --now podman.socket); v...'
+  fact_id: fact::4d70f202a94b439f0fbc1fd0
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept

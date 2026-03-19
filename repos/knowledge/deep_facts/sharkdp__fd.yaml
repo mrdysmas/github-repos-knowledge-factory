@@ -1156,6 +1156,66 @@ facts:
   note: 'default: number of available CPUs (capped in implementation); Controlled
     by `--threads`.'
   fact_id: fact::33917b4cb9cd62f2abdae676
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/sharkdp__fd.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/sharkdp__fd.yaml
+    excerpt: --exec command runs in wrong order or produces interleaved output
+  object_value: --exec command runs in wrong order or produces interleaved output
+  note: 'cause: fd''s parallel walker dispatches --exec commands concurrently across
+    multiple threads; output order is non-deterministic and may interleave across
+    results; fix: Use --threads 1 (-j 1) to force single-threaded execution and preserve
+    result order; for grouped output use --...'
+  fact_id: fact::5a2310cf995ca76df2454a79
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/sharkdp__fd.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/sharkdp__fd.yaml
+    excerpt: Pattern does not match expected filenames even when they exist
+  object_value: Pattern does not match expected filenames even when they exist
+  note: 'cause: fd matches against the filename only (not the full path) by default;
+    also fd uses regex matching by default, not glob, so special characters have regex
+    meaning; fix: Use --full-path (-p) to match against the complete path; use --glob
+    (-g) for glob-style patterns; escape...'
+  fact_id: fact::c533a93718e8d5447837fade
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/sharkdp__fd.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/sharkdp__fd.yaml
+    excerpt: fd returns no results for files that find would return
+  object_value: fd returns no results for files that find would return
+  note: 'cause: fd respects .gitignore and .fdignore files by default; files listed
+    in ignore files are excluded from results even when they exist on disk; fix: Use
+    --no-ignore to disable ignore-file filtering, or --hidden (-H) to include hidden
+    files; combine both (fd -HI) to match fi...'
+  fact_id: fact::c880b8fd37344700b81856db
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept

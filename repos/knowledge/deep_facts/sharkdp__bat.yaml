@@ -1325,6 +1325,67 @@ facts:
   object_value: bat::PrettyPrinter::theme
   note: Chooses highlighting theme programmatically.; src/pretty_printer.rs
   fact_id: fact::99517216e2deeee94efea4cd
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/sharkdp__bat.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/sharkdp__bat.yaml
+    excerpt: Config file options are not applied at runtime
+  object_value: Config file options are not applied at runtime
+  note: 'cause: The config file is not at the expected XDG path and BAT_CONFIG_PATH
+    is not set, so bat silently uses defaults; fix: Run bat --config-file to print
+    the expected config path; create the file there or set BAT_CONFIG_PATH to point
+    to an existing config; verify options use t...'
+  fact_id: fact::89910ed09199d5362e684594
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/sharkdp__bat.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/sharkdp__bat.yaml
+    excerpt: File renders with no syntax highlighting despite being a recognized language
+  object_value: File renders with no syntax highlighting despite being a recognized
+    language
+  note: 'cause: bat could not infer the language from the file extension; this happens
+    with extensionless files or files using uncommon extensions; fix: Force language
+    detection with --language (e.g. bat --language=python script); or add a permanent
+    mapping via --map-syntax in the conf...'
+  fact_id: fact::d1215b4db20ac24d049f4e2f
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/sharkdp__bat.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/sharkdp__bat.yaml
+    excerpt: Pager shows raw ANSI escape codes or garbled terminal output
+  object_value: Pager shows raw ANSI escape codes or garbled terminal output
+  note: 'cause: The active pager (from PAGER or BAT_PAGER env) does not interpret
+    color codes; common culprits are more and plain cat; fix: Set BAT_PAGER=''less
+    -R'' or ''less -FR'' to force ANSI interpretation; alternatively use --paging=never
+    to bypass the pager entirely for piped use cases'
+  fact_id: fact::d89c840c293630c55390f85d
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept

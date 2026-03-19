@@ -2,7 +2,7 @@ artifact_type: ws6_master_deep_facts
 generated_at_utc: '2026-03-19T00:00:00Z'
 contract_version: 1.0.0-ws6-draft
 summary:
-  total_facts: 5917
+  total_facts: 5930
   repos_with_facts: 120
   source_shards:
   - repos
@@ -19016,6 +19016,78 @@ facts:
   object_value: podman CLI
   note: Provide user-facing container, image, pod, and machine commands.; cmd/podman
   fact_id: fact::4c11af756bb8349c65e14d0d
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: repos/knowledge/deep/containers__podman.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/containers__podman.yaml
+    excerpt: Container fails to start in rootless mode with cgroup or permission errors
+  object_value: Container fails to start in rootless mode with cgroup or permission
+    errors
+  note: 'cause: Rootless Podman requires cgroup v2 support; systems still on cgroup
+    v1 or with rootless cgroup delegation disabled will reject container resource
+    constraints; fix: Verify cgroup v2 is active (mount | grep cgroup2); enable cgroup
+    delegation for systemd users (loginctl en...'
+  fact_id: fact::4b00adfd5e630389dd2391b7
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: repos/knowledge/deep/containers__podman.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/containers__podman.yaml
+    excerpt: Image pull fails with authentication or manifest not found error
+  object_value: Image pull fails with authentication or manifest not found error
+  note: 'cause: The registry requires authentication and credentials have not been
+    stored; or the image name or tag does not exist in the target registry; fix: Run
+    podman login <registry> to store credentials; verify the full image reference
+    including tag (e.g. docker.io/library/nginx:...'
+  fact_id: fact::938cb90d933841133c84cdad
+- node_id: repo::containers/podman
+  github_full_name: containers/podman
+  name: podman
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-13'
+  provenance:
+    source_file: repos/knowledge/deep/containers__podman.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/containers__podman.yaml
+    excerpt: 'podman: command cannot connect to Podman socket when using API or remote
+      bindings'
+  object_value: 'podman: command cannot connect to Podman socket when using API or
+    remote bindings'
+  note: 'cause: The Podman REST API socket is not running; bindings require an active
+    podman system service listener on the expected socket path; fix: Start the socket
+    with podman system service --time=0 or enable the systemd socket unit (systemctl
+    --user enable --now podman.socket); v...'
+  fact_id: fact::4d70f202a94b439f0fbc1fd0
 - node_id: repo::containers/podman
   github_full_name: containers/podman
   name: podman
@@ -79147,6 +79219,102 @@ facts:
 - node_id: repo::pgvector/pgvector
   github_full_name: pgvector/pgvector
   name: pgvector
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/pgvector__pgvector.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/pgvector__pgvector.yaml
+    excerpt: ANN index is not used and query falls back to sequential scan despite
+      index existing
+  object_value: ANN index is not used and query falls back to sequential scan despite
+    index existing
+  note: 'cause: The query planner bypasses the ANN index when no LIMIT clause is present,
+    when the ORDER BY operator does not match the indexed operator class, or when
+    enable_indexscan is off; fix: Always pair ORDER BY with a LIMIT clause; ensure
+    the operator in ORDER BY matches the in...'
+  fact_id: fact::b1faff016b5e54c15a6d9eb0
+- node_id: repo::pgvector/pgvector
+  github_full_name: pgvector/pgvector
+  name: pgvector
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/pgvector__pgvector.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/pgvector__pgvector.yaml
+    excerpt: Dimension mismatch error when inserting vectors or querying against an
+      indexed column
+  object_value: Dimension mismatch error when inserting vectors or querying against
+    an indexed column
+  note: 'cause: pgvector enforces a fixed dimension for vector-typed columns; inserting
+    a vector with a different number of dimensions than declared in the column definition
+    raises an error; fix: Ensure all vectors inserted have exactly the dimension declared
+    in CREATE TABLE (e.g. vect...'
+  fact_id: fact::287eb4e450cba60167fc420d
+- node_id: repo::pgvector/pgvector
+  github_full_name: pgvector/pgvector
+  name: pgvector
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/pgvector__pgvector.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/pgvector__pgvector.yaml
+    excerpt: Index build runs out of memory or is killed on large datasets
+  object_value: Index build runs out of memory or is killed on large datasets
+  note: "cause: HNSW and IVFFlat index builds load data into memory; HNSW in particular\
+    \ requires memory proportional to dataset size \xD7 m parameter; default maintenance_work_mem\
+    \ may be too small; fix: Increase maintenance_work_mem before building the index\
+    \ (SET maintenance_work_mem = '8..."
+  fact_id: fact::5cb66c7a1d1b13246d2a7441
+- node_id: repo::pgvector/pgvector
+  github_full_name: pgvector/pgvector
+  name: pgvector
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/pgvector__pgvector.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: repos/knowledge/deep/pgvector__pgvector.yaml
+    excerpt: Low recall when using IVFFlat index even with correct operator class
+  object_value: Low recall when using IVFFlat index even with correct operator class
+  note: 'cause: ivfflat.probes defaults to a small value (1); with many lists, only
+    a fraction of the data is scanned per query, which degrades recall significantly
+    on dense datasets; fix: Increase ivfflat.probes (SET ivfflat.probes = 10 or higher)
+    before querying; a common guideline i...'
+  fact_id: fact::b648f3b8f10905c498cad925
+- node_id: repo::pgvector/pgvector
+  github_full_name: pgvector/pgvector
+  name: pgvector
   fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
@@ -92000,6 +92168,76 @@ facts:
 - node_id: repo::sharkdp/bat
   github_full_name: sharkdp/bat
   name: bat
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/sharkdp__bat.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/sharkdp__bat.yaml
+    excerpt: Config file options are not applied at runtime
+  object_value: Config file options are not applied at runtime
+  note: 'cause: The config file is not at the expected XDG path and BAT_CONFIG_PATH
+    is not set, so bat silently uses defaults; fix: Run bat --config-file to print
+    the expected config path; create the file there or set BAT_CONFIG_PATH to point
+    to an existing config; verify options use t...'
+  fact_id: fact::89910ed09199d5362e684594
+- node_id: repo::sharkdp/bat
+  github_full_name: sharkdp/bat
+  name: bat
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/sharkdp__bat.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/sharkdp__bat.yaml
+    excerpt: File renders with no syntax highlighting despite being a recognized language
+  object_value: File renders with no syntax highlighting despite being a recognized
+    language
+  note: 'cause: bat could not infer the language from the file extension; this happens
+    with extensionless files or files using uncommon extensions; fix: Force language
+    detection with --language (e.g. bat --language=python script); or add a permanent
+    mapping via --map-syntax in the conf...'
+  fact_id: fact::d1215b4db20ac24d049f4e2f
+- node_id: repo::sharkdp/bat
+  github_full_name: sharkdp/bat
+  name: bat
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/sharkdp__bat.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/sharkdp__bat.yaml
+    excerpt: Pager shows raw ANSI escape codes or garbled terminal output
+  object_value: Pager shows raw ANSI escape codes or garbled terminal output
+  note: 'cause: The active pager (from PAGER or BAT_PAGER env) does not interpret
+    color codes; common culprits are more and plain cat; fix: Set BAT_PAGER=''less
+    -R'' or ''less -FR'' to force ANSI interpretation; alternatively use --paging=never
+    to bypass the pager entirely for piped use cases'
+  fact_id: fact::d89c840c293630c55390f85d
+- node_id: repo::sharkdp/bat
+  github_full_name: sharkdp/bat
+  name: bat
   fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
@@ -93628,6 +93866,75 @@ facts:
   note: 'default: number of available CPUs (capped in implementation); Controlled
     by `--threads`.'
   fact_id: fact::33917b4cb9cd62f2abdae676
+- node_id: repo::sharkdp/fd
+  github_full_name: sharkdp/fd
+  name: fd
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/sharkdp__fd.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/sharkdp__fd.yaml
+    excerpt: --exec command runs in wrong order or produces interleaved output
+  object_value: --exec command runs in wrong order or produces interleaved output
+  note: 'cause: fd''s parallel walker dispatches --exec commands concurrently across
+    multiple threads; output order is non-deterministic and may interleave across
+    results; fix: Use --threads 1 (-j 1) to force single-threaded execution and preserve
+    result order; for grouped output use --...'
+  fact_id: fact::5a2310cf995ca76df2454a79
+- node_id: repo::sharkdp/fd
+  github_full_name: sharkdp/fd
+  name: fd
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/sharkdp__fd.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/sharkdp__fd.yaml
+    excerpt: Pattern does not match expected filenames even when they exist
+  object_value: Pattern does not match expected filenames even when they exist
+  note: 'cause: fd matches against the filename only (not the full path) by default;
+    also fd uses regex matching by default, not glob, so special characters have regex
+    meaning; fix: Use --full-path (-p) to match against the complete path; use --glob
+    (-g) for glob-style patterns; escape...'
+  fact_id: fact::c533a93718e8d5447837fade
+- node_id: repo::sharkdp/fd
+  github_full_name: sharkdp/fd
+  name: fd
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/sharkdp__fd.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/sharkdp__fd.yaml
+    excerpt: fd returns no results for files that find would return
+  object_value: fd returns no results for files that find would return
+  note: 'cause: fd respects .gitignore and .fdignore files by default; files listed
+    in ignore files are excluded from results even when they exist on disk; fix: Use
+    --no-ignore to disable ignore-file filtering, or --hidden (-H) to include hidden
+    files; combine both (fd -HI) to match fi...'
+  fact_id: fact::c880b8fd37344700b81856db
 - node_id: repo::sharkdp/fd
   github_full_name: sharkdp/fd
   name: fd
