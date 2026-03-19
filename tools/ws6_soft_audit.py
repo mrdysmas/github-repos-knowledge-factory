@@ -109,6 +109,16 @@ ARCHETYPES: dict[str, dict[str, Any]] = {
         "recommended_families": ["protocols"],
         "predicate_checks": {},
     },
+    "machine_learning": {
+        "categories": ["machine_learning"],
+        "required_families": ["structure", "protocols", "failures"],
+        "recommended_families": ["tasks"],
+        "predicate_checks": {
+            # Extension points are the defining extensibility contract for ML algorithm libraries.
+            # uses_protocol or exposes_api_endpoint alone do not satisfy this archetype.
+            "protocols": "has_extension_point",
+        },
+    },
 }
 
 # ---------------------------------------------------------------------------
