@@ -153,3 +153,14 @@ api_surface:
   - name: Podman API
     purpose: "Expose remote and programmatic control surfaces."
     location: pkg/api
+
+troubleshooting:
+  - symptom: "Container fails to start in rootless mode with cgroup or permission errors"
+    cause: "Rootless Podman requires cgroup v2 support; systems still on cgroup v1 or with rootless cgroup delegation disabled will reject container resource constraints"
+    fix: "Verify cgroup v2 is active (mount | grep cgroup2); enable cgroup delegation for systemd users (loginctl enable-linger $USER); for immediate workaround use --cgroupns=host or strip resource limit flags"
+  - symptom: "podman: command cannot connect to Podman socket when using API or remote bindings"
+    cause: "The Podman REST API socket is not running; bindings require an active podman system service listener on the expected socket path"
+    fix: "Start the socket with podman system service --time=0 or enable the systemd socket unit (systemctl --user enable --now podman.socket); verify the socket path matches DOCKER_HOST or the connection URI"
+  - symptom: "Image pull fails with authentication or manifest not found error"
+    cause: "The registry requires authentication and credentials have not been stored; or the image name or tag does not exist in the target registry"
+    fix: "Run podman login <registry> to store credentials; verify the full image reference including tag (e.g. docker.io/library/nginx:latest); check registry connectivity and mirror configuration in /etc/containers/registries.conf"

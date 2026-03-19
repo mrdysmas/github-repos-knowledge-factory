@@ -212,3 +212,14 @@ core_modules:
   filtering_layer:
     path: src/filter/
     description: File metadata and type/time/size filtering.
+
+troubleshooting:
+  - symptom: "fd returns no results for files that find would return"
+    cause: "fd respects .gitignore and .fdignore files by default; files listed in ignore files are excluded from results even when they exist on disk"
+    fix: "Use --no-ignore to disable ignore-file filtering, or --hidden (-H) to include hidden files; combine both (fd -HI) to match find's default behavior"
+  - symptom: "Pattern does not match expected filenames even when they exist"
+    cause: "fd matches against the filename only (not the full path) by default; also fd uses regex matching by default, not glob, so special characters have regex meaning"
+    fix: "Use --full-path (-p) to match against the complete path; use --glob (-g) for glob-style patterns; escape regex metacharacters or use --fixed-strings (-F) for literal matches"
+  - symptom: "--exec command runs in wrong order or produces interleaved output"
+    cause: "fd's parallel walker dispatches --exec commands concurrently across multiple threads; output order is non-deterministic and may interleave across results"
+    fix: "Use --threads 1 (-j 1) to force single-threaded execution and preserve result order; for grouped output use --exec-batch (-X) to pass all results to one command invocation"

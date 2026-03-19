@@ -246,3 +246,14 @@ core_modules:
   output_layer:
     path: src/output.rs
     description: Terminal/pager output transport.
+
+troubleshooting:
+  - symptom: "File renders with no syntax highlighting despite being a recognized language"
+    cause: "bat could not infer the language from the file extension; this happens with extensionless files or files using uncommon extensions"
+    fix: "Force language detection with --language (e.g. bat --language=python script); or add a permanent mapping via --map-syntax in the config file (e.g. --map-syntax='*.myext:Python')"
+  - symptom: "Pager shows raw ANSI escape codes or garbled terminal output"
+    cause: "The active pager (from PAGER or BAT_PAGER env) does not interpret color codes; common culprits are more and plain cat"
+    fix: "Set BAT_PAGER='less -R' or 'less -FR' to force ANSI interpretation; alternatively use --paging=never to bypass the pager entirely for piped use cases"
+  - symptom: "Config file options are not applied at runtime"
+    cause: "The config file is not at the expected XDG path and BAT_CONFIG_PATH is not set, so bat silently uses defaults"
+    fix: "Run bat --config-file to print the expected config path; create the file there or set BAT_CONFIG_PATH to point to an existing config; verify options use the full --flag=value form, not shorthand"

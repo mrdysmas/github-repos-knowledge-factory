@@ -103,6 +103,12 @@ ARCHETYPES: dict[str, dict[str, Any]] = {
         "recommended_families": ["failures", "protocols"],
         "predicate_checks": {},
     },
+    "cli_tool": {
+        "categories": ["cli_tool"],
+        "required_families": ["structure", "tasks", "failures"],
+        "recommended_families": ["protocols"],
+        "predicate_checks": {},
+    },
 }
 
 # ---------------------------------------------------------------------------
