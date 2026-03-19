@@ -99,6 +99,16 @@ configuration:
   test_config: jest.config.js with --passWithNoTests flag
   pages_routing: src/pages.config.js auto-registers pages from src/pages/ folder
 
+commands:
+  - name: npm run dev
+    description: "Start the Vite development server with hot module replacement."
+  - name: npm run build
+    description: "Build the React application for production deployment via Vite."
+  - name: npm run preview
+    description: "Preview the production build locally before deployment."
+  - name: npm test
+    description: "Run the Jest test suite for React UI components."
+
 implementation_patterns:
   - pattern: Base44 SDK Integration
     description: All backend operations go through Base44 SDK abstraction for entities, LLM calls, and integrations

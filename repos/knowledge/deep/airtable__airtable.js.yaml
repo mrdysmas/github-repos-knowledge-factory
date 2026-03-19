@@ -125,6 +125,16 @@ tech_stack:
   linting: ESLint with TypeScript parser, Prettier
   package_manager: npm
 
+commands:
+  - name: npm install
+    description: "Install all development dependencies."
+  - name: npm test
+    description: "Run the Jest test suite with 100% coverage threshold on branches, functions, lines, and statements."
+  - name: npm run build
+    description: "Compile TypeScript sources and bundle the library for both Node.js (CommonJS) and browser (UMD) targets."
+  - name: npm run lint
+    description: "Run ESLint with TypeScript parser to check code quality and formatting."
+
 testing:
   framework: Jest with 100% coverage threshold on branches, functions, lines, and statements
   key_test_files: [test/airtable.test.js, test/base.test.js, test/table.test.js, test/record.test.js, test/select.test.js, test/create.test.js, test/update.test.js, test/delete.test.js]

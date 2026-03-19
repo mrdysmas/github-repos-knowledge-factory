@@ -820,3 +820,71 @@ facts:
   note: 'description: App.jsx nests QueryClientProvider, AuthProvider, CollaborationProvider,
     and Router for global state; location: src/App.jsx (lines 1-14)'
   fact_id: fact::1452723ee50eb0951f3bc6e3
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/krosebrook__archdesigner.yaml
+    source_section: commands[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[1]
+    source_file: repos/knowledge/deep/krosebrook__archdesigner.yaml
+    excerpt: npm run build
+  object_value: npm run build
+  note: Build the React application for production deployment via Vite.
+  fact_id: fact::ea55167df4f9cdc11e963408
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/krosebrook__archdesigner.yaml
+    source_section: commands[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[0]
+    source_file: repos/knowledge/deep/krosebrook__archdesigner.yaml
+    excerpt: npm run dev
+  object_value: npm run dev
+  note: Start the Vite development server with hot module replacement.
+  fact_id: fact::f886a84bbf3e663c2c1346ef
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/krosebrook__archdesigner.yaml
+    source_section: commands[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[2]
+    source_file: repos/knowledge/deep/krosebrook__archdesigner.yaml
+    excerpt: npm run preview
+  object_value: npm run preview
+  note: Preview the production build locally before deployment.
+  fact_id: fact::95a182c3f49a79b4ee331e0c
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/krosebrook__archdesigner.yaml
+    source_section: commands[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[3]
+    source_file: repos/knowledge/deep/krosebrook__archdesigner.yaml
+    excerpt: npm test
+  object_value: npm test
+  note: Run the Jest test suite for React UI components.
+  fact_id: fact::1109d0d9cd1808e52d5fb462

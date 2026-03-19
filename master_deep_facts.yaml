@@ -2,7 +2,7 @@ artifact_type: ws6_master_deep_facts
 generated_at_utc: '2026-03-19T00:00:00Z'
 contract_version: 1.0.0-ws6-draft
 summary:
-  total_facts: 5906
+  total_facts: 5917
   repos_with_facts: 120
   source_shards:
   - repos
@@ -3141,6 +3141,88 @@ facts:
     switch to POST via listRecords endpoint; location: src/table.ts (lines 387-422),
     src/query_params.ts'
   fact_id: fact::b65102a0d4a1eb9f41ed9786
+- node_id: repo::airtable/airtable.js
+  github_full_name: airtable/airtable.js
+  name: airtable.js
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/airtable__airtable.js.yaml
+    source_section: commands[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[0]
+    source_file: repos/knowledge/deep/airtable__airtable.js.yaml
+    excerpt: npm install
+  object_value: npm install
+  note: Install all development dependencies.
+  fact_id: fact::9e88a50fafd7a18b45937373
+- node_id: repo::airtable/airtable.js
+  github_full_name: airtable/airtable.js
+  name: airtable.js
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/airtable__airtable.js.yaml
+    source_section: commands[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[2]
+    source_file: repos/knowledge/deep/airtable__airtable.js.yaml
+    excerpt: npm run build
+  object_value: npm run build
+  note: Compile TypeScript sources and bundle the library for both Node.js (CommonJS)
+    and browser (UMD) targets.
+  fact_id: fact::1bda5853355eb3cea1796436
+- node_id: repo::airtable/airtable.js
+  github_full_name: airtable/airtable.js
+  name: airtable.js
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/airtable__airtable.js.yaml
+    source_section: commands[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[3]
+    source_file: repos/knowledge/deep/airtable__airtable.js.yaml
+    excerpt: npm run lint
+  object_value: npm run lint
+  note: Run ESLint with TypeScript parser to check code quality and formatting.
+  fact_id: fact::e578dff3c5b754b8568615f6
+- node_id: repo::airtable/airtable.js
+  github_full_name: airtable/airtable.js
+  name: airtable.js
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/airtable__airtable.js.yaml
+    source_section: commands[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[1]
+    source_file: repos/knowledge/deep/airtable__airtable.js.yaml
+    excerpt: npm test
+  object_value: npm test
+  note: Run the Jest test suite with 100% coverage threshold on branches, functions,
+    lines, and statements.
+  fact_id: fact::89c95e61ef71d1adeca68c27
 - node_id: repo::anderspitman/awesome-tunneling
   github_full_name: anderspitman/awesome-tunneling
   name: awesome-tunneling
@@ -11318,6 +11400,67 @@ facts:
   note: Implement a custom embedding adapter for a different model provider; SmartEmbed
     class
   fact_id: fact::739010d85efeb9fdac77d864
+- node_id: repo::brianpetro/obsidian-smart-connections
+  github_full_name: brianpetro/obsidian-smart-connections
+  name: obsidian-smart-connections
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/brianpetro__obsidian-smart-connections.yaml
+    source_section: commands[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[0]
+    source_file: repos/knowledge/deep/brianpetro__obsidian-smart-connections.yaml
+    excerpt: npm install
+  object_value: npm install
+  note: Install plugin development dependencies.
+  fact_id: fact::bd9e2053a24a4cdeb6a4d74b
+- node_id: repo::brianpetro/obsidian-smart-connections
+  github_full_name: brianpetro/obsidian-smart-connections
+  name: obsidian-smart-connections
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/brianpetro__obsidian-smart-connections.yaml
+    source_section: commands[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[1]
+    source_file: repos/knowledge/deep/brianpetro__obsidian-smart-connections.yaml
+    excerpt: npm run build
+  object_value: npm run build
+  note: Compile TypeScript sources and bundle into main.js for installation into Obsidian.
+  fact_id: fact::248cf00593b4b8a6dc7d6edb
+- node_id: repo::brianpetro/obsidian-smart-connections
+  github_full_name: brianpetro/obsidian-smart-connections
+  name: obsidian-smart-connections
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/brianpetro__obsidian-smart-connections.yaml
+    source_section: commands[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[2]
+    source_file: repos/knowledge/deep/brianpetro__obsidian-smart-connections.yaml
+    excerpt: npm run dev
+  object_value: npm run dev
+  note: Start the development build watcher for live plugin reloading during Obsidian
+    development.
+  fact_id: fact::21a8f1f93bb7b90cb8d0af72
 - node_id: repo::butlerx/wetty
   github_full_name: butlerx/wetty
   name: wetty
@@ -49421,6 +49564,86 @@ facts:
   note: 'description: App.jsx nests QueryClientProvider, AuthProvider, CollaborationProvider,
     and Router for global state; location: src/App.jsx (lines 1-14)'
   fact_id: fact::1452723ee50eb0951f3bc6e3
+- node_id: repo::krosebrook/archdesigner
+  github_full_name: krosebrook/archdesigner
+  name: archdesigner
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/krosebrook__archdesigner.yaml
+    source_section: commands[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[1]
+    source_file: repos/knowledge/deep/krosebrook__archdesigner.yaml
+    excerpt: npm run build
+  object_value: npm run build
+  note: Build the React application for production deployment via Vite.
+  fact_id: fact::ea55167df4f9cdc11e963408
+- node_id: repo::krosebrook/archdesigner
+  github_full_name: krosebrook/archdesigner
+  name: archdesigner
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/krosebrook__archdesigner.yaml
+    source_section: commands[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[0]
+    source_file: repos/knowledge/deep/krosebrook__archdesigner.yaml
+    excerpt: npm run dev
+  object_value: npm run dev
+  note: Start the Vite development server with hot module replacement.
+  fact_id: fact::f886a84bbf3e663c2c1346ef
+- node_id: repo::krosebrook/archdesigner
+  github_full_name: krosebrook/archdesigner
+  name: archdesigner
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/krosebrook__archdesigner.yaml
+    source_section: commands[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[2]
+    source_file: repos/knowledge/deep/krosebrook__archdesigner.yaml
+    excerpt: npm run preview
+  object_value: npm run preview
+  note: Preview the production build locally before deployment.
+  fact_id: fact::95a182c3f49a79b4ee331e0c
+- node_id: repo::krosebrook/archdesigner
+  github_full_name: krosebrook/archdesigner
+  name: archdesigner
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/krosebrook__archdesigner.yaml
+    source_section: commands[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[3]
+    source_file: repos/knowledge/deep/krosebrook__archdesigner.yaml
+    excerpt: npm test
+  object_value: npm test
+  note: Run the Jest test suite for React UI components.
+  fact_id: fact::1109d0d9cd1808e52d5fb462
 - node_id: repo::ladybugdb/ladybug
   github_full_name: ladybugdb/ladybug
   name: ladybug

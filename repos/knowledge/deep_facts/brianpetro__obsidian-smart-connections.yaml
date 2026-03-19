@@ -571,3 +571,55 @@ facts:
   note: Implement a custom embedding adapter for a different model provider; SmartEmbed
     class
   fact_id: fact::739010d85efeb9fdac77d864
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/brianpetro__obsidian-smart-connections.yaml
+    source_section: commands[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[0]
+    source_file: repos/knowledge/deep/brianpetro__obsidian-smart-connections.yaml
+    excerpt: npm install
+  object_value: npm install
+  note: Install plugin development dependencies.
+  fact_id: fact::bd9e2053a24a4cdeb6a4d74b
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/brianpetro__obsidian-smart-connections.yaml
+    source_section: commands[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[1]
+    source_file: repos/knowledge/deep/brianpetro__obsidian-smart-connections.yaml
+    excerpt: npm run build
+  object_value: npm run build
+  note: Compile TypeScript sources and bundle into main.js for installation into Obsidian.
+  fact_id: fact::248cf00593b4b8a6dc7d6edb
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/brianpetro__obsidian-smart-connections.yaml
+    source_section: commands[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[2]
+    source_file: repos/knowledge/deep/brianpetro__obsidian-smart-connections.yaml
+    excerpt: npm run dev
+  object_value: npm run dev
+  note: Start the development build watcher for live plugin reloading during Obsidian
+    development.
+  fact_id: fact::21a8f1f93bb7b90cb8d0af72

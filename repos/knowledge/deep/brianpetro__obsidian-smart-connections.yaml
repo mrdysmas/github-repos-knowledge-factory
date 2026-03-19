@@ -84,6 +84,14 @@ key_files:
   - path: manifest.json
     purpose: Obsidian plugin manifest with id, name, and version
 
+commands:
+  - name: npm install
+    description: "Install plugin development dependencies."
+  - name: npm run build
+    description: "Compile TypeScript sources and bundle into main.js for installation into Obsidian."
+  - name: npm run dev
+    description: "Start the development build watcher for live plugin reloading during Obsidian development."
+
 extension_points:
   - name: Embedding model adapter
     location: src/smart_embed/
