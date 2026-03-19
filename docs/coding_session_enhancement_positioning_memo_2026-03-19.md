@@ -336,3 +336,16 @@ Its best role is:
 - enhancing coding sessions by giving smaller models structured, cross-repo implementation priors before they act
 
 That is the insight the next question-design pass should preserve.
+
+## 14. Deferred next step
+
+Deferred, not active yet:
+
+- map each of the 7 coding-session questions to:
+  - existing `query_master.py` commands that can support it now
+  - any query-surface gaps that would need to be added later
+
+Why this is the right next step:
+
+- it will show whether the current read/query model already supports the intended coding-session workflow
+- it will also show which questions are immediately testable versus which ones need query-layer extensions
