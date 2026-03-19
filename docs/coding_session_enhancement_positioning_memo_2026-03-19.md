@@ -235,7 +235,95 @@ These fit the project better than generic prompts like:
 - "retrieve the exact function"
 - "remember what happened last session"
 
-## 11. Bottom line
+## 11. Initial coding-session question set
+
+This is the first concrete 5-8 question set for evaluation.
+
+These questions are intentionally phrased to test whether the database improves a smaller model's early judgment before code inspection.
+
+### Q1. Adjacent-pattern discovery
+
+- What implementation patterns are most common in repos adjacent to this project for solving `<problem>`?
+
+Why it made the cut:
+
+- this is the clearest expression of the tool's core value
+- it tests cross-repo priors directly
+
+### Q2. Likely-component discovery
+
+- What components should I expect to find, or need to add, when implementing `<feature>` in a repo like this?
+
+Why it made the cut:
+
+- it helps a smaller model form a structural plan before touching code
+- it uses the repo/component facts well
+
+### Q3. Failure-mode preflight
+
+- What failure modes or edge cases are common when projects like this implement `<feature>`?
+
+Why it made the cut:
+
+- this is one of the highest-value uses of the database
+- it directly reduces blind implementation mistakes
+
+### Q4. Reference-repo selection
+
+- Which adjacent repos are the best references for implementing `<feature>`, and why?
+
+Why it made the cut:
+
+- this helps narrow where the agent should inspect next
+- it turns the DB into a search-space reduction layer instead of a final-answer engine
+
+### Q5. Solution-variant comparison
+
+- What are the main solution variants used across similar repos for `<problem>`, and what tradeoffs do they imply?
+
+Why it made the cut:
+
+- this is stronger than a single "best practice" answer
+- it helps the model avoid treating one pattern as universal
+
+### Q6. Inspection-priority guidance
+
+- Before I change code, what parts of the target repo should I inspect first based on how similar repos are usually structured?
+
+Why it made the cut:
+
+- this bridges implementation priors into actual code inspection
+- it supports the intended workflow instead of trying to replace repo reading
+
+### Q7. Implementation-risk check
+
+- Does the implementation direction I’m considering look typical, risky, or unusual compared with adjacent repos?
+
+Why it made the cut:
+
+- this is the most decision-support-oriented question in the set
+- it is especially useful for smaller models that may commit too early to a weak approach
+
+## 12. Questions intentionally excluded
+
+These are useful in general, but weaker as first-pass evaluation targets for this project.
+
+- "Summarize this codebase."
+Reason: too generic; many other tools already do this better.
+
+- "Retrieve the exact function or file I need."
+Reason: better served by codebase indexing/search tools than by this database.
+
+- "Remember what happened last session."
+Reason: that is memory-system territory, not this tool's job.
+
+- "What operational tasks usually come with `<feature>`?"
+Reason: useful, but lower priority than the seven above for first-pass evaluation.
+
+- "What follow-on changes are likely elsewhere in the system?"
+Reason: useful, but this edges toward code-specific impact analysis that the current DB only supports indirectly.
+
+## 13. Bottom line
 
 The project appears to have carried its original intent through successfully.
 
