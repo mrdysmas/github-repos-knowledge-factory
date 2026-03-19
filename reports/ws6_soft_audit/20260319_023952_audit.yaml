@@ -1,16 +1,14 @@
 audit_metadata:
-  generated_at: '2026-03-19T03:25:25Z'
+  generated_at: '2026-03-19T02:39:52Z'
   total_repos: 122
   archetypes_checked:
   - inference_serving
   - vector_database
   - tunneling
-  - agent_framework
-  - agent_cli
-  repos_matched: 62
-  repos_unmatched: 60
-  repos_thin: 21
-  repos_full: 41
+  repos_matched: 32
+  repos_unmatched: 90
+  repos_thin: 0
+  repos_full: 32
 summary_by_archetype:
   inference_serving:
     total: 6
@@ -27,50 +25,15 @@ summary_by_archetype:
     full: 16
     thin: 0
     thin_repos: []
-  agent_framework:
-    total: 15
-    full: 9
-    thin: 6
-    thin_repos:
-    - composiohq/awesome-claude-skills
-    - anthropics/skills
-    - obra/superpowers
-    - siddhesh2377/toolneuron
-    - khoj-ai/khoj
-    - emcie-co/parlant
-  agent_cli:
-    total: 15
-    full: 0
-    thin: 15
-    thin_repos:
-    - kaitranntt/ccs
-    - anthropics/claude-code
-    - ykdojo/claude-code-tips
-    - thedotmack/claude-mem
-    - katarmal-ram/codemoot
-    - openai/codex
-    - github/copilot-cli
-    - henryboldi/felony
-    - abhigyanpatwari/gitnexus
-    - moonshotai/kimi-cli
-    - code-yeongyu/oh-my-opencode
-    - anomalyco/opencode
-    - snarktank/ralph
-    - frankbria/ralph-claude-code
-    - michaelshimeles/ralphy
 coverage_records:
 - repo: kaitranntt/ccs
   node_id: repo::kaitranntt/ccs
   category: agent_cli
-  archetype: agent_cli
-  families_present:
-  - structure
-  - protocols
-  families_missing:
-  - tasks
-  - failures
+  archetype: null
+  families_present: []
+  families_missing: []
   predicate_check_failures: []
-  behavioral_coverage: thin
+  behavioral_coverage: unmatched
   flags:
   - unmapped source_section 'api_surface.public_functions[0]' — produced facts but
     section not in contract
@@ -96,20 +59,14 @@ coverage_records:
   - unmapped source_section 'key_files[1]' — produced facts but section not in contract
   - unmapped source_section 'key_files[2]' — produced facts but section not in contract
   - unmapped source_section 'key_files[3]' — produced facts but section not in contract
-  - required family 'tasks' absent — no supports_task facts
-  - required family 'failures' absent — no has_failure_mode facts
 - repo: anthropics/claude-code
   node_id: repo::anthropics/claude-code
   category: agent_cli
-  archetype: agent_cli
-  families_present:
-  - structure
-  - tasks
-  - protocols
-  families_missing:
-  - failures
+  archetype: null
+  families_present: []
+  families_missing: []
   predicate_check_failures: []
-  behavioral_coverage: thin
+  behavioral_coverage: unmatched
   flags:
   - unmapped source_section 'api_surface.public_functions[0]' — produced facts but
     section not in contract
@@ -201,19 +158,14 @@ coverage_records:
     section not in contract
   - unmapped source_section 'testing.test_patterns[1].line[0]' — produced facts but
     section not in contract
-  - required family 'failures' absent — no has_failure_mode facts
 - repo: ykdojo/claude-code-tips
   node_id: repo::ykdojo/claude-code-tips
   category: agent_cli
-  archetype: agent_cli
-  families_present:
-  - structure
-  - protocols
-  families_missing:
-  - tasks
-  - failures
+  archetype: null
+  families_present: []
+  families_missing: []
   predicate_check_failures: []
-  behavioral_coverage: thin
+  behavioral_coverage: unmatched
   flags:
   - unmapped source_section 'content_coverage.topics[0]' — produced facts but section
     not in contract
@@ -281,20 +233,14 @@ coverage_records:
     contract
   - unmapped source_section 'key_sections[4]' — produced facts but section not in
     contract
-  - required family 'tasks' absent — no supports_task facts
-  - required family 'failures' absent — no has_failure_mode facts
 - repo: thedotmack/claude-mem
   node_id: repo::thedotmack/claude-mem
   category: agent_cli
-  archetype: agent_cli
-  families_present:
-  - structure
-  - protocols
-  families_missing:
-  - tasks
-  - failures
+  archetype: null
+  families_present: []
+  families_missing: []
   predicate_check_failures: []
-  behavioral_coverage: thin
+  behavioral_coverage: unmatched
   flags:
   - unmapped source_section 'api_surface.public_functions[0]' — produced facts but
     section not in contract
@@ -331,20 +277,14 @@ coverage_records:
   - unmapped source_section 'key_files[2]' — produced facts but section not in contract
   - unmapped source_section 'key_files[3]' — produced facts but section not in contract
   - unmapped source_section 'key_files[4]' — produced facts but section not in contract
-  - required family 'tasks' absent — no supports_task facts
-  - required family 'failures' absent — no has_failure_mode facts
 - repo: katarmal-ram/codemoot
   node_id: repo::katarmal-ram/codemoot
   category: agent_cli
-  archetype: agent_cli
-  families_present:
-  - structure
-  - protocols
-  families_missing:
-  - tasks
-  - failures
+  archetype: null
+  families_present: []
+  families_missing: []
   predicate_check_failures: []
-  behavioral_coverage: thin
+  behavioral_coverage: unmatched
   flags:
   - unmapped source_section 'api_surface.public_functions[0]' — produced facts but
     section not in contract
@@ -374,20 +314,14 @@ coverage_records:
   - unmapped source_section 'key_files[1]' — produced facts but section not in contract
   - unmapped source_section 'key_files[2]' — produced facts but section not in contract
   - unmapped source_section 'key_files[3]' — produced facts but section not in contract
-  - required family 'tasks' absent — no supports_task facts
-  - required family 'failures' absent — no has_failure_mode facts
 - repo: openai/codex
   node_id: repo::openai/codex
   category: agent_cli
-  archetype: agent_cli
-  families_present:
-  - structure
-  - tasks
-  - protocols
-  families_missing:
-  - failures
+  archetype: null
+  families_present: []
+  families_missing: []
   predicate_check_failures: []
-  behavioral_coverage: thin
+  behavioral_coverage: unmatched
   flags:
   - unmapped source_section 'api_surface.public_functions[0]' — produced facts but
     section not in contract
@@ -476,19 +410,14 @@ coverage_records:
     section not in contract
   - unmapped source_section 'testing.test_patterns[1].line[0]' — produced facts but
     section not in contract
-  - required family 'failures' absent — no has_failure_mode facts
 - repo: github/copilot-cli
   node_id: repo::github/copilot-cli
   category: agent_cli
-  archetype: agent_cli
-  families_present:
-  - structure
-  - protocols
-  families_missing:
-  - tasks
-  - failures
+  archetype: null
+  families_present: []
+  families_missing: []
   predicate_check_failures: []
-  behavioral_coverage: thin
+  behavioral_coverage: unmatched
   flags:
   - unmapped source_section 'configuration.cli_flags[0]' — produced facts but section
     not in contract
@@ -586,19 +515,14 @@ coverage_records:
     section not in contract
   - unmapped source_section 'tech_stack.platforms[2].line[0]' — produced facts but
     section not in contract
-  - required family 'tasks' absent — no supports_task facts
-  - required family 'failures' absent — no has_failure_mode facts
 - repo: henryboldi/felony
   node_id: repo::henryboldi/felony
   category: agent_cli
-  archetype: agent_cli
-  families_present:
-  - structure
-  families_missing:
-  - tasks
-  - failures
+  archetype: null
+  families_present: []
+  families_missing: []
   predicate_check_failures: []
-  behavioral_coverage: thin
+  behavioral_coverage: unmatched
   flags:
   - unmapped source_section 'implementation_patterns[0]' — produced facts but section
     not in contract
@@ -658,20 +582,14 @@ coverage_records:
     not in contract
   - unmapped source_section 'tech_stack.testing.line[0]' — produced facts but section
     not in contract
-  - required family 'tasks' absent — no supports_task facts
-  - required family 'failures' absent — no has_failure_mode facts
 - repo: abhigyanpatwari/gitnexus
   node_id: repo::abhigyanpatwari/gitnexus
   category: agent_cli
-  archetype: agent_cli
-  families_present:
-  - structure
-  - tasks
-  - protocols
-  families_missing:
-  - failures
+  archetype: null
+  families_present: []
+  families_missing: []
   predicate_check_failures: []
-  behavioral_coverage: thin
+  behavioral_coverage: unmatched
   flags:
   - unmapped source_section 'api_surface.endpoints[0]' — produced facts but section
     not in contract
@@ -793,18 +711,14 @@ coverage_records:
   - unmapped source_section 'key_files[7]' — produced facts but section not in contract
   - unmapped source_section 'key_files[8]' — produced facts but section not in contract
   - unmapped source_section 'key_files[9]' — produced facts but section not in contract
-  - required family 'failures' absent — no has_failure_mode facts
 - repo: moonshotai/kimi-cli
   node_id: repo::moonshotai/kimi-cli
   category: agent_cli
-  archetype: agent_cli
-  families_present:
-  - structure
-  - tasks
-  families_missing:
-  - failures
+  archetype: null
+  families_present: []
+  families_missing: []
   predicate_check_failures: []
-  behavioral_coverage: thin
+  behavioral_coverage: unmatched
   flags:
   - unmapped source_section 'configuration.cli_override' — produced facts but section
     not in contract
@@ -913,19 +827,14 @@ coverage_records:
     section not in contract
   - unmapped source_section 'testing.make_targets[4].line[0]' — produced facts but
     section not in contract
-  - required family 'failures' absent — no has_failure_mode facts
 - repo: code-yeongyu/oh-my-opencode
   node_id: repo::code-yeongyu/oh-my-opencode
   category: agent_cli
-  archetype: agent_cli
-  families_present:
-  - structure
-  - protocols
-  families_missing:
-  - tasks
-  - failures
+  archetype: null
+  families_present: []
+  families_missing: []
   predicate_check_failures: []
-  behavioral_coverage: thin
+  behavioral_coverage: unmatched
   flags:
   - unmapped source_section 'api_surface.public_functions[0]' — produced facts but
     section not in contract
@@ -975,19 +884,14 @@ coverage_records:
   - unmapped source_section 'key_files[1]' — produced facts but section not in contract
   - unmapped source_section 'key_files[2]' — produced facts but section not in contract
   - unmapped source_section 'key_files[3]' — produced facts but section not in contract
-  - required family 'tasks' absent — no supports_task facts
-  - required family 'failures' absent — no has_failure_mode facts
 - repo: anomalyco/opencode
   node_id: repo::anomalyco/opencode
   category: agent_cli
-  archetype: agent_cli
-  families_present:
-  - structure
-  - tasks
-  families_missing:
-  - failures
+  archetype: null
+  families_present: []
+  families_missing: []
   predicate_check_failures: []
-  behavioral_coverage: thin
+  behavioral_coverage: unmatched
   flags:
   - unmapped source_section 'configuration.format' — produced facts but section not
     in contract
@@ -1084,18 +988,14 @@ coverage_records:
     section not in contract
   - unmapped source_section 'testing.framework.line[0]' — produced facts but section
     not in contract
-  - required family 'failures' absent — no has_failure_mode facts
 - repo: snarktank/ralph
   node_id: repo::snarktank/ralph
   category: agent_cli
-  archetype: agent_cli
-  families_present:
-  - structure
-  - tasks
-  families_missing:
-  - failures
+  archetype: null
+  families_present: []
+  families_missing: []
   predicate_check_failures: []
-  behavioral_coverage: thin
+  behavioral_coverage: unmatched
   flags:
   - unmapped source_section 'commands[0]' — produced facts but section not in contract
   - unmapped source_section 'commands[1]' — produced facts but section not in contract
@@ -1131,18 +1031,14 @@ coverage_records:
     facts but section not in contract
   - unmapped source_section 'tech_stack.language.line[0]' — produced facts but section
     not in contract
-  - required family 'failures' absent — no has_failure_mode facts
 - repo: frankbria/ralph-claude-code
   node_id: repo::frankbria/ralph-claude-code
   category: agent_cli
-  archetype: agent_cli
-  families_present:
-  - structure
-  families_missing:
-  - tasks
-  - failures
+  archetype: null
+  families_present: []
+  families_missing: []
   predicate_check_failures: []
-  behavioral_coverage: thin
+  behavioral_coverage: unmatched
   flags:
   - unmapped source_section 'cli_arguments[0]' — produced facts but section not in
     contract
@@ -1187,20 +1083,14 @@ coverage_records:
     not in contract
   - unmapped source_section 'testing.framework.line[0]' — produced facts but section
     not in contract
-  - required family 'tasks' absent — no supports_task facts
-  - required family 'failures' absent — no has_failure_mode facts
 - repo: michaelshimeles/ralphy
   node_id: repo::michaelshimeles/ralphy
   category: agent_cli
-  archetype: agent_cli
-  families_present:
-  - structure
-  - protocols
-  families_missing:
-  - tasks
-  - failures
+  archetype: null
+  families_present: []
+  families_missing: []
   predicate_check_failures: []
-  behavioral_coverage: thin
+  behavioral_coverage: unmatched
   flags:
   - unmapped source_section 'api_surface.public_functions[0]' — produced facts but
     section not in contract
@@ -1248,19 +1138,42 @@ coverage_records:
   - unmapped source_section 'key_files[1]' — produced facts but section not in contract
   - unmapped source_section 'key_files[2]' — produced facts but section not in contract
   - unmapped source_section 'key_files[3]' — produced facts but section not in contract
-  - required family 'tasks' absent — no supports_task facts
-  - required family 'failures' absent — no has_failure_mode facts
+- repo: anysiteio/agent-skills
+  node_id: repo::anysiteio/agent-skills
+  category: agent_framework
+  archetype: null
+  families_present: []
+  families_missing: []
+  predicate_check_failures: []
+  behavioral_coverage: unmatched
+  flags:
+  - unmapped source_section 'architecture.module_breakdown[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.module_breakdown[1]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.module_breakdown[2]' — produced facts but
+    section not in contract
+  - unmapped source_section 'commands[0]' — produced facts but section not in contract
+  - unmapped source_section 'key_features[0]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_features[1]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_features[2]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_features[3]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_files[0]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[1]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[2]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[3]' — produced facts but section not in contract
 - repo: composiohq/awesome-claude-skills
   node_id: repo::composiohq/awesome-claude-skills
   category: agent_framework
-  archetype: agent_framework
-  families_present:
-  - structure
-  - protocols
-  families_missing:
-  - tasks
+  archetype: null
+  families_present: []
+  families_missing: []
   predicate_check_failures: []
-  behavioral_coverage: thin
+  behavioral_coverage: unmatched
   flags:
   - unmapped source_section 'content_coverage.topics[0]' — produced facts but section
     not in contract
@@ -1336,18 +1249,401 @@ coverage_records:
     contract
   - unmapped source_section 'key_sections[4]' — produced facts but section not in
     contract
-  - required family 'tasks' absent — no supports_task facts
+- repo: langchain-ai/deepagents
+  node_id: repo::langchain-ai/deepagents
+  category: agent_framework
+  archetype: null
+  families_present: []
+  families_missing: []
+  predicate_check_failures: []
+  behavioral_coverage: unmatched
+  flags:
+  - unmapped source_section 'api_surface.public_functions[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'api_surface.public_functions[1]' — produced facts but
+    section not in contract
+  - unmapped source_section 'api_surface.public_functions[2]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.components[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'architecture.components[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'architecture.components[2]' — produced facts but section
+    not in contract
+  - unmapped source_section 'architecture.components[3]' — produced facts but section
+    not in contract
+  - unmapped source_section 'architecture.components[4]' — produced facts but section
+    not in contract
+  - unmapped source_section 'architecture.key_abstractions[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.key_abstractions[1]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.key_abstractions[2]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.key_abstractions[3]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.key_abstractions[4]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.module_breakdown[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.module_breakdown[1]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.module_breakdown[2]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.module_breakdown[3]' — produced facts but
+    section not in contract
+  - unmapped source_section 'commands[0]' — produced facts but section not in contract
+  - unmapped source_section 'commands[1]' — produced facts but section not in contract
+  - unmapped source_section 'commands[2]' — produced facts but section not in contract
+  - unmapped source_section 'commands[3]' — produced facts but section not in contract
+  - unmapped source_section 'commands[4]' — produced facts but section not in contract
+  - unmapped source_section 'commands[5]' — produced facts but section not in contract
+  - unmapped source_section 'commands[6]' — produced facts but section not in contract
+  - unmapped source_section 'commands[7]' — produced facts but section not in contract
+  - unmapped source_section 'commands[8]' — produced facts but section not in contract
+  - unmapped source_section 'commands[9]' — produced facts but section not in contract
+  - unmapped source_section 'configuration.cli.options[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration.cli.options[10]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration.cli.options[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration.cli.options[2]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration.cli.options[3]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration.cli.options[4]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration.cli.options[5]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration.cli.options[6]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration.cli.options[7]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration.cli.options[8]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration.cli.options[9]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration.python_api.options[0]' — produced facts
+    but section not in contract
+  - unmapped source_section 'configuration.python_api.options[10]' — produced facts
+    but section not in contract
+  - unmapped source_section 'configuration.python_api.options[1]' — produced facts
+    but section not in contract
+  - unmapped source_section 'configuration.python_api.options[2]' — produced facts
+    but section not in contract
+  - unmapped source_section 'configuration.python_api.options[3]' — produced facts
+    but section not in contract
+  - unmapped source_section 'configuration.python_api.options[4]' — produced facts
+    but section not in contract
+  - unmapped source_section 'configuration.python_api.options[5]' — produced facts
+    but section not in contract
+  - unmapped source_section 'configuration.python_api.options[6]' — produced facts
+    but section not in contract
+  - unmapped source_section 'configuration.python_api.options[7]' — produced facts
+    but section not in contract
+  - unmapped source_section 'configuration.python_api.options[8]' — produced facts
+    but section not in contract
+  - unmapped source_section 'configuration.python_api.options[9]' — produced facts
+    but section not in contract
+  - unmapped source_section 'implementation_patterns[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'implementation_patterns[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'implementation_patterns[2]' — produced facts but section
+    not in contract
+  - unmapped source_section 'implementation_patterns[3]' — produced facts but section
+    not in contract
+  - unmapped source_section 'implementation_patterns[4]' — produced facts but section
+    not in contract
+  - unmapped source_section 'implementation_patterns[5]' — produced facts but section
+    not in contract
+  - unmapped source_section 'implementation_patterns[6]' — produced facts but section
+    not in contract
+  - unmapped source_section 'key_features[0]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_features[1]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_features[2]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_features[3]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_features[4]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_features[5]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_files[0]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[10]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[11]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[12]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[1]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[2]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[3]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[4]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[5]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[6]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[7]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[8]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[9]' — produced facts but section not in contract
+- repo: instructor-ai/instructor
+  node_id: repo::instructor-ai/instructor
+  category: agent_framework
+  archetype: null
+  families_present: []
+  families_missing: []
+  predicate_check_failures: []
+  behavioral_coverage: unmatched
+  flags:
+  - unmapped source_section 'api_surface.public_functions[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'api_surface.public_functions[1]' — produced facts but
+    section not in contract
+  - unmapped source_section 'api_surface.public_functions[2]' — produced facts but
+    section not in contract
+  - unmapped source_section 'api_surface.public_functions[3]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.key_abstractions[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.key_abstractions[1]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.key_abstractions[2]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.key_abstractions[3]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.module_breakdown[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.module_breakdown[1]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.module_breakdown[2]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.module_breakdown[3]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.module_breakdown[4]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.module_breakdown[5]' — produced facts but
+    section not in contract
+  - unmapped source_section 'code_patterns[0]' — produced facts but section not in
+    contract
+  - unmapped source_section 'code_patterns[1]' — produced facts but section not in
+    contract
+  - unmapped source_section 'code_patterns[2]' — produced facts but section not in
+    contract
+  - unmapped source_section 'code_patterns[3]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_features[0]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_features[1]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_features[2]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_features[3]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_features[4]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_features[5]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_files[0]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[1]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[2]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[3]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[4]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[5]' — produced facts but section not in contract
+  - unmapped source_section 'tech_stack[0].name.line[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'tech_stack[0].role.line[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'tech_stack[1].name.line[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'tech_stack[1].role.line[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'tech_stack[2].name.line[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'tech_stack[2].role.line[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'tech_stack[3].name.line[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'tech_stack[3].role.line[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'testing.framework.line[0]' — produced facts but section
+    not in contract
+- repo: microsoft/llguidance
+  node_id: repo::microsoft/llguidance
+  category: agent_framework
+  archetype: null
+  families_present: []
+  families_missing: []
+  predicate_check_failures: []
+  behavioral_coverage: unmatched
+  flags:
+  - unmapped source_section 'api_surface.public_functions[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'api_surface.public_functions[1]' — produced facts but
+    section not in contract
+  - unmapped source_section 'api_surface.public_functions[2]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.key_abstractions[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.key_abstractions[1]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.key_abstractions[2]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.module_breakdown[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.module_breakdown[1]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.module_breakdown[2]' — produced facts but
+    section not in contract
+  - unmapped source_section 'code_patterns[0]' — produced facts but section not in
+    contract
+  - unmapped source_section 'code_patterns[1]' — produced facts but section not in
+    contract
+  - unmapped source_section 'code_patterns[2]' — produced facts but section not in
+    contract
+  - unmapped source_section 'commands[0]' — produced facts but section not in contract
+  - unmapped source_section 'commands[1]' — produced facts but section not in contract
+  - unmapped source_section 'configuration[0].options[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[0].options[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[0].options[2]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[1].options[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[1].options[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'core_modules.decode_runtime' — produced facts but section
+    not in contract
+  - unmapped source_section 'core_modules.grammar_parser' — produced facts but section
+    not in contract
+  - unmapped source_section 'core_modules.interface_layers' — produced facts but section
+    not in contract
+  - unmapped source_section 'implementation_patterns[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'implementation_patterns[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'integrations.runtime[0].line[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'integrations.runtime[1].line[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'integrations.usage[0].line[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'integrations.usage[1].line[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'key_features[0]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_features[1]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_features[2]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_files[0]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[1]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[2]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[3]' — produced facts but section not in contract
+  - unmapped source_section 'quick_reference[0].line[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'quick_reference[1].line[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'testing.coverage_areas[0].line[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'testing.coverage_areas[1].line[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'testing.coverage_areas[2].line[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'testing.framework.line[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'testing.structure.line[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'testing.test_patterns[0].line[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'testing.test_patterns[1].line[0]' — produced facts but
+    section not in contract
+- repo: pydantic/pydantic-ai
+  node_id: repo::pydantic/pydantic-ai
+  category: agent_framework
+  archetype: null
+  families_present: []
+  families_missing: []
+  predicate_check_failures: []
+  behavioral_coverage: unmatched
+  flags:
+  - unmapped source_section 'api_structure.docs_surface[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'api_structure.docs_surface[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'api_structure.docs_surface[2]' — produced facts but section
+    not in contract
+  - unmapped source_section 'api_structure.docs_surface[3]' — produced facts but section
+    not in contract
+  - unmapped source_section 'api_structure.docs_surface[4]' — produced facts but section
+    not in contract
+  - unmapped source_section 'integrations.api_endpoints[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'integrations.api_endpoints[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'integrations.protocols[0].line[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'integrations.protocols[1].line[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'integrations.providers[0].line[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'integrations.providers[1].line[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'integrations.providers[2].line[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'integrations.providers[3].line[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'integrations.providers[4].line[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'integrations.providers[5].line[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'integrations.providers[6].line[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'quick_reference[0].line[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'quick_reference[0].line[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'quick_reference[1]' — produced facts but section not
+    in contract
+  - unmapped source_section 'quick_reference[2]' — produced facts but section not
+    in contract
+  - unmapped source_section 'tech_stack[0].line[0]' — produced facts but section not
+    in contract
+  - unmapped source_section 'tech_stack[1].line[0]' — produced facts but section not
+    in contract
+  - unmapped source_section 'tech_stack[2].line[0]' — produced facts but section not
+    in contract
+  - unmapped source_section 'tech_stack[3].line[0]' — produced facts but section not
+    in contract
+  - unmapped source_section 'tech_stack[4].line[0]' — produced facts but section not
+    in contract
+  - unmapped source_section 'testing.coverage_areas[0].line[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'testing.coverage_areas[1].line[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'testing.coverage_areas[2].line[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'testing.framework.line[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'testing.structure.line[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'testing.test_patterns[0].line[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'testing.test_patterns[1].line[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'testing.test_patterns[2].line[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'testing.test_patterns[3].line[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'testing.test_patterns[4].line[0]' — produced facts but
+    section not in contract
 - repo: anthropics/skills
   node_id: repo::anthropics/skills
   category: agent_framework
-  archetype: agent_framework
-  families_present:
-  - structure
-  - protocols
-  families_missing:
-  - tasks
+  archetype: null
+  families_present: []
+  families_missing: []
   predicate_check_failures: []
-  behavioral_coverage: thin
+  behavioral_coverage: unmatched
   flags:
   - unmapped source_section 'api_surface.public_functions[0]' — produced facts but
     section not in contract
@@ -1377,17 +1673,14 @@ coverage_records:
   - unmapped source_section 'key_files[1]' — produced facts but section not in contract
   - unmapped source_section 'key_files[2]' — produced facts but section not in contract
   - unmapped source_section 'key_files[3]' — produced facts but section not in contract
-  - required family 'tasks' absent — no supports_task facts
 - repo: obra/superpowers
   node_id: repo::obra/superpowers
   category: agent_framework
-  archetype: agent_framework
-  families_present:
-  - structure
-  families_missing:
-  - tasks
+  archetype: null
+  families_present: []
+  families_missing: []
   predicate_check_failures: []
-  behavioral_coverage: thin
+  behavioral_coverage: unmatched
   flags:
   - unmapped source_section 'architecture.key_abstractions[0]' — produced facts but
     section not in contract
@@ -1485,33 +1778,24 @@ coverage_records:
     not in contract
   - unmapped source_section 'testing.structure.line[0]' — produced facts but section
     not in contract
-  - required family 'tasks' absent — no supports_task facts
 - repo: siddhesh2377/toolneuron
   node_id: repo::siddhesh2377/toolneuron
   category: agent_framework
-  archetype: agent_framework
+  archetype: null
   families_present: []
-  families_missing:
-  - structure
-  - tasks
+  families_missing: []
   predicate_check_failures: []
-  behavioral_coverage: thin
+  behavioral_coverage: unmatched
   flags:
   - no facts extracted — deep file may be missing or empty
-  - required family 'structure' absent — no has_component/has_config_option facts
-  - required family 'tasks' absent — no supports_task facts
 - repo: khoj-ai/khoj
   node_id: repo::khoj-ai/khoj
   category: agent_frameworks
-  archetype: agent_framework
-  families_present:
-  - structure
-  - failures
-  - protocols
-  families_missing:
-  - tasks
+  archetype: null
+  families_present: []
+  families_missing: []
   predicate_check_failures: []
-  behavioral_coverage: thin
+  behavioral_coverage: unmatched
   flags:
   - unmapped source_section 'architecture.components[0]' — produced facts but section
     not in contract
@@ -1587,18 +1871,101 @@ coverage_records:
     in contract
   - unmapped source_section 'troubleshooting[3]' — produced facts but section not
     in contract
-  - required family 'tasks' absent — no supports_task facts
+- repo: mem0ai/mem0
+  node_id: repo::mem0ai/mem0
+  category: agent_frameworks
+  archetype: null
+  families_present: []
+  families_missing: []
+  predicate_check_failures: []
+  behavioral_coverage: unmatched
+  flags:
+  - unmapped source_section 'code_patterns[0]' — produced facts but section not in
+    contract
+  - unmapped source_section 'code_patterns[1]' — produced facts but section not in
+    contract
+  - unmapped source_section 'code_patterns[2]' — produced facts but section not in
+    contract
+  - unmapped source_section 'code_patterns[3]' — produced facts but section not in
+    contract
+  - unmapped source_section 'code_patterns[4]' — produced facts but section not in
+    contract
+  - unmapped source_section 'code_patterns[5]' — produced facts but section not in
+    contract
+  - unmapped source_section 'common_tasks[0]' — produced facts but section not in
+    contract
+  - unmapped source_section 'common_tasks[1]' — produced facts but section not in
+    contract
+  - unmapped source_section 'common_tasks[2]' — produced facts but section not in
+    contract
+  - unmapped source_section 'configuration[0].options[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[0].options[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[0].options[2]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[0].options[3]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[0].options[4]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[0].options[5]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[0].options[6]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[0].options[7]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[0].options[8]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[1].options[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[1].options[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[1].options[2]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[1].options[3]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[2].options[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[2].options[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[2].options[2]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[3].options[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[3].options[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[3].options[2]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[3].options[3]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[3].options[4]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[3].options[5]' — produced facts but section
+    not in contract
+  - unmapped source_section 'quick_reference[0]' — produced facts but section not
+    in contract
+  - unmapped source_section 'quick_reference[1]' — produced facts but section not
+    in contract
+  - unmapped source_section 'quick_reference[2]' — produced facts but section not
+    in contract
+  - unmapped source_section 'quick_reference[3]' — produced facts but section not
+    in contract
+  - unmapped source_section 'troubleshooting[0]' — produced facts but section not
+    in contract
+  - unmapped source_section 'troubleshooting[1]' — produced facts but section not
+    in contract
+  - unmapped source_section 'troubleshooting[2]' — produced facts but section not
+    in contract
+  - unmapped source_section 'troubleshooting[3]' — produced facts but section not
+    in contract
 - repo: emcie-co/parlant
   node_id: repo::emcie-co/parlant
   category: agent_frameworks
-  archetype: agent_framework
-  families_present:
-  - structure
-  - protocols
-  families_missing:
-  - tasks
+  archetype: null
+  families_present: []
+  families_missing: []
   predicate_check_failures: []
-  behavioral_coverage: thin
+  behavioral_coverage: unmatched
   flags:
   - unmapped source_section 'api_structure.agents' — produced facts but section not
     in contract
@@ -1632,7 +1999,288 @@ coverage_records:
     in contract
   - unmapped source_section 'testing.framework.line[0]' — produced facts but section
     not in contract
-  - required family 'tasks' absent — no supports_task facts
+- repo: ansible/ansible
+  node_id: repo::ansible/ansible
+  category: agent_orchestration
+  archetype: null
+  families_present: []
+  families_missing: []
+  predicate_check_failures: []
+  behavioral_coverage: unmatched
+  flags:
+  - unmapped source_section 'api_surface.public_functions[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'api_surface.public_functions[1]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.components[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'architecture.components[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'architecture.key_abstractions[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.key_abstractions[1]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.module_breakdown[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.module_breakdown[1]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.module_breakdown[2]' — produced facts but
+    section not in contract
+  - unmapped source_section 'code_patterns[0]' — produced facts but section not in
+    contract
+  - unmapped source_section 'code_patterns[1]' — produced facts but section not in
+    contract
+  - unmapped source_section 'code_patterns[2]' — produced facts but section not in
+    contract
+  - unmapped source_section 'commands[0]' — produced facts but section not in contract
+  - unmapped source_section 'commands[1]' — produced facts but section not in contract
+  - unmapped source_section 'commands[2]' — produced facts but section not in contract
+  - unmapped source_section 'commands[3]' — produced facts but section not in contract
+  - unmapped source_section 'configuration[0].options[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[0].options[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[0].options[2]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[0].options[3]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[1].options[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'core_modules.cli' — produced facts but section not in
+    contract
+  - unmapped source_section 'core_modules.engine' — produced facts but section not
+    in contract
+  - unmapped source_section 'core_modules.plugins' — produced facts but section not
+    in contract
+  - unmapped source_section 'implementation_patterns[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'implementation_patterns[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'integrations.ecosystem_tools[0].line[0]' — produced facts
+    but section not in contract
+  - unmapped source_section 'integrations.ecosystem_tools[1].line[0]' — produced facts
+    but section not in contract
+  - unmapped source_section 'integrations.infrastructure_targets[0].line[0]' — produced
+    facts but section not in contract
+  - unmapped source_section 'integrations.infrastructure_targets[1].line[0]' — produced
+    facts but section not in contract
+  - unmapped source_section 'key_features[0]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_features[1]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_features[2]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_features[3]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_files[0]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[1]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[2]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[3]' — produced facts but section not in contract
+  - unmapped source_section 'quick_reference[0]' — produced facts but section not
+    in contract
+  - unmapped source_section 'quick_reference[1]' — produced facts but section not
+    in contract
+  - unmapped source_section 'quick_reference[2]' — produced facts but section not
+    in contract
+  - unmapped source_section 'quick_reference[3].line[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'testing.coverage_areas[0].line[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'testing.coverage_areas[1].line[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'testing.coverage_areas[2].line[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'testing.framework.line[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'testing.structure.line[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'testing.test_patterns[0].line[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'testing.test_patterns[1].line[0]' — produced facts but
+    section not in contract
+- repo: ruvnet/claude-flow
+  node_id: repo::ruvnet/claude-flow
+  category: agent_orchestration
+  archetype: null
+  families_present: []
+  families_missing: []
+  predicate_check_failures: []
+  behavioral_coverage: unmatched
+  flags:
+  - unmapped source_section 'api_surface.public_functions[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'api_surface.public_functions[1]' — produced facts but
+    section not in contract
+  - unmapped source_section 'api_surface.public_functions[2]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.key_abstractions[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.key_abstractions[1]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.key_abstractions[2]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.module_breakdown[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.module_breakdown[1]' — produced facts but
+    section not in contract
+  - unmapped source_section 'architecture.module_breakdown[2]' — produced facts but
+    section not in contract
+  - unmapped source_section 'code_patterns[0]' — produced facts but section not in
+    contract
+  - unmapped source_section 'code_patterns[1]' — produced facts but section not in
+    contract
+  - unmapped source_section 'code_patterns[2]' — produced facts but section not in
+    contract
+  - unmapped source_section 'commands[0]' — produced facts but section not in contract
+  - unmapped source_section 'commands[1]' — produced facts but section not in contract
+  - unmapped source_section 'commands[2]' — produced facts but section not in contract
+  - unmapped source_section 'configuration[0].options[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[0].options[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[0].options[2]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[1].options[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[1].options[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'core_modules.cli_surface' — produced facts but section
+    not in contract
+  - unmapped source_section 'core_modules.integration_layer' — produced facts but
+    section not in contract
+  - unmapped source_section 'core_modules.orchestration_engine' — produced facts but
+    section not in contract
+  - unmapped source_section 'implementation_patterns[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'implementation_patterns[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'integrations.tooling[0].line[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'integrations.tooling[1].line[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'integrations.tooling[2].line[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'key_features[0]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_features[1]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_features[2]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_features[3]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_files[0]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[1]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[2]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[3]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[4]' — produced facts but section not in contract
+  - unmapped source_section 'quick_reference[0].line[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'quick_reference[1].line[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'quick_reference[2].line[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'testing.coverage_areas[0].line[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'testing.coverage_areas[1].line[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'testing.coverage_areas[2].line[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'testing.framework.line[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'testing.structure.line[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'testing.test_patterns[0].line[0]' — produced facts but
+    section not in contract
+- repo: minimax-ai/mini-agent
+  node_id: repo::minimax-ai/mini-agent
+  category: agent_orchestration
+  archetype: null
+  families_present: []
+  families_missing: []
+  predicate_check_failures: []
+  behavioral_coverage: unmatched
+  flags:
+  - unmapped source_section 'configuration.format' — produced facts but section not
+    in contract
+  - unmapped source_section 'configuration.primary_file' — produced facts but section
+    not in contract
+  - unmapped source_section 'implementation_patterns[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'implementation_patterns[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'implementation_patterns[2]' — produced facts but section
+    not in contract
+  - unmapped source_section 'implementation_patterns[3]' — produced facts but section
+    not in contract
+  - unmapped source_section 'implementation_patterns[4]' — produced facts but section
+    not in contract
+  - unmapped source_section 'implementation_patterns[5]' — produced facts but section
+    not in contract
+  - unmapped source_section 'key_features[0]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_features[1]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_features[2]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_features[3]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_features[4]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_features[5]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_features[6]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_features[7]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_features[8]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_features[9]' — produced facts but section not in
+    contract
+  - unmapped source_section 'key_files[0]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[10]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[11]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[12]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[13]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[14]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[1]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[2]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[3]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[4]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[5]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[6]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[7]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[8]' — produced facts but section not in contract
+  - unmapped source_section 'key_files[9]' — produced facts but section not in contract
+  - unmapped source_section 'tech_stack.build_system.line[0]' — produced facts but
+    section not in contract
+  - unmapped source_section 'tech_stack.key_dependencies[0].line[0]' — produced facts
+    but section not in contract
+  - unmapped source_section 'tech_stack.key_dependencies[1].line[0]' — produced facts
+    but section not in contract
+  - unmapped source_section 'tech_stack.key_dependencies[2].line[0]' — produced facts
+    but section not in contract
+  - unmapped source_section 'tech_stack.key_dependencies[3].line[0]' — produced facts
+    but section not in contract
+  - unmapped source_section 'tech_stack.key_dependencies[4].line[0]' — produced facts
+    but section not in contract
+  - unmapped source_section 'tech_stack.key_dependencies[5].line[0]' — produced facts
+    but section not in contract
+  - unmapped source_section 'tech_stack.key_dependencies[6].line[0]' — produced facts
+    but section not in contract
+  - unmapped source_section 'tech_stack.key_dependencies[7].line[0]' — produced facts
+    but section not in contract
+  - unmapped source_section 'tech_stack.key_dependencies[8].line[0]' — produced facts
+    but section not in contract
+  - unmapped source_section 'tech_stack.language.line[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'testing.coverage[0].line[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'testing.coverage[1].line[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'testing.coverage[2].line[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'testing.framework.line[0]' — produced facts but section
+    not in contract
 - repo: langgenius/dify
   node_id: repo::langgenius/dify
   category: agent_platform
