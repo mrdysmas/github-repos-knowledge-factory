@@ -1,6 +1,6 @@
 # Deep Narrative Generation Contract
 
-**Version:** 2.0
+**Version:** 2.1
 **Created:** 2026-03-18
 **Status:** Active — governs all deep narrative YAML production for WS6 extraction.
 
@@ -13,7 +13,7 @@ This is not a style guide. It is an interface specification between narrative ge
 The Tier 1/2/3 section ranking is replaced entirely. That system ranked sections by extraction ease, which caused structural inventory (`has_component`, `has_config_option`) to dominate the corpus at the expense of operationally useful facts (`has_failure_mode`, `supports_task`, `uses_protocol`). v2.0 replaces tiers with two things:
 
 1. **Evidence families** — four named families that group sections by the kind of knowledge they produce. Every deep narrative is evaluated against families, not a tier ranking.
-2. **Archetype requirements** — three repo archetypes (`inference_serving`, `vector_database`, `tunneling`) each have required evidence families. A compliant file for those archetypes must cover those families. All other repos follow global defaults.
+2. **Archetype requirements** — five repo archetypes (`inference_serving`, `vector_database`, `tunneling`, `agent_framework`, `agent_cli`) each have required evidence families. A compliant file for those archetypes must cover those families. All other repos follow global defaults.
 
 The header fields, YAML quoting rules, section shapes, and sourcing requirements are unchanged from v1.2.
 
@@ -255,6 +255,48 @@ Categories: `tunneling`, `vpn_mesh`, `network_infrastructure`
 **Reference files:**
 - `repos/knowledge/deep/bore.yaml` — small, balanced, good reference shape
 - `repos/knowledge/deep/hiddify-app.yaml` — strong `supported_protocols:` coverage
+
+---
+
+### Archetype: `agent_framework`
+
+Categories: `agent_framework`, `agent_frameworks`, `agent_orchestration`
+
+> **Note:** `agent_frameworks` (plural) and `agent_orchestration` are legacy label variants. All three are treated identically by the soft audit. Use `agent_framework` for new repos.
+
+| Family | Requirement |
+|---|---|
+| Structure | Required |
+| Tasks | Required |
+| Failures | Recommended |
+| Protocols & Integrations | Recommended |
+
+**Rationale:** Agent frameworks are used by building on top of them. A file that inventories components without describing how to configure, invoke, or extend the framework answers the wrong question. Tasks coverage — how do you run an agent, what are the key invocation patterns, what configuration surfaces the important behaviors — is the primary interface for an agent trying to use this framework. Failures are recommended because framework-level error behaviors vary significantly across repos; document them when they are concrete and observable.
+
+**Reference files:**
+- `repos/knowledge/deep/pydantic__pydantic-ai.yaml` — strongest Tasks coverage in group (14 facts)
+- `repos/knowledge/deep/ruvnet__claude-flow.yaml` — broad section coverage
+- For Failures format: `repos/knowledge/deep/vllm.yaml` — `troubleshooting:` with concrete symptom/cause/fix entries
+
+---
+
+### Archetype: `agent_cli`
+
+Categories: `agent_cli`
+
+| Family | Requirement |
+|---|---|
+| Structure | Required |
+| Tasks | Required |
+| Failures | Required |
+| Protocols & Integrations | Recommended |
+
+**Rationale:** CLI tools are invoked, not extended. A file that inventories components without documenting commands, flags, and error behaviors is nearly useless for an agent that needs to know how to run the tool. Tasks coverage (`commands`, `cli_commands`, `cli_arguments`) is mandatory. Failures are equally required: CLI tools have concrete, agent-discoverable error modes — authentication failures, missing config, rate limiting, connectivity issues — that planning and debugging agents directly query for. A CLI file without Failures coverage is missing its second most valuable content.
+
+**Reference files:**
+- `repos/knowledge/deep/abhigyanpatwari__gitnexus.yaml` — strongest Tasks coverage in group (23 facts)
+- `repos/knowledge/deep/anthropics__claude-code.yaml` — broad section coverage
+- For Failures format: `repos/knowledge/deep/vllm.yaml` — `troubleshooting:` with concrete symptom/cause/fix entries
 
 ---
 
@@ -711,7 +753,7 @@ The audit is not yet implemented as a standalone tool. When it is built, it shou
 - No unmapped sections (all top-level keys are recognized or identity/ignored)
 - All behavioral entries in `troubleshooting`, `commands`/`common_tasks`, and `supported_protocols` have at least the minimum required fields (`symptom`/`cause`/`fix`; `name`/`description`; `name` respectively)
 
-**For archetype-matched repos** (`inference_serving`, `vector_database`/`vector_databases`, `tunneling`/`vpn_mesh`/`network_infrastructure`):
+**For archetype-matched repos** (`inference_serving`, `vector_database`/`vector_databases`, `tunneling`/`vpn_mesh`/`network_infrastructure`, `agent_framework`/`agent_frameworks`/`agent_orchestration`, `agent_cli`):
 - Required families are present (at least one section from each required family produced at least one fact)
 - For the `tunneling`/`vpn_mesh`/`network_infrastructure` archetypes specifically: at least one `uses_protocol` fact must be present, not just any Protocols & Integrations family fact. Family presence via `has_extension_point` alone does not satisfy this check.
 - Flagged as `behavioral_coverage: thin` if a required family is absent or if the archetype-specific predicate check fails
@@ -760,3 +802,4 @@ The audit produces a per-repo coverage record. Proposed shape:
 | 1.1 | 2026-03-17 | Sourcing requirements. Training-knowledge opt-in. `sourcing_method` provenance field. |
 | 1.2 | 2026-03-17 | Optional `extraction_model` and `extraction_agent` provenance fields. |
 | 2.0 | 2026-03-18 | Replace Tier 1/2/3 ranking with evidence families and archetype requirements. Add behavioral entry standards. Add source selection strategy. Add soft audit spec. Archetypes defined: `inference_serving`, `vector_database`, `tunneling`/`vpn_mesh`/`network_infrastructure`. |
+| 2.1 | 2026-03-19 | Add `agent_framework` and `agent_cli` archetypes. `agent_framework` canonicalizes `agent_frameworks`/`agent_orchestration` label variants. Both require Structure + Tasks; `agent_cli` additionally requires Failures. |

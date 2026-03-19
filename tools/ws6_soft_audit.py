@@ -57,6 +57,18 @@ ARCHETYPES: dict[str, dict[str, Any]] = {
             "protocols": "uses_protocol",
         },
     },
+    "agent_framework": {
+        "categories": ["agent_framework", "agent_frameworks", "agent_orchestration"],
+        "required_families": ["structure", "tasks"],
+        "recommended_families": ["failures", "protocols"],
+        "predicate_checks": {},
+    },
+    "agent_cli": {
+        "categories": ["agent_cli"],
+        "required_families": ["structure", "tasks", "failures"],
+        "recommended_families": ["protocols"],
+        "predicate_checks": {},
+    },
 }
 
 # ---------------------------------------------------------------------------
