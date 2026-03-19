@@ -6,9 +6,9 @@ source: remote_metadata
 provenance:
   shard: repos
   source_file: "repos/knowledge/deep/ccs.yaml"
-  as_of: "2026-03-17"
-  sourcing_method: code_verified
-  extraction_model: gpt-5.4
+  as_of: "2026-03-19"
+  sourcing_method: training_knowledge
+  extraction_model: claude-sonnet-4-6
   extraction_agent: codex
 directory: "remote::kaitranntt/ccs"
 category: agent_cli
@@ -53,3 +53,34 @@ key_files:
     purpose: "Creates the Express and WebSocket dashboard server."
   - path: "src/api/index.ts"
     purpose: "Barrel export for API service modules."
+
+commands:
+  - name: ccs
+    description: "Launch the CCS CLI with a provider profile — detects the first positional argument as a profile name and proxies the session through the configured adapter."
+  - name: "ccs install"
+    description: "Run the install flow to set up CCS, configure targets, and register the global CLI."
+  - name: "ccs doctor"
+    description: "Check environment health — verifies that required API keys, proxy ports, and provider config are correctly set up."
+  - name: "ccs sync"
+    description: "Sync provider profiles and credentials with the configured upstream or local store."
+  - name: "ccs config"
+    description: "Open or edit the CCS configuration file to manage profiles, targets, and proxy settings."
+  - name: ccsd
+    description: "Start the CCS dashboard server, including REST API, WebSocket updates, and optionally the Vite dev middleware."
+
+troubleshooting:
+  - symptom: "Authentication fails on first launch with a provider profile"
+    cause: "The API key for the selected provider is not set in the environment or profile config"
+    fix: "Run `ccs config` to set the correct API key, or export the provider's token environment variable (e.g., ANTHROPIC_AUTH_TOKEN) before invoking ccs."
+  - symptom: "Proxy port conflict error on startup"
+    cause: "The local proxy used by cliproxy is already bound to the configured port from a previous session"
+    fix: "Kill the stale proxy process or change the proxy port in the CCS config, then retry."
+  - symptom: "Dashboard fails to load in browser after starting ccsd"
+    cause: "Vite dev middleware not built or Express failed to bind to the configured port"
+    fix: "Run the project build step first, confirm no other process is listening on the dashboard port, and restart ccsd."
+  - symptom: "Profile not detected — falls back to default unexpectedly"
+    cause: "The first positional argument does not match any configured profile name"
+    fix: "Check available profiles with `ccs config` and pass the exact profile name as the first argument."
+  - symptom: "Rate limit quota exceeded mid-session"
+    cause: "The quota-manager has detected the provider's hourly or daily limit has been reached for the active profile"
+    fix: "Switch to a different profile with remaining quota, or wait for the quota window to reset before retrying."

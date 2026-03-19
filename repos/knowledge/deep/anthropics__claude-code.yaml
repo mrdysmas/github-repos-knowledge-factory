@@ -6,8 +6,8 @@ source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep/anthropics__claude-code.yaml
-  as_of: '2026-03-05'
-  sourcing_method: code_verified
+  as_of: '2026-03-19'
+  sourcing_method: training_knowledge
   extraction_model: gpt-unknown
   extraction_agent: codex
 directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/anthropics__claude-code
@@ -165,3 +165,20 @@ api_surface:
     purpose: Standardized extension interface for custom plugin-provided commands.
     signature: plugin-defined command handlers
     location: plugins/
+
+troubleshooting:
+  - symptom: "claude command not found after installation"
+    cause: "Installation did not add the binary to PATH, or the shell session was not restarted after install."
+    fix: "Restart the terminal session or run the install script again; verify with 'which claude'."
+  - symptom: "Authentication error on first launch (401 or credential prompt loop)"
+    cause: "ANTHROPIC_API_KEY environment variable is missing, empty, or has an invalid format."
+    fix: "Set ANTHROPIC_API_KEY to a valid key from console.anthropic.com and restart the session."
+  - symptom: "Rate limit error (429) during active sessions"
+    cause: "Exceeded per-minute or per-day token quota for the associated API key tier."
+    fix: "Wait for the rate limit window to reset, reduce request frequency, or upgrade to a higher API tier."
+  - symptom: "Plugin commands not discovered or not available in session"
+    cause: "Plugin directory is not on the expected path or plugin files have incorrect format."
+    fix: "Confirm plugin assets are in the plugins/ directory and follow the documented plugin command contract."
+  - symptom: "curl install script fails with SSL or permission error"
+    cause: "curl cannot verify the TLS certificate, or the install target directory is not writable."
+    fix: "Ensure curl is up to date and the install destination is writable; use 'brew install --cask claude-code' as an alternative on macOS."

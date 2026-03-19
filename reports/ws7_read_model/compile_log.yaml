@@ -1,13 +1,13 @@
 compile_run:
-  started_at_utc: '2026-03-19T02:15:27Z'
-  finished_at_utc: '2026-03-19T02:15:31Z'
-  duration_ms: 4043
+  started_at_utc: '2026-03-19T04:38:48Z'
+  finished_at_utc: '2026-03-19T04:38:52Z'
+  duration_ms: 4173
   result: ok
   force_flag: true
 source_files:
   index:
     path: master_index.yaml
-    sha256: 85ad46eefcd10e4408594170204957549b47ce8e2965a17a235acd4c042ea1ca
+    sha256: 9c3b1a7dbacd3ed0fd7fa7233fc3a3599d8c88fead52e4708793476650a2da92
     generated_at_utc: '2026-03-18T00:00:00Z'
     repo_count: 122
   graph:
@@ -18,25 +18,28 @@ source_files:
     edge_count: 152
   facts:
     path: master_deep_facts.yaml
-    sha256: 5cbcdc02c65c0988748b54ee6c4d8dee2cc956715d86e3307d39815f61f3e4b5
-    generated_at_utc: '2026-03-18T00:00:00Z'
-    fact_count: 5697
+    sha256: 92f0bb97cae386f0228f7a8f033004638f37c33abaca5ead347cba9ff069a4c8
+    generated_at_utc: '2026-03-19T00:00:00Z'
+    fact_count: 5860
 gates:
   snapshot_consistency:
-    status: pass
-    detail: max_delta_seconds=0
+    status: warn
+    detail: 'timestamp divergence (non-blocking): index(ts=2026-03-18T00:00:00Z,sha256=9c3b1a7dbacd3ed0fd7fa7233fc3a3599d8c88fead52e4708793476650a2da92),
+      graph(ts=2026-03-18T00:00:00Z,sha256=b16012ec9f806de93cc2e3d95edd3c47ed81692cc1a6796ab96828c3f36f4b4e),
+      facts(ts=2026-03-19T00:00:00Z,sha256=92f0bb97cae386f0228f7a8f033004638f37c33abaca5ead347cba9ff069a4c8),
+      max_delta_seconds=86400'
   row_count_parity:
     status: pass
     expected:
       repos: 122
       nodes: 136
       edges: 152
-      facts: 5697
+      facts: 5860
     actual:
       repos: 122
       nodes: 136
       edges: 152
-      facts: 5697
+      facts: 5860
   orphan_edge_detection:
     status: pass
     orphan_count: 0
@@ -66,10 +69,10 @@ gates:
     detail: all compared tables match
 output:
   path: knowledge.db
-  size_bytes: 8146944
+  size_bytes: 8433664
   table_counts:
     repos: 122
     nodes: 136
     edges: 152
-    facts: 5697
+    facts: 5860
     compile_metadata: 1

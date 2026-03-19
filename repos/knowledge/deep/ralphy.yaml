@@ -6,9 +6,9 @@ source: remote_metadata
 provenance:
   shard: repos
   source_file: "repos/knowledge/deep/ralphy.yaml"
-  as_of: "2026-03-17"
-  sourcing_method: code_verified
-  extraction_model: gpt-5.4
+  as_of: "2026-03-19"
+  sourcing_method: training_knowledge
+  extraction_model: claude-sonnet-4-6
   extraction_agent: codex
 directory: "remote::michaelshimeles/ralphy"
 category: agent_cli
@@ -81,3 +81,36 @@ key_files:
     purpose: "Parallel agent execution using worktrees or sandboxes."
   - path: "cli/src/tasks/index.ts"
     purpose: "Factory for markdown, YAML, JSON, folder, and GitHub task sources."
+
+commands:
+  - name: "ralphy --init"
+    description: "Initialize a new Ralphy project in the current directory, creating config and task scaffolding."
+  - name: "ralphy --config"
+    description: "Open the Ralphy configuration to set the default engine, model, and task source options."
+  - name: "ralphy --add-rule <rule>"
+    description: "Append a new behavioral rule to the Ralphy project config for agent execution guidance."
+  - name: "ralphy <task>"
+    description: "Execute a single brownfield task using the configured engine backend (Claude, Codex, OpenCode, Cursor, or others)."
+  - name: "ralphy --parallel <prd>"
+    description: "Run all tasks in the PRD file concurrently across multiple agents using git worktrees."
+  - name: "ralphy --github --sync-issue"
+    description: "Load tasks from a GitHub repository issue and sync progress back to the issue body after each task completes."
+  - name: "ralphy --sandbox"
+    description: "Execute tasks using lightweight copied sandboxes instead of git worktrees for isolation."
+
+troubleshooting:
+  - symptom: "Engine not found error when running a task with a named backend"
+    cause: "The engine adapter for the requested backend (e.g., Droid, Qwen) is not installed or the engine name is misspelled"
+    fix: "Check the list of supported engines in the config, ensure the engine binary is installed and on PATH, then retry with the correct engine name."
+  - symptom: "Parallel run produces merge conflicts after task completion"
+    cause: "Multiple agents modified the same files in their worktrees and the merge step encountered overlapping edits"
+    fix: "Resolve conflicts manually after the parallel run, or restructure the PRD to assign non-overlapping file scopes to each task."
+  - symptom: "GitHub task source returns empty task list"
+    cause: "GITHUB_TOKEN is not set or the token lacks read access to the target repository issues"
+    fix: "Export a GITHUB_TOKEN with repo read permissions and confirm the repository and issue number are correctly specified."
+  - symptom: "Worktree creation fails with a git error on parallel run"
+    cause: "The repository has uncommitted changes that prevent clean worktree creation, or the worktree path already exists"
+    fix: "Commit or stash pending changes before running with --parallel, or delete stale worktree directories from a previous run."
+  - symptom: "Single task exits without output when using Claude engine"
+    cause: "ANTHROPIC_API_KEY is not set or the Claude CLI binary is not on PATH"
+    fix: "Set ANTHROPIC_API_KEY in the environment and confirm that the `claude` binary is installed and executable before running Ralphy."

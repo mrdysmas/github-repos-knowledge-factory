@@ -8,7 +8,7 @@ category: agent_cli
 provenance:
   shard: repos
   source_file: repos/knowledge/deep/moonshotai__kimi-cli.yaml
-  as_of: "2026-03-17"
+  as_of: "2026-03-19"
   sourcing_method: code_verified
   extraction_model: claude-opus-4-6
   extraction_agent: codex
@@ -202,3 +202,20 @@ testing:
     - "make format: code formatting"
     - "make build: build Python packages"
     - "make build-bin: standalone binary via PyInstaller"
+
+troubleshooting:
+  - symptom: "OAuth login flow hangs or never completes"
+    cause: "The browser-based OAuth redirect is blocked by a firewall or the callback URL is unreachable from the local machine."
+    fix: "Ensure the local OAuth callback port is accessible and not blocked; try 'kimi login' again after checking firewall rules."
+  - symptom: "API key rejected (401) when using a non-Kimi provider"
+    cause: "The provider configuration in ~/.kimi/config.toml has an incorrect api_key or base_url for the selected provider."
+    fix: "Open ~/.kimi/config.toml and verify the api_key and base_url fields for the active provider match the provider's documentation."
+  - symptom: "Rate limit error (429) during extended sessions"
+    cause: "Per-minute token quota exceeded for the configured model tier; tenacity retry logic may mask the error before eventually raising."
+    fix: "Reduce --max-steps-per-turn to limit burst usage, or switch to a model with a higher rate limit in the provider configuration."
+  - symptom: "MCP tool add fails with connection refused"
+    cause: "The MCP server URL specified in the add command is unreachable or the server process is not running."
+    fix: "Verify the MCP server is running and accessible at the configured endpoint before running 'kimi mcp add'."
+  - symptom: "Web UI mode fails to start after SwitchToWeb transition"
+    cause: "The FastAPI/uvicorn web server cannot bind to the default port, typically because the port is already in use."
+    fix: "Check for existing processes on the web UI port and terminate them, or configure an alternate port before launching 'kimi web'."

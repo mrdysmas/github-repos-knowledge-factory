@@ -8,9 +8,9 @@ category: agent_cli
 provenance:
   shard: repos
   source_file: repos/knowledge/deep/github__copilot-cli.yaml
-  as_of: "2026-03-17"
-  sourcing_method: code_verified
-  extraction_model: claude-opus-4-6
+  as_of: "2026-03-19"
+  sourcing_method: training_knowledge
+  extraction_model: claude-sonnet-4-6
   extraction_agent: codex
 
 architecture:
@@ -137,3 +137,40 @@ tech_stack:
     - "Homebrew"
     - "winget"
     - "npm (@github/copilot)"
+
+commands:
+  - name: "curl -fsSL https://gh.io/copilot-install | bash"
+    description: "Install GitHub Copilot CLI on macOS or Linux by downloading and running the official install script."
+  - name: "brew install copilot-cli"
+    description: "Install GitHub Copilot CLI via Homebrew on macOS."
+  - name: copilot
+    description: "Launch an interactive Copilot terminal session for natural-language code assistance, editing, debugging, and refactoring."
+  - name: "copilot --banner"
+    description: "Start an interactive Copilot session with the animated startup banner displayed."
+  - name: "copilot --experimental"
+    description: "Start an interactive session with experimental features enabled, including autopilot mode (Shift+Tab to trigger)."
+  - name: "/login"
+    description: "Authenticate with GitHub inside a Copilot session using a Personal Access Token or GitHub OAuth flow."
+  - name: "/model"
+    description: "Switch the active AI model within a Copilot session (Claude Sonnet 4.5, Claude Sonnet 4, GPT-5)."
+  - name: "/pr"
+    description: "Create or view pull requests, fix CI failures, and address code review comments from within the session."
+  - name: "/version"
+    description: "Display the installed Copilot CLI version and check for available updates."
+
+troubleshooting:
+  - symptom: "Authentication fails on first launch with 401 Unauthorized"
+    cause: "GH_TOKEN or GITHUB_TOKEN is not set, expired, or the token lacks the required Copilot Requests permission"
+    fix: "Generate a new fine-grained Personal Access Token with 'Copilot Requests' permission and export it as GH_TOKEN before launching copilot."
+  - symptom: "Install script fails with checksum validation error"
+    cause: "The downloaded binary tarball does not match the SHA256 checksum in SHA256SUMS.txt, possibly due to a partial download or network corruption"
+    fix: "Delete the partial download, verify network connectivity, and re-run the install script."
+  - symptom: "copilot binary not found after installation"
+    cause: "The install directory (PREFIX/bin) is not in the shell PATH"
+    fix: "Follow the post-install PATH setup prompt, or manually add the install directory to PATH in your shell profile (~/.zshrc or ~/.bashrc) and reload the shell."
+  - symptom: "MCP server not available inside a Copilot session"
+    cause: "Custom MCP server config is missing or the server process failed to start before the session"
+    fix: "Confirm the MCP server entry is correctly defined in the Copilot configuration and the server process is reachable, then restart the Copilot session."
+  - symptom: "Rate limit error during long coding sessions"
+    cause: "Exceeded the per-hour or per-day request quota for the GitHub Copilot subscription tier"
+    fix: "Wait for the quota window to reset, reduce request frequency, or upgrade the subscription tier."

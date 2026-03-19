@@ -6,7 +6,7 @@ source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep/ralph.yaml
-  as_of: "2026-03-17"
+  as_of: "2026-03-19"
   sourcing_method: code_verified
   extraction_model: claude-opus-4-6
   extraction_agent: codex
@@ -125,3 +125,20 @@ commands:
     description: "Run Ralph with Claude Code, max 20 iterations"
   - command: "cd flowchart && npm run dev"
     description: "Run the interactive flowchart visualization"
+
+troubleshooting:
+  - symptom: "Loop exits immediately with no iterations completed"
+    cause: "prd.json is missing or malformed — jq fails to parse branchName, causing the script to exit before the first iteration."
+    fix: "Copy prd.json.example to prd.json, populate the required fields (project, branchName, userStories), and validate JSON with 'jq . prd.json'."
+  - symptom: "Amp or claude command not found — loop cannot spawn AI instances"
+    cause: "The selected AI tool (amp or claude) is not installed or not on PATH in the shell environment where ralph.sh runs."
+    fix: "Install the required CLI tool (Amp or Claude Code) and confirm it is accessible via 'which amp' or 'which claude' before running ralph.sh."
+  - symptom: "Loop runs max iterations but never detects completion"
+    cause: "The AI instance is not emitting the expected <promise>COMPLETE</promise> signal — either the prompt is not instructing it to, or output is being truncated before the signal."
+    fix: "Review prompt.md (or CLAUDE.md) to confirm the completion signal instruction is present; increase max_iterations if the task genuinely requires more steps."
+  - symptom: "Previous run files overwritten without archiving when switching branches"
+    cause: "prd.json still contains the old branchName value from the previous feature, so the archive condition (branchName mismatch) never triggers."
+    fix: "Update the branchName field in prd.json to match the new feature branch before starting ralph.sh on the new task."
+  - symptom: "progress.txt grows unbounded and context window fills during later iterations"
+    cause: "The agent appends full progress reports each iteration without pruning; the file becomes too large to include in the prompt for fresh AI instances."
+    fix: "Periodically archive or truncate progress.txt, keeping only the Codebase Patterns section and the most recent iteration summary."

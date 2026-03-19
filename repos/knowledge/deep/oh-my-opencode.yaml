@@ -6,9 +6,9 @@ source: remote_metadata
 provenance:
   shard: repos
   source_file: "repos/knowledge/deep/oh-my-opencode.yaml"
-  as_of: "2026-03-17"
-  sourcing_method: code_verified
-  extraction_model: gpt-5.4
+  as_of: "2026-03-19"
+  sourcing_method: training_knowledge
+  extraction_model: claude-sonnet-4-6
   extraction_agent: codex
 directory: "remote::code-yeongyu/oh-my-opencode"
 category: agent_cli
@@ -79,3 +79,34 @@ key_files:
     purpose: "Aggregated exports for config schema modules."
   - path: "assets/oh-my-opencode.schema.json"
     purpose: "Machine-readable config schema with agent, permission, and command settings."
+
+commands:
+  - name: "oh-my-opencode install"
+    description: "Install the oh-my-opencode plugin into OpenCode, configuring hooks, agents, and MCP integrations."
+    usage: "oh-my-opencode install [--no-tui] [--claude]"
+  - name: "oh-my-opencode run"
+    description: "Start an OpenCode session using the configured agent and model, optionally resuming an existing session."
+    usage: "oh-my-opencode run [--agent <name>] [--model <provider/model>] [--session-id <id>]"
+  - name: "oh-my-opencode doctor"
+    description: "Run diagnostic checks on the installation and configuration to surface missing dependencies or misconfigured options."
+  - name: "oh-my-opencode version"
+    description: "Display the installed version of oh-my-opencode."
+  - name: "oh-my-opencode get-local-version"
+    description: "Print the locally installed version string for use in scripts or version-gate checks."
+
+troubleshooting:
+  - symptom: "Install fails with a TUI rendering error on headless systems"
+    cause: "The interactive TUI installer requires a terminal with TTY support and fails in non-interactive CI environments"
+    fix: "Pass --no-tui to run the installer in non-interactive mode: `oh-my-opencode install --no-tui`."
+  - symptom: "Run command exits immediately with 'agent not found'"
+    cause: "The specified agent name does not match any entry in the plugin configuration or the agent has been disabled"
+    fix: "Check the oh-my-opencode config for valid agent names and confirm the target agent is not listed in `disabled_agents`."
+  - symptom: "MCP server OAuth flow fails during install"
+    cause: "The OAuth redirect URI is not reachable, or the MCP server's credentials are expired or incorrect"
+    fix: "Re-run the OAuth handler step from the CLI and confirm the redirect URI is accessible from the install environment."
+  - symptom: "Session resume with --session-id restarts a new session instead"
+    cause: "The session ID provided does not exist in the local session store or the store was cleared"
+    fix: "List available sessions from the OpenCode session directory and use a valid session ID, or omit --session-id to start fresh."
+  - symptom: "Skill MCP connection drops repeatedly during a run"
+    cause: "The MCP transport for a skill server timed out or the server process exited unexpectedly"
+    fix: "Run `oh-my-opencode doctor` to identify the failing MCP server, then restart it manually or remove it from the active configuration."

@@ -8,14 +8,14 @@ provenance:
   source_file: repos/knowledge/deep_facts/codemoot.yaml
   as_of: '2026-03-17'
   extractor_version: ws6-deep-integrator-v1
-  extraction_model: gpt-5.4
+  extraction_model: claude-sonnet-4-6
   extraction_agent: codex
 facts:
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.67
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/codemoot.yaml
     source_section: key_features[1]
@@ -29,12 +29,12 @@ facts:
     shipping
   note: The Commander entrypoint registers commands such as `run`, `review`, `cleanup`,
     `plan`, `debate`, `jobs`, `session`, `watch`, and `shipit`.
-  fact_id: fact::863fddefcdec2abcc0003dae
+  fact_id: fact::4fdfad6e7a6c46958abb33a5
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.67
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/codemoot.yaml
     source_section: key_features[2]
@@ -50,12 +50,12 @@ facts:
   note: The orchestrator wires `WorkflowEngine`, `EventBus`, `ContextBuilder`, `SessionStore`,
     `ArtifactStore`, `CostStore`, and `MemoryStore` around a project config and SQLite
     database.
-  fact_id: fact::e77237312b7b72d5e972a167
+  fact_id: fact::dfe88c3eeba1eddad6dea72f
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.67
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/codemoot.yaml
     source_section: key_features[3]
@@ -68,12 +68,12 @@ facts:
   object_value: MCP server exposes five tool handlers
   note: The MCP server registers `codemoot_review`, `codemoot_plan`, `codemoot_debate`,
     `codemoot_memory`, and `codemoot_cost` over stdio transport.
-  fact_id: fact::0c1279f71d308094943218f4
+  fact_id: fact::8c4b3dd30158803f4053a13f
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.67
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/codemoot.yaml
     source_section: key_features[0]
@@ -86,12 +86,12 @@ facts:
   object_value: Monorepo split across CLI, core, MCP server, and web packages
   note: The workspace root routes package builds through `packages/*`, with distinct
     `cli`, `core`, `mcp-server`, and `web` packages.
-  fact_id: fact::9487df87a8ac22e17b5bbfff
+  fact_id: fact::36b3bb83cb8fc5ca4de576e0
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.72
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/codemoot.yaml
     source_section: key_files[0]
@@ -102,12 +102,12 @@ facts:
     source_file: repos/knowledge/deep/codemoot.yaml
     excerpt: package.json
   object_value: package.json
-  fact_id: fact::e84817cc7e662ffbe7eeb27e
+  fact_id: fact::6de9d43966018c1b2d9c0771
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/codemoot.yaml
     source_section: architecture.module_breakdown[0]
@@ -120,12 +120,12 @@ facts:
   object_value: packages/cli/src/
   note: 'responsibility: Commander-based user interface and command handlers for workflow
     operations.; key_files: packages/cli/src/index.ts, packages/cli/src/commands/review.ts'
-  fact_id: fact::19d3cf1b6f934ea1bb171da8
+  fact_id: fact::bfb83b05e16df4108589b91d
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.72
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/codemoot.yaml
     source_section: key_files[1]
@@ -136,12 +136,12 @@ facts:
     source_file: repos/knowledge/deep/codemoot.yaml
     excerpt: packages/cli/src/index.ts
   object_value: packages/cli/src/index.ts
-  fact_id: fact::91c353c207ef72da947d229d
+  fact_id: fact::7a2fbff58e594409c68ebfa6
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/codemoot.yaml
     source_section: architecture.module_breakdown[1]
@@ -156,12 +156,12 @@ facts:
   note: 'responsibility: Session orchestration, eventing, debate loops, workflow execution,
     and cancellation control.; key_files: packages/core/src/engine/orchestrator.ts,
     packages/core/src/engine/workflow-engine.ts'
-  fact_id: fact::9bd6ab1c640c0576369bccf5
+  fact_id: fact::b12d413fa88275b27637ee5e
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.72
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/codemoot.yaml
     source_section: key_files[2]
@@ -172,12 +172,12 @@ facts:
     source_file: repos/knowledge/deep/codemoot.yaml
     excerpt: packages/core/src/engine/orchestrator.ts
   object_value: packages/core/src/engine/orchestrator.ts
-  fact_id: fact::24c1b738eea31bcc9f99c3cf
+  fact_id: fact::8fefc0b49f055f5aebc24a7c
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/codemoot.yaml
     source_section: architecture.module_breakdown[2]
@@ -191,12 +191,12 @@ facts:
   object_value: packages/core/src/memory/
   note: 'responsibility: SQLite-backed stores for sessions, jobs, artifacts, cache,
     and debate history.; key_files: packages/core/src/memory/database.ts, packages/core/src/memory/session-store.ts'
-  fact_id: fact::d0b11d1d2656df331f49d6db
+  fact_id: fact::d1ab010de0f42d50fe6bff4b
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/codemoot.yaml
     source_section: architecture.module_breakdown[3]
@@ -209,12 +209,12 @@ facts:
   object_value: packages/mcp-server/src/
   note: 'responsibility: MCP stdio server that wraps orchestrator capabilities as
     callable tools.; key_files: packages/mcp-server/src/server.ts, packages/mcp-server/src/tools/review.ts'
-  fact_id: fact::1e41368432eadd5c8178e080
+  fact_id: fact::97bff3155af1c4b663c0c8b9
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.72
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/codemoot.yaml
     source_section: key_files[3]
@@ -225,12 +225,12 @@ facts:
     source_file: repos/knowledge/deep/codemoot.yaml
     excerpt: packages/mcp-server/src/server.ts
   object_value: packages/mcp-server/src/server.ts
-  fact_id: fact::189cc719adbc604222d56dc8
+  fact_id: fact::dab531c034a74aef2e59f361
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/codemoot.yaml
     source_section: api_surface.public_functions[1]
@@ -243,12 +243,12 @@ facts:
   object_value: Orchestrator.plan
   note: 'Run only the planning loop with iterative review.; async plan(task: string,
     options?: PlanOptions): Promise<SessionResult>; packages/core/src/engine/orchestrator.ts'
-  fact_id: fact::55d6abc305dda257aebe4ed1
+  fact_id: fact::cb23d44d2277ddf802a11444
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/codemoot.yaml
     source_section: api_surface.public_functions[2]
@@ -262,12 +262,12 @@ facts:
   note: 'Review content with a configured model after DLP sanitization and project-context
     assembly.; async review(content: string, options?: ReviewOptions, cancellationToken?:
     CancellationToken): Promise<ReviewResult>; packages/core/src/engine/orchestrator.ts'
-  fact_id: fact::68a81279140882ad2f419b88
+  fact_id: fact::eb002346634b0591fd917443
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/codemoot.yaml
     source_section: api_surface.public_functions[0]
@@ -281,12 +281,12 @@ facts:
   note: 'Execute a full plan-review, implementation, and code-review session for a
     task.; async run(task: string, options?: RunOptions): Promise<SessionResult>;
     packages/core/src/engine/orchestrator.ts'
-  fact_id: fact::c017f00a69043435127ea672
+  fact_id: fact::bfcd1b789940b70a47dd78aa
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/codemoot.yaml
     source_section: api_surface.public_functions[3]
@@ -299,4 +299,260 @@ facts:
   object_value: startServer
   note: 'Start the MCP stdio server and register tool handlers backed by the orchestrator.;
     async function startServer(): Promise<void>; packages/mcp-server/src/server.ts'
-  fact_id: fact::d9ab85784b7581ff9afd482e
+  fact_id: fact::f58de039b2d8305ed42259e0
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-19'
+  provenance:
+    source_file: repos/knowledge/deep/codemoot.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/codemoot.yaml
+    excerpt: Debate command exits immediately with zero output
+  object_value: Debate command exits immediately with zero output
+  note: 'cause: The debate engine received an empty or invalid topic string, or the
+    session store failed to initialize; fix: Confirm the topic is a non-empty string
+    and that the SQLite database is accessible in the project directory.'
+  fact_id: fact::88bbc5dfb1d88ec854597587
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-19'
+  provenance:
+    source_file: repos/knowledge/deep/codemoot.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: repos/knowledge/deep/codemoot.yaml
+    excerpt: Jobs list shows sessions stuck in RUNNING state after a crash
+  object_value: Jobs list shows sessions stuck in RUNNING state after a crash
+  note: 'cause: A session crashed without updating its status in the session store;
+    fix: Run `codemoot cleanup` to purge orphaned job records, then restart the workflow.'
+  fact_id: fact::2d8589c8de889b19860d0926
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-19'
+  provenance:
+    source_file: repos/knowledge/deep/codemoot.yaml
+    source_section: troubleshooting[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[4]
+    source_file: repos/knowledge/deep/codemoot.yaml
+    excerpt: MCP tool calls from Claude Code fail with connection refused
+  object_value: MCP tool calls from Claude Code fail with connection refused
+  note: 'cause: The MCP server process is not running or failed to bind to the stdio
+    transport; fix: Start the MCP server separately if required, or confirm that the
+    codemoot MCP entry in Claude Code config points to the correct binary path.'
+  fact_id: fact::e765f27fa3eec2327444f420
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-19'
+  provenance:
+    source_file: repos/knowledge/deep/codemoot.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/codemoot.yaml
+    excerpt: Orchestration session fails to start with a model API error
+  object_value: Orchestration session fails to start with a model API error
+  note: 'cause: The API key for the primary or secondary model is missing or invalid
+    in the project environment; fix: Set the required API key environment variables
+    (e.g., ANTHROPIC_API_KEY, OPENAI_API_KEY) and retry the command.'
+  fact_id: fact::7a4ba2c39dbfda621c8caf2c
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-19'
+  provenance:
+    source_file: repos/knowledge/deep/codemoot.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/codemoot.yaml
+    excerpt: Review loop hangs and never produces output
+  object_value: Review loop hangs and never produces output
+  note: 'cause: A model request timed out and the orchestrator is waiting for a response
+    that will not arrive; fix: Cancel the stuck session with Ctrl+C, check network
+    connectivity to the model API, and resume with `codemoot session --resume`.'
+  fact_id: fact::36a40bbc422aeba9f7798aec
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-19'
+  provenance:
+    source_file: repos/knowledge/deep/codemoot.yaml
+    source_section: commands[8]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[8]
+    source_file: repos/knowledge/deep/codemoot.yaml
+    excerpt: codemoot cleanup
+  object_value: codemoot cleanup
+  note: Remove stale session data, orphaned job records, and artifact cache to free
+    storage.
+  fact_id: fact::24c1342bb1dfdc551c138bb9
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-19'
+  provenance:
+    source_file: repos/knowledge/deep/codemoot.yaml
+    source_section: commands[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[3]
+    source_file: repos/knowledge/deep/codemoot.yaml
+    excerpt: codemoot debate <topic>
+  object_value: codemoot debate <topic>
+  note: Initiate a multi-model debate loop where Claude and Codex exchange arguments
+    on the specified topic.
+  fact_id: fact::0c996454157df83c3efd707c
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-19'
+  provenance:
+    source_file: repos/knowledge/deep/codemoot.yaml
+    source_section: commands[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[5]
+    source_file: repos/knowledge/deep/codemoot.yaml
+    excerpt: codemoot jobs
+  object_value: codemoot jobs
+  note: List active, queued, and completed orchestration jobs with their status, cost,
+    and session IDs.
+  fact_id: fact::33af3a816bb3e41a873b1d4d
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-19'
+  provenance:
+    source_file: repos/knowledge/deep/codemoot.yaml
+    source_section: commands[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[2]
+    source_file: repos/knowledge/deep/codemoot.yaml
+    excerpt: codemoot plan <task>
+  object_value: codemoot plan <task>
+  note: Run only the planning loop with iterative model review, producing a structured
+    implementation plan.
+  fact_id: fact::66df28ee903df98d6ac43432
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-19'
+  provenance:
+    source_file: repos/knowledge/deep/codemoot.yaml
+    source_section: commands[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[1]
+    source_file: repos/knowledge/deep/codemoot.yaml
+    excerpt: codemoot review <content>
+  object_value: codemoot review <content>
+  note: Run a code review pass on the provided content through Claude and Codex with
+    DLP sanitization and project context.
+  fact_id: fact::fa1304ae55964d60f3baaab2
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-19'
+  provenance:
+    source_file: repos/knowledge/deep/codemoot.yaml
+    source_section: commands[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[0]
+    source_file: repos/knowledge/deep/codemoot.yaml
+    excerpt: codemoot run <task>
+  object_value: codemoot run <task>
+  note: Execute a full plan-review-implement-review session for the given task using
+    the configured model pair.
+  fact_id: fact::973a4c1dfa167c2eb9cd2e7a
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-19'
+  provenance:
+    source_file: repos/knowledge/deep/codemoot.yaml
+    source_section: commands[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[6]
+    source_file: repos/knowledge/deep/codemoot.yaml
+    excerpt: codemoot session
+  object_value: codemoot session
+  note: Show or manage the current orchestration session, including resumption and
+    cleanup options.
+  fact_id: fact::883504d802fba353122e8bf7
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-19'
+  provenance:
+    source_file: repos/knowledge/deep/codemoot.yaml
+    source_section: commands[7]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[7]
+    source_file: repos/knowledge/deep/codemoot.yaml
+    excerpt: codemoot shipit
+  object_value: codemoot shipit
+  note: "Run the ship workflow \u2014 finalizes the implementation, runs validation,\
+    \ and commits changes."
+  fact_id: fact::e3a5a8947c3267df5ad3f955
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-19'
+  provenance:
+    source_file: repos/knowledge/deep/codemoot.yaml
+    source_section: commands[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[4]
+    source_file: repos/knowledge/deep/codemoot.yaml
+    excerpt: codemoot watch
+  object_value: codemoot watch
+  note: Watch the project directory for changes and automatically trigger review or
+    fix workflows on modified files.
+  fact_id: fact::59029a194d886af1fbaa1a5d

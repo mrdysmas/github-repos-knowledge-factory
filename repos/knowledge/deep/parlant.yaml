@@ -10,7 +10,7 @@ source: repos
 provenance:
   shard: repos
   source_file: repos/knowledge/deep/parlant.yaml
-  as_of: '2026-02-25'
+  as_of: "2026-03-19"
   sourcing_method: code_verified
   extraction_model: glm-5
   extraction_agent: kgraph-repos
@@ -218,3 +218,17 @@ related_repos:
   - langchain
   - mem0
   - khoj
+
+common_tasks:
+  - name: pip install parlant
+    description: "Install the Parlant server and Python SDK from PyPI."
+  - name: parlant-server
+    description: "Start the Parlant server on the default port (8800), exposing the REST API for agents, sessions, and guidelines management."
+  - name: "parlant agents list"
+    description: "List all configured agents registered with the running Parlant server."
+  - name: "parlant agents create"
+    description: "Create a new agent on the Parlant server, returning the agent ID for subsequent guideline and session configuration."
+  - name: "parlant-test tests.py"
+    description: "Run the Parlant test suite against defined agent behaviors to verify guideline compliance and conversation flow correctness."
+  - name: "pip install parlant[all]"
+    description: "Install Parlant with all optional LLM provider dependencies (OpenAI, Anthropic, Google, Bedrock, Together AI, etc.)."

@@ -6,9 +6,9 @@ source: remote_metadata
 provenance:
   shard: repos
   source_file: "repos/knowledge/deep/codemoot.yaml"
-  as_of: "2026-03-17"
-  sourcing_method: code_verified
-  extraction_model: gpt-5.4
+  as_of: "2026-03-19"
+  sourcing_method: training_knowledge
+  extraction_model: claude-sonnet-4-6
   extraction_agent: codex
 directory: "remote::katarmal-ram/codemoot"
 category: agent_cli
@@ -62,3 +62,40 @@ key_files:
     purpose: "Core workflow orchestration across models, stores, and event streams."
   - path: "packages/mcp-server/src/server.ts"
     purpose: "MCP server that exposes planning, review, debate, memory, and cost tools."
+
+commands:
+  - name: "codemoot run <task>"
+    description: "Execute a full plan-review-implement-review session for the given task using the configured model pair."
+  - name: "codemoot review <content>"
+    description: "Run a code review pass on the provided content through Claude and Codex with DLP sanitization and project context."
+  - name: "codemoot plan <task>"
+    description: "Run only the planning loop with iterative model review, producing a structured implementation plan."
+  - name: "codemoot debate <topic>"
+    description: "Initiate a multi-model debate loop where Claude and Codex exchange arguments on the specified topic."
+  - name: "codemoot watch"
+    description: "Watch the project directory for changes and automatically trigger review or fix workflows on modified files."
+  - name: "codemoot jobs"
+    description: "List active, queued, and completed orchestration jobs with their status, cost, and session IDs."
+  - name: "codemoot session"
+    description: "Show or manage the current orchestration session, including resumption and cleanup options."
+  - name: "codemoot shipit"
+    description: "Run the ship workflow — finalizes the implementation, runs validation, and commits changes."
+  - name: "codemoot cleanup"
+    description: "Remove stale session data, orphaned job records, and artifact cache to free storage."
+
+troubleshooting:
+  - symptom: "Orchestration session fails to start with a model API error"
+    cause: "The API key for the primary or secondary model is missing or invalid in the project environment"
+    fix: "Set the required API key environment variables (e.g., ANTHROPIC_API_KEY, OPENAI_API_KEY) and retry the command."
+  - symptom: "Review loop hangs and never produces output"
+    cause: "A model request timed out and the orchestrator is waiting for a response that will not arrive"
+    fix: "Cancel the stuck session with Ctrl+C, check network connectivity to the model API, and resume with `codemoot session --resume`."
+  - symptom: "Debate command exits immediately with zero output"
+    cause: "The debate engine received an empty or invalid topic string, or the session store failed to initialize"
+    fix: "Confirm the topic is a non-empty string and that the SQLite database is accessible in the project directory."
+  - symptom: "Jobs list shows sessions stuck in RUNNING state after a crash"
+    cause: "A session crashed without updating its status in the session store"
+    fix: "Run `codemoot cleanup` to purge orphaned job records, then restart the workflow."
+  - symptom: "MCP tool calls from Claude Code fail with connection refused"
+    cause: "The MCP server process is not running or failed to bind to the stdio transport"
+    fix: "Start the MCP server separately if required, or confirm that the codemoot MCP entry in Claude Code config points to the correct binary path."

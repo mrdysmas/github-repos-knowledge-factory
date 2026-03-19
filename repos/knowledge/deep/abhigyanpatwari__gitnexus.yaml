@@ -6,7 +6,7 @@ source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep/abhigyanpatwari__gitnexus.yaml
-  as_of: "2026-03-18"
+  as_of: "2026-03-19"
   sourcing_method: code_verified
   extraction_agent: codex
 directory: "remote::abhigyanpatwari/gitnexus"
@@ -268,3 +268,19 @@ key_files:
   - path: gitnexus-web/src/services/backend.ts
     purpose: "Browser-side HTTP client for local server mode."
 
+troubleshooting:
+  - symptom: "gitnexus analyze fails with out-of-memory crash on a large repository"
+    cause: "Node starts below the 8 GB heap ceiling expected by the analyze command, causing V8 to OOM before the heap re-exec kicks in."
+    fix: "Run with NODE_OPTIONS='--max-old-space-size=8192' explicitly, or ensure the re-exec trigger in analyze.ts is not bypassed by a wrapper script."
+  - symptom: "Tree-sitter parser unavailable warning — files skipped during ingestion"
+    cause: "The language-specific Tree-sitter binary is not installed or not found on PATH for the file extension being processed."
+    fix: "Install the missing Tree-sitter grammar package and re-run 'gitnexus analyze --verbose' to confirm the parser is now detected."
+  - symptom: "MCP server returns stale data after repository changes"
+    cause: "The indexed commit in the registry matches the previous HEAD; the staleness hint is set but no automatic re-index is triggered."
+    fix: "Run 'gitnexus analyze [path]' to re-index the updated repository, then restart the MCP server."
+  - symptom: "'gitnexus serve' fails to bind — address already in use on port 4747"
+    cause: "A previous gitnexus server process is still running or another service is bound to the default port."
+    fix: "Kill the existing process or start the server on a different port with '--port <port>'."
+  - symptom: "Embedding generation fails with a native module crash"
+    cause: "The embedding dependency has a native runtime component that conflicts with the current Node version or platform."
+    fix: "Run without embeddings (omit '--embeddings' flag); embeddings imports are kept lazy so plain indexing continues to work."

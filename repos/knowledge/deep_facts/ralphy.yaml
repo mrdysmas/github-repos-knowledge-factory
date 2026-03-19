@@ -8,14 +8,14 @@ provenance:
   source_file: repos/knowledge/deep_facts/ralphy.yaml
   as_of: '2026-03-17'
   extractor_version: ws6-deep-integrator-v1
-  extraction_model: gpt-5.4
+  extraction_model: claude-sonnet-4-6
   extraction_agent: codex
 facts:
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.67
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/ralphy.yaml
     source_section: key_features[3]
@@ -28,12 +28,12 @@ facts:
   object_value: Engine adapters cover eight backends
   note: The engine registry can instantiate Claude, OpenCode, Cursor, Codex, Qwen,
     Droid, Copilot, and Gemini engines.
-  fact_id: fact::443ec248b6bea4f19e4d529d
+  fact_id: fact::3b2b52e9d539681d115fd9f2
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.67
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/ralphy.yaml
     source_section: key_features[2]
@@ -47,12 +47,12 @@ facts:
   note: The parallel runner creates per-agent worktrees or copied sandboxes, replays
     PRD inputs, executes engine prompts with retry, and later merges or cleans up
     results.
-  fact_id: fact::1b1a826411ab5e302e5ff169
+  fact_id: fact::4fd87e94f51dd81d8525cd42
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.67
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/ralphy.yaml
     source_section: key_features[0]
@@ -65,12 +65,12 @@ facts:
   object_value: Single-task mode and PRD loop mode share one CLI
   note: The main entrypoint dispatches `--init`, `--config`, `--add-rule`, single
     brownfield task execution, or full PRD loop execution from one process.
-  fact_id: fact::a67e77bb62de8ae873208358
+  fact_id: fact::b237f8f4b22f676905f2ca0c
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.67
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/ralphy.yaml
     source_section: key_features[1]
@@ -83,12 +83,12 @@ facts:
   object_value: Task sources are pluggable
   note: The task factory creates markdown, markdown-folder, YAML, JSON, or GitHub-backed
     task sources, with a cached wrapper used for loop execution.
-  fact_id: fact::e06f108440436a7951c99c37
+  fact_id: fact::5fa1e6b853eb0cdcc7a550af
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/ralphy.yaml
     source_section: architecture.module_breakdown[0]
@@ -103,12 +103,12 @@ facts:
   note: 'responsibility: Argument parsing and command dispatch for initialization,
     loop execution, task mode, config edits, and telemetry commands.; key_files: cli/src/index.ts,
     cli/src/cli/args.ts'
-  fact_id: fact::dd309e44b8cc3971d7152cb7
+  fact_id: fact::eefb3b30ed66ae1d755b9fb3
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.72
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/ralphy.yaml
     source_section: key_files[1]
@@ -119,12 +119,12 @@ facts:
     source_file: repos/knowledge/deep/ralphy.yaml
     excerpt: cli/src/cli/args.ts
   object_value: cli/src/cli/args.ts
-  fact_id: fact::3ceddcb9425913a168b128d4
+  fact_id: fact::a4675025914102205874e4f9
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/ralphy.yaml
     source_section: architecture.module_breakdown[3]
@@ -137,12 +137,12 @@ facts:
   object_value: cli/src/engines/
   note: 'responsibility: Adapters for the supported coding-agent backends.; key_files:
     cli/src/engines/index.ts, cli/src/engines/codex.ts'
-  fact_id: fact::b5f067cde9f554de470a1227
+  fact_id: fact::1711148c24d681a3b9bc3bf9
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/ralphy.yaml
     source_section: architecture.module_breakdown[2]
@@ -157,12 +157,12 @@ facts:
   note: 'responsibility: Sequential and parallel execution, retry handling, conflict
     resolution, worktree management, and sandbox support.; key_files: cli/src/execution/sequential.ts,
     cli/src/execution/parallel.ts'
-  fact_id: fact::674d1697f9796c2dbff725ee
+  fact_id: fact::391755b21b5fe1160187015f
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.72
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/ralphy.yaml
     source_section: key_files[2]
@@ -173,12 +173,12 @@ facts:
     source_file: repos/knowledge/deep/ralphy.yaml
     excerpt: cli/src/execution/parallel.ts
   object_value: cli/src/execution/parallel.ts
-  fact_id: fact::716c581e33497b610724f95f
+  fact_id: fact::54f0a155120abdb63a6f7fa0
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.72
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/ralphy.yaml
     source_section: key_files[0]
@@ -189,12 +189,12 @@ facts:
     source_file: repos/knowledge/deep/ralphy.yaml
     excerpt: cli/src/index.ts
   object_value: cli/src/index.ts
-  fact_id: fact::b7e246760988f0cea3f62e44
+  fact_id: fact::81bee10c5cd5310f1f22b580
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/ralphy.yaml
     source_section: architecture.module_breakdown[1]
@@ -208,12 +208,12 @@ facts:
   object_value: cli/src/tasks/
   note: 'responsibility: Task-source abstraction over markdown, folder, YAML, JSON,
     and GitHub issue inputs.; key_files: cli/src/tasks/index.ts, cli/src/tasks/github.ts'
-  fact_id: fact::0a205bb61a079ddc4cea3601
+  fact_id: fact::608a3b9a5bf6f6920b4cf907
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.72
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/ralphy.yaml
     source_section: key_files[3]
@@ -224,12 +224,12 @@ facts:
     source_file: repos/knowledge/deep/ralphy.yaml
     excerpt: cli/src/tasks/index.ts
   object_value: cli/src/tasks/index.ts
-  fact_id: fact::141b3fb6d00e6c4c53d1024f
+  fact_id: fact::c88ecaa500ac8f2c95bc53d2
 - fact_type: config_option
   predicate: has_config_option
   object_kind: command
   confidence: 0.7
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/ralphy.yaml
     source_section: cli_arguments[3]
@@ -241,12 +241,12 @@ facts:
     excerpt: --github
   object_value: --github
   note: Load tasks from a GitHub repository issue source.
-  fact_id: fact::086e16275ea66e997396d751
+  fact_id: fact::cf025c4b58dbe0cbf44b1cb4
 - fact_type: config_option
   predicate: has_config_option
   object_kind: command
   confidence: 0.7
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/ralphy.yaml
     source_section: cli_arguments[2]
@@ -258,12 +258,12 @@ facts:
     excerpt: --max-parallel
   object_value: --max-parallel
   note: Set the maximum number of concurrent agents.
-  fact_id: fact::93915a1807920ad2d48d8989
+  fact_id: fact::cf97081f90320d1e2fa64d60
 - fact_type: config_option
   predicate: has_config_option
   object_kind: command
   confidence: 0.7
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/ralphy.yaml
     source_section: cli_arguments[5]
@@ -275,12 +275,12 @@ facts:
     excerpt: --model
   object_value: --model
   note: Override the default engine model.
-  fact_id: fact::00252d51eaa247b9f622fd7f
+  fact_id: fact::f2104b6019e2aac3c1576e86
 - fact_type: config_option
   predicate: has_config_option
   object_kind: command
   confidence: 0.7
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/ralphy.yaml
     source_section: cli_arguments[0]
@@ -292,12 +292,12 @@ facts:
     excerpt: --parallel
   object_value: --parallel
   note: Run tasks concurrently using worktrees.
-  fact_id: fact::39e51e89d4a7aa77508175f0
+  fact_id: fact::3ffb6ee9bd231a5013a0de21
 - fact_type: config_option
   predicate: has_config_option
   object_kind: command
   confidence: 0.7
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/ralphy.yaml
     source_section: cli_arguments[1]
@@ -309,12 +309,12 @@ facts:
     excerpt: --sandbox
   object_value: --sandbox
   note: Use lightweight sandboxes instead of git worktrees.
-  fact_id: fact::594c26fe4e98b5fcb153be75
+  fact_id: fact::0d8072e2d30dea5e4b9bd8b8
 - fact_type: config_option
   predicate: has_config_option
   object_kind: command
   confidence: 0.7
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/ralphy.yaml
     source_section: cli_arguments[4]
@@ -326,12 +326,12 @@ facts:
     excerpt: --sync-issue
   object_value: --sync-issue
   note: Sync PRD progress back to a GitHub issue body.
-  fact_id: fact::04257cb24b706bea656e9773
+  fact_id: fact::cb99a1e666c9e850f1ac59df
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/ralphy.yaml
     source_section: configuration[0]
@@ -344,12 +344,12 @@ facts:
   object_value: aiEngine
   note: Runtime option derived from engine-selection flags such as `--claude`, `--codex`,
     or `--gemini`.
-  fact_id: fact::393bd7266cf03597b50e623b
+  fact_id: fact::7a44c21de6a893cfca702a8c
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/ralphy.yaml
     source_section: configuration[2]
@@ -362,12 +362,12 @@ facts:
   object_value: browserEnabled
   note: Runtime option that toggles browser automation between `auto`, `true`, and
     `false`.
-  fact_id: fact::316682c64aa2f128091dc5a5
+  fact_id: fact::3cdd86c1838ba8eae41541d0
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
   confidence: 0.72
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/ralphy.yaml
     source_section: configuration[1]
@@ -379,12 +379,12 @@ facts:
     excerpt: prdSource
   object_value: prdSource
   note: Runtime option derived from PRD file, folder, JSON, YAML, or GitHub inputs.
-  fact_id: fact::b98ea00d562cee2a1f391081
+  fact_id: fact::590866e854a605ed8e914ab7
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/ralphy.yaml
     source_section: api_surface.public_functions[3]
@@ -397,12 +397,12 @@ facts:
   object_value: createEngine
   note: 'Instantiate the requested engine adapter by name.; function createEngine(name:
     AIEngineName): AIEngine; cli/src/engines/index.ts'
-  fact_id: fact::ca664d7e5abf05bf66f261b2
+  fact_id: fact::14b334029be27f1aae67123a
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/ralphy.yaml
     source_section: api_surface.public_functions[0]
@@ -415,12 +415,12 @@ facts:
   object_value: createProgram
   note: 'Build the Commander program with the full Ralphy CLI option set.; function
     createProgram(): Command; cli/src/cli/args.ts'
-  fact_id: fact::d830d97f68305f6ccf3a8e39
+  fact_id: fact::fc18cd97c553b2e5affcdbf1
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/ralphy.yaml
     source_section: api_surface.public_functions[1]
@@ -433,12 +433,12 @@ facts:
   object_value: parseArgs
   note: Parse CLI arguments into runtime options, task mode flags, and engine-specific
     passthrough arguments.; cli/src/cli/args.ts
-  fact_id: fact::8456f1f9398de0c83e5a8d0b
+  fact_id: fact::765f47292f07fea56e2fe9ae
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/ralphy.yaml
     source_section: api_surface.public_functions[2]
@@ -451,4 +451,228 @@ facts:
   object_value: runLoop
   note: 'Execute the multi-task PRD loop in sequential or parallel mode.; async function
     runLoop(options: RuntimeOptions): Promise<void>; cli/src/cli/commands/run.ts'
-  fact_id: fact::2081b31edcd977726d7f4651
+  fact_id: fact::a09af9690adfce6b545151c2
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-19'
+  provenance:
+    source_file: repos/knowledge/deep/ralphy.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/ralphy.yaml
+    excerpt: Engine not found error when running a task with a named backend
+  object_value: Engine not found error when running a task with a named backend
+  note: 'cause: The engine adapter for the requested backend (e.g., Droid, Qwen) is
+    not installed or the engine name is misspelled; fix: Check the list of supported
+    engines in the config, ensure the engine binary is installed and on PATH, then
+    retry with the correct engine name.'
+  fact_id: fact::2cefd7da9ef0cdd1b7b82d01
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-19'
+  provenance:
+    source_file: repos/knowledge/deep/ralphy.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/ralphy.yaml
+    excerpt: GitHub task source returns empty task list
+  object_value: GitHub task source returns empty task list
+  note: 'cause: GITHUB_TOKEN is not set or the token lacks read access to the target
+    repository issues; fix: Export a GITHUB_TOKEN with repo read permissions and confirm
+    the repository and issue number are correctly specified.'
+  fact_id: fact::8959232f03caa527c355130b
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-19'
+  provenance:
+    source_file: repos/knowledge/deep/ralphy.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/ralphy.yaml
+    excerpt: Parallel run produces merge conflicts after task completion
+  object_value: Parallel run produces merge conflicts after task completion
+  note: 'cause: Multiple agents modified the same files in their worktrees and the
+    merge step encountered overlapping edits; fix: Resolve conflicts manually after
+    the parallel run, or restructure the PRD to assign non-overlapping file scopes
+    to each task.'
+  fact_id: fact::94e2f39cc40d2c345eafb1b8
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-19'
+  provenance:
+    source_file: repos/knowledge/deep/ralphy.yaml
+    source_section: troubleshooting[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[4]
+    source_file: repos/knowledge/deep/ralphy.yaml
+    excerpt: Single task exits without output when using Claude engine
+  object_value: Single task exits without output when using Claude engine
+  note: 'cause: ANTHROPIC_API_KEY is not set or the Claude CLI binary is not on PATH;
+    fix: Set ANTHROPIC_API_KEY in the environment and confirm that the `claude` binary
+    is installed and executable before running Ralphy.'
+  fact_id: fact::ee95033006ab2ad9b04cfc1a
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-19'
+  provenance:
+    source_file: repos/knowledge/deep/ralphy.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: repos/knowledge/deep/ralphy.yaml
+    excerpt: Worktree creation fails with a git error on parallel run
+  object_value: Worktree creation fails with a git error on parallel run
+  note: 'cause: The repository has uncommitted changes that prevent clean worktree
+    creation, or the worktree path already exists; fix: Commit or stash pending changes
+    before running with --parallel, or delete stale worktree directories from a previous
+    run.'
+  fact_id: fact::42ec38a558ae2e4da2c0a410
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-19'
+  provenance:
+    source_file: repos/knowledge/deep/ralphy.yaml
+    source_section: commands[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[2]
+    source_file: repos/knowledge/deep/ralphy.yaml
+    excerpt: ralphy --add-rule <rule>
+  object_value: ralphy --add-rule <rule>
+  note: Append a new behavioral rule to the Ralphy project config for agent execution
+    guidance.
+  fact_id: fact::e805b93fa867ab6a9b0f3f4d
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-19'
+  provenance:
+    source_file: repos/knowledge/deep/ralphy.yaml
+    source_section: commands[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[1]
+    source_file: repos/knowledge/deep/ralphy.yaml
+    excerpt: ralphy --config
+  object_value: ralphy --config
+  note: Open the Ralphy configuration to set the default engine, model, and task source
+    options.
+  fact_id: fact::6abb28437a16f11b4603b916
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-19'
+  provenance:
+    source_file: repos/knowledge/deep/ralphy.yaml
+    source_section: commands[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[5]
+    source_file: repos/knowledge/deep/ralphy.yaml
+    excerpt: ralphy --github --sync-issue
+  object_value: ralphy --github --sync-issue
+  note: Load tasks from a GitHub repository issue and sync progress back to the issue
+    body after each task completes.
+  fact_id: fact::82cc289621523c31b46b824f
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-19'
+  provenance:
+    source_file: repos/knowledge/deep/ralphy.yaml
+    source_section: commands[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[0]
+    source_file: repos/knowledge/deep/ralphy.yaml
+    excerpt: ralphy --init
+  object_value: ralphy --init
+  note: Initialize a new Ralphy project in the current directory, creating config
+    and task scaffolding.
+  fact_id: fact::64607238788637fa839b08fd
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-19'
+  provenance:
+    source_file: repos/knowledge/deep/ralphy.yaml
+    source_section: commands[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[4]
+    source_file: repos/knowledge/deep/ralphy.yaml
+    excerpt: ralphy --parallel <prd>
+  object_value: ralphy --parallel <prd>
+  note: Run all tasks in the PRD file concurrently across multiple agents using git
+    worktrees.
+  fact_id: fact::bf21c1c3d49f69d3bc77f596
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-19'
+  provenance:
+    source_file: repos/knowledge/deep/ralphy.yaml
+    source_section: commands[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[6]
+    source_file: repos/knowledge/deep/ralphy.yaml
+    excerpt: ralphy --sandbox
+  object_value: ralphy --sandbox
+  note: Execute tasks using lightweight copied sandboxes instead of git worktrees
+    for isolation.
+  fact_id: fact::49f79acce36ce6a51af0472b
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-19'
+  provenance:
+    source_file: repos/knowledge/deep/ralphy.yaml
+    source_section: commands[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[3]
+    source_file: repos/knowledge/deep/ralphy.yaml
+    excerpt: ralphy <task>
+  object_value: ralphy <task>
+  note: Execute a single brownfield task using the configured engine backend (Claude,
+    Codex, OpenCode, Cursor, or others).
+  fact_id: fact::81f47d988f2ec1df19190131

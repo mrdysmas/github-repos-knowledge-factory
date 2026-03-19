@@ -7,7 +7,8 @@ provenance:
   shard: repos
   source_file: "repos/knowledge/deep/composiohq__awesome-claude-skills.yaml"
   as_of: "2026-03-17"
-  sourcing_method: mixed
+  sourcing_method: training_knowledge
+  as_of: "2026-03-19"
   extraction_model: gpt-5.4
   extraction_agent: codex
 directory: "remote::composiohq/awesome-claude-skills"
@@ -78,3 +79,16 @@ key_sections:
     purpose: "Usage instructions for Claude.ai, Claude Code, and API-based skill consumption."
   - name: "Creating Skills"
     purpose: "Defines skill structure, template shape, and best practices for authoring new skills."
+
+quick_reference:
+  - name: "Install the connect-apps skill via Claude Code"
+    description: "Add the Composio connect-apps plugin to Claude Code to route authenticated actions through 500+ SaaS integrations."
+    usage: "claude mcp add composio -- npx @composio/mcp@latest start"
+  - name: "Browse and install a skill from the catalog"
+    description: "Copy the SKILL.md or slash command file from the desired subdirectory into your Claude project's skills or commands folder."
+  - name: "Author a new skill using the template"
+    description: "Scaffold a new skill following the documented SKILL.md template (name, description, trigger, instructions) and open a PR to the catalog."
+  - name: "Use a skill in Claude.ai"
+    description: "Upload the SKILL.md or reference it as a custom instruction set within a Claude.ai project to activate the skill for that context."
+  - name: "Invoke a skill via Claude Code slash command"
+    description: "If the skill ships a slash command file, install it under .claude/commands/ and invoke with the /command-name pattern in Claude Code."

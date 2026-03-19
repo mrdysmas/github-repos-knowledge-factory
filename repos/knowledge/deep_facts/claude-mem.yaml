@@ -8,14 +8,14 @@ provenance:
   source_file: repos/knowledge/deep_facts/claude-mem.yaml
   as_of: '2026-03-17'
   extractor_version: ws6-deep-integrator-v1
-  extraction_model: gpt-5.4
+  extraction_model: claude-sonnet-4-6
   extraction_agent: codex
 facts:
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.67
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/claude-mem.yaml
     source_section: key_features[1]
@@ -28,12 +28,12 @@ facts:
   object_value: Context generation is exposed as a reusable service layer
   note: The context module re-exports `generateContext`, token calculators, timeline
     builders, and observation query helpers.
-  fact_id: fact::611595e6efa7cad6f73ba958
+  fact_id: fact::477325632c36b2741d9e13c7
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.67
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/claude-mem.yaml
     source_section: key_features[0]
@@ -46,12 +46,12 @@ facts:
   object_value: Hook runtime degrades gracefully when the worker is unavailable
   note: The hook command classifies transport failures, timeouts, HTTP 5xx, and 429
     responses as transient and exits successfully instead of blocking the host editor.
-  fact_id: fact::aa2d4668ad9a222eb1b6fc8b
+  fact_id: fact::75df99e8b6985101bdf13a8a
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.67
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/claude-mem.yaml
     source_section: key_features[2]
@@ -64,12 +64,12 @@ facts:
   object_value: SQLite storage is a first-class subsystem
   note: The SQLite index re-exports database initialization, migrations, CRUD modules,
     FTS-backed search, and transaction helpers.
-  fact_id: fact::0f4e391d2a794080da29b974
+  fact_id: fact::a5aa2bd09421878cf046c0ab
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.67
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/claude-mem.yaml
     source_section: key_features[4]
@@ -82,12 +82,12 @@ facts:
   object_value: Supervisor enforces single-worker semantics
   note: The supervisor checks a PID file, starts health monitoring, and tears down
     stale PID records before allowing a worker to run.
-  fact_id: fact::8684cc67cbe09eb226a8e2e4
+  fact_id: fact::e6348836e2374063b1a774b8
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.67
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/claude-mem.yaml
     source_section: key_features[3]
@@ -100,12 +100,12 @@ facts:
   object_value: Transcript ingestion tails live JSONL files
   note: The watcher tracks byte offsets, rescans globs or directories, and streams
     parsed transcript lines through `TranscriptEventProcessor`.
-  fact_id: fact::830f653c53214bbbf202b62e
+  fact_id: fact::5f0404f76fdff8c9547ac439
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.72
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/claude-mem.yaml
     source_section: key_files[0]
@@ -116,12 +116,12 @@ facts:
     source_file: repos/knowledge/deep/claude-mem.yaml
     excerpt: package.json
   object_value: package.json
-  fact_id: fact::35673202f6c8114bf9aca7f2
+  fact_id: fact::f9a180119de88d86a15eae0c
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/claude-mem.yaml
     source_section: architecture.module_breakdown[0]
@@ -135,12 +135,12 @@ facts:
   object_value: src/cli/
   note: 'responsibility: Hook command entrypoint, platform adapters, and event handlers
     for Claude Code integration.; key_files: src/cli/hook-command.ts, src/cli/adapters/claude-code.ts'
-  fact_id: fact::b8352269a4ccd0515fc5bc86
+  fact_id: fact::fea5fc1f56269536bcef7c96
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.72
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/claude-mem.yaml
     source_section: key_files[1]
@@ -151,12 +151,12 @@ facts:
     source_file: repos/knowledge/deep/claude-mem.yaml
     excerpt: src/cli/hook-command.ts
   object_value: src/cli/hook-command.ts
-  fact_id: fact::9496f89d1ebf5cecd9930f09
+  fact_id: fact::7dc219dee105e69612f66524
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/claude-mem.yaml
     source_section: architecture.module_breakdown[1]
@@ -170,12 +170,12 @@ facts:
   object_value: src/services/context/
   note: 'responsibility: Builds rendered session context from observations, summaries,
     and timeline data.; key_files: src/services/context/index.ts, src/services/context/ContextBuilder.ts'
-  fact_id: fact::5df30793c2823532ad5746d5
+  fact_id: fact::d1088593503586471d851fc3
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/claude-mem.yaml
     source_section: architecture.module_breakdown[2]
@@ -190,12 +190,12 @@ facts:
   note: 'responsibility: Database lifecycle, migrations, search, and transactional
     persistence of sessions and observations.; key_files: src/services/sqlite/index.ts,
     src/services/sqlite/Database.js'
-  fact_id: fact::48e600a354c9bb4bf9da93db
+  fact_id: fact::61f7bc124aad7bf4d2d2aaac
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.72
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/claude-mem.yaml
     source_section: key_files[2]
@@ -206,12 +206,12 @@ facts:
     source_file: repos/knowledge/deep/claude-mem.yaml
     excerpt: src/services/sqlite/index.ts
   object_value: src/services/sqlite/index.ts
-  fact_id: fact::e41c45913f3decca9dfb28b4
+  fact_id: fact::77c759dd41643a791bfe7f2b
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/claude-mem.yaml
     source_section: architecture.module_breakdown[3]
@@ -224,12 +224,12 @@ facts:
   object_value: src/services/transcripts/
   note: 'responsibility: Watches transcript files, parses entries, and feeds event
     processing.; key_files: src/services/transcripts/watcher.ts, src/services/transcripts/processor.ts'
-  fact_id: fact::5e307a7ecd9e7c05ffa66809
+  fact_id: fact::5a48941139fe8547ac9f962c
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.72
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/claude-mem.yaml
     source_section: key_files[3]
@@ -240,12 +240,12 @@ facts:
     source_file: repos/knowledge/deep/claude-mem.yaml
     excerpt: src/services/transcripts/watcher.ts
   object_value: src/services/transcripts/watcher.ts
-  fact_id: fact::eb3d928130ead1ccd5ddebf8
+  fact_id: fact::c1f0712f0b62016d4a013b26
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.78
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/claude-mem.yaml
     source_section: architecture.module_breakdown[4]
@@ -259,12 +259,12 @@ facts:
   object_value: src/supervisor/
   note: 'responsibility: Worker PID validation, process registry management, signal
     handling, and health checker lifecycle.; key_files: src/supervisor/index.ts, src/supervisor/process-registry.ts'
-  fact_id: fact::314aa7c5ed68ea34ab1b2b2f
+  fact_id: fact::8b7003bfdd2b195c4e4ce6b2
 - fact_type: component
   predicate: has_component
   object_kind: path
   confidence: 0.72
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/claude-mem.yaml
     source_section: key_files[4]
@@ -275,12 +275,12 @@ facts:
     source_file: repos/knowledge/deep/claude-mem.yaml
     excerpt: src/supervisor/index.ts
   object_value: src/supervisor/index.ts
-  fact_id: fact::56a9401bd33b6b95c99d4175
+  fact_id: fact::7144e89307903bc67f78786b
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/claude-mem.yaml
     source_section: api_surface.public_functions[2]
@@ -293,12 +293,12 @@ facts:
   object_value: generateContext
   note: Public entrypoint for assembling memory context from stored observations and
     summaries.; src/services/context/index.ts
-  fact_id: fact::3eb94b3f0a5aa5a49a671fde
+  fact_id: fact::a4598d4316adaec18c2d465b
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/claude-mem.yaml
     source_section: api_surface.public_functions[1]
@@ -312,12 +312,12 @@ facts:
   note: 'Normalize hook input, dispatch an event handler, and emit JSON output with
     mapped exit codes.; async function hookCommand(platform: string, event: string,
     options?: HookCommandOptions): Promise<number>; src/cli/hook-command.ts'
-  fact_id: fact::aaa56a8fd41145a114afc61d
+  fact_id: fact::da4f417d480f6b73b8a7020d
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/claude-mem.yaml
     source_section: api_surface.public_functions[3]
@@ -329,12 +329,12 @@ facts:
     excerpt: initializeDatabase
   object_value: initializeDatabase
   note: Initialize the SQLite-backed storage layer exported from the package.; src/services/sqlite/index.ts
-  fact_id: fact::1a0266cdab12d3fe56fa622a
+  fact_id: fact::64dfbdbac1f714f7cc9a4c11
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/claude-mem.yaml
     source_section: api_surface.public_functions[0]
@@ -347,12 +347,12 @@ facts:
   object_value: isWorkerUnavailableError
   note: 'Classify whether a hook failure should be treated as transient worker unavailability.;
     function isWorkerUnavailableError(error: unknown): boolean; src/cli/hook-command.ts'
-  fact_id: fact::b2011a70d1db944dcb1dcf75
+  fact_id: fact::5ead58a7b844a4ee9fff4b81
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.73
-  as_of: '2026-03-17'
+  as_of: '2026-03-19'
   provenance:
     source_file: repos/knowledge/deep/claude-mem.yaml
     source_section: api_surface.public_functions[4]
@@ -364,4 +364,210 @@ facts:
     excerpt: startSupervisor
   object_value: startSupervisor
   note: Boot the worker supervisor and health checker.; src/supervisor/index.ts
-  fact_id: fact::a9e313753f5c9506eda8c6cd
+  fact_id: fact::7d071c3f8d674208f1a83d65
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-19'
+  provenance:
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    source_section: troubleshooting[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[4]
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    excerpt: Context generation produces an empty output
+  object_value: Context generation produces an empty output
+  note: 'cause: No observations have been stored yet, or the SQLite database path
+    is misconfigured; fix: Confirm the hook integration is active and has fired at
+    least once, and verify the database file exists at the expected path.'
+  fact_id: fact::ecaca9a382237f5bfd89a7e8
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-19'
+  provenance:
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    excerpt: Duplicate worker process detected on startup
+  object_value: Duplicate worker process detected on startup
+  note: 'cause: A stale PID file from a crashed previous worker process still exists;
+    fix: Remove the stale PID file from the supervisor directory and restart the worker
+    with `claude-mem worker start`.'
+  fact_id: fact::b86f689fae613c92dfc1033d
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-19'
+  provenance:
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    excerpt: "Hook exits with error \u2014 memory not persisted after Claude Code\
+      \ session event"
+  object_value: "Hook exits with error \u2014 memory not persisted after Claude Code\
+    \ session event"
+  note: 'cause: The worker service is not running or has crashed, causing the hook
+    to classify the failure as transient worker unavailability; fix: Start the worker
+    with `claude-mem worker start` and verify it is healthy with `claude-mem status`
+    before the next session.'
+  fact_id: fact::81302aa3016701a4f11d9e5a
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-19'
+  provenance:
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    excerpt: Search returns no results for a query that should match
+  object_value: Search returns no results for a query that should match
+  note: 'cause: FTS index not updated, or the observation was not persisted because
+    the worker was unavailable during that session; fix: Run `claude-mem status` to
+    confirm the worker is running; if observations are missing, check the hook integration
+    is correctly registered in Claude C...'
+  fact_id: fact::49de3939ffe79a5488ad39f0
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-19'
+  provenance:
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    excerpt: Worker crashes immediately after start with a database error
+  object_value: Worker crashes immediately after start with a database error
+  note: 'cause: SQLite file is locked by another process, or the database schema migration
+    failed; fix: Kill any other process holding the SQLite file open, then restart
+    the worker; if migrations failed, check for version mismatch between the package
+    and the existing database.'
+  fact_id: fact::bf59818b15942dff0b739635
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-19'
+  provenance:
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    source_section: commands[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[4]
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    excerpt: claude-mem context
+  object_value: claude-mem context
+  note: "Generate and print the current session context from stored observations and\
+    \ summaries \u2014 used to inject memory into a new session."
+  fact_id: fact::0962d53e2c076ecf73d7f357
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-19'
+  provenance:
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    source_section: commands[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[0]
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    excerpt: claude-mem hook
+  object_value: claude-mem hook
+  note: "Invoke the hook entrypoint to capture and persist a Claude Code session event\
+    \ \u2014 called automatically by Claude Code hook integration."
+  fact_id: fact::53ceb4853185e052ca723848
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-19'
+  provenance:
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    source_section: commands[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[3]
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    excerpt: claude-mem search <query>
+  object_value: claude-mem search <query>
+  note: Full-text search the stored memory index for observations matching the query
+    string.
+  fact_id: fact::9c6b30b9ac0dc976281ecc91
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-19'
+  provenance:
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    source_section: commands[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[5]
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    excerpt: claude-mem status
+  object_value: claude-mem status
+  note: Show the current supervisor status, worker PID, and health check result.
+  fact_id: fact::6709839c6440831d89ade938
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-19'
+  provenance:
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    source_section: commands[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[1]
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    excerpt: claude-mem worker start
+  object_value: claude-mem worker start
+  note: Start the background memory worker service that processes transcript events
+    and writes to the SQLite store.
+  fact_id: fact::282687e7622fa7fe3b5aa0e0
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-19'
+  provenance:
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    source_section: commands[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[2]
+    source_file: repos/knowledge/deep/claude-mem.yaml
+    excerpt: claude-mem worker stop
+  object_value: claude-mem worker stop
+  note: Gracefully shut down the running memory worker service.
+  fact_id: fact::4001ea4625a304c2c56296cc

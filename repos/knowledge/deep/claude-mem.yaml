@@ -6,9 +6,9 @@ source: remote_metadata
 provenance:
   shard: repos
   source_file: "repos/knowledge/deep/claude-mem.yaml"
-  as_of: "2026-03-17"
-  sourcing_method: code_verified
-  extraction_model: gpt-5.4
+  as_of: "2026-03-19"
+  sourcing_method: training_knowledge
+  extraction_model: claude-sonnet-4-6
   extraction_agent: codex
 directory: "remote::thedotmack/claude-mem"
 category: agent_cli
@@ -70,3 +70,34 @@ key_files:
     purpose: "Tails transcript files and routes parsed events into the processor."
   - path: "src/supervisor/index.ts"
     purpose: "Single-worker supervisor with PID validation and shutdown handling."
+
+commands:
+  - name: "claude-mem hook"
+    description: "Invoke the hook entrypoint to capture and persist a Claude Code session event — called automatically by Claude Code hook integration."
+  - name: "claude-mem worker start"
+    description: "Start the background memory worker service that processes transcript events and writes to the SQLite store."
+  - name: "claude-mem worker stop"
+    description: "Gracefully shut down the running memory worker service."
+  - name: "claude-mem search <query>"
+    description: "Full-text search the stored memory index for observations matching the query string."
+  - name: "claude-mem context"
+    description: "Generate and print the current session context from stored observations and summaries — used to inject memory into a new session."
+  - name: "claude-mem status"
+    description: "Show the current supervisor status, worker PID, and health check result."
+
+troubleshooting:
+  - symptom: "Hook exits with error — memory not persisted after Claude Code session event"
+    cause: "The worker service is not running or has crashed, causing the hook to classify the failure as transient worker unavailability"
+    fix: "Start the worker with `claude-mem worker start` and verify it is healthy with `claude-mem status` before the next session."
+  - symptom: "Duplicate worker process detected on startup"
+    cause: "A stale PID file from a crashed previous worker process still exists"
+    fix: "Remove the stale PID file from the supervisor directory and restart the worker with `claude-mem worker start`."
+  - symptom: "Search returns no results for a query that should match"
+    cause: "FTS index not updated, or the observation was not persisted because the worker was unavailable during that session"
+    fix: "Run `claude-mem status` to confirm the worker is running; if observations are missing, check the hook integration is correctly registered in Claude Code."
+  - symptom: "Worker crashes immediately after start with a database error"
+    cause: "SQLite file is locked by another process, or the database schema migration failed"
+    fix: "Kill any other process holding the SQLite file open, then restart the worker; if migrations failed, check for version mismatch between the package and the existing database."
+  - symptom: "Context generation produces an empty output"
+    cause: "No observations have been stored yet, or the SQLite database path is misconfigured"
+    fix: "Confirm the hook integration is active and has fired at least once, and verify the database file exists at the expected path."

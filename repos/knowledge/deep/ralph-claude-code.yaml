@@ -6,9 +6,9 @@ source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep/ralph-claude-code.yaml
-  as_of: "2026-03-17"
-  sourcing_method: code_verified
-  extraction_model: claude-opus-4-6
+  as_of: "2026-03-19"
+  sourcing_method: training_knowledge
+  extraction_model: claude-sonnet-4-6
   extraction_agent: codex
 directory: "remote::frankbria/ralph-claude-code"
 category: agent_cli
@@ -144,3 +144,38 @@ testing:
     - "test_json_parsing.bats — 52 tests for JSON output format parsing and session management"
     - "test_project_setup.bats — 50 tests for setup.sh validation"
   quality_gate: "100% test pass rate (coverage threshold disabled due to kcov subprocess limitations)"
+
+commands:
+  - name: "./ralph_loop.sh"
+    description: "Start the autonomous Claude Code execution loop — invokes Claude repeatedly until the dual exit-condition gate is satisfied or rate limits are hit."
+  - name: "./ralph_loop.sh --monitor"
+    description: "Start the autonomous loop with an integrated tmux monitoring panel showing real-time status and call counts."
+  - name: "./ralph_loop.sh --live"
+    description: "Start the loop with real-time Claude Code output streaming visible in the terminal via tmux."
+  - name: "./ralph_monitor.sh"
+    description: "Open the tmux-based monitoring dashboard for an already-running Ralph loop session."
+  - name: "./setup.sh"
+    description: "Initialize a new project with the Ralph directory structure, PROMPT.md, fix_plan.md, and AGENT.md templates."
+  - name: "./ralph_enable.sh"
+    description: "Run the 5-phase interactive wizard to enable Ralph in an existing project."
+  - name: "./ralph_import.sh <spec>"
+    description: "Import a PRD or specification file and convert it into a Ralph-compatible task list in .ralph/fix_plan.md."
+  - name: "./install.sh"
+    description: "Install Ralph globally to ~/.local/bin/ and ~/.ralph/ for use across projects."
+
+troubleshooting:
+  - symptom: "Loop exits immediately after first Claude invocation with no progress"
+    cause: "The dual-condition exit gate fired because completion_indicators >= 2 and EXIT_SIGNAL was set, but no real work was done — often caused by an overly short PROMPT.md"
+    fix: "Rewrite PROMPT.md with a more specific task description and explicit continuation instructions to prevent premature exits."
+  - symptom: "Circuit breaker opens after a few iterations and blocks further execution"
+    cause: "Repeated no-progress, same-error, or permission-denial events exceeded the configured CB thresholds"
+    fix: "Run `./ralph_loop.sh --reset-circuit` to reset the breaker, then investigate the error pattern in .ralph/logs/ before retrying."
+  - symptom: "Rate limit guard triggers well below 100 calls"
+    cause: "The call counter persisted from a previous run is being added to the current session's count"
+    fix: "Check and reset the call counter in .ralph/status.json, or pass `--calls N` to override the limit for the current session."
+  - symptom: "Claude session resume fails — new session started each time"
+    cause: "The session ID in .ralph/.claude_session_id has expired (24-hour default) or the file is missing"
+    fix: "Delete .ralph/.claude_session_id to force a clean session start, or adjust CLAUDE_SESSION_EXPIRY_HOURS in .ralphrc."
+  - symptom: "Timeout guard fires before Claude finishes a complex task"
+    cause: "CLAUDE_TIMEOUT_MINUTES is set too low for the task complexity"
+    fix: "Increase CLAUDE_TIMEOUT_MINUTES in .ralphrc and ensure `gtimeout` is installed on macOS (via `brew install coreutils`)."

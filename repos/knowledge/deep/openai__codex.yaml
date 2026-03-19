@@ -6,8 +6,8 @@ source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep/openai__codex.yaml
-  as_of: '2026-03-05'
-  sourcing_method: code_verified
+  as_of: '2026-03-19'
+  sourcing_method: training_knowledge
   extraction_model: gpt-unknown
   extraction_agent: codex
 directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/openai__codex
@@ -169,3 +169,20 @@ api_surface:
     purpose: Coordinates agent planning, tool dispatch, and execution policy checks.
     signature: internal runtime interfaces
     location: codex-rs/
+
+troubleshooting:
+  - symptom: "OPENAI_API_KEY not set — authentication fails on launch"
+    cause: "The CLI requires OPENAI_API_KEY (or the configured provider's key) to be present in the environment before any session can start."
+    fix: "Export the correct API key environment variable and restart the terminal; verify with 'echo $OPENAI_API_KEY'."
+  - symptom: "Rate limit error (429) during long coding sessions"
+    cause: "Sustained tool-calling and code generation exceeds per-minute token quota for the API key tier in use."
+    fix: "Reduce request frequency, pause between large tasks, or upgrade to a higher-capacity API tier with increased rate limits."
+  - symptom: "Sandbox execution denied — file operation blocked unexpectedly"
+    cause: "The active sandbox_mode or approval_policy restricts the path the agent is trying to write to."
+    fix: "Check the configured approval_policy setting; switch to a more permissive sandbox mode or approve the specific operation when prompted."
+  - symptom: "npm install -g @openai/codex fails with permission error"
+    cause: "Global npm installs require write access to the Node.js prefix directory, which may be root-owned."
+    fix: "Use a Node version manager (nvm, fnm) so the prefix is user-writable, or install via Homebrew cask instead."
+  - symptom: "codex session hangs with no output after tool invocation"
+    cause: "A shell command or tool execution blocked indefinitely, often due to a process waiting for stdin."
+    fix: "Send an interrupt signal (Ctrl+C), then resume with a narrower task scope; avoid commands that require interactive input."

@@ -10,6 +10,7 @@ provenance:
   source_file: repos/knowledge/deep/superpowers.yaml
   as_of: "2026-03-17"
   sourcing_method: code_verified
+  as_of: "2026-03-19"
   extraction_model: claude-opus-4-6
   extraction_agent: codex
 
@@ -148,3 +149,17 @@ testing:
     - "Claude Code integration: hook firing and context injection"
     - "Subagent-driven development: task dispatch and review cycles"
     - Brainstorm server tests
+
+commands:
+  - name: "claude mcp add superpowers"
+    description: "Install Superpowers as a Claude Code plugin from the marketplace, activating all bundled skills and the SessionStart hook automatically."
+  - name: npm install
+    description: "Install the package locally (Node.js ESM module v5.0.4) when setting up for manual or non-marketplace use."
+  - name: "Copy hooks/hooks.json to .claude/hooks.json"
+    description: "Manually configure the SessionStart hook for Claude Code — the hook fires hooks/session-start on every session start, compact, or clear event to inject skill awareness."
+  - name: "Copy hooks/hooks-cursor.json to project root"
+    description: "Enable Superpowers for Cursor by installing the Cursor-specific hook configuration."
+  - name: "Invoke a skill via Skill tool"
+    description: "Once installed, trigger any bundled skill (brainstorming, subagent-driven-development, test-driven-development, etc.) by invoking the Skill tool with the skill name from within a Claude Code session."
+  - name: "Add gemini-extension.json to Gemini CLI project"
+    description: "Register Superpowers as a Gemini CLI extension by placing gemini-extension.json in the project root, enabling session context injection on Gemini CLI."

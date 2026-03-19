@@ -8,6 +8,7 @@ provenance:
   source_file: "repos/knowledge/deep/anthropics__skills.yaml"
   as_of: "2026-03-17"
   sourcing_method: code_verified
+  as_of: "2026-03-19"
   extraction_model: gpt-5.4
   extraction_agent: codex
 directory: "remote::anthropics/skills"
@@ -59,3 +60,15 @@ key_files:
     purpose: "Headless LibreOffice helper that accepts tracked changes in DOCX files."
   - path: "skills/skill-creator/scripts/package_skill.py"
     purpose: "Validator and archive builder for `.skill` distribution artifacts."
+
+commands:
+  - name: python skills/skill-creator/scripts/quick_validate.py
+    description: "Validate a skill directory for spec compliance before packaging or distribution."
+  - name: python skills/skill-creator/scripts/package_skill.py
+    description: "Package a validated skill directory into a distributable .skill archive, excluding caches and root evals."
+  - name: python skills/docx/scripts/accept_changes.py
+    description: "Accept all tracked changes in a DOCX file using headless LibreOffice automation, writing output to a specified path."
+  - name: "Install a skill from the marketplace"
+    description: "Follow the README installation path for Claude.ai, Claude Code, or API-based skill consumption — copy the SKILL.md and any scripts into your project."
+  - name: "Author a skill using the skill-creator bundle"
+    description: "Use the skill-creator scripts (validate, package, report generation) to iterate on and distribute a new SKILL.md bundle."

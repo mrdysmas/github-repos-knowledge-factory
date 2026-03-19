@@ -8,7 +8,7 @@ category: agent_cli
 provenance:
   shard: repos
   source_file: repos/knowledge/deep/anomalyco__opencode.yaml
-  as_of: "2026-03-17"
+  as_of: "2026-03-19"
   sourcing_method: code_verified
   extraction_model: claude-opus-4-6
   extraction_agent: codex
@@ -205,3 +205,20 @@ testing:
   framework: "Bun test (bun test --timeout 30000)"
   type_checking: "tsgo (TypeScript native preview) / Bun tsc"
   formatting: Prettier
+
+troubleshooting:
+  - symptom: "Provider API key not configured — agent refuses to start"
+    cause: "No valid API key is set for the selected LLM provider; opencode requires at least one provider to be configured before a session begins."
+    fix: "Set the provider's API key environment variable (e.g., ANTHROPIC_API_KEY or OPENAI_API_KEY) or add it to the opencode config file."
+  - symptom: "Rate limit (429) from provider during active coding session"
+    cause: "The agent's sustained tool-calling loop exceeds the per-minute token or request quota for the configured model tier."
+    fix: "Switch to a model with a higher rate limit using 'opencode models', or reduce task scope to lower token throughput per minute."
+  - symptom: "Permission denied when agent tries to read or write a file"
+    cause: "The PermissionNext ruleset is denying the operation — typically a .env file read, an external directory write, or a doom_loop action."
+    fix: "Review the active permission ruleset in configuration; approve the specific operation when prompted, or adjust the default_rules to allow the path."
+  - symptom: "SQLite database migration fails on first launch after upgrade"
+    cause: "The JSON-to-SQLite migration (JsonMigration.run) encounters a malformed or partially written legacy session file."
+    fix: "Remove or rename the corrupted legacy session file from the opencode data directory and restart; prior sessions will not be recoverable."
+  - symptom: "LSP integration produces no code intelligence results"
+    cause: "The language server for the active file type is not installed, not on PATH, or fails to start due to a missing runtime."
+    fix: "Install the appropriate language server for the project language and verify it is executable from the terminal before starting opencode."
