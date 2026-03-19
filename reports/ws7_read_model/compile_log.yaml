@@ -1,7 +1,7 @@
 compile_run:
-  started_at_utc: '2026-03-19T15:10:17Z'
-  finished_at_utc: '2026-03-19T15:10:21Z'
-  duration_ms: 4404
+  started_at_utc: '2026-03-19T16:29:51Z'
+  finished_at_utc: '2026-03-19T16:29:56Z'
+  duration_ms: 4532
   result: ok
   force_flag: false
 source_files:
@@ -18,15 +18,15 @@ source_files:
     edge_count: 152
   facts:
     path: master_deep_facts.yaml
-    sha256: 30ae865455abc71a7fad617a411abc72605a7f6d2e22692d9b083aa2549689d7
+    sha256: b51dac0084bb19475f982817f584f27da5a9a962e184b365255516fb39dab0dc
     generated_at_utc: '2026-03-19T00:00:00Z'
-    fact_count: 5930
+    fact_count: 5950
 gates:
   snapshot_consistency:
     status: warn
     detail: 'timestamp divergence (non-blocking): index(ts=2026-03-18T00:00:00Z,sha256=a5a9ffa23491635b0e5fbec413f7126b3353bf26af746c566c6ad0f675070d77),
       graph(ts=2026-03-18T00:00:00Z,sha256=9955c452c45297d0c2d8ad395f4d71bab5a4959834286ac53389b726683aecf7),
-      facts(ts=2026-03-19T00:00:00Z,sha256=30ae865455abc71a7fad617a411abc72605a7f6d2e22692d9b083aa2549689d7),
+      facts(ts=2026-03-19T00:00:00Z,sha256=b51dac0084bb19475f982817f584f27da5a9a962e184b365255516fb39dab0dc),
       max_delta_seconds=86400'
   row_count_parity:
     status: pass
@@ -34,12 +34,12 @@ gates:
       repos: 121
       nodes: 135
       edges: 152
-      facts: 5930
+      facts: 5950
     actual:
       repos: 121
       nodes: 135
       edges: 152
-      facts: 5930
+      facts: 5950
   orphan_edge_detection:
     status: pass
     orphan_count: 0
@@ -69,10 +69,10 @@ gates:
     detail: all compared tables match
 output:
   path: knowledge.db
-  size_bytes: 8556544
+  size_bytes: 8572928
   table_counts:
     repos: 121
     nodes: 135
     edges: 152
-    facts: 5930
+    facts: 5950
     compile_metadata: 1

@@ -204,3 +204,32 @@ integrations:
   description: Serialization library for model persistence in binary, JSON, and XML formats.
 - name: STB
   description: Bundled image loading/saving support for image-based data ingestion.
+
+common_tasks:
+- name: Train a classifier (C++)
+  description: Instantiate an algorithm class (e.g., RandomForest<>) and call Train() with an Armadillo matrix of training data and a row vector of labels.
+- name: Train using Python bindings
+  description: "Call mlpack.random_forest(training=X, labels=y, num_trees=10) to train and mlpack.random_forest_predict(input_model=model, test=X_test) to predict after importing mlpack."
+- name: Save and load a model
+  description: "Use mlpack::data::Save(\"model.bin\", \"model\", model) and mlpack::data::Load(\"model.bin\", \"model\", model) for cereal-based persistence in binary, XML, or JSON format."
+- name: Run k-means clustering
+  description: "Instantiate KMeans<> and call Cluster(data, k, assignments) where assignments is a row vector that receives cluster labels per point."
+- name: Run cross-validation
+  description: Use SimpleCV or KFoldCV from core/cv with a lambda wrapping the algorithm constructor to evaluate generalization error on held-out folds.
+
+troubleshooting:
+- symptom: CMake fails with LAPACK library not found or matrix operations are unexpectedly slow
+  cause: OpenBLAS or system LAPACK not installed; Armadillo falls back to its reference implementation when no BLAS is detected.
+  fix: Install OpenBLAS (apt install libopenblas-dev / brew install openblas) and re-run CMake; set -DLAPACK_LIBRARIES if the library is in a non-standard path.
+- symptom: Training produces NaN loss or diverges immediately
+  cause: Input features not normalized; learning rate too high; gradient explosion in ANN layers.
+  fix: Scale input to zero mean/unit variance before training; reduce learning rate; use L-BFGS instead of SGD for small datasets; add gradient clipping in custom ANN layers.
+- symptom: std::bad_alloc during training or neighbor search on large datasets
+  cause: Armadillo allocates full in-memory matrices; tree builds for large n exceed available RAM.
+  fix: Reduce dataset size or use approximate methods (LSH); increase system swap; consider streaming or mini-batch variants where available.
+- symptom: Model fails to load with cereal exception or produces empty output after load
+  cause: Model was saved with a different mlpack version; cereal binary format is not forward-compatible across major versions.
+  fix: Retrain and re-save with the current mlpack version; prefer XML or JSON cereal formats for better cross-version compatibility.
+- symptom: Python bindings not found after import or missing mlpack module
+  cause: BUILD_PYTHON_BINDINGS is OFF by default; or bindings were built but not installed to the active Python environment.
+  fix: Rebuild with -DBUILD_PYTHON_BINDINGS=ON and run make install, or install pre-built wheels via pip install mlpack.

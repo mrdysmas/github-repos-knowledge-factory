@@ -1048,6 +1048,108 @@ facts:
   object_value: ensmallen
   note: 'integration group: items'
   fact_id: fact::c63bd440466fdc5afcc589df
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: CMake fails with LAPACK library not found or matrix operations are unexpectedly
+      slow
+  object_value: CMake fails with LAPACK library not found or matrix operations are
+    unexpectedly slow
+  note: 'cause: OpenBLAS or system LAPACK not installed; Armadillo falls back to its
+    reference implementation when no BLAS is detected.; fix: Install OpenBLAS (apt
+    install libopenblas-dev / brew install openblas) and re-run CMake; set -DLAPACK_LIBRARIES
+    if the library is in a non-stand...'
+  fact_id: fact::1896d6e9988963c3e25eb389
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Model fails to load with cereal exception or produces empty output after
+      load
+  object_value: Model fails to load with cereal exception or produces empty output
+    after load
+  note: 'cause: Model was saved with a different mlpack version; cereal binary format
+    is not forward-compatible across major versions.; fix: Retrain and re-save with
+    the current mlpack version; prefer XML or JSON cereal formats for better cross-version
+    compatibility.'
+  fact_id: fact::a9054f75c4c31ae50d875bc9
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: troubleshooting[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[4]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Python bindings not found after import or missing mlpack module
+  object_value: Python bindings not found after import or missing mlpack module
+  note: 'cause: BUILD_PYTHON_BINDINGS is OFF by default; or bindings were built but
+    not installed to the active Python environment.; fix: Rebuild with -DBUILD_PYTHON_BINDINGS=ON
+    and run make install, or install pre-built wheels via pip install mlpack.'
+  fact_id: fact::6e619a0a69481829c6752581
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Training produces NaN loss or diverges immediately
+  object_value: Training produces NaN loss or diverges immediately
+  note: 'cause: Input features not normalized; learning rate too high; gradient explosion
+    in ANN layers.; fix: Scale input to zero mean/unit variance before training; reduce
+    learning rate; use L-BFGS instead of SGD for small datasets; add gradient clipping
+    in custom ANN layers.'
+  fact_id: fact::7fcb71b259ea2be754d0e359
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: std::bad_alloc during training or neighbor search on large datasets
+  object_value: std::bad_alloc during training or neighbor search on large datasets
+  note: 'cause: Armadillo allocates full in-memory matrices; tree builds for large
+    n exceed available RAM.; fix: Reduce dataset size or use approximate methods (LSH);
+    increase system swap; consider streaming or mini-batch variants where available.'
+  fact_id: fact::01628258756c6395e6a99136
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
@@ -1183,3 +1285,94 @@ facts:
     tree types, and optimizers, allowing compile-time customization without virtual
     dispatch.; location: src/mlpack/methods/neighbor_search/'
   fact_id: fact::f2bdcc390ebe6561b7f200b4
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: common_tasks[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[4]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Run cross-validation
+  object_value: Run cross-validation
+  note: Use SimpleCV or KFoldCV from core/cv with a lambda wrapping the algorithm
+    constructor to evaluate generalization error on held-out folds.
+  fact_id: fact::100ad1308efd09355ca7f116
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: common_tasks[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[3]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Run k-means clustering
+  object_value: Run k-means clustering
+  note: Instantiate KMeans<> and call Cluster(data, k, assignments) where assignments
+    is a row vector that receives cluster labels per point.
+  fact_id: fact::bd953d5932cef0cd41f6eb26
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: common_tasks[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[2]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Save and load a model
+  object_value: Save and load a model
+  note: Use mlpack::data::Save("model.bin", "model", model) and mlpack::data::Load("model.bin",
+    "model", model) for cereal-based persistence in binary, XML, or JSON format.
+  fact_id: fact::16cc839f65ea1484748981e3
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: common_tasks[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[0]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Train a classifier (C++)
+  object_value: Train a classifier (C++)
+  note: Instantiate an algorithm class (e.g., RandomForest<>) and call Train() with
+    an Armadillo matrix of training data and a row vector of labels.
+  fact_id: fact::eb3b1c8b82c1332897bfd4bc
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: common_tasks[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[1]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Train using Python bindings
+  object_value: Train using Python bindings
+  note: Call mlpack.random_forest(training=X, labels=y, num_trees=10) to train and
+    mlpack.random_forest_predict(input_model=model, test=X_test) to predict after
+    importing mlpack.
+  fact_id: fact::aea085be7c56f06294b419ad

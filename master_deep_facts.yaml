@@ -2,7 +2,7 @@ artifact_type: ws6_master_deep_facts
 generated_at_utc: '2026-03-19T00:00:00Z'
 contract_version: 1.0.0-ws6-draft
 summary:
-  total_facts: 5930
+  total_facts: 5950
   repos_with_facts: 120
   source_shards:
   - repos
@@ -37279,6 +37279,125 @@ facts:
 - node_id: repo::haifengl/smile
   github_full_name: haifengl/smile
   name: smile
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/smile.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/smile.yaml
+    excerpt: Matrix operations are significantly slower than expected
+  object_value: Matrix operations are significantly slower than expected
+  note: 'cause: BLAS/LAPACK native libraries not found on the JVM library path; smile
+    falls back to a pure Java reference implementation.; fix: Install OpenBLAS (apt
+    install libopenblas-dev) and ensure it is on LD_LIBRARY_PATH before starting the
+    JVM; verify with smile.math.blas.BLAS.g...'
+  fact_id: fact::df7c08a321a4eb6835a07836
+- node_id: repo::haifengl/smile
+  github_full_name: haifengl/smile
+  name: smile
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/smile.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/smile.yaml
+    excerpt: Neural network training produces NaN loss after a few iterations
+  object_value: Neural network training produces NaN loss after a few iterations
+  note: 'cause: Learning rate too high causing gradient explosion; missing input normalization.;
+    fix: Reduce learning rate; normalize input features to zero mean/unit variance;
+    add BatchNorm layers; use a more conservative optimizer.'
+  fact_id: fact::944d8040b58dfbb63d595e3b
+- node_id: repo::haifengl/smile
+  github_full_name: haifengl/smile
+  name: smile
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/smile.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: repos/knowledge/deep/smile.yaml
+    excerpt: Quarkus inference server fails to start or returns model not found errors
+  object_value: Quarkus inference server fails to start or returns model not found
+    errors
+  note: 'cause: Model file not mounted at expected /model path inside container; port
+    8080 already in use; missing model configuration.; fix: Check Docker volume mount
+    (-v /host/model:/model); change host port mapping; verify the model file exists
+    at the expected container path.'
+  fact_id: fact::cb1dd8df8eaa30f58ffff751
+- node_id: repo::haifengl/smile
+  github_full_name: haifengl/smile
+  name: smile
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/smile.yaml
+    source_section: troubleshooting[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[4]
+    source_file: repos/knowledge/deep/smile.yaml
+    excerpt: SBT and Gradle builds produce inconsistent results or dependency resolution
+      errors
+  object_value: SBT and Gradle builds produce inconsistent results or dependency resolution
+    errors
+  note: 'cause: SBT build.sbt and Gradle settings.gradle.kts have drifted out of sync
+    on module versions or Scala version.; fix: Use one build system consistently per
+    project; when both must coexist, keep scalaVersion and dependency versions manually
+    synchronized between the two files.'
+  fact_id: fact::aa9e98fcd5729c310193aac5
+- node_id: repo::haifengl/smile
+  github_full_name: haifengl/smile
+  name: smile
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/smile.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/smile.yaml
+    excerpt: java.lang.OutOfMemoryError Java heap space during model training or data
+      loading
+  object_value: java.lang.OutOfMemoryError Java heap space during model training or
+    data loading
+  note: 'cause: Large DataFrame loaded entirely into heap; tree ensembles or deep
+    model weights exceed default JVM allocation.; fix: Increase JVM heap with -Xmx
+    (e.g., -Xmx8g); use streaming data loading for large files; reduce ensemble size
+    or batch size.'
+  fact_id: fact::0fa0ea743d4f53f62b0e0767
+- node_id: repo::haifengl/smile
+  github_full_name: haifengl/smile
+  name: smile
   fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
@@ -37430,6 +37549,111 @@ facts:
   note: 'description: Custom tensor types in deep/src/main/java/smile/deep/tensor/
     provide the numeric foundation for neural networks.; location: deep/src/main/java/smile/deep/tensor/'
   fact_id: fact::734d57313e40168ffeb60221
+- node_id: repo::haifengl/smile
+  github_full_name: haifengl/smile
+  name: smile
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/smile.yaml
+    source_section: common_tasks[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[2]
+    source_file: repos/knowledge/deep/smile.yaml
+    excerpt: Cluster data with K-Means
+  object_value: Cluster data with K-Means
+  note: Call KMeans.fit(data, k) with a double[][] array; use model.predict(x) to
+    assign new points to clusters.
+  fact_id: fact::9d9e1215b02b1aa6b8aa6a6a
+- node_id: repo::haifengl/smile
+  github_full_name: haifengl/smile
+  name: smile
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/smile.yaml
+    source_section: common_tasks[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[3]
+    source_file: repos/knowledge/deep/smile.yaml
+    excerpt: Run LLM chat inference via Docker
+  object_value: Run LLM chat inference via Docker
+  note: Pull ghcr.io/haifengl/smile-serve, run with port 8080 mapped and a model volume
+    mount, then POST to /v1/chat/completions with an OpenAI-compatible JSON body.
+  fact_id: fact::5915ec174ae04750ae5e3e56
+- node_id: repo::haifengl/smile
+  github_full_name: haifengl/smile
+  name: smile
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/smile.yaml
+    source_section: common_tasks[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[4]
+    source_file: repos/knowledge/deep/smile.yaml
+    excerpt: Serve an ML model via REST
+  object_value: Serve an ML model via REST
+  note: Package a trained model into the serve module's InferenceService, deploy the
+    Quarkus server, and call POST /v2/models/{model_name}/infer with a JSON payload.
+  fact_id: fact::26a088d699b834f6c70137e0
+- node_id: repo::haifengl/smile
+  github_full_name: haifengl/smile
+  name: smile
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/smile.yaml
+    source_section: common_tasks[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[0]
+    source_file: repos/knowledge/deep/smile.yaml
+    excerpt: Train a classifier (Java)
+  object_value: Train a classifier (Java)
+  note: Call RandomForest.fit(formula, dataFrame) or SVM.fit(x, y, kernel) using a
+    Formula object to specify the target variable and a DataFrame for input data.
+  fact_id: fact::92376010023fd06d9f4d3d23
+- node_id: repo::haifengl/smile
+  github_full_name: haifengl/smile
+  name: smile
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/smile.yaml
+    source_section: common_tasks[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[1]
+    source_file: repos/knowledge/deep/smile.yaml
+    excerpt: Train using Scala DSL
+  object_value: Train using Scala DSL
+  note: Import smile.classification._ and use idiomatic wrappers (e.g., randomForest(formula,
+    data)) that delegate to the core Java implementations.
+  fact_id: fact::acff0e23ee8e675f9ca5a605
 - node_id: repo::henryboldi/felony
   github_full_name: henryboldi/felony
   name: felony
@@ -64726,6 +64950,123 @@ facts:
 - node_id: repo::mlpack/mlpack
   github_full_name: mlpack/mlpack
   name: mlpack
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: CMake fails with LAPACK library not found or matrix operations are unexpectedly
+      slow
+  object_value: CMake fails with LAPACK library not found or matrix operations are
+    unexpectedly slow
+  note: 'cause: OpenBLAS or system LAPACK not installed; Armadillo falls back to its
+    reference implementation when no BLAS is detected.; fix: Install OpenBLAS (apt
+    install libopenblas-dev / brew install openblas) and re-run CMake; set -DLAPACK_LIBRARIES
+    if the library is in a non-stand...'
+  fact_id: fact::1896d6e9988963c3e25eb389
+- node_id: repo::mlpack/mlpack
+  github_full_name: mlpack/mlpack
+  name: mlpack
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Model fails to load with cereal exception or produces empty output after
+      load
+  object_value: Model fails to load with cereal exception or produces empty output
+    after load
+  note: 'cause: Model was saved with a different mlpack version; cereal binary format
+    is not forward-compatible across major versions.; fix: Retrain and re-save with
+    the current mlpack version; prefer XML or JSON cereal formats for better cross-version
+    compatibility.'
+  fact_id: fact::a9054f75c4c31ae50d875bc9
+- node_id: repo::mlpack/mlpack
+  github_full_name: mlpack/mlpack
+  name: mlpack
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: troubleshooting[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[4]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Python bindings not found after import or missing mlpack module
+  object_value: Python bindings not found after import or missing mlpack module
+  note: 'cause: BUILD_PYTHON_BINDINGS is OFF by default; or bindings were built but
+    not installed to the active Python environment.; fix: Rebuild with -DBUILD_PYTHON_BINDINGS=ON
+    and run make install, or install pre-built wheels via pip install mlpack.'
+  fact_id: fact::6e619a0a69481829c6752581
+- node_id: repo::mlpack/mlpack
+  github_full_name: mlpack/mlpack
+  name: mlpack
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Training produces NaN loss or diverges immediately
+  object_value: Training produces NaN loss or diverges immediately
+  note: 'cause: Input features not normalized; learning rate too high; gradient explosion
+    in ANN layers.; fix: Scale input to zero mean/unit variance before training; reduce
+    learning rate; use L-BFGS instead of SGD for small datasets; add gradient clipping
+    in custom ANN layers.'
+  fact_id: fact::7fcb71b259ea2be754d0e359
+- node_id: repo::mlpack/mlpack
+  github_full_name: mlpack/mlpack
+  name: mlpack
+  fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: std::bad_alloc during training or neighbor search on large datasets
+  object_value: std::bad_alloc during training or neighbor search on large datasets
+  note: 'cause: Armadillo allocates full in-memory matrices; tree builds for large
+    n exceed available RAM.; fix: Reduce dataset size or use approximate methods (LSH);
+    increase system swap; consider streaming or mini-batch variants where available.'
+  fact_id: fact::01628258756c6395e6a99136
+- node_id: repo::mlpack/mlpack
+  github_full_name: mlpack/mlpack
+  name: mlpack
   fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
@@ -64879,6 +65220,112 @@ facts:
     tree types, and optimizers, allowing compile-time customization without virtual
     dispatch.; location: src/mlpack/methods/neighbor_search/'
   fact_id: fact::f2bdcc390ebe6561b7f200b4
+- node_id: repo::mlpack/mlpack
+  github_full_name: mlpack/mlpack
+  name: mlpack
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: common_tasks[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[4]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Run cross-validation
+  object_value: Run cross-validation
+  note: Use SimpleCV or KFoldCV from core/cv with a lambda wrapping the algorithm
+    constructor to evaluate generalization error on held-out folds.
+  fact_id: fact::100ad1308efd09355ca7f116
+- node_id: repo::mlpack/mlpack
+  github_full_name: mlpack/mlpack
+  name: mlpack
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: common_tasks[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[3]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Run k-means clustering
+  object_value: Run k-means clustering
+  note: Instantiate KMeans<> and call Cluster(data, k, assignments) where assignments
+    is a row vector that receives cluster labels per point.
+  fact_id: fact::bd953d5932cef0cd41f6eb26
+- node_id: repo::mlpack/mlpack
+  github_full_name: mlpack/mlpack
+  name: mlpack
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: common_tasks[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[2]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Save and load a model
+  object_value: Save and load a model
+  note: Use mlpack::data::Save("model.bin", "model", model) and mlpack::data::Load("model.bin",
+    "model", model) for cereal-based persistence in binary, XML, or JSON format.
+  fact_id: fact::16cc839f65ea1484748981e3
+- node_id: repo::mlpack/mlpack
+  github_full_name: mlpack/mlpack
+  name: mlpack
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: common_tasks[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[0]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Train a classifier (C++)
+  object_value: Train a classifier (C++)
+  note: Instantiate an algorithm class (e.g., RandomForest<>) and call Train() with
+    an Armadillo matrix of training data and a row vector of labels.
+  fact_id: fact::eb3b1c8b82c1332897bfd4bc
+- node_id: repo::mlpack/mlpack
+  github_full_name: mlpack/mlpack
+  name: mlpack
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/mlpack.yaml
+    source_section: common_tasks[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[1]
+    source_file: repos/knowledge/deep/mlpack.yaml
+    excerpt: Train using Python bindings
+  object_value: Train using Python bindings
+  note: Call mlpack.random_forest(training=X, labels=y, num_trees=10) to train and
+    mlpack.random_forest_predict(input_model=model, test=X_test) to predict after
+    importing mlpack.
+  fact_id: fact::aea085be7c56f06294b419ad
 - node_id: repo::monteslu/hsync
   github_full_name: monteslu/hsync
   name: hsync

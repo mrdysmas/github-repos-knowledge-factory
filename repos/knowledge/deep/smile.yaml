@@ -229,3 +229,32 @@ integrations:
   description: Native linear algebra acceleration via system BLAS/LAPACK libraries.
 - name: Docker
   description: Pre-built Docker image (ghcr.io/haifengl/smile-serve) for inference server deployment.
+
+common_tasks:
+- name: Train a classifier (Java)
+  description: "Call RandomForest.fit(formula, dataFrame) or SVM.fit(x, y, kernel) using a Formula object to specify the target variable and a DataFrame for input data."
+- name: Train using Scala DSL
+  description: "Import smile.classification._ and use idiomatic wrappers (e.g., randomForest(formula, data)) that delegate to the core Java implementations."
+- name: Cluster data with K-Means
+  description: "Call KMeans.fit(data, k) with a double[][] array; use model.predict(x) to assign new points to clusters."
+- name: Run LLM chat inference via Docker
+  description: Pull ghcr.io/haifengl/smile-serve, run with port 8080 mapped and a model volume mount, then POST to /v1/chat/completions with an OpenAI-compatible JSON body.
+- name: Serve an ML model via REST
+  description: Package a trained model into the serve module's InferenceService, deploy the Quarkus server, and call POST /v2/models/{model_name}/infer with a JSON payload.
+
+troubleshooting:
+- symptom: Matrix operations are significantly slower than expected
+  cause: BLAS/LAPACK native libraries not found on the JVM library path; smile falls back to a pure Java reference implementation.
+  fix: Install OpenBLAS (apt install libopenblas-dev) and ensure it is on LD_LIBRARY_PATH before starting the JVM; verify with smile.math.blas.BLAS.getInstance().
+- symptom: java.lang.OutOfMemoryError Java heap space during model training or data loading
+  cause: Large DataFrame loaded entirely into heap; tree ensembles or deep model weights exceed default JVM allocation.
+  fix: Increase JVM heap with -Xmx (e.g., -Xmx8g); use streaming data loading for large files; reduce ensemble size or batch size.
+- symptom: Neural network training produces NaN loss after a few iterations
+  cause: Learning rate too high causing gradient explosion; missing input normalization.
+  fix: Reduce learning rate; normalize input features to zero mean/unit variance; add BatchNorm layers; use a more conservative optimizer.
+- symptom: Quarkus inference server fails to start or returns model not found errors
+  cause: Model file not mounted at expected /model path inside container; port 8080 already in use; missing model configuration.
+  fix: Check Docker volume mount (-v /host/model:/model); change host port mapping; verify the model file exists at the expected container path.
+- symptom: SBT and Gradle builds produce inconsistent results or dependency resolution errors
+  cause: SBT build.sbt and Gradle settings.gradle.kts have drifted out of sync on module versions or Scala version.
+  fix: Use one build system consistently per project; when both must coexist, keep scalaVersion and dependency versions manually synchronized between the two files.

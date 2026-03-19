@@ -990,6 +990,110 @@ facts:
     excerpt: Quarkus inference extensions
   object_value: Quarkus inference extensions
   fact_id: fact::90ea4628715d2700d413ecba
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/smile.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/smile.yaml
+    excerpt: Matrix operations are significantly slower than expected
+  object_value: Matrix operations are significantly slower than expected
+  note: 'cause: BLAS/LAPACK native libraries not found on the JVM library path; smile
+    falls back to a pure Java reference implementation.; fix: Install OpenBLAS (apt
+    install libopenblas-dev) and ensure it is on LD_LIBRARY_PATH before starting the
+    JVM; verify with smile.math.blas.BLAS.g...'
+  fact_id: fact::df7c08a321a4eb6835a07836
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/smile.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/smile.yaml
+    excerpt: Neural network training produces NaN loss after a few iterations
+  object_value: Neural network training produces NaN loss after a few iterations
+  note: 'cause: Learning rate too high causing gradient explosion; missing input normalization.;
+    fix: Reduce learning rate; normalize input features to zero mean/unit variance;
+    add BatchNorm layers; use a more conservative optimizer.'
+  fact_id: fact::944d8040b58dfbb63d595e3b
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/smile.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: repos/knowledge/deep/smile.yaml
+    excerpt: Quarkus inference server fails to start or returns model not found errors
+  object_value: Quarkus inference server fails to start or returns model not found
+    errors
+  note: 'cause: Model file not mounted at expected /model path inside container; port
+    8080 already in use; missing model configuration.; fix: Check Docker volume mount
+    (-v /host/model:/model); change host port mapping; verify the model file exists
+    at the expected container path.'
+  fact_id: fact::cb1dd8df8eaa30f58ffff751
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/smile.yaml
+    source_section: troubleshooting[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[4]
+    source_file: repos/knowledge/deep/smile.yaml
+    excerpt: SBT and Gradle builds produce inconsistent results or dependency resolution
+      errors
+  object_value: SBT and Gradle builds produce inconsistent results or dependency resolution
+    errors
+  note: 'cause: SBT build.sbt and Gradle settings.gradle.kts have drifted out of sync
+    on module versions or Scala version.; fix: Use one build system consistently per
+    project; when both must coexist, keep scalaVersion and dependency versions manually
+    synchronized between the two files.'
+  fact_id: fact::aa9e98fcd5729c310193aac5
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/smile.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/smile.yaml
+    excerpt: java.lang.OutOfMemoryError Java heap space during model training or data
+      loading
+  object_value: java.lang.OutOfMemoryError Java heap space during model training or
+    data loading
+  note: 'cause: Large DataFrame loaded entirely into heap; tree ensembles or deep
+    model weights exceed default JVM allocation.; fix: Increase JVM heap with -Xmx
+    (e.g., -Xmx8g); use streaming data loading for large files; reduce ensemble size
+    or batch size.'
+  fact_id: fact::0fa0ea743d4f53f62b0e0767
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
@@ -1123,3 +1227,93 @@ facts:
   note: 'description: Custom tensor types in deep/src/main/java/smile/deep/tensor/
     provide the numeric foundation for neural networks.; location: deep/src/main/java/smile/deep/tensor/'
   fact_id: fact::734d57313e40168ffeb60221
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/smile.yaml
+    source_section: common_tasks[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[2]
+    source_file: repos/knowledge/deep/smile.yaml
+    excerpt: Cluster data with K-Means
+  object_value: Cluster data with K-Means
+  note: Call KMeans.fit(data, k) with a double[][] array; use model.predict(x) to
+    assign new points to clusters.
+  fact_id: fact::9d9e1215b02b1aa6b8aa6a6a
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/smile.yaml
+    source_section: common_tasks[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[3]
+    source_file: repos/knowledge/deep/smile.yaml
+    excerpt: Run LLM chat inference via Docker
+  object_value: Run LLM chat inference via Docker
+  note: Pull ghcr.io/haifengl/smile-serve, run with port 8080 mapped and a model volume
+    mount, then POST to /v1/chat/completions with an OpenAI-compatible JSON body.
+  fact_id: fact::5915ec174ae04750ae5e3e56
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/smile.yaml
+    source_section: common_tasks[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[4]
+    source_file: repos/knowledge/deep/smile.yaml
+    excerpt: Serve an ML model via REST
+  object_value: Serve an ML model via REST
+  note: Package a trained model into the serve module's InferenceService, deploy the
+    Quarkus server, and call POST /v2/models/{model_name}/infer with a JSON payload.
+  fact_id: fact::26a088d699b834f6c70137e0
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/smile.yaml
+    source_section: common_tasks[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[0]
+    source_file: repos/knowledge/deep/smile.yaml
+    excerpt: Train a classifier (Java)
+  object_value: Train a classifier (Java)
+  note: Call RandomForest.fit(formula, dataFrame) or SVM.fit(x, y, kernel) using a
+    Formula object to specify the target variable and a DataFrame for input data.
+  fact_id: fact::92376010023fd06d9f4d3d23
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/smile.yaml
+    source_section: common_tasks[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[1]
+    source_file: repos/knowledge/deep/smile.yaml
+    excerpt: Train using Scala DSL
+  object_value: Train using Scala DSL
+  note: Import smile.classification._ and use idiomatic wrappers (e.g., randomForest(formula,
+    data)) that delegate to the core Java implementations.
+  fact_id: fact::acff0e23ee8e675f9ca5a605
