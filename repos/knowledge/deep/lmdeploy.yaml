@@ -41,39 +41,24 @@ architecture:
       - Response generator
 
 cli_commands:
-  chat:
-    command: "lmdeploy chat <model_path>"
-    description: Interactive chat with model
-    options:
-      - "--backend [turbomind|pytorch]"
-      - "--tp <n>  # Tensor parallelism"
-
-  serve:
-    command: "lmdeploy serve api_server <model_path>"
-    description: Start OpenAI-compatible API server
-    options:
-      - "--server-name <host>"
-      - "--server-port <port>"
-      - "--backend <backend>"
-    endpoints:
-      - "/v1/chat/completions"
-      - "/v1/completions"
-      - "/v1/models"
-
-  convert:
-    command: "lmdeploy convert <model_path>"
-    description: Convert model to TurboMind format
-    options:
-      - "--model-format [hf|llama|qwen]"
-
-  quantize:
-    awq: "lmdeploy lite auto_awq <model>"
-    gptq: "lmdeploy lite auto_gptq <model>"
-    description: Weight quantization for reduced memory
-
-  check:
-    command: "lmdeploy check_env"
-    description: Verify environment and dependencies
+  - name: "lmdeploy chat"
+    description: "Interactive chat with a local model"
+    usage: "lmdeploy chat <model_path> --backend [turbomind|pytorch] --tp <n>"
+  - name: "lmdeploy serve api_server"
+    description: "Start an OpenAI-compatible API server for model inference"
+    usage: "lmdeploy serve api_server <model_path> --server-name <host> --server-port <port> --backend <backend>"
+  - name: "lmdeploy convert"
+    description: "Convert a HuggingFace model to TurboMind format for optimized inference"
+    usage: "lmdeploy convert <model_path> --model-format [hf|llama|qwen]"
+  - name: "lmdeploy lite auto_awq"
+    description: "Quantize a model to 4-bit AWQ format for reduced memory usage"
+    usage: "lmdeploy lite auto_awq <model>"
+  - name: "lmdeploy lite auto_gptq"
+    description: "Quantize a model to 4-bit GPTQ format"
+    usage: "lmdeploy lite auto_gptq <model>"
+  - name: "lmdeploy check_env"
+    description: "Verify environment configuration and dependencies"
+    usage: "lmdeploy check_env"
 
 environment_variables:
   - name: LMDEPLOY_TARGET_DEVICE

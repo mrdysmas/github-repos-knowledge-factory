@@ -50,18 +50,18 @@ python_bindings:
     description: Text embeddings
 
 cli_commands:
-  pull:
-    command: nexa pull <model>[:<quant>]
-    description: Download model (optional quantization)
-  infer:
-    command: nexa infer <model>
-    description: Run inference interactively
-  serve:
-    command: nexa serve
-    description: Start API server
-  config_license:
-    command: nexa config set license '<token>'
-    description: Set license token
+  - name: "nexa pull"
+    description: "Download a model from the Nexa model hub with optional quantization"
+    usage: "nexa pull <model>[:<quant>]"
+  - name: "nexa infer"
+    description: "Run interactive inference with a local model"
+    usage: "nexa infer <model>"
+  - name: "nexa serve"
+    description: "Start the OpenAI-compatible REST API server on port 18181"
+    usage: "nexa serve"
+  - name: "nexa config set license"
+    description: "Set the Nexa license token for authenticated model access"
+    usage: "nexa config set license '<token>'"
 
 model_types:
   - LLM
