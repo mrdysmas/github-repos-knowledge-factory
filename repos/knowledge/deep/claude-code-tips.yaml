@@ -6,12 +6,12 @@ source: remote_metadata
 provenance:
   shard: repos
   source_file: "repos/knowledge/deep/claude-code-tips.yaml"
-  as_of: "2026-03-17"
-  sourcing_method: mixed
-  extraction_model: gpt-5.4
+  as_of: "2026-03-19"
+  sourcing_method: training_knowledge
+  extraction_model: claude-sonnet-4-6
   extraction_agent: codex
 directory: "remote::ykdojo/claude-code-tips"
-category: agent_cli
+category: documentation
 key_features:
   - "Long-form operator guide with 45 tips covering daily Claude Code usage from basic commands to advanced orchestration."
   - "Focuses on practical workflows such as context management, verification loops, Git and PR handling, containers, and personal setup automation."
@@ -68,3 +68,34 @@ key_sections:
     purpose: "Clarifies the role of prompt files, skills, slash commands, plugins, agents, hooks, and MCP servers."
   - name: "Tip 44: Install the dx plugin"
     purpose: "Packages repo-provided commands and skills into a plugin installation workflow."
+
+commands:
+  - name: "/usage"
+    description: "Show Claude Code token usage for the current session — covered in Tip 1 as an essential slash command."
+  - name: "/chrome"
+    description: "Open or attach to a Chrome browser session for web automation tasks — described in Tip 1."
+  - name: "/mcp"
+    description: "List and manage connected MCP servers from within a Claude Code session — referenced in Tips 1 and 25."
+  - name: "/stats"
+    description: "Display aggregate session statistics including messages sent and tokens consumed."
+  - name: "/clear"
+    description: "Clear the current conversation context to start a fresh session — useful after large context buildup."
+  - name: "claude --dangerously-skip-permissions"
+    description: "Launch Claude Code in a containerized environment where all tool permissions are pre-approved, enabling unattended long-running tasks (Tip 21 pattern)."
+
+troubleshooting:
+  - symptom: "Claude Code loses track of earlier context mid-session"
+    cause: "Long conversation history fills the context window, causing earlier instructions or files to be dropped"
+    fix: "Use /clear to reset context and re-anchor with a fresh CLAUDE.md summary, or hand off to a new session with a structured context dump."
+  - symptom: "Claude repeatedly performs the same incorrect action in a loop"
+    cause: "Without a verification step, the model cannot detect its own output is wrong"
+    fix: "Add an explicit verification instruction after each action (e.g., 'run the tests and confirm they pass before proceeding') to break the loop."
+  - symptom: "Agent exits before completing the task when run unattended"
+    cause: "Default permission prompts block execution when no human is present to approve tool use"
+    fix: "Use --dangerously-skip-permissions in a sandboxed container, or pre-approve required tools in CLAUDE.md permissions settings."
+  - symptom: "CLAUDE.md instructions ignored or inconsistently applied"
+    cause: "CLAUDE.md file not in the project root, or instructions are too vague for the model to apply reliably"
+    fix: "Place CLAUDE.md at the project root, write concrete actionable rules rather than general guidance, and test each rule in a fresh session."
+  - symptom: "MCP server not listed when running /mcp"
+    cause: "MCP server not registered in the Claude Code configuration or failed to start due to missing dependencies"
+    fix: "Check the MCP server config in Claude Code settings, confirm the server process is running, and restart Claude Code to reload the MCP manifest."

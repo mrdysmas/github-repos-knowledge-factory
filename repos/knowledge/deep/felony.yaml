@@ -4,13 +4,13 @@ github_full_name: henryboldi/felony
 html_url: https://github.com/henryboldi/felony
 source: remote_metadata
 directory: "remote::henryboldi/felony"
-category: agent_cli
+category: ui_tools
 provenance:
   shard: repos
   source_file: repos/knowledge/deep/felony.yaml
-  as_of: "2026-03-17"
-  sourcing_method: code_verified
-  extraction_model: claude-opus-4-6
+  as_of: "2026-03-19"
+  sourcing_method: training_knowledge
+  extraction_model: claude-sonnet-4-6
   extraction_agent: codex
 
 description: >
@@ -118,3 +118,30 @@ tech_stack:
   styling: ReactCSS (inline styles)
   bundler: Webpack 1.x
   testing: Mocha + Chai + Sinon
+
+commands:
+  - name: "npm run dev"
+    description: "Start Felony in development mode with hot reloading — runs the hot-server and Electron renderer concurrently."
+  - name: "npm run build"
+    description: "Build the production bundle for both the Electron main process and the React renderer."
+  - name: "npm run package"
+    description: "Create a distributable Electron package for the current platform using electron-packager."
+  - name: "npm run test"
+    description: "Run the Mocha test suite with Babel transpilation to verify PGP operations, keychain actions, and reducer logic."
+
+troubleshooting:
+  - symptom: "Passphrase prompt fails and private key cannot be accessed"
+    cause: "keytar cannot read the OS keychain entry for the Felony passphrase, either because it was never stored or OS permissions changed"
+    fix: "Re-import the private key and re-enter the passphrase so keytar can store it fresh in the OS credential store."
+  - symptom: "Electron window does not open on launch in development mode"
+    cause: "The hot-server Webpack process has not yet bound to its port before Electron tries to connect"
+    fix: "Wait for the hot-server to print a ready message before the Electron renderer loads — increase the startup delay in the dev script if needed."
+  - symptom: "Build fails with a Node version incompatibility error"
+    cause: "Electron v1.2.6 and its native module dependencies (keytar) require an older Node ABI version"
+    fix: "Use a Node version compatible with Electron 1.2.6 (Node 6.x era) or rebuild native modules with `npm rebuild`."
+  - symptom: "Encrypted message output is missing Felony branding headers"
+    cause: "A version of openpgp.js incompatible with the expected armor header customization is installed"
+    fix: "Verify openpgp.js 2.x is installed (not a later major version), then reinstall with `npm install`."
+  - symptom: "Auto-updater silently fails to download new versions"
+    cause: "The Heroku-hosted update feed URL is unreachable or the feed has not been updated with a new release"
+    fix: "Check network access to the Heroku feed URL manually; if the project is no longer maintained, disable auto-update in the Electron main process config."
