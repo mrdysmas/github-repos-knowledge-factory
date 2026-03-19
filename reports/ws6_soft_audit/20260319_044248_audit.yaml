@@ -1,5 +1,5 @@
 audit_metadata:
-  generated_at: '2026-03-19T04:53:26Z'
+  generated_at: '2026-03-19T04:42:48Z'
   total_repos: 122
   archetypes_checked:
   - inference_serving
@@ -7,11 +7,10 @@ audit_metadata:
   - tunneling
   - agent_framework
   - agent_cli
-  - rag_frameworks
-  repos_matched: 66
-  repos_unmatched: 56
-  repos_thin: 2
-  repos_full: 64
+  repos_matched: 60
+  repos_unmatched: 62
+  repos_thin: 1
+  repos_full: 59
 summary_by_archetype:
   inference_serving:
     total: 6
@@ -39,12 +38,6 @@ summary_by_archetype:
     full: 13
     thin: 0
     thin_repos: []
-  rag_frameworks:
-    total: 6
-    full: 5
-    thin: 1
-    thin_repos:
-    - shubhamsaboo/awesome-llm-apps
 coverage_records:
 - repo: siddhesh2377/toolneuron
   node_id: repo::siddhesh2377/toolneuron
@@ -3412,15 +3405,11 @@ coverage_records:
 - repo: shubhamsaboo/awesome-llm-apps
   node_id: repo::shubhamsaboo/awesome-llm-apps
   category: rag_frameworks
-  archetype: rag_frameworks
-  families_present:
-  - structure
-  - protocols
-  families_missing:
-  - tasks
-  - failures
+  archetype: null
+  families_present: []
+  families_missing: []
   predicate_check_failures: []
-  behavioral_coverage: thin
+  behavioral_coverage: unmatched
   flags:
   - unmapped source_section 'content_coverage.topics[0]' — produced facts but section
     not in contract
@@ -3492,8 +3481,419 @@ coverage_records:
     contract
   - unmapped source_section 'key_sections[4]' — produced facts but section not in
     contract
-  - required family 'tasks' absent — no supports_task facts
-  - required family 'failures' absent — no has_failure_mode facts
+- repo: microsoft/graphrag
+  node_id: repo::microsoft/graphrag
+  category: rag_frameworks
+  archetype: null
+  families_present: []
+  families_missing: []
+  predicate_check_failures: []
+  behavioral_coverage: unmatched
+  flags:
+  - unmapped source_section 'code_patterns[0]' — produced facts but section not in
+    contract
+  - unmapped source_section 'code_patterns[1]' — produced facts but section not in
+    contract
+  - unmapped source_section 'code_patterns[2]' — produced facts but section not in
+    contract
+  - unmapped source_section 'code_patterns[3]' — produced facts but section not in
+    contract
+  - unmapped source_section 'common_tasks[0]' — produced facts but section not in
+    contract
+  - unmapped source_section 'common_tasks[1]' — produced facts but section not in
+    contract
+  - unmapped source_section 'common_tasks[2]' — produced facts but section not in
+    contract
+  - unmapped source_section 'common_tasks[3]' — produced facts but section not in
+    contract
+  - unmapped source_section 'common_tasks[4]' — produced facts but section not in
+    contract
+  - unmapped source_section 'common_tasks[5]' — produced facts but section not in
+    contract
+  - unmapped source_section 'common_tasks[6]' — produced facts but section not in
+    contract
+  - unmapped source_section 'common_tasks[7]' — produced facts but section not in
+    contract
+  - unmapped source_section 'configuration[0]' — produced facts but section not in
+    contract
+  - unmapped source_section 'configuration[10]' — produced facts but section not in
+    contract
+  - unmapped source_section 'configuration[11]' — produced facts but section not in
+    contract
+  - unmapped source_section 'configuration[1]' — produced facts but section not in
+    contract
+  - unmapped source_section 'configuration[2]' — produced facts but section not in
+    contract
+  - unmapped source_section 'configuration[3]' — produced facts but section not in
+    contract
+  - unmapped source_section 'configuration[4]' — produced facts but section not in
+    contract
+  - unmapped source_section 'configuration[5]' — produced facts but section not in
+    contract
+  - unmapped source_section 'configuration[6]' — produced facts but section not in
+    contract
+  - unmapped source_section 'configuration[7]' — produced facts but section not in
+    contract
+  - unmapped source_section 'configuration[8]' — produced facts but section not in
+    contract
+  - unmapped source_section 'configuration[9]' — produced facts but section not in
+    contract
+  - unmapped source_section 'quick_reference[0]' — produced facts but section not
+    in contract
+  - unmapped source_section 'quick_reference[10].line[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'quick_reference[11].line[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'quick_reference[12].line[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'quick_reference[14]' — produced facts but section not
+    in contract
+  - unmapped source_section 'quick_reference[15].line[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'quick_reference[1].line[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'quick_reference[3]' — produced facts but section not
+    in contract
+  - unmapped source_section 'quick_reference[4]' — produced facts but section not
+    in contract
+  - unmapped source_section 'quick_reference[6]' — produced facts but section not
+    in contract
+  - unmapped source_section 'quick_reference[7].line[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'quick_reference[9]' — produced facts but section not
+    in contract
+  - unmapped source_section 'troubleshooting[0]' — produced facts but section not
+    in contract
+  - unmapped source_section 'troubleshooting[1]' — produced facts but section not
+    in contract
+  - unmapped source_section 'troubleshooting[2]' — produced facts but section not
+    in contract
+  - unmapped source_section 'troubleshooting[3]' — produced facts but section not
+    in contract
+- repo: langchain-ai/langchain
+  node_id: repo::langchain-ai/langchain
+  category: rag_frameworks
+  archetype: null
+  families_present: []
+  families_missing: []
+  predicate_check_failures: []
+  behavioral_coverage: unmatched
+  flags:
+  - unmapped source_section 'code_patterns[0]' — produced facts but section not in
+    contract
+  - unmapped source_section 'code_patterns[1]' — produced facts but section not in
+    contract
+  - unmapped source_section 'code_patterns[2]' — produced facts but section not in
+    contract
+  - unmapped source_section 'code_patterns[3]' — produced facts but section not in
+    contract
+  - unmapped source_section 'code_patterns[4]' — produced facts but section not in
+    contract
+  - unmapped source_section 'code_patterns[5]' — produced facts but section not in
+    contract
+  - unmapped source_section 'common_tasks[0]' — produced facts but section not in
+    contract
+  - unmapped source_section 'common_tasks[1]' — produced facts but section not in
+    contract
+  - unmapped source_section 'common_tasks[2]' — produced facts but section not in
+    contract
+  - unmapped source_section 'configuration[0].options[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[0].options[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[0].options[2]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[0].options[3]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[1].options[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[1].options[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[1].options[2]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[1].options[3]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[1].options[4]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[2].options[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[2].options[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[2].options[2]' — produced facts but section
+    not in contract
+  - unmapped source_section 'quick_reference[0].line[3]' — produced facts but section
+    not in contract
+  - unmapped source_section 'quick_reference[1]' — produced facts but section not
+    in contract
+  - unmapped source_section 'quick_reference[2]' — produced facts but section not
+    in contract
+  - unmapped source_section 'troubleshooting[0]' — produced facts but section not
+    in contract
+  - unmapped source_section 'troubleshooting[1]' — produced facts but section not
+    in contract
+  - unmapped source_section 'troubleshooting[2]' — produced facts but section not
+    in contract
+  - unmapped source_section 'troubleshooting[3]' — produced facts but section not
+    in contract
+- repo: run-llama/llama_index
+  node_id: repo::run-llama/llama_index
+  category: rag_frameworks
+  archetype: null
+  families_present: []
+  families_missing: []
+  predicate_check_failures: []
+  behavioral_coverage: unmatched
+  flags:
+  - unmapped source_section 'code_patterns[0]' — produced facts but section not in
+    contract
+  - unmapped source_section 'code_patterns[1]' — produced facts but section not in
+    contract
+  - unmapped source_section 'code_patterns[2]' — produced facts but section not in
+    contract
+  - unmapped source_section 'code_patterns[3]' — produced facts but section not in
+    contract
+  - unmapped source_section 'code_patterns[4]' — produced facts but section not in
+    contract
+  - unmapped source_section 'code_patterns[5]' — produced facts but section not in
+    contract
+  - unmapped source_section 'common_tasks[0]' — produced facts but section not in
+    contract
+  - unmapped source_section 'common_tasks[1]' — produced facts but section not in
+    contract
+  - unmapped source_section 'common_tasks[2]' — produced facts but section not in
+    contract
+  - unmapped source_section 'configuration[0].options[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[0].options[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[0].options[2]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[0].options[3]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[0].options[4]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[1].options[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[1].options[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[1].options[2]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[1].options[3]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[1].options[4]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[1].options[5]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[2].options[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[2].options[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[2].options[2]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[2].options[3]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[3].options[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[3].options[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[3].options[2]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[3].options[3]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[4].options[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[4].options[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[4].options[2]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[4].options[3]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[4].options[4]' — produced facts but section
+    not in contract
+  - unmapped source_section 'quick_reference[0]' — produced facts but section not
+    in contract
+  - unmapped source_section 'quick_reference[1]' — produced facts but section not
+    in contract
+  - unmapped source_section 'quick_reference[2]' — produced facts but section not
+    in contract
+  - unmapped source_section 'quick_reference[3]' — produced facts but section not
+    in contract
+  - unmapped source_section 'troubleshooting[0]' — produced facts but section not
+    in contract
+  - unmapped source_section 'troubleshooting[1]' — produced facts but section not
+    in contract
+  - unmapped source_section 'troubleshooting[2]' — produced facts but section not
+    in contract
+  - unmapped source_section 'troubleshooting[3]' — produced facts but section not
+    in contract
+- repo: pathwaycom/llm-app
+  node_id: repo::pathwaycom/llm-app
+  category: rag_frameworks
+  archetype: null
+  families_present: []
+  families_missing: []
+  predicate_check_failures: []
+  behavioral_coverage: unmatched
+  flags:
+  - unmapped source_section 'code_patterns[0]' — produced facts but section not in
+    contract
+  - unmapped source_section 'code_patterns[1]' — produced facts but section not in
+    contract
+  - unmapped source_section 'code_patterns[2]' — produced facts but section not in
+    contract
+  - unmapped source_section 'code_patterns[3]' — produced facts but section not in
+    contract
+  - unmapped source_section 'code_patterns[4]' — produced facts but section not in
+    contract
+  - unmapped source_section 'code_patterns[5]' — produced facts but section not in
+    contract
+  - unmapped source_section 'common_tasks[0]' — produced facts but section not in
+    contract
+  - unmapped source_section 'common_tasks[1]' — produced facts but section not in
+    contract
+  - unmapped source_section 'common_tasks[2]' — produced facts but section not in
+    contract
+  - unmapped source_section 'common_tasks[3]' — produced facts but section not in
+    contract
+  - unmapped source_section 'common_tasks[4]' — produced facts but section not in
+    contract
+  - unmapped source_section 'configuration[0].options[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[0].options[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[0].options[2]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[1].options[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[1].options[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[2].options[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[2].options[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[2].options[2]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[3].options[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[3].options[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[3].options[2]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[4].options[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[4].options[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'quick_reference[0]' — produced facts but section not
+    in contract
+  - unmapped source_section 'quick_reference[1]' — produced facts but section not
+    in contract
+  - unmapped source_section 'quick_reference[2].line[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'quick_reference[2].line[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'quick_reference[2].line[2]' — produced facts but section
+    not in contract
+  - unmapped source_section 'quick_reference[2].line[3]' — produced facts but section
+    not in contract
+  - unmapped source_section 'quick_reference[2].line[4]' — produced facts but section
+    not in contract
+  - unmapped source_section 'troubleshooting[0]' — produced facts but section not
+    in contract
+  - unmapped source_section 'troubleshooting[1]' — produced facts but section not
+    in contract
+  - unmapped source_section 'troubleshooting[2]' — produced facts but section not
+    in contract
+  - unmapped source_section 'troubleshooting[3]' — produced facts but section not
+    in contract
+- repo: infiniflow/ragflow
+  node_id: repo::infiniflow/ragflow
+  category: rag_frameworks
+  archetype: null
+  families_present: []
+  families_missing: []
+  predicate_check_failures: []
+  behavioral_coverage: unmatched
+  flags:
+  - unmapped source_section 'code_patterns[0]' — produced facts but section not in
+    contract
+  - unmapped source_section 'code_patterns[1]' — produced facts but section not in
+    contract
+  - unmapped source_section 'code_patterns[2]' — produced facts but section not in
+    contract
+  - unmapped source_section 'code_patterns[3]' — produced facts but section not in
+    contract
+  - unmapped source_section 'code_patterns[4]' — produced facts but section not in
+    contract
+  - unmapped source_section 'code_patterns[5]' — produced facts but section not in
+    contract
+  - unmapped source_section 'common_tasks[0]' — produced facts but section not in
+    contract
+  - unmapped source_section 'common_tasks[1]' — produced facts but section not in
+    contract
+  - unmapped source_section 'common_tasks[2]' — produced facts but section not in
+    contract
+  - unmapped source_section 'configuration[0].options[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[0].options[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[0].options[2]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[0].options[3]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[0].options[4]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[0].options[5]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[0].options[6]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[1].options[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[1].options[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[1].options[2]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[1].options[3]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[1].options[4]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[2].options[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[3].options[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[3].options[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[3].options[2]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[3].options[3]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[4].options[0]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[4].options[1]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[4].options[2]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[4].options[3]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[4].options[4]' — produced facts but section
+    not in contract
+  - unmapped source_section 'configuration[4].options[5]' — produced facts but section
+    not in contract
+  - unmapped source_section 'quick_reference[0]' — produced facts but section not
+    in contract
+  - unmapped source_section 'quick_reference[1]' — produced facts but section not
+    in contract
+  - unmapped source_section 'quick_reference[2]' — produced facts but section not
+    in contract
+  - unmapped source_section 'quick_reference[3]' — produced facts but section not
+    in contract
+  - unmapped source_section 'troubleshooting[0]' — produced facts but section not
+    in contract
+  - unmapped source_section 'troubleshooting[1]' — produced facts but section not
+    in contract
+  - unmapped source_section 'troubleshooting[2]' — produced facts but section not
+    in contract
+  - unmapped source_section 'troubleshooting[3]' — produced facts but section not
+    in contract
 - repo: coder/code-server
   node_id: repo::coder/code-server
   category: remote_access

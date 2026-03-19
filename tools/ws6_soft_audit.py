@@ -69,6 +69,12 @@ ARCHETYPES: dict[str, dict[str, Any]] = {
         "recommended_families": ["protocols"],
         "predicate_checks": {},
     },
+    "rag_frameworks": {
+        "categories": ["rag_frameworks"],
+        "required_families": ["structure", "tasks", "failures"],
+        "recommended_families": ["protocols"],
+        "predicate_checks": {},
+    },
 }
 
 # ---------------------------------------------------------------------------
