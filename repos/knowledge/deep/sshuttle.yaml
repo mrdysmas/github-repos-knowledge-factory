@@ -180,3 +180,11 @@ extension_points:
   - location: sshuttle/server.py
     hook: Server request handling
     example: Add custom routing or filtering logic
+
+supported_protocols:
+  - name: SSH
+    role: "Encrypted transport channel to remote host; server-side Python code is packaged as zlib modules and transferred over the SSH stdin channel"
+  - name: TCP
+    role: "Primary proxied traffic; intercepted by firewall rules (iptables/nft/pf/ipfw) and forwarded through the SSH channel to the remote server"
+  - name: UDP/DNS
+    role: "Optional DNS query routing via --dns flag; DNS traffic redirected through the tunnel to prevent DNS leaks outside the VPN"

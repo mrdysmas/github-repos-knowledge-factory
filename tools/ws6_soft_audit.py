@@ -75,6 +75,16 @@ ARCHETYPES: dict[str, dict[str, Any]] = {
         "recommended_families": ["protocols"],
         "predicate_checks": {},
     },
+    "remote_access": {
+        "categories": ["remote_access"],
+        "required_families": ["structure", "tasks", "protocols"],
+        "recommended_families": ["failures"],
+        "predicate_checks": {
+            # Extension points alone do not satisfy this archetype.
+            # At least one uses_protocol fact is required.
+            "protocols": "uses_protocol",
+        },
+    },
 }
 
 # ---------------------------------------------------------------------------

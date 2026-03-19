@@ -138,3 +138,11 @@ commands:
 ports:
   - port: "8080"
     description: Default HTTP port for the code-server web interface
+
+supported_protocols:
+  - name: HTTP/HTTPS
+    role: "Web transport for the VS Code browser client and all server API endpoints; HTTPS enabled via user-provided or self-signed certificates"
+  - name: WebSocket
+    role: "Persistent bidirectional channel between the browser client and VS Code extension host for real-time editing, language server, and debug adapter communication"
+  - name: "Open VSX Registry API"
+    role: "Extension marketplace HTTP API used to browse, install, and update VS Code extensions from the Open VSX registry"

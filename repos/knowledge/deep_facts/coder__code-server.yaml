@@ -806,3 +806,51 @@ facts:
   object_value: code-server
   note: Start the code-server HTTP server
   fact_id: fact::7cd21b94ffe76b31c57907e6
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/coder__code-server.yaml
+    source_section: supported_protocols[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[0]
+    source_file: repos/knowledge/deep/coder__code-server.yaml
+    excerpt: HTTP/HTTPS
+  object_value: HTTP/HTTPS
+  fact_id: fact::b8a10b3b7d21be8f0a5e19d8
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/coder__code-server.yaml
+    source_section: supported_protocols[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[1]
+    source_file: repos/knowledge/deep/coder__code-server.yaml
+    excerpt: Open VSX Registry API
+  object_value: Open VSX Registry API
+  fact_id: fact::7838f9e5ae0fb82a94e4f2e9
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/coder__code-server.yaml
+    source_section: supported_protocols[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[2]
+    source_file: repos/knowledge/deep/coder__code-server.yaml
+    excerpt: WebSocket
+  object_value: WebSocket
+  fact_id: fact::5d57f3e234c61e91de19efca

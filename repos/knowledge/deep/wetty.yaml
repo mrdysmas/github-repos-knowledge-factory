@@ -208,3 +208,25 @@ testing:
   coverage_areas:
     - Server configuration merging
     - Command generation logic
+
+commands:
+  - name: wetty
+    description: "Start WeTTY on the default port (3000) with local /bin/login"
+  - name: "wetty --port 8080 --base /terminal/"
+    description: "Start WeTTY on port 8080 with a custom base path for reverse proxy deployment"
+  - name: "wetty --ssh-host myserver.example.com --ssh-user admin"
+    description: "Start WeTTY as an SSH gateway, connecting to a remote host on every browser session"
+  - name: "wetty --ssl-key /path/to/key.pem --ssl-cert /path/to/cert.pem"
+    description: "Enable HTTPS by providing TLS key and certificate paths directly"
+  - name: "wetty --force-ssh"
+    description: "Force SSH mode even when running as root (prevents automatic /bin/login fallback)"
+  - name: "docker run -p 3000:3000 wettyoss/wetty"
+    description: "Run WeTTY in a Docker container with default settings"
+
+supported_protocols:
+  - name: WebSocket
+    role: "Real-time bidirectional channel between browser xterm.js client and server PTY via Socket.IO with flow control"
+  - name: SSH
+    role: "Backend connection from WeTTY server to the target host when acting as SSH gateway; supports password and publickey auth methods"
+  - name: HTTP/HTTPS
+    role: "Web transport for serving the terminal UI and static assets; HTTPS enabled via configurable SSL key and certificate"

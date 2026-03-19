@@ -180,3 +180,33 @@ notes: |
   - Web UI built in TypeScript (web/ directory)
   - Supports both self-hosted and Teleport Cloud (SaaS)
   - License: AGPL-3.0 (core), Apache 2.0 (API module), commercial for Enterprise
+
+commands:
+  - name: "tsh login --proxy=proxy.example.com"
+    description: "Authenticate to a Teleport cluster and obtain short-lived certificates stored in ~/.tsh"
+  - name: "tsh ssh user@hostname"
+    description: "SSH to a registered Teleport node using certificate-based authentication"
+  - name: "tsh kube login cluster-name"
+    description: "Obtain kubeconfig credentials for a registered Kubernetes cluster via Teleport"
+  - name: "tsh db login --db-user=postgres dbname"
+    description: "Obtain short-lived credentials to connect to a registered database via Teleport proxy"
+  - name: "tctl users add username --roles=editor,access"
+    description: "Create a new Teleport user and assign RBAC roles"
+  - name: "tctl tokens add --type=node --ttl=1h"
+    description: "Generate a one-time join token for adding a new SSH node to the cluster"
+  - name: "teleport start --config=/etc/teleport.yaml"
+    description: "Start the Teleport daemon with the specified config (enables auth, proxy, and node roles by default)"
+  - name: "tbot start --config=/etc/tbot.yaml"
+    description: "Start the machine identity agent (tbot) to continuously renew short-lived credentials for workloads"
+
+supported_protocols:
+  - name: SSH
+    role: "Encrypted terminal access to registered nodes; Teleport proxy acts as an SSH certificate authority and session recorder"
+  - name: "TLS/mTLS"
+    role: "All inter-service communication and client-to-proxy connections use mutual TLS with short-lived certificates issued by the Teleport CA"
+  - name: gRPC
+    role: "Internal service-to-service communication between auth, proxy, and node services; also used by the public API client"
+  - name: "Kubernetes API (HTTPS)"
+    role: "Proxied kubectl and Kubernetes API access with Teleport RBAC enforcement layered on top of Kubernetes RBAC"
+  - name: "PostgreSQL/MySQL wire protocol"
+    role: "Database proxy speaks native wire protocols so existing clients (psql, mysql) connect without modification"
