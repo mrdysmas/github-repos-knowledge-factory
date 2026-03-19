@@ -423,3 +423,122 @@ facts:
     text/event-stream with Connection: keep-alive. Chunks include chatId, text, sources,
     and close signals.'
   fact_id: fact::2cec4f44b08819be35a5a57a
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/anything_llm.yaml
+    source_section: common_tasks[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[6]
+    source_file: repos/knowledge/deep/anything_llm.yaml
+    excerpt: docker-compose up -d
+  object_value: docker-compose up -d
+  note: Start AnythingLLM using Docker Compose (all services including collector).
+  fact_id: fact::bf85f3aa684b98f9b82d3aab
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/anything_llm.yaml
+    source_section: common_tasks[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[1]
+    source_file: repos/knowledge/deep/anything_llm.yaml
+    excerpt: yarn dev:all
+  object_value: yarn dev:all
+  note: Start all services in development mode (server, collector, and frontend) concurrently.
+  fact_id: fact::bff5b523a445f3f21651cea2
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/anything_llm.yaml
+    source_section: common_tasks[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[3]
+    source_file: repos/knowledge/deep/anything_llm.yaml
+    excerpt: yarn dev:frontend
+  object_value: yarn dev:frontend
+  note: Start only the React frontend dev server.
+  fact_id: fact::24212fb4c307474bfdf428fb
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/anything_llm.yaml
+    source_section: common_tasks[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[2]
+    source_file: repos/knowledge/deep/anything_llm.yaml
+    excerpt: yarn dev:server
+  object_value: yarn dev:server
+  note: Start only the Express API server in development mode.
+  fact_id: fact::6e8444c382589406928457d8
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/anything_llm.yaml
+    source_section: common_tasks[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[4]
+    source_file: repos/knowledge/deep/anything_llm.yaml
+    excerpt: yarn prisma:migrate
+  object_value: yarn prisma:migrate
+  note: Apply pending Prisma database migrations.
+  fact_id: fact::22d3a63ea2257dba7a28bc01
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/anything_llm.yaml
+    source_section: common_tasks[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[5]
+    source_file: repos/knowledge/deep/anything_llm.yaml
+    excerpt: yarn prod:server
+  object_value: yarn prod:server
+  note: Start the Express API server in production mode.
+  fact_id: fact::abae82b7a7b36d21297e4dcb
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/anything_llm.yaml
+    source_section: common_tasks[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[0]
+    source_file: repos/knowledge/deep/anything_llm.yaml
+    excerpt: yarn setup
+  object_value: yarn setup
+  note: Initialize environment files and run database migrations before first run.
+  fact_id: fact::8cfd0c22bd1c0bd891d69b13

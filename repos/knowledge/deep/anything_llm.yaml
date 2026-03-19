@@ -202,6 +202,22 @@ commands:
     command: yarn lint
     description: Run code linting
 
+common_tasks:
+  - name: yarn setup
+    description: "Initialize environment files and run database migrations before first run."
+  - name: yarn dev:all
+    description: "Start all services in development mode (server, collector, and frontend) concurrently."
+  - name: yarn dev:server
+    description: "Start only the Express API server in development mode."
+  - name: yarn dev:frontend
+    description: "Start only the React frontend dev server."
+  - name: yarn prisma:migrate
+    description: "Apply pending Prisma database migrations."
+  - name: yarn prod:server
+    description: "Start the Express API server in production mode."
+  - name: "docker-compose up -d"
+    description: "Start AnythingLLM using Docker Compose (all services including collector)."
+
 # Troubleshooting
 troubleshooting:
   - issue: Vector DB fallback

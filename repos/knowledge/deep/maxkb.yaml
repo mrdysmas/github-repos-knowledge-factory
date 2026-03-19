@@ -117,6 +117,20 @@ cli_commands:
     upgrade_db: "python main.py upgrade_db"
     description: Run database migrations
 
+common_tasks:
+  - name: "python main.py dev web"
+    description: "Start the MaxKB development web server on 0.0.0.0:8080."
+  - name: "python main.py dev celery"
+    description: "Start the Celery task worker in development mode for async document processing."
+  - name: "python main.py start all"
+    description: "Start all production services (web server, Celery worker, and beat scheduler)."
+  - name: "python main.py start web"
+    description: "Start only the Django production web server."
+  - name: "python main.py upgrade_db"
+    description: "Run Django database migrations to upgrade the schema."
+  - name: "docker-compose up -d"
+    description: "Start MaxKB and its PostgreSQL/Redis dependencies using Docker Compose."
+
 configuration:
   config_path: /opt/maxkb/conf
   celery_data_path: /data/celery_task

@@ -1209,3 +1209,90 @@ facts:
   object_value: test/ directory with test-input plugin for testing
   note: 'testing metadata: structure'
   fact_id: fact::a3edf7be5d39aa6dfc289892
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/obs-studio.yaml
+    source_section: commands[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[3]
+    source_file: repos/knowledge/deep/obs-studio.yaml
+    excerpt: cmake --build build_[platform] --config RelWithDebInfo
+  object_value: cmake --build build_[platform] --config RelWithDebInfo
+  note: Build the configured OBS project with debug symbols.
+  fact_id: fact::aba1cf7a0be05c7a4436daf9
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/obs-studio.yaml
+    source_section: commands[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[4]
+    source_file: repos/knowledge/deep/obs-studio.yaml
+    excerpt: cmake --install build_[platform] --prefix install
+  object_value: cmake --install build_[platform] --prefix install
+  note: Install the built OBS application to a local prefix directory for testing.
+  fact_id: fact::c001ea2d3f004027b1c2d3e9
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/obs-studio.yaml
+    source_section: commands[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[2]
+    source_file: repos/knowledge/deep/obs-studio.yaml
+    excerpt: cmake --preset linux-x86_64
+  object_value: cmake --preset linux-x86_64
+  note: Configure OBS for Linux x86_64 with system dependencies.
+  fact_id: fact::6fef41ddc52f6d5592649071
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/obs-studio.yaml
+    source_section: commands[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[0]
+    source_file: repos/knowledge/deep/obs-studio.yaml
+    excerpt: cmake --preset macos-ci
+  object_value: cmake --preset macos-ci
+  note: Configure OBS for macOS using the CI preset (downloads prebuilt Qt and FFmpeg
+    dependencies automatically).
+  fact_id: fact::4e09d4ad8ca126a369ffb05a
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/obs-studio.yaml
+    source_section: commands[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[1]
+    source_file: repos/knowledge/deep/obs-studio.yaml
+    excerpt: cmake --preset windows-x64
+  object_value: cmake --preset windows-x64
+  note: Configure OBS for Windows x64 using the bundled preset with Visual Studio
+    generator.
+  fact_id: fact::03d7bf79a6b9e98a5253164e

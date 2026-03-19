@@ -205,6 +205,18 @@ api_surface:
     - OBS_FRONTEND_EVENT_REPLAY_BUFFER_SAVED
     - OBS_FRONTEND_EVENT_STUDIO_MODE_ENABLED/DISABLED
 
+commands:
+  - name: "cmake --preset macos-ci"
+    description: "Configure OBS for macOS using the CI preset (downloads prebuilt Qt and FFmpeg dependencies automatically)."
+  - name: "cmake --preset windows-x64"
+    description: "Configure OBS for Windows x64 using the bundled preset with Visual Studio generator."
+  - name: "cmake --preset linux-x86_64"
+    description: "Configure OBS for Linux x86_64 with system dependencies."
+  - name: "cmake --build build_[platform] --config RelWithDebInfo"
+    description: "Build the configured OBS project with debug symbols."
+  - name: "cmake --install build_[platform] --prefix install"
+    description: "Install the built OBS application to a local prefix directory for testing."
+
 extension_points:
   - location: libobs/obs-module.h
     hook: obs_module_load / obs_register_source / obs_register_output / obs_register_encoder

@@ -2,7 +2,7 @@ artifact_type: ws6_master_deep_facts
 generated_at_utc: '2026-03-19T00:00:00Z'
 contract_version: 1.0.0-ws6-draft
 summary:
-  total_facts: 5888
+  total_facts: 5906
   repos_with_facts: 120
   source_shards:
   - repos
@@ -578,6 +578,126 @@ facts:
   object_value: config_path
   note: 'default: /opt/maxkb/conf; configuration default for config_path'
   fact_id: fact::87d745e047075efafcb89fd2
+- node_id: repo::1panel-dev/maxkb
+  github_full_name: 1panel-dev/maxkb
+  name: maxkb
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/maxkb.yaml
+    source_section: common_tasks[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[5]
+    source_file: repos/knowledge/deep/maxkb.yaml
+    excerpt: docker-compose up -d
+  object_value: docker-compose up -d
+  note: Start MaxKB and its PostgreSQL/Redis dependencies using Docker Compose.
+  fact_id: fact::3dcf9cc9d24bafe6230d7d6f
+- node_id: repo::1panel-dev/maxkb
+  github_full_name: 1panel-dev/maxkb
+  name: maxkb
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/maxkb.yaml
+    source_section: common_tasks[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[1]
+    source_file: repos/knowledge/deep/maxkb.yaml
+    excerpt: python main.py dev celery
+  object_value: python main.py dev celery
+  note: Start the Celery task worker in development mode for async document processing.
+  fact_id: fact::b9a8cdd805e66a5dcd790a50
+- node_id: repo::1panel-dev/maxkb
+  github_full_name: 1panel-dev/maxkb
+  name: maxkb
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/maxkb.yaml
+    source_section: common_tasks[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[0]
+    source_file: repos/knowledge/deep/maxkb.yaml
+    excerpt: python main.py dev web
+  object_value: python main.py dev web
+  note: Start the MaxKB development web server on 0.0.0.0:8080.
+  fact_id: fact::840cd658d154552ea1f75064
+- node_id: repo::1panel-dev/maxkb
+  github_full_name: 1panel-dev/maxkb
+  name: maxkb
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/maxkb.yaml
+    source_section: common_tasks[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[2]
+    source_file: repos/knowledge/deep/maxkb.yaml
+    excerpt: python main.py start all
+  object_value: python main.py start all
+  note: Start all production services (web server, Celery worker, and beat scheduler).
+  fact_id: fact::05b7fccf202e6cf03f9cd0c7
+- node_id: repo::1panel-dev/maxkb
+  github_full_name: 1panel-dev/maxkb
+  name: maxkb
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/maxkb.yaml
+    source_section: common_tasks[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[3]
+    source_file: repos/knowledge/deep/maxkb.yaml
+    excerpt: python main.py start web
+  object_value: python main.py start web
+  note: Start only the Django production web server.
+  fact_id: fact::b7ec795ebe9548311c19a9cd
+- node_id: repo::1panel-dev/maxkb
+  github_full_name: 1panel-dev/maxkb
+  name: maxkb
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/maxkb.yaml
+    source_section: common_tasks[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[4]
+    source_file: repos/knowledge/deep/maxkb.yaml
+    excerpt: python main.py upgrade_db
+  object_value: python main.py upgrade_db
+  note: Run Django database migrations to upgrade the schema.
+  fact_id: fact::b3ad6f419d20f1ed335faa17
 - node_id: repo::abhigyanpatwari/gitnexus
   github_full_name: abhigyanpatwari/gitnexus
   name: gitnexus
@@ -62954,6 +63074,146 @@ facts:
     text/event-stream with Connection: keep-alive. Chunks include chatId, text, sources,
     and close signals.'
   fact_id: fact::2cec4f44b08819be35a5a57a
+- node_id: repo::mintplex-labs/anything-llm
+  github_full_name: mintplex-labs/anything-llm
+  name: anything_llm
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/anything_llm.yaml
+    source_section: common_tasks[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[6]
+    source_file: repos/knowledge/deep/anything_llm.yaml
+    excerpt: docker-compose up -d
+  object_value: docker-compose up -d
+  note: Start AnythingLLM using Docker Compose (all services including collector).
+  fact_id: fact::bf85f3aa684b98f9b82d3aab
+- node_id: repo::mintplex-labs/anything-llm
+  github_full_name: mintplex-labs/anything-llm
+  name: anything_llm
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/anything_llm.yaml
+    source_section: common_tasks[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[1]
+    source_file: repos/knowledge/deep/anything_llm.yaml
+    excerpt: yarn dev:all
+  object_value: yarn dev:all
+  note: Start all services in development mode (server, collector, and frontend) concurrently.
+  fact_id: fact::bff5b523a445f3f21651cea2
+- node_id: repo::mintplex-labs/anything-llm
+  github_full_name: mintplex-labs/anything-llm
+  name: anything_llm
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/anything_llm.yaml
+    source_section: common_tasks[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[3]
+    source_file: repos/knowledge/deep/anything_llm.yaml
+    excerpt: yarn dev:frontend
+  object_value: yarn dev:frontend
+  note: Start only the React frontend dev server.
+  fact_id: fact::24212fb4c307474bfdf428fb
+- node_id: repo::mintplex-labs/anything-llm
+  github_full_name: mintplex-labs/anything-llm
+  name: anything_llm
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/anything_llm.yaml
+    source_section: common_tasks[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[2]
+    source_file: repos/knowledge/deep/anything_llm.yaml
+    excerpt: yarn dev:server
+  object_value: yarn dev:server
+  note: Start only the Express API server in development mode.
+  fact_id: fact::6e8444c382589406928457d8
+- node_id: repo::mintplex-labs/anything-llm
+  github_full_name: mintplex-labs/anything-llm
+  name: anything_llm
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/anything_llm.yaml
+    source_section: common_tasks[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[4]
+    source_file: repos/knowledge/deep/anything_llm.yaml
+    excerpt: yarn prisma:migrate
+  object_value: yarn prisma:migrate
+  note: Apply pending Prisma database migrations.
+  fact_id: fact::22d3a63ea2257dba7a28bc01
+- node_id: repo::mintplex-labs/anything-llm
+  github_full_name: mintplex-labs/anything-llm
+  name: anything_llm
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/anything_llm.yaml
+    source_section: common_tasks[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[5]
+    source_file: repos/knowledge/deep/anything_llm.yaml
+    excerpt: yarn prod:server
+  object_value: yarn prod:server
+  note: Start the Express API server in production mode.
+  fact_id: fact::abae82b7a7b36d21297e4dcb
+- node_id: repo::mintplex-labs/anything-llm
+  github_full_name: mintplex-labs/anything-llm
+  name: anything_llm
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/anything_llm.yaml
+    source_section: common_tasks[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[0]
+    source_file: repos/knowledge/deep/anything_llm.yaml
+    excerpt: yarn setup
+  object_value: yarn setup
+  note: Initialize environment files and run database migrations before first run.
+  fact_id: fact::8cfd0c22bd1c0bd891d69b13
 - node_id: repo::mlpack/mlpack
   github_full_name: mlpack/mlpack
   name: mlpack
@@ -70832,6 +71092,108 @@ facts:
   object_value: test/ directory with test-input plugin for testing
   note: 'testing metadata: structure'
   fact_id: fact::a3edf7be5d39aa6dfc289892
+- node_id: repo::obsproject/obs-studio
+  github_full_name: obsproject/obs-studio
+  name: obs-studio
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/obs-studio.yaml
+    source_section: commands[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[3]
+    source_file: repos/knowledge/deep/obs-studio.yaml
+    excerpt: cmake --build build_[platform] --config RelWithDebInfo
+  object_value: cmake --build build_[platform] --config RelWithDebInfo
+  note: Build the configured OBS project with debug symbols.
+  fact_id: fact::aba1cf7a0be05c7a4436daf9
+- node_id: repo::obsproject/obs-studio
+  github_full_name: obsproject/obs-studio
+  name: obs-studio
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/obs-studio.yaml
+    source_section: commands[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[4]
+    source_file: repos/knowledge/deep/obs-studio.yaml
+    excerpt: cmake --install build_[platform] --prefix install
+  object_value: cmake --install build_[platform] --prefix install
+  note: Install the built OBS application to a local prefix directory for testing.
+  fact_id: fact::c001ea2d3f004027b1c2d3e9
+- node_id: repo::obsproject/obs-studio
+  github_full_name: obsproject/obs-studio
+  name: obs-studio
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/obs-studio.yaml
+    source_section: commands[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[2]
+    source_file: repos/knowledge/deep/obs-studio.yaml
+    excerpt: cmake --preset linux-x86_64
+  object_value: cmake --preset linux-x86_64
+  note: Configure OBS for Linux x86_64 with system dependencies.
+  fact_id: fact::6fef41ddc52f6d5592649071
+- node_id: repo::obsproject/obs-studio
+  github_full_name: obsproject/obs-studio
+  name: obs-studio
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/obs-studio.yaml
+    source_section: commands[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[0]
+    source_file: repos/knowledge/deep/obs-studio.yaml
+    excerpt: cmake --preset macos-ci
+  object_value: cmake --preset macos-ci
+  note: Configure OBS for macOS using the CI preset (downloads prebuilt Qt and FFmpeg
+    dependencies automatically).
+  fact_id: fact::4e09d4ad8ca126a369ffb05a
+- node_id: repo::obsproject/obs-studio
+  github_full_name: obsproject/obs-studio
+  name: obs-studio
+  fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-03-17'
+  provenance:
+    source_file: repos/knowledge/deep/obs-studio.yaml
+    source_section: commands[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[1]
+    source_file: repos/knowledge/deep/obs-studio.yaml
+    excerpt: cmake --preset windows-x64
+  object_value: cmake --preset windows-x64
+  note: Configure OBS for Windows x64 using the bundled preset with Visual Studio
+    generator.
+  fact_id: fact::03d7bf79a6b9e98a5253164e
 - node_id: repo::ollama/ollama
   github_full_name: ollama/ollama
   name: ollama

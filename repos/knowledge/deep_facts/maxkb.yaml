@@ -493,3 +493,105 @@ facts:
   object_value: config_path
   note: 'default: /opt/maxkb/conf; configuration default for config_path'
   fact_id: fact::87d745e047075efafcb89fd2
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/maxkb.yaml
+    source_section: common_tasks[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[5]
+    source_file: repos/knowledge/deep/maxkb.yaml
+    excerpt: docker-compose up -d
+  object_value: docker-compose up -d
+  note: Start MaxKB and its PostgreSQL/Redis dependencies using Docker Compose.
+  fact_id: fact::3dcf9cc9d24bafe6230d7d6f
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/maxkb.yaml
+    source_section: common_tasks[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[1]
+    source_file: repos/knowledge/deep/maxkb.yaml
+    excerpt: python main.py dev celery
+  object_value: python main.py dev celery
+  note: Start the Celery task worker in development mode for async document processing.
+  fact_id: fact::b9a8cdd805e66a5dcd790a50
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/maxkb.yaml
+    source_section: common_tasks[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[0]
+    source_file: repos/knowledge/deep/maxkb.yaml
+    excerpt: python main.py dev web
+  object_value: python main.py dev web
+  note: Start the MaxKB development web server on 0.0.0.0:8080.
+  fact_id: fact::840cd658d154552ea1f75064
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/maxkb.yaml
+    source_section: common_tasks[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[2]
+    source_file: repos/knowledge/deep/maxkb.yaml
+    excerpt: python main.py start all
+  object_value: python main.py start all
+  note: Start all production services (web server, Celery worker, and beat scheduler).
+  fact_id: fact::05b7fccf202e6cf03f9cd0c7
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/maxkb.yaml
+    source_section: common_tasks[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[3]
+    source_file: repos/knowledge/deep/maxkb.yaml
+    excerpt: python main.py start web
+  object_value: python main.py start web
+  note: Start only the Django production web server.
+  fact_id: fact::b7ec795ebe9548311c19a9cd
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: command
+  confidence: 0.68
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/maxkb.yaml
+    source_section: common_tasks[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: common_tasks[4]
+    source_file: repos/knowledge/deep/maxkb.yaml
+    excerpt: python main.py upgrade_db
+  object_value: python main.py upgrade_db
+  note: Run Django database migrations to upgrade the schema.
+  fact_id: fact::b3ad6f419d20f1ed335faa17

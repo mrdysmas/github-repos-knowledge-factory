@@ -91,6 +91,12 @@ ARCHETYPES: dict[str, dict[str, Any]] = {
         "recommended_families": ["failures"],
         "predicate_checks": {},
     },
+    "ui_tools": {
+        "categories": ["ui_tools"],
+        "required_families": ["structure", "tasks"],
+        "recommended_families": ["failures", "protocols"],
+        "predicate_checks": {},
+    },
 }
 
 # ---------------------------------------------------------------------------
