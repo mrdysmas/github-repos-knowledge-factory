@@ -85,6 +85,12 @@ ARCHETYPES: dict[str, dict[str, Any]] = {
             "protocols": "uses_protocol",
         },
     },
+    "structured_outputs": {
+        "categories": ["structured_outputs"],
+        "required_families": ["structure", "tasks", "protocols"],
+        "recommended_families": ["failures"],
+        "predicate_checks": {},
+    },
 }
 
 # ---------------------------------------------------------------------------
