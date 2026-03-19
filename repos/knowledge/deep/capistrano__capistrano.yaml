@@ -187,6 +187,23 @@ key_files:
   description: Generated project-level deploy template.
 - path: README.md
   description: User-oriented workflow and command examples.
+troubleshooting:
+- symptom: SSH authentication failure during deploy
+  cause: SSH agent not forwarding keys to remote host; or deploy user does not have access to the target server.
+  fix: "Ensure ssh-agent is running with the correct key loaded (ssh-add -l); enable agent forwarding in deploy.rb with set :ssh_options, forward_agent: true; verify the deploy user's authorized_keys on the server."
+- symptom: deploy fails with "linked file does not exist" error
+  cause: A file listed in linked_files has not been created in the shared/ directory on the server before first deploy.
+  fix: SSH to the server and manually create the required files under shared/ (e.g., shared/config/database.yml); these are not created automatically by Capistrano.
+- symptom: Rollback leaves the site in a broken state
+  cause: Rolling back code without rolling back the database migration; or linked_dirs not consistent between releases.
+  fix: Implement a deploy:rollback hook that also rolls back migrations; ensure database migrations are backward-compatible before deploying.
+- symptom: cap -T shows no tasks or stage tasks missing
+  cause: Capfile not requiring the correct plugins or stage files; or require capistrano/deploy not present.
+  fix: Check Capfile for require "capistrano/deploy" and any SCM/plugin requires; ensure config/deploy/<stage>.rb files exist for each stage.
+- symptom: Deploy runs but changes are not reflected on the server
+  cause: Application server (e.g., Puma, Passenger) not restarted after deploy; symlink pointing to previous release.
+  fix: Add a restart hook in deploy.rb (e.g., after "deploy:publishing", "deploy:restart"); verify current/ symlink points to the latest release with ls -la on the server.
+
 core_modules:
   app_runtime:
     path: lib/capistrano/application.rb

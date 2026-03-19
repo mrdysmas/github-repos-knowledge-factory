@@ -1125,6 +1125,106 @@ facts:
   object_value: async_run_ssh
   note: Constructs SSH domain and launches GUI session against remote backend.; wezterm-gui/src/main.rs
   fact_id: fact::a4bdd258043ca1863714e6bc
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/wez__wezterm.yaml
+    source_section: troubleshooting[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[4]
+    source_file: repos/knowledge/deep/wez__wezterm.yaml
+    excerpt: Colors look wrong or 24-bit color not rendering
+  object_value: Colors look wrong or 24-bit color not rendering
+  note: 'cause: TERM not set to xterm-256color or wezterm inside the session; outer
+    terminal overriding color capability.; fix: Ensure TERM=wezterm or TERM=xterm-256color
+    inside wezterm sessions; check for conflicting SSH or tmux TERM overrides when
+    running nested sessions.'
+  fact_id: fact::36a802b87601b61fa66150c7
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/wez__wezterm.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/wez__wezterm.yaml
+    excerpt: Font glyphs missing or rendered as boxes
+  object_value: Font glyphs missing or rendered as boxes
+  note: "cause: Configured font not installed on the system; or fallback font chain\
+    \ does not cover the required Unicode range.; fix: Run wezterm ls-fonts --text\
+    \ \"\u26A1\" to see which font would render a character; install the missing font\
+    \ or add a fallback in wezterm.lua via font_with_fallb..."
+  fact_id: fact::51a22228e8f84c30445870ef
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/wez__wezterm.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/wez__wezterm.yaml
+    excerpt: SSH domain connection fails with authentication error or timeout
+  object_value: SSH domain connection fails with authentication error or timeout
+  note: 'cause: SSH agent not running or not forwarding credentials; wrong username
+    or host in ssh_domains config; host key not accepted.; fix: Verify SSH_AUTH_SOCK
+    is set and ssh-agent has keys loaded (ssh-add -l); test connectivity with plain
+    ssh first; set ssh_domains.username and c...'
+  fact_id: fact::192c3fa1a31d9bd6eb150ca0
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/wez__wezterm.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: repos/knowledge/deep/wez__wezterm.yaml
+    excerpt: wezterm cli commands fail with "no mux server" or connection refused
+  object_value: wezterm cli commands fail with "no mux server" or connection refused
+  note: 'cause: The wezterm GUI or mux server is not running; wezterm cli requires
+    an active mux server to connect to.; fix: Start wezterm normally to bring up the
+    mux server; for headless use, run wezterm-mux-server --daemonize and then use
+    wezterm cli.'
+  fact_id: fact::3cccb277141334d9908cc6b0
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/wez__wezterm.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/wez__wezterm.yaml
+    excerpt: wezterm fails to start or shows a Lua error on launch
+  object_value: wezterm fails to start or shows a Lua error on launch
+  note: 'cause: Syntax error or runtime error in wezterm.lua config; wezterm evaluates
+    the config at startup and aborts if it throws.; fix: Run wezterm --config-file
+    /dev/null to start with no config and confirm the binary works; then bisect wezterm.lua
+    to isolate the offending line.'
+  fact_id: fact::1d47d5e22459989f5408f27b
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept

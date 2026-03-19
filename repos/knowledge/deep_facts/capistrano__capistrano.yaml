@@ -1002,6 +1002,106 @@ facts:
   object_value: Capistrano::DSL#on
   note: Execute block over filtered host coordinator.; lib/capistrano/dsl.rb
   fact_id: fact::e2645d50047e2f8ddee108f8
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/capistrano__capistrano.yaml
+    source_section: troubleshooting[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[4]
+    source_file: repos/knowledge/deep/capistrano__capistrano.yaml
+    excerpt: Deploy runs but changes are not reflected on the server
+  object_value: Deploy runs but changes are not reflected on the server
+  note: 'cause: Application server (e.g., Puma, Passenger) not restarted after deploy;
+    symlink pointing to previous release.; fix: Add a restart hook in deploy.rb (e.g.,
+    after "deploy:publishing", "deploy:restart"); verify current/ symlink points to
+    the latest release with ls -la on th...'
+  fact_id: fact::77c2ac56c2aa06df9e389e41
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/capistrano__capistrano.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/capistrano__capistrano.yaml
+    excerpt: Rollback leaves the site in a broken state
+  object_value: Rollback leaves the site in a broken state
+  note: 'cause: Rolling back code without rolling back the database migration; or
+    linked_dirs not consistent between releases.; fix: Implement a deploy:rollback
+    hook that also rolls back migrations; ensure database migrations are backward-compatible
+    before deploying.'
+  fact_id: fact::f43515f9c122abe71ff92497
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/capistrano__capistrano.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/capistrano__capistrano.yaml
+    excerpt: SSH authentication failure during deploy
+  object_value: SSH authentication failure during deploy
+  note: 'cause: SSH agent not forwarding keys to remote host; or deploy user does
+    not have access to the target server.; fix: Ensure ssh-agent is running with the
+    correct key loaded (ssh-add -l); enable agent forwarding in deploy.rb with set
+    :ssh_options, forward_agent: true; verify th...'
+  fact_id: fact::641da867fcbc839c640a2d05
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/capistrano__capistrano.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: repos/knowledge/deep/capistrano__capistrano.yaml
+    excerpt: cap -T shows no tasks or stage tasks missing
+  object_value: cap -T shows no tasks or stage tasks missing
+  note: 'cause: Capfile not requiring the correct plugins or stage files; or require
+    capistrano/deploy not present.; fix: Check Capfile for require "capistrano/deploy"
+    and any SCM/plugin requires; ensure config/deploy/<stage>.rb files exist for each
+    stage.'
+  fact_id: fact::2445395a68f901ad14238e15
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/capistrano__capistrano.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/capistrano__capistrano.yaml
+    excerpt: deploy fails with "linked file does not exist" error
+  object_value: deploy fails with "linked file does not exist" error
+  note: 'cause: A file listed in linked_files has not been created in the shared/
+    directory on the server before first deploy.; fix: SSH to the server and manually
+    create the required files under shared/ (e.g., shared/config/database.yml); these
+    are not created automatically by Capistr...'
+  fact_id: fact::7eae09ea87c229593d153c21
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept

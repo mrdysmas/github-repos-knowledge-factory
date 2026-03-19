@@ -206,6 +206,23 @@ key_files:
   description: Core configuration model and file loading behavior.
 - path: docs/multiplexing.md
   description: Domain and remote mux usage patterns.
+troubleshooting:
+- symptom: wezterm fails to start or shows a Lua error on launch
+  cause: Syntax error or runtime error in wezterm.lua config; wezterm evaluates the config at startup and aborts if it throws.
+  fix: Run wezterm --config-file /dev/null to start with no config and confirm the binary works; then bisect wezterm.lua to isolate the offending line.
+- symptom: Font glyphs missing or rendered as boxes
+  cause: Configured font not installed on the system; or fallback font chain does not cover the required Unicode range.
+  fix: Run wezterm ls-fonts --text "⚡" to see which font would render a character; install the missing font or add a fallback in wezterm.lua via font_with_fallback.
+- symptom: SSH domain connection fails with authentication error or timeout
+  cause: SSH agent not running or not forwarding credentials; wrong username or host in ssh_domains config; host key not accepted.
+  fix: Verify SSH_AUTH_SOCK is set and ssh-agent has keys loaded (ssh-add -l); test connectivity with plain ssh first; set ssh_domains.username and check known_hosts.
+- symptom: wezterm cli commands fail with "no mux server" or connection refused
+  cause: The wezterm GUI or mux server is not running; wezterm cli requires an active mux server to connect to.
+  fix: Start wezterm normally to bring up the mux server; for headless use, run wezterm-mux-server --daemonize and then use wezterm cli.
+- symptom: Colors look wrong or 24-bit color not rendering
+  cause: TERM not set to xterm-256color or wezterm inside the session; outer terminal overriding color capability.
+  fix: Ensure TERM=wezterm or TERM=xterm-256color inside wezterm sessions; check for conflicting SSH or tmux TERM overrides when running nested sessions.
+
 core_modules:
   cli_frontend:
     path: wezterm/src/main.rs

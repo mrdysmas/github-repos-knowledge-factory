@@ -194,6 +194,23 @@ key_files:
   description: Dependency/module manifest.
 - path: README.md
   description: Overview and installation/build guidance.
+troubleshooting:
+- symptom: Generated links are absolute paths to localhost or wrong domain
+  cause: baseURL not set or set to "/" in config; Hugo uses baseURL for all canonical link generation.
+  fix: Set baseURL to the production URL in hugo.toml/config.yaml; use --baseURL flag override for preview builds.
+- symptom: Content pages not appearing in the generated site
+  cause: "Front matter has draft: true or a future date with buildFuture: false (default); or content is outside the configured contentDir."
+  fix: Add --buildDrafts and/or --buildFuture flags to include excluded content; verify front matter date format and draft status.
+- symptom: Theme or module not found error at build time
+  cause: Hugo module dependencies not fetched; or theme directory missing from themes/ and not configured as a module.
+  fix: Run hugo mod get to fetch module dependencies; verify go.mod and config module imports are correct; run hugo mod tidy to clean up stale references.
+- symptom: hugo server does not pick up file changes / rebuild is stale
+  cause: Watch path not covering the changed file location; or OS file notification limit hit on Linux.
+  fix: Check that the modified file is inside contentDir, layoutDir, or a mounted module path; on Linux increase inotify watch limit with sysctl fs.inotify.max_user_watches.
+- symptom: Build fails with template execution error
+  cause: Template references an undefined variable or calls a function with wrong argument types; errors surface with file and line number in Hugo output.
+  fix: Read the error message for the template file and line; use {{ printf "%T %v" . }} to inspect the data context; run hugo --debug for verbose template execution tracing.
+
 core_modules:
   command_layer:
     path: commands/

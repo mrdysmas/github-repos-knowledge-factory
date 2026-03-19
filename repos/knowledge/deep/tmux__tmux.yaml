@@ -199,6 +199,23 @@ key_files:
   description: Canonical command/options/configuration reference.
 - path: ~/.tmux.conf
   description: User configuration file consumed at startup.
+troubleshooting:
+- symptom: tmux reports "no server running on socket" or fails to attach
+  cause: The tmux server process died (e.g., after a reboot or logout); or a non-default socket name/path is in use.
+  fix: Confirm the socket path with tmux -L <name> or check TMUX_TMPDIR; start a new session with tmux new-session if the server is genuinely gone.
+- symptom: Configuration changes in ~/.tmux.conf have no effect
+  cause: The running server is using a cached config; source-file was not run after editing.
+  fix: "Reload with tmux source-file ~/.tmux.conf from inside a session, or use prefix + : to open the command prompt and type source-file ~/.tmux.conf interactively."
+- symptom: Garbage characters or broken rendering inside tmux panes
+  cause: TERM mismatch between outer terminal and tmux; or a program inside the pane is not handling the tmux-256color terminal type correctly.
+  fix: Set TERM=xterm-256color in the outer terminal before launching tmux; or add set -g default-terminal "tmux-256color" in tmux.conf.
+- symptom: Key bindings not responding or wrong action triggered
+  cause: A plugin or config entry rebound the prefix or overrode the binding; or the key table is not the one currently active.
+  fix: Inspect bindings with tmux list-keys; remove conflicting bind-key entries in tmux.conf; ensure prefix is correctly set.
+- symptom: Session or pane contents lost unexpectedly
+  cause: The tmux server was killed (SIGKILL or system reboot) — sessions are in-memory only and not persisted by default.
+  fix: Use a session persistence plugin (e.g., tmux-resurrect) or script session save/restore; note that clean server shutdown (tmux kill-server) also destroys all sessions.
+
 core_modules:
   entrypoint:
     path: tmux.c

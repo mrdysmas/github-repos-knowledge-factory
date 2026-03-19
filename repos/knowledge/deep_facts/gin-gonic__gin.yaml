@@ -667,6 +667,104 @@ facts:
   object_value: observability middleware
   note: 'integration group: middleware_ecosystem'
   fact_id: fact::05b5a4f956974eb5783167de
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-05'
+  provenance:
+    source_file: repos/knowledge/deep/gin-gonic__gin.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: repos/knowledge/deep/gin-gonic__gin.yaml
+    excerpt: Address already in use error on r.Run()
+  object_value: Address already in use error on r.Run()
+  note: 'cause: Another process is bound to the target port; or a prior instance did
+    not shut down cleanly.; fix: Change the port in r.Run(":PORT") or terminate the
+    conflicting process; use SO_REUSEPORT if multiple listeners are needed.'
+  fact_id: fact::00369da16929df0e710a2573
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-05'
+  provenance:
+    source_file: repos/knowledge/deep/gin-gonic__gin.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/gin-gonic__gin.yaml
+    excerpt: Binding returns validation error despite correct request body
+  object_value: Binding returns validation error despite correct request body
+  note: 'cause: Struct tag mismatch (json vs form vs uri); or required field missing
+    from payload; or Content-Type header not set correctly on the request.; fix: Verify
+    struct binding tags match the request format; ensure Content-Type is set to application/json
+    for JSON payloads; use c...'
+  fact_id: fact::69a57ae606fda5de91b0cc89
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-05'
+  provenance:
+    source_file: repos/knowledge/deep/gin-gonic__gin.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/gin-gonic__gin.yaml
+    excerpt: Client IP logged as proxy IP instead of real remote address
+  object_value: Client IP logged as proxy IP instead of real remote address
+  note: 'cause: Trusted proxies not configured; gin defaults to trusting all proxies
+    which logs the wrong IP in many reverse-proxy setups.; fix: Call r.SetTrustedProxies([]string{"127.0.0.1"})
+    or the actual proxy CIDR; or r.SetTrustedProxies(nil) to disable proxy trust entirely.'
+  fact_id: fact::941a24b8b1516f95f1361c1e
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-05'
+  provenance:
+    source_file: repos/knowledge/deep/gin-gonic__gin.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/gin-gonic__gin.yaml
+    excerpt: Handler panics and server crashes
+  object_value: Handler panics and server crashes
+  note: 'cause: Unrecovered panic in a handler; gin.Default() includes a recovery
+    middleware but gin.New() does not.; fix: Use gin.Default() instead of gin.New(),
+    or explicitly add gin.Recovery() middleware; log panics with a custom recovery
+    handler for observability.'
+  fact_id: fact::57139b20627a5d91699ef5a3
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-05'
+  provenance:
+    source_file: repos/knowledge/deep/gin-gonic__gin.yaml
+    source_section: troubleshooting[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[4]
+    source_file: repos/knowledge/deep/gin-gonic__gin.yaml
+    excerpt: Middleware not executing for a route group
+  object_value: Middleware not executing for a route group
+  note: "cause: Middleware added to engine after route registration, or added to wrong\
+    \ RouterGroup scope.; fix: Register middleware before route definitions; verify\
+    \ the group hierarchy \u2014 middleware on r does not propagate to independently\
+    \ created RouterGroups."
+  fact_id: fact::58a0ded3a9a3aca77c10f29c
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept

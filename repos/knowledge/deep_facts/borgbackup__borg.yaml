@@ -1004,6 +1004,104 @@ facts:
   object_value: with_repository
   note: Decorator for command handlers requiring repository context.; src/borg/archiver/_common.py
   fact_id: fact::ce5616787c0c4a9753fc84e1
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/borgbackup__borg.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/borgbackup__borg.yaml
+    excerpt: Broken pipe or connection reset during remote backup over SSH
+  object_value: Broken pipe or connection reset during remote backup over SSH
+  note: 'cause: SSH connection dropped mid-transfer; server-side borg not installed
+    or wrong version; BORG_RSH not pointing to a compatible SSH binary.; fix: Verify
+    borg is installed on the remote host at the same major version; test SSH connectivity
+    manually; increase SSH keepalive se...'
+  fact_id: fact::0426b0f69fa7a73a6e1e52e9
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/borgbackup__borg.yaml
+    source_section: troubleshooting[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[4]
+    source_file: repos/knowledge/deep/borgbackup__borg.yaml
+    excerpt: Cache out of sync warning or slow deduplication performance
+  object_value: Cache out of sync warning or slow deduplication performance
+  note: 'cause: Cache was deleted, corrupted, or is stale relative to the repository
+    state.; fix: Run borg delete --cache-only to wipe the local cache, then let borg
+    rebuild it on next access; rebuild is slow but restores correct dedup behavior.'
+  fact_id: fact::462ed23b0c72c8dc2089436f
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/borgbackup__borg.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/borgbackup__borg.yaml
+    excerpt: Passphrase prompt loop or "wrong passphrase" error
+  object_value: Passphrase prompt loop or "wrong passphrase" error
+  note: 'cause: BORG_PASSPHRASE is unset or incorrect; or the key file is missing/corrupted
+    for keyfile-mode repositories.; fix: Set BORG_PASSPHRASE correctly in the environment
+    or use BORG_PASSCOMMAND; for keyfile repos verify the key file exists and matches
+    with borg key export.'
+  fact_id: fact::ee4745722ed4fb58710f76c0
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/borgbackup__borg.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/borgbackup__borg.yaml
+    excerpt: Repository is locked and borg commands hang or refuse to run
+  object_value: Repository is locked and borg commands hang or refuse to run
+  note: 'cause: A previous borg process crashed without releasing the lock; or a parallel
+    borg operation is running on the same repository.; fix: Confirm no borg process
+    is running (ps aux | grep borg); if safe, run borg break-lock <repo> to release
+    the stale lock.'
+  fact_id: fact::17dffdff1325525b8236e013
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/borgbackup__borg.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: repos/knowledge/deep/borgbackup__borg.yaml
+    excerpt: borg check reports errors or inconsistencies in repository
+  object_value: borg check reports errors or inconsistencies in repository
+  note: "cause: Chunk data corrupted on disk; incomplete prior borg create or compact\
+    \ operation.; fix: Run borg check --repair (with caution \u2014 creates a repaired\
+    \ version); restore from a secondary repository copy if corruption is extensive."
+  fact_id: fact::a7b780882d31a0bdbb397602
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept

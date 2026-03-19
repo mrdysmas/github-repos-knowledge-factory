@@ -312,6 +312,105 @@ facts:
   object_value: Web crawler connectors
   note: 'integration group: external_sources'
   fact_id: fact::9a780f92ff8b807137ed3618
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: API returns 401 or model provider errors despite valid key
+  object_value: API returns 401 or model provider errors despite valid key
+  note: 'cause: ANTHROPIC_API_KEY or equivalent env var not set in the .env file;
+    or .env was not copied from .env.example before first launch.; fix: Confirm .env
+    exists and contains the correct provider key; restart containers with docker compose
+    down && docker compose up -d after edi...'
+  fact_id: fact::13f4d2068926b19435371b4c
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: RAG knowledge base returns no results or low-relevance chunks
+  object_value: RAG knowledge base returns no results or low-relevance chunks
+  note: "cause: Embedding model not configured or mismatched with the retrieval model;\
+    \ document not fully indexed.; fix: Verify the embedding model is set under Settings\
+    \ \u2192 Model Provider; re-index the knowledge base document after confirming\
+    \ the embedding provider is reachable."
+  fact_id: fact::7b283585a924d9f9830d6ad1
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: troubleshooting[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[4]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Self-hosted instance loses data after docker compose down
+  object_value: Self-hosted instance loses data after docker compose down
+  note: 'cause: Volumes not persisted; default compose config uses named volumes that
+    may be pruned.; fix: Confirm volume mounts in docker-compose.yaml point to host
+    paths for postgres and storage; avoid docker volume prune on active deployments.'
+  fact_id: fact::c1f127011ea0e4ed5baf6b5f
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Workflow execution hangs or returns empty output
+  object_value: Workflow execution hangs or returns empty output
+  note: 'cause: LLM provider rate limit hit; or a node in the workflow graph has a
+    misconfigured input variable reference.; fix: Check provider dashboard for rate
+    limit status; inspect workflow node configuration for unresolved variable references;
+    review api container logs with docker...'
+  fact_id: fact::c6289fdbfe6a1638d5b88036
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-02-25'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: docker compose up -d completes but web UI is unreachable
+  object_value: docker compose up -d completes but web UI is unreachable
+  note: 'cause: Dependent services (PostgreSQL, Redis) not yet healthy; or port 80/443
+    already in use on the host.; fix: Run docker compose ps to check service health;
+    wait for db and redis containers to show healthy; change host port mapping in
+    docker-compose.yaml if conflicts exist.'
+  fact_id: fact::dc129fae426ced22462276dc
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept

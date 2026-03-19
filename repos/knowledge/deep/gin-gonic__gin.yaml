@@ -167,6 +167,23 @@ quick_reference:
 - topic: Start server
   command: r.Run(":8080")
 
+troubleshooting:
+- symptom: Client IP logged as proxy IP instead of real remote address
+  cause: Trusted proxies not configured; gin defaults to trusting all proxies which logs the wrong IP in many reverse-proxy setups.
+  fix: Call r.SetTrustedProxies([]string{"127.0.0.1"}) or the actual proxy CIDR; or r.SetTrustedProxies(nil) to disable proxy trust entirely.
+- symptom: Binding returns validation error despite correct request body
+  cause: Struct tag mismatch (json vs form vs uri); or required field missing from payload; or Content-Type header not set correctly on the request.
+  fix: Verify struct binding tags match the request format; ensure Content-Type is set to application/json for JSON payloads; use c.ShouldBind vs c.MustBind to control error handling behavior.
+- symptom: Handler panics and server crashes
+  cause: Unrecovered panic in a handler; gin.Default() includes a recovery middleware but gin.New() does not.
+  fix: Use gin.Default() instead of gin.New(), or explicitly add gin.Recovery() middleware; log panics with a custom recovery handler for observability.
+- symptom: Address already in use error on r.Run()
+  cause: Another process is bound to the target port; or a prior instance did not shut down cleanly.
+  fix: Change the port in r.Run(":PORT") or terminate the conflicting process; use SO_REUSEPORT if multiple listeners are needed.
+- symptom: Middleware not executing for a route group
+  cause: Middleware added to engine after route registration, or added to wrong RouterGroup scope.
+  fix: Register middleware before route definitions; verify the group hierarchy — middleware on r does not propagate to independently created RouterGroups.
+
 api_surface:
   public_functions:
   - name: gin.Default

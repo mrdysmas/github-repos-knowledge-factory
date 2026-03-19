@@ -1002,6 +1002,104 @@ facts:
   object_value: newServerCommand
   note: Constructs server command and trust subcommand.; commands/server.go
   fact_id: fact::c49a2012e4908895eec7bc5a
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/gohugoio__hugo.yaml
+    source_section: troubleshooting[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[4]
+    source_file: repos/knowledge/deep/gohugoio__hugo.yaml
+    excerpt: Build fails with template execution error
+  object_value: Build fails with template execution error
+  note: 'cause: Template references an undefined variable or calls a function with
+    wrong argument types; errors surface with file and line number in Hugo output.;
+    fix: Read the error message for the template file and line; use {{ printf "%T
+    %v" . }} to inspect the data context; run hug...'
+  fact_id: fact::8a54608e0c081e16c20a0aea
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/gohugoio__hugo.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/gohugoio__hugo.yaml
+    excerpt: Content pages not appearing in the generated site
+  object_value: Content pages not appearing in the generated site
+  note: 'cause: Front matter has draft: true or a future date with buildFuture: false
+    (default); or content is outside the configured contentDir.; fix: Add --buildDrafts
+    and/or --buildFuture flags to include excluded content; verify front matter date
+    format and draft status.'
+  fact_id: fact::c5a49a50a8ca239fd84ef44b
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/gohugoio__hugo.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/gohugoio__hugo.yaml
+    excerpt: Generated links are absolute paths to localhost or wrong domain
+  object_value: Generated links are absolute paths to localhost or wrong domain
+  note: 'cause: baseURL not set or set to "/" in config; Hugo uses baseURL for all
+    canonical link generation.; fix: Set baseURL to the production URL in hugo.toml/config.yaml;
+    use --baseURL flag override for preview builds.'
+  fact_id: fact::ffb76f5134adeb7988c2147e
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/gohugoio__hugo.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/gohugoio__hugo.yaml
+    excerpt: Theme or module not found error at build time
+  object_value: Theme or module not found error at build time
+  note: 'cause: Hugo module dependencies not fetched; or theme directory missing from
+    themes/ and not configured as a module.; fix: Run hugo mod get to fetch module
+    dependencies; verify go.mod and config module imports are correct; run hugo mod
+    tidy to clean up stale references.'
+  fact_id: fact::0e0e15caf8b471e22e2aa7b2
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/gohugoio__hugo.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: repos/knowledge/deep/gohugoio__hugo.yaml
+    excerpt: hugo server does not pick up file changes / rebuild is stale
+  object_value: hugo server does not pick up file changes / rebuild is stale
+  note: 'cause: Watch path not covering the changed file location; or OS file notification
+    limit hit on Linux.; fix: Check that the modified file is inside contentDir, layoutDir,
+    or a mounted module path; on Linux increase inotify watch limit with sysctl fs.inotify.max_user_watches.'
+  fact_id: fact::f0eb0d7ed8588fc67f714f44
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept

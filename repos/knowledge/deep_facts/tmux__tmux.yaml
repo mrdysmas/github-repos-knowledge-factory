@@ -1044,6 +1044,106 @@ facts:
   object_value: winlink_add
   note: Add indexed window link into session tree.; window.c
   fact_id: fact::6fb15e1d64ffa67e89a9dc64
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/tmux__tmux.yaml
+    source_section: troubleshooting[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[1]
+    source_file: repos/knowledge/deep/tmux__tmux.yaml
+    excerpt: Configuration changes in ~/.tmux.conf have no effect
+  object_value: Configuration changes in ~/.tmux.conf have no effect
+  note: 'cause: The running server is using a cached config; source-file was not run
+    after editing.; fix: Reload with tmux source-file ~/.tmux.conf from inside a session,
+    or use prefix + : to open the command prompt and type source-file ~/.tmux.conf
+    interactively.'
+  fact_id: fact::e45c03b2c4e6ec9de369edfd
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/tmux__tmux.yaml
+    source_section: troubleshooting[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[2]
+    source_file: repos/knowledge/deep/tmux__tmux.yaml
+    excerpt: Garbage characters or broken rendering inside tmux panes
+  object_value: Garbage characters or broken rendering inside tmux panes
+  note: 'cause: TERM mismatch between outer terminal and tmux; or a program inside
+    the pane is not handling the tmux-256color terminal type correctly.; fix: Set
+    TERM=xterm-256color in the outer terminal before launching tmux; or add set -g
+    default-terminal "tmux-256color" in tmux.conf.'
+  fact_id: fact::e3d33c47fb1600cd48b0e37b
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/tmux__tmux.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: repos/knowledge/deep/tmux__tmux.yaml
+    excerpt: Key bindings not responding or wrong action triggered
+  object_value: Key bindings not responding or wrong action triggered
+  note: 'cause: A plugin or config entry rebound the prefix or overrode the binding;
+    or the key table is not the one currently active.; fix: Inspect bindings with
+    tmux list-keys; remove conflicting bind-key entries in tmux.conf; ensure prefix
+    is correctly set.'
+  fact_id: fact::e65eb11dbdabfc67c840cf94
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/tmux__tmux.yaml
+    source_section: troubleshooting[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[4]
+    source_file: repos/knowledge/deep/tmux__tmux.yaml
+    excerpt: Session or pane contents lost unexpectedly
+  object_value: Session or pane contents lost unexpectedly
+  note: "cause: The tmux server was killed (SIGKILL or system reboot) \u2014 sessions\
+    \ are in-memory only and not persisted by default.; fix: Use a session persistence\
+    \ plugin (e.g., tmux-resurrect) or script session save/restore; note that clean\
+    \ server shutdown (tmux kill-server) also destro..."
+  fact_id: fact::f6c08b95597282e4f21665f7
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/tmux__tmux.yaml
+    source_section: troubleshooting[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[0]
+    source_file: repos/knowledge/deep/tmux__tmux.yaml
+    excerpt: tmux reports "no server running on socket" or fails to attach
+  object_value: tmux reports "no server running on socket" or fails to attach
+  note: 'cause: The tmux server process died (e.g., after a reboot or logout); or
+    a non-default socket name/path is in use.; fix: Confirm the socket path with tmux
+    -L <name> or check TMUX_TMPDIR; start a new session with tmux new-session if the
+    server is genuinely gone.'
+  fact_id: fact::d00d6811cb35a75ebf5c8193
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept

@@ -200,6 +200,23 @@ key_files:
   description: Internal architecture documentation.
 - path: README.rst
   description: User workflows and feature overview.
+troubleshooting:
+- symptom: Repository is locked and borg commands hang or refuse to run
+  cause: A previous borg process crashed without releasing the lock; or a parallel borg operation is running on the same repository.
+  fix: Confirm no borg process is running (ps aux | grep borg); if safe, run borg break-lock <repo> to release the stale lock.
+- symptom: Passphrase prompt loop or "wrong passphrase" error
+  cause: BORG_PASSPHRASE is unset or incorrect; or the key file is missing/corrupted for keyfile-mode repositories.
+  fix: Set BORG_PASSPHRASE correctly in the environment or use BORG_PASSCOMMAND; for keyfile repos verify the key file exists and matches with borg key export.
+- symptom: Broken pipe or connection reset during remote backup over SSH
+  cause: SSH connection dropped mid-transfer; server-side borg not installed or wrong version; BORG_RSH not pointing to a compatible SSH binary.
+  fix: Verify borg is installed on the remote host at the same major version; test SSH connectivity manually; increase SSH keepalive settings via BORG_RSH="ssh -o ServerAliveInterval=60".
+- symptom: borg check reports errors or inconsistencies in repository
+  cause: Chunk data corrupted on disk; incomplete prior borg create or compact operation.
+  fix: Run borg check --repair (with caution — creates a repaired version); restore from a secondary repository copy if corruption is extensive.
+- symptom: Cache out of sync warning or slow deduplication performance
+  cause: Cache was deleted, corrupted, or is stale relative to the repository state.
+  fix: Run borg delete --cache-only to wipe the local cache, then let borg rebuild it on next access; rebuild is slow but restores correct dedup behavior.
+
 core_modules:
   cli_archiver:
     path: src/borg/archiver/
