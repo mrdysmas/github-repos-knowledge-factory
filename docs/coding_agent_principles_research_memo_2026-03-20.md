@@ -233,9 +233,42 @@ The strongest findings — planning improves outcomes, orientation cost is real,
 - Detailed benchmark methodology or reproduction steps
 - Agent memory systems, session continuity, or chat-transcript management (out of scope per guardrails)
 
-## 9. Bottom Line
+## 9. Supplementary Findings (Background Research Agents)
 
-The 7 coding-session anchor questions are well-validated by the research. They cover the space that matters and exclude the space that doesn't.
+Four parallel research agents produced extended findings that reinforce and deepen the memo's core conclusions. Key supplementary material:
+
+### 9.1 Competitive landscape confirms the gap
+
+A survey of every major knowledge-augmented coding agent system (Aider, Cursor, Cody, Continue, Codex CLI) reveals that **no system provides cross-repo implementation-prior knowledge**. All focus exclusively on understanding the current repo's structure and content.
+
+The closest systems:
+- **Moderne/Moddy**: genuine multi-repo work at scale using Lossless Semantic Trees + LLM-generated knowledge graphs, but focused on migration/modernization rather than advisory
+- **LogicLens** (Jan 2026): semantic multi-repo code graph enabling natural-language queries across repos — architecturally relevant but not advisory-oriented
+- **Augment Code**: claims 400K-file cross-repo indexing with "architectural maps," but focused on call-graph tracing, not pattern comparison
+
+Assessment from the research: *"'Repos like yours' pattern knowledge: Nonexistent as a product — Complete gap — nobody is doing this."* This is the strongest external validation of the project's positioning.
+
+### 9.2 Benchmark inflation and the feature gap
+
+SWE-bench scores are 36-54% inflated due to data leakage from training corpora (5 independent studies). More critically, FeatureBench (ICLR 2026) shows Claude 4.5 Opus drops from 74.4% on bug-fix tasks to 11.0% on feature-level tasks — revealing a gap between narrow bug-fix capability and broader implementation judgment. The project's component-discovery and pattern-comparison questions (Q1, Q2, Q5) directly address this gap.
+
+### 9.3 The 80% Problem and perception gap
+
+Addy Osmani's widely-cited analysis describes the central practitioner experience: agents rapidly produce 80% of code, but the remaining 20% (production readiness, edge cases, architectural coherence) requires exponentially more effort. The METR study found experienced developers were 19% *slower* with AI tools while estimating they were 20% *faster* — a 39-point perception gap. This validates the project's emphasis on advisory front-loading: structured priors before implementation reduce the cost of the last 20%.
+
+### 9.4 Cross-project knowledge demand is implicit
+
+Practitioner communities show the *thinnest signal* for explicit cross-project knowledge requests — practitioners want it but don't articulate it that way. When they complain about agents not following conventions, reinventing patterns, or failing to use existing libraries, they are expressing demand for implementation priors. The project fills a need that users cannot yet name.
+
+### 9.5 Structured context evidence strengthens
+
+SWE-ContextBench (Feb 2026) found that correctly selected summarized experience improves resolution accuracy and reduces cost, *especially on harder tasks* — but unfiltered or incorrectly selected experience provides limited or negative benefit. This directly supports the non-inferability criterion: the system must be selective about what it surfaces.
+
+A codified-context infrastructure study found a 108K-line C# system required 25K lines of specifications, prompts, and rules — a 24.2% knowledge-to-code ratio. Three tiers emerged: always-loaded constitution, specialist agents invoked per task, and cold-memory knowledge base queried on demand via MCP. This architecture maps closely to the project's canonical YAML → compiled SQLite → query-layer design.
+
+## 10. Bottom Line
+
+The 7 coding-session anchor questions are well-validated by the research. They cover the space that matters and exclude the space that doesn't. No competing system occupies this niche.
 
 The strongest insight from this research is the **non-inferability criterion**: the system's value comes precisely from providing knowledge that cannot be obtained by inspecting the target repository. Cross-repo patterns, failure-mode distributions, solution-variant comparisons, and typicality assessments are non-inferable. Repository structure, README content, and standard tooling are inferable and should not be the system's concern.
 
