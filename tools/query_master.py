@@ -951,8 +951,11 @@ def command_riskcheck_sqlite(
     fact_count_row = conn.execute(
         "SELECT COUNT(*) FROM facts f "
         "JOIN repos r ON f.node_id = r.node_id "
-        "WHERE f.predicate IN ('implements_pattern', 'has_component', 'uses_protocol') "
-        "  AND r.category = ? COLLATE NOCASE",
+        "WHERE r.category = ? COLLATE NOCASE "
+        "  AND ("
+        "    f.predicate IN ('implements_pattern', 'uses_protocol')"
+        "    OR (f.predicate = 'has_component' AND f.object_kind != 'path')"
+        "  )",
         (category,),
     ).fetchone()
     fact_count_in_scope = int(fact_count_row[0]) if fact_count_row else 0
@@ -966,12 +969,14 @@ def command_riskcheck_sqlite(
     signal_items: list[dict[str, Any]] = []
     for input_kind, terms, predicate in predicate_map:
         for input_term in terms:
+            path_exclusion = "  AND f.object_kind != 'path' " if predicate == "has_component" else ""
             rows = conn.execute(
                 "SELECT DISTINCT r.node_id, r.github_full_name, r.name, f.object_value "
                 "FROM facts f "
                 "JOIN repos r ON f.node_id = r.node_id "
                 "WHERE f.predicate = ? "
                 "  AND r.category = ? COLLATE NOCASE "
+                + path_exclusion +
                 "  AND f.object_value LIKE ? COLLATE NOCASE "
                 "ORDER BY r.name, f.object_value",
                 (predicate, category, f"%{input_term}%"),
