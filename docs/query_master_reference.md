@@ -973,6 +973,9 @@ At least one of `--pattern`, `--component`, or `--protocol` must be provided.
 - `artifact_type: master_query_riskcheck`
 - `category_filter` — the category passed in
 - `scope_repo_count` — total repos in the category
+- `corpus_health` — reliability indicators for the query scope:
+  - `scope_repo_count` — total repos in the category (same as top-level)
+  - `fact_count_in_scope` — total facts with predicates `implements_pattern`, `has_component`, or `uses_protocol` for repos in the category
 - `proposal` — echoed input terms grouped by type
 - `signal_counts` — count of signals per bucket
 - `signals` — per-bucket lists
@@ -1002,6 +1005,9 @@ $ python3 tools/query_master.py riskcheck \
 artifact_type: master_query_riskcheck
 category_filter: agent_cli
 scope_repo_count: 13
+corpus_health:
+  scope_repo_count: 13
+  fact_count_in_scope: 597
 proposal:
   patterns:
   - command-driven task loop
@@ -1048,6 +1054,12 @@ signals:
 `scope_repo_count` is the total number of repos in the category, regardless of which predicates they have facts for. `matched_repo_fraction` is always relative to this count.
 
 Matching is case-insensitive substring match (`LIKE ... COLLATE NOCASE`). Pass specific enough terms to avoid spurious substring hits.
+
+**Signal reliability**
+
+- `corpus_health.scope_repo_count` below ~5 makes fractions noisy — bucket boundaries (e.g. rare vs. absent) are not meaningful with 2–4 repos.
+- `absent_from_category` can mean 'not used in these repos' or 'not extracted' — low `corpus_health.fact_count_in_scope` suggests shallow extraction rather than genuine absence.
+- `uses_protocol` is less reliably extracted than `implements_pattern` or `has_component`. Treat `absent` for protocol terms with more skepticism than for pattern or component terms.
 
 ## 11. graph
 

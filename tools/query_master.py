@@ -948,6 +948,15 @@ def command_riskcheck_sqlite(
     ).fetchone()
     scope_repo_count = int(row[0]) if row else 0
 
+    fact_count_row = conn.execute(
+        "SELECT COUNT(*) FROM facts f "
+        "JOIN repos r ON f.node_id = r.node_id "
+        "WHERE f.predicate IN ('implements_pattern', 'has_component', 'uses_protocol') "
+        "  AND r.category = ? COLLATE NOCASE",
+        (category,),
+    ).fetchone()
+    fact_count_in_scope = int(fact_count_row[0]) if fact_count_row else 0
+
     predicate_map = [
         ("pattern", patterns, "implements_pattern"),
         ("component", components, "has_component"),
@@ -1030,6 +1039,10 @@ def command_riskcheck_sqlite(
         "artifact_type": "master_query_riskcheck",
         "category_filter": category,
         "scope_repo_count": scope_repo_count,
+        "corpus_health": {
+            "scope_repo_count": scope_repo_count,
+            "fact_count_in_scope": fact_count_in_scope,
+        },
         "proposal": proposal,
         "signal_counts": {
             "established_in_category": len(established),

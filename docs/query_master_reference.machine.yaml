@@ -581,9 +581,22 @@ commands:
         - artifact_type
         - category_filter
         - scope_repo_count
+        - corpus_health
         - proposal
         - signal_counts
         - signals
+      corpus_health_keys:
+        - scope_repo_count
+        - fact_count_in_scope
+      corpus_health_semantics:
+        scope_repo_count: total_repos_in_category
+        fact_count_in_scope: total_facts_with_riskcheck_predicates_in_category
+      signal_reliability:
+        min_reliable_scope_repo_count: 5
+        low_trust_predicates:
+          - uses_protocol
+        absent_interpretation: absent_from_category_may_reflect_extraction_gap_not_genuine_rarity
+        corpus_health_check: use_fact_count_in_scope_to_assess_extraction_coverage
       signal_counts_keys:
         - established_in_category
         - rare_in_category

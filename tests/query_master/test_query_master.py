@@ -699,6 +699,21 @@ class QueryMasterRiskcheckTests(unittest.TestCase):
             self.assertIn("components", payload["proposal"])
             self.assertIn("protocols", payload["proposal"])
 
+    def test_riskcheck_corpus_health(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            workspace = self._make_workspace(tmp_dir)
+            result, payload = self._run_query(
+                workspace, "riskcheck", "--category", "agent_cli",
+                "--pattern", "command-driven"
+            )
+            self.assertEqual(result.returncode, 0)
+            self.assertIn("corpus_health", payload)
+            ch = payload["corpus_health"]
+            # 5 repos in agent_cli
+            self.assertEqual(ch["scope_repo_count"], 5)
+            # 6 facts with riskcheck predicates in agent_cli (rc-1 through rc-6; rc-7 is other_cat)
+            self.assertEqual(ch["fact_count_in_scope"], 6)
+
 
 if __name__ == "__main__":
     unittest.main()
