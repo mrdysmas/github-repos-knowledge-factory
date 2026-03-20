@@ -559,6 +559,9 @@ class QueryMasterRiskcheckTests(unittest.TestCase):
                 ("rc-4", "repo::org/repo-c", "has_component", "concept", "ACP server"),
                 ("rc-5", "repo::org/repo-a", "uses_protocol", "protocol", "gRPC"),
                 ("rc-6", "repo::org/repo-b", "uses_protocol", "protocol", "gRPC"),
+                ("rc-6b", "repo::org/repo-d", "has_component", "concept", "Read-only job cache"),
+                ("rc-6c", "repo::org/repo-d", "uses_protocol", "protocol", "Server-Sent Events"),
+                ("rc-6d", "repo::org/repo-e", "implements_pattern", "concept", "Multi-agent task orchestration"),
                 ("rc-7", "repo::org/repo-x", "implements_pattern", "concept", "Command-driven task loop"),
             ]
             for fact_id, node_id, predicate, object_kind, object_value in facts:
@@ -615,6 +618,18 @@ class QueryMasterRiskcheckTests(unittest.TestCase):
             self.assertIn("Command-driven task loop", sig["matched_values"])
             self.assertEqual(len(sig["example_repos"]), 3)
 
+    def test_riskcheck_pattern_normalizes_punctuation_and_spacing(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            workspace = self._make_workspace(tmp_dir)
+            result, payload = self._run_query(
+                workspace, "riskcheck", "--category", "agent_cli",
+                "--pattern", "command driven task loop"
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stdout + "\n" + result.stderr)
+            sig = payload["signals"]["established_in_category"][0]
+            self.assertEqual(sig["matched_repo_count"], 3)
+            self.assertIn("Command-driven task loop", sig["matched_values"])
+
     def test_riskcheck_rare_bucket(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             workspace = self._make_workspace(tmp_dir)
@@ -630,6 +645,18 @@ class QueryMasterRiskcheckTests(unittest.TestCase):
             self.assertEqual(sig["matched_repo_count"], 1)
             self.assertAlmostEqual(sig["matched_repo_fraction"], 0.2, places=3)
 
+    def test_riskcheck_component_normalizes_hyphenated_terms(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            workspace = self._make_workspace(tmp_dir)
+            result, payload = self._run_query(
+                workspace, "riskcheck", "--category", "agent_cli",
+                "--component", "read only job cache"
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stdout + "\n" + result.stderr)
+            sig = payload["signals"]["rare_in_category"][0]
+            self.assertEqual(sig["matched_repo_count"], 1)
+            self.assertIn("Read-only job cache", sig["matched_values"])
+
     def test_riskcheck_absent_bucket(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             workspace = self._make_workspace(tmp_dir)
@@ -644,6 +671,18 @@ class QueryMasterRiskcheckTests(unittest.TestCase):
             self.assertEqual(sig["matched_repo_fraction"], 0.0)
             self.assertEqual(sig["matched_values"], [])
             self.assertEqual(sig["example_repos"], [])
+
+    def test_riskcheck_protocol_normalizes_spaced_protocol_terms(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            workspace = self._make_workspace(tmp_dir)
+            result, payload = self._run_query(
+                workspace, "riskcheck", "--category", "agent_cli",
+                "--protocol", "server sent events"
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stdout + "\n" + result.stderr)
+            sig = payload["signals"]["rare_in_category"][0]
+            self.assertEqual(sig["matched_repo_count"], 1)
+            self.assertIn("Server-Sent Events", sig["matched_values"])
 
     def test_riskcheck_category_is_case_insensitive(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
@@ -768,8 +807,8 @@ class QueryMasterRiskcheckTests(unittest.TestCase):
             ch = payload["corpus_health"]
             # 5 repos in agent_cli
             self.assertEqual(ch["scope_repo_count"], 5)
-            # 6 facts with riskcheck predicates in agent_cli (rc-1 through rc-6; rc-7 is other_cat)
-            self.assertEqual(ch["fact_count_in_scope"], 6)
+            # 9 facts with riskcheck predicates in agent_cli (rc-1 through rc-6d; rc-7 is other_cat)
+            self.assertEqual(ch["fact_count_in_scope"], 9)
 
 
 if __name__ == "__main__":

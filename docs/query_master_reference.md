@@ -956,9 +956,9 @@ python3 tools/query_master.py riskcheck \
 | Argument | Required | Default | Description |
 |---|---|---|---|
 | `--category` | Required | None | Exact repo category to scope results (case-insensitive). |
-| `--pattern` | Optional (repeatable) | none | Proposed pattern term. Substring-matched against `implements_pattern`. |
-| `--component` | Optional (repeatable) | none | Proposed component term. Substring-matched against `has_component`. |
-| `--protocol` | Optional (repeatable) | none | Proposed protocol term. Substring-matched against `uses_protocol`. |
+| `--pattern` | Optional (repeatable) | none | Proposed pattern term. Case-insensitive phrase match against `implements_pattern`, with punctuation/spacing normalization for shallow prompt variants. |
+| `--component` | Optional (repeatable) | none | Proposed component term. Case-insensitive phrase match against `has_component`, with punctuation/spacing normalization for shallow prompt variants. |
+| `--protocol` | Optional (repeatable) | none | Proposed protocol term. Case-insensitive phrase match against `uses_protocol`, with punctuation/spacing normalization for shallow prompt variants. |
 | `--limit` | Optional | `5` | Max total signals to return. |
 
 At least one of `--pattern`, `--component`, or `--protocol` must be provided.
@@ -1064,7 +1064,7 @@ signals:
 
 `scope_repo_count` is the total number of repos in the category, regardless of which predicates they have facts for. `matched_repo_fraction` is always relative to this count.
 
-Matching is case-insensitive substring match (`LIKE ... COLLATE NOCASE`). Pass specific enough terms to avoid spurious substring hits.
+Matching first checks a direct case-insensitive substring match, then retries against a normalized text form that replaces punctuation runs with spaces. This lets prompt-shaped input like `command driven`, `read only`, or `server sent events` match stored values such as `Command-driven`, `Read-only`, or `Server-Sent Events` without adding broader semantic inference.
 
 **Signal reliability**
 

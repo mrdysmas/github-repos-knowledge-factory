@@ -52,8 +52,7 @@ PREFLIGHT_TERM_ALIASES: dict[str, tuple[str, ...]] = {
 PREFLIGHT_MIN_RELIABLE_SCOPE_REPO_COUNT = 5
 
 
-def iter_term_match_variants(term_filter: str) -> list[tuple[str, str]]:
-    normalized_term = normalize_term_text(term_filter)
+def iter_term_match_variants(term_filter: str, aliases: tuple[str, ...] = ()) -> list[tuple[str, str]]:
     variants: list[tuple[str, str]] = []
     seen: set[tuple[str, str]] = set()
 
@@ -69,16 +68,20 @@ def iter_term_match_variants(term_filter: str) -> list[tuple[str, str]]:
         variants.append(key)
 
     add_variant(term_filter)
-    for alias in PREFLIGHT_TERM_ALIASES.get(normalized_term, ()):
+    for alias in aliases:
         add_variant(alias)
     return variants
 
 
-def term_matches_texts(term_filter: str, *texts: str) -> bool:
+def text_matches_texts(
+    term_filter: str,
+    *texts: str,
+    aliases: tuple[str, ...] = (),
+) -> bool:
     if not term_filter:
         return True
 
-    variants = iter_term_match_variants(term_filter)
+    variants = iter_term_match_variants(term_filter, aliases=aliases)
     if not variants:
         return False
 
@@ -93,6 +96,11 @@ def term_matches_texts(term_filter: str, *texts: str) -> bool:
             if normalized_term in normalized_text:
                 return True
     return False
+
+
+def term_matches_texts(term_filter: str, *texts: str) -> bool:
+    aliases = PREFLIGHT_TERM_ALIASES.get(normalize_term_text(term_filter), ())
+    return text_matches_texts(term_filter, *texts, aliases=aliases)
 
 
 def build_preflight_reliability(scope_repo_count: int) -> dict[str, Any]:
@@ -1054,9 +1062,8 @@ def command_riskcheck_sqlite(
                 "WHERE f.predicate = ? "
                 "  AND r.category = ? COLLATE NOCASE "
                 + path_exclusion +
-                "  AND f.object_value LIKE ? COLLATE NOCASE "
                 "ORDER BY r.name, f.object_value",
-                (predicate, category, f"%{input_term}%"),
+                (predicate, category),
             ).fetchall()
 
             seen_repos: set[str] = set()
@@ -1066,6 +1073,8 @@ def command_riskcheck_sqlite(
             example_repos: list[str] = []
 
             for node_id, github_full_name, name, object_value in rows:
+                if not text_matches_texts(input_term, object_value or ""):
+                    continue
                 if object_value not in seen_values and len(matched_values) < 3:
                     matched_values.append(object_value)
                     seen_values.add(object_value)

@@ -561,21 +561,21 @@ commands:
         type: string
         repeatable: true
         maps_to_predicate: implements_pattern
-        semantics: substring_case_insensitive
+        semantics: literal_substring_or_normalized_phrase_match_case_insensitive
       - name: --component
         required: false
         default: []
         type: string
         repeatable: true
         maps_to_predicate: has_component
-        semantics: substring_case_insensitive
+        semantics: literal_substring_or_normalized_phrase_match_case_insensitive
       - name: --protocol
         required: false
         default: []
         type: string
         repeatable: true
         maps_to_predicate: uses_protocol
-        semantics: substring_case_insensitive
+        semantics: literal_substring_or_normalized_phrase_match_case_insensitive
       - name: --limit
         required: false
         default: 5
