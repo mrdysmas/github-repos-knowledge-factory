@@ -74,8 +74,8 @@ bd close bd-42 --reason "Completed" --json
 bd automatically syncs via Dolt:
 
 - Each write auto-commits to Dolt history
-- **Dolt remote is NOT configured** — `bd dolt push` will fail with "remote 'origin' not found". Skip it.
-- Local Dolt history is preserved; remote sync is not available until a remote is added.
+- Dolt remote is configured for this repo; use `bd dolt push` to publish Beads history.
+- Local Dolt history remains available even when remote sync is deferred.
 
 ### Important Rules
 
@@ -100,11 +100,11 @@ For more details, see README.md and docs/QUICKSTART.md.
 3. **Update issue status** - Close finished work, update in-progress items
 4. **PUSH TO REMOTE** - This is MANDATORY:
    ```bash
+   bd dolt push
    git pull --rebase
    git push
    git status  # MUST show "up to date with origin"
    ```
-   Note: `bd dolt push` is NOT available — Dolt remote is not configured. Skip it.
 5. **Clean up** - Clear stashes, prune remote branches
 6. **Verify** - All changes committed AND pushed
 7. **Hand off** - Provide context for next session
