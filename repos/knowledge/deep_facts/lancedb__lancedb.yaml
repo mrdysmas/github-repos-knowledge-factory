@@ -939,3 +939,35 @@ facts:
   object_value: pytest
   note: 'topic: Run Python tests'
   fact_id: fact::f100a83dace2ce449d0078ae
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/lancedb__lancedb.yaml
+    source_section: supported_protocols[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[0]
+    source_file: repos/knowledge/deep/lancedb__lancedb.yaml
+    excerpt: Protocol Buffers
+  object_value: Protocol Buffers
+  fact_id: fact::b99b947ea0f4bc78edd6c5c3
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/lancedb__lancedb.yaml
+    source_section: supported_protocols[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[1]
+    source_file: repos/knowledge/deep/lancedb__lancedb.yaml
+    excerpt: REST
+  object_value: REST
+  fact_id: fact::c760ab94e54e2655d8cf6822

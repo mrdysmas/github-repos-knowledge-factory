@@ -17,6 +17,12 @@ augmentation_provenance:
   session_date: '2026-03-18'
   version_anchor: null
   notes: 'troubleshooting entries contain internal code references (configure_api.go)'
+- sections: [supported_protocols]
+  sourcing_method: readme_verified
+  extraction_agent: claude-sonnet-4-6
+  session_date: '2026-03-20'
+  version_anchor: null
+  notes: 'protocols sourced from weaviate/weaviate README.md: "Weaviate exposes REST API, gRPC API, and GraphQL API to communicate with the database server."'
 directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/weaviate__weaviate
 category: vector_database
 
@@ -177,3 +183,10 @@ troubleshooting:
   - symptom: "gRPC connection refused on port expected to be available"
     cause: "Weaviate startup wiring in configure_api.go initializes gRPC after REST; if module registration or schema recovery fails, gRPC server may not start"
     fix: "Check startup logs for errors in MakeAppState() module registration phase; ensure all required module environment variables are set before starting the server"
+supported_protocols:
+  - name: REST
+    role: primary HTTP/JSON API for object CRUD, schema management, and batch operations
+  - name: gRPC
+    role: high-performance binary API for vector search and batch import; served on a separate port from REST
+  - name: GraphQL
+    role: query interface for semantic search, filters, and aggregations; accessible via /v1/graphql

@@ -17,6 +17,12 @@ augmentation_provenance:
   session_date: '2026-03-18'
   version_anchor: null
   notes: 'troubleshooting entries contain internal code references (rust/lancedb/src)'
+- sections: [supported_protocols]
+  sourcing_method: readme_verified
+  extraction_agent: claude-sonnet-4-6
+  session_date: '2026-03-20'
+  version_anchor: null
+  notes: 'protocols sourced from lancedb/lancedb README.md and CONTRIBUTING.md: REST API (docs.lancedb.com/api-reference/rest) and protoc (Protocol Buffers compiler) mentioned explicitly'
 directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/lancedb__lancedb
 category: vector_database
 
@@ -175,3 +181,8 @@ troubleshooting:
   - symptom: "Index build OOM or process killed during create_index on a large table"
     cause: "IVF-PQ and other index types load partition data into memory during training; large tables with high-dimensional vectors can exhaust available RAM"
     fix: "Reduce num_partitions or num_sub_vectors, process the table in smaller Lance fragments, or run index building on a machine with more RAM"
+supported_protocols:
+  - name: REST
+    role: cloud API surface for remote LanceDB connections; documented at docs.lancedb.com/api-reference/rest
+  - name: Protocol Buffers
+    role: wire serialization for Lance columnar format internal encoding; protoc dependency noted in CONTRIBUTING.md

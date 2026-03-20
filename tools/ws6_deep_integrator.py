@@ -721,6 +721,8 @@ def collect_protocol_names(value: Any) -> list[str]:
         if isinstance(node, dict):
             if isinstance(node.get("name"), str) and node["name"].strip():
                 names.append(node["name"].strip())
+                # Don't recurse into sibling values (e.g. "role") when name is present
+                return
             for child in node.values():
                 _walk(child)
 
@@ -1831,8 +1833,38 @@ def extract_endpoint_like_facts(section: Any, source_file: str, as_of: str, base
     return facts
 
 
+_PROTOCOL_KEY_NAMES: frozenset[str] = frozenset(
+    {"rest", "grpc", "graphql", "websocket", "http", "https", "mqtt", "amqp", "tcp", "udp", "tls", "quic"}
+)
+
+
 def extract_api_structure_facts(section: Any, source_file: str, as_of: str) -> list[dict[str, Any]]:
-    return extract_endpoint_like_facts(section, source_file, as_of, "api_structure")
+    facts = extract_endpoint_like_facts(section, source_file, as_of, "api_structure")
+
+    # If the section is a dict whose top-level keys are protocol names, emit uses_protocol
+    # for each such key (e.g. {"rest": [...], "grpc": [...]}).
+    if isinstance(section, dict):
+        for key in section:
+            if isinstance(key, str) and key.lower() in _PROTOCOL_KEY_NAMES:
+                proto_name = key.upper() if key.lower() in {"rest", "grpc", "mqtt", "amqp", "tcp", "udp", "tls", "quic"} else key
+                section_ref = f"api_structure.{key}"
+                facts.append(
+                    make_fact(
+                        fact_type="protocol_usage",
+                        predicate="uses_protocol",
+                        object_kind="protocol",
+                        object_value=proto_name,
+                        note="inferred from api_structure section key",
+                        confidence=0.8,
+                        as_of=as_of,
+                        source_file=source_file,
+                        source_section=section_ref,
+                        extraction_mode="narrative",
+                        evidence=make_evidence(source_file, section_ref, proto_name),
+                    )
+                )
+
+    return facts
 
 
 def extract_integrations_facts(section: Any, source_file: str, as_of: str) -> list[dict[str, Any]]:

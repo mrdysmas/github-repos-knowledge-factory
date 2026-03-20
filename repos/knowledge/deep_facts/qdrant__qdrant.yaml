@@ -737,3 +737,37 @@ facts:
   object_value: Default ports
   note: quick reference topic
   fact_id: fact::d4baacefaa183d08f5097198
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.8
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: api_structure.grpc
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_structure.grpc
+    source_file: repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: GRPC
+  object_value: GRPC
+  note: inferred from api_structure section key
+  fact_id: fact::f2511908ef8dbe0e9373248b
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.8
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: api_structure.rest
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_structure.rest
+    source_file: repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: REST
+  object_value: REST
+  note: inferred from api_structure section key
+  fact_id: fact::323de234fbae18169188a75c

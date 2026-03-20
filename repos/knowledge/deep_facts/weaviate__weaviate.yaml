@@ -927,3 +927,51 @@ facts:
   object_value: go test and repo test suites
   note: testing command
   fact_id: fact::747e52b61671c41a268c7683
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: supported_protocols[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[0]
+    source_file: repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: GraphQL
+  object_value: GraphQL
+  fact_id: fact::428c427beb0843dc8017e622
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: supported_protocols[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[1]
+    source_file: repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: REST
+  object_value: REST
+  fact_id: fact::fb0e396d065ccf2b742a2a3a
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: supported_protocols[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[2]
+    source_file: repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: gRPC
+  object_value: gRPC
+  fact_id: fact::c115490b860599414f2e1a6e
