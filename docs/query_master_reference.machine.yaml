@@ -81,6 +81,7 @@ data_sources:
       - pattern
       - graph
       - aggregate
+      - preflight
     stale_read_protection:
       enabled: true
       checks:
@@ -113,6 +114,7 @@ command_order:
   - pattern
   - graph
   - aggregate
+  - preflight
 
 commands:
   contract:
@@ -481,6 +483,50 @@ commands:
         - key
         - count
         - fact_count
+    exits:
+      success: 0
+      sqlite_required_error: 1
+
+  preflight:
+    purpose: Pre-implementation failure-mode warning brief — returns the most common has_failure_mode entries for a category, with example repos and evidence note snippets.
+    usage: "python3 tools/query_master.py [global_flags] preflight --category <category> [--term <substring>] [--limit <n>]"
+    supported_sources:
+      - sqlite
+    arguments:
+      - name: --category
+        required: true
+        default: null
+        type: string
+        semantics: exact_match_case_insensitive
+      - name: --term
+        required: false
+        default: ""
+        type: string
+        semantics: substring_case_insensitive_object_value_and_note
+      - name: --limit
+        required: false
+        default: 5
+        type: integer
+        min: 1
+    output:
+      artifact_type: master_query_preflight
+      required_keys:
+        - artifact_type
+        - category_filter
+        - term_filter
+        - scope_repo_count
+        - result_count
+        - results
+      row_keys:
+        - failure_mode
+        - repo_count
+        - repo_fraction
+        - example_repos
+        - evidence_notes
+      sort_order: repo_count_desc_then_failure_mode_casefold_asc
+      evidence_notes_max: 2
+      evidence_notes_truncate_chars: 120
+      example_repos_max: 3
     exits:
       success: 0
       sqlite_required_error: 1

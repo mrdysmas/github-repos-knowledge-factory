@@ -849,7 +849,83 @@ results:
 
 In `--frequency` mode, `scope_repo_count` counts distinct repos in the selected category/predicate scope before any `--value` narrowing. `repo_fraction` is `repo_count / scope_repo_count`, and `example_repos` prefers `github_full_name` when present.
 
-## 8. graph
+## 8. preflight
+
+**Purpose:** Pre-implementation failure-mode warning brief. Returns the most common `has_failure_mode` entries for a category, ranked by repo prevalence, with example repos and short evidence note snippets.
+
+**Usage**
+
+```bash
+python3 tools/query_master.py preflight --category <category> [--term <substring>] [--limit <n>]
+```
+
+**Arguments**
+
+| Argument | Required | Default | Description |
+|---|---|---|---|
+| `--category` | Required | None | Exact repo category to scope results (case-insensitive). |
+| `--term` | Optional | empty string | Substring filter applied to both `object_value` and `note` (case-insensitive). |
+| `--limit` | Optional | `5` | Max failure modes to return. |
+
+**Output keys**
+
+- `artifact_type: master_query_preflight`
+- `category_filter` — the category passed in
+- `term_filter` — the term passed in, or `null`
+- `scope_repo_count` — distinct repos in the category with at least one `has_failure_mode` fact
+- `result_count` — number of failure modes returned
+- `results` — list of failure-mode items
+
+Each result item:
+
+| Key | Description |
+|---|---|
+| `failure_mode` | The `object_value` of the `has_failure_mode` fact. |
+| `repo_count` | Number of distinct repos where this failure mode appears. |
+| `repo_fraction` | `repo_count / scope_repo_count`. |
+| `example_repos` | Up to 3 `github_full_name` values. |
+| `evidence_notes` | Up to 2 note snippets from matching facts (truncated at 120 chars). |
+
+Results are sorted by `repo_count` descending, then `failure_mode` case-insensitive ascending.
+
+**Example**
+
+```bash
+$ python3 tools/query_master.py preflight --category vector_database --limit 5
+artifact_type: master_query_preflight
+category_filter: vector_database
+term_filter: null
+scope_repo_count: 14
+result_count: 5
+results:
+- failure_mode: Query timeout under high-ingest load
+  repo_count: 8
+  repo_fraction: 0.5714
+  example_repos:
+  - qdrant/qdrant
+  - weaviate/weaviate
+  - lancedb/lancedb
+  evidence_notes:
+  - Seen during sustained write load tests
+  - Manifests when indexing exceeds 1M vectors
+# query_ms: 1
+```
+
+**With `--term` to narrow by feature or concern**
+
+```bash
+$ python3 tools/query_master.py preflight --category vector_database --term "batch" --limit 5
+```
+
+Returns only failure modes whose `object_value` or `note` contains "batch".
+
+**Notes**
+
+`scope_repo_count` counts distinct repos in the category that have at least one `has_failure_mode` fact, before any `--term` narrowing. `repo_fraction` is always relative to this unfiltered scope.
+
+`evidence_notes` draws from the `note` field of matching `has_failure_mode` facts. Empty notes are skipped. At most 2 distinct snippets are included per failure mode.
+
+## 9. graph
 
 **Purpose:** Traverse repo relationships outward/inward across 1–3 hops.
 
@@ -1068,7 +1144,7 @@ edges:
 
 Per-hop edge deduplication uses `(src_id, dst_id, relation)` keys; the same relationship can still appear again at later hops if reached through a different frontier node.
 
-## 9. aggregate
+## 10. aggregate
 
 **Purpose:** Return top-N aggregate counts by selected dimension.
 

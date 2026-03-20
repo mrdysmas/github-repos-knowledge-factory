@@ -182,7 +182,7 @@ def load_master_artifacts(workspace_root: Path, master_index_path: str, master_g
 def command_contract() -> dict[str, Any]:
     return {
         "artifact_type": "master_query_cli_contract",
-        "version": "1.3.0",
+        "version": "1.4.0",
         "commands": {
             "contract": "Show this CLI contract.",
             "stats": "Show top-level counts from master artifacts.",
@@ -193,6 +193,7 @@ def command_contract() -> dict[str, Any]:
             "pattern": "Cross-repo pattern matching by predicate (sqlite only).",
             "graph": "Graph traversal from a starting repo (sqlite only).",
             "aggregate": "Corpus-level statistics by dimension (sqlite only).",
+            "preflight": "Pre-implementation failure-mode warning brief by category (sqlite only).",
         },
         "identifier_resolution_order": ["node_id", "name", "github_full_name"],
         "default_paths": {
@@ -667,6 +668,80 @@ def command_pattern_sqlite(
     }
 
 
+def command_preflight_sqlite(
+    conn: sqlite3.Connection,
+    category_filter: str,
+    term_filter: str,
+    limit: int,
+) -> tuple[int, dict[str, Any]]:
+    predicate = "has_failure_mode"
+    NOTE_MAX_LEN = 120
+
+    clauses = ["f.predicate = ?", "r.category = ? COLLATE NOCASE"]
+    params: list[Any] = [predicate, category_filter]
+    if term_filter:
+        clauses.append("(f.object_value LIKE ? COLLATE NOCASE OR f.note LIKE ? COLLATE NOCASE)")
+        params.extend([f"%{term_filter}%", f"%{term_filter}%"])
+    where_clause = " AND ".join(clauses)
+
+    scope_repo_count = get_pattern_scope_repo_count(conn, predicate, category_filter)
+
+    rows = conn.execute(
+        "SELECT DISTINCT r.node_id, r.name, r.github_full_name, f.object_value, f.note "
+        "FROM facts f "
+        "JOIN repos r ON f.node_id = r.node_id "
+        f"WHERE {where_clause} "
+        "ORDER BY r.name, f.object_value",
+        params,
+    ).fetchall()
+
+    grouped_examples: dict[str, list[str]] = defaultdict(list)
+    grouped_repo_ids: dict[str, set[str]] = defaultdict(set)
+    grouped_notes: dict[str, list[str]] = defaultdict(list)
+    grouped_results_by_value: dict[str, dict[str, Any]] = {}
+
+    for node_id, name, github_full_name, object_value, note in rows:
+        result = grouped_results_by_value.setdefault(
+            object_value,
+            {
+                "failure_mode": object_value,
+                "repo_count": 0,
+                "repo_fraction": 0.0,
+                "example_repos": [],
+                "evidence_notes": [],
+            },
+        )
+        if node_id not in grouped_repo_ids[object_value]:
+            grouped_repo_ids[object_value].add(node_id)
+            result["repo_count"] += 1
+            if len(grouped_examples[object_value]) < 3:
+                grouped_examples[object_value].append(github_full_name or name or node_id)
+        if note and len(grouped_notes[object_value]) < 2:
+            truncated = note.strip()[:NOTE_MAX_LEN]
+            if truncated not in grouped_notes[object_value]:
+                grouped_notes[object_value].append(truncated)
+
+    results = sorted(
+        grouped_results_by_value.values(),
+        key=lambda row: (-row["repo_count"], row["failure_mode"].casefold()),
+    )[:limit]
+
+    for row in results:
+        fm = row["failure_mode"]
+        row["repo_fraction"] = round(row["repo_count"] / scope_repo_count, 4) if scope_repo_count else 0.0
+        row["example_repos"] = grouped_examples[fm]
+        row["evidence_notes"] = grouped_notes[fm]
+
+    return 0, {
+        "artifact_type": "master_query_preflight",
+        "category_filter": category_filter,
+        "term_filter": term_filter or None,
+        "scope_repo_count": scope_repo_count,
+        "result_count": len(results),
+        "results": results,
+    }
+
+
 def command_graph_sqlite(
     conn: sqlite3.Connection,
     identifier: str,
@@ -914,6 +989,17 @@ def main() -> int:
     )
     pattern_parser.add_argument("--limit", type=int, default=50, help="Max results.")
 
+    preflight_parser = subparsers.add_parser(
+        "preflight", help="Pre-implementation failure-mode warning brief (sqlite only)."
+    )
+    preflight_parser.add_argument(
+        "--category", required=True, help="Repo category to scope results (case-insensitive)."
+    )
+    preflight_parser.add_argument(
+        "--term", default="", help="Optional substring filter on failure-mode value and note."
+    )
+    preflight_parser.add_argument("--limit", type=int, default=5, help="Max failure modes to return.")
+
     graph_parser = subparsers.add_parser("graph", help="Graph traversal from a starting repo.")
     graph_parser.add_argument("--id", required=True, help="Starting repo identifier.")
     graph_parser.add_argument("--hops", type=int, default=1, choices=[1, 2, 3], help="Traversal depth (1-3).")
@@ -982,6 +1068,13 @@ def main() -> int:
                 code, body = command_graph_sqlite(conn, args.id, args.hops, args.relation.strip(), args.direction)
             elif args.command == "aggregate":
                 code, body = command_aggregate_sqlite(conn, args.group_by, args.top)
+            elif args.command == "preflight":
+                code, body = command_preflight_sqlite(
+                    conn,
+                    args.category.strip(),
+                    args.term.strip(),
+                    args.limit,
+                )
             else:
                 body = {"error": f"Unhandled command: {args.command}"}
                 code = 2
@@ -993,7 +1086,7 @@ def main() -> int:
         finally:
             conn.close()
 
-    if args.command in ("search", "pattern", "graph", "aggregate"):
+    if args.command in ("search", "pattern", "graph", "aggregate", "preflight"):
         print(f"ERROR: '{args.command}' requires --source sqlite. These commands need the SQLite read model.")
         print("Run: python3 tools/ws7_read_model_compiler.py --workspace-root .")
         return 1
