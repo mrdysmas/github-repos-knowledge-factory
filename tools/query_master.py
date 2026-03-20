@@ -49,6 +49,7 @@ PREFLIGHT_TERM_ALIASES: dict[str, tuple[str, ...]] = {
     "batch upsert": ("batch writes", "batch insertions"),
     "batch upserts": ("batch writes", "batch insertions"),
 }
+PREFLIGHT_MIN_RELIABLE_SCOPE_REPO_COUNT = 5
 
 
 def iter_term_match_variants(term_filter: str) -> list[tuple[str, str]]:
@@ -92,6 +93,28 @@ def term_matches_texts(term_filter: str, *texts: str) -> bool:
             if normalized_term in normalized_text:
                 return True
     return False
+
+
+def build_preflight_reliability(scope_repo_count: int) -> dict[str, Any]:
+    if scope_repo_count <= 0:
+        return {
+            "scope_repo_count": scope_repo_count,
+            "scope_assessment": "empty",
+            "note": "No failure-mode-bearing repos exist in this category scope yet.",
+        }
+    if scope_repo_count < PREFLIGHT_MIN_RELIABLE_SCOPE_REPO_COUNT:
+        return {
+            "scope_repo_count": scope_repo_count,
+            "scope_assessment": "thin",
+            "note": (
+                "Fewer than 5 repos contribute failure modes in this category; treat preflight as "
+                "directional rather than representative."
+            ),
+        }
+    return {
+        "scope_repo_count": scope_repo_count,
+        "scope_assessment": "normal",
+    }
 
 
 def sha256_file(path: Path) -> str:
@@ -790,6 +813,7 @@ def command_preflight_sqlite(
         "category_filter": category_filter,
         "term_filter": term_filter or None,
         "scope_repo_count": scope_repo_count,
+        "reliability": build_preflight_reliability(scope_repo_count),
         "result_count": len(results),
         "results": results,
     }

@@ -369,6 +369,9 @@ class QueryMasterPreflightTests(unittest.TestCase):
             self.assertEqual(payload["category_filter"], "vector_database")
             self.assertIsNone(payload["term_filter"])
             self.assertEqual(payload["scope_repo_count"], 4)
+            self.assertEqual(payload["reliability"]["scope_repo_count"], 4)
+            self.assertEqual(payload["reliability"]["scope_assessment"], "thin")
+            self.assertIn("directional rather than representative", payload["reliability"]["note"])
             self.assertEqual(payload["result_count"], 4)
 
             # "Query timeout" has 3 repos — must rank first
@@ -459,6 +462,19 @@ class QueryMasterPreflightTests(unittest.TestCase):
             self.assertEqual(len(timeout_result["evidence_notes"]), 2)
             self.assertIn("Seen during sustained write load tests", timeout_result["evidence_notes"])
             self.assertIn("Manifests when indexing exceeds 1M vectors", timeout_result["evidence_notes"])
+
+    def test_preflight_marks_empty_scope_reliability(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            workspace = self._make_workspace(tmp_dir)
+            result, payload = self._run_query(
+                workspace, "preflight", "--category", "agent_framework"
+            )
+
+            self.assertEqual(result.returncode, 0, msg=result.stdout + "\n" + result.stderr)
+            self.assertEqual(payload["scope_repo_count"], 0)
+            self.assertEqual(payload["reliability"]["scope_assessment"], "empty")
+            self.assertIn("No failure-mode-bearing repos exist", payload["reliability"]["note"])
+            self.assertEqual(payload["result_count"], 0)
 
 
 class QueryMasterRiskcheckTests(unittest.TestCase):

@@ -873,6 +873,10 @@ python3 tools/query_master.py preflight --category <category> [--term <phrase>] 
 - `category_filter` — the category passed in
 - `term_filter` — the term passed in, or `null`
 - `scope_repo_count` — distinct repos in the category with at least one `has_failure_mode` fact
+- `reliability` — lightweight scope signal for how much confidence to place in the category slice:
+  - `scope_repo_count` — same count as the top-level field
+  - `scope_assessment` — `empty`, `thin`, or `normal`
+  - `note` — present only for `empty`/`thin` scopes
 - `result_count` — number of failure modes returned
 - `results` — list of failure-mode items
 
@@ -896,6 +900,9 @@ artifact_type: master_query_preflight
 category_filter: vector_database
 term_filter: null
 scope_repo_count: 14
+reliability:
+  scope_repo_count: 14
+  scope_assessment: normal
 result_count: 5
 results:
 - failure_mode: Query timeout under high-ingest load
@@ -924,6 +931,8 @@ Returns only failure modes whose `object_value` or `note` contains "batch".
 `scope_repo_count` counts distinct repos in the category that have at least one `has_failure_mode` fact, before any `--term` narrowing. `repo_fraction` is always relative to this unfiltered scope.
 
 `--term` first tries a direct case-insensitive substring match, then retries against a normalized text form that replaces punctuation runs with spaces. For a very small set of memo-backed prompt variants, it also checks explicit aliases. This keeps the surface inspectable without broad synonym inference.
+
+`reliability.scope_assessment` is `empty` when the category has no repos with tracked failure modes, `thin` when fewer than 5 repos contribute failure modes, and `normal` otherwise. Thin scopes can still be useful, but they should be treated as directional rather than representative.
 
 `evidence_notes` draws from the `note` field of matching `has_failure_mode` facts. Empty notes are skipped. At most 2 distinct snippets are included per failure mode.
 

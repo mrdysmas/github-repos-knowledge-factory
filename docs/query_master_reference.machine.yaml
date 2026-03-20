@@ -517,8 +517,19 @@ commands:
         - category_filter
         - term_filter
         - scope_repo_count
+        - reliability
         - result_count
         - results
+      reliability_keys:
+        - scope_repo_count
+        - scope_assessment
+      reliability_semantics:
+        scope_repo_count: distinct_repos_in_category_with_has_failure_mode
+        scope_assessment:
+          empty: no_repos_in_scope_with_has_failure_mode
+          thin: fewer_than_5_repos_in_scope_with_has_failure_mode
+          normal: at_least_5_repos_in_scope_with_has_failure_mode
+        note: present_only_for_empty_or_thin_scope
       row_keys:
         - failure_mode
         - repo_count
