@@ -941,6 +941,7 @@ def command_riskcheck_sqlite(
     components: list[str],
     protocols: list[str],
     limit: int,
+    preflight: bool = False,
 ) -> tuple[int, dict[str, Any]]:
     row = conn.execute(
         "SELECT COUNT(*) FROM repos WHERE category = ? COLLATE NOCASE",
@@ -1032,6 +1033,11 @@ def command_riskcheck_sqlite(
         rare = [s for s in all_signals if _riskcheck_bucket(s) == "rare"]
         absent = [s for s in all_signals if _riskcheck_bucket(s) == "absent"]
 
+    if preflight:
+        for signal in rare + absent:
+            _, pf_body = command_preflight_sqlite(conn, category, signal["input_term"], 3)
+            signal["preflight_warnings"] = pf_body.get("results", [])
+
     proposal: dict[str, Any] = {}
     if patterns:
         proposal["patterns"] = patterns
@@ -1040,9 +1046,13 @@ def command_riskcheck_sqlite(
     if protocols:
         proposal["protocols"] = protocols
 
-    return 0, {
+    out: dict[str, Any] = {
         "artifact_type": "master_query_riskcheck",
         "category_filter": category,
+    }
+    if preflight:
+        out["preflight_mode"] = True
+    out.update({
         "scope_repo_count": scope_repo_count,
         "corpus_health": {
             "scope_repo_count": scope_repo_count,
@@ -1059,7 +1069,8 @@ def command_riskcheck_sqlite(
             "rare_in_category": rare,
             "absent_from_category": absent,
         },
-    }
+    })
+    return 0, out
 
 
 def main() -> int:
@@ -1191,6 +1202,12 @@ def main() -> int:
         help="Proposed protocol term (repeatable). Maps to uses_protocol.",
     )
     riskcheck_parser.add_argument("--limit", type=int, default=5, help="Max signals to return.")
+    riskcheck_parser.add_argument(
+        "--preflight",
+        action="store_true",
+        default=False,
+        help="Embed preflight failure-mode warnings on rare and absent signals.",
+    )
 
     args = parser.parse_args()
 
@@ -1261,6 +1278,7 @@ def main() -> int:
                         args.components,
                         args.protocols,
                         args.limit,
+                        preflight=args.preflight,
                     )
             else:
                 body = {"error": f"Unhandled command: {args.command}"}
