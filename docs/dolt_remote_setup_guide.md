@@ -30,18 +30,24 @@ dolt push origin main
 dolt clone file:///path/to/remote/my-database
 ```
 
-**Good for:** Single-user, local backup, NAS/SMB shares, mounted network drives.
+**Good for:** Single-user, local backup, and local-disk remotes on the same machine.
 
-**Limitations:** No access control. No concurrent write safety across machines. The path must be mounted and accessible at push/pull time.
+**Limitations:** No access control. No concurrent write safety across machines. The path must be mounted and accessible at push/pull time. Network-mounted filesystems can be risky for live Dolt writes.
 
 #### Filesystem remote locations
 
 | Location | Pros | Cons |
 |----------|------|------|
 | Local directory (e.g. `~/.dolt-remotes/`) | Always available, fast | No off-machine redundancy |
-| SMB/NFS share (e.g. NAS) | Off-machine storage, existing infrastructure | Must be mounted, slower over network, spaces in mount paths can cause issues |
+| SMB/NFS share (e.g. NAS) | Off-machine storage, existing infrastructure | Must be mounted, slower over network, spaces in mount paths can cause issues, and can fail on Dolt manifest / table-file updates during push |
 | Taildrive (WebDAV via Tailscale) | Available anywhere on your tailnet, no port forwarding | Requires Tailscale running, WebDAV mount, newer feature with potential quirks |
 | External drive / USB | Portable, offline backup | Must be physically connected |
+
+#### Recommendation
+
+Use a normal local-disk path for the live filesystem remote, for example `~/.dolt-remotes/<db>` or `~/.beads-remotes/<db>`.
+
+If you want off-machine redundancy, mirror that local remote to SMB/NAS/backup storage separately. Do not use SMB/NFS as the primary live `dolt push` target unless you have already proven that your exact setup is stable under repeated push / clone cycles.
 
 ### 2. Taildrive (Tailscale File Sharing)
 
@@ -161,12 +167,26 @@ bd dolt remote remove origin --force
 bd dolt remote add origin file:///path/to/remote
 ```
 
+**Network share failure mode:** A mounted SMB path can look healthy enough to read, clone, and even accept ordinary file writes, while `bd dolt push` / `dolt push` still fails during low-level NBS manifest updates. In this repo we saw:
+
+- `unknown push error; open /Users/szilaa/.beads-remote/nbs_table_*: no such file or directory`
+- `unknown push error; addTableFiles, updateManifestAddFiles: timed out reading database manifest`
+
+Important nuance: `.beads/push-state.json` can remain stale even when part of the Beads history actually reached the remote, so do not assume "push-state did not advance" means "nothing landed." Verify by cloning the remote or checking `dolt branch -av` in the local repo.
+
+If you hit this pattern:
+
+1. Verify whether the remote is still readable with `dolt clone file:///path/to/remote /tmp/clone-check`.
+2. Compare local `main` vs `remotes/origin/main` in the local Beads repo.
+3. If reads work but pushes keep failing, rebuild the remote onto a local-disk path and repoint the symlink / remote URL there.
+
 ### Current project setup (github_repos)
 
-- **Physical path:** `/Volumes/scripts opaio projects/dolt/github-repos` (SMB mount from `smb://opaio/`)
-- **Symlink:** `/Users/szilaa/.beads-remote` → physical path
+- **Live remote path:** `/Users/szilaa/.beads-remotes/github_repos` (local disk)
+- **Live symlink:** `/Users/szilaa/.beads-remote` → live remote path
 - **Remote URL:** `file:///Users/szilaa/.beads-remote`
-- **Prerequisite:** The SMB share must be mounted before push/pull
+- **Archived SMB target:** `/Users/szilaa/.beads-remote-smb-backup` → `/Volumes/scripts opaio projects/dolt/github-repos`
+- **Reason for migration:** the SMB-backed remote was readable and cloneable, but repeatedly failed on `bd dolt push` / `dolt push` during NBS table-file and manifest update steps
 
 ---
 
