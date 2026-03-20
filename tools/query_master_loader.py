@@ -163,6 +163,9 @@ class QueryMasterLoader:
                     raise QueryMasterLoaderError(
                         f"Invalid value for {name}: {value!r}. Allowed: {choices}"
                     )
+            elif arg_type == "boolean":
+                if not isinstance(value, bool):
+                    raise QueryMasterLoaderError(f"Expected boolean for {name}, got {type(value).__name__}")
             elif arg_type == "integer":
                 if not isinstance(value, int):
                     raise QueryMasterLoaderError(f"Expected integer for {name}, got {type(value).__name__}")
@@ -193,6 +196,10 @@ class QueryMasterLoader:
                 continue
             value = args[canonical]
             if value is None:
+                continue
+            if isinstance(value, bool):
+                if value:
+                    argv.append(name)
                 continue
             argv.append(name)
             argv.append(str(value))

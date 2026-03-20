@@ -13,6 +13,7 @@ future generated SQLite/DuckDB read-model.
 from __future__ import annotations
 
 import argparse
+from collections import defaultdict
 import hashlib
 import json
 import sqlite3
@@ -181,7 +182,7 @@ def load_master_artifacts(workspace_root: Path, master_index_path: str, master_g
 def command_contract() -> dict[str, Any]:
     return {
         "artifact_type": "master_query_cli_contract",
-        "version": "1.2.0",
+        "version": "1.3.0",
         "commands": {
             "contract": "Show this CLI contract.",
             "stats": "Show top-level counts from master artifacts.",
@@ -527,32 +528,123 @@ def command_search_sqlite(
     }
 
 
+def build_pattern_filters(
+    predicate: str,
+    category_filter: str,
+    value_filter: str,
+    *,
+    include_value_filter: bool,
+) -> tuple[str, list[Any]]:
+    clauses = ["f.predicate = ?"]
+    params: list[Any] = [predicate]
+    if category_filter:
+        clauses.append("r.category = ? COLLATE NOCASE")
+        params.append(category_filter)
+    if include_value_filter and value_filter:
+        clauses.append("f.object_value LIKE ? COLLATE NOCASE")
+        params.append(f"%{value_filter}%")
+    return " AND ".join(clauses), params
+
+
+def get_pattern_scope_repo_count(
+    conn: sqlite3.Connection,
+    predicate: str,
+    category_filter: str,
+) -> int:
+    where_clause, params = build_pattern_filters(
+        predicate,
+        category_filter,
+        "",
+        include_value_filter=False,
+    )
+    row = conn.execute(
+        "SELECT COUNT(DISTINCT r.node_id) "
+        "FROM facts f "
+        "JOIN repos r ON f.node_id = r.node_id "
+        f"WHERE {where_clause}",
+        params,
+    ).fetchone()
+    if row is None or row[0] is None:
+        return 0
+    return int(row[0])
+
+
 def command_pattern_sqlite(
     conn: sqlite3.Connection,
     predicate: str,
+    category_filter: str,
     value_filter: str,
+    frequency: bool,
     limit: int,
 ) -> tuple[int, dict[str, Any]]:
-    if value_filter:
+    where_clause, params = build_pattern_filters(
+        predicate,
+        category_filter,
+        value_filter,
+        include_value_filter=True,
+    )
+
+    if frequency:
         rows = conn.execute(
-            "SELECT DISTINCT r.node_id, r.name, r.category, f.object_value, f.object_kind "
+            "SELECT DISTINCT r.node_id, r.name, r.github_full_name, r.category, f.object_value "
             "FROM facts f "
             "JOIN repos r ON f.node_id = r.node_id "
-            "WHERE f.predicate = ? AND f.object_value LIKE ? COLLATE NOCASE "
-            "ORDER BY r.name, f.object_value "
-            "LIMIT ?",
-            (predicate, f"%{value_filter}%", limit),
+            f"WHERE {where_clause} "
+            "ORDER BY r.name, f.object_value",
+            params,
         ).fetchall()
-    else:
-        rows = conn.execute(
-            "SELECT DISTINCT r.node_id, r.name, r.category, f.object_value, f.object_kind "
-            "FROM facts f "
-            "JOIN repos r ON f.node_id = r.node_id "
-            "WHERE f.predicate = ? "
-            "ORDER BY r.name, f.object_value "
-            "LIMIT ?",
-            (predicate, limit),
-        ).fetchall()
+
+        grouped_examples: dict[str, list[str]] = defaultdict(list)
+        grouped_repo_ids: dict[str, set[str]] = defaultdict(set)
+        grouped_results_by_value: dict[str, dict[str, Any]] = {}
+        scope_repo_count = get_pattern_scope_repo_count(conn, predicate, category_filter)
+
+        for node_id, name, github_full_name, _, object_value in rows:
+            result = grouped_results_by_value.setdefault(
+                object_value,
+                {
+                    "object_value": object_value,
+                    "repo_count": 0,
+                    "repo_fraction": 0.0,
+                    "example_repos": [],
+                },
+            )
+            if node_id in grouped_repo_ids[object_value]:
+                continue
+            grouped_repo_ids[object_value].add(node_id)
+            result["repo_count"] += 1
+            if len(grouped_examples[object_value]) < 3:
+                grouped_examples[object_value].append(github_full_name or name or node_id)
+
+        grouped_results = sorted(
+            grouped_results_by_value.values(),
+            key=lambda row: (-row["repo_count"], row["object_value"].casefold()),
+        )[:limit]
+
+        for row in grouped_results:
+            repo_count = row["repo_count"]
+            row["repo_fraction"] = round(repo_count / scope_repo_count, 4) if scope_repo_count else 0.0
+            row["example_repos"] = grouped_examples[row["object_value"]]
+
+        return 0, {
+            "artifact_type": "master_query_pattern_frequency",
+            "predicate": predicate,
+            "category_filter": category_filter or None,
+            "value_filter": value_filter or None,
+            "scope_repo_count": scope_repo_count,
+            "grouped_result_count": len(grouped_results),
+            "results": grouped_results,
+        }
+
+    rows = conn.execute(
+        "SELECT DISTINCT r.node_id, r.name, r.category, f.object_value, f.object_kind "
+        "FROM facts f "
+        "JOIN repos r ON f.node_id = r.node_id "
+        f"WHERE {where_clause} "
+        "ORDER BY r.name, f.object_value "
+        "LIMIT ?",
+        [*params, limit],
+    ).fetchall()
 
     results = [
         {
@@ -567,6 +659,7 @@ def command_pattern_sqlite(
     return 0, {
         "artifact_type": "master_query_pattern",
         "predicate": predicate,
+        "category_filter": category_filter or None,
         "value_filter": value_filter or None,
         "limit": limit,
         "result_count": len(results),
@@ -808,7 +901,17 @@ def main() -> int:
 
     pattern_parser = subparsers.add_parser("pattern", help="Cross-repo pattern matching by predicate.")
     pattern_parser.add_argument("--predicate", required=True, help="Exact predicate to match.")
+    pattern_parser.add_argument(
+        "--category",
+        default="",
+        help="Optional exact repo category filter (case-insensitive).",
+    )
     pattern_parser.add_argument("--value", default="", help="Optional substring filter on object_value.")
+    pattern_parser.add_argument(
+        "--frequency",
+        action="store_true",
+        help="Group by object_value and return repo-level counts with example repos.",
+    )
     pattern_parser.add_argument("--limit", type=int, default=50, help="Max results.")
 
     graph_parser = subparsers.add_parser("graph", help="Graph traversal from a starting repo.")
@@ -867,7 +970,14 @@ def main() -> int:
             elif args.command == "search":
                 code, body = command_search_sqlite(conn, args.term, args.field, args.limit)
             elif args.command == "pattern":
-                code, body = command_pattern_sqlite(conn, args.predicate, args.value.strip(), args.limit)
+                code, body = command_pattern_sqlite(
+                    conn,
+                    args.predicate,
+                    args.category.strip(),
+                    args.value.strip(),
+                    args.frequency,
+                    args.limit,
+                )
             elif args.command == "graph":
                 code, body = command_graph_sqlite(conn, args.id, args.hops, args.relation.strip(), args.direction)
             elif args.command == "aggregate":

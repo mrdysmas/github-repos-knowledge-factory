@@ -2,7 +2,7 @@ artifact_type: query_master_reference_machine
 reference_version: 1.0.0
 generated_from:
   cli_script: tools/query_master.py
-  cli_contract_version: 1.2.0
+  cli_contract_version: 1.3.0
   human_reference: docs/query_master_reference.md
   validated_on: "2026-03-05"
   validation_basis: live_cli_runs_against_knowledge_db
@@ -313,8 +313,8 @@ commands:
       sqlite_required_error: 1
 
   pattern:
-    purpose: Cross-repo pattern match for one exact predicate with optional value filter.
-    usage: "python3 tools/query_master.py [global_flags] pattern --predicate <predicate> [--value <substring>] [--limit <n>]"
+    purpose: Cross-repo pattern match for one exact predicate with optional category filter and grouped frequency mode.
+    usage: "python3 tools/query_master.py [global_flags] pattern --predicate <predicate> [--category <category>] [--value <substring>] [--frequency] [--limit <n>]"
     supported_sources:
       - sqlite
     arguments:
@@ -323,11 +323,21 @@ commands:
         default: null
         type: string
         semantics: exact_match
+      - name: --category
+        required: false
+        default: ""
+        type: string
+        semantics: exact_match_case_insensitive
       - name: --value
         required: false
         default: ""
         type: string
         semantics: substring_case_insensitive
+      - name: --frequency
+        required: false
+        default: false
+        type: boolean
+        semantics: group_by_object_value
       - name: --limit
         required: false
         default: 50
@@ -338,6 +348,7 @@ commands:
       required_keys:
         - artifact_type
         - predicate
+        - category_filter
         - value_filter
         - limit
         - result_count
@@ -349,6 +360,22 @@ commands:
         - object_value
         - object_kind
       sql_behavior: DISTINCT_rows_joined_to_repos
+    frequency_output:
+      artifact_type: master_query_pattern_frequency
+      required_keys:
+        - artifact_type
+        - predicate
+        - category_filter
+        - value_filter
+        - scope_repo_count
+        - grouped_result_count
+        - results
+      row_keys:
+        - object_value
+        - repo_count
+        - repo_fraction
+        - example_repos
+      sql_behavior: DISTINCT_repo_value_rows_grouped_by_object_value
     exits:
       success: 0
       sqlite_required_error: 1

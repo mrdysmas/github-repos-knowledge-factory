@@ -48,7 +48,7 @@ YAML object:
 ```bash
 $ python3 tools/query_master.py contract
 artifact_type: master_query_cli_contract
-version: 1.2.0
+version: 1.3.0
 commands:
   contract: Show this CLI contract.
   stats: Show top-level counts from master artifacts.
@@ -76,7 +76,7 @@ default_source: sqlite
 ```bash
 $ python3 tools/query_master.py --source yaml contract
 artifact_type: master_query_cli_contract
-version: 1.2.0
+version: 1.3.0
 commands:
   contract: Show this CLI contract.
   stats: Show top-level counts from master artifacts.
@@ -667,12 +667,12 @@ results:
 
 ## 7. pattern
 
-**Purpose:** Find cross-repo matches for one exact predicate, with optional `object_value` substring filter.
+**Purpose:** Find cross-repo matches for one exact predicate, with optional category scoping and grouped frequency output.
 
 **Usage**
 
 ```bash
-python3 tools/query_master.py pattern --predicate <predicate> [--value <substring>] [--limit <n>]
+python3 tools/query_master.py pattern --predicate <predicate> [--category <category>] [--value <substring>] [--frequency] [--limit <n>]
 ```
 
 **Arguments**
@@ -680,15 +680,22 @@ python3 tools/query_master.py pattern --predicate <predicate> [--value <substrin
 | Argument | Required | Default | Description |
 |---|---|---|---|
 | `--predicate` | Required | None | Exact predicate to match. |
+| `--category` | Optional | empty string | Exact repo category filter (case-insensitive). |
 | `--value` | Optional | empty string | Substring filter on `object_value` (case-insensitive). |
+| `--frequency` | Optional | off | Group matching rows by `object_value` and return repo-level counts plus example repos. |
 | `--limit` | Optional | `50` | Max results. |
 
 **Output format**
 
 YAML object:
 - `artifact_type: master_query_pattern`
-- `predicate`, `value_filter`, `limit`, `result_count`
+- `predicate`, `category_filter`, `value_filter`, `limit`, `result_count`
 - `results` list with `node_id`, `name`, `category`, `object_value`, `object_kind`
+
+When `--frequency` is present, the command returns:
+- `artifact_type: master_query_pattern_frequency`
+- `predicate`, `category_filter`, `value_filter`, `scope_repo_count`, `grouped_result_count`
+- `results` list with `object_value`, `repo_count`, `repo_fraction`, `example_repos`
 
 **Examples**
 
@@ -696,6 +703,7 @@ YAML object:
 $ python3 tools/query_master.py pattern --predicate implements_pattern --limit 15
 artifact_type: master_query_pattern
 predicate: implements_pattern
+category_filter: null
 value_filter: null
 limit: 15
 result_count: 15
@@ -723,6 +731,7 @@ results:
 $ python3 tools/query_master.py pattern --predicate has_config_option --value "DATABASE"
 artifact_type: master_query_pattern
 predicate: has_config_option
+category_filter: null
 value_filter: DATABASE
 limit: 50
 result_count: 6
@@ -755,6 +764,7 @@ results:
 $ python3 tools/query_master.py pattern --predicate uses_protocol
 artifact_type: master_query_pattern
 predicate: uses_protocol
+category_filter: null
 value_filter: null
 limit: 50
 result_count: 47
@@ -787,6 +797,7 @@ results:
 $ python3 tools/query_master.py pattern --predicate has_failure_mode --limit 10
 artifact_type: master_query_pattern
 predicate: has_failure_mode
+category_filter: null
 value_filter: null
 limit: 10
 result_count: 10
@@ -814,9 +825,29 @@ results:
 # query_ms: 0
 ```
 
+```bash
+$ python3 tools/query_master.py pattern --predicate has_failure_mode --category vector_database --frequency --value timeout --limit 5
+artifact_type: master_query_pattern_frequency
+predicate: has_failure_mode
+category_filter: vector_database
+value_filter: timeout
+scope_repo_count: 10
+grouped_result_count: 1
+results:
+- object_value: Benchmark run exits with connection refused or client timeout before
+    load phase completes
+  repo_count: 1
+  repo_fraction: 0.1
+  example_repos:
+  - zilliztech/vectordbbench
+# query_ms: 0
+```
+
 **Notes**
 
 `pattern` uses `SELECT DISTINCT` and can return multiple rows per repo when multiple matching values exist.
+
+In `--frequency` mode, `scope_repo_count` counts distinct repos in the selected category/predicate scope before any `--value` narrowing. `repo_fraction` is `repo_count / scope_repo_count`, and `example_repos` prefers `github_full_name` when present.
 
 ## 8. graph
 
