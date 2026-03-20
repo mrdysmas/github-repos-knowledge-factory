@@ -920,10 +920,9 @@ facts:
   - kind: file_block
     ref: supported_protocols[1]
     source_file: repos/knowledge/deep/gost.yaml
-    excerpt: DNS service handler for DNS-over-TCP/UDP/TLS/HTTPS forwarding and routing
-  object_value: DNS service handler for DNS-over-TCP/UDP/TLS/HTTPS forwarding and
-    routing
-  fact_id: fact::b95ed0462ba56c92a05404f8
+    excerpt: HTTP CONNECT
+  object_value: HTTP CONNECT
+  fact_id: fact::9485cdcfd59464887e33ecfe
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
@@ -937,9 +936,9 @@ facts:
   - kind: file_block
     ref: supported_protocols[2]
     source_file: repos/knowledge/deep/gost.yaml
-    excerpt: HTTP CONNECT
-  object_value: HTTP CONNECT
-  fact_id: fact::a0f1dbb4a3cc35676b50bdd2
+    excerpt: KCP
+  object_value: KCP
+  fact_id: fact::a08cfb012daeeedbeff8ba83
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
@@ -953,9 +952,9 @@ facts:
   - kind: file_block
     ref: supported_protocols[3]
     source_file: repos/knowledge/deep/gost.yaml
-    excerpt: KCP
-  object_value: KCP
-  fact_id: fact::d5cc5d960032c8773b461d0b
+    excerpt: QUIC
+  object_value: QUIC
+  fact_id: fact::b198417fd2b73f333c356cb6
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
@@ -969,10 +968,9 @@ facts:
   - kind: file_block
     ref: supported_protocols[4]
     source_file: repos/knowledge/deep/gost.yaml
-    excerpt: KCP reliable UDP transport for lower-latency tunneling over lossy links
-  object_value: KCP reliable UDP transport for lower-latency tunneling over lossy
-    links
-  fact_id: fact::7529148332d9509185a11fb7
+    excerpt: SOCKS5
+  object_value: SOCKS5
+  fact_id: fact::b48b7ba96489dc1b99964290
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
@@ -986,9 +984,9 @@ facts:
   - kind: file_block
     ref: supported_protocols[5]
     source_file: repos/knowledge/deep/gost.yaml
-    excerpt: QUIC
-  object_value: QUIC
-  fact_id: fact::c52565273b757f764b5414d4
+    excerpt: SSH
+  object_value: SSH
+  fact_id: fact::6c31033c23d392c100a9e764
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
@@ -1002,9 +1000,9 @@ facts:
   - kind: file_block
     ref: supported_protocols[6]
     source_file: repos/knowledge/deep/gost.yaml
-    excerpt: SOCKS5
-  object_value: SOCKS5
-  fact_id: fact::6460f13dde6f81aa542adfcf
+    excerpt: Shadowsocks
+  object_value: Shadowsocks
+  fact_id: fact::382a67fe6f5a6110260ae071
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
@@ -1018,9 +1016,9 @@ facts:
   - kind: file_block
     ref: supported_protocols[7]
     source_file: repos/knowledge/deep/gost.yaml
-    excerpt: SSH
-  object_value: SSH
-  fact_id: fact::427948143f875b4911ca0a5f
+    excerpt: TCP
+  object_value: TCP
+  fact_id: fact::edcc0355643727c8907c35d0
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
@@ -1034,9 +1032,9 @@ facts:
   - kind: file_block
     ref: supported_protocols[8]
     source_file: repos/knowledge/deep/gost.yaml
-    excerpt: SSH tunnel handler allowing traffic forwarding over SSH connections
-  object_value: SSH tunnel handler allowing traffic forwarding over SSH connections
-  fact_id: fact::b165a430f273e06bcc0822c3
+    excerpt: TLS
+  object_value: TLS
+  fact_id: fact::325583fbeeda8e25d4b723dd
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
@@ -1050,9 +1048,9 @@ facts:
   - kind: file_block
     ref: supported_protocols[9]
     source_file: repos/knowledge/deep/gost.yaml
-    excerpt: Shadowsocks
-  object_value: Shadowsocks
-  fact_id: fact::4a31575ebf26cd2d7c3f3a58
+    excerpt: WebSocket
+  object_value: WebSocket
+  fact_id: fact::edcbe301064a9d680a04637e
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
@@ -1066,120 +1064,6 @@ facts:
   - kind: file_block
     ref: supported_protocols[10]
     source_file: repos/knowledge/deep/gost.yaml
-    excerpt: TCP
-  object_value: TCP
-  fact_id: fact::61e42b76c7403e6d9dacf8e4
-- fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/gost.yaml
-    source_section: supported_protocols[11]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: supported_protocols[11]
-    source_file: repos/knowledge/deep/gost.yaml
-    excerpt: TLS
-  object_value: TLS
-  fact_id: fact::fddefcddc4dca9798b1f526c
-- fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/gost.yaml
-    source_section: supported_protocols[12]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: supported_protocols[12]
-    source_file: repos/knowledge/deep/gost.yaml
-    excerpt: TLS-wrapped TCP transport for encrypted dialer and listener connections
-  object_value: TLS-wrapped TCP transport for encrypted dialer and listener connections
-  fact_id: fact::0ce2e72a08af1e6a86685af2
-- fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/gost.yaml
-    source_section: supported_protocols[13]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: supported_protocols[13]
-    source_file: repos/knowledge/deep/gost.yaml
-    excerpt: WebSocket
-  object_value: WebSocket
-  fact_id: fact::f45b84b736980d5ccdbaab45
-- fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/gost.yaml
-    source_section: supported_protocols[14]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: supported_protocols[14]
-    source_file: repos/knowledge/deep/gost.yaml
     excerpt: gRPC
   object_value: gRPC
-  fact_id: fact::e382d8832f52c3956fe30a35
-- fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/gost.yaml
-    source_section: supported_protocols[15]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: supported_protocols[15]
-    source_file: repos/knowledge/deep/gost.yaml
-    excerpt: gRPC transport layer for tunneling traffic inside gRPC streams
-  object_value: gRPC transport layer for tunneling traffic inside gRPC streams
-  fact_id: fact::3fcff4045ced9549e1fa9103
-- fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/gost.yaml
-    source_section: supported_protocols[16]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: supported_protocols[16]
-    source_file: repos/knowledge/deep/gost.yaml
-    excerpt: inbound HTTP proxy handler and outbound HTTP CONNECT tunnel connector
-  object_value: inbound HTTP proxy handler and outbound HTTP CONNECT tunnel connector
-  fact_id: fact::5700f5c03e82cc7157e6b22e
-- fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/gost.yaml
-    source_section: supported_protocols[17]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: supported_protocols[17]
-    source_file: repos/knowledge/deep/gost.yaml
-    excerpt: raw TCP listener and dialer used as the baseline transport for chained
-      hops
-  object_value: raw TCP listener and dialer used as the baseline transport for chained
-    hops
-  fact_id: fact::4ee2cd51db7457098f428b46
+  fact_id: fact::592d7dae2c86154add9432ff

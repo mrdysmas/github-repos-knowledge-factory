@@ -233,7 +233,7 @@ facts:
 - fact_type: failure_mode
   predicate: has_failure_mode
   object_kind: issue
-  confidence: 0.74
+  confidence: 0.8
   as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nexa_sdk.yaml
@@ -247,12 +247,13 @@ facts:
   object_value: ML_ERROR_LLM_TOKENIZATION_CONTEXT_LENGTH error during inference
   note: 'cause: Input token count exceeds the model''s configured context length limit;
     fix: Shorten the prompt or set a smaller max_tokens in GenerationConfig; for longer
-    contexts use a model variant with a larger context window'
-  fact_id: fact::275dabc626f1b4b0642eb065
+    contexts use a model variant with a larger context window; verification_note:
+    Error constant ML_ERROR_LLM_TOKENIZAT...'
+  fact_id: fact::98416ded5c11b3b3cbef0b69
 - fact_type: failure_mode
   predicate: has_failure_mode
   object_kind: issue
-  confidence: 0.74
+  confidence: 0.55
   as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nexa_sdk.yaml
@@ -268,11 +269,11 @@ facts:
     key; NPU components require a valid per-device license token; fix: Set NEXA_TOKEN
     to the key from sdk.nexa.ai/model, or run ''nexa config set license <token>''
     to persist it; free personal-use keys are...'
-  fact_id: fact::ac31519d59eaf1a5af9f6b77
+  fact_id: fact::03bd54eb9cc4081b01277dc0
 - fact_type: failure_mode
   predicate: has_failure_mode
   object_kind: issue
-  confidence: 0.74
+  confidence: 0.8
   as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nexa_sdk.yaml
@@ -288,11 +289,11 @@ facts:
     in the downloaded artifact, or the model format (GGUF, MLX, NEXA) is not compatible
     with the selected backend; fix: Re-download the model with ''nexa pull <model>'',
     confirm the quant tag matches an...'
-  fact_id: fact::904c826217347471dd0dd37e
+  fact_id: fact::361f01c41701571e58adf121
 - fact_type: failure_mode
   predicate: has_failure_mode
   object_kind: issue
-  confidence: 0.74
+  confidence: 0.8
   as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nexa_sdk.yaml
@@ -308,7 +309,7 @@ facts:
     Apple ANE, Intel NPU, AMD NPU) is not present or not loadable on the current device;
     fix: Verify the device matches a supported NPU platform; run ''nexa infer'' without
     plugin_id to fall back to CPU...'
-  fact_id: fact::5cc80c97c1c3ec9d87cfb353
+  fact_id: fact::cbac2e305dd2599acad39844
 - fact_type: failure_mode
   predicate: has_failure_mode
   object_kind: issue

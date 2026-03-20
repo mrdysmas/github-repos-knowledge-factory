@@ -646,9 +646,9 @@ facts:
   - kind: file_block
     ref: vpn_protocols[0]
     source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: 443 (sslh)
-  object_value: 443 (sslh)
-  fact_id: fact::71681367b28081bae4282798
+    excerpt: Cloudflared
+  object_value: Cloudflared
+  fact_id: fact::c0dae947f4f4742d5c60d0d3
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
@@ -662,9 +662,9 @@ facts:
   - kind: file_block
     ref: vpn_protocols[1]
     source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: '51820'
-  object_value: '51820'
-  fact_id: fact::508db4000c7997e171cbe94a
+    excerpt: OpenConnect
+  object_value: OpenConnect
+  fact_id: fact::b1269c5c11427e8900f90fcc
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
@@ -678,9 +678,9 @@ facts:
   - kind: file_block
     ref: vpn_protocols[2]
     source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: 636/8757 TCP/UDP
-  object_value: 636/8757 TCP/UDP
-  fact_id: fact::64cd3f66b3e05efbbbcc1a27
+    excerpt: OpenVPN
+  object_value: OpenVPN
+  fact_id: fact::c9329ab6e955706228a41f57
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
@@ -694,9 +694,9 @@ facts:
   - kind: file_block
     ref: vpn_protocols[3]
     source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: '8530'
-  object_value: '8530'
-  fact_id: fact::87672c2588045691e8dfb087
+    excerpt: SSH Forward
+  object_value: SSH Forward
+  fact_id: fact::c10f644ce5a1775e9e598a0e
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
@@ -710,9 +710,9 @@ facts:
   - kind: file_block
     ref: vpn_protocols[4]
     source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: '8888'
-  object_value: '8888'
-  fact_id: fact::dc88071bee628b28f9b7b188
+    excerpt: Shadowsocks
+  object_value: Shadowsocks
+  fact_id: fact::4401d76fcadd3413f0d688f1
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
@@ -726,9 +726,9 @@ facts:
   - kind: file_block
     ref: vpn_protocols[5]
     source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: AES-256-CBC
-  object_value: AES-256-CBC
-  fact_id: fact::ff7ed06c29f1fe96d25d7d4c
+    excerpt: TinyProxy
+  object_value: TinyProxy
+  fact_id: fact::0697fbd2f3104f1d85baa911
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
@@ -742,9 +742,9 @@ facts:
   - kind: file_block
     ref: vpn_protocols[6]
     source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: AES-256-GCM
-  object_value: AES-256-GCM
-  fact_id: fact::a4ad3a5a63eea1b52d734a71
+    excerpt: Tor Bridge
+  object_value: Tor Bridge
+  fact_id: fact::62de334cd249956b24c1cc4f
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol
@@ -758,342 +758,6 @@ facts:
   - kind: file_block
     ref: vpn_protocols[7]
     source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: Cloudflared
-  object_value: Cloudflared
-  fact_id: fact::907c6def61b5d6e746941540
-- fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[8]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[8]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: DNS-over-HTTPS
-  object_value: DNS-over-HTTPS
-  fact_id: fact::44a7b230fe74f07d86ab0299
-- fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[9]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[9]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: HTTP proxy
-  object_value: HTTP proxy
-  fact_id: fact::21d6d1d5bbc774bed682e1f9
-- fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[10]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[10]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: OpenConnect
-  object_value: OpenConnect
-  fact_id: fact::9f5db86e5bc61719230f16b8
-- fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[11]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[11]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: OpenVPN
-  object_value: OpenVPN
-  fact_id: fact::11fff58407edb32bf23bb409
-- fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[12]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[12]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: SOCKS proxy
-  object_value: SOCKS proxy
-  fact_id: fact::ddc185a90646091c907be56a
-- fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[13]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[13]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: SSH Forward
-  object_value: SSH Forward
-  fact_id: fact::9be6e90a37c19899bcab4e5b
-- fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[14]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[14]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: Shadowsocks
-  object_value: Shadowsocks
-  fact_id: fact::e0b964a2c4113f345028935e
-- fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[15]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[15]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: TinyProxy
-  object_value: TinyProxy
-  fact_id: fact::219cf1cf0ae37ca6ffe11c17
-- fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[16]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[16]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: Tor Bridge
-  object_value: Tor Bridge
-  fact_id: fact::136dc5de259241737283d85d
-- fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[17]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[17]
-    source_file: repos/knowledge/deep/streisand.yaml
     excerpt: WireGuard
   object_value: WireGuard
-  fact_id: fact::a86e343328f62ec87d04ec97
-- fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[18]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[18]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: chacha20-ietf-poly1305
-  object_value: chacha20-ietf-poly1305
-  fact_id: fact::c4424f5c5e36376a831c91dc
-- fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[19]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[19]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: client.mobileconfig
-  object_value: client.mobileconfig
-  fact_id: fact::0cf2ff3c3f05ec1d7a88450b
-- fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[20]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[20]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: cloudflared
-  object_value: cloudflared
-  fact_id: fact::c3943f88a295d136fa1f6bc9
-- fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[21]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[21]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: disabled
-  object_value: disabled
-  fact_id: fact::12db60443ae04d6bc6fbdfb3
-- fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[22]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[22]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: openconnect
-  object_value: openconnect
-  fact_id: fact::d1b346f02bebe7e2e78333fe
-- fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[23]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[23]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: openvpn
-  object_value: openvpn
-  fact_id: fact::da0342b97869629d5893ad34
-- fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[24]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[24]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: shadowsocks
-  object_value: shadowsocks
-  fact_id: fact::696c78e03ed40cdd8a0fdfc7
-- fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[25]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[25]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: ssh-forward
-  object_value: ssh-forward
-  fact_id: fact::b51395798e21659d29bbedd0
-- fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[26]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[26]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: tinyproxy
-  object_value: tinyproxy
-  fact_id: fact::77902c7b87ccf1d5874900e1
-- fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[27]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[27]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: tor-bridge
-  object_value: tor-bridge
-  fact_id: fact::4b863ab7691d4b6da7a92e48
-- fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[28]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[28]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: wireguard
-  object_value: wireguard
-  fact_id: fact::0f609b501a57bbf08035dcf0
+  fact_id: fact::8b7df0ccda6e59f93ca6e29d

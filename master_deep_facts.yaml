@@ -2,7 +2,7 @@ artifact_type: ws6_master_deep_facts
 generated_at_utc: '2026-03-19T00:00:00Z'
 contract_version: 1.0.0-ws6-draft
 summary:
-  total_facts: 6058
+  total_facts: 6037
   repos_with_facts: 120
   source_shards:
   - repos
@@ -33582,10 +33582,9 @@ facts:
   - kind: file_block
     ref: supported_protocols[1]
     source_file: repos/knowledge/deep/gost.yaml
-    excerpt: DNS service handler for DNS-over-TCP/UDP/TLS/HTTPS forwarding and routing
-  object_value: DNS service handler for DNS-over-TCP/UDP/TLS/HTTPS forwarding and
-    routing
-  fact_id: fact::b95ed0462ba56c92a05404f8
+    excerpt: HTTP CONNECT
+  object_value: HTTP CONNECT
+  fact_id: fact::9485cdcfd59464887e33ecfe
 - node_id: repo::go-gost/gost
   github_full_name: go-gost/gost
   name: gost
@@ -33602,9 +33601,9 @@ facts:
   - kind: file_block
     ref: supported_protocols[2]
     source_file: repos/knowledge/deep/gost.yaml
-    excerpt: HTTP CONNECT
-  object_value: HTTP CONNECT
-  fact_id: fact::a0f1dbb4a3cc35676b50bdd2
+    excerpt: KCP
+  object_value: KCP
+  fact_id: fact::a08cfb012daeeedbeff8ba83
 - node_id: repo::go-gost/gost
   github_full_name: go-gost/gost
   name: gost
@@ -33621,9 +33620,9 @@ facts:
   - kind: file_block
     ref: supported_protocols[3]
     source_file: repos/knowledge/deep/gost.yaml
-    excerpt: KCP
-  object_value: KCP
-  fact_id: fact::d5cc5d960032c8773b461d0b
+    excerpt: QUIC
+  object_value: QUIC
+  fact_id: fact::b198417fd2b73f333c356cb6
 - node_id: repo::go-gost/gost
   github_full_name: go-gost/gost
   name: gost
@@ -33640,10 +33639,9 @@ facts:
   - kind: file_block
     ref: supported_protocols[4]
     source_file: repos/knowledge/deep/gost.yaml
-    excerpt: KCP reliable UDP transport for lower-latency tunneling over lossy links
-  object_value: KCP reliable UDP transport for lower-latency tunneling over lossy
-    links
-  fact_id: fact::7529148332d9509185a11fb7
+    excerpt: SOCKS5
+  object_value: SOCKS5
+  fact_id: fact::b48b7ba96489dc1b99964290
 - node_id: repo::go-gost/gost
   github_full_name: go-gost/gost
   name: gost
@@ -33660,9 +33658,9 @@ facts:
   - kind: file_block
     ref: supported_protocols[5]
     source_file: repos/knowledge/deep/gost.yaml
-    excerpt: QUIC
-  object_value: QUIC
-  fact_id: fact::c52565273b757f764b5414d4
+    excerpt: SSH
+  object_value: SSH
+  fact_id: fact::6c31033c23d392c100a9e764
 - node_id: repo::go-gost/gost
   github_full_name: go-gost/gost
   name: gost
@@ -33679,9 +33677,9 @@ facts:
   - kind: file_block
     ref: supported_protocols[6]
     source_file: repos/knowledge/deep/gost.yaml
-    excerpt: SOCKS5
-  object_value: SOCKS5
-  fact_id: fact::6460f13dde6f81aa542adfcf
+    excerpt: Shadowsocks
+  object_value: Shadowsocks
+  fact_id: fact::382a67fe6f5a6110260ae071
 - node_id: repo::go-gost/gost
   github_full_name: go-gost/gost
   name: gost
@@ -33698,9 +33696,9 @@ facts:
   - kind: file_block
     ref: supported_protocols[7]
     source_file: repos/knowledge/deep/gost.yaml
-    excerpt: SSH
-  object_value: SSH
-  fact_id: fact::427948143f875b4911ca0a5f
+    excerpt: TCP
+  object_value: TCP
+  fact_id: fact::edcc0355643727c8907c35d0
 - node_id: repo::go-gost/gost
   github_full_name: go-gost/gost
   name: gost
@@ -33717,9 +33715,9 @@ facts:
   - kind: file_block
     ref: supported_protocols[8]
     source_file: repos/knowledge/deep/gost.yaml
-    excerpt: SSH tunnel handler allowing traffic forwarding over SSH connections
-  object_value: SSH tunnel handler allowing traffic forwarding over SSH connections
-  fact_id: fact::b165a430f273e06bcc0822c3
+    excerpt: TLS
+  object_value: TLS
+  fact_id: fact::325583fbeeda8e25d4b723dd
 - node_id: repo::go-gost/gost
   github_full_name: go-gost/gost
   name: gost
@@ -33736,9 +33734,9 @@ facts:
   - kind: file_block
     ref: supported_protocols[9]
     source_file: repos/knowledge/deep/gost.yaml
-    excerpt: Shadowsocks
-  object_value: Shadowsocks
-  fact_id: fact::4a31575ebf26cd2d7c3f3a58
+    excerpt: WebSocket
+  object_value: WebSocket
+  fact_id: fact::edcbe301064a9d680a04637e
 - node_id: repo::go-gost/gost
   github_full_name: go-gost/gost
   name: gost
@@ -33755,144 +33753,9 @@ facts:
   - kind: file_block
     ref: supported_protocols[10]
     source_file: repos/knowledge/deep/gost.yaml
-    excerpt: TCP
-  object_value: TCP
-  fact_id: fact::61e42b76c7403e6d9dacf8e4
-- node_id: repo::go-gost/gost
-  github_full_name: go-gost/gost
-  name: gost
-  fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/gost.yaml
-    source_section: supported_protocols[11]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: supported_protocols[11]
-    source_file: repos/knowledge/deep/gost.yaml
-    excerpt: TLS
-  object_value: TLS
-  fact_id: fact::fddefcddc4dca9798b1f526c
-- node_id: repo::go-gost/gost
-  github_full_name: go-gost/gost
-  name: gost
-  fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/gost.yaml
-    source_section: supported_protocols[12]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: supported_protocols[12]
-    source_file: repos/knowledge/deep/gost.yaml
-    excerpt: TLS-wrapped TCP transport for encrypted dialer and listener connections
-  object_value: TLS-wrapped TCP transport for encrypted dialer and listener connections
-  fact_id: fact::0ce2e72a08af1e6a86685af2
-- node_id: repo::go-gost/gost
-  github_full_name: go-gost/gost
-  name: gost
-  fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/gost.yaml
-    source_section: supported_protocols[13]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: supported_protocols[13]
-    source_file: repos/knowledge/deep/gost.yaml
-    excerpt: WebSocket
-  object_value: WebSocket
-  fact_id: fact::f45b84b736980d5ccdbaab45
-- node_id: repo::go-gost/gost
-  github_full_name: go-gost/gost
-  name: gost
-  fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/gost.yaml
-    source_section: supported_protocols[14]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: supported_protocols[14]
-    source_file: repos/knowledge/deep/gost.yaml
     excerpt: gRPC
   object_value: gRPC
-  fact_id: fact::e382d8832f52c3956fe30a35
-- node_id: repo::go-gost/gost
-  github_full_name: go-gost/gost
-  name: gost
-  fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/gost.yaml
-    source_section: supported_protocols[15]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: supported_protocols[15]
-    source_file: repos/knowledge/deep/gost.yaml
-    excerpt: gRPC transport layer for tunneling traffic inside gRPC streams
-  object_value: gRPC transport layer for tunneling traffic inside gRPC streams
-  fact_id: fact::3fcff4045ced9549e1fa9103
-- node_id: repo::go-gost/gost
-  github_full_name: go-gost/gost
-  name: gost
-  fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/gost.yaml
-    source_section: supported_protocols[16]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: supported_protocols[16]
-    source_file: repos/knowledge/deep/gost.yaml
-    excerpt: inbound HTTP proxy handler and outbound HTTP CONNECT tunnel connector
-  object_value: inbound HTTP proxy handler and outbound HTTP CONNECT tunnel connector
-  fact_id: fact::5700f5c03e82cc7157e6b22e
-- node_id: repo::go-gost/gost
-  github_full_name: go-gost/gost
-  name: gost
-  fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/gost.yaml
-    source_section: supported_protocols[17]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: supported_protocols[17]
-    source_file: repos/knowledge/deep/gost.yaml
-    excerpt: raw TCP listener and dialer used as the baseline transport for chained
-      hops
-  object_value: raw TCP listener and dialer used as the baseline transport for chained
-    hops
-  fact_id: fact::4ee2cd51db7457098f428b46
+  fact_id: fact::592d7dae2c86154add9432ff
 - node_id: repo::gohugoio/hugo
   github_full_name: gohugoio/hugo
   name: hugo
@@ -52882,6 +52745,44 @@ facts:
   object_value: pytest
   note: 'topic: Run Python tests'
   fact_id: fact::f100a83dace2ce449d0078ae
+- node_id: repo::lancedb/lancedb
+  github_full_name: lancedb/lancedb
+  name: lancedb
+  fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/lancedb__lancedb.yaml
+    source_section: supported_protocols[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[0]
+    source_file: repos/knowledge/deep/lancedb__lancedb.yaml
+    excerpt: Protocol Buffers
+  object_value: Protocol Buffers
+  fact_id: fact::b99b947ea0f4bc78edd6c5c3
+- node_id: repo::lancedb/lancedb
+  github_full_name: lancedb/lancedb
+  name: lancedb
+  fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/lancedb__lancedb.yaml
+    source_section: supported_protocols[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[1]
+    source_file: repos/knowledge/deep/lancedb__lancedb.yaml
+    excerpt: REST
+  object_value: REST
+  fact_id: fact::c760ab94e54e2655d8cf6822
 - node_id: repo::langchain-ai/deepagents
   github_full_name: langchain-ai/deepagents
   name: deepagents
@@ -70267,7 +70168,7 @@ facts:
   fact_type: failure_mode
   predicate: has_failure_mode
   object_kind: issue
-  confidence: 0.74
+  confidence: 0.8
   as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nexa_sdk.yaml
@@ -70281,15 +70182,16 @@ facts:
   object_value: ML_ERROR_LLM_TOKENIZATION_CONTEXT_LENGTH error during inference
   note: 'cause: Input token count exceeds the model''s configured context length limit;
     fix: Shorten the prompt or set a smaller max_tokens in GenerationConfig; for longer
-    contexts use a model variant with a larger context window'
-  fact_id: fact::275dabc626f1b4b0642eb065
+    contexts use a model variant with a larger context window; verification_note:
+    Error constant ML_ERROR_LLM_TOKENIZAT...'
+  fact_id: fact::98416ded5c11b3b3cbef0b69
 - node_id: repo::nexaai/nexa-sdk
   github_full_name: nexaai/nexa-sdk
   name: nexa_sdk
   fact_type: failure_mode
   predicate: has_failure_mode
   object_kind: issue
-  confidence: 0.74
+  confidence: 0.55
   as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nexa_sdk.yaml
@@ -70305,14 +70207,14 @@ facts:
     key; NPU components require a valid per-device license token; fix: Set NEXA_TOKEN
     to the key from sdk.nexa.ai/model, or run ''nexa config set license <token>''
     to persist it; free personal-use keys are...'
-  fact_id: fact::ac31519d59eaf1a5af9f6b77
+  fact_id: fact::03bd54eb9cc4081b01277dc0
 - node_id: repo::nexaai/nexa-sdk
   github_full_name: nexaai/nexa-sdk
   name: nexa_sdk
   fact_type: failure_mode
   predicate: has_failure_mode
   object_kind: issue
-  confidence: 0.74
+  confidence: 0.8
   as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nexa_sdk.yaml
@@ -70328,14 +70230,14 @@ facts:
     in the downloaded artifact, or the model format (GGUF, MLX, NEXA) is not compatible
     with the selected backend; fix: Re-download the model with ''nexa pull <model>'',
     confirm the quant tag matches an...'
-  fact_id: fact::904c826217347471dd0dd37e
+  fact_id: fact::361f01c41701571e58adf121
 - node_id: repo::nexaai/nexa-sdk
   github_full_name: nexaai/nexa-sdk
   name: nexa_sdk
   fact_type: failure_mode
   predicate: has_failure_mode
   object_kind: issue
-  confidence: 0.74
+  confidence: 0.8
   as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/nexa_sdk.yaml
@@ -70351,7 +70253,7 @@ facts:
     Apple ANE, Intel NPU, AMD NPU) is not present or not loadable on the current device;
     fix: Verify the device matches a supported NPU platform; run ''nexa infer'' without
     plugin_id to fall back to CPU...'
-  fact_id: fact::5cc80c97c1c3ec9d87cfb353
+  fact_id: fact::cbac2e305dd2599acad39844
 - node_id: repo::nexaai/nexa-sdk
   github_full_name: nexaai/nexa-sdk
   name: nexa_sdk
@@ -89928,6 +89830,46 @@ facts:
   object_value: Default ports
   note: quick reference topic
   fact_id: fact::d4baacefaa183d08f5097198
+- node_id: repo::qdrant/qdrant
+  github_full_name: qdrant/qdrant
+  name: qdrant
+  fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.8
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: api_structure.grpc
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_structure.grpc
+    source_file: repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: GRPC
+  object_value: GRPC
+  note: inferred from api_structure section key
+  fact_id: fact::f2511908ef8dbe0e9373248b
+- node_id: repo::qdrant/qdrant
+  github_full_name: qdrant/qdrant
+  name: qdrant
+  fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.8
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: api_structure.rest
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api_structure.rest
+    source_file: repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: REST
+  object_value: REST
+  note: inferred from api_structure section key
+  fact_id: fact::323de234fbae18169188a75c
 - node_id: repo::rapiz1/rathole
   github_full_name: rapiz1/rathole
   name: rathole
@@ -103987,9 +103929,9 @@ facts:
   - kind: file_block
     ref: vpn_protocols[0]
     source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: 443 (sslh)
-  object_value: 443 (sslh)
-  fact_id: fact::71681367b28081bae4282798
+    excerpt: Cloudflared
+  object_value: Cloudflared
+  fact_id: fact::c0dae947f4f4742d5c60d0d3
 - node_id: repo::streisandeffect/streisand
   github_full_name: streisandeffect/streisand
   name: streisand
@@ -104006,9 +103948,9 @@ facts:
   - kind: file_block
     ref: vpn_protocols[1]
     source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: '51820'
-  object_value: '51820'
-  fact_id: fact::508db4000c7997e171cbe94a
+    excerpt: OpenConnect
+  object_value: OpenConnect
+  fact_id: fact::b1269c5c11427e8900f90fcc
 - node_id: repo::streisandeffect/streisand
   github_full_name: streisandeffect/streisand
   name: streisand
@@ -104025,9 +103967,9 @@ facts:
   - kind: file_block
     ref: vpn_protocols[2]
     source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: 636/8757 TCP/UDP
-  object_value: 636/8757 TCP/UDP
-  fact_id: fact::64cd3f66b3e05efbbbcc1a27
+    excerpt: OpenVPN
+  object_value: OpenVPN
+  fact_id: fact::c9329ab6e955706228a41f57
 - node_id: repo::streisandeffect/streisand
   github_full_name: streisandeffect/streisand
   name: streisand
@@ -104044,9 +103986,9 @@ facts:
   - kind: file_block
     ref: vpn_protocols[3]
     source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: '8530'
-  object_value: '8530'
-  fact_id: fact::87672c2588045691e8dfb087
+    excerpt: SSH Forward
+  object_value: SSH Forward
+  fact_id: fact::c10f644ce5a1775e9e598a0e
 - node_id: repo::streisandeffect/streisand
   github_full_name: streisandeffect/streisand
   name: streisand
@@ -104063,9 +104005,9 @@ facts:
   - kind: file_block
     ref: vpn_protocols[4]
     source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: '8888'
-  object_value: '8888'
-  fact_id: fact::dc88071bee628b28f9b7b188
+    excerpt: Shadowsocks
+  object_value: Shadowsocks
+  fact_id: fact::4401d76fcadd3413f0d688f1
 - node_id: repo::streisandeffect/streisand
   github_full_name: streisandeffect/streisand
   name: streisand
@@ -104082,9 +104024,9 @@ facts:
   - kind: file_block
     ref: vpn_protocols[5]
     source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: AES-256-CBC
-  object_value: AES-256-CBC
-  fact_id: fact::ff7ed06c29f1fe96d25d7d4c
+    excerpt: TinyProxy
+  object_value: TinyProxy
+  fact_id: fact::0697fbd2f3104f1d85baa911
 - node_id: repo::streisandeffect/streisand
   github_full_name: streisandeffect/streisand
   name: streisand
@@ -104101,9 +104043,9 @@ facts:
   - kind: file_block
     ref: vpn_protocols[6]
     source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: AES-256-GCM
-  object_value: AES-256-GCM
-  fact_id: fact::a4ad3a5a63eea1b52d734a71
+    excerpt: Tor Bridge
+  object_value: Tor Bridge
+  fact_id: fact::62de334cd249956b24c1cc4f
 - node_id: repo::streisandeffect/streisand
   github_full_name: streisandeffect/streisand
   name: streisand
@@ -104120,408 +104062,9 @@ facts:
   - kind: file_block
     ref: vpn_protocols[7]
     source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: Cloudflared
-  object_value: Cloudflared
-  fact_id: fact::907c6def61b5d6e746941540
-- node_id: repo::streisandeffect/streisand
-  github_full_name: streisandeffect/streisand
-  name: streisand
-  fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[8]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[8]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: DNS-over-HTTPS
-  object_value: DNS-over-HTTPS
-  fact_id: fact::44a7b230fe74f07d86ab0299
-- node_id: repo::streisandeffect/streisand
-  github_full_name: streisandeffect/streisand
-  name: streisand
-  fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[9]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[9]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: HTTP proxy
-  object_value: HTTP proxy
-  fact_id: fact::21d6d1d5bbc774bed682e1f9
-- node_id: repo::streisandeffect/streisand
-  github_full_name: streisandeffect/streisand
-  name: streisand
-  fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[10]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[10]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: OpenConnect
-  object_value: OpenConnect
-  fact_id: fact::9f5db86e5bc61719230f16b8
-- node_id: repo::streisandeffect/streisand
-  github_full_name: streisandeffect/streisand
-  name: streisand
-  fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[11]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[11]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: OpenVPN
-  object_value: OpenVPN
-  fact_id: fact::11fff58407edb32bf23bb409
-- node_id: repo::streisandeffect/streisand
-  github_full_name: streisandeffect/streisand
-  name: streisand
-  fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[12]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[12]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: SOCKS proxy
-  object_value: SOCKS proxy
-  fact_id: fact::ddc185a90646091c907be56a
-- node_id: repo::streisandeffect/streisand
-  github_full_name: streisandeffect/streisand
-  name: streisand
-  fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[13]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[13]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: SSH Forward
-  object_value: SSH Forward
-  fact_id: fact::9be6e90a37c19899bcab4e5b
-- node_id: repo::streisandeffect/streisand
-  github_full_name: streisandeffect/streisand
-  name: streisand
-  fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[14]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[14]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: Shadowsocks
-  object_value: Shadowsocks
-  fact_id: fact::e0b964a2c4113f345028935e
-- node_id: repo::streisandeffect/streisand
-  github_full_name: streisandeffect/streisand
-  name: streisand
-  fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[15]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[15]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: TinyProxy
-  object_value: TinyProxy
-  fact_id: fact::219cf1cf0ae37ca6ffe11c17
-- node_id: repo::streisandeffect/streisand
-  github_full_name: streisandeffect/streisand
-  name: streisand
-  fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[16]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[16]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: Tor Bridge
-  object_value: Tor Bridge
-  fact_id: fact::136dc5de259241737283d85d
-- node_id: repo::streisandeffect/streisand
-  github_full_name: streisandeffect/streisand
-  name: streisand
-  fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[17]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[17]
-    source_file: repos/knowledge/deep/streisand.yaml
     excerpt: WireGuard
   object_value: WireGuard
-  fact_id: fact::a86e343328f62ec87d04ec97
-- node_id: repo::streisandeffect/streisand
-  github_full_name: streisandeffect/streisand
-  name: streisand
-  fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[18]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[18]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: chacha20-ietf-poly1305
-  object_value: chacha20-ietf-poly1305
-  fact_id: fact::c4424f5c5e36376a831c91dc
-- node_id: repo::streisandeffect/streisand
-  github_full_name: streisandeffect/streisand
-  name: streisand
-  fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[19]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[19]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: client.mobileconfig
-  object_value: client.mobileconfig
-  fact_id: fact::0cf2ff3c3f05ec1d7a88450b
-- node_id: repo::streisandeffect/streisand
-  github_full_name: streisandeffect/streisand
-  name: streisand
-  fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[20]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[20]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: cloudflared
-  object_value: cloudflared
-  fact_id: fact::c3943f88a295d136fa1f6bc9
-- node_id: repo::streisandeffect/streisand
-  github_full_name: streisandeffect/streisand
-  name: streisand
-  fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[21]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[21]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: disabled
-  object_value: disabled
-  fact_id: fact::12db60443ae04d6bc6fbdfb3
-- node_id: repo::streisandeffect/streisand
-  github_full_name: streisandeffect/streisand
-  name: streisand
-  fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[22]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[22]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: openconnect
-  object_value: openconnect
-  fact_id: fact::d1b346f02bebe7e2e78333fe
-- node_id: repo::streisandeffect/streisand
-  github_full_name: streisandeffect/streisand
-  name: streisand
-  fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[23]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[23]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: openvpn
-  object_value: openvpn
-  fact_id: fact::da0342b97869629d5893ad34
-- node_id: repo::streisandeffect/streisand
-  github_full_name: streisandeffect/streisand
-  name: streisand
-  fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[24]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[24]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: shadowsocks
-  object_value: shadowsocks
-  fact_id: fact::696c78e03ed40cdd8a0fdfc7
-- node_id: repo::streisandeffect/streisand
-  github_full_name: streisandeffect/streisand
-  name: streisand
-  fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[25]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[25]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: ssh-forward
-  object_value: ssh-forward
-  fact_id: fact::b51395798e21659d29bbedd0
-- node_id: repo::streisandeffect/streisand
-  github_full_name: streisandeffect/streisand
-  name: streisand
-  fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[26]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[26]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: tinyproxy
-  object_value: tinyproxy
-  fact_id: fact::77902c7b87ccf1d5874900e1
-- node_id: repo::streisandeffect/streisand
-  github_full_name: streisandeffect/streisand
-  name: streisand
-  fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[27]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[27]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: tor-bridge
-  object_value: tor-bridge
-  fact_id: fact::4b863ab7691d4b6da7a92e48
-- node_id: repo::streisandeffect/streisand
-  github_full_name: streisandeffect/streisand
-  name: streisand
-  fact_type: protocol_usage
-  predicate: uses_protocol
-  object_kind: protocol
-  confidence: 0.7
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: vpn_protocols[28]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: vpn_protocols[28]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: wireguard
-  object_value: wireguard
-  fact_id: fact::0f609b501a57bbf08035dcf0
+  fact_id: fact::8b7df0ccda6e59f93ca6e29d
 - node_id: repo::styfle/vgrok
   github_full_name: styfle/vgrok
   name: vgrok
@@ -113377,6 +112920,63 @@ facts:
   object_value: go test and repo test suites
   note: testing command
   fact_id: fact::747e52b61671c41a268c7683
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: supported_protocols[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[0]
+    source_file: repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: GraphQL
+  object_value: GraphQL
+  fact_id: fact::428c427beb0843dc8017e622
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: supported_protocols[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[1]
+    source_file: repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: REST
+  object_value: REST
+  fact_id: fact::fb0e396d065ccf2b742a2a3a
+- node_id: repo::weaviate/weaviate
+  github_full_name: weaviate/weaviate
+  name: weaviate
+  fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.7
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: supported_protocols[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: supported_protocols[2]
+    source_file: repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: gRPC
+  object_value: gRPC
+  fact_id: fact::c115490b860599414f2e1a6e
 - node_id: repo::wez/wezterm
   github_full_name: wez/wezterm
   name: wezterm
