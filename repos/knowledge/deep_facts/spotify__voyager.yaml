@@ -701,6 +701,27 @@ facts:
     ordering; fix: Use StorageDataType.Float32 when recall accuracy is critical; use
     E4M3 or Float8 only when...'
   fact_id: fact::50a9f2513e3fab0cc00dfd2a
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/spotify__voyager.yaml
+    source_section: implementation_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: cpp/src/
+    source_file: repos/knowledge/deep/spotify__voyager.yaml
+    excerpt: Voyager is an hnswlib wrapper; all ANN search uses the HNSW algorithm
+      with configurable M and ef_construction parameters exposed through the Index
+      class.
+  object_value: HNSW index via hnswlib
+  note: 'description: Voyager is an hnswlib wrapper; all ANN search uses the HNSW
+    algorithm with configurable M and ef_construction parameters exposed through the
+    Index class.; location: cpp/src/'
+  fact_id: fact::f7290b40340f16e6e46ca35b
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command

@@ -16,6 +16,12 @@ augmentation_provenance:
   extraction_agent: claude-sonnet-4-6
   session_date: '2026-03-19'
   version_anchor: null
+- sections: [implementation_patterns]
+  sourcing_method: readme_verified
+  extraction_agent: claude-sonnet-4-6
+  session_date: '2026-03-20'
+  version_anchor: null
+  notes: 'HNSW and IVFFlat explicitly named as the two ANN index types in pgvector README, src/hnsw*.c and src/ivf*.c, and CREATE INDEX examples'
 directory: /Users/szilaa/scripts/ext_sources/github_repos/vector_db/pgvector-master
 category: vector_database
 primary_language: c
@@ -94,6 +100,14 @@ implementation_patterns:
 - pattern: Operator-driven API
   description: Query behavior centers on SQL operators used in ORDER BY and predicate expressions.
   location: README examples and SQL definitions
+  file: README.md
+- pattern: HNSW index
+  description: Graph-based ANN index (CREATE INDEX ... USING hnsw) providing high recall with tunable ef_search and M parameters; implemented in src/hnsw*.c.
+  location: src/hnsw.c
+  file: README.md
+- pattern: IVFFlat index
+  description: List-partitioned ANN index (CREATE INDEX ... USING ivfflat) with tunable lists and probes parameters; lower memory footprint than HNSW at the cost of recall; implemented in src/ivf*.c.
+  location: src/ivfflat.c
   file: README.md
 configuration:
   options:

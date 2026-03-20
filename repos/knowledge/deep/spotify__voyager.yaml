@@ -16,6 +16,12 @@ augmentation_provenance:
   extraction_agent: claude-sonnet-4-6
   session_date: '2026-03-18'
   version_anchor: null
+- sections: [implementation_patterns]
+  sourcing_method: readme_verified
+  extraction_agent: claude-sonnet-4-6
+  session_date: '2026-03-20'
+  version_anchor: null
+  notes: 'HNSW documented explicitly: Voyager is described as a wrapper around hnswlib; summary and key_features both name HNSW as the underlying algorithm'
 directory: remote::spotify/voyager
 category: vector_database
 
@@ -42,6 +48,12 @@ architecture:
       purpose: "Enum selecting distance metric: Cosine, Euclidean, InnerProduct"
     - name: StorageDataType
       purpose: "Enum selecting vector precision: Float32, Float8, E4M3"
+
+implementation_patterns:
+- pattern: HNSW index via hnswlib
+  description: Voyager is an hnswlib wrapper; all ANN search uses the HNSW algorithm with configurable M and ef_construction parameters exposed through the Index class.
+  location: cpp/src/
+  file: README.md
 
 key_features:
   - HNSW approximate nearest-neighbor search via hnswlib

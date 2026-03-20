@@ -942,6 +942,47 @@ facts:
   as_of: '2026-03-04'
   provenance:
     source_file: repos/knowledge/deep/pgvector__pgvector.yaml
+    source_section: implementation_patterns[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: src/hnsw.c
+    source_file: repos/knowledge/deep/pgvector__pgvector.yaml
+    excerpt: Graph-based ANN index (CREATE INDEX ... USING hnsw) providing high recall
+      with tunable ef_search and M parameters; implemented in src/hnsw*.c.
+  object_value: HNSW index
+  note: 'description: Graph-based ANN index (CREATE INDEX ... USING hnsw) providing
+    high recall with tunable ef_search and M parameters; implemented in src/hnsw*.c.;
+    location: src/hnsw.c'
+  fact_id: fact::7027e69d078d6c09c1cfea08
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/pgvector__pgvector.yaml
+    source_section: implementation_patterns[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: src/ivfflat.c
+    source_file: repos/knowledge/deep/pgvector__pgvector.yaml
+    excerpt: List-partitioned ANN index (CREATE INDEX ... USING ivfflat) with tunable
+      lists and probes parameters; lower memory footprint than HNSW at the cost of
+      recall; implemented in src/ivf*.c.
+  object_value: IVFFlat index
+  note: 'description: List-partitioned ANN index (CREATE INDEX ... USING ivfflat)
+    with tunable lists and probes parameters; lower memory footprint than HNSW at
+    the cost of recall; implemented in src/ivf*.c.; location: src/ivfflat.c'
+  fact_id: fact::5c6e40cb350892bafefd988a
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-04'
+  provenance:
+    source_file: repos/knowledge/deep/pgvector__pgvector.yaml
     source_section: implementation_patterns[2]
     extraction_mode: narrative
   evidence:

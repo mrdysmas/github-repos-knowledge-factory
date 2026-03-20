@@ -16,6 +16,12 @@ augmentation_provenance:
   extraction_agent: claude-sonnet-4-6
   session_date: '2026-03-18'
   version_anchor: null
+- sections: [implementation_patterns]
+  sourcing_method: readme_verified
+  extraction_agent: claude-sonnet-4-6
+  session_date: '2026-03-20'
+  version_anchor: null
+  notes: 'HNSW documented explicitly in summary: "Header-only C++17 implementation of HNSW"; key_features also names HNSW algorithm with M, ef_construction, ef_search parameters'
 directory: remote::unum-cloud/usearch
 category: vector_database
 
@@ -51,6 +57,12 @@ architecture:
       purpose: Dense index variant supporting multiple metric families and compile-time quantization
     - name: "usearch.Index (Python)"
       purpose: Python-side Index class with ndim, metric, dtype constructor and add/search/save/load methods
+
+implementation_patterns:
+- pattern: HNSW index
+  description: Header-only C++17 HNSW implementation; all search uses the HNSW graph algorithm parameterized by connectivity (M), expansion_add (ef_construction), and expansion_search (ef_search).
+  location: include/usearch/index.hpp
+  file: README.md
 
 key_features:
   - Header-only C++17 — zero dependencies, embeds directly in any project

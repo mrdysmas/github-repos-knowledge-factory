@@ -723,6 +723,26 @@ facts:
   as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/weaviate__weaviate.yaml
+    source_section: implementation_patterns[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: adapters (vector index subsystem)
+    source_file: repos/knowledge/deep/weaviate__weaviate.yaml
+    excerpt: Primary ANN index algorithm for all vector collections; shard loading,
+      tombstone cleanup, and startup metrics all reference the HNSW graph index directly.
+  object_value: HNSW vector index
+  note: 'description: Primary ANN index algorithm for all vector collections; shard
+    loading, tombstone cleanup, and startup metrics all reference the HNSW graph index
+    directly.; location: adapters (vector index subsystem)'
+  fact_id: fact::08c78d6a7a1c010840f39b85
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/weaviate__weaviate.yaml
     source_section: code_patterns[0]
     extraction_mode: narrative
   evidence:

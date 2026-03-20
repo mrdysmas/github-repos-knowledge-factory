@@ -16,6 +16,12 @@ augmentation_provenance:
   extraction_agent: claude-sonnet-4-6
   session_date: '2026-03-18'
   version_anchor: null
+- sections: [implementation_patterns]
+  sourcing_method: readme_verified
+  extraction_agent: claude-sonnet-4-6
+  session_date: '2026-03-20'
+  version_anchor: null
+  notes: 'ANNG, ONNG, PANNG documented explicitly in summary and key_features; these are NGTs own graph-based ANN algorithms distinct from HNSW'
 directory: remote::yahoojapan/ngt
 category: vector_database
 
@@ -47,6 +53,20 @@ architecture:
       purpose: "Optimized ANNG — directed graph with improved recall via post-construction optimization"
     - name: NGTOptimizer
       purpose: Converts an ANNG to ONNG by adjusting edge directions and degrees
+
+implementation_patterns:
+- pattern: ANNG (Approximate Neighborhood Graph)
+  description: Base bidirectional graph ANN index; vectors are inserted and edges built via build_index(); primary index type for new NGT indices.
+  location: lib/NGT/Graph.h
+  file: README.md
+- pattern: ONNG (Optimized NGT)
+  description: Directed graph derived from ANNG via post-construction optimization (ngt optimize); improves recall and query speed by rebalancing edge directions and degrees.
+  location: lib/NGT/Optimizer.h
+  file: README.md
+- pattern: PANNG (Pruned ANNG)
+  description: Memory-reduced ANNG variant; prunes edges to lower graph footprint with modest recall tradeoff.
+  location: lib/NGT/
+  file: README.md
 
 key_features:
   - Graph-based ANN with ANNG and ONNG algorithm variants

@@ -519,6 +519,48 @@ facts:
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: implementation_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: config.yaml (optimizer_config.indexing_threshold_kb)
+    source_file: repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: Segments below indexing_threshold_kb (default 10 MB) are searched with
+      a plain brute-force scan rather than the HNSW graph; no explicit flat index
+      creation required.
+  object_value: Flat (brute-force) scan
+  note: 'description: Segments below indexing_threshold_kb (default 10 MB) are searched
+    with a plain brute-force scan rather than the HNSW graph; no explicit flat index
+    creation required.; location: config.yaml (optimizer_config.indexing_threshold_kb)'
+  fact_id: fact::aba98b5b86b82ef1ab01e8f8
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/qdrant__qdrant.yaml
+    source_section: implementation_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: README.md / config.yaml (hnsw_config section)
+    source_file: repos/knowledge/deep/qdrant__qdrant.yaml
+    excerpt: Primary ANN index algorithm used for all vector collections; segments
+      above indexing_threshold_kb are indexed with HNSW for approximate nearest-neighbor
+      search.
+  object_value: HNSW index
+  note: 'description: Primary ANN index algorithm used for all vector collections;
+    segments above indexing_threshold_kb are indexed with HNSW for approximate nearest-neighbor
+    search.; location: README.md / config.yaml (hnsw_config section)'
+  fact_id: fact::55734b1975f52948f49f4de6
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
   confidence: 0.64
   as_of: '2026-03-18'
   provenance:

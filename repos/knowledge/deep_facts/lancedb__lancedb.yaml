@@ -664,6 +664,27 @@ facts:
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/lancedb__lancedb.yaml
+    source_section: implementation_patterns[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: rust/lancedb/src
+    source_file: repos/knowledge/deep/lancedb__lancedb.yaml
+    excerpt: Inverted file with product quantization; primary ANN index type for large-scale
+      vector search; parameterized by num_partitions and num_sub_vectors; build can
+      OOM on large high-dimensional tables.
+  object_value: IVF-PQ index
+  note: 'description: Inverted file with product quantization; primary ANN index type
+    for large-scale vector search; parameterized by num_partitions and num_sub_vectors;
+    build can OOM on large high-dimensional tables.; location: rust/lancedb/src'
+  fact_id: fact::550bee42b958413d6e87a06b
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
   confidence: 0.64
   as_of: '2026-03-18'
   provenance:

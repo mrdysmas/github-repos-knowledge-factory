@@ -23,6 +23,12 @@ augmentation_provenance:
   session_date: '2026-03-20'
   version_anchor: null
   notes: 'protocols sourced from weaviate/weaviate README.md: "Weaviate exposes REST API, gRPC API, and GraphQL API to communicate with the database server."'
+- sections: [implementation_patterns]
+  sourcing_method: readme_verified
+  extraction_agent: claude-sonnet-4-6
+  session_date: '2026-03-20'
+  version_anchor: null
+  notes: 'HNSW documented as primary vector index algorithm in Weaviate architecture and troubleshooting (tombstone cleanup, shard loading refer to HNSW index explicitly)'
 directory: /Users/szilaa/scripts/ext_sources/github_repos/intake_repos/weaviate__weaviate
 category: vector_database
 
@@ -76,6 +82,10 @@ implementation_patterns:
 - pattern: "Client and API surface partitioning"
   description: "Generated or organized client operations live separately from server usecase logic."
   location: client
+- pattern: HNSW vector index
+  description: Primary ANN index algorithm for all vector collections; shard loading, tombstone cleanup, and startup metrics all reference the HNSW graph index directly.
+  location: adapters (vector index subsystem)
+  file: README.md
 
 core_modules:
   server:

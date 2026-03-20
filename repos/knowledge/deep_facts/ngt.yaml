@@ -809,3 +809,63 @@ facts:
     fix: Call index.build_index() after all inserts are complete before issuing search
     queries'
   fact_id: fact::d5f4d5fe83e5e29b073945fa
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ngt.yaml
+    source_section: implementation_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: lib/NGT/Graph.h
+    source_file: repos/knowledge/deep/ngt.yaml
+    excerpt: Base bidirectional graph ANN index; vectors are inserted and edges built
+      via build_index(); primary index type for new NGT indices.
+  object_value: ANNG (Approximate Neighborhood Graph)
+  note: 'description: Base bidirectional graph ANN index; vectors are inserted and
+    edges built via build_index(); primary index type for new NGT indices.; location:
+    lib/NGT/Graph.h'
+  fact_id: fact::c715d5ea7ffccf177a7c86e9
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ngt.yaml
+    source_section: implementation_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: lib/NGT/Optimizer.h
+    source_file: repos/knowledge/deep/ngt.yaml
+    excerpt: Directed graph derived from ANNG via post-construction optimization (ngt
+      optimize); improves recall and query speed by rebalancing edge directions and
+      degrees.
+  object_value: ONNG (Optimized NGT)
+  note: 'description: Directed graph derived from ANNG via post-construction optimization
+    (ngt optimize); improves recall and query speed by rebalancing edge directions
+    and degrees.; location: lib/NGT/Optimizer.h'
+  fact_id: fact::d08ee10a3ad65ff7cf3c6784
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/ngt.yaml
+    source_section: implementation_patterns[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: lib/NGT/
+    source_file: repos/knowledge/deep/ngt.yaml
+    excerpt: Memory-reduced ANNG variant; prunes edges to lower graph footprint with
+      modest recall tradeoff.
+  object_value: PANNG (Pruned ANNG)
+  note: 'description: Memory-reduced ANNG variant; prunes edges to lower graph footprint
+    with modest recall tradeoff.; location: lib/NGT/'
+  fact_id: fact::e74275c96c2f805538ea9351

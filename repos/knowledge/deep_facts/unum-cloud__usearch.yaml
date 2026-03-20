@@ -861,6 +861,27 @@ facts:
     a different metric in mind produces meaningless results; fix: Confirm the metric
     passed to Index(ndim=..., metric=...) match...'
   fact_id: fact::66613bb310b6469b31fbbf6e
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-18'
+  provenance:
+    source_file: repos/knowledge/deep/unum-cloud__usearch.yaml
+    source_section: implementation_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: include/usearch/index.hpp
+    source_file: repos/knowledge/deep/unum-cloud__usearch.yaml
+    excerpt: Header-only C++17 HNSW implementation; all search uses the HNSW graph
+      algorithm parameterized by connectivity (M), expansion_add (ef_construction),
+      and expansion_search (ef_search).
+  object_value: HNSW index
+  note: 'description: Header-only C++17 HNSW implementation; all search uses the HNSW
+    graph algorithm parameterized by connectivity (M), expansion_add (ef_construction),
+    and expansion_search (ef_search).; location: include/usearch/index.hpp'
+  fact_id: fact::2ea9af287b5a0fbf56ba0a6f
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
