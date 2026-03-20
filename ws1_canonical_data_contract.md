@@ -88,6 +88,26 @@ Optional fields:
 - `evidence` (array of strings)
 - `note` (string)
 
+## Confidence Rubric
+
+The `confidence` field (used in graph edges, `has_failure_mode` facts, and troubleshooting entries) encodes verification chain depth. Values are not arbitrary — each tier corresponds to a specific evidence type.
+
+| Tier | Range | Verification basis |
+|------|-------|--------------------|
+| `training_knowledge` | ~0.74 | Derived from model training data; no source-level confirmation |
+| `error_constant_confirmed` | ~0.80 | Error code or constant confirmed present in source |
+| `mechanism_confirmed` | 0.85–0.88 | Full failure mechanism confirmed in source (code path, docs, or commit) |
+| `programmatic_extraction` | 0.90–0.92 | Extracted via automated analysis (AST, static analysis, log parsing) |
+| `programmatic_and_human` | ~0.95 | Programmatic extraction + human review |
+| `corroborated` | ~0.99 | Programmatic + human + independent corroboration (second source, issue tracker, CVE, etc.) |
+
+**Assignment rules:**
+
+- Default to `training_knowledge` (~0.74) when no source-level evidence is available.
+- Do not inflate confidence without a concrete verification step to justify the tier.
+- When `augmentation_provenance` is present, the `method` field should be consistent with the confidence tier (e.g., `error_code_search` → `error_constant_confirmed` range).
+- Confidence ceilings apply per entry — a single weak link in the verification chain caps the value at that tier.
+
 ## Canonical Relation Ontology
 
 Canonical set (WS1):
