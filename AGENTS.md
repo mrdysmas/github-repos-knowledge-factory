@@ -135,6 +135,13 @@ bd automatically syncs via Dolt:
 - ✅ Treat `bd create` and `bd dolt push` as non-retryable until state is checked
 - ✅ If `bd create` returns an uncertain result, verify first with `bd search "<distinctive title phrase>" --status all --json` or `bd show <id> --json` before retrying
 - ✅ If `bd dolt push` fails with `checksum error`, `non-fast-forward`, or `nothing to commit`, inspect local state (`.beads/push-state.json`, `.beads/dolt-server.log`, and the affected issue IDs) before any retry
+- ✅ Prefer the actual installed bd CLI shape over memory:
+  - use `--type`, not `--issue-type`
+  - use `bd duplicate <id> --of <canonical>`
+  - use `bd dep <blocker> --blocks <blocked>` to add blocking dependencies
+- ✅ When passing long `bd` descriptions through the shell, avoid backticks and other command-substitution syntax inside quoted text
+- ✅ If sandboxed `bd` commands fail because Dolt cannot auto-start or bind a port, rerun with escalation instead of treating it as a normal bd error
+- ✅ After changing dependencies or deferrals, verify with `bd show <id> --json`, `bd dep list <id> --json`, and `bd ready --json` rather than assuming the queue changed as intended
 - ❌ Do NOT create markdown TODO lists
 - ❌ Do NOT use external issue trackers
 - ❌ Do NOT duplicate tracking systems
