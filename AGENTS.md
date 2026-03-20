@@ -132,6 +132,9 @@ bd automatically syncs via Dolt:
 - ✅ Always use `--json` flag for programmatic use
 - ✅ Link discovered work with `discovered-from` dependencies
 - ✅ Check `bd ready` before asking "what should I work on?"
+- ✅ Treat `bd create` and `bd dolt push` as non-retryable until state is checked
+- ✅ If `bd create` returns an uncertain result, verify first with `bd search "<distinctive title phrase>" --status all --json` or `bd show <id> --json` before retrying
+- ✅ If `bd dolt push` fails with `checksum error`, `non-fast-forward`, or `nothing to commit`, inspect local state (`.beads/push-state.json`, `.beads/dolt-server.log`, and the affected issue IDs) before any retry
 - ❌ Do NOT create markdown TODO lists
 - ❌ Do NOT use external issue trackers
 - ❌ Do NOT duplicate tracking systems
@@ -154,6 +157,7 @@ For more details, see README.md and docs/QUICKSTART.md.
    git push
    git status  # MUST show "up to date with origin"
    ```
+   Beads note: do not blind-retry `bd dolt push`. If the result is uncertain or fails with a remote/backend error, verify state first and then do at most one deliberate retry.
 5. **Clean up** - Clear stashes, prune remote branches
 6. **Verify** - All changes committed AND pushed
 7. **Hand off** - Provide context for next session
@@ -162,6 +166,8 @@ For more details, see README.md and docs/QUICKSTART.md.
 - Work is NOT complete until `git push` succeeds
 - NEVER stop before pushing - that leaves work stranded locally
 - NEVER say "ready to push when you are" - YOU must push
-- If push fails, resolve and retry until it succeeds
+- If `git push` fails, resolve and retry until it succeeds
+- If `bd dolt push` fails, do not loop retries. Verify whether the Beads mutation already landed, classify the error, and only then retry once if the failure looks retryable.
+- If `bd dolt push` is still blocked after a verified retry, surface the blocker with the exact error and the local Beads state you confirmed.
 
 <!-- END BEADS INTEGRATION -->
