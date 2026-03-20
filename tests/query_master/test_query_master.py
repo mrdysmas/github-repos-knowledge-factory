@@ -325,6 +325,10 @@ class QueryMasterPreflightTests(unittest.TestCase):
                  "Query timeout under high-ingest load", ""),
                 ("pf-4", "repo::chroma-core/chroma", "has_failure_mode", "issue",
                  "Background indexing stalls", "Reproducible with large batch writes"),
+                ("pf-4b", "repo::chroma-core/chroma", "has_failure_mode", "issue",
+                 "Read-only startup fails after lockfile recovery", ""),
+                ("pf-4c", "repo::chroma-core/chroma", "has_failure_mode", "issue",
+                 "NCCL timeout errors in multi-GPU", ""),
                 ("pf-5", "repo::open-webui/open-webui", "has_failure_mode", "issue",
                  "Query timeout under high-ingest load", ""),
             ]
@@ -365,7 +369,7 @@ class QueryMasterPreflightTests(unittest.TestCase):
             self.assertEqual(payload["category_filter"], "vector_database")
             self.assertIsNone(payload["term_filter"])
             self.assertEqual(payload["scope_repo_count"], 4)
-            self.assertEqual(payload["result_count"], 2)
+            self.assertEqual(payload["result_count"], 4)
 
             # "Query timeout" has 3 repos — must rank first
             self.assertEqual(payload["results"][0]["failure_mode"], "Query timeout under high-ingest load")
@@ -373,7 +377,7 @@ class QueryMasterPreflightTests(unittest.TestCase):
             self.assertAlmostEqual(payload["results"][0]["repo_fraction"], 0.75, places=3)
             self.assertEqual(len(payload["results"][0]["example_repos"]), 3)
 
-            # "Background indexing stalls" has 1 repo — ranks second
+            # Remaining 1-repo results are sorted alphabetically by failure_mode.
             self.assertEqual(payload["results"][1]["failure_mode"], "Background indexing stalls")
             self.assertEqual(payload["results"][1]["repo_count"], 1)
             self.assertAlmostEqual(payload["results"][1]["repo_fraction"], 0.25, places=3)
@@ -403,6 +407,31 @@ class QueryMasterPreflightTests(unittest.TestCase):
             self.assertEqual(payload["term_filter"], "batch writes")
             self.assertEqual(payload["result_count"], 1)
             self.assertEqual(payload["results"][0]["failure_mode"], "Background indexing stalls")
+
+    def test_preflight_term_filter_normalizes_whitespace_and_punctuation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            workspace = self._make_workspace(tmp_dir)
+            result, payload = self._run_query(
+                workspace, "preflight", "--category", "vector_database", "--term", "read only"
+            )
+
+            self.assertEqual(result.returncode, 0, msg=result.stdout + "\n" + result.stderr)
+            self.assertEqual(payload["result_count"], 1)
+            self.assertEqual(
+                payload["results"][0]["failure_mode"],
+                "Read-only startup fails after lockfile recovery",
+            )
+
+    def test_preflight_term_filter_normalizes_hyphenated_terms(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            workspace = self._make_workspace(tmp_dir)
+            result, payload = self._run_query(
+                workspace, "preflight", "--category", "vector_database", "--term", "multi gpu"
+            )
+
+            self.assertEqual(result.returncode, 0, msg=result.stdout + "\n" + result.stderr)
+            self.assertEqual(payload["result_count"], 1)
+            self.assertEqual(payload["results"][0]["failure_mode"], "NCCL timeout errors in multi-GPU")
 
     def test_preflight_evidence_notes_capped_at_two(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:

@@ -856,7 +856,7 @@ In `--frequency` mode, `scope_repo_count` counts distinct repos in the selected 
 **Usage**
 
 ```bash
-python3 tools/query_master.py preflight --category <category> [--term <substring>] [--limit <n>]
+python3 tools/query_master.py preflight --category <category> [--term <phrase>] [--limit <n>]
 ```
 
 **Arguments**
@@ -864,7 +864,7 @@ python3 tools/query_master.py preflight --category <category> [--term <substring
 | Argument | Required | Default | Description |
 |---|---|---|---|
 | `--category` | Required | None | Exact repo category to scope results (case-insensitive). |
-| `--term` | Optional | empty string | Substring filter applied to both `object_value` and `note` (case-insensitive). |
+| `--term` | Optional | empty string | Case-insensitive phrase filter applied to both `object_value` and `note`; also normalizes punctuation/whitespace so `multi gpu` matches `multi-GPU` and `read only` matches `read-only`. |
 | `--limit` | Optional | `5` | Max failure modes to return. |
 
 **Output keys**
@@ -922,6 +922,8 @@ Returns only failure modes whose `object_value` or `note` contains "batch".
 **Notes**
 
 `scope_repo_count` counts distinct repos in the category that have at least one `has_failure_mode` fact, before any `--term` narrowing. `repo_fraction` is always relative to this unfiltered scope.
+
+`--term` first tries a direct case-insensitive substring match, then retries against a normalized text form that replaces punctuation runs with spaces. This improves prompt-shaped queries without introducing synonym inference.
 
 `evidence_notes` draws from the `note` field of matching `has_failure_mode` facts. Empty notes are skipped. At most 2 distinct snippets are included per failure mode.
 

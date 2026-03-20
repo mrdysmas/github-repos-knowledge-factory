@@ -16,6 +16,7 @@ import argparse
 from collections import defaultdict
 import hashlib
 import json
+import re
 import sqlite3
 import time
 from pathlib import Path
@@ -36,6 +37,31 @@ def dump_yaml(payload: Any) -> str:
         allow_unicode=False,
         default_flow_style=False,
     )
+
+
+def normalize_term_text(value: str) -> str:
+    value = re.sub(r"[^0-9A-Za-z]+", " ", value.casefold())
+    return " ".join(value.split())
+
+
+def term_matches_texts(term_filter: str, *texts: str) -> bool:
+    if not term_filter:
+        return True
+
+    literal = term_filter.casefold()
+    normalized_term = normalize_term_text(term_filter)
+    if not normalized_term:
+        return False
+
+    for text in texts:
+        if not text:
+            continue
+        lowered = text.casefold()
+        if literal in lowered:
+            return True
+        if normalized_term in normalize_term_text(text):
+            return True
+    return False
 
 
 def sha256_file(path: Path) -> str:
@@ -678,22 +704,16 @@ def command_preflight_sqlite(
     predicate = "has_failure_mode"
     NOTE_MAX_LEN = 120
 
-    clauses = ["f.predicate = ?", "r.category = ? COLLATE NOCASE"]
-    params: list[Any] = [predicate, category_filter]
-    if term_filter:
-        clauses.append("(f.object_value LIKE ? COLLATE NOCASE OR f.note LIKE ? COLLATE NOCASE)")
-        params.extend([f"%{term_filter}%", f"%{term_filter}%"])
-    where_clause = " AND ".join(clauses)
-
     scope_repo_count = get_pattern_scope_repo_count(conn, predicate, category_filter)
 
     rows = conn.execute(
         "SELECT DISTINCT r.node_id, r.name, r.github_full_name, f.object_value, f.note "
         "FROM facts f "
         "JOIN repos r ON f.node_id = r.node_id "
-        f"WHERE {where_clause} "
+        "WHERE f.predicate = ? "
+        "  AND r.category = ? COLLATE NOCASE "
         "ORDER BY r.name, f.object_value",
-        params,
+        [predicate, category_filter],
     ).fetchall()
 
     grouped_examples: dict[str, list[str]] = defaultdict(list)
@@ -702,6 +722,8 @@ def command_preflight_sqlite(
     grouped_results_by_value: dict[str, dict[str, Any]] = {}
 
     for node_id, name, github_full_name, object_value, note in rows:
+        if not term_matches_texts(term_filter, object_value or "", note or ""):
+            continue
         result = grouped_results_by_value.setdefault(
             object_value,
             {
