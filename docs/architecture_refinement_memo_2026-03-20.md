@@ -43,6 +43,8 @@ This also implies a broader efficiency framing:
 
 - the system should help smaller or cheaper models produce better coding decisions
   by supplying structured implementation priors
+- the system should also reduce avoidable exploration and repair work for
+  stronger flagship models
 
 In other words, the architectural value is not tied only to local deployment.
 It is tied to low-cost inference plus non-inferable cross-repo advisory context.

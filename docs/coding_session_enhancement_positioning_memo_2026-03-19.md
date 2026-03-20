@@ -189,6 +189,19 @@ This applies in both settings:
 - cloud-hosted smaller/faster models used for cheap evaluation or daily work
 - locally hosted smaller models used for privacy, control, or predictable cost
 
+It also applies to stronger flagship models.
+
+If the advisory layer works well, those models should spend less effort on:
+
+- exploratory solution thrashing
+- code shaped by weak inferred assumptions
+- cleanup and repair after an initially plausible but poorly grounded implementation
+
+So the project should help on both ends:
+
+- smaller models perform above their weight
+- stronger models waste less time and money on avoidable exploration and rework
+
 So the main win is not merely local hosting.
 The main win is making lower-cost models behave more intelligently in coding
 sessions by giving them non-inferable cross-repo advisory context.
