@@ -10,12 +10,22 @@ phase:
   date_completed: null
 
 objective: |
-  TBD. Candidate themes under discussion:
-  - Pipeline architecture (major refactor; scope still being discovered)
-  - Corpus maintenance (backfill quality, provenance propagation, soft audit baseline)
-  - Ontology extension (archetype criteria, singleton cluster handling)
+  Phase 5 will strengthen the project as a coding-session advisory substrate.
+  The phase is anchored on the seven coding-session questions and constrained by
+  a non-inferability rule: core system value must come from cross-repo advisory
+  knowledge that cannot be derived by inspecting the target repository alone.
+  Candidate themes under discussion:
+  - Query-surface refinement around the 7 anchor questions
+  - Ontology tightening in support of advisory usefulness
+  - Pipeline architecture improvements that strengthen trust and query quality
+  - Corpus maintenance where it improves advisory coverage or typicality signals
 
-definition_of_done: []
+definition_of_done:
+  - "Phase 5 scope is explicitly mapped to the 7 coding-session anchor questions."
+  - "Non-inferability is documented as an architectural acceptance criterion for core query/schema work."
+  - "At least one near-term work item is defined to strengthen question-shaped querying rather than raw table access."
+  - "Phase 5 planning distinguishes canonical knowledge work from workflow/tooling support layers."
+  - "Planned ontology or pipeline changes justify how they improve advisory usefulness for one or more anchor questions."
 
 baseline:
   # Captured at Phase 4 closeout (2026-03-20)
@@ -28,11 +38,16 @@ baseline:
   unmatched_repos: 32
 
 open_threads:
-  - "Phase 5 scope and definition of done pending supervisor decision."
+  - "Translate the 7 anchor questions into concrete acceptance criteria and planned work — see beads github_repos-byr."
+  - "Review the architecture refinement memo and convert it into Phase 5 planning guidance — see beads github_repos-n14."
+  - "Validate or refine the 7 questions using coding-agent principles research — see docs/coding_agent_principles_research_memo_2026-03-20.md and beads github_repos-th0."
   - "Pipeline refactor scope still being discovered — see beads github_repos-6kb."
   - "32 unmatched repos with no clear new archetype clusters — see beads github_repos-air."
   - "Corpus maintenance track open — see beads github_repos-7yf."
 
 evidence_refs:
   - "project_status.yaml"
+  - "docs/architecture_refinement_memo_2026-03-20.md"
+  - "docs/coding_agent_principles_research_memo_2026-03-20.md"
+  - "docs/coding_session_enhancement_positioning_memo_2026-03-19.md"
   - "archive/phase_4_progress_tracker.yaml"

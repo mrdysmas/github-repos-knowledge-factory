@@ -117,6 +117,30 @@ They should remain clearly separate from:
 
 This separation will make future tooling changes cheaper and less disruptive.
 
+### 5.6 Make non-inferability an architectural constraint
+
+The system should be judged not only by whether it is correct, but also by
+whether it provides knowledge that the agent could not have obtained by simply
+reading the target repository.
+
+This means the core should prioritize:
+
+- cross-repo pattern distributions
+- failure-mode norms and preflight warnings
+- solution-variant comparisons
+- typicality or atypicality signals
+- reference-repo selection guidance
+
+And it should avoid treating these as core responsibilities:
+
+- reproducing target-repo structure
+- repeating README or setup information
+- surfacing standard build or test commands
+- restating facts an agent would discover in its first few local searches
+
+Non-inferability should therefore act as an acceptance filter for future query,
+schema, and extraction work.
+
 ## 6. Revision to the Original Proposal
 
 The most important refinement to the ground-up proposal is this:
