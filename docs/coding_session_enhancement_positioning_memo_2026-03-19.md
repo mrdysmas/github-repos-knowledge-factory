@@ -171,6 +171,28 @@ The value is:
 - it wastes less time exploring weak branches
 - it asks better questions before coding
 
+## 6.1 Broader value proposition
+
+The strategic value is broader than "local model support."
+
+The project should be understood as an efficiency multiplier for coding agents,
+especially smaller or cheaper ones, because it supplies structured
+implementation priors instead of forcing the model to recover that context
+through fuzzy recall or ad hoc research.
+
+That means the core value proposition is:
+
+- low-cost inference plus structured implementation priors
+
+This applies in both settings:
+
+- cloud-hosted smaller/faster models used for cheap evaluation or daily work
+- locally hosted smaller models used for privacy, control, or predictable cost
+
+So the main win is not merely local hosting.
+The main win is making lower-cost models behave more intelligently in coding
+sessions by giving them non-inferable cross-repo advisory context.
+
 ## 7. The most important design principle
 
 The tool should improve judgment before implementation.

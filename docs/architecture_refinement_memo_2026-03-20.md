@@ -39,6 +39,14 @@ That means its job is to improve implementation judgment before code changes are
 
 It should be optimized to answer a small set of advisory questions well, not to maximize general knowledge capture.
 
+This also implies a broader efficiency framing:
+
+- the system should help smaller or cheaper models produce better coding decisions
+  by supplying structured implementation priors
+
+In other words, the architectural value is not tied only to local deployment.
+It is tied to low-cost inference plus non-inferable cross-repo advisory context.
+
 ## 4. What Still Looks Correct
 
 The following elements should remain architectural constants unless a strong counterexample appears:
