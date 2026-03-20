@@ -25,7 +25,7 @@ augmentation_provenance:
   extraction_agent: claude-sonnet-4-6
   session_date: '2026-03-20'
   version_anchor: null
-  notes: "Partial verification pass on troubleshooting[3] (silent CPU fallback). NEXA_TOKEN mechanism and fix commands confirmed via shallow clone (NexaAI/nexa-sdk@main). Silent-fallback behavioral claim unverifiable — enforcement is in closed-source C binary. Entry confidence downgraded to 0.55; verification_note added."
+  notes: "Verification pass on all troubleshooting entries via shallow clone (NexaAI/nexa-sdk@main). troubleshooting[0,1,2]: error constants confirmed in runner/nexa-sdk/ml.go — confidence upgraded to 0.80. troubleshooting[3] (silent CPU fallback): NEXA_TOKEN mechanism confirmed, behavioral claim unverifiable (closed-source C binary) — confidence 0.55."
 description: On-device AI SDK with NPU acceleration
 primary_language: Go
 languages: [Go, Python]
@@ -131,14 +131,20 @@ troubleshooting:
   - symptom: "SDKError(ML_ERROR_COMMON_PLUGIN_LOAD) when specifying plugin_id 'npu'"
     cause: "The NPU backend shared library for the target hardware (Qualcomm Hexagon, Apple ANE, Intel NPU, AMD NPU) is not present or not loadable on the current device"
     fix: "Verify the device matches a supported NPU platform; run 'nexa infer' without plugin_id to fall back to CPU/GPU; on Android ensure extractNativeLibs=true in AndroidManifest.xml"
+    confidence: 0.8
+    verification_note: "Error constant ML_ERROR_COMMON_PLUGIN_LOAD confirmed in runner/nexa-sdk/ml.go (ErrCommonPluginLoad). Cause/fix inferred from architecture."
 
   - symptom: "SDKError(ML_ERROR_COMMON_MODEL_LOAD) during model initialization"
     cause: "Model file is corrupted, the quantization level requested is not present in the downloaded artifact, or the model format (GGUF, MLX, NEXA) is not compatible with the selected backend"
     fix: "Re-download the model with 'nexa pull <model>', confirm the quant tag matches an available variant, and verify the format is supported by the target plugin"
+    confidence: 0.8
+    verification_note: "Error constant ML_ERROR_COMMON_MODEL_LOAD confirmed in runner/nexa-sdk/ml.go (ErrCommonModelLoad). Cause/fix inferred from architecture."
 
   - symptom: "ML_ERROR_LLM_TOKENIZATION_CONTEXT_LENGTH error during inference"
     cause: "Input token count exceeds the model's configured context length limit"
     fix: "Shorten the prompt or set a smaller max_tokens in GenerationConfig; for longer contexts use a model variant with a larger context window"
+    confidence: 0.8
+    verification_note: "Error constant ML_ERROR_LLM_TOKENIZATION_CONTEXT_LENGTH confirmed in runner/nexa-sdk/ml.go (ErrLlmTokenizationContextLength). Cause/fix inferred from architecture."
 
   - symptom: "NPU inference silently falls back to CPU with no error message"
     cause: "NEXA_TOKEN environment variable is not set or holds an invalid license key; NPU components require a valid per-device license token"
