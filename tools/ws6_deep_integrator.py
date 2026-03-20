@@ -2152,8 +2152,19 @@ def extract_failure_mode_facts(section: Any, source_file: str, as_of: str) -> li
                 f"cause: {ensure_string(row.get('cause'))}" if ensure_string(row.get("cause")) else "",
                 f"fix: {ensure_string(row.get('fix'))}" if ensure_string(row.get("fix")) else "",
                 f"solution: {ensure_string(row.get('solution'))}" if ensure_string(row.get("solution")) else "",
+                f"verification_note: {ensure_string(row.get('verification_note'))}" if ensure_string(row.get("verification_note")) else "",
             ]
         )
+        # Per-entry confidence override: set confidence: <float> on a troubleshooting row to
+        # signal partial verification or sourcing uncertainty. Falls back to 0.74 default.
+        raw_conf = row.get("confidence")
+        try:
+            confidence = float(raw_conf) if raw_conf is not None else 0.74
+            if not (0.0 <= confidence <= 1.0):
+                confidence = 0.74
+        except (TypeError, ValueError):
+            confidence = 0.74
+
         section_ref = f"troubleshooting[{idx}]"
         facts.append(
             make_fact(
@@ -2162,7 +2173,7 @@ def extract_failure_mode_facts(section: Any, source_file: str, as_of: str) -> li
                 object_kind="issue",
                 object_value=symptom,
                 note=note,
-                confidence=0.74,
+                confidence=confidence,
                 as_of=as_of,
                 source_file=source_file,
                 source_section=section_ref,

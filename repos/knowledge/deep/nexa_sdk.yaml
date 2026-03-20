@@ -20,6 +20,12 @@ augmentation_provenance:
   extraction_agent: claude-sonnet-4-6
   session_date: '2026-03-18'
   version_anchor: null
+- sections: [troubleshooting]
+  sourcing_method: mixed
+  extraction_agent: claude-sonnet-4-6
+  session_date: '2026-03-20'
+  version_anchor: null
+  notes: "Partial verification pass on troubleshooting[3] (silent CPU fallback). NEXA_TOKEN mechanism and fix commands confirmed via shallow clone (NexaAI/nexa-sdk@main). Silent-fallback behavioral claim unverifiable — enforcement is in closed-source C binary. Entry confidence downgraded to 0.55; verification_note added."
 description: On-device AI SDK with NPU acceleration
 primary_language: Go
 languages: [Go, Python]
@@ -137,6 +143,8 @@ troubleshooting:
   - symptom: "NPU inference silently falls back to CPU with no error message"
     cause: "NEXA_TOKEN environment variable is not set or holds an invalid license key; NPU components require a valid per-device license token"
     fix: "Set NEXA_TOKEN to the key from sdk.nexa.ai/model, or run 'nexa config set license <token>' to persist it; free personal-use keys are available for single-device activation"
+    confidence: 0.55
+    verification_note: "NEXA_TOKEN env var and nexa config set license confirmed in source (runner/cmd/nexa-cli/main.go, runner/nexa-sdk/ml.go). Silent CPU fallback behavioral claim unverifiable — NPU enforcement lives in closed-source precompiled C binary. Mechanism is plausible; behavior not code-confirmed."
 
   - symptom: "nexa serve fails to start with 'address already in use' on port 18181"
     cause: "Another process is already bound to the default server port 18181"
