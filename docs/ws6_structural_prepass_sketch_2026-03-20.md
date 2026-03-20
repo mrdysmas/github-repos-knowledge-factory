@@ -86,6 +86,100 @@ Instead:
 
 This preserves the existing trust boundary.
 
+## 5.1 Pre-Pass Signal Strategy
+
+The main design question is not "should the pre-pass use AST?"
+
+The real question is:
+
+- which structural signals give the best orientation value
+- at the lowest noise cost
+- while staying compatible with the canonical ontology
+
+The pre-pass should therefore be defined as a **selective structural scaffold**, not a maximal code-analysis pass.
+
+Recommended signal ladder, from cheapest and safest to more complex and noisy:
+
+1. filesystem and package layout
+2. build manifests and dependency manifests
+3. entrypoints and runtime surface files
+4. framework conventions
+5. config and routing files
+6. imports and dependency declarations
+7. targeted AST parsing where the earlier layers are not enough
+8. optional dependency or call-graph enrichment only if justified later
+
+This ordering matters.
+
+The highest-value structural cues are often simpler than AST:
+
+- directory layout
+- `pyproject.toml`, `package.json`, `go.mod`, `Cargo.toml`
+- application entry files
+- framework-standard folders and conventions
+- config files and route declarations
+
+AST is useful, but it should be used selectively.
+
+If used indiscriminately, AST can increase noise by:
+
+- over-fragmenting repos into symbol trivia
+- producing component candidates that do not match human-meaningful subsystems
+- creating misleading graph edges, especially in dynamic languages
+- tempting the pipeline to over-materialize inferable structure
+
+So the design principle is:
+
+- prefer the cheapest structural signal that answers the orientation question well enough
+- escalate to AST only when simpler signals are insufficient
+- treat graph-native structure as a later escalation, not the default baseline
+
+## 5.2 Implications for the Current Evaluation Issues
+
+This signal strategy sharpens the meaning of the current helper-tool evaluations.
+
+### `github_repos-5n8` Kodit-style retrieval/indexing
+
+This should be evaluated as the **simple baseline**.
+The question is not whether Kodit has AST.
+The question is whether a Kodit-style helper can improve structural orientation and evidence-finding without importing too much system complexity.
+
+The evaluation should therefore look for:
+
+- file/manifests/entrypoint discovery support
+- targeted code retrieval support
+- whether AST-backed slicing improves orientation beyond simpler indexing
+- whether the tool helps extraction without pressuring the ontology toward parser-shaped facts
+
+### `github_repos-6ju` graph-native extraction helper
+
+This should remain conditional.
+It becomes relevant only if the simpler baseline is too shallow for:
+
+- subsystem grouping
+- cross-file structural traversal
+- dependency-aware evidence discovery
+- orientation in large or highly modular repos
+
+Graph-native tooling should be treated as an escalation path, not as the presumed right architecture.
+
+### `github_repos-kfk` pre-pass artifact contract
+
+The artifact contract should reflect the signal ladder directly.
+
+That means:
+
+- prefer fields grounded in filesystem, manifests, entrypoints, config, and imports
+- include AST-derived fields only when they materially improve orientation or selected structural fact generation
+- require every richer structural claim to carry clear evidence and limitations
+- avoid contract fields that force the artifact to mirror a full code graph
+
+In short:
+
+- `github_repos-5n8` tests the simple baseline
+- `github_repos-6ju` tests the escalation path only if needed
+- `github_repos-kfk` should encode the narrow contract that falls out of those findings
+
 ## 6. Proposed Artifact Shape
 
 Suggested artifact location:
