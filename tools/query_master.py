@@ -182,7 +182,7 @@ def load_master_artifacts(workspace_root: Path, master_index_path: str, master_g
 def command_contract() -> dict[str, Any]:
     return {
         "artifact_type": "master_query_cli_contract",
-        "version": "1.4.0",
+        "version": "1.5.0",
         "commands": {
             "contract": "Show this CLI contract.",
             "stats": "Show top-level counts from master artifacts.",
@@ -194,6 +194,7 @@ def command_contract() -> dict[str, Any]:
             "graph": "Graph traversal from a starting repo (sqlite only).",
             "aggregate": "Corpus-level statistics by dimension (sqlite only).",
             "preflight": "Pre-implementation failure-mode warning brief by category (sqlite only).",
+            "riskcheck": "Category-norm implementation risk brief by category (sqlite only).",
         },
         "identifier_resolution_order": ["node_id", "name", "github_full_name"],
         "default_paths": {
@@ -922,6 +923,127 @@ def command_aggregate_sqlite(
     }
 
 
+def _riskcheck_bucket(item: dict[str, Any]) -> str:
+    cnt = item["matched_repo_count"]
+    frac = item["matched_repo_fraction"]
+    if cnt == 0:
+        return "absent"
+    elif cnt >= 2 and frac >= 0.20:
+        return "established"
+    else:
+        return "rare"
+
+
+def command_riskcheck_sqlite(
+    conn: sqlite3.Connection,
+    category: str,
+    patterns: list[str],
+    components: list[str],
+    protocols: list[str],
+    limit: int,
+) -> tuple[int, dict[str, Any]]:
+    row = conn.execute(
+        "SELECT COUNT(*) FROM repos WHERE category = ? COLLATE NOCASE",
+        (category,),
+    ).fetchone()
+    scope_repo_count = int(row[0]) if row else 0
+
+    predicate_map = [
+        ("pattern", patterns, "implements_pattern"),
+        ("component", components, "has_component"),
+        ("protocol", protocols, "uses_protocol"),
+    ]
+
+    signal_items: list[dict[str, Any]] = []
+    for input_kind, terms, predicate in predicate_map:
+        for input_term in terms:
+            rows = conn.execute(
+                "SELECT DISTINCT r.node_id, r.github_full_name, r.name, f.object_value "
+                "FROM facts f "
+                "JOIN repos r ON f.node_id = r.node_id "
+                "WHERE f.predicate = ? "
+                "  AND r.category = ? COLLATE NOCASE "
+                "  AND f.object_value LIKE ? COLLATE NOCASE "
+                "ORDER BY r.name, f.object_value",
+                (predicate, category, f"%{input_term}%"),
+            ).fetchall()
+
+            seen_repos: set[str] = set()
+            seen_values: set[str] = set()
+            matched_repo_count = 0
+            matched_values: list[str] = []
+            example_repos: list[str] = []
+
+            for node_id, github_full_name, name, object_value in rows:
+                if object_value not in seen_values and len(matched_values) < 3:
+                    matched_values.append(object_value)
+                    seen_values.add(object_value)
+                if node_id not in seen_repos:
+                    seen_repos.add(node_id)
+                    matched_repo_count += 1
+                    if len(example_repos) < 3:
+                        example_repos.append(github_full_name or name or node_id)
+
+            matched_repo_fraction = (
+                round(matched_repo_count / scope_repo_count, 4) if scope_repo_count else 0.0
+            )
+            signal_items.append({
+                "input_kind": input_kind,
+                "input_term": input_term,
+                "predicate": predicate,
+                "matched_repo_count": matched_repo_count,
+                "matched_repo_fraction": matched_repo_fraction,
+                "matched_values": matched_values,
+                "example_repos": example_repos,
+            })
+
+    def _sort_key(item: dict[str, Any]) -> tuple:
+        return (-item["matched_repo_count"], item["input_term"].casefold())
+
+    established = sorted(
+        [s for s in signal_items if _riskcheck_bucket(s) == "established"], key=_sort_key
+    )
+    rare = sorted(
+        [s for s in signal_items if _riskcheck_bucket(s) == "rare"], key=_sort_key
+    )
+    absent = sorted(
+        [s for s in signal_items if _riskcheck_bucket(s) == "absent"],
+        key=lambda s: s["input_term"].casefold(),
+    )
+
+    all_signals = established + rare + absent
+    if limit > 0 and len(all_signals) > limit:
+        all_signals = all_signals[:limit]
+        established = [s for s in all_signals if _riskcheck_bucket(s) == "established"]
+        rare = [s for s in all_signals if _riskcheck_bucket(s) == "rare"]
+        absent = [s for s in all_signals if _riskcheck_bucket(s) == "absent"]
+
+    proposal: dict[str, Any] = {}
+    if patterns:
+        proposal["patterns"] = patterns
+    if components:
+        proposal["components"] = components
+    if protocols:
+        proposal["protocols"] = protocols
+
+    return 0, {
+        "artifact_type": "master_query_riskcheck",
+        "category_filter": category,
+        "scope_repo_count": scope_repo_count,
+        "proposal": proposal,
+        "signal_counts": {
+            "established_in_category": len(established),
+            "rare_in_category": len(rare),
+            "absent_from_category": len(absent),
+        },
+        "signals": {
+            "established_in_category": established,
+            "rare_in_category": rare,
+            "absent_from_category": absent,
+        },
+    }
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Minimal query CLI for canonical master artifacts.")
     parser.add_argument("--workspace-root", default=".", help="Workspace root path.")
@@ -1020,6 +1142,38 @@ def main() -> int:
     )
     aggregate_parser.add_argument("--top", type=int, default=20, help="Max groups to return.")
 
+    riskcheck_parser = subparsers.add_parser(
+        "riskcheck", help="Category-norm implementation risk brief (sqlite only)."
+    )
+    riskcheck_parser.add_argument(
+        "--category", required=True, help="Repo category to scope results (case-insensitive)."
+    )
+    riskcheck_parser.add_argument(
+        "--pattern",
+        dest="patterns",
+        action="append",
+        default=[],
+        metavar="TERM",
+        help="Proposed pattern term (repeatable). Maps to implements_pattern.",
+    )
+    riskcheck_parser.add_argument(
+        "--component",
+        dest="components",
+        action="append",
+        default=[],
+        metavar="TERM",
+        help="Proposed component term (repeatable). Maps to has_component.",
+    )
+    riskcheck_parser.add_argument(
+        "--protocol",
+        dest="protocols",
+        action="append",
+        default=[],
+        metavar="TERM",
+        help="Proposed protocol term (repeatable). Maps to uses_protocol.",
+    )
+    riskcheck_parser.add_argument("--limit", type=int, default=5, help="Max signals to return.")
+
     args = parser.parse_args()
 
     if args.command == "contract":
@@ -1075,6 +1229,21 @@ def main() -> int:
                     args.term.strip(),
                     args.limit,
                 )
+            elif args.command == "riskcheck":
+                if not args.patterns and not args.components and not args.protocols:
+                    body = {
+                        "error": "riskcheck requires at least one of --pattern, --component, or --protocol."
+                    }
+                    code = 2
+                else:
+                    code, body = command_riskcheck_sqlite(
+                        conn,
+                        args.category.strip(),
+                        args.patterns,
+                        args.components,
+                        args.protocols,
+                        args.limit,
+                    )
             else:
                 body = {"error": f"Unhandled command: {args.command}"}
                 code = 2
@@ -1086,7 +1255,7 @@ def main() -> int:
         finally:
             conn.close()
 
-    if args.command in ("search", "pattern", "graph", "aggregate", "preflight"):
+    if args.command in ("search", "pattern", "graph", "aggregate", "preflight", "riskcheck"):
         print(f"ERROR: '{args.command}' requires --source sqlite. These commands need the SQLite read model.")
         print("Run: python3 tools/ws7_read_model_compiler.py --workspace-root .")
         return 1

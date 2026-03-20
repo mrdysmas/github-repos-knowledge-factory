@@ -925,7 +925,131 @@ Returns only failure modes whose `object_value` or `note` contains "batch".
 
 `evidence_notes` draws from the `note` field of matching `has_failure_mode` facts. Empty notes are skipped. At most 2 distinct snippets are included per failure mode.
 
-## 9. graph
+## 9. riskcheck
+
+**Purpose:** Category-norm implementation risk brief. For each proposed term, reports whether it is established, rare, or absent in the current corpus for the chosen category.
+
+**Usage**
+
+```bash
+python3 tools/query_master.py riskcheck \
+  --category <category> \
+  [--pattern "<term>"]... \
+  [--component "<term>"]... \
+  [--protocol "<term>"]... \
+  [--limit 5]
+```
+
+**Arguments**
+
+| Argument | Required | Default | Description |
+|---|---|---|---|
+| `--category` | Required | None | Exact repo category to scope results (case-insensitive). |
+| `--pattern` | Optional (repeatable) | none | Proposed pattern term. Substring-matched against `implements_pattern`. |
+| `--component` | Optional (repeatable) | none | Proposed component term. Substring-matched against `has_component`. |
+| `--protocol` | Optional (repeatable) | none | Proposed protocol term. Substring-matched against `uses_protocol`. |
+| `--limit` | Optional | `5` | Max total signals to return. |
+
+At least one of `--pattern`, `--component`, or `--protocol` must be provided.
+
+**Predicate mapping**
+
+| Flag | Predicate |
+|---|---|
+| `--pattern` | `implements_pattern` |
+| `--component` | `has_component` |
+| `--protocol` | `uses_protocol` |
+
+**Signal buckets**
+
+| Bucket | Condition |
+|---|---|
+| `established_in_category` | `matched_repo_count >= 2` and `matched_repo_fraction >= 0.20` |
+| `rare_in_category` | `matched_repo_count > 0` but not established |
+| `absent_from_category` | `matched_repo_count == 0` |
+
+**Output keys**
+
+- `artifact_type: master_query_riskcheck`
+- `category_filter` — the category passed in
+- `scope_repo_count` — total repos in the category
+- `proposal` — echoed input terms grouped by type
+- `signal_counts` — count of signals per bucket
+- `signals` — per-bucket lists
+
+Each signal item:
+
+| Key | Description |
+|---|---|
+| `input_kind` | `pattern`, `component`, or `protocol` |
+| `input_term` | The term as passed in |
+| `predicate` | Mapped predicate |
+| `matched_repo_count` | Distinct repos with a matching fact |
+| `matched_repo_fraction` | `matched_repo_count / scope_repo_count` |
+| `matched_values` | Up to 3 distinct `object_value` strings matching the term |
+| `example_repos` | Up to 3 `github_full_name` values |
+
+Signals within each bucket are sorted by `matched_repo_count` descending, then `input_term` case-insensitive ascending.
+
+**Example**
+
+```bash
+$ python3 tools/query_master.py riskcheck \
+    --category agent_cli \
+    --pattern "command-driven task loop" \
+    --component "ACP server" \
+    --protocol "MCP"
+artifact_type: master_query_riskcheck
+category_filter: agent_cli
+scope_repo_count: 13
+proposal:
+  patterns:
+  - command-driven task loop
+  components:
+  - ACP server
+  protocols:
+  - MCP
+signal_counts:
+  established_in_category: 0
+  rare_in_category: 1
+  absent_from_category: 2
+signals:
+  established_in_category: []
+  rare_in_category:
+  - input_kind: pattern
+    input_term: command-driven task loop
+    predicate: implements_pattern
+    matched_repo_count: 1
+    matched_repo_fraction: 0.0769
+    matched_values:
+    - Command-driven task loop
+    example_repos:
+    - openai/codex
+  absent_from_category:
+  - input_kind: component
+    input_term: ACP server
+    predicate: has_component
+    matched_repo_count: 0
+    matched_repo_fraction: 0.0
+    matched_values: []
+    example_repos: []
+  - input_kind: protocol
+    input_term: MCP
+    predicate: uses_protocol
+    matched_repo_count: 0
+    matched_repo_fraction: 0.0
+    matched_values: []
+    example_repos: []
+# query_ms: 28
+```
+
+**Notes**
+
+`scope_repo_count` is the total number of repos in the category, regardless of which predicates they have facts for. `matched_repo_fraction` is always relative to this count.
+
+Matching is case-insensitive substring match (`LIKE ... COLLATE NOCASE`). Pass specific enough terms to avoid spurious substring hits.
+
+## 11. graph
 
 **Purpose:** Traverse repo relationships outward/inward across 1–3 hops.
 
@@ -1144,7 +1268,7 @@ edges:
 
 Per-hop edge deduplication uses `(src_id, dst_id, relation)` keys; the same relationship can still appear again at later hops if reached through a different frontier node.
 
-## 10. aggregate
+## 12. aggregate
 
 **Purpose:** Return top-N aggregate counts by selected dimension.
 
@@ -1308,7 +1432,7 @@ In YAML mode this order is explicit in code. In SQLite mode, one SQL lookup chec
 
 | Mode | What it reads | Available commands |
 |---|---|---|
-| `--source sqlite` (default) | `knowledge.db` | All 9 commands (`contract`, `stats`, `repo`, `neighbors`, `facts`, `search`, `pattern`, `graph`, `aggregate`) |
+| `--source sqlite` (default) | `knowledge.db` | All 10 commands (`contract`, `stats`, `repo`, `neighbors`, `facts`, `search`, `pattern`, `graph`, `aggregate`, `preflight`, `riskcheck`) |
 | `--source yaml` | `master_index.yaml`, `master_graph.yaml`, optional `master_deep_facts.yaml` | `contract`, `stats`, `repo`, `neighbors`, `facts` |
 
 SQLite mode protections:

@@ -1,10 +1,10 @@
 artifact_type: query_master_reference_machine
-reference_version: 1.0.0
+reference_version: 1.1.0
 generated_from:
   cli_script: tools/query_master.py
-  cli_contract_version: 1.3.0
+  cli_contract_version: 1.5.0
   human_reference: docs/query_master_reference.md
-  validated_on: "2026-03-05"
+  validated_on: "2026-03-20"
   validation_basis: live_cli_runs_against_knowledge_db
 
 global:
@@ -82,6 +82,7 @@ data_sources:
       - graph
       - aggregate
       - preflight
+      - riskcheck
     stale_read_protection:
       enabled: true
       checks:
@@ -115,6 +116,7 @@ command_order:
   - graph
   - aggregate
   - preflight
+  - riskcheck
 
 commands:
   contract:
@@ -531,6 +533,86 @@ commands:
       success: 0
       sqlite_required_error: 1
 
+  riskcheck:
+    purpose: Category-norm implementation risk brief — evaluates proposed patterns, components, and protocols against corpus distribution for a category.
+    usage: "python3 tools/query_master.py [global_flags] riskcheck --category <category> [--pattern <term>]... [--component <term>]... [--protocol <term>]... [--limit <n>]"
+    supported_sources:
+      - sqlite
+    arguments:
+      - name: --category
+        required: true
+        default: null
+        type: string
+        semantics: exact_match_case_insensitive
+      - name: --pattern
+        required: false
+        default: []
+        type: string
+        repeatable: true
+        maps_to_predicate: implements_pattern
+        semantics: substring_case_insensitive
+      - name: --component
+        required: false
+        default: []
+        type: string
+        repeatable: true
+        maps_to_predicate: has_component
+        semantics: substring_case_insensitive
+      - name: --protocol
+        required: false
+        default: []
+        type: string
+        repeatable: true
+        maps_to_predicate: uses_protocol
+        semantics: substring_case_insensitive
+      - name: --limit
+        required: false
+        default: 5
+        type: integer
+        min: 1
+    validation:
+      at_least_one_required:
+        - --pattern
+        - --component
+        - --protocol
+    output:
+      artifact_type: master_query_riskcheck
+      required_keys:
+        - artifact_type
+        - category_filter
+        - scope_repo_count
+        - proposal
+        - signal_counts
+        - signals
+      signal_counts_keys:
+        - established_in_category
+        - rare_in_category
+        - absent_from_category
+      signals_keys:
+        - established_in_category
+        - rare_in_category
+        - absent_from_category
+      signal_item_keys:
+        - input_kind
+        - input_term
+        - predicate
+        - matched_repo_count
+        - matched_repo_fraction
+        - matched_values
+        - example_repos
+      bucket_rules:
+        established: "matched_repo_count >= 2 AND matched_repo_fraction >= 0.20"
+        rare: "matched_repo_count > 0 AND NOT established"
+        absent: "matched_repo_count == 0"
+      sort_order: matched_repo_count_desc_then_input_term_casefold_asc
+      matched_values_max: 3
+      example_repos_max: 3
+      scope_repo_count_basis: total_repos_in_category
+    exits:
+      success: 0
+      validation_error: 2
+      sqlite_required_error: 1
+
 error_signatures:
   - key: knowledge_db_missing
     exit_code: 1
@@ -542,7 +624,7 @@ error_signatures:
     recommended_fix: "python3 tools/ws7_read_model_compiler.py --workspace-root ."
   - key: sqlite_only_command_in_yaml_mode
     exit_code: 1
-    pattern: "^ERROR: '(search|pattern|graph|aggregate)' requires --source sqlite\\."
+    pattern: "^ERROR: '(search|pattern|graph|aggregate|preflight|riskcheck)' requires --source sqlite\\."
     recommended_fix: "python3 tools/ws7_read_model_compiler.py --workspace-root ."
   - key: repo_identifier_not_found
     exit_code: 2
