@@ -44,23 +44,53 @@ def normalize_term_text(value: str) -> str:
     return " ".join(value.split())
 
 
+PREFLIGHT_TERM_ALIASES: dict[str, tuple[str, ...]] = {
+    # Evidence-driven alias expansion from the Q3 preflight evaluation memo.
+    "batch upsert": ("batch writes", "batch insertions"),
+    "batch upserts": ("batch writes", "batch insertions"),
+}
+
+
+def iter_term_match_variants(term_filter: str) -> list[tuple[str, str]]:
+    normalized_term = normalize_term_text(term_filter)
+    variants: list[tuple[str, str]] = []
+    seen: set[tuple[str, str]] = set()
+
+    def add_variant(raw_value: str) -> None:
+        raw = raw_value.casefold()
+        normalized = normalize_term_text(raw_value)
+        if not normalized:
+            return
+        key = (raw, normalized)
+        if key in seen:
+            return
+        seen.add(key)
+        variants.append(key)
+
+    add_variant(term_filter)
+    for alias in PREFLIGHT_TERM_ALIASES.get(normalized_term, ()):
+        add_variant(alias)
+    return variants
+
+
 def term_matches_texts(term_filter: str, *texts: str) -> bool:
     if not term_filter:
         return True
 
-    literal = term_filter.casefold()
-    normalized_term = normalize_term_text(term_filter)
-    if not normalized_term:
+    variants = iter_term_match_variants(term_filter)
+    if not variants:
         return False
 
     for text in texts:
         if not text:
             continue
         lowered = text.casefold()
-        if literal in lowered:
-            return True
-        if normalized_term in normalize_term_text(text):
-            return True
+        normalized_text = normalize_term_text(text)
+        for literal, normalized_term in variants:
+            if literal in lowered:
+                return True
+            if normalized_term in normalized_text:
+                return True
     return False
 
 
