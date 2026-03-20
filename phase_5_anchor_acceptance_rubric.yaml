@@ -1,4 +1,4 @@
-version: 1
+version: 2
 as_of_utc: "2026-03-20T00:00:00Z"
 name: "Phase 5 Anchor Acceptance Rubric"
 rationale_source: "docs/coding_agent_principles_research_memo_2026-03-20.md"
@@ -9,6 +9,45 @@ purpose: >
   core value should come from cross-repo advisory knowledge that cannot be
   derived by inspecting the target repository alone.
 
+standing_anchor_policy:
+  canonical_location: "phase_5_anchor_acceptance_rubric.yaml"
+  role: >
+    Standing Phase 5 acceptance anchor for future ontology, query, and
+    interface work.
+  rules:
+    - >
+      Future ontology, query, and interface changes should justify how they
+      improve at least one of the 7 coding-session questions.
+    - >
+      Work that does not improve at least one question should be treated as out
+      of scope for the core Phase 5 path unless explicitly exempted.
+    - >
+      The non-inferability rule remains coupled to this 7-question anchor as an
+      acceptance filter; it is not a separate design principle.
+  canonical_question_wording_source: >
+    docs/coding_session_enhancement_positioning_memo_2026-03-19.md
+  adoption_evidence:
+    Q3:
+      - path: "docs/query_master_reference.md"
+        anchor: "## 8. preflight"
+        note: >
+          The question-shaped `preflight` command is the implemented Q3 surface.
+      - path: "docs/phase5_query_gap_assessment_2026-03-20.md"
+        anchor: "### Q3: Failure-Mode Preflight"
+        note: >
+          Phase 5 planning explicitly evaluates Q3 as a question-shaped query
+          target under the non-inferability rule.
+    Q7:
+      - path: "docs/query_master_reference.md"
+        anchor: "## 9. riskcheck"
+        note: >
+          The question-shaped `riskcheck` command is the implemented Q7 surface.
+      - path: "docs/zfn_q7_slice2_spec_2026-03-20.md"
+        anchor: "## Non-Inferability Statement"
+        note: >
+          Accepted Q7 slice design explicitly links Q7 to Q3 preflight and
+          restates the cross-repo non-inferability value.
+
 pastable_block: |
   Acceptance rubric
   - Anchor question served: <Q1-Q7 or exempt>
@@ -18,13 +57,41 @@ pastable_block: |
   - Verification: <how usefulness will be checked>
 
 anchor_questions:
-  Q1: "Adjacent-pattern discovery"
-  Q2: "Likely-component discovery"
-  Q3: "Failure-mode preflight"
-  Q4: "Reference-repo selection"
-  Q5: "Solution-variant comparison"
-  Q6: "Inspection-priority guidance"
-  Q7: "Implementation-risk check"
+  Q1:
+    short_name: "Adjacent-pattern discovery"
+    canonical_question: >
+      What implementation patterns are most common in repos adjacent to this
+      project for solving <problem>?
+  Q2:
+    short_name: "Likely-component discovery"
+    canonical_question: >
+      What components should I expect to find, or need to add, when
+      implementing <feature> in a repo like this?
+  Q3:
+    short_name: "Failure-mode preflight"
+    canonical_question: >
+      What failure modes or edge cases are common when projects like this
+      implement <feature>?
+  Q4:
+    short_name: "Reference-repo selection"
+    canonical_question: >
+      Which adjacent repos are the best references for implementing <feature>,
+      and why?
+  Q5:
+    short_name: "Solution-variant comparison"
+    canonical_question: >
+      What are the main solution variants used across similar repos for
+      <problem>, and what tradeoffs do they imply?
+  Q6:
+    short_name: "Inspection-priority guidance"
+    canonical_question: >
+      Before I change code, what parts of the target repo should I inspect
+      first based on how similar repos are usually structured?
+  Q7:
+    short_name: "Implementation-risk check"
+    canonical_question: >
+      Does the implementation direction I'm considering look typical, risky, or
+      unusual compared with adjacent repos?
 
 applicability:
   principle: >
