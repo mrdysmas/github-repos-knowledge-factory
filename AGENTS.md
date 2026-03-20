@@ -116,8 +116,8 @@ bd close bd-42 --reason "Completed" --json
 bd automatically syncs via Dolt:
 
 - Each write auto-commits to Dolt history
-- Use `bd dolt push`/`bd dolt pull` for remote sync
-- No manual export/import needed!
+- **Dolt remote is NOT configured** — `bd dolt push` will fail with "remote 'origin' not found". Skip it.
+- Local Dolt history is preserved; remote sync is not available until a remote is added.
 
 ### Important Rules
 
@@ -143,10 +143,10 @@ For more details, see README.md and docs/QUICKSTART.md.
 4. **PUSH TO REMOTE** - This is MANDATORY:
    ```bash
    git pull --rebase
-   bd dolt push
    git push
    git status  # MUST show "up to date with origin"
    ```
+   Note: `bd dolt push` is NOT available — Dolt remote is not configured. Skip it.
 5. **Clean up** - Clear stashes, prune remote branches
 6. **Verify** - All changes committed AND pushed
 7. **Hand off** - Provide context for next session
