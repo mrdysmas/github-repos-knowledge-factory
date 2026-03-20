@@ -21,11 +21,19 @@ augmentation_provenance:
   session_date: '2026-03-18'
   version_anchor: null
 - sections: [troubleshooting]
-  sourcing_method: mixed
+  entry_indices: [0, 1, 2]
+  sourcing_method: code_verified
+  extraction_agent: claude-sonnet-4-6
+  session_date: '2026-03-20'
+  version_anchor: 9b0e5e6
+  notes: "Error constants ML_ERROR_COMMON_PLUGIN_LOAD, ML_ERROR_COMMON_MODEL_LOAD, ML_ERROR_LLM_TOKENIZATION_CONTEXT_LENGTH confirmed in runner/nexa-sdk/ml.go (commit 9b0e5e6d8d93f57adb151f6bd867e07b045c0281). Cause/fix inferred from architecture."
+- sections: [troubleshooting]
+  entry_indices: [3, 4, 5]
+  sourcing_method: training_knowledge
   extraction_agent: claude-sonnet-4-6
   session_date: '2026-03-20'
   version_anchor: null
-  notes: "Verification pass on all troubleshooting entries via shallow clone (NexaAI/nexa-sdk@main). troubleshooting[0,1,2]: error constants confirmed in runner/nexa-sdk/ml.go — confidence upgraded to 0.80. troubleshooting[3] (silent CPU fallback): NEXA_TOKEN mechanism confirmed, behavioral claim unverifiable (closed-source C binary) — confidence 0.55."
+  notes: "troubleshooting[3]: NEXA_TOKEN mechanism confirmed in source but silent CPU fallback unverifiable — closed-source C binary. troubleshooting[4,5]: not code-verified, architecture-inferred."
 description: On-device AI SDK with NPU acceleration
 primary_language: Go
 languages: [Go, Python]
