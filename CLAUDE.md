@@ -1,4 +1,10 @@
 <!-- BEGIN BEADS INTEGRATION v:1 profile:full hash:d4f96305 -->
+## Phase 5 Guidance
+
+- Core Phase 5 work should be checked against `phase_5_anchor_acceptance_rubric.yaml`.
+- The rubric is for ontology, extraction, query, interface, and planning-shaping work.
+- Exploratory tasks and tiny tasks may use lightweight mode or an explicit exemption instead of a full pass.
+
 ## Issue Tracking with bd (beads)
 
 **IMPORTANT**: This project uses **bd (beads)** for ALL issue tracking. Do NOT use markdown TODOs, task lists, or other tracking methods.

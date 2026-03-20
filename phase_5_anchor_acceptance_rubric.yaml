@@ -1,0 +1,144 @@
+version: 1
+as_of_utc: "2026-03-20T00:00:00Z"
+name: "Phase 5 Anchor Acceptance Rubric"
+purpose: >
+  Canonical rubric for evaluating whether proposed Phase 5 work strengthens the
+  project as a coding-session advisory substrate. The rubric is anchored on the
+  seven coding-session questions and constrained by the non-inferability rule:
+  core value should come from cross-repo advisory knowledge that cannot be
+  derived by inspecting the target repository alone.
+
+pastable_block: |
+  Acceptance rubric
+  - Anchor question served: <Q1-Q7 or exempt>
+  - Non-inferable?: <yes|partial|no>
+  - Primary layer touched: <ontology|extraction|query|interface|workflow-only>
+  - Expected advisory output: <1-2 lines>
+  - Verification: <how usefulness will be checked>
+
+anchor_questions:
+  Q1: "Adjacent-pattern discovery"
+  Q2: "Likely-component discovery"
+  Q3: "Failure-mode preflight"
+  Q4: "Reference-repo selection"
+  Q5: "Solution-variant comparison"
+  Q6: "Inspection-priority guidance"
+  Q7: "Implementation-risk check"
+
+applicability:
+  principle: >
+    The rubric should improve decision quality without turning exploratory work
+    or tiny tasks into process overhead.
+  full_required_when:
+    - "The work proposes schema, ontology, extraction, query, or interface changes."
+    - "The work changes what an agent will be told or allowed to ask."
+    - "The work is intended to shape Phase 5 priorities or acceptance criteria."
+  lightweight_allowed_when:
+    - "The task is exploratory research with no immediate architecture commitment."
+    - "The task is small but still benefits from a quick scope check."
+    - "The task is support work adjacent to core advisory functionality."
+  exempt_when:
+    - "The task is purely mechanical housekeeping with no effect on advisory behavior."
+    - "The task is status upkeep, formatting, or archival work."
+    - "The task is too small for a meaningful rubric pass and does not affect core decisions."
+  lightweight_mode:
+    description: >
+      Use a reduced pass instead of the full rubric. A lightweight pass should
+      still name the relevant anchor question or exemption reason and confirm
+      whether the task touches non-inferable advisory value.
+    minimum_fields:
+      - "Anchor question served or exemption reason"
+      - "Non-inferable? (yes|partial|no)"
+      - "One-line verification or review note"
+
+criteria:
+  anchor_question_served:
+    prompt: "Which anchor question does this work improve most directly?"
+    allowed_values:
+      - "Q1"
+      - "Q2"
+      - "Q3"
+      - "Q4"
+      - "Q5"
+      - "Q6"
+      - "Q7"
+      - "exempt"
+    reasoning: >
+      If a task does not improve at least one anchor question, it is unlikely to
+      belong in the core Phase 5 path. This keeps the project centered on its
+      advisory use case rather than expanding into generic tooling.
+  non_inferability:
+    prompt: >
+      Does the task improve knowledge the agent could not obtain just by reading
+      the target repository?
+    allowed_values:
+      - "yes"
+      - "partial"
+      - "no"
+    reasoning: >
+      Non-inferability is the architectural constraint validated by the coding
+      agent research memo. Cross-repo patterns, failure-mode norms, typicality
+      judgments, and reference-repo guidance are core. Repo-local facts an agent
+      can discover quickly are not.
+  primary_layer_touched:
+    prompt: "Which layer is the smallest correct place for this change?"
+    allowed_values:
+      - "ontology"
+      - "extraction"
+      - "query"
+      - "interface"
+      - "workflow-only"
+    reasoning: >
+      This prevents broad, leaky changes and reinforces the preference for
+      changing the smallest layer that actually improves advisory usefulness.
+  expected_advisory_output:
+    prompt: >
+      What better advisory answer should the system produce if this work
+      succeeds?
+    reasoning: >
+      The project surface is an advisory query layer, not raw tables. This field
+      forces each task to describe a user-facing improvement such as a pattern
+      comparison, risk brief, or reference-repo recommendation.
+  verification:
+    prompt: "How will we verify this improves advisory usefulness?"
+    reasoning: >
+      The project should not accept changes based only on plausibility. This
+      field requires an explicit check, such as question-based examples, before
+      and after comparisons, or review against a small set of sample prompts.
+
+decision_rules:
+  pass:
+    conditions:
+      - "Clearly improves at least one anchor question."
+      - "Non-inferability is yes, or partial with a strong justification."
+      - "Expected advisory output is concrete."
+      - "Verification is specific enough to run or review."
+  review_carefully:
+    conditions:
+      - "Improves an anchor question only indirectly."
+      - "Non-inferability is partial and the repo-local overlap is significant."
+      - "Primary layer touched feels larger than necessary."
+  out_of_scope:
+    conditions:
+      - "Does not improve an anchor question."
+      - "Primarily adds inferable repo-local knowledge."
+      - "Introduces complexity without a clear advisory-output gain."
+
+non_inferable_examples:
+  include:
+    - "Cross-repo pattern distributions"
+    - "Typical versus atypical implementation signals"
+    - "Common failure modes by archetype or feature type"
+    - "Reference repos that best illustrate a solution path"
+    - "Solution-variant comparisons across adjacent repos"
+  exclude:
+    - "Target repo file structure"
+    - "README summaries"
+    - "Standard build or test commands"
+    - "Facts discoverable in the first few grep/read steps"
+
+usage_notes:
+  - "Use the full rubric for core Phase 5 architecture work."
+  - "Use lightweight mode for exploratory or very small tasks."
+  - "Exemption is allowed, but the reason should be explicit."
+  - "The rubric is a filter for decision quality, not a gate for every tiny task."

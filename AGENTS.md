@@ -19,6 +19,7 @@ Default mode is execution and supervision, not exploration.
 
 - Current status source of truth: `project_status.yaml`.
 - Historical phase tracker and evidence narrative: `master_graph_merge_progress.yaml`.
+- Phase 5 work-selection rubric: `phase_5_anchor_acceptance_rubric.yaml` (use this for core Phase 5 architecture/query/ontology/interface work; lightweight mode or exemption is allowed for exploratory or tiny tasks).
 - Canonical generated artifacts: `master_index.yaml` and `master_graph.yaml`.
 - Canonical update path: `inputs/ws5/ws5_input_manifest.yaml` -> `tools/ws5_remote_ingestion.py` -> WS1/trust/validate gates on `repos/knowledge` -> `tools/ws4_master_compiler.py` -> `tools/ws7_read_model_compiler.py`.
 - Deep narrative output contract: `contracts/deep_narrative_contract.md` (governs all WS6-compatible deep YAML production).
@@ -45,6 +46,12 @@ Required command to add a new candidate:
 
 - Any `required_commands` or `first_commands` entries in status/runbook artifacts must be directly executable from repo root.
 - Do not use pseudo-command aliases (example: `spec.yaml --run-validation-suite`); use canonical interpreter-prefixed commands (example: `python3 tools/ws6_deep_integrator.py ...`).
+
+## Phase 5 Acceptance Rubric
+
+- For core Phase 5 work that changes ontology, extraction, query behavior, interface semantics, or planning guidance, consult `phase_5_anchor_acceptance_rubric.yaml`.
+- Treat the rubric as a decision-quality filter, not universal bureaucracy.
+- Use lightweight mode or explicit exemption for exploratory tasks or very small tasks where a full pass would be overhead.
 
 <!-- BEGIN BEADS INTEGRATION v:1 profile:full hash:d4f96305 -->
 ## Issue Tracking with bd (beads)
