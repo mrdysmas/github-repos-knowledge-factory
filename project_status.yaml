@@ -238,7 +238,7 @@ todo:
 next_agent_handoff:
   if_user_asks: "What now? What should we work on?"
   answer:
-    current_focus: "Phase 4 is closed (2026-03-20). Phase 5 scope is in PLANNING. Architectural guidance is now centered on docs/architecture_refinement_memo_2026-03-20.md, phase_5_anchor_acceptance_rubric.yaml, and the anchor task github_repos-byr. Open beads issues cover: pipeline refactor (github_repos-6kb), ontology extension (github_repos-air), corpus maintenance (github_repos-7yf), adjacent-systems review (github_repos-65v), Dolt integration (github_repos-7y1), Kodit retrieval eval (github_repos-5n8)."
+    current_focus: "Phase 4 is closed (2026-03-20). Phase 5 scope remains in PLANNING, but the anchor policy and architecture refinement guidance are now translated into concrete planning inputs. Immediate emphasis is Q3-first query refinement and other smallest-layer improvements that strengthen the 7 question-shaped advisory surface before new packaging or infrastructure expansion."
     read_first:
       - "project_status.yaml"
       - "phase_5_progress_tracker.yaml"
@@ -248,11 +248,11 @@ next_agent_handoff:
       - "archive/phase_4_progress_tracker.yaml"
     immediate_next_step:
       id: "P5_SCOPE_DEFINITION"
-      objective: "Define Phase 5 objectives and definition of done around the seven coding-session questions as the architectural anchor. Candidates: query-surface refinement, ontology tightening, pipeline refactor, corpus maintenance. Run 'bd ready' to see current open issues."
+      objective: "Select the next Phase 5 work item using the 7-question anchor and the architecture-refinement planning inputs already recorded in phase_5_progress_tracker.yaml. Default bias: Q3-first query-surface work, then other smallest-layer changes that improve advisory usefulness without new surface or infrastructure sprawl."
       first_commands:
         - "git status -sb"
         - "bd ready --json"
-        - "python3 tools/query_master.py stats"
+        - "sed -n '1,120p' phase_5_progress_tracker.yaml"
 
 status_docs:
   current: "project_status.yaml"
