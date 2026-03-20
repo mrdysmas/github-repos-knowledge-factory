@@ -1,5 +1,5 @@
 version: 1
-as_of_utc: "2026-03-18T06:16:36Z"
+as_of_utc: "2026-03-20T05:30:00Z"
 
 naming_legend:
   WS: "Workstream (pipeline lane/stage, e.g., WS1-WS7)"
@@ -7,12 +7,12 @@ naming_legend:
   D: "Decision (governance decision ID, e.g., D1-D5)"
 
 phase:
-  id: "4"
-  name: "Corpus Expansion and Stabilization"
-  status: "IN_PROGRESS"
+  id: "5"
+  name: "TBD"
+  status: "PLANNING"
   closeout_approved: false
   closeout_approved_at_utc: null
-  prior_phase_closeout_approved_at_utc: "2026-03-05T03:16:01Z"
+  prior_phase_closeout_approved_at_utc: "2026-03-20T05:30:00Z"
 
 workstream_closeouts:
   ws5:
@@ -180,7 +180,7 @@ canonical:
       - "tools/ws6_deep_integrator.py --run-validation-suite"
       - "tools/ws7_read_model_compiler.py"
     compile: "tools/ws4_master_compiler.py"
-  execution_tracker: "phase_4_progress_tracker.yaml"
+  execution_tracker: "phase_5_progress_tracker.yaml"
   corpus_status:
     as_of_utc: "2026-03-18T00:00:00Z"
     query_master:
@@ -233,43 +233,31 @@ todo:
     - id: "H"
       topic: "Forward execution tracker maintenance"
       status: "IN_PROGRESS"
-      note: "Active execution tracker: phase_4_progress_tracker.yaml. Phase 3 tracker retained for closeout history."
+      note: "Phase 4 closed 2026-03-20. Active execution tracker: phase_5_progress_tracker.yaml (PLANNING). Phase 4 tracker archived at archive/phase_4_progress_tracker.yaml."
 
 next_agent_handoff:
   if_user_asks: "What now? What should we work on?"
   answer:
-    current_focus: "Phase 4 continues after B12_v2_backfill COMPLETE. Contract v2.0 evidence-family backfill is done; has_failure_mode is 128 (+50) and uses_protocol is 146 (+99). The next action is selecting the next corpus-expansion batch."
+    current_focus: "Phase 4 is closed (2026-03-20). Phase 5 scope is in PLANNING. Open beads issues cover: pipeline refactor (github_repos-6kb), ontology extension (github_repos-air), corpus maintenance (github_repos-7yf), adjacent-systems review (github_repos-65v), Dolt integration (github_repos-7y1), Kodit retrieval eval (github_repos-5n8)."
     read_first:
       - "project_status.yaml"
-      - "phase_4_progress_tracker.yaml"
-      - "docs/INGESTION_WORKFLOW.md"
-      - "inputs/intake/intake_queue.yaml"
-      - "master_repo_list.yaml"
-      - "reports/run_batch/B12_v2_backfill_verdict.yaml"
-      - "inputs/ws5/B12_v2_backfill_manifest.yaml"
-      - "tools/query_master.py"
-      - "tools/run_batch.py"
+      - "phase_5_progress_tracker.yaml"
+      - "archive/phase_4_progress_tracker.yaml"
     immediate_next_step:
-      id: "P4_NEXT_BATCH_SELECTION"
-      objective: "Select the next corpus-expansion slice, prepare a batch-local WS5 manifest, and execute the next run using the approved post-standardization workflow."
+      id: "P5_SCOPE_DEFINITION"
+      objective: "Define Phase 5 objectives and definition of done. Candidates: pipeline refactor, corpus maintenance, ontology extension. Run 'bd ready' to see current open issues."
       first_commands:
         - "git status -sb"
-        - "python3 tools/check_intake_queue_sync.py --workspace-root ."
+        - "bd ready --json"
         - "python3 tools/query_master.py stats"
-        - "sed -n '1,160p' inputs/intake/intake_queue.yaml"
-        - "sed -n '1,160p' docs/INGESTION_WORKFLOW.md"
-        - "sed -n '1,260p' phase_4_progress_tracker.yaml"
-        - "sed -n '220,270p' project_status.yaml"
 
 status_docs:
   current: "project_status.yaml"
-  execution_tracker: "phase_4_progress_tracker.yaml"
-  phase_3_tracker: "phase_3_progress_tracker.yaml"
-  phase_2_tracker: "phase_2_progress_tracker.yaml"
-  phase_4_plan: "plan-drafts/Phase 4 Corpus Expansion Batch P4-B5.md"
+  execution_tracker: "phase_5_progress_tracker.yaml"
   historical: "master_graph_merge_progress.yaml"
   decisions:
     - "docs/decisions/intake_shard_routing_decision.md"
     - "docs/decisions/phase4_prompt_template_standardization_decision.md"
   archived:
     - "docs/archive/high_view_summary--master_graph-merge.md"
+    - "archive/phase_4_progress_tracker.yaml"

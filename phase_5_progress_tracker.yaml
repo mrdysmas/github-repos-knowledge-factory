@@ -1,0 +1,38 @@
+version: 1
+as_of_utc: "2026-03-20T05:30:00Z"
+
+phase:
+  number: "5"
+  name: "TBD"
+  status: "PLANNING"
+  date_initiated: "2026-03-20"
+  date_started: null
+  date_completed: null
+
+objective: |
+  TBD. Candidate themes under discussion:
+  - Pipeline architecture (major refactor; scope still being discovered)
+  - Corpus maintenance (backfill quality, provenance propagation, soft audit baseline)
+  - Ontology extension (archetype criteria, singleton cluster handling)
+
+definition_of_done: []
+
+baseline:
+  # Captured at Phase 4 closeout (2026-03-20)
+  query_master:
+    repos: 122
+    nodes: 136
+    edges: 152
+    deep_facts: 5687
+  archetypes: 12
+  unmatched_repos: 32
+
+open_threads:
+  - "Phase 5 scope and definition of done pending supervisor decision."
+  - "Pipeline refactor scope still being discovered — see beads github_repos-6kb."
+  - "32 unmatched repos with no clear new archetype clusters — see beads github_repos-air."
+  - "Corpus maintenance track open — see beads github_repos-7yf."
+
+evidence_refs:
+  - "project_status.yaml"
+  - "archive/phase_4_progress_tracker.yaml"
