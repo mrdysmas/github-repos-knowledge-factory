@@ -1,0 +1,29 @@
+artifact_type: ws5_remote_ingestion_input_manifest
+contract_version: 1.0.0-ws1
+defaults:
+  target_shard: repos
+  as_of: "2026-03-21"
+  source: remote_metadata
+repos:
+  - name: helm-charts
+    github_full_name: grafana/helm-charts
+    file_stem: grafana__helm-charts
+    html_url: https://github.com/grafana/helm-charts
+    target_shard: repos
+    source: remote_metadata
+    category: infra_ops
+    summary: Official Grafana Helm chart collection for Kubernetes deployment of Grafana, Loki, Tempo, Mimir, Alloy, and related observability stack components. Pure declarative config — no application code.
+    core_concepts:
+      - Helm charts
+      - Kubernetes deployment
+      - observability stack
+      - declarative config
+    key_entry_points:
+      - README.md
+      - charts/
+    build_run:
+      language: YAML/Helm
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-21"
+    local_cache_dir: null
