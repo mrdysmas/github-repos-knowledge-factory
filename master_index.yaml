@@ -1,12 +1,12 @@
 artifact_type: ws4_master_index
-generated_at_utc: '2026-03-18T00:00:00Z'
+generated_at_utc: '2026-03-21T00:00:00Z'
 contract_version: 1.0.0-ws1
 metadata:
   source_shards:
   - repos
-  total_repos: 121
+  total_repos: 122
   repo_counts_by_shard:
-    repos: 121
+    repos: 122
   category_counts:
     agent_cli: 13
     agent_framework: 8
@@ -46,6 +46,7 @@ metadata:
     vpn_mesh: 5
     web_framework: 1
     workflow_builder: 4
+    workflow_repos: 1
   compiled_source: compiled_master
 repos:
 - node_id: repo::1panel-dev/maxkb
@@ -1354,6 +1355,38 @@ repos:
   local_cache_dir: null
   extras:
     directory: remote::frankbria/ralph-claude-code
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
+- node_id: repo::getzep/graphiti
+  github_full_name: getzep/graphiti
+  html_url: https://github.com/getzep/graphiti
+  source: compiled_master
+  name: graphiti
+  category: workflow_repos
+  summary: Temporal knowledge graph framework focused on memory updates, provenance,
+    and supersession-aware recall.
+  core_concepts:
+  - temporal knowledge graph
+  - memory updates
+  - provenance
+  - supersession
+  key_entry_points:
+  - README.md
+  - graphiti_core/
+  - server/
+  build_run:
+    language: Python
+    build: See upstream README for project build steps.
+    test: See upstream README for project test steps.
+  provenance:
+    shard: merged
+    source_file: repos/knowledge/repos/getzep__graphiti.yaml
+    as_of: '2026-03-21'
+  local_cache_dir: null
+  extras:
+    directory: remote::getzep/graphiti
     refresh:
       precedence: api_wins_readme_for_missing_required_fields
       fallback_source: readme_fallback

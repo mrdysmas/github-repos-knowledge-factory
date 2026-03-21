@@ -1,0 +1,259 @@
+name: graphiti
+node_id: "repo::getzep/graphiti"
+github_full_name: getzep/graphiti
+html_url: https://github.com/getzep/graphiti
+source: remote_metadata
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep/getzep__graphiti.yaml
+  as_of: "2026-03-21"
+  sourcing_method: code_verified
+  extraction_agent: codex
+directory: remote::getzep/graphiti
+category: workflow_repos
+sparse: false
+
+description: "Temporal context-graph engine with a reusable Python library, a FastAPI service, and an MCP server surface for agent memory workloads."
+
+tech_stack:
+  - name: Python
+    role: "Primary implementation language across the core library, REST service, MCP server, and examples."
+  - name: Neo4j
+    role: "Default graph database backend for the core client, quickstarts, and graph-service."
+  - name: FalkorDB
+    role: "Alternative graph backend and the default database provider in the MCP server config."
+  - name: FastAPI
+    role: "REST framework used by graph-service for ingest and retrieval endpoints."
+  - name: FastMCP
+    role: "Framework used by mcp_server to expose Graphiti tools over MCP."
+  - name: Pydantic
+    role: "Typed schema and settings layer for request models, config, and dynamic entity types."
+  - name: OpenTelemetry
+    role: "Optional tracing integration enabled through the tracing extra and example code."
+
+architecture:
+  components:
+    - name: graphiti_core
+      description: "Core temporal graph library that manages episode ingestion, entity and edge extraction, search, and backend abstraction."
+    - name: graph-service
+      description: "FastAPI wrapper that initializes Graphiti on startup and exposes HTTP endpoints for ingest, retrieval, deletion, and graph reset."
+    - name: mcp_server
+      description: "MCP-facing runtime that builds provider and database clients from YAML config, then exposes Graphiti operations as tools."
+    - name: examples
+      description: "Quickstarts and provider-specific samples for Neo4j, FalkorDB, Neptune, Azure OpenAI, and OpenTelemetry."
+  module_breakdown:
+    - module: graphiti_core/graphiti.py
+      responsibility: "Defines the main Graphiti client API, including index setup, episode ingestion, and hybrid search methods."
+      key_files:
+        - graphiti_core/__init__.py
+        - graphiti_core/graphiti.py
+    - module: graphiti_core/driver/
+      responsibility: "Implements pluggable graph backends for Neo4j, FalkorDB, Kuzu, and Neptune."
+      key_files:
+        - graphiti_core/driver/neo4j_driver.py
+        - graphiti_core/driver/falkordb_driver.py
+        - graphiti_core/driver/kuzu_driver.py
+        - graphiti_core/driver/neptune_driver.py
+    - module: graphiti_core/search/
+      responsibility: "Provides search configuration recipes plus edge and node retrieval logic for hybrid and graph-aware queries."
+      key_files:
+        - graphiti_core/search/search.py
+        - graphiti_core/search/search_config.py
+        - graphiti_core/search/search_config_recipes.py
+    - module: server/graph_service/
+      responsibility: "Hosts the REST service configuration, dependency wiring, and routers for search, message ingestion, and graph maintenance."
+      key_files:
+        - server/graph_service/main.py
+        - server/graph_service/routers/ingest.py
+        - server/graph_service/routers/retrieve.py
+    - module: mcp_server/src/
+      responsibility: "Hosts the MCP entrypoint, queue-based ingestion service, and provider/database factories."
+      key_files:
+        - mcp_server/main.py
+        - mcp_server/src/graphiti_mcp_server.py
+        - mcp_server/src/services/factories.py
+        - mcp_server/src/services/queue_service.py
+  key_abstractions:
+    - name: Graphiti
+      purpose: "Primary async client that builds indices, ingests episodes, and runs fact or node search."
+    - name: GraphDriver
+      purpose: "Backend abstraction that lets the same ingestion and search flow target Neo4j, FalkorDB, Kuzu, or Neptune."
+    - name: GraphitiService
+      purpose: "MCP-side service that creates provider clients and the selected graph driver from YAML configuration before exposing tools."
+
+core_modules:
+  modules:
+    - name: graphiti_core
+      path: graphiti_core/
+      purpose: "Reusable temporal graph library."
+    - name: drivers
+      path: graphiti_core/driver/
+      purpose: "Database backend implementations and query plumbing."
+    - name: search
+      path: graphiti_core/search/
+      purpose: "Hybrid edge search, node search, and reranking recipes."
+    - name: graph-service
+      path: server/graph_service/
+      purpose: "HTTP service wrapper around Graphiti."
+    - name: mcp_server
+      path: mcp_server/
+      purpose: "MCP runtime, config, tooling, and queue-based ingestion."
+
+key_files:
+  - path: pyproject.toml
+    purpose: "Defines the graphiti-core package, optional provider and backend extras, and root development dependencies."
+  - path: Makefile
+    purpose: "Defines root install, lint, test, and check workflows for graphiti-core."
+  - path: graphiti_core/graphiti.py
+    purpose: "Implements the main Graphiti client and lifecycle methods such as index creation, ingestion, and search."
+  - path: examples/quickstart/quickstart_neo4j.py
+    purpose: "Demonstrates index setup, episode ingestion, hybrid search, and node search against a Neo4j backend."
+  - path: examples/quickstart/README.md
+    purpose: "Documents quickstart prerequisites, environment variables, and the default_db troubleshooting note."
+  - path: server/graph_service/main.py
+    purpose: "Creates the FastAPI app, wires routers, and initializes Graphiti during lifespan startup."
+  - path: server/graph_service/routers/ingest.py
+    purpose: "Implements asynchronous message ingestion, entity creation, and graph clearing endpoints."
+  - path: server/graph_service/routers/retrieve.py
+    purpose: "Implements search, get-memory, edge lookup, and episode retrieval endpoints."
+  - path: mcp_server/src/graphiti_mcp_server.py
+    purpose: "Defines the MCP server, GraphitiService initialization, concurrency control, and tool instructions."
+  - path: mcp_server/config/config.yaml
+    purpose: "Declares the default MCP transport, provider selection, database backends, and built-in entity types."
+
+environment:
+  required:
+    - key: OPENAI_API_KEY
+      description: "Default credential for LLM inference and embeddings in the core library, quickstarts, and default MCP config."
+    - key: NEO4J_URI
+      description: "Neo4j Bolt URI used by quickstarts and Neo4j-backed service deployments."
+    - key: NEO4J_USER
+      description: "Neo4j username used by the core client and graph-service."
+    - key: NEO4J_PASSWORD
+      description: "Neo4j password used by the core client and graph-service."
+  optional:
+    - key: FALKORDB_URI
+      default: "redis://localhost:6379"
+      description: "FalkorDB endpoint for MCP deployments that use the default database provider."
+    - key: FALKORDB_PASSWORD
+      default: ""
+      description: "Optional password for FalkorDB-backed MCP deployments."
+    - key: FALKORDB_DATABASE
+      default: "default_db"
+      description: "Logical FalkorDB graph name used by the default MCP config."
+    - key: SEMAPHORE_LIMIT
+      default: "10"
+      description: "Caps concurrent episode processing to control LLM request fan-out."
+    - key: GRAPHITI_TELEMETRY_ENABLED
+      default: "true"
+      description: "Opt-out switch for anonymous telemetry."
+
+common_tasks:
+  - name: "Run the Neo4j quickstart"
+    description: "Initialize indices, ingest sample episodes, and exercise hybrid fact and node search against a local Neo4j instance."
+    usage: "python examples/quickstart/quickstart_neo4j.py"
+  - name: "Start the root Docker Compose stack"
+    description: "Launch the repository's local service stack for Graphiti development."
+    usage: "docker compose up"
+  - name: "Start the FalkorDB profile"
+    description: "Bring up the alternative FalkorDB-backed local stack from the repository root."
+    usage: "docker compose --profile falkordb up"
+  - name: "Start the MCP server with the default FalkorDB bundle"
+    description: "Run the Graphiti MCP server with its default HTTP transport and bundled FalkorDB deployment."
+    usage: "cd mcp_server && docker compose up"
+  - name: "Run the MCP server against Neo4j"
+    description: "Launch the MCP server while pointing it at an existing Neo4j instance."
+    usage: "cd mcp_server && uv run main.py --database-provider neo4j"
+  - name: "Run the core library quality checks"
+    description: "Install dev dependencies and execute format, lint, type-check, and non-integration test coverage for graphiti-core."
+    usage: "make check"
+
+api_surface:
+  public_functions:
+    - name: "Graphiti.build_indices_and_constraints"
+      purpose: "Create graph indexes and constraints before ingestion or service startup."
+      signature: "async def build_indices_and_constraints(delete_existing: bool = False)"
+      location: graphiti_core/graphiti.py
+    - name: "Graphiti.add_episode"
+      purpose: "Convert a text, message, or JSON episode into temporal graph updates with entity and relationship extraction."
+      signature: "async def add_episode(...)"
+      location: graphiti_core/graphiti.py
+    - name: "Graphiti.search"
+      purpose: "Run hybrid fact retrieval, optionally scoped by group IDs or reranked around a center node."
+      signature: "async def search(...)"
+      location: graphiti_core/graphiti.py
+  endpoints:
+    - path: /search
+      method: POST
+      description: "Return fact search results from graph-service by delegating to Graphiti.search."
+    - path: /get-memory
+      method: POST
+      description: "Compose a query from messages and fetch relevant facts for a specific group."
+    - path: /messages
+      method: POST
+      description: "Queue message episodes for asynchronous ingestion into the graph."
+    - path: /clear
+      method: POST
+      description: "Delete graph data and rebuild indices."
+    - path: /healthcheck
+      method: GET
+      description: "Expose graph-service health for container or local deployments."
+
+supported_protocols:
+  - name: "HTTP"
+    role: "Transport for graph-service endpoints and the MCP server's default streamable HTTP endpoint at /mcp/."
+  - name: "Model Context Protocol (MCP)"
+    role: "Tool protocol used by the Graphiti MCP server to expose memory ingestion, search, and graph maintenance operations."
+  - name: "Neo4j Bolt"
+    role: "Primary wire protocol for Neo4j-backed graph storage in quickstarts and graph-service deployments."
+  - name: "OpenAI-compatible REST API"
+    role: "Provider interface used for default LLM inference and embeddings, with Azure OpenAI and Groq-compatible variants available in config."
+
+integrations:
+  - name: Neo4j
+    role: "Default graph database backend for the core client, graph-service, and one MCP deployment path."
+  - name: FalkorDB
+    role: "Alternative graph backend and the default MCP database provider."
+  - name: Amazon Neptune
+    role: "Optional graph backend paired with OpenSearch for full-text search."
+  - name: Kuzu
+    role: "Optional embedded graph backend selected through a dedicated driver."
+  - name: OpenAI
+    role: "Default LLM, embedding, and reranking provider."
+  - name: Anthropic
+    role: "Optional LLM provider extra for library and MCP deployments."
+  - name: Gemini
+    role: "Optional provider for LLM inference, embeddings, and reranking."
+  - name: Groq
+    role: "Optional LLM provider supported by the library and MCP config."
+
+testing:
+  framework: "pytest via uv"
+  patterns:
+    - name: "Root library checks"
+      location: Makefile
+      description: "Runs ruff, pyright, and pytest with non-integration markers while disabling FalkorDB, Kuzu, and Neptune test paths."
+    - name: "Server package checks"
+      location: server/Makefile
+      description: "Runs uv-based ruff, pyright, and pytest for the FastAPI service package."
+    - name: "MCP server suite"
+      location: mcp_server/tests/README.md
+      description: "Documents pytest markers and dev extras for queue, transport, and integration coverage."
+  key_files:
+    - pytest.ini
+    - server/pyproject.toml
+    - mcp_server/tests/README.md
+
+troubleshooting:
+  - symptom: "Episode ingestion returns 429 errors or throughput becomes unstable."
+    cause: "SEMAPHORE_LIMIT allows too many simultaneous episode tasks, and each task expands into several LLM calls."
+    fix: "Lower SEMAPHORE_LIMIT for the current provider tier, then raise it gradually only after checking rate-limit headroom."
+  - symptom: "Extraction fails with incorrect output schemas when using alternate LLM providers."
+    cause: "Providers without reliable structured-output support can return responses Graphiti cannot parse into the expected extraction schema."
+    fix: "Use OpenAI, Gemini, or another OpenAI-compatible provider that reliably preserves structured outputs for Graphiti extraction."
+  - symptom: "\"Graph not found: default_db\" appears during quickstart execution."
+    cause: "The selected backend is pointing at a graph or database name that does not exist for the active driver."
+    fix: "Create the target database or pass an explicit database name when constructing the driver instead of relying on the missing default."
+  - symptom: "The MCP server fails during startup with a database connection error."
+    cause: "The configured Neo4j or FalkorDB endpoint is unreachable, so GraphitiService cannot initialize the selected graph driver."
+    fix: "Start the matching Docker Compose stack or correct the database URI, credentials, and provider selection before launching the server."

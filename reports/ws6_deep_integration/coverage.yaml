@@ -1,13 +1,13 @@
 artifact_type: ws6_deep_integration_coverage
-generated_at_utc: '2026-03-19T00:00:00Z'
+generated_at_utc: '2026-03-21T00:00:00Z'
 contract_version: 1.0.0-ws6-draft
 input_scope:
-  deep_narrative_files_total: 120
+  deep_narrative_files_total: 121
   deep_fact_draft_files_total: 0
-  repos_with_any_deep_inputs: 120
-  repos_materialized: 120
+  repos_with_any_deep_inputs: 121
+  repos_materialized: 121
 metrics:
-  facts_materialized_total: 6048
+  facts_materialized_total: 6123
   facts_with_evidence_pct: 100.0
   confidence_bounds_valid_pct: 100.0
   draft_overrides_count: 0
@@ -483,6 +483,19 @@ metrics:
     facts_emitted: 38
     blocked_facts: 0
     unmapped_sections_count: 1
+  - node_id: repo::getzep/graphiti
+    github_full_name: getzep/graphiti
+    shard: repos
+    narrative_files: 1
+    draft_files: 0
+    narrative_facts_raw: 75
+    draft_facts_raw: 0
+    derived_facts_after_dedupe: 75
+    draft_overrides: 0
+    evidence_merges: 0
+    facts_emitted: 75
+    blocked_facts: 0
+    unmapped_sections_count: 0
   - node_id: repo::ggml-org/llama.cpp
     github_full_name: ggml-org/llama.cpp
     shard: repos
@@ -1671,6 +1684,7 @@ actions:
   - repos/knowledge/deep_facts/felony.yaml
   - repos/knowledge/deep_facts/flowiseai__flowise.yaml
   - repos/knowledge/deep_facts/frp.yaml
+  - repos/knowledge/deep_facts/getzep__graphiti.yaml
   - repos/knowledge/deep_facts/gin-gonic__gin.yaml
   - repos/knowledge/deep_facts/github__copilot-cli.yaml
   - repos/knowledge/deep_facts/gohugoio__hugo.yaml
@@ -1774,6 +1788,6 @@ gate_bools:
   ws6_hash_stable: true
 gate_metrics:
   unmapped_sections_count: 82
-execution_mode: materialize_only
+execution_mode: full_validation_run
 ws6_gate_ready: true
 gate_ready: true

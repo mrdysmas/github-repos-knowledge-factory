@@ -1,5 +1,5 @@
 artifact_type: ws6_deep_integration_validation_runs
-generated_at_utc: '2026-03-19T00:00:00Z'
+generated_at_utc: '2026-03-21T00:00:00Z'
 contract_version: 1.0.0-ws6-draft
 report_semantics:
   required_commands: Execution contract/plan only (status=PLANNED); this section is
@@ -7,7 +7,7 @@ report_semantics:
   execution_results: Observed outcomes recorded by this WS6 invocation; statuses are
     PASS/FAIL/NOT_RUN only.
   pending_status_allowed: false
-execution_mode: materialize_only
+execution_mode: full_validation_run
 required_commands:
 - step: 1
   command: python3 tools/ws1_contract_validator.py --workspace-root . --external-node-policy
@@ -47,52 +47,103 @@ execution_results:
 - step: 1
   command: python3 tools/ws1_contract_validator.py --workspace-root . --external-node-policy
     first_class
-  status: NOT_RUN
-  exit_code: null
-  ran_at_utc: null
-  duration_ms: null
-  observation: not executed in this ws6 invocation
+  status: PASS
+  exit_code: 0
+  ran_at_utc: '2026-03-21T19:23:05Z'
+  duration_ms: 1988
+  observation: exit_code=0; ws1_contract_status_pass=true
+  output_tail: "stdout_tail:\ncontracts_dir: /home/abe/scripts/ext_sources/github_repos/contracts/ws1\n\
+    external_node_policy: first_class\n\nPASS checks:\n  - Contract version aligned\
+    \ across WS1 artifacts: 1.0.0-ws1\n  - Source enums aligned and remote-first ready:\
+    \ ['compiled_master', 'remote_api', 'remote_metadata', 'repos']\n  - Shallow/deep\
+    \ identity contract OK for repos: shallow=122 deep=121 local_deep_coverage=100%\n\
+    \  - Relation mapping coverage OK: unique=12/12 rows=12/12\n  - External node\
+    \ policy mode selected: first_class\n  - Edge/node consistency OK for policy 'first_class'\
+    \ (dst_kind integrity enforced)\n\nWS1_CONTRACT_STATUS: PASS"
 - step: 2
   command: python3 tools/trust_gates.py repos/knowledge --production
-  status: NOT_RUN
-  exit_code: null
-  ran_at_utc: null
-  duration_ms: null
-  observation: not executed in this ws6 invocation
+  status: PASS
+  exit_code: 0
+  ran_at_utc: '2026-03-21T19:23:07Z'
+  duration_ms: 1985
+  observation: exit_code=0; overall_pass=true; ready_state_allowed_true=true
+  output_tail: 'stdout_tail:
+
+    Knowledge dir: /home/abe/scripts/ext_sources/github_repos/repos/knowledge
+
+    Report: /home/abe/scripts/ext_sources/github_repos/repos/knowledge/trust-gates-report.yaml
+
+    G1 Parse Integrity: PASS (0 errors)
+
+    G2 Status Semantics: PASS (0 violations)
+
+    G3 Spec/Validator Contract: PASS (0 findings)
+
+    Overall: PASS
+
+    ready_state_allowed: true'
 - step: 4
   command: python3 tools/ws6_deep_integrator.py --workspace-root . --reports-dir reports/ws6_deep_integration
     --materialize-spec reports/ws6_deep_integration/spec.yaml
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-20T19:33:21Z'
+  ran_at_utc: '2026-03-21T19:23:03Z'
   duration_ms: 0
-  observation: ws6_gate_ready=true blocking_mismatches=0 facts_materialized=6048
+  observation: ws6_gate_ready=true blocking_mismatches=0 facts_materialized=6123
 - step: 5
   command: python3 tools/ws4_master_compiler.py --workspace-root . --master-index
     master_index.yaml --master-graph master_graph.yaml --reports-dir reports/ws4_master_build
-  status: NOT_RUN
-  exit_code: null
-  ran_at_utc: null
-  duration_ms: null
-  observation: not executed in this ws6 invocation
+  status: PASS
+  exit_code: 0
+  ran_at_utc: '2026-03-21T19:23:20Z'
+  duration_ms: 12802
+  observation: exit_code=0; ws4_gate_ready=true
+  output_tail: 'stdout_tail:
+
+    WS4_MASTER_BUILD_SUMMARY
+
+    workspace_root: /home/abe/scripts/ext_sources/github_repos
+
+    master_index: /home/abe/scripts/ext_sources/github_repos/master_index.yaml
+
+    master_graph: /home/abe/scripts/ext_sources/github_repos/master_graph.yaml
+
+    reports_dir: /home/abe/scripts/ext_sources/github_repos/reports/ws4_master_build
+
+    generated_at_utc: 2026-03-21T00:00:00Z
+
+    gate_ready: true
+
+    unmapped_relation_types: 0
+
+    unknown_repo_node_refs_dst_kind_repo: 0
+
+    stale_records: 0
+
+    compile_errors: 0'
 - step: 6
   command: python3 tools/query_master.py --source yaml stats
-  status: NOT_RUN
-  exit_code: null
-  ran_at_utc: null
-  duration_ms: null
-  observation: not executed in this ws6 invocation
+  status: PASS
+  exit_code: 0
+  ran_at_utc: '2026-03-21T19:23:28Z'
+  duration_ms: 8460
+  observation: exit_code=0; deep_facts=6123
+  output_tail: "stdout_tail:\nartifact_type: master_query_stats\ncounts:\n  repos:\
+    \ 122\n  nodes: 136\n  edges: 152\n  deep_facts: 6123\nsources:\n  master_index:\
+    \ /home/abe/scripts/ext_sources/github_repos/master_index.yaml\n  master_graph:\
+    \ /home/abe/scripts/ext_sources/github_repos/master_graph.yaml\n  master_deep_facts:\
+    \ /home/abe/scripts/ext_sources/github_repos/master_deep_facts.yaml"
 - step: 7
   command: Re-run WS6 command with identical input and verify output hashes unchanged
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-20T19:33:21Z'
+  ran_at_utc: '2026-03-21T19:23:03Z'
   duration_ms: 0
   observation: hash_stability=true
 artifact_hashes:
-  master_deep_facts.yaml: f9c5dfc6de46fcaddb99b7fd2e27655552edec939f02c67aab013172f2016a51
-  reports/ws6_deep_integration/coverage.yaml: 3d73d730c489568caea83b467864db4d0a87108d01a0bec5298e702cf27ef6d5
-  reports/ws6_deep_integration/mismatch_report.yaml: 42bd1b77e9697e0c8dbecac01c0960c88350b2c4a72031673707e4137b00f468
+  master_deep_facts.yaml: 6d626a51e4de0938d69355562e5100f8403a23941bf9f388683d75b3fe8714e8
+  reports/ws6_deep_integration/coverage.yaml: 29ac8174c725464ad41960d14fd7f5bb65d05a51cd564415287a7618081ca875
+  reports/ws6_deep_integration/mismatch_report.yaml: 3d33ea00243123ecc584537c0c056ad2f065cd5ca460b157069feb151ef154c6
   repos/knowledge/deep_facts/JeecgBoot.yaml: d262275eb1cd29cc0ebcc53fe545e9c04378fab39f5034bdcb2c494b8df78242
   repos/knowledge/deep_facts/Prompt-Engineering-Guide.yaml: 51ba3af34fc1c235cee9f04d3cfc10a14a43e857928c2147c6384588ef255e80
   repos/knowledge/deep_facts/abhigyanpatwari__gitnexus.yaml: f3097fca86984467b7485f70224256bde2f7f7831e9ed3a80fd0c5bc7ec0f1d3
@@ -122,6 +173,7 @@ artifact_hashes:
   repos/knowledge/deep_facts/felony.yaml: 58e47062970390653b6904c5fc7867e8d0fb18b2803f46da5b5deec59842e97e
   repos/knowledge/deep_facts/flowiseai__flowise.yaml: fa8b640247e914652416f54d4d1c60d10e6acf10628098ccb2d9a17b78c99957
   repos/knowledge/deep_facts/frp.yaml: adb33acb92d90e8b68f6905a28f5d3f918da689df84bb5f931d6c64f1b34ef56
+  repos/knowledge/deep_facts/getzep__graphiti.yaml: e413bcbcc92a72600fcd5d0299834d339a190b771c8f163327abacb119174cec
   repos/knowledge/deep_facts/gin-gonic__gin.yaml: 386132e2944ba88c4dc33a322f6f3de91e799ca21d5df02fff338917f576d9b0
   repos/knowledge/deep_facts/github__copilot-cli.yaml: c55006c26dbdfb35428f90cc741424c1da2a0f92c40dc3f8d0d1d22d6cb48aa0
   repos/knowledge/deep_facts/gohugoio__hugo.yaml: 45b21bd626c1e1dad051ca425ef6c76ea62f2012becaa705929eece4018687eb
@@ -225,6 +277,6 @@ gate_bools:
 gate_metrics:
   unmapped_sections_count: 82
 ws6_gate_ready: true
-validation_suite_complete: false
-validation_suite_passed: null
+validation_suite_complete: true
+validation_suite_passed: true
 gate_ready: true
