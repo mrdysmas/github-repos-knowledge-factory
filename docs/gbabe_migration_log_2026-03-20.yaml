@@ -160,6 +160,41 @@ completed_steps_continued:
       - Provides valid TLS cert; resolves browser mixed-content block
       - Relay remains available as fallback (relay.paseo.sh:443)
 
+deferred_investigations:
+
+  - topic: shared_dolt_remote_via_remotesapi
+    status: blocked
+    goal: >
+      Make gbabe's Dolt server the authoritative remote for both machines, so Mac and gbabe
+      push/pull to the same bd state rather than maintaining separate file:// remotes.
+    approach_tried:
+      - Enabled remotesapi on gbabe's Dolt server (port 8000)
+      - Had to bypass bd dolt start (which hardcodes -H/-P and ignores config.yaml) by running
+        dolt sql-server directly in the systemd service with --remotesapi-port 8000
+      - WorkingDirectory must be .beads/dolt/ (dolt uses cwd as data dir; --data-dir flag is invalid)
+      - Updated Mac's bd remote to http://root:@100.99.99.99:8000/github_repos
+      - Tried with password (ALTER USER root IDENTIFIED BY 'doltpass')
+    blocker: >
+      Both bd and raw dolt CLI fail with: "authorization header did not start with 'Basic '"
+      The dolt client is sending a non-Basic auth header (likely a cached DoltHub JWT token)
+      to the self-hosted remotesapi, which expects HTTP Basic auth. This is a credential
+      scheme mismatch between Dolt's client (which prefers DoltHub-style tokens) and
+      self-hosted remotesapi (which requires Basic auth).
+    current_state:
+      gbabe_remote: "file:///home/abe/.beads-remote (reverted)"
+      mac_remote: "file:///Users/szilaa/.beads-remote (original, separate copy)"
+      gbabe_dolt_service: running dolt sql-server directly (not via bd dolt start)
+      remotesapi: enabled on port 8000 but unused
+    next_steps_if_revisited:
+      - Investigate dolt creds system — dolt creds new + import to server may allow proper auth
+      - Check if dolt creds ls shows a cached DoltHub token interfering with self-hosted auth
+      - Alternative: expose ~/.beads-remote via NFS (gbabe already has nfs-server) and mount on Mac
+      - Alternative: accept Mac as legacy-only, gbabe is authoritative, no shared remote needed
+    practical_note: >
+      Since gbabe is the primary machine and Mac is a control node, Mac running bd is not
+      a real use case. Gbabe's bd is authoritative. This is low priority unless the workflow
+      changes to require bd from Mac.
+
 known_gotchas:
   - id: path_noninteractive
     description: >
