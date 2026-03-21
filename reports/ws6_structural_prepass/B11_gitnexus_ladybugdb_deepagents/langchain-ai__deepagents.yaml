@@ -1,0 +1,273 @@
+schema_version: '0.1'
+repo:
+  github_full_name: langchain-ai/deepagents
+  node_id: repo::langchain-ai/deepagents
+  file_stem: langchain-ai__deepagents
+artifact:
+  generated_at_utc: '2026-03-21T17:20:38Z'
+  stage: ws6_structural_prepass
+  mode: filesystem_manifest_entrypoint
+  output_file: reports/ws6_structural_prepass/B11_gitnexus_ladybugdb_deepagents/langchain-ai__deepagents.yaml
+batch:
+  batch_id: B11_gitnexus_ladybugdb_deepagents
+  clone_manifest: reports/ws6_clone_prep/B11_gitnexus_ladybugdb_deepagents_clones.yaml
+source:
+  repo_root: /home/abe/scripts/ext_sources/github_repos/workspace/clones/langchain-ai__deepagents
+  languages:
+  - python
+  - javascript
+signals_used:
+- filesystem
+- manifest
+- entrypoint
+- config_routing
+- imports
+package_roots:
+- path: examples/content-builder-agent
+  evidence: &id002
+  - kind: manifest
+    path: examples/content-builder-agent/pyproject.toml
+    detail: python_manifest
+- path: examples/deep_research
+  evidence: &id003
+  - kind: manifest
+    path: examples/deep_research/pyproject.toml
+    detail: python_manifest
+- path: examples/deep_research/research_agent
+  evidence: &id006
+  - kind: filepath
+    path: examples/deep_research/research_agent/__init__.py
+- path: examples/nvidia_deep_agent
+  evidence: &id005
+  - kind: manifest
+    path: examples/nvidia_deep_agent/pyproject.toml
+    detail: python_manifest
+- path: examples/nvidia_deep_agent/src
+  evidence: &id007
+  - kind: filepath
+    path: examples/nvidia_deep_agent/src/__init__.py
+- path: examples/text-to-sql-agent
+  evidence:
+  - kind: manifest
+    path: examples/text-to-sql-agent/pyproject.toml
+    detail: python_manifest
+- path: libs
+  evidence: &id004
+  - kind: directory
+    path: libs
+- path: libs/acp
+  evidence: &id001
+  - kind: manifest
+    path: libs/acp/pyproject.toml
+    detail: python_manifest
+entrypoints:
+- path: libs/cli/deepagents_cli/main.py
+  kind: app_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: libs/cli/deepagents_cli/main.py
+    detail: filename heuristic
+- path: libs/cli/deepagents_cli/server.py
+  kind: server_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: libs/cli/deepagents_cli/server.py
+    detail: filename heuristic
+- path: libs/acp/deepagents_acp/server.py
+  kind: server_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: libs/acp/deepagents_acp/server.py
+    detail: filename heuristic
+- path: libs/cli/deepagents_cli/app.py
+  kind: app_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: libs/cli/deepagents_cli/app.py
+    detail: filename heuristic
+module_groups:
+- name: acp
+  paths:
+  - libs/acp
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence: *id001
+- name: content_builder_agent
+  paths:
+  - examples/content-builder-agent
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence: *id002
+- name: deep_research
+  paths:
+  - examples/deep_research
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence: *id003
+- name: examples
+  paths:
+  - examples
+  rationale: directory grouping with repeated source files
+  confidence: medium
+  evidence:
+  - kind: directory
+    path: examples
+- name: libs
+  paths:
+  - libs
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence: *id004
+- name: nvidia_deep_agent
+  paths:
+  - examples/nvidia_deep_agent
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence: *id005
+- name: research_agent
+  paths:
+  - examples/deep_research/research_agent
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence: *id006
+- name: src
+  paths:
+  - examples/nvidia_deep_agent/src
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence: *id007
+filesystem_signals:
+  manifests:
+  - path: examples/content-builder-agent/pyproject.toml
+    kind: python_manifest
+  - path: examples/deep_research/pyproject.toml
+    kind: python_manifest
+  - path: examples/nvidia_deep_agent/pyproject.toml
+    kind: python_manifest
+  - path: examples/text-to-sql-agent/pyproject.toml
+    kind: python_manifest
+  - path: libs/acp/pyproject.toml
+    kind: python_manifest
+  - path: libs/cli/pyproject.toml
+    kind: python_manifest
+  - path: libs/deepagents/pyproject.toml
+    kind: python_manifest
+  - path: libs/evals/pyproject.toml
+    kind: python_manifest
+  - path: libs/partners/daytona/pyproject.toml
+    kind: python_manifest
+  - path: libs/partners/modal/pyproject.toml
+    kind: python_manifest
+  - path: libs/partners/quickjs/pyproject.toml
+    kind: python_manifest
+  - path: libs/partners/runloop/pyproject.toml
+    kind: python_manifest
+  config_files:
+  - path: .github/workflows/_benchmark.yml
+    kind: ci_workflow
+  - path: .github/workflows/_lint.yml
+    kind: ci_workflow
+  - path: .github/workflows/_test.yml
+    kind: ci_workflow
+  - path: .github/workflows/auto-label-by-package.yml
+    kind: ci_workflow
+  - path: .github/workflows/check_extras_sync.yml
+    kind: ci_workflow
+  - path: .github/workflows/check_lockfiles.yml
+    kind: ci_workflow
+  - path: .github/workflows/check_sdk_pin.yml
+    kind: ci_workflow
+  - path: .github/workflows/check_versions.yml
+    kind: ci_workflow
+  - path: .github/workflows/ci.yml
+    kind: ci_workflow
+  - path: .github/workflows/deepagents-example.yml
+    kind: ci_workflow
+  - path: .github/workflows/evals.yml
+    kind: ci_workflow
+  - path: .github/workflows/harbor.yml
+    kind: ci_workflow
+  - path: .github/workflows/pr_labeler.yml
+    kind: ci_workflow
+  - path: .github/workflows/pr_labeler_backfill.yml
+    kind: ci_workflow
+  - path: .github/workflows/pr_lint.yml
+    kind: ci_workflow
+  - path: .github/workflows/release-please.yml
+    kind: ci_workflow
+  - path: .github/workflows/release.yml
+    kind: ci_workflow
+  - path: .github/workflows/require_issue_link.yml
+    kind: ci_workflow
+  - path: .github/workflows/sync_priority_labels.yml
+    kind: ci_workflow
+  - path: .github/workflows/tag-external-issues.yml
+    kind: ci_workflow
+  - path: examples/deep_research/.env.example
+    kind: env_example
+  - path: examples/nvidia_deep_agent/.env.example
+    kind: env_example
+  - path: examples/text-to-sql-agent/.env.example
+    kind: env_example
+  - path: libs/acp/.env.example
+    kind: env_example
+orientation_hints:
+  likely_first_read:
+  - libs/cli/deepagents_cli/main.py
+  - libs/cli/deepagents_cli/server.py
+  - libs/acp/deepagents_acp/server.py
+  - libs/cli/deepagents_cli/app.py
+  - libs/acp
+  - examples/content-builder-agent
+  likely_runtime_surfaces:
+  - libs/cli/deepagents_cli/main.py
+  - libs/cli/deepagents_cli/server.py
+  - libs/acp/deepagents_acp/server.py
+  - libs/cli/deepagents_cli/app.py
+  - examples/deep_research/.env.example
+  - examples/nvidia_deep_agent/.env.example
+limitations:
+- module groups are heuristic directory-level clusters
+- no behavioral, failure-mode, or cross-repo claims are emitted
+dependency_signals:
+  internal_modules:
+  - acp
+  - acp.core
+  - acp.exceptions
+  - acp.interfaces
+  - acp.schema
+  - research_agent.prompts
+  - research_agent.tools
+  - src.backend
+  - src.prompts
+  - src.tools
+  external_packages:
+  - agent-client-protocol
+  - aiosqlite
+  - datasets
+  - daytona
+  - deepagents
+  - deepagents-acp
+  - deepagents-cli
+  - google-genai
+  - harbor
+  - httpx
+  - ipykernel
+  - jupyter
+  - langchain
+  - langchain-anthropic
+  - langchain-aws
+  - langchain-baseten
+  - langchain-cohere
+  - langchain-community
+  - langchain-core
+  - langchain-daytona
+  - langchain-deepseek
+  - langchain-fireworks
+  - langchain-google-genai
+  - langchain-google-vertexai
+  - langchain-groq
