@@ -1,3 +1,12 @@
+## Execution Environment
+
+- **Primary dev machine**: gbabe (Linux Mint 22.3 / Ubuntu 24.04, hostname `gbabe`, Tailscale-connected)
+- **Mac role**: control node only — iTerm + Claude Code CLI direct, SSH/Paseo client
+- **Remote orchestration**: Paseo daemon running on gbabe as a systemd service; connect via `app.paseo.sh` → direct TCP at `gbabe.tailca7be8.ts.net:443`
+- **bd Dolt server**: runs as `beads-dolt.service` on gbabe; no manual start needed. If `bd` commands fail with a Dolt bind/start error, check `sudo systemctl status beads-dolt` on gbabe.
+- **Shared Dolt remote**: gbabe exports `~/.beads-remote` via NFS; Mac mounts it at the same path. Both machines use `file://` remotes — no URL change needed.
+- **Switching machines**: run `bd dolt pull` before starting work to pick up the other machine's pushes. Failure to pull before push will result in a non-fast-forward rejection (non-destructive — just pull and retry).
+
 ## Execution Clarity
 
 - When the user says they are confused or says "assume nothing," lead with exactly one concrete next action and one verification check before offering alternatives.

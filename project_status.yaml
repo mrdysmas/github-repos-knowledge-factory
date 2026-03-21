@@ -196,6 +196,16 @@ canonical:
       ws7_snapshot_status: "pass"
       ws7_force_used: true
 
+environment:
+  primary_dev_machine: gbabe
+  primary_dev_os: "Linux Mint 22.3 (Ubuntu 24.04 base)"
+  mac_role: "control node — iTerm/Claude Code direct, SSH/Paseo client"
+  remote_orchestration: "Paseo daemon on gbabe; app.paseo.sh → gbabe.tailca7be8.ts.net:443 (direct TCP)"
+  bd_dolt_server: "beads-dolt.service on gbabe (systemd, auto-start); port 3307 localhost-only"
+  bd_shared_remote: "NFS — gbabe exports ~/.beads-remote; Mac mounts at same path; both use file:// remotes"
+  bd_multi_machine_note: "Run `bd dolt pull` before starting work when switching machines"
+  migration_log: "docs/gbabe_migration_log_2026-03-20.yaml"
+
 non_canonical:
   kgraph_repos:
     allowed_use: "Draft/raw discovery only"
