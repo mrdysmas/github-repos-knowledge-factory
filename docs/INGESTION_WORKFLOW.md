@@ -151,6 +151,40 @@ hardcode clone paths — always resolve them from the clone manifest.
 Clones are retained by default after the pipeline completes. Set
 `clone_cleanup: true` in `batch_spec.yaml` to remove them automatically.
 
+### Optional: WS6 structural pre-pass
+
+Current policy: the WS6 structural pre-pass is a `soft-optional` orientation
+step, not a default batch step.
+
+Use it after clone prep and before deep authoring when the repo shape is likely
+to be expensive to orient manually, especially when one or more of these cues
+are present:
+
+- multiple sibling package roots or workspace manifests
+- polyglot layout across multiple ecosystems
+- several runtime surfaces such as API, worker, CLI, MCP, control plane, SDKs,
+  or integrations
+- large side areas like clients, docs, dev tooling, benchmarks, or built output
+  that make first-read selection noisy
+
+Command:
+
+```bash
+python3 tools/ws6_structural_prepass.py \
+  --workspace-root . \
+  --clone-manifest reports/ws6_clone_prep/<batch_id>_clones.yaml \
+  --input-manifest inputs/ws5/<batch_id>_manifest.yaml
+```
+
+Outputs:
+
+- `reports/ws6_structural_prepass/<batch_id>/<file_stem>.yaml`
+- `reports/ws6_structural_prepass/<batch_id>/summary.yaml`
+
+Do not treat the artifact as canonical. It is an orientation scaffold for WS6
+authoring. For small or clearly single-package repos, skip this step unless a
+supervisor explicitly wants the extra scaffold.
+
 ---
 
 ## Step 4 — Generate the deep YAML file
