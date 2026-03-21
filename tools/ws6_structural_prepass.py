@@ -121,6 +121,90 @@ JS_IMPORT_RE = re.compile(
 )
 GO_IMPORT_RE = re.compile(r'"([^"\n]+)"')
 
+NOISE_TOKENS = {
+    "bench",
+    "benchmark",
+    "benchmarks",
+    "demo",
+    "demos",
+    "dist",
+    "doc",
+    "docs",
+    "example",
+    "examples",
+    "fixture",
+    "fixtures",
+    "generated",
+    "sample",
+    "samples",
+    "site",
+    "storybook",
+    "test",
+    "tests",
+}
+
+SUPPORT_TOKENS = {
+    "blog",
+    "cookbook",
+    "coverage",
+    "dev",
+    "githooks",
+    "helm",
+    "hook",
+    "hooks",
+    "infra",
+    "monitoring",
+    "ops",
+    "public",
+    "script",
+    "scripts",
+    "static",
+    "tool",
+    "tools",
+}
+
+RUNTIME_TOKENS = {
+    "admin",
+    "api",
+    "app",
+    "cli",
+    "cmd",
+    "daemon",
+    "gateway",
+    "mcp",
+    "server",
+    "service",
+    "worker",
+}
+
+BOUNDARY_TOKENS = {
+    "all",
+    "client",
+    "clients",
+    "control",
+    "core",
+    "embed",
+    "engine",
+    "integration",
+    "integrations",
+    "memory",
+    "plane",
+    "sdk",
+}
+
+DEV_DEPENDENCY_HINTS = (
+    "eslint",
+    "jest",
+    "mypy",
+    "prettier",
+    "pytest",
+    "ruff",
+    "storybook",
+    "tsup",
+    "typescript",
+    "vitest",
+)
+
 
 def utc_now() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -139,6 +223,114 @@ def dump_yaml(path: Path, payload: dict[str, Any]) -> None:
 def ensure_repo_relative(path: Path) -> str:
     text = path.as_posix()
     return text if text else "."
+
+
+def path_tokens(path: Path) -> list[str]:
+    tokens: list[str] = []
+    for part in path.parts:
+        for token in re.split(r"[^a-z0-9]+", part.lower()):
+            if token:
+                tokens.append(token)
+    return tokens
+
+
+def path_part_labels(path: Path) -> list[str]:
+    labels: list[str] = []
+    for part in path.parts:
+        label = re.sub(r"[^a-z0-9]+", "_", part.lower()).strip("_")
+        if label:
+            labels.append(label)
+    return labels
+
+
+def path_depth(path: Path) -> int:
+    return max(len(path.parts) - 1, 0)
+
+
+def path_has_noise(path: Path) -> bool:
+    return any(label in NOISE_TOKENS for label in path_part_labels(path))
+
+
+def orientation_score(path: Path, *, prefer_runtime: bool) -> int:
+    tokens = path_tokens(path)
+    labels = path_part_labels(path)
+    score = 0
+    if prefer_runtime:
+        score += sum(4 for token in tokens if token in RUNTIME_TOKENS)
+        score += sum(2 for token in tokens if token in BOUNDARY_TOKENS)
+    else:
+        score += sum(3 for token in tokens if token in RUNTIME_TOKENS)
+        score += sum(3 for token in tokens if token in BOUNDARY_TOKENS)
+
+    if any(label in NOISE_TOKENS for label in labels):
+        score -= sum(6 for label in labels if label in NOISE_TOKENS)
+    if any(label in SUPPORT_TOKENS for label in labels):
+        score -= sum(3 for label in labels if label in SUPPORT_TOKENS)
+
+    if len(path.parts) <= 2:
+        score += 3
+    elif len(path.parts) == 3:
+        score += 1
+    else:
+        score -= min(path_depth(path), 4)
+
+    if path.name.lower().startswith("readme"):
+        score += 2
+    return score
+
+
+def is_noise_root(path: Path) -> bool:
+    labels = path_part_labels(path)
+    return any(label in NOISE_TOKENS or label in SUPPORT_TOKENS for label in labels)
+
+
+def dedupe_evidence(entries: list[dict[str, str]]) -> list[dict[str, str]]:
+    seen: set[tuple[str, str, str]] = set()
+    deduped: list[dict[str, str]] = []
+    for entry in entries:
+        key = (
+            entry.get("kind", ""),
+            entry.get("path", ""),
+            entry.get("detail", ""),
+        )
+        if key in seen:
+            continue
+        seen.add(key)
+        deduped.append(entry)
+    return deduped
+
+
+def normalized_group_name(path: Path) -> str:
+    return path.name.replace("-", "_").replace(".", "_")
+
+
+def prefer_source_equivalent_path(repo_root: Path, rel_path: Path) -> Path | None:
+    parts = list(rel_path.parts)
+    if not any(part in {"dist", "build", "out"} for part in parts):
+        return None
+
+    candidate_bases: list[Path] = []
+    for replacement in ("src", "app", "server"):
+        swapped = [replacement if part in {"dist", "build", "out"} else part for part in parts]
+        candidate_bases.append(Path(*swapped))
+
+    stem = rel_path.stem
+    for base in candidate_bases:
+        for suffix in (".ts", ".tsx", ".js", ".jsx", ".py"):
+            candidate = base.with_suffix(suffix)
+            if (repo_root / candidate).exists():
+                return candidate
+        if stem == "index":
+            for suffix in (".ts", ".tsx", ".js", ".jsx", ".py"):
+                candidate = base.parent / f"index{suffix}"
+                if (repo_root / candidate).exists():
+                    return candidate
+    return None
+
+
+def is_dependency_noise(name: str) -> bool:
+    lowered = name.lower()
+    return any(hint in lowered for hint in DEV_DEPENDENCY_HINTS)
 
 
 def normalize_file_stem(github_full_name: str) -> str:
@@ -314,27 +506,46 @@ def collect_config_signals(paths: list[Path]) -> list[dict[str, str]]:
 def choose_package_roots(repo_root: Path, paths: list[Path], manifests: list[dict[str, str]]) -> list[dict[str, Any]]:
     roots: dict[str, dict[str, Any]] = {}
     manifest_paths = {Path(item["path"]): item["kind"] for item in manifests}
+    manifest_roots = {manifest_path.parent for manifest_path in manifest_paths}
+
+    def register_candidate(path: Path, evidence: dict[str, str], source: str) -> None:
+        rel = ensure_repo_relative(path)
+        if rel == ".":
+            item = roots.setdefault(rel, {"path": rel, "evidence": [], "sources": set(), "_score": 18})
+        else:
+            score = orientation_score(path, prefer_runtime=False)
+            if source == "manifest":
+                score += 12
+            elif source == "init":
+                score += 8
+            elif source == "structural":
+                score += 6
+            elif source == "workspace_child":
+                score += 7
+            if is_noise_root(path):
+                score -= 8
+            item = roots.setdefault(rel, {"path": rel, "evidence": [], "sources": set(), "_score": score})
+            item["_score"] = max(item["_score"], score)
+        item["evidence"].append(evidence)
+        item["sources"].add(source)
+
     for manifest_path, kind in manifest_paths.items():
-        base_dir = manifest_path.parent
-        rel = ensure_repo_relative(base_dir)
-        evidence = [file_evidence("manifest", manifest_path, kind)]
-        roots[rel] = {"path": rel, "evidence": evidence}
+        register_candidate(manifest_path.parent, file_evidence("manifest", manifest_path, kind), "manifest")
 
     init_dirs = sorted({path.parent for path in paths if path.name == "__init__.py"})
     for init_dir in init_dirs:
-        rel = ensure_repo_relative(init_dir)
-        roots.setdefault(
-            rel,
-            {"path": rel, "evidence": [file_evidence("filepath", init_dir / "__init__.py")]},
-        )
+        if is_noise_root(init_dir):
+            continue
+        if len(init_dir.parts) == 1 or init_dir.parent in manifest_roots:
+            register_candidate(init_dir, file_evidence("filepath", init_dir / "__init__.py"), "init")
 
     structural_dirs = ("src", "app", "server", "cmd", "pkg", "internal", "packages", "libs")
     present_dirs = {path.parts[0] for path in paths if path.parts}
     for directory in structural_dirs:
         if directory in present_dirs:
             rel_path = Path(directory)
-            rel = ensure_repo_relative(rel_path)
-            roots.setdefault(rel, {"path": rel, "evidence": [file_evidence("directory", rel_path)]})
+            if not is_noise_root(rel_path):
+                register_candidate(rel_path, file_evidence("directory", rel_path), "structural")
 
     package_children = ("packages", "libs")
     for parent in package_children:
@@ -343,12 +554,18 @@ def choose_package_roots(repo_root: Path, paths: list[Path], manifests: list[dic
                 if Path(path.parts[1]).suffix:
                     continue
                 child = Path(path.parts[0]) / path.parts[1]
-                rel = ensure_repo_relative(child)
-                roots.setdefault(rel, {"path": rel, "evidence": [file_evidence("directory", child)]})
+                if not is_noise_root(child):
+                    register_candidate(child, file_evidence("directory", child), "workspace_child")
 
-    selected = sorted(roots.values(), key=lambda item: item["path"])
+    selected = sorted(roots.values(), key=lambda item: (-item["_score"], item["path"]))
     if selected:
-        return selected[:8]
+        return [
+            {
+                "path": item["path"],
+                "evidence": dedupe_evidence(item["evidence"]),
+            }
+            for item in selected[:8]
+        ]
     return [{"path": ".", "evidence": [file_evidence("directory", Path("."), "repo root fallback")]}]
 
 
@@ -357,33 +574,42 @@ def score_entrypoint(path: Path) -> tuple[int, str, str]:
     parts = path.parts
     name = path.name.lower()
     suffix = path.suffix.lower()
-    score = 0
+    if name == "__init__.py":
+        return 0, "app_entry", "package init is not a runtime entrypoint"
+    base_score = 0
     kind = "app_entry"
     note = "filename heuristic"
 
     if name in {"main.py", "main.ts", "main.js", "main.go", "main.rs"}:
-        score += 5
+        base_score += 5
     if name in {"app.py", "server.py", "manage.py", "cli.py", "wsgi.py", "asgi.py", "index.ts", "index.js"}:
-        score += 4
+        base_score += 4
+    if name == "cli.py":
+        kind = "cli_entry"
     if "main.go" == name and "cmd" in parts:
-        score += 5
+        base_score += 5
         kind = "cli_entry"
         note = "cmd main convention"
-    if any(segment in {"bin", "cli", "server", "api", "app", "cmd"} for segment in parts[:-1]):
-        score += 2
     if name.startswith("main.") and suffix in SOURCE_EXTENSIONS:
-        score += 2
+        base_score += 2
     if name.startswith("server.") and suffix in SOURCE_EXTENSIONS:
-        score += 2
+        base_score += 2
         kind = "server_entry"
     if text.startswith("src/main."):
-        score += 2
+        base_score += 2
     if text == "manage.py":
         kind = "management_entry"
         note = "framework manage convention"
     if name in {"wsgi.py", "asgi.py"}:
         kind = "server_entry"
         note = "framework entry convention"
+    if "worker" in path_tokens(path):
+        base_score += 2
+    if base_score == 0:
+        return 0, kind, note
+    score = base_score + orientation_score(path, prefer_runtime=True)
+    if "admin" in path_tokens(path):
+        score -= 3
     return score, kind, note
 
 
@@ -403,19 +629,61 @@ def parse_toml(path: Path) -> dict[str, Any]:
         return {}
 
 
+def pyproject_script_entrypoints(repo_root: Path, rel_path: Path) -> list[dict[str, Any]]:
+    payload = parse_toml(repo_root / rel_path)
+    entrypoints: list[dict[str, Any]] = []
+    project = payload.get("project", {}) if isinstance(payload, dict) else {}
+    script_sections: list[tuple[str, Any]] = [("project.scripts", project.get("scripts"))]
+
+    tool_section = payload.get("tool", {}) if isinstance(payload, dict) else {}
+    poetry = tool_section.get("poetry", {}) if isinstance(tool_section, dict) else {}
+    script_sections.append(("tool.poetry.scripts", poetry.get("scripts")))
+
+    for section_name, scripts in script_sections:
+        if not isinstance(scripts, dict):
+            continue
+        for command_name, target in sorted(scripts.items()):
+            if not isinstance(target, str) or ":" not in target:
+                continue
+            module_name = target.split(":", 1)[0].strip()
+            if not module_name:
+                continue
+            module_path = rel_path.parent / Path(*module_name.split("."))
+            file_path = module_path.with_suffix(".py")
+            if not (repo_root / file_path).exists():
+                init_path = module_path / "__init__.py"
+                if not (repo_root / init_path).exists():
+                    continue
+                file_path = init_path
+            entrypoints.append({
+                "path": ensure_repo_relative(file_path),
+                "kind": "cli_entry" if "cli" in command_name or "admin" in command_name else "app_entry",
+                "confidence": "medium",
+                "evidence": [
+                    file_evidence("manifest", rel_path, f"{section_name}:{command_name}"),
+                    file_evidence("filepath", file_path),
+                ],
+            })
+    return entrypoints
+
+
 def package_json_entrypoints(repo_root: Path, rel_path: Path) -> list[dict[str, Any]]:
     payload = parse_package_json(repo_root / rel_path)
     entrypoints: list[dict[str, Any]] = []
     main_value = payload.get("main")
     if isinstance(main_value, str) and main_value:
         main_path = rel_path.parent / Path(main_value)
+        preferred_path = prefer_source_equivalent_path(repo_root, main_path) or main_path
+        detail = "package.json main"
+        if preferred_path != main_path:
+            detail = "package.json main mapped to authored source"
         entrypoints.append({
-            "path": ensure_repo_relative(main_path),
+            "path": ensure_repo_relative(preferred_path),
             "kind": "app_entry",
             "confidence": "medium",
             "evidence": [
-                file_evidence("manifest", rel_path, "package.json main"),
-                file_evidence("filepath", main_path),
+                file_evidence("manifest", rel_path, detail),
+                file_evidence("filepath", preferred_path),
             ],
         })
     bin_value = payload.get("bin")
@@ -450,6 +718,8 @@ def package_json_entrypoints(repo_root: Path, rel_path: Path) -> list[dict[str, 
 def choose_entrypoints(repo_root: Path, paths: list[Path], manifests: list[dict[str, str]]) -> list[dict[str, Any]]:
     candidates: dict[str, dict[str, Any]] = {}
     for path in paths:
+        if path.suffix.lower() not in SOURCE_EXTENSIONS:
+            continue
         score, kind, note = score_entrypoint(path)
         if score >= 4:
             candidates[ensure_repo_relative(path)] = {
@@ -464,9 +734,23 @@ def choose_entrypoints(repo_root: Path, paths: list[Path], manifests: list[dict[
         manifest_path = Path(manifest["path"])
         if manifest_path.name == "package.json":
             for entry in package_json_entrypoints(repo_root, manifest_path):
+                entry_path = Path(entry["path"])
                 existing = candidates.get(entry["path"])
-                if existing is None or existing["_score"] < 5:
-                    entry["_score"] = 5
+                entry["_score"] = 5 + orientation_score(entry_path, prefer_runtime=True)
+                if existing is None or existing["_score"] < entry["_score"]:
+                    candidates[entry["path"]] = entry
+        elif manifest_path.name == "pyproject.toml":
+            for entry in pyproject_script_entrypoints(repo_root, manifest_path):
+                entry_path = Path(entry["path"])
+                existing = candidates.get(entry["path"])
+                penalty = 0
+                entry_tokens = path_tokens(entry_path)
+                if "admin" in entry_tokens:
+                    penalty += 3
+                if "local" in entry_tokens:
+                    penalty += 1
+                entry["_score"] = 4 + orientation_score(entry_path, prefer_runtime=True) - penalty
+                if existing is None or existing["_score"] < entry["_score"]:
                     candidates[entry["path"]] = entry
 
     selected = sorted(candidates.values(), key=lambda item: (-item["_score"], item["path"]))[:8]
@@ -488,36 +772,66 @@ def choose_module_groups(
             else:
                 source_dir_counts[path.parts[0]] += 1
 
+    def add_group(name: str, candidate_path: str, rationale: str, evidence: list[dict[str, str]], score: int) -> None:
+        item = groups.setdefault(
+            name,
+            {
+                "name": name,
+                "paths": [],
+                "rationale": rationale,
+                "confidence": "medium",
+                "evidence": [],
+                "_score": score,
+            },
+        )
+        item["_score"] = max(item["_score"], score)
+        if candidate_path not in item["paths"]:
+            item["paths"].append(candidate_path)
+        item["evidence"].extend(evidence)
+        if len(item["paths"]) > 1:
+            item["confidence"] = "high"
+            item["rationale"] = "merged related package roots with the same module label"
+
     for package_root in package_roots:
         root_path = Path(package_root["path"])
         if package_root["path"] == ".":
             continue
-        name = root_path.name.replace("-", "_").replace(".", "_")
-        groups[package_root["path"]] = {
-            "name": name,
-            "paths": [package_root["path"]],
-            "rationale": "package root or workspace module boundary",
-            "confidence": "medium",
-            "evidence": package_root["evidence"],
-        }
+        if is_noise_root(root_path):
+            continue
+        add_group(
+            normalized_group_name(root_path),
+            package_root["path"],
+            "package root or workspace module boundary",
+            package_root["evidence"],
+            10 + orientation_score(root_path, prefer_runtime=False),
+        )
 
     for directory, count in sorted(source_dir_counts.items(), key=lambda item: (-item[1], item[0])):
-        if count < 2 or directory in groups:
-            continue
         rel_path = Path(directory)
-        groups[directory] = {
-            "name": rel_path.name.replace("-", "_").replace(".", "_"),
-            "paths": [directory],
-            "rationale": "directory grouping with repeated source files",
-            "confidence": "medium",
-            "evidence": [file_evidence("directory", rel_path)],
-        }
+        if count < 2 or is_noise_root(rel_path):
+            continue
+        add_group(
+            normalized_group_name(rel_path),
+            directory,
+            "directory grouping with repeated source files",
+            [file_evidence("directory", rel_path)],
+            count + orientation_score(rel_path, prefer_runtime=False),
+        )
         if len(groups) >= 8:
             break
 
-    selected = sorted(groups.values(), key=lambda item: item["name"])
+    selected = sorted(groups.values(), key=lambda item: (-item["_score"], item["name"]))
     if selected:
-        return selected[:8]
+        trimmed: list[dict[str, Any]] = []
+        for item in selected[:8]:
+            trimmed.append({
+                "name": item["name"],
+                "paths": sorted(item["paths"]),
+                "rationale": item["rationale"],
+                "confidence": item["confidence"],
+                "evidence": dedupe_evidence(item["evidence"]),
+            })
+        return trimmed
 
     fallback_path = package_roots[0]["path"]
     return [{
@@ -561,55 +875,123 @@ def parse_go_mod(text: str) -> list[str]:
     return packages
 
 
+def collapse_internal_module(match: str, language: str) -> str:
+    if language == "python":
+        parts = [part for part in match.split(".") if part]
+        if len(parts) >= 2:
+            return ".".join(parts[:2])
+        return match
+    if language == "javascript":
+        parts = [part for part in match.split("/") if part]
+        if len(parts) >= 2:
+            return "/".join(parts[:2])
+    if language == "go":
+        parts = [part for part in match.split("/") if part]
+        if len(parts) >= 2:
+            return "/".join(parts[-2:])
+    return match
+
+
 def collect_dependency_signals(
     repo_root: Path,
     manifests: list[dict[str, str]],
     paths: list[Path],
     package_roots: list[dict[str, Any]],
+    entrypoints: list[dict[str, Any]],
+    module_groups: list[dict[str, Any]],
+    languages: list[str],
 ) -> dict[str, list[str]] | None:
-    external_packages: set[str] = set()
-    internal_modules: set[str] = set()
+    external_packages: Counter[str] = Counter()
+    internal_modules: Counter[str] = Counter()
     package_prefixes = {Path(item["path"]).name.replace("-", "_") for item in package_roots if item["path"] != "."}
+    entrypoint_root_counts: Counter[str] = Counter()
+    for item in entrypoints:
+        entry_path = Path(item["path"])
+        if entry_path.parts:
+            entrypoint_root_counts[entry_path.parts[0]] += 1
+    group_root_counts: Counter[str] = Counter()
+    for group in module_groups[:4]:
+        for group_path in group["paths"]:
+            group_root = Path(group_path)
+            if group_root.parts:
+                group_root_counts[group_root.parts[0]] += 1
 
-    for manifest in manifests:
+    complex_repo = len(languages) >= 3 or len(manifests) >= 10 or len(package_roots) >= 6
+    manifest_budget = 4 if complex_repo else 8
+    external_budget = 12 if complex_repo else 20
+    internal_budget = 10 if complex_repo else 16
+
+    prioritized_manifests = sorted(
+        manifests,
+        key=lambda item: (
+            -(
+                12
+                + orientation_score(Path(item["path"]).parent, prefer_runtime=False)
+                + (
+                    5 * entrypoint_root_counts.get(Path(item["path"]).parent.parts[0], 0)
+                    if Path(item["path"]).parent.parts
+                    else 0
+                )
+                + (
+                    2 * group_root_counts.get(Path(item["path"]).parent.parts[0], 0)
+                    if Path(item["path"]).parent.parts
+                    else 0
+                )
+                + (2 if item["kind"] in {"python_manifest", "node_manifest", "go_manifest", "rust_manifest"} else 0)
+            ),
+            item["path"],
+        ),
+    )[:manifest_budget]
+
+    for manifest_index, manifest in enumerate(prioritized_manifests):
         rel_path = Path(manifest["path"])
         abs_path = repo_root / rel_path
+        manifest_weight = max(manifest_budget - manifest_index, 1)
         if rel_path.name == "package.json":
             payload = parse_package_json(abs_path)
-            for key in ("dependencies", "devDependencies", "peerDependencies"):
+            for key in ("dependencies", "peerDependencies"):
                 deps = payload.get(key)
                 if isinstance(deps, dict):
-                    external_packages.update(str(name) for name in deps.keys())
+                    for name in deps.keys():
+                        if not is_dependency_noise(str(name)):
+                            external_packages[str(name)] += manifest_weight
         elif rel_path.name == "pyproject.toml":
             payload = parse_toml(abs_path)
             project = payload.get("project", {}) if isinstance(payload, dict) else {}
             dependencies = project.get("dependencies", [])
             if isinstance(dependencies, list):
-                external_packages.update(parse_requirements("\n".join(str(item) for item in dependencies)))
-            optional = project.get("optional-dependencies", {})
-            if isinstance(optional, dict):
-                for dep_list in optional.values():
-                    if isinstance(dep_list, list):
-                        external_packages.update(parse_requirements("\n".join(str(item) for item in dep_list)))
+                for name in parse_requirements("\n".join(str(item) for item in dependencies)):
+                    if not is_dependency_noise(name):
+                        external_packages[name] += manifest_weight
             poetry = payload.get("tool", {}).get("poetry", {}) if isinstance(payload, dict) else {}
             poetry_dependencies = poetry.get("dependencies", {})
             if isinstance(poetry_dependencies, dict):
-                external_packages.update(str(name) for name in poetry_dependencies.keys() if name != "python")
+                for name in poetry_dependencies.keys():
+                    name_text = str(name)
+                    if name_text != "python" and not is_dependency_noise(name_text):
+                        external_packages[name_text] += manifest_weight
         elif rel_path.name.startswith("requirements"):
             try:
-                external_packages.update(parse_requirements(abs_path.read_text(encoding="utf-8")))
+                for name in parse_requirements(abs_path.read_text(encoding="utf-8")):
+                    if not is_dependency_noise(name):
+                        external_packages[name] += manifest_weight
             except OSError:
                 continue
         elif rel_path.name == "go.mod":
             try:
-                external_packages.update(parse_go_mod(abs_path.read_text(encoding="utf-8")))
+                for name in parse_go_mod(abs_path.read_text(encoding="utf-8")):
+                    if not is_dependency_noise(name):
+                        external_packages[name] += manifest_weight
             except OSError:
                 continue
         elif rel_path.name == "Cargo.toml":
             payload = parse_toml(abs_path)
             dependencies = payload.get("dependencies", {}) if isinstance(payload, dict) else {}
             if isinstance(dependencies, dict):
-                external_packages.update(str(name) for name in dependencies.keys())
+                for name in dependencies.keys():
+                    name_text = str(name)
+                    if not is_dependency_noise(name_text):
+                        external_packages[name_text] += manifest_weight
 
     scanned_files = 0
     for path in paths:
@@ -630,30 +1012,36 @@ def collect_dependency_signals(
             for match in PYTHON_IMPORT_RE.findall(text):
                 prefix = match.split(".")[0]
                 if prefix in package_prefixes:
-                    internal_modules.add(match)
+                    internal_modules[collapse_internal_module(match, "python")] += 1
         elif path.suffix.lower() in {".js", ".jsx", ".ts", ".tsx"}:
             for match in JS_IMPORT_RE.findall(text):
                 if match.startswith(("./", "../")):
                     continue
                 prefix = match.split("/")[0].replace("@", "")
                 if prefix in package_prefixes:
-                    internal_modules.add(match)
+                    internal_modules[collapse_internal_module(match, "javascript")] += 1
         elif path.suffix.lower() == ".go":
             if "import" not in text:
                 continue
             for match in GO_IMPORT_RE.findall(text):
                 prefix = match.split("/")[-1]
                 if prefix in package_prefixes:
-                    internal_modules.add(match)
+                    internal_modules[collapse_internal_module(match, "go")] += 1
 
     if not external_packages and not internal_modules:
         return None
 
     payload: dict[str, list[str]] = {}
     if internal_modules:
-        payload["internal_modules"] = sorted(internal_modules)[:20]
+        payload["internal_modules"] = [
+            name
+            for name, _count in sorted(internal_modules.items(), key=lambda item: (-item[1], item[0]))[:internal_budget]
+        ]
     if external_packages:
-        payload["external_packages"] = sorted(external_packages)[:25]
+        payload["external_packages"] = [
+            name
+            for name, _count in sorted(external_packages.items(), key=lambda item: (-item[1], item[0]))[:external_budget]
+        ]
     return payload
 
 
@@ -663,10 +1051,10 @@ def build_orientation_hints(
     config_files: list[dict[str, str]],
 ) -> dict[str, list[str]]:
     likely_first_read: list[str] = []
-    for entrypoint in entrypoints[:4]:
+    for entrypoint in entrypoints[:3]:
         if entrypoint["path"] not in likely_first_read:
             likely_first_read.append(entrypoint["path"])
-    for group in module_groups[:4]:
+    for group in module_groups[:3]:
         for path in group["paths"]:
             if path not in likely_first_read:
                 likely_first_read.append(path)
@@ -676,7 +1064,10 @@ def build_orientation_hints(
         if entrypoint["path"] not in likely_runtime_surfaces:
             likely_runtime_surfaces.append(entrypoint["path"])
     preferred_config_kinds = {"runtime_config", "framework_config", "env_example", "typescript_config"}
-    prioritized_configs = [item for item in config_files if item["kind"] in preferred_config_kinds]
+    prioritized_configs = sorted(
+        [item for item in config_files if item["kind"] in preferred_config_kinds],
+        key=lambda item: (-orientation_score(Path(item["path"]), prefer_runtime=True), item["path"]),
+    )
     fallback_configs = prioritized_configs if prioritized_configs else config_files
     for config in fallback_configs[:4]:
         if config["path"] not in likely_runtime_surfaces:
@@ -724,7 +1115,15 @@ def analyze_repo(
     package_roots = choose_package_roots(repo_root, rel_paths, manifests)
     entrypoints = choose_entrypoints(repo_root, rel_paths, manifests)
     module_groups = choose_module_groups(rel_paths, package_roots)
-    dependency_signals = collect_dependency_signals(repo_root, manifests, rel_paths, package_roots)
+    dependency_signals = collect_dependency_signals(
+        repo_root,
+        manifests,
+        rel_paths,
+        package_roots,
+        entrypoints,
+        module_groups,
+        languages,
+    )
     signals_used = ["filesystem", "manifest", "entrypoint", "config_routing"]
     if dependency_signals is not None:
         signals_used.append("imports")

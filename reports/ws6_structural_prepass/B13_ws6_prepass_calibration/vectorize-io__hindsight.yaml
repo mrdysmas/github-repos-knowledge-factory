@@ -4,7 +4,7 @@ repo:
   node_id: repo::vectorize-io/hindsight
   file_stem: vectorize-io__hindsight
 artifact:
-  generated_at_utc: '2026-03-21T17:38:19Z'
+  generated_at_utc: '2026-03-21T18:45:38Z'
   stage: ws6_structural_prepass
   mode: filesystem_manifest_entrypoint
   output_file: reports/ws6_structural_prepass/B13_ws6_prepass_calibration/vectorize-io__hindsight.yaml
@@ -26,50 +26,63 @@ signals_used:
 - config_routing
 - imports
 package_roots:
+- path: hindsight-control-plane
+  evidence:
+  - &id002
+    kind: manifest
+    path: hindsight-control-plane/package.json
+    detail: node_manifest
+- path: hindsight-integrations/ai-sdk
+  evidence:
+  - &id001
+    kind: manifest
+    path: hindsight-integrations/ai-sdk/package.json
+    detail: node_manifest
 - path: .
   evidence:
+  - kind: manifest
+    path: package.json
+    detail: node_manifest
   - kind: manifest
     path: pyproject.toml
     detail: python_manifest
 - path: hindsight-all
-  evidence: &id002
-  - kind: manifest
+  evidence:
+  - &id003
+    kind: manifest
     path: hindsight-all/pyproject.toml
     detail: python_manifest
 - path: hindsight-all-slim
-  evidence: &id003
-  - kind: manifest
+  evidence:
+  - &id004
+    kind: manifest
     path: hindsight-all-slim/pyproject.toml
     detail: python_manifest
-- path: hindsight-all/hindsight
-  evidence: &id001
-  - kind: filepath
-    path: hindsight-all/hindsight/__init__.py
-- path: hindsight-all/tests
-  evidence: &id007
-  - kind: filepath
-    path: hindsight-all/tests/__init__.py
 - path: hindsight-api
-  evidence: &id004
-  - kind: manifest
+  evidence:
+  - &id005
+    kind: manifest
     path: hindsight-api/pyproject.toml
     detail: python_manifest
 - path: hindsight-api-slim
-  evidence: &id006
-  - kind: manifest
+  evidence:
+  - &id006
+    kind: manifest
     path: hindsight-api-slim/pyproject.toml
     detail: python_manifest
-- path: hindsight-api-slim/hindsight_api
-  evidence: &id005
-  - kind: filepath
-    path: hindsight-api-slim/hindsight_api/__init__.py
+- path: hindsight-cli
+  evidence:
+  - &id007
+    kind: manifest
+    path: hindsight-cli/Cargo.toml
+    detail: rust_manifest
 entrypoints:
-- path: hindsight-api-slim/hindsight_api/main.py
-  kind: app_entry
+- path: hindsight-api-slim/hindsight_api/server.py
+  kind: server_entry
   confidence: high
   evidence:
   - kind: filepath
-    path: hindsight-api-slim/hindsight_api/main.py
+    path: hindsight-api-slim/hindsight_api/server.py
     detail: filename heuristic
 - path: hindsight-api-slim/hindsight_api/worker/main.py
   kind: app_entry
@@ -78,43 +91,29 @@ entrypoints:
   - kind: filepath
     path: hindsight-api-slim/hindsight_api/worker/main.py
     detail: filename heuristic
-- path: hindsight-cli/src/main.rs
+- path: hindsight-api-slim/hindsight_api/main.py
   kind: app_entry
   confidence: high
   evidence:
   - kind: filepath
-    path: hindsight-cli/src/main.rs
+    path: hindsight-api-slim/hindsight_api/main.py
     detail: filename heuristic
-- path: hindsight-dev/benchmarks/visualizer/main.py
-  kind: app_entry
-  confidence: high
-  evidence:
-  - kind: filepath
-    path: hindsight-dev/benchmarks/visualizer/main.py
-    detail: filename heuristic
-- path: hindsight-all/hindsight/server.py
-  kind: server_entry
-  confidence: high
-  evidence:
-  - kind: filepath
-    path: hindsight-all/hindsight/server.py
-    detail: filename heuristic
-- path: hindsight-api-slim/hindsight_api/server.py
-  kind: server_entry
-  confidence: high
-  evidence:
-  - kind: filepath
-    path: hindsight-api-slim/hindsight_api/server.py
-    detail: filename heuristic
-- path: hindsight-clients/typescript/dist/index.js
+- path: hindsight-api-slim/hindsight_api/mcp_local.py
   kind: app_entry
   confidence: medium
   evidence:
   - kind: manifest
-    path: hindsight-clients/typescript/package.json
-    detail: package.json main
+    path: hindsight-api-slim/pyproject.toml
+    detail: project.scripts:hindsight-local-mcp
   - kind: filepath
-    path: hindsight-clients/typescript/dist/index.js
+    path: hindsight-api-slim/hindsight_api/mcp_local.py
+- path: hindsight-api-slim/hindsight_api/admin/cli.py
+  kind: cli_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: hindsight-api-slim/hindsight_api/admin/cli.py
+    detail: filename heuristic
 - path: hindsight-control-plane/bin/cli.js
   kind: cli_entry
   confidence: medium
@@ -124,43 +123,21 @@ entrypoints:
     detail: package.json bin:hindsight-control-plane
   - kind: filepath
     path: hindsight-control-plane/bin/cli.js
+- path: hindsight-all/hindsight/server.py
+  kind: server_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: hindsight-all/hindsight/server.py
+    detail: filename heuristic
+- path: hindsight-embed/hindsight_embed/cli.py
+  kind: cli_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: hindsight-embed/hindsight_embed/cli.py
+    detail: filename heuristic
 module_groups:
-- name: hindsight
-  paths:
-  - hindsight-all/hindsight
-  rationale: package root or workspace module boundary
-  confidence: medium
-  evidence: *id001
-- name: hindsight_all
-  paths:
-  - hindsight-all
-  rationale: package root or workspace module boundary
-  confidence: medium
-  evidence: *id002
-- name: hindsight_all_slim
-  paths:
-  - hindsight-all-slim
-  rationale: package root or workspace module boundary
-  confidence: medium
-  evidence: *id003
-- name: hindsight_api
-  paths:
-  - hindsight-api
-  rationale: package root or workspace module boundary
-  confidence: medium
-  evidence: *id004
-- name: hindsight_api
-  paths:
-  - hindsight-api-slim/hindsight_api
-  rationale: package root or workspace module boundary
-  confidence: medium
-  evidence: *id005
-- name: hindsight_api_slim
-  paths:
-  - hindsight-api-slim
-  rationale: package root or workspace module boundary
-  confidence: medium
-  evidence: *id006
 - name: hindsight_clients
   paths:
   - hindsight-clients
@@ -169,12 +146,55 @@ module_groups:
   evidence:
   - kind: directory
     path: hindsight-clients
-- name: tests
+- name: ai_sdk
   paths:
-  - hindsight-all/tests
+  - hindsight-integrations/ai-sdk
   rationale: package root or workspace module boundary
   confidence: medium
-  evidence: *id007
+  evidence:
+  - *id001
+- name: hindsight_control_plane
+  paths:
+  - hindsight-control-plane
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence:
+  - *id002
+- name: hindsight_all
+  paths:
+  - hindsight-all
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence:
+  - *id003
+- name: hindsight_all_slim
+  paths:
+  - hindsight-all-slim
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence:
+  - *id004
+- name: hindsight_api
+  paths:
+  - hindsight-api
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence:
+  - *id005
+- name: hindsight_api_slim
+  paths:
+  - hindsight-api-slim
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence:
+  - *id006
+- name: hindsight_cli
+  paths:
+  - hindsight-cli
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence:
+  - *id007
 filesystem_signals:
   manifests:
   - path: package.json
@@ -274,19 +294,19 @@ filesystem_signals:
     kind: runtime_config
 orientation_hints:
   likely_first_read:
-  - hindsight-api-slim/hindsight_api/main.py
+  - hindsight-api-slim/hindsight_api/server.py
   - hindsight-api-slim/hindsight_api/worker/main.py
-  - hindsight-cli/src/main.rs
-  - hindsight-dev/benchmarks/visualizer/main.py
-  - hindsight-all/hindsight
-  - hindsight-all
+  - hindsight-api-slim/hindsight_api/main.py
+  - hindsight-clients
+  - hindsight-integrations/ai-sdk
+  - hindsight-control-plane
   likely_runtime_surfaces:
-  - hindsight-api-slim/hindsight_api/main.py
+  - hindsight-api-slim/hindsight_api/server.py
   - hindsight-api-slim/hindsight_api/worker/main.py
-  - hindsight-cli/src/main.rs
-  - hindsight-dev/benchmarks/visualizer/main.py
-  - .env.example
-  - docker/docker-compose/external-pg/docker-compose.yaml
+  - hindsight-api-slim/hindsight_api/main.py
+  - hindsight-api-slim/hindsight_api/mcp_local.py
+  - hindsight-control-plane/next.config.ts
+  - hindsight-control-plane/tsconfig.json
 limitations:
 - module groups are heuristic directory-level clusters
 - no behavioral, failure-mode, or cross-repo claims are emitted
@@ -294,49 +314,26 @@ limitations:
 - import scanning was capped to keep the pre-pass cheap and deterministic
 dependency_signals:
   internal_modules:
-  - hindsight
-  - hindsight_api
-  - hindsight_api.admin.cli
-  - hindsight_api.api
-  - hindsight_api.api.http
-  - hindsight_api.api.mcp
-  - hindsight_api.config
-  - hindsight_api.config_resolver
   - hindsight_api.engine
-  - hindsight_api.engine.consolidation.consolidator
-  - hindsight_api.engine.consolidation.prompts
-  - hindsight_api.engine.cross_encoder
-  - hindsight_api.engine.db_utils
-  - hindsight_api.engine.embeddings
-  - hindsight_api.engine.entity_resolver
-  - hindsight_api.engine.interface
-  - hindsight_api.engine.llm_interface
-  - hindsight_api.engine.llm_wrapper
-  - hindsight_api.engine.memory_engine
-  - hindsight_api.engine.parsers
+  - hindsight_api.config
+  - hindsight_api.extensions
+  - hindsight_api.api
+  - hindsight_api
+  - hindsight_api.worker
+  - hindsight_api.models
+  - hindsight_api.tracing
+  - hindsight_api.main
+  - hindsight_api.metrics
   external_packages:
-  - '@docusaurus/core'
-  - '@docusaurus/module-type-aliases'
-  - '@docusaurus/preset-classic'
-  - '@docusaurus/theme-common'
-  - '@docusaurus/theme-mermaid'
-  - '@docusaurus/tsconfig'
-  - '@docusaurus/types'
-  - '@easyops-cn/docusaurus-search-local'
-  - '@eslint/eslintrc'
-  - '@eslint/js'
-  - '@hey-api/openapi-ts'
-  - '@mdx-js/react'
-  - '@radix-ui/react-alert-dialog'
-  - '@radix-ui/react-checkbox'
-  - '@radix-ui/react-dialog'
-  - '@radix-ui/react-dropdown-menu'
-  - '@radix-ui/react-label'
-  - '@radix-ui/react-popover'
-  - '@radix-ui/react-radio-group'
-  - '@radix-ui/react-select'
-  - '@radix-ui/react-slider'
-  - '@radix-ui/react-slot'
-  - '@radix-ui/react-switch'
-  - '@radix-ui/react-tabs'
-  - '@radix-ui/react-tooltip'
+  - httpx
+  - rich
+  - PyJWT
+  - aiohttp
+  - alembic
+  - anthropic
+  - asyncpg
+  - authlib
+  - claude-agent-sdk
+  - cohere
+  - cryptography
+  - dateparser

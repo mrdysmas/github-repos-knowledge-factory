@@ -160,6 +160,140 @@ class WS6StructuralPrepassTests(unittest.TestCase):
         self._write_yaml(tmp_path / "reports" / "ws6_clone_prep" / "B_web_clones.yaml", clone_manifest)
         return tmp_path
 
+    def _make_monorepo_workspace(self, tmp_path: Path) -> Path:
+        (tmp_path / "inputs" / "ws5").mkdir(parents=True, exist_ok=True)
+        (tmp_path / "reports" / "ws6_clone_prep").mkdir(parents=True, exist_ok=True)
+        repo_root = tmp_path / "workspace" / "clones" / "acme__memory-monorepo"
+
+        (repo_root / "runtime-api" / "runtime_api" / "worker").mkdir(parents=True, exist_ok=True)
+        (repo_root / "runtime-api-slim" / "runtime_api" / "worker").mkdir(parents=True, exist_ok=True)
+        (repo_root / "runtime-api-slim" / "runtime_api" / "engine").mkdir(parents=True, exist_ok=True)
+        (repo_root / "runtime-api-slim" / "tests").mkdir(parents=True, exist_ok=True)
+        (repo_root / "clients" / "typescript" / "src").mkdir(parents=True, exist_ok=True)
+        (repo_root / "control-plane" / "bin").mkdir(parents=True, exist_ok=True)
+        (repo_root / "dev" / "benchmarks" / "visualizer").mkdir(parents=True, exist_ok=True)
+        (repo_root / "docs").mkdir(parents=True, exist_ok=True)
+
+        (repo_root / "runtime-api" / "pyproject.toml").write_text(
+            "\n".join(
+                [
+                    "[project]",
+                    'name = "runtime-api"',
+                    'dependencies = ["fastapi>=0.110", "uvicorn>=0.29", "pytest>=8.0"]',
+                    "",
+                    "[project.scripts]",
+                    'runtime-api = "runtime_api.main:main"',
+                    'runtime-worker = "runtime_api.worker.main:main"',
+                ]
+            ),
+            encoding="utf-8",
+        )
+        (repo_root / "runtime-api" / "runtime_api" / "__init__.py").write_text("", encoding="utf-8")
+        (repo_root / "runtime-api" / "runtime_api" / "main.py").write_text("def main():\n    return None\n", encoding="utf-8")
+        (repo_root / "runtime-api" / "runtime_api" / "worker" / "__init__.py").write_text("", encoding="utf-8")
+        (repo_root / "runtime-api" / "runtime_api" / "worker" / "main.py").write_text(
+            "def main():\n    return None\n",
+            encoding="utf-8",
+        )
+        (repo_root / "runtime-api-slim" / "pyproject.toml").write_text(
+            "\n".join(
+                [
+                    "[project]",
+                    'name = "runtime-api-slim"',
+                    'dependencies = ["httpx>=0.27", "sqlalchemy>=2.0"]',
+                ]
+            ),
+            encoding="utf-8",
+        )
+        (repo_root / "runtime-api-slim" / "runtime_api" / "__init__.py").write_text("", encoding="utf-8")
+        (repo_root / "runtime-api-slim" / "runtime_api" / "main.py").write_text(
+            "from runtime_api.engine.router import app\n",
+            encoding="utf-8",
+        )
+        (repo_root / "runtime-api-slim" / "runtime_api" / "server.py").write_text(
+            "from runtime_api.engine.router import app\n",
+            encoding="utf-8",
+        )
+        (repo_root / "runtime-api-slim" / "runtime_api" / "worker" / "__init__.py").write_text("", encoding="utf-8")
+        (repo_root / "runtime-api-slim" / "runtime_api" / "worker" / "main.py").write_text(
+            "from runtime_api.engine.jobs import run\n",
+            encoding="utf-8",
+        )
+        (repo_root / "runtime-api-slim" / "runtime_api" / "engine" / "__init__.py").write_text("", encoding="utf-8")
+        (repo_root / "runtime-api-slim" / "runtime_api" / "engine" / "router.py").write_text(
+            "from runtime_api.engine.jobs import run\n",
+            encoding="utf-8",
+        )
+        (repo_root / "runtime-api-slim" / "runtime_api" / "engine" / "jobs.py").write_text(
+            "from runtime_api.engine.router import app\n",
+            encoding="utf-8",
+        )
+        (repo_root / "runtime-api-slim" / "tests" / "__init__.py").write_text("", encoding="utf-8")
+
+        (repo_root / "clients" / "typescript" / "package.json").write_text(
+            json.dumps(
+                {
+                    "name": "@acme/runtime-client",
+                    "main": "./dist/index.js",
+                    "dependencies": {"axios": "^1.0.0"},
+                    "devDependencies": {"typescript": "^5.0.0"},
+                },
+                indent=2,
+            )
+            + "\n",
+            encoding="utf-8",
+        )
+        (repo_root / "clients" / "typescript" / "src" / "index.ts").write_text(
+            "export const client = 'ok';\n",
+            encoding="utf-8",
+        )
+
+        (repo_root / "control-plane" / "package.json").write_text(
+            json.dumps(
+                {
+                    "name": "@acme/control-plane",
+                    "bin": {"control-plane": "./bin/cli.js"},
+                    "dependencies": {"next": "^16.0.0", "react": "^19.0.0"},
+                    "devDependencies": {"eslint": "^9.0.0"},
+                },
+                indent=2,
+            )
+            + "\n",
+            encoding="utf-8",
+        )
+        (repo_root / "control-plane" / "bin" / "cli.js").write_text("console.log('cli');\n", encoding="utf-8")
+
+        (repo_root / "dev" / "benchmarks" / "visualizer" / "main.py").write_text("print('benchmark')\n", encoding="utf-8")
+        (repo_root / "docs" / "package.json").write_text(json.dumps({"name": "docs"}, indent=2) + "\n", encoding="utf-8")
+
+        input_manifest = {
+            "artifact_type": "ws5_remote_ingestion_input_manifest",
+            "contract_version": "1.0.0-ws1",
+            "repos": [
+                {
+                    "github_full_name": "acme/memory-monorepo",
+                    "file_stem": "acme__memory-monorepo",
+                }
+            ],
+        }
+        self._write_yaml(tmp_path / "inputs" / "ws5" / "B_mono_manifest.yaml", input_manifest)
+
+        clone_manifest = {
+            "batch_id": "B_mono",
+            "generated_at_utc": "2026-03-21T00:00:00Z",
+            "clone_workdir": "workspace/clones",
+            "repos": [
+                {
+                    "github_full_name": "acme/memory-monorepo",
+                    "local_path": str(repo_root),
+                    "cloned": True,
+                    "skip_reason": None,
+                }
+            ],
+        }
+        self._write_yaml(tmp_path / "reports" / "ws6_clone_prep" / "B_mono_clones.yaml", clone_manifest)
+        return tmp_path
+
     def test_cli_generates_contract_conforming_artifact_and_summary(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             workspace = self._make_python_workspace(Path(tmp_dir))
@@ -244,6 +378,47 @@ class WS6StructuralPrepassTests(unittest.TestCase):
             self.assertEqual(summary["summary"]["repos_selected"], 1)
             self.assertEqual(summary["summary"]["repos_generated"], 1)
             self.assertEqual(len(summary["repos"]), 1)
+
+    def test_monorepo_ranking_prefers_runtime_surfaces_and_merges_duplicate_module_labels(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            workspace = self._make_monorepo_workspace(Path(tmp_dir))
+            cmd = [
+                sys.executable,
+                str(SCRIPT),
+                "--workspace-root",
+                str(workspace),
+                "--clone-manifest",
+                "reports/ws6_clone_prep/B_mono_clones.yaml",
+                "--input-manifest",
+                "inputs/ws5/B_mono_manifest.yaml",
+            ]
+            result = subprocess.run(cmd, capture_output=True, text=True, check=False)
+            self.assertEqual(result.returncode, 0, msg=result.stdout + "\n" + result.stderr)
+
+            artifact_path = workspace / "reports" / "ws6_structural_prepass" / "B_mono" / "acme__memory-monorepo.yaml"
+            artifact = yaml.safe_load(artifact_path.read_text(encoding="utf-8"))
+
+            entrypoint_paths = {item["path"] for item in artifact["entrypoints"]}
+            self.assertIn("runtime-api-slim/runtime_api/main.py", entrypoint_paths)
+            self.assertIn("clients/typescript/src/index.ts", entrypoint_paths)
+            self.assertNotIn("clients/typescript/dist/index.js", entrypoint_paths)
+            self.assertNotIn("dev/benchmarks/visualizer/main.py", entrypoint_paths)
+
+            likely_first_read = artifact["orientation_hints"]["likely_first_read"]
+            self.assertTrue(
+                any(path.startswith("runtime-api-slim/runtime_api/") for path in likely_first_read),
+                likely_first_read,
+            )
+            self.assertNotIn("dev/benchmarks/visualizer/main.py", likely_first_read)
+
+            runtime_api_groups = [group for group in artifact["module_groups"] if group["name"] == "runtime_api"]
+            self.assertEqual(len(runtime_api_groups), 1)
+            self.assertIn("runtime-api", runtime_api_groups[0]["paths"])
+            self.assertIn("runtime-api-slim/runtime_api", runtime_api_groups[0]["paths"])
+
+            self.assertIn("runtime_api.engine", artifact["dependency_signals"]["internal_modules"])
+            self.assertNotIn("pytest", artifact["dependency_signals"]["external_packages"])
+            self.assertNotIn("typescript", artifact["dependency_signals"]["external_packages"])
 
 
 if __name__ == "__main__":
