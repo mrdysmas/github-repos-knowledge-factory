@@ -4,7 +4,7 @@ repo:
   node_id: repo::langchain-ai/deepagents
   file_stem: langchain-ai__deepagents
 artifact:
-  generated_at_utc: '2026-03-21T20:27:49Z'
+  generated_at_utc: '2026-03-21T20:44:35Z'
   stage: ws6_structural_prepass
   mode: filesystem_manifest_entrypoint
   output_file: reports/ws6_structural_prepass/B15_ws6_prepass_default_promotion_calibration/langchain-ai__deepagents.yaml
@@ -103,6 +103,13 @@ entrypoints:
   - kind: filepath
     path: libs/cli/deepagents_cli/main.py
     detail: filename heuristic
+- path: libs/acp/deepagents_acp/server.py
+  kind: server_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: libs/acp/deepagents_acp/server.py
+    detail: filename heuristic
 - path: libs/cli/deepagents_cli/__init__.py
   kind: app_entry
   confidence: medium
@@ -112,13 +119,6 @@ entrypoints:
     detail: project.scripts:deepagents
   - kind: filepath
     path: libs/cli/deepagents_cli/__init__.py
-- path: libs/acp/deepagents_acp/server.py
-  kind: server_entry
-  confidence: high
-  evidence:
-  - kind: filepath
-    path: libs/acp/deepagents_acp/server.py
-    detail: filename heuristic
 module_groups:
 - name: libs
   paths:
@@ -268,7 +268,7 @@ orientation_hints:
   - libs/cli/deepagents_cli/server.py
   - libs/cli/deepagents_cli/app.py
   - libs/cli/deepagents_cli/main.py
-  - libs/cli/deepagents_cli/__init__.py
+  - libs/acp/deepagents_acp/server.py
   - libs/acp/.env.example
   - examples/deep_research/.env.example
 limitations:

@@ -4,7 +4,7 @@ repo:
   node_id: repo::tailscale/tailscale
   file_stem: tailscale
 artifact:
-  generated_at_utc: '2026-03-21T20:27:49Z'
+  generated_at_utc: '2026-03-21T20:44:35Z'
   stage: ws6_structural_prepass
   mode: filesystem_manifest_entrypoint
   output_file: reports/ws6_structural_prepass/B15_ws6_prepass_default_promotion_calibration/tailscale.yaml
@@ -32,44 +32,59 @@ package_roots:
     detail: go_manifest
 - path: client/web
   evidence:
-  - &id003
-    kind: manifest
+  - kind: manifest
     path: client/web/package.json
     detail: node_manifest
 - path: cmd/tsconnect
   evidence:
-  - &id002
-    kind: manifest
+  - kind: manifest
     path: cmd/tsconnect/package.json
     detail: node_manifest
 - path: cmd
   evidence:
-  - &id001
-    kind: directory
+  - kind: directory
     path: cmd
 - path: packages/deb
   evidence:
-  - &id004
-    kind: directory
+  - kind: directory
     path: packages/deb
 - path: internal
   evidence:
-  - &id005
-    kind: directory
+  - kind: directory
     path: internal
 - path: packages
   evidence:
-  - &id006
-    kind: directory
+  - kind: directory
     path: packages
 entrypoints:
-- path: cmd/addlicense/main.go
+- path: cmd/tailscale/tailscale.go
   kind: cli_entry
   confidence: high
   evidence:
   - kind: filepath
-    path: cmd/addlicense/main.go
-    detail: cmd main convention
+    path: cmd/tailscale/tailscale.go
+    detail: directory-matched runtime file
+- path: cmd/tailscaled/tailscaled.go
+  kind: cli_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: cmd/tailscaled/tailscaled.go
+    detail: directory-matched runtime file
+- path: cmd/tsconnect/tsconnect.go
+  kind: cli_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: cmd/tsconnect/tsconnect.go
+    detail: directory-matched runtime file
+- path: cmd/proxy-test-server/proxy-test-server.go
+  kind: cli_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: cmd/proxy-test-server/proxy-test-server.go
+    detail: directory-matched runtime file
 - path: cmd/containerboot/main.go
   kind: cli_entry
   confidence: high
@@ -77,48 +92,27 @@ entrypoints:
   - kind: filepath
     path: cmd/containerboot/main.go
     detail: cmd main convention
-- path: cmd/get-authkey/main.go
+- path: cmd/tailscale/cli/cli.go
   kind: cli_entry
   confidence: high
   evidence:
   - kind: filepath
-    path: cmd/get-authkey/main.go
-    detail: cmd main convention
-- path: cmd/k8s-nameserver/main.go
+    path: cmd/tailscale/cli/cli.go
+    detail: directory-matched runtime file
+- path: cmd/derper/derper.go
   kind: cli_entry
   confidence: high
   evidence:
   - kind: filepath
-    path: cmd/k8s-nameserver/main.go
-    detail: cmd main convention
-- path: cmd/mkmanifest/main.go
+    path: cmd/derper/derper.go
+    detail: directory-matched runtime file
+- path: cmd/natc/natc.go
   kind: cli_entry
   confidence: high
   evidence:
   - kind: filepath
-    path: cmd/mkmanifest/main.go
-    detail: cmd main convention
-- path: cmd/mkpkg/main.go
-  kind: cli_entry
-  confidence: high
-  evidence:
-  - kind: filepath
-    path: cmd/mkpkg/main.go
-    detail: cmd main convention
-- path: cmd/netlogfmt/main.go
-  kind: cli_entry
-  confidence: high
-  evidence:
-  - kind: filepath
-    path: cmd/netlogfmt/main.go
-    detail: cmd main convention
-- path: cmd/sync-containers/main.go
-  kind: cli_entry
-  confidence: high
-  evidence:
-  - kind: filepath
-    path: cmd/sync-containers/main.go
-    detail: cmd main convention
+    path: cmd/natc/natc.go
+    detail: directory-matched runtime file
 module_groups:
 - name: net
   paths:
@@ -136,48 +130,57 @@ module_groups:
   evidence:
   - kind: directory
     path: util
-- name: cmd
+- name: feature
   paths:
-  - cmd
-  rationale: package root or workspace module boundary
+  - feature
+  rationale: directory grouping with repeated source files
   confidence: medium
   evidence:
-  - *id001
-- name: tsconnect
+  - kind: directory
+    path: feature
+- name: ipn
   paths:
-  - cmd/tsconnect
-  rationale: package root or workspace module boundary
+  - ipn
+  rationale: directory grouping with repeated source files
   confidence: medium
   evidence:
-  - *id002
-- name: web
+  - kind: directory
+    path: ipn
+- name: wgengine
   paths:
-  - client/web
-  rationale: package root or workspace module boundary
+  - wgengine
+  rationale: directory grouping with repeated source files
   confidence: medium
   evidence:
-  - *id003
-- name: deb
+  - kind: directory
+    path: wgengine
+- name: types
   paths:
-  - packages/deb
-  rationale: package root or workspace module boundary
+  - types
+  rationale: directory grouping with repeated source files
   confidence: medium
   evidence:
-  - *id004
-- name: internal
+  - kind: directory
+    path: types
+- name: tailscale
   paths:
-  - internal
-  rationale: package root or workspace module boundary
+  - cmd/tailscale
+  rationale: directory grouping with repeated source files
   confidence: medium
   evidence:
-  - *id005
-- name: packages
+  - kind: directory
+    path: cmd/tailscale
+- name: client
   paths:
-  - packages
-  rationale: package root or workspace module boundary
-  confidence: medium
+  - client
+  - internal/client
+  rationale: merged related package roots with the same module label
+  confidence: high
   evidence:
-  - *id006
+  - kind: directory
+    path: client
+  - kind: directory
+    path: internal/client
 filesystem_signals:
   manifests:
   - path: go.mod
@@ -233,17 +236,17 @@ filesystem_signals:
     kind: typescript_config
 orientation_hints:
   likely_first_read:
-  - cmd/addlicense/main.go
-  - cmd/containerboot/main.go
-  - cmd/get-authkey/main.go
-  - net
-  - util
-  - cmd
+  - cmd/tailscale/tailscale.go
+  - cmd/tailscaled/tailscaled.go
+  - ipn
+  - wgengine
+  - cmd/tailscale
+  - cmd/tsconnect/tsconnect.go
   likely_runtime_surfaces:
-  - cmd/addlicense/main.go
-  - cmd/containerboot/main.go
-  - cmd/get-authkey/main.go
-  - cmd/k8s-nameserver/main.go
+  - cmd/tailscale/tailscale.go
+  - cmd/tailscaled/tailscaled.go
+  - cmd/tsconnect/tsconnect.go
+  - cmd/proxy-test-server/proxy-test-server.go
   - cmd/tsconnect/tsconfig.json
   - client/web/tsconfig.json
 limitations:

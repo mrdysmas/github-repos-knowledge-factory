@@ -163,6 +163,28 @@ SUPPORT_TOKENS = {
     "tools",
 }
 
+GENERIC_GROUP_TOKENS = {
+    "app",
+    "apps",
+    "client",
+    "clients",
+    "cmd",
+    "feature",
+    "features",
+    "internal",
+    "lib",
+    "libs",
+    "net",
+    "package",
+    "packages",
+    "server",
+    "src",
+    "type",
+    "types",
+    "util",
+    "utils",
+}
+
 RUNTIME_TOKENS = {
     "admin",
     "api",
@@ -249,6 +271,18 @@ def path_depth(path: Path) -> int:
 
 def path_has_noise(path: Path) -> bool:
     return any(label in NOISE_TOKENS for label in path_part_labels(path))
+
+
+def build_source_dir_counts(paths: list[Path]) -> Counter[str]:
+    counts: Counter[str] = Counter()
+    for path in paths:
+        if path.suffix.lower() not in SOURCE_EXTENSIONS:
+            continue
+        current = path.parent
+        while current != Path(".") and current.parts:
+            counts[ensure_repo_relative(current)] += 1
+            current = current.parent
+    return counts
 
 
 def orientation_score(path: Path, *, prefer_runtime: bool) -> int:
@@ -569,7 +603,7 @@ def choose_package_roots(repo_root: Path, paths: list[Path], manifests: list[dic
     return [{"path": ".", "evidence": [file_evidence("directory", Path("."), "repo root fallback")]}]
 
 
-def score_entrypoint(path: Path) -> tuple[int, str, str]:
+def score_entrypoint(path: Path, source_dir_counts: Counter[str]) -> tuple[int, str, str]:
     text = ensure_repo_relative(path)
     parts = path.parts
     name = path.name.lower()
@@ -590,6 +624,11 @@ def score_entrypoint(path: Path) -> tuple[int, str, str]:
         base_score += 5
         kind = "cli_entry"
         note = "cmd main convention"
+    if len(parts) >= 2 and suffix in SOURCE_EXTENSIONS and path.parent.name.lower() == path.stem.lower():
+        base_score += 6
+        note = "directory-matched runtime file"
+        if "cmd" in parts:
+            kind = "cli_entry"
     if name.startswith("main.") and suffix in SOURCE_EXTENSIONS:
         base_score += 2
     if name.startswith("server.") and suffix in SOURCE_EXTENSIONS:
@@ -608,6 +647,13 @@ def score_entrypoint(path: Path) -> tuple[int, str, str]:
     if base_score == 0:
         return 0, kind, note
     score = base_score + orientation_score(path, prefer_runtime=True)
+    subtree_source_count = source_dir_counts.get(ensure_repo_relative(path.parent), 0)
+    if subtree_source_count >= 3:
+        score += min(subtree_source_count, 18) // 2
+    if len(parts) >= 3 and parts[0] == "cmd" and name == f"{parts[1].lower()}{suffix}":
+        score += 6
+    if len(parts) >= 3 and parts[0] == "cmd" and name == "main.go" and subtree_source_count <= 2:
+        score -= 4
     if "admin" in path_tokens(path):
         score -= 3
     return score, kind, note
@@ -717,10 +763,11 @@ def package_json_entrypoints(repo_root: Path, rel_path: Path) -> list[dict[str, 
 
 def choose_entrypoints(repo_root: Path, paths: list[Path], manifests: list[dict[str, str]]) -> list[dict[str, Any]]:
     candidates: dict[str, dict[str, Any]] = {}
+    source_dir_counts = build_source_dir_counts(paths)
     for path in paths:
         if path.suffix.lower() not in SOURCE_EXTENSIONS:
             continue
-        score, kind, note = score_entrypoint(path)
+        score, kind, note = score_entrypoint(path, source_dir_counts)
         if score >= 4:
             candidates[ensure_repo_relative(path)] = {
                 "path": ensure_repo_relative(path),
@@ -817,8 +864,6 @@ def choose_module_groups(
             [file_evidence("directory", rel_path)],
             count + orientation_score(rel_path, prefer_runtime=False),
         )
-        if len(groups) >= 8:
-            break
 
     selected = sorted(groups.values(), key=lambda item: (-item["_score"], item["name"]))
     if selected:
@@ -1051,13 +1096,52 @@ def build_orientation_hints(
     config_files: list[dict[str, str]],
 ) -> dict[str, list[str]]:
     likely_first_read: list[str] = []
-    for entrypoint in entrypoints[:3]:
+    broad_repo = len(entrypoints) >= 6 and len(module_groups) >= 5
+
+    first_read_entry_budget = 2 if broad_repo else 3
+    first_read_group_budget = 3 if broad_repo else 3
+
+    def group_first_read_score(group: dict[str, Any]) -> tuple[int, str]:
+        primary_path = Path(group["paths"][0])
+        labels = path_part_labels(primary_path)
+        score = orientation_score(primary_path, prefer_runtime=False)
+        if len(primary_path.parts) >= 2:
+            score += 4
+        if not any(label in GENERIC_GROUP_TOKENS for label in labels):
+            score += 5
+        score -= sum(4 for label in labels if label in GENERIC_GROUP_TOKENS)
+        if group.get("confidence") == "high":
+            score += 1
+        return score, group["paths"][0]
+
+    prioritized_groups = (
+        sorted(module_groups, key=lambda group: (-group_first_read_score(group)[0], group_first_read_score(group)[1]))
+        if broad_repo
+        else module_groups
+    )
+
+    for entrypoint in entrypoints[:first_read_entry_budget]:
         if entrypoint["path"] not in likely_first_read:
             likely_first_read.append(entrypoint["path"])
-    for group in module_groups[:3]:
+    for group in prioritized_groups[:first_read_group_budget]:
         for path in group["paths"]:
             if path not in likely_first_read:
                 likely_first_read.append(path)
+                if broad_repo and len(likely_first_read) >= 5:
+                    break
+        if broad_repo and len(likely_first_read) >= 5:
+            break
+    if broad_repo:
+        for entrypoint in entrypoints[first_read_entry_budget:]:
+            if entrypoint["path"] not in likely_first_read:
+                likely_first_read.append(entrypoint["path"])
+            if len(likely_first_read) >= 6:
+                break
+    else:
+        for group in prioritized_groups[first_read_group_budget:3]:
+            for path in group["paths"]:
+                if path not in likely_first_read:
+                    likely_first_read.append(path)
 
     likely_runtime_surfaces: list[str] = []
     for entrypoint in entrypoints[:4]:

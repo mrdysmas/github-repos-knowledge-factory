@@ -294,6 +294,108 @@ class WS6StructuralPrepassTests(unittest.TestCase):
         self._write_yaml(tmp_path / "reports" / "ws6_clone_prep" / "B_mono_clones.yaml", clone_manifest)
         return tmp_path
 
+    def _make_broad_go_workspace(self, tmp_path: Path) -> Path:
+        (tmp_path / "inputs" / "ws5").mkdir(parents=True, exist_ok=True)
+        (tmp_path / "reports" / "ws6_clone_prep").mkdir(parents=True, exist_ok=True)
+        repo_root = tmp_path / "workspace" / "clones" / "acme__mesh-broad"
+
+        for directory in (
+            repo_root / "cmd" / "tailscale",
+            repo_root / "cmd" / "tailscaled",
+            repo_root / "cmd" / "addlicense",
+            repo_root / "cmd" / "containerboot",
+            repo_root / "cmd" / "get-authkey",
+            repo_root / "wgengine",
+            repo_root / "ipn",
+            repo_root / "control",
+            repo_root / "client" / "web",
+        ):
+            directory.mkdir(parents=True, exist_ok=True)
+
+        (repo_root / "go.mod").write_text("module example.com/mesh-broad\n", encoding="utf-8")
+        (repo_root / "cmd" / "tailscale" / "tailscale.go").write_text(
+            "\n".join(
+                [
+                    "package main",
+                    "",
+                    'import "example.com/mesh-broad/wgengine"',
+                    "",
+                    "func main() {",
+                    "    _ = wgengine.Engine{}",
+                    "}",
+                ]
+            )
+            + "\n",
+            encoding="utf-8",
+        )
+        (repo_root / "cmd" / "tailscale" / "up.go").write_text("package main\n", encoding="utf-8")
+        (repo_root / "cmd" / "tailscale" / "status.go").write_text("package main\n", encoding="utf-8")
+        (repo_root / "cmd" / "tailscale" / "debug.go").write_text("package main\n", encoding="utf-8")
+
+        (repo_root / "cmd" / "tailscaled" / "tailscaled.go").write_text(
+            "\n".join(
+                [
+                    "package main",
+                    "",
+                    'import "example.com/mesh-broad/ipn"',
+                    "",
+                    "func main() {",
+                    "    _ = ipn.Server{}",
+                    "}",
+                ]
+            )
+            + "\n",
+            encoding="utf-8",
+        )
+        (repo_root / "cmd" / "tailscaled" / "netstack.go").write_text("package main\n", encoding="utf-8")
+        (repo_root / "cmd" / "tailscaled" / "proxy.go").write_text("package main\n", encoding="utf-8")
+        (repo_root / "cmd" / "tailscaled" / "debug.go").write_text("package main\n", encoding="utf-8")
+
+        (repo_root / "cmd" / "addlicense" / "main.go").write_text("package main\n", encoding="utf-8")
+        (repo_root / "cmd" / "containerboot" / "main.go").write_text("package main\n", encoding="utf-8")
+        (repo_root / "cmd" / "containerboot" / "serve.go").write_text("package main\n", encoding="utf-8")
+        (repo_root / "cmd" / "get-authkey" / "main.go").write_text("package main\n", encoding="utf-8")
+
+        (repo_root / "wgengine" / "wgengine.go").write_text("package wgengine\n\ntype Engine struct{}\n", encoding="utf-8")
+        (repo_root / "wgengine" / "router.go").write_text("package wgengine\n", encoding="utf-8")
+        (repo_root / "ipn" / "server.go").write_text("package ipn\n\ntype Server struct{}\n", encoding="utf-8")
+        (repo_root / "ipn" / "localapi.go").write_text("package ipn\n", encoding="utf-8")
+        (repo_root / "control" / "client.go").write_text("package control\n", encoding="utf-8")
+        (repo_root / "control" / "map.go").write_text("package control\n", encoding="utf-8")
+
+        (repo_root / "client" / "web" / "package.json").write_text(
+            json.dumps({"name": "@acme/web", "dependencies": {"react": "^19.0.0"}}, indent=2) + "\n",
+            encoding="utf-8",
+        )
+
+        input_manifest = {
+            "artifact_type": "ws5_remote_ingestion_input_manifest",
+            "contract_version": "1.0.0-ws1",
+            "repos": [
+                {
+                    "github_full_name": "acme/mesh-broad",
+                    "file_stem": "acme__mesh-broad",
+                }
+            ],
+        }
+        self._write_yaml(tmp_path / "inputs" / "ws5" / "B_broad_manifest.yaml", input_manifest)
+
+        clone_manifest = {
+            "batch_id": "B_broad",
+            "generated_at_utc": "2026-03-21T00:00:00Z",
+            "clone_workdir": "workspace/clones",
+            "repos": [
+                {
+                    "github_full_name": "acme/mesh-broad",
+                    "local_path": str(repo_root),
+                    "cloned": True,
+                    "skip_reason": None,
+                }
+            ],
+        }
+        self._write_yaml(tmp_path / "reports" / "ws6_clone_prep" / "B_broad_clones.yaml", clone_manifest)
+        return tmp_path
+
     def test_cli_generates_contract_conforming_artifact_and_summary(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             workspace = self._make_python_workspace(Path(tmp_dir))
@@ -419,6 +521,49 @@ class WS6StructuralPrepassTests(unittest.TestCase):
             self.assertIn("runtime_api.engine", artifact["dependency_signals"]["internal_modules"])
             self.assertNotIn("pytest", artifact["dependency_signals"]["external_packages"])
             self.assertNotIn("typescript", artifact["dependency_signals"]["external_packages"])
+
+    def test_broad_repo_ranking_prefers_primary_runtime_surfaces_over_helper_commands(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            workspace = self._make_broad_go_workspace(Path(tmp_dir))
+            cmd = [
+                sys.executable,
+                str(SCRIPT),
+                "--workspace-root",
+                str(workspace),
+                "--clone-manifest",
+                "reports/ws6_clone_prep/B_broad_clones.yaml",
+                "--input-manifest",
+                "inputs/ws5/B_broad_manifest.yaml",
+            ]
+            result = subprocess.run(cmd, capture_output=True, text=True, check=False)
+            self.assertEqual(result.returncode, 0, msg=result.stdout + "\n" + result.stderr)
+
+            artifact_path = workspace / "reports" / "ws6_structural_prepass" / "B_broad" / "acme__mesh-broad.yaml"
+            artifact = yaml.safe_load(artifact_path.read_text(encoding="utf-8"))
+
+            entrypoints = artifact["entrypoints"]
+            entrypoint_paths = [item["path"] for item in entrypoints]
+            self.assertIn("cmd/tailscale/tailscale.go", entrypoint_paths)
+            self.assertIn("cmd/tailscaled/tailscaled.go", entrypoint_paths)
+            self.assertIn("cmd/addlicense/main.go", entrypoint_paths)
+
+            self.assertLess(
+                entrypoint_paths.index("cmd/tailscale/tailscale.go"),
+                entrypoint_paths.index("cmd/addlicense/main.go"),
+                entrypoint_paths,
+            )
+            self.assertLess(
+                entrypoint_paths.index("cmd/tailscaled/tailscaled.go"),
+                entrypoint_paths.index("cmd/get-authkey/main.go"),
+                entrypoint_paths,
+            )
+
+            likely_first_read = artifact["orientation_hints"]["likely_first_read"]
+            self.assertEqual(likely_first_read[0], "cmd/tailscale/tailscale.go", likely_first_read)
+            self.assertEqual(likely_first_read[1], "cmd/tailscaled/tailscaled.go", likely_first_read)
+            self.assertNotIn("cmd/addlicense/main.go", likely_first_read[:2], likely_first_read)
+            self.assertIn("control", likely_first_read, likely_first_read)
+            self.assertIn("ipn", likely_first_read, likely_first_read)
 
 
 if __name__ == "__main__":
