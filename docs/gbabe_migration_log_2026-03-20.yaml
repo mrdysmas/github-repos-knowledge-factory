@@ -1,0 +1,320 @@
+migration:
+  title: Mac → gbabe Environment Migration
+  date: "2026-03-20"
+  goal: >
+    Move the active development environment to gbabe (Linux Mint 22.3, Ubuntu 24.04 base).
+    Mac becomes a pure control node — SSH/Paseo client only.
+  status: complete
+
+completed_steps:
+
+  - step: install_agent_clis
+    summary: Claude Code and Codex CLI installed on gbabe
+    notes:
+      - Claude Code binary landed in ~/.local/bin/claude
+      - Codex (@openai/codex) installed to ~/.npm-global via npm
+      - Both confirmed working before config migration
+
+  - step: migrate_claude_config
+    summary: rsync ~/.claude/ from Mac to gbabe
+    command: "rsync -av ~/.claude/ abe@gbabe:~/.claude/"
+    notes:
+      - Transfers global CLAUDE.md, settings, skills, memory, project memory indexes
+      - ~/.claude.json (auth token) is a separate file and was not overwritten
+      - Claude Code re-auth is machine-bound; auth was handled separately on gbabe
+
+  - step: migrate_codex_config
+    summary: rsync ~/.codex/ from Mac to gbabe, excluding auth and runtime state
+    command: >
+      rsync -av
+      --exclude='auth.json'
+      --exclude='*.sqlite'
+      --exclude='*.sqlite-shm'
+      --exclude='*.sqlite-wal'
+      --exclude='logs_*'
+      --exclude='models_cache.json'
+      --exclude='shell_snapshots/'
+      --exclude='tmp/'
+      ~/.codex/ abe@gbabe:~/.codex/
+    notes:
+      - Transferred config.toml, memories/, skills/, archived_sessions/, history.jsonl
+      - auth.json on gbabe preserved (already authenticated)
+      - Conversation history in sqlite excluded intentionally; not needed
+
+  - step: clone_project_repo
+    summary: git clone project repo onto gbabe
+    command: "git clone https://github.com/mrdysmas/github-repos-knowledge-factory ~/scripts/ext_sources/github_repos"
+    notes:
+      - Clean clone from GitHub remote
+      - .beads/ is gitignored, so Dolt database was not included
+
+  - step: install_bd_and_dolt
+    summary: Install bd (beads) and dolt CLI on gbabe
+    commands:
+      - "curl -fsSL https://raw.githubusercontent.com/steveyegge/beads/main/scripts/install.sh | bash"
+      - "sudo bash -c 'curl -L https://github.com/dolthub/dolt/releases/latest/download/install.sh | bash'"
+    versions:
+      bd: 0.61.0
+      dolt: v1.84.0
+
+  - step: migrate_beads_dolt_database
+    summary: rsync .beads/ directory and ~/.beads-remote from Mac to gbabe
+    commands:
+      - >
+        rsync -av
+        --exclude='dolt-server.lock'
+        --exclude='dolt-server.pid'
+        --exclude='dolt-server.port'
+        /Users/szilaa/scripts/ext_sources/github_repos/.beads/
+        abe@gbabe:~/scripts/ext_sources/github_repos/.beads/
+      - "rsync -av ~/.beads-remote/ abe@gbabe:~/.beads-remote/"
+    notes:
+      - Dolt server data (github_repos database) transferred successfully
+      - File remote (~/.beads-remote) transferred to same path on gbabe
+
+  - step: configure_dolt_remote
+    summary: Update Dolt remote URL from Mac path to gbabe path
+    commands:
+      - "bd dolt start"
+      - "bd dolt remote remove origin"
+      - "bd dolt remote add origin file:///home/abe/.beads-remote"
+    notes:
+      - SQL remote updated successfully
+      - CLI remote layer showed a warning but .dolt/config.json was empty — bd operates via SQL, not CLI; push confirmed working
+      - "bd dolt push" completed without errors after reconfiguration
+
+  - step: fix_path
+    summary: Add ~/.local/bin to PATH in ~/.bashrc
+    command: "echo 'export PATH=\"$HOME/.local/bin:$PATH\"' >> ~/.bashrc"
+    notes:
+      - claude and bd both land in ~/.local/bin, not ~/.npm-global/bin
+      - ~/.profile already included ~/.local/bin (Ubuntu default); .bashrc addition ensures consistency
+      - Paseo systemd service will need explicit Environment=PATH= line — not yet done
+
+  - step: fix_memory_path
+    summary: Symlink Claude project memory from Mac path to gbabe path
+    command: >
+      ln -s ~/.claude/projects/-Users-szilaa-scripts-ext-sources-github-repos
+             ~/.claude/projects/-home-abe-scripts-ext-sources-github-repos
+    notes:
+      - Claude Code derives project memory path from the working directory
+      - Synced memory lives under the Mac-derived path key
+      - Symlink bridges the gap; gbabe path now resolves to the correct memory directory
+      - Confirmed: symlink exists and points correctly
+
+completed_steps_continued:
+
+  - step: bd_dolt_autostart_service
+    summary: Create systemd service to auto-start Dolt server on boot
+    service_file: /etc/systemd/system/beads-dolt.service
+    notes:
+      - Type=forking; bd dolt start backgrounds dolt, writes PID to .beads/dolt-server.pid
+      - ExecStop uses bd dolt stop
+      - Enabled and started; confirmed active (running) with dolt sql-server PID owned by systemd
+      - Resolves manual "bd dolt start" requirement each session
+
+  - step: install_paseo
+    summary: Install and daemonize Paseo, configure direct Tailscale connection
+    service_file: /etc/systemd/system/paseo.service
+    notes:
+      - Installed via npm install -g @getpaseo/cli
+      - Initial run: bound to 127.0.0.1:6767, uses relay.paseo.sh for connectivity
+      - Daemonized via systemd with Type=simple --foreground flag (required — paseo forks daemon and exits without it)
+      - Rebind to 0.0.0.0:6767 for direct access
+      - UFW opened port 6767 on tailscale0 interface
+      - tailscale serve used to terminate TLS: https://gbabe.tailca7be8.ts.net → http://localhost:6767
+      - Mixed content (HTTPS app → HTTP endpoint) blocked direct browser connection; tailscale serve resolves this
+      - Host header validation required adding allowedHosts to ~/.paseo/config.json
+      - Critical: old daemon persisted across systemd restarts — must run "paseo daemon stop" before "systemctl restart paseo"
+      - Final ExecStart: paseo daemon start --foreground --listen 0.0.0.0:6767 --allowed-hosts gbabe.tailca7be8.ts.net,gbabe,localhost
+      - Direct TCP connection confirmed: 5ms vs 64ms relay latency
+
+  - step: configure_tailscale_serve
+    summary: Expose Paseo over HTTPS via tailscale serve
+    command: "sudo tailscale serve --bg http://localhost:6767"
+    endpoint: "https://gbabe.tailca7be8.ts.net"
+    notes:
+      - Required enabling HTTPS certificates in Tailscale admin console
+      - Provides valid TLS cert; resolves browser mixed-content block
+      - Relay remains available as fallback (relay.paseo.sh:443)
+
+known_gotchas:
+  - id: path_noninteractive
+    description: >
+      ~/.bashrc is not sourced in non-interactive SSH shells (has early-exit guard).
+      claude and bd are invisible to non-interactive sessions unless PATH is set explicitly.
+      Mitigation: systemd service files must include Environment=PATH= lines.
+
+  - id: dolt_autostart_suppressed
+    description: >
+      .beads/config.yaml has an explicit Dolt port configured, which suppresses bd's
+      auto-start behavior. Dolt server must be started manually (bd dolt start) or via
+      a systemd service before any bd commands will work.
+
+  - id: beads_credential_key_tracked
+    description: >
+      bd doctor flagged .beads/.beads-credential-key as a tracked git file containing
+      sensitive data. Should be untracked: git rm --cached .beads/.beads-credential-key
+    severity: low
+    deferred: true
+
+paseo_direct_tcp_setup_guide:
+  title: "Paseo Direct TCP Connection via Tailscale — Reproducible Setup Guide"
+  summary: >
+    Enables low-latency direct TCP connection (5ms) from app.paseo.sh to the Paseo daemon
+    on gbabe via Tailscale, bypassing the relay (64ms). Requires three layers to work together:
+    UFW firewall, Tailscale serve (TLS termination), and Paseo host validation.
+
+  prerequisites:
+    - Paseo daemon installed and running as a systemd service
+    - Tailscale connected and online on both machines
+    - HTTPS certificates enabled in Tailscale admin console (login.tailscale.com/admin/acls → DNS → HTTPS Certificates)
+
+  why_each_layer_exists:
+    ufw:
+      reason: >
+        gbabe has UFW active with default deny-incoming policy.
+        Port 6767 must be explicitly opened on the tailscale0 interface.
+        Without this rule, packets are dropped before reaching Paseo.
+    tailscale_serve:
+      reason: >
+        app.paseo.sh is served over HTTPS. Browsers enforce mixed-content policy and will
+        refuse to open a plain ws:// WebSocket connection from an HTTPS page.
+        tailscale serve terminates TLS with a valid Tailscale-issued cert, making the
+        connection wss:// (encrypted), which browsers allow.
+        Without this, the direct connection field in app.paseo.sh always fails with
+        "The operation is insecure."
+    paseo_allowed_hosts:
+      reason: >
+        Paseo validates the HTTP Host header on incoming connections. When tailscale serve
+        proxies a request, the Host header is "gbabe.tailca7be8.ts.net", not "localhost".
+        Without allowedHosts configured, Paseo responds with {"error":"Invalid Host header"}
+        and closes the connection. The --allowed-hosts CLI flag does NOT propagate to the
+        daemon child process — must be set in ~/.paseo/config.json.
+
+  setup_steps:
+
+    - step: 1_enable_tailscale_https_certs
+      where: Tailscale admin console (browser, one-time)
+      instructions:
+        - Go to https://login.tailscale.com/admin/acls
+        - Navigate to DNS → HTTPS Certificates
+        - Enable "Allow users to provision HTTPS certificates for their devices"
+        - Note: device names are written to a public ledger — this is expected and fine
+
+    - step: 2_open_ufw_port
+      where: gbabe terminal
+      commands:
+        - "sudo ufw allow in on tailscale0 to any port 6767"
+        - "sudo ufw status"
+      verify: output should show "6767 on tailscale0 ALLOW IN Anywhere"
+      gotcha: >
+        The rule must specify "on tailscale0". A generic "ufw allow 6767" would expose
+        the port on all interfaces including eno1 (LAN). Tailscale-only is correct.
+
+    - step: 3_configure_paseo_allowed_hosts
+      where: gbabe terminal
+      file: ~/.paseo/config.json
+      action: >
+        Add "allowedHosts" to the daemon section. Edit the file so the daemon block looks
+        exactly like this (preserve all other existing keys):
+      config_snippet: |
+        {
+          "version": 1,
+          "daemon": {
+            "listen": "0.0.0.0:6767",
+            "allowedHosts": ["gbabe.tailca7be8.ts.net", "gbabe", "localhost", "100.99.99.99"],
+            "cors": {
+              "allowedOrigins": [
+                "https://app.paseo.sh",
+                "https://gbabe.tailca7be8.ts.net"
+              ]
+            },
+            "relay": {
+              "enabled": true
+            }
+          }
+        }
+      gotcha: >
+        The --allowed-hosts CLI flag in the systemd ExecStart does NOT work — it is not
+        passed through to the daemon child process (daemon-runner.js / server/index.js).
+        Only config.json is read by the actual server. Always edit config.json directly.
+
+    - step: 4_restart_paseo_correctly
+      where: gbabe terminal
+      commands:
+        - "paseo daemon stop"
+        - "sudo systemctl restart paseo"
+        - "sudo systemctl status paseo"
+      verify: >
+        systemctl status should show a NEW PID. If the PID matches a previously running
+        daemon, the old process is still alive and config changes have not taken effect.
+      gotcha: >
+        "sudo systemctl restart paseo" alone is NOT sufficient. The Paseo daemon spawns
+        child node processes that persist outside systemd's cgroup if they were started
+        before the service was created. Always run "paseo daemon stop" first to ensure
+        the old daemon is dead before systemd starts a fresh one.
+
+    - step: 5_enable_tailscale_serve
+      where: gbabe terminal
+      commands:
+        - "sudo tailscale serve --bg http://localhost:6767"
+        - "tailscale serve status"
+      verify: >
+        Output should show:
+          https://gbabe.tailca7be8.ts.net (tailnet only)
+          |-- / proxy http://localhost:6767
+      gotcha: >
+        tailscale serve runs as a persistent background process. It survives reboots
+        automatically (Tailscale manages it). No separate systemd service needed.
+        To disable: tailscale serve --https=443 off
+
+    - step: 6_verify_end_to_end
+      where: Mac terminal
+      commands:
+        - "curl -s https://gbabe.tailca7be8.ts.net | head -3"
+      expected_output: "<!DOCTYPE html>"
+      failure_modes:
+        - symptom: '{"error":"Invalid Host header"}'
+          cause: config.json allowedHosts not applied or daemon not restarted correctly
+          fix: repeat steps 3 and 4
+        - symptom: "Connection refused"
+          cause: UFW rule missing or Paseo not listening on 0.0.0.0
+          fix: repeat step 2; verify Paseo ExecStart includes --listen 0.0.0.0:6767
+        - symptom: "Connection timed out"
+          cause: tailscale serve not running
+          fix: repeat step 5
+        - symptom: "The operation is insecure"
+          cause: connecting via plain http:// instead of https:// tailscale serve endpoint
+          fix: use gbabe.tailca7be8.ts.net:443 in the Paseo direct connection field
+
+    - step: 7_connect_from_paseo_app
+      where: app.paseo.sh → Settings → Direct connection
+      value: "gbabe.tailca7be8.ts.net:443"
+      note: >
+        Do not include http:// or https:// — the field expects host:port only.
+        Both relay and direct connections will appear; direct should show ~5ms latency.
+
+  systemd_service_final_state:
+    file: /etc/systemd/system/paseo.service
+    key_lines:
+      ExecStart: "/home/abe/.npm-global/bin/paseo daemon start --foreground --listen 0.0.0.0:6767 --allowed-hosts gbabe.tailca7be8.ts.net,gbabe,localhost"
+      note: >
+        --foreground is required. Without it, paseo forks the daemon and the CLI wrapper
+        exits immediately, causing systemd to think the service stopped (Type=simple).
+        --listen 0.0.0.0:6767 overrides the config.json listen address at CLI level.
+        --allowed-hosts here is redundant (not read by daemon) but harmless documentation.
+
+environment:
+  gbabe:
+    os: "Linux Mint 22.3 (Ubuntu 24.04 base)"
+    hostname: gbabe
+    tailscale: online
+    primary_user: abe
+    repo_path: /home/abe/scripts/ext_sources/github_repos
+    node_version: v20.20.1
+    bd_version: 0.61.0
+    dolt_version: v1.84.0
+  mac:
+    role: control node only
+    repo_path: /Users/szilaa/scripts/ext_sources/github_repos
