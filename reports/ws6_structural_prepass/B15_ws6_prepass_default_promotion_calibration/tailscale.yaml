@@ -1,0 +1,277 @@
+schema_version: '0.1'
+repo:
+  github_full_name: tailscale/tailscale
+  node_id: repo::tailscale/tailscale
+  file_stem: tailscale
+artifact:
+  generated_at_utc: '2026-03-21T20:27:49Z'
+  stage: ws6_structural_prepass
+  mode: filesystem_manifest_entrypoint
+  output_file: reports/ws6_structural_prepass/B15_ws6_prepass_default_promotion_calibration/tailscale.yaml
+batch:
+  batch_id: B15_ws6_prepass_default_promotion_calibration
+  clone_manifest: reports/ws6_clone_prep/B15_ws6_prepass_default_promotion_calibration_clones.yaml
+source:
+  repo_root: /home/abe/scripts/ext_sources/github_repos/workspace/clones/tailscale__tailscale
+  languages:
+  - go
+  - typescript
+  - c
+  - javascript
+signals_used:
+- filesystem
+- manifest
+- entrypoint
+- config_routing
+- imports
+package_roots:
+- path: .
+  evidence:
+  - kind: manifest
+    path: go.mod
+    detail: go_manifest
+- path: client/web
+  evidence:
+  - &id003
+    kind: manifest
+    path: client/web/package.json
+    detail: node_manifest
+- path: cmd/tsconnect
+  evidence:
+  - &id002
+    kind: manifest
+    path: cmd/tsconnect/package.json
+    detail: node_manifest
+- path: cmd
+  evidence:
+  - &id001
+    kind: directory
+    path: cmd
+- path: packages/deb
+  evidence:
+  - &id004
+    kind: directory
+    path: packages/deb
+- path: internal
+  evidence:
+  - &id005
+    kind: directory
+    path: internal
+- path: packages
+  evidence:
+  - &id006
+    kind: directory
+    path: packages
+entrypoints:
+- path: cmd/addlicense/main.go
+  kind: cli_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: cmd/addlicense/main.go
+    detail: cmd main convention
+- path: cmd/containerboot/main.go
+  kind: cli_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: cmd/containerboot/main.go
+    detail: cmd main convention
+- path: cmd/get-authkey/main.go
+  kind: cli_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: cmd/get-authkey/main.go
+    detail: cmd main convention
+- path: cmd/k8s-nameserver/main.go
+  kind: cli_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: cmd/k8s-nameserver/main.go
+    detail: cmd main convention
+- path: cmd/mkmanifest/main.go
+  kind: cli_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: cmd/mkmanifest/main.go
+    detail: cmd main convention
+- path: cmd/mkpkg/main.go
+  kind: cli_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: cmd/mkpkg/main.go
+    detail: cmd main convention
+- path: cmd/netlogfmt/main.go
+  kind: cli_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: cmd/netlogfmt/main.go
+    detail: cmd main convention
+- path: cmd/sync-containers/main.go
+  kind: cli_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: cmd/sync-containers/main.go
+    detail: cmd main convention
+module_groups:
+- name: net
+  paths:
+  - net
+  rationale: directory grouping with repeated source files
+  confidence: medium
+  evidence:
+  - kind: directory
+    path: net
+- name: util
+  paths:
+  - util
+  rationale: directory grouping with repeated source files
+  confidence: medium
+  evidence:
+  - kind: directory
+    path: util
+- name: cmd
+  paths:
+  - cmd
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence:
+  - *id001
+- name: tsconnect
+  paths:
+  - cmd/tsconnect
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence:
+  - *id002
+- name: web
+  paths:
+  - client/web
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence:
+  - *id003
+- name: deb
+  paths:
+  - packages/deb
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence:
+  - *id004
+- name: internal
+  paths:
+  - internal
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence:
+  - *id005
+- name: packages
+  paths:
+  - packages
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence:
+  - *id006
+filesystem_signals:
+  manifests:
+  - path: go.mod
+    kind: go_manifest
+  - path: client/web/package.json
+    kind: node_manifest
+  - path: cmd/tsconnect/package.json
+    kind: node_manifest
+  config_files:
+  - path: .github/workflows/checklocks.yml
+    kind: ci_workflow
+  - path: .github/workflows/cigocacher.yml
+    kind: ci_workflow
+  - path: .github/workflows/codeql-analysis.yml
+    kind: ci_workflow
+  - path: .github/workflows/docker-base.yml
+    kind: ci_workflow
+  - path: .github/workflows/docker-file-build.yml
+    kind: ci_workflow
+  - path: .github/workflows/flakehub-publish-tagged.yml
+    kind: ci_workflow
+  - path: .github/workflows/golangci-lint.yml
+    kind: ci_workflow
+  - path: .github/workflows/govulncheck.yml
+    kind: ci_workflow
+  - path: .github/workflows/installer.yml
+    kind: ci_workflow
+  - path: .github/workflows/kubemanifests.yaml
+    kind: ci_workflow
+  - path: .github/workflows/natlab-integrationtest.yml
+    kind: ci_workflow
+  - path: .github/workflows/pin-github-actions.yml
+    kind: ci_workflow
+  - path: .github/workflows/request-dataplane-review.yml
+    kind: ci_workflow
+  - path: .github/workflows/ssh-integrationtest.yml
+    kind: ci_workflow
+  - path: .github/workflows/test.yml
+    kind: ci_workflow
+  - path: .github/workflows/update-flake.yml
+    kind: ci_workflow
+  - path: .github/workflows/update-webclient-prebuilt.yml
+    kind: ci_workflow
+  - path: .github/workflows/vet.yml
+    kind: ci_workflow
+  - path: .github/workflows/webclient.yml
+    kind: ci_workflow
+  - path: client/web/tsconfig.json
+    kind: typescript_config
+  - path: client/web/vite.config.ts
+    kind: build_config
+  - path: cmd/tsconnect/tsconfig.json
+    kind: typescript_config
+orientation_hints:
+  likely_first_read:
+  - cmd/addlicense/main.go
+  - cmd/containerboot/main.go
+  - cmd/get-authkey/main.go
+  - net
+  - util
+  - cmd
+  likely_runtime_surfaces:
+  - cmd/addlicense/main.go
+  - cmd/containerboot/main.go
+  - cmd/get-authkey/main.go
+  - cmd/k8s-nameserver/main.go
+  - cmd/tsconnect/tsconfig.json
+  - client/web/tsconfig.json
+limitations:
+- module groups are heuristic directory-level clusters
+- no behavioral, failure-mode, or cross-repo claims are emitted
+- import scanning was capped to keep the pre-pass cheap and deterministic
+dependency_signals:
+  internal_modules:
+  - web
+  - deb
+  - cmd
+  - ffcomplete/internal
+  - client/web
+  - packages
+  - ./cmd
+  - cmd/tsconnect
+  - pkg/cmd
+  - tailscale.com/cmd
+  external_packages:
+  - '@radix-ui/react-collapsible'
+  - '@radix-ui/react-dialog'
+  - '@radix-ui/react-popover'
+  - classnames
+  - react
+  - react-dom
+  - swr
+  - wouter
+  - zustand
+  - 4d63.com/gocheckcompilerdirectives
+  - 4d63.com/gochecknoglobals
+  - 9fans.net/go

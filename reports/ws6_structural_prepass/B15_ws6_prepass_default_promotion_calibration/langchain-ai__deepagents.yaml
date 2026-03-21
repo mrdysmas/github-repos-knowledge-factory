@@ -1,0 +1,302 @@
+schema_version: '0.1'
+repo:
+  github_full_name: langchain-ai/deepagents
+  node_id: repo::langchain-ai/deepagents
+  file_stem: langchain-ai__deepagents
+artifact:
+  generated_at_utc: '2026-03-21T20:27:49Z'
+  stage: ws6_structural_prepass
+  mode: filesystem_manifest_entrypoint
+  output_file: reports/ws6_structural_prepass/B15_ws6_prepass_default_promotion_calibration/langchain-ai__deepagents.yaml
+batch:
+  batch_id: B15_ws6_prepass_default_promotion_calibration
+  clone_manifest: reports/ws6_clone_prep/B15_ws6_prepass_default_promotion_calibration_clones.yaml
+source:
+  repo_root: /home/abe/scripts/ext_sources/github_repos/workspace/clones/langchain-ai__deepagents
+  languages:
+  - python
+  - javascript
+signals_used:
+- filesystem
+- manifest
+- entrypoint
+- config_routing
+- imports
+package_roots:
+- path: libs/cli
+  evidence:
+  - &id002
+    kind: manifest
+    path: libs/cli/pyproject.toml
+    detail: python_manifest
+  - &id003
+    kind: directory
+    path: libs/cli
+- path: libs/acp
+  evidence:
+  - &id004
+    kind: manifest
+    path: libs/acp/pyproject.toml
+    detail: python_manifest
+  - &id005
+    kind: directory
+    path: libs/acp
+- path: libs/cli/deepagents_cli
+  evidence:
+  - &id001
+    kind: filepath
+    path: libs/cli/deepagents_cli/__init__.py
+- path: libs/deepagents
+  evidence:
+  - &id006
+    kind: manifest
+    path: libs/deepagents/pyproject.toml
+    detail: python_manifest
+  - &id007
+    kind: directory
+    path: libs/deepagents
+- path: libs/evals
+  evidence:
+  - &id008
+    kind: manifest
+    path: libs/evals/pyproject.toml
+    detail: python_manifest
+  - &id009
+    kind: directory
+    path: libs/evals
+- path: libs/partners/daytona
+  evidence:
+  - &id010
+    kind: manifest
+    path: libs/partners/daytona/pyproject.toml
+    detail: python_manifest
+- path: libs/partners/modal
+  evidence:
+  - &id011
+    kind: manifest
+    path: libs/partners/modal/pyproject.toml
+    detail: python_manifest
+- path: libs/partners/quickjs
+  evidence:
+  - kind: manifest
+    path: libs/partners/quickjs/pyproject.toml
+    detail: python_manifest
+entrypoints:
+- path: libs/cli/deepagents_cli/server.py
+  kind: server_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: libs/cli/deepagents_cli/server.py
+    detail: filename heuristic
+- path: libs/cli/deepagents_cli/app.py
+  kind: app_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: libs/cli/deepagents_cli/app.py
+    detail: filename heuristic
+- path: libs/cli/deepagents_cli/main.py
+  kind: app_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: libs/cli/deepagents_cli/main.py
+    detail: filename heuristic
+- path: libs/cli/deepagents_cli/__init__.py
+  kind: app_entry
+  confidence: medium
+  evidence:
+  - kind: manifest
+    path: libs/cli/pyproject.toml
+    detail: project.scripts:deepagents
+  - kind: filepath
+    path: libs/cli/deepagents_cli/__init__.py
+- path: libs/acp/deepagents_acp/server.py
+  kind: server_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: libs/acp/deepagents_acp/server.py
+    detail: filename heuristic
+module_groups:
+- name: libs
+  paths:
+  - libs
+  rationale: directory grouping with repeated source files
+  confidence: medium
+  evidence:
+  - kind: directory
+    path: libs
+- name: deepagents_cli
+  paths:
+  - libs/cli/deepagents_cli
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence:
+  - *id001
+- name: cli
+  paths:
+  - libs/cli
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence:
+  - *id002
+  - *id003
+- name: acp
+  paths:
+  - libs/acp
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence:
+  - *id004
+  - *id005
+- name: deepagents
+  paths:
+  - libs/deepagents
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence:
+  - *id006
+  - *id007
+- name: evals
+  paths:
+  - libs/evals
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence:
+  - *id008
+  - *id009
+- name: daytona
+  paths:
+  - libs/partners/daytona
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence:
+  - *id010
+- name: modal
+  paths:
+  - libs/partners/modal
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence:
+  - *id011
+filesystem_signals:
+  manifests:
+  - path: examples/content-builder-agent/pyproject.toml
+    kind: python_manifest
+  - path: examples/deep_research/pyproject.toml
+    kind: python_manifest
+  - path: examples/nvidia_deep_agent/pyproject.toml
+    kind: python_manifest
+  - path: examples/text-to-sql-agent/pyproject.toml
+    kind: python_manifest
+  - path: libs/acp/pyproject.toml
+    kind: python_manifest
+  - path: libs/cli/pyproject.toml
+    kind: python_manifest
+  - path: libs/deepagents/pyproject.toml
+    kind: python_manifest
+  - path: libs/evals/pyproject.toml
+    kind: python_manifest
+  - path: libs/partners/daytona/pyproject.toml
+    kind: python_manifest
+  - path: libs/partners/modal/pyproject.toml
+    kind: python_manifest
+  - path: libs/partners/quickjs/pyproject.toml
+    kind: python_manifest
+  - path: libs/partners/runloop/pyproject.toml
+    kind: python_manifest
+  config_files:
+  - path: .github/workflows/_benchmark.yml
+    kind: ci_workflow
+  - path: .github/workflows/_lint.yml
+    kind: ci_workflow
+  - path: .github/workflows/_test.yml
+    kind: ci_workflow
+  - path: .github/workflows/auto-label-by-package.yml
+    kind: ci_workflow
+  - path: .github/workflows/check_extras_sync.yml
+    kind: ci_workflow
+  - path: .github/workflows/check_lockfiles.yml
+    kind: ci_workflow
+  - path: .github/workflows/check_sdk_pin.yml
+    kind: ci_workflow
+  - path: .github/workflows/check_versions.yml
+    kind: ci_workflow
+  - path: .github/workflows/ci.yml
+    kind: ci_workflow
+  - path: .github/workflows/deepagents-example.yml
+    kind: ci_workflow
+  - path: .github/workflows/evals.yml
+    kind: ci_workflow
+  - path: .github/workflows/harbor.yml
+    kind: ci_workflow
+  - path: .github/workflows/pr_labeler.yml
+    kind: ci_workflow
+  - path: .github/workflows/pr_labeler_backfill.yml
+    kind: ci_workflow
+  - path: .github/workflows/pr_lint.yml
+    kind: ci_workflow
+  - path: .github/workflows/release-please.yml
+    kind: ci_workflow
+  - path: .github/workflows/release.yml
+    kind: ci_workflow
+  - path: .github/workflows/require_issue_link.yml
+    kind: ci_workflow
+  - path: .github/workflows/sync_priority_labels.yml
+    kind: ci_workflow
+  - path: .github/workflows/tag-external-issues.yml
+    kind: ci_workflow
+  - path: examples/deep_research/.env.example
+    kind: env_example
+  - path: examples/nvidia_deep_agent/.env.example
+    kind: env_example
+  - path: examples/text-to-sql-agent/.env.example
+    kind: env_example
+  - path: libs/acp/.env.example
+    kind: env_example
+orientation_hints:
+  likely_first_read:
+  - libs/cli/deepagents_cli/server.py
+  - libs/cli/deepagents_cli/app.py
+  - libs/cli/deepagents_cli/main.py
+  - libs
+  - libs/cli/deepagents_cli
+  - libs/cli
+  likely_runtime_surfaces:
+  - libs/cli/deepagents_cli/server.py
+  - libs/cli/deepagents_cli/app.py
+  - libs/cli/deepagents_cli/main.py
+  - libs/cli/deepagents_cli/__init__.py
+  - libs/acp/.env.example
+  - examples/deep_research/.env.example
+limitations:
+- module groups are heuristic directory-level clusters
+- no behavioral, failure-mode, or cross-repo claims are emitted
+- some entrypoints come from filename or manifest heuristics
+dependency_signals:
+  internal_modules:
+  - deepagents.backends
+  - deepagents_cli.config
+  - deepagents_cli.widgets
+  - deepagents.middleware
+  - deepagents_cli.model_config
+  - deepagents
+  - deepagents.graph
+  - deepagents_cli.output
+  - deepagents_cli.project_utils
+  - deepagents_cli.sessions
+  external_packages:
+  - deepagents
+  - langchain
+  - langchain-anthropic
+  - langchain-google-genai
+  - langsmith
+  - python-dotenv
+  - langchain-openai
+  - aiosqlite
+  - deepagents-acp
+  - httpx
+  - langchain-mcp-adapters
+  - langgraph

@@ -1,0 +1,80 @@
+schema_version: '0.1'
+repo:
+  github_full_name: airtable/airtable.js
+  node_id: repo::airtable/airtable.js
+  file_stem: airtable__airtable.js
+artifact:
+  generated_at_utc: '2026-03-21T20:27:49Z'
+  stage: ws6_structural_prepass
+  mode: filesystem_manifest_entrypoint
+  output_file: reports/ws6_structural_prepass/B15_ws6_prepass_default_promotion_calibration/airtable__airtable.js.yaml
+batch:
+  batch_id: B15_ws6_prepass_default_promotion_calibration
+  clone_manifest: reports/ws6_clone_prep/B15_ws6_prepass_default_promotion_calibration_clones.yaml
+source:
+  repo_root: /home/abe/scripts/ext_sources/github_repos/workspace/clones/airtable__airtable.js
+  languages:
+  - typescript
+  - javascript
+signals_used:
+- filesystem
+- manifest
+- entrypoint
+- config_routing
+- imports
+package_roots:
+- path: .
+  evidence:
+  - kind: manifest
+    path: package.json
+    detail: node_manifest
+- path: src
+  evidence:
+  - &id001
+    kind: directory
+    path: src
+entrypoints:
+- path: lib/airtable.js
+  kind: app_entry
+  confidence: medium
+  evidence:
+  - kind: manifest
+    path: package.json
+    detail: package.json main
+  - kind: filepath
+    path: lib/airtable.js
+module_groups:
+- name: src
+  paths:
+  - src
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence:
+  - *id001
+filesystem_signals:
+  manifests:
+  - path: package.json
+    kind: node_manifest
+  config_files:
+  - path: tsconfig.json
+    kind: typescript_config
+  - path: .github/workflows/nodejs.yml
+    kind: ci_workflow
+orientation_hints:
+  likely_first_read:
+  - lib/airtable.js
+  - src
+  likely_runtime_surfaces:
+  - lib/airtable.js
+  - tsconfig.json
+limitations:
+- module groups are heuristic directory-level clusters
+- no behavioral, failure-mode, or cross-repo claims are emitted
+- some entrypoints come from filename or manifest heuristics
+dependency_signals:
+  external_packages:
+  - '@types/node'
+  - abort-controller
+  - abortcontroller-polyfill
+  - lodash
+  - node-fetch

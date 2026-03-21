@@ -1,0 +1,70 @@
+artifact_type: ws5_remote_ingestion_input_manifest
+contract_version: 1.0.0-ws1
+defaults:
+  target_shard: repos
+  as_of: "2026-03-21"
+  source: remote_metadata
+repos:
+  - name: airtable.js
+    file_stem: airtable__airtable.js
+    github_full_name: airtable/airtable.js
+    html_url: https://github.com/airtable/airtable.js
+    target_shard: repos
+    source: remote_metadata
+    category: workflow_builder
+    summary: Official Airtable JavaScript API client for workflow automation and data modeling.
+    core_concepts:
+      - API client integration
+      - workflow automation data modeling
+    key_entry_points:
+      - README.md
+    build_run:
+      language: javascript
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-21"
+    local_cache_dir: null
+  - name: deepagents
+    file_stem: langchain-ai__deepagents
+    github_full_name: langchain-ai/deepagents
+    html_url: https://github.com/langchain-ai/deepagents
+    target_shard: repos
+    source: remote_metadata
+    category: agent_framework
+    summary: LangChain and LangGraph agent harness with planning, filesystem access, sub-agent spawning, context summarization, and a terminal CLI.
+    core_concepts:
+      - agent harness
+      - planning
+      - sub-agents
+      - terminal cli
+    key_entry_points:
+      - README.md
+      - libs/deepagents/deepagents/
+      - libs/cli/deepagents_cli/
+    build_run:
+      language: Python
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-21"
+    local_cache_dir: null
+  - name: tailscale
+    file_stem: tailscale
+    github_full_name: tailscale/tailscale
+    html_url: https://github.com/tailscale/tailscale
+    target_shard: repos
+    source: remote_metadata
+    category: vpn_mesh
+    summary: WireGuard-based mesh VPN with identity-aware access control, DERP relay fallback, and MagicDNS for zero-config device discovery.
+    core_concepts:
+      - mesh VPN over WireGuard
+      - identity-aware network access
+    key_entry_points:
+      - README.md
+      - cmd/tailscale/
+      - wgengine/
+    build_run:
+      language: go
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-21"
+    local_cache_dir: null
