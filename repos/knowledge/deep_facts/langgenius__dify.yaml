@@ -6,317 +6,1399 @@ source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep_facts/langgenius__dify.yaml
-  as_of: '2026-02-24T19:46:56Z'
+  as_of: '2026-03-21'
   extractor_version: ws6-deep-integrator-v1
-  extraction_model: glm-5
-  extraction_agent: kgraph-repos
+  extraction_agent: codex
 facts:
 - fact_type: api_endpoint
   predicate: exposes_api_endpoint
   object_kind: api_route
-  confidence: 0.73
-  as_of: '2026-02-25'
+  confidence: 0.8
+  as_of: '2026-03-21'
   provenance:
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    source_section: api_structure.app_api[0]
+    source_section: api_surface.endpoints[3]
     extraction_mode: narrative
   evidence:
   - kind: file_block
-    ref: api_structure.app_api[0]
+    ref: api_surface.endpoints[3]
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: /apps/{app_id}/chat-messages
-  object_value: /apps/{app_id}/chat-messages
-  fact_id: fact::407d97a6344884bd42dae863
+    excerpt: /console/api/apps
+  object_value: /console/api/apps
+  note: List apps in the authenticated console-management surface.
+  fact_id: fact::673cdb391a466890b1ed9477
 - fact_type: api_endpoint
   predicate: exposes_api_endpoint
   object_kind: api_route
-  confidence: 0.73
-  as_of: '2026-02-25'
+  confidence: 0.8
+  as_of: '2026-03-21'
   provenance:
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    source_section: api_structure.app_api[1]
+    source_section: api_surface.endpoints[4]
     extraction_mode: narrative
   evidence:
   - kind: file_block
-    ref: api_structure.app_api[1]
+    ref: api_surface.endpoints[4]
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: /apps/{app_id}/completion-messages
-  object_value: /apps/{app_id}/completion-messages
-  fact_id: fact::85eeb92cddc2b4118b5308b1
+    excerpt: /console/api/apps/<uuid:app_id>
+  object_value: /console/api/apps/<uuid:app_id>
+  note: Fetch app details in the console-management surface.
+  fact_id: fact::7472966cbc075fb9dbeee6f9
 - fact_type: api_endpoint
   predicate: exposes_api_endpoint
   object_kind: api_route
-  confidence: 0.73
-  as_of: '2026-02-25'
+  confidence: 0.8
+  as_of: '2026-03-21'
   provenance:
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    source_section: api_structure.service_api[0]
+    source_section: api_surface.endpoints[5]
     extraction_mode: narrative
   evidence:
   - kind: file_block
-    ref: api_structure.service_api[0]
+    ref: api_surface.endpoints[5]
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: /chat-messages
-  object_value: /chat-messages
-  fact_id: fact::1dadfd202c1986fe7e93af4a
+    excerpt: /console/api/apps/<uuid:app_id>/export
+  object_value: /console/api/apps/<uuid:app_id>/export
+  note: Export app configuration from the console API.
+  fact_id: fact::5873f9c9646f9d757283e232
 - fact_type: api_endpoint
   predicate: exposes_api_endpoint
   object_kind: api_route
-  confidence: 0.73
-  as_of: '2026-02-25'
+  confidence: 0.8
+  as_of: '2026-03-21'
   provenance:
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    source_section: integrations.api_endpoints[0]
+    source_section: api_surface.endpoints[6]
     extraction_mode: narrative
   evidence:
   - kind: file_block
-    ref: integrations.api_endpoints[0]
+    ref: api_surface.endpoints[6]
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: /chat-messages
-  object_value: /chat-messages
-  note: POST; send chat app message and stream/collect response
-  fact_id: fact::f21f2ef81dabd87486677a5c
+    excerpt: /console/api/apps/<uuid:app_id>/trace
+  object_value: /console/api/apps/<uuid:app_id>/trace
+  note: Enable or disable per-app tracing configuration from the console API.
+  fact_id: fact::3b1a11ce09b0a8207247875d
 - fact_type: api_endpoint
   predicate: exposes_api_endpoint
   object_kind: api_route
-  confidence: 0.73
-  as_of: '2026-02-25'
+  confidence: 0.8
+  as_of: '2026-03-21'
   provenance:
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    source_section: integrations.api_endpoints[1]
+    source_section: api_surface.endpoints[2]
     extraction_mode: narrative
   evidence:
   - kind: file_block
-    ref: integrations.api_endpoints[1]
+    ref: api_surface.endpoints[2]
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: /completion-messages
-  object_value: /completion-messages
-  note: POST; run completion app message generation
-  fact_id: fact::3728ff8d1c7f2b2c50202b7f
+    excerpt: /v1/info
+  object_value: /v1/info
+  note: Return app name, description, tags, mode, and author details.
+  fact_id: fact::1e9bda7883f9dc70eadb3798
 - fact_type: api_endpoint
   predicate: exposes_api_endpoint
   object_kind: api_route
-  confidence: 0.73
-  as_of: '2026-02-25'
+  confidence: 0.8
+  as_of: '2026-03-21'
   provenance:
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    source_section: api_structure.service_api[1]
+    source_section: api_surface.endpoints[1]
     extraction_mode: narrative
   evidence:
   - kind: file_block
-    ref: api_structure.service_api[1]
+    ref: api_surface.endpoints[1]
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: /completion-messages
-  object_value: /completion-messages
-  fact_id: fact::f62a7efd28e33afb5be64278
+    excerpt: /v1/meta
+  object_value: /v1/meta
+  note: Return application metadata through the service API.
+  fact_id: fact::9594f058c9633d0b03847a89
 - fact_type: api_endpoint
   predicate: exposes_api_endpoint
   object_kind: api_route
-  confidence: 0.73
-  as_of: '2026-02-25'
+  confidence: 0.8
+  as_of: '2026-03-21'
   provenance:
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    source_section: api_structure.service_api[2]
+    source_section: api_surface.endpoints[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
-    ref: api_structure.service_api[2]
+    ref: api_surface.endpoints[0]
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: /completion-messages/{task_id}/stop
-  object_value: /completion-messages/{task_id}/stop
-  fact_id: fact::d22d43533d69d56f8541c8e2
-- fact_type: api_endpoint
-  predicate: exposes_api_endpoint
-  object_kind: api_route
-  confidence: 0.73
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/langgenius__dify.yaml
-    source_section: integrations.api_endpoints[2]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: integrations.api_endpoints[2]
-    source_file: repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: /v1/workflows/run
-  object_value: /v1/workflows/run
-  note: POST; execute workflow graph run
-  fact_id: fact::7404d71a532d7e8ffc68a140
+    excerpt: /v1/parameters
+  object_value: /v1/parameters
+  note: Return application input parameters and feature-derived configuration for
+    a token-authenticated app.
+  fact_id: fact::7d784bb740c682de098912bf
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.61
-  as_of: '2026-02-25'
+  as_of: '2026-03-21'
   provenance:
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    source_section: tech_stack[3].line[0]
+    source_section: tech_stack[2].role.line[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
-    ref: tech_stack[3].line[0]
+    ref: tech_stack[2].role.line[0]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Asynchronous execution layer for dataset, workflow, mail, plugin, retention,
+      and scheduler queues.
+  object_value: Asynchronous execution layer for dataset, workflow, mail, plugin,
+    retention, and scheduler queues.
+  note: technology stack (tech_stack)
+  fact_id: fact::5848b90194f89de209aefd12
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: tech_stack[8].role.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tech_stack[8].role.line[0]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Broker/cache dependency for Celery and backend runtime state.
+  object_value: Broker/cache dependency for Celery and backend runtime state.
+  note: technology stack (tech_stack)
+  fact_id: fact::b1abb57c158bde85ab2ae4b6
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: key_features[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[3]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Browser UI with rich client infrastructure
+  object_value: Browser UI with rich client infrastructure
+  note: The frontend includes theming, i18n, telemetry, query caching, toasts, and
+    route-prefix handling at the root layout.
+  fact_id: fact::0db6cd655fffeb8e68ddf9bc
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: tech_stack[2].name.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tech_stack[2].name.line[0]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Celery
+  object_value: Celery
+  note: technology stack (tech_stack)
+  fact_id: fact::5450ca6ca040a02906d6c39e
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: tech_stack[7].role.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tech_stack[7].role.line[0]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Default relational database in the compose stack and backend configuration.
+  object_value: Default relational database in the compose stack and backend configuration.
+  note: technology stack (tech_stack)
+  fact_id: fact::20074f0a7f3423a5606b5f14
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: tech_stack[9].role.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tech_stack[9].role.line[0]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Default vector-store target in the generated self-host compose configuration.
+  object_value: Default vector-store target in the generated self-host compose configuration.
+  note: technology stack (tech_stack)
+  fact_id: fact::f3cb4e7657d52a58d1eab371
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: tech_stack[6].name.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tech_stack[6].name.line[0]
     source_file: repos/knowledge/deep/langgenius__dify.yaml
     excerpt: Docker Compose
   object_value: Docker Compose
   note: technology stack (tech_stack)
-  fact_id: fact::a964a341584a66cc6aecd667
+  fact_id: fact::c9cf067149cf32b8fde70401
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: key_features[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[4]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Embeddable SDK surface
+  object_value: Embeddable SDK surface
+  note: Publishes a Node SDK from sdks/nodejs-client while tracking additional SDKs
+    from sibling repositories.
+  fact_id: fact::d25db6dc63fc9a4029918776
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.61
-  as_of: '2026-02-25'
+  as_of: '2026-03-21'
   provenance:
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    source_section: tech_stack[4].line[0]
+    source_section: tech_stack[1].name.line[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
-    ref: tech_stack[4].line[0]
+    ref: tech_stack[1].name.line[0]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Flask
+  object_value: Flask
+  note: technology stack (tech_stack)
+  fact_id: fact::6f32af284c95a206c10beee8
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: tech_stack[4].role.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tech_stack[4].role.line[0]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Frontend framework for the web application under web/ with standalone
+      build output.
+  object_value: Frontend framework for the web application under web/ with standalone
+    build output.
+  note: technology stack (tech_stack)
+  fact_id: fact::0da4209ee49793cf633dcc4c
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: tech_stack[1].role.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tech_stack[1].role.line[0]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Main HTTP framework used by the backend app factory, service API, and
+      console API surfaces.
+  object_value: Main HTTP framework used by the backend app factory, service API,
+    and console API surfaces.
+  note: technology stack (tech_stack)
+  fact_id: fact::ac178092472245037ad19e73
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: tech_stack[4].name.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tech_stack[4].name.line[0]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Next.js
+  object_value: Next.js
+  note: technology stack (tech_stack)
+  fact_id: fact::dbdf55a15b04a993c16cd6f2
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: tech_stack[5].role.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tech_stack[5].role.line[0]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Package manager and script runner for web and Node SDK development.
+  object_value: Package manager and script runner for web and Node SDK development.
+  note: technology stack (tech_stack)
+  fact_id: fact::bd0b573cc1985ea7b4063ac9
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: tech_stack[7].name.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tech_stack[7].name.line[0]
     source_file: repos/knowledge/deep/langgenius__dify.yaml
     excerpt: PostgreSQL
   object_value: PostgreSQL
   note: technology stack (tech_stack)
-  fact_id: fact::88fbbdcb30e9f37a81642703
+  fact_id: fact::c1cc527b37b8c9a9659cb428
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.61
-  as_of: '2026-02-25'
+  as_of: '2026-03-21'
   provenance:
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    source_section: tech_stack[0].line[0]
+    source_section: tech_stack[0].role.line[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
-    ref: tech_stack[0].line[0]
+    ref: tech_stack[0].role.line[0]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Primary backend language for the Flask API, Celery workers, workflow
+      engine, and controller namespaces under api/.
+  object_value: Primary backend language for the Flask API, Celery workers, workflow
+    engine, and controller namespaces under api/.
+  note: technology stack (tech_stack)
+  fact_id: fact::339b6b047c5e14572415637e
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: tech_stack[3].role.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tech_stack[3].role.line[0]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Primary language for the web application and the Node SDK package.
+  object_value: Primary language for the web application and the Node SDK package.
+  note: technology stack (tech_stack)
+  fact_id: fact::8cf4d666bece82607c40c566
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: tech_stack[6].role.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tech_stack[6].role.line[0]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Primary self-host orchestration surface tying together api, worker, beat,
+      web, databases, and vector-store dependencies.
+  object_value: Primary self-host orchestration surface tying together api, worker,
+    beat, web, databases, and vector-store dependencies.
+  note: technology stack (tech_stack)
+  fact_id: fact::82edc84bc72cd35fc26e4fa7
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: tech_stack[0].name.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tech_stack[0].name.line[0]
     source_file: repos/knowledge/deep/langgenius__dify.yaml
     excerpt: Python
   object_value: Python
   note: technology stack (tech_stack)
-  fact_id: fact::227c469621c0846eee992c80
+  fact_id: fact::df23c6f8c8a10daadcb4a2c3
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.61
-  as_of: '2026-02-25'
+  as_of: '2026-03-21'
   provenance:
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    source_section: tech_stack[2].line[0]
+    source_section: tech_stack[8].name.line[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
-    ref: tech_stack[2].line[0]
-    source_file: repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: React
-  object_value: React
-  note: technology stack (tech_stack)
-  fact_id: fact::5c7067e4b92843d493c19cf3
-- fact_type: component
-  predicate: has_component
-  object_kind: concept
-  confidence: 0.61
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/langgenius__dify.yaml
-    source_section: tech_stack[5].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: tech_stack[5].line[0]
+    ref: tech_stack[8].name.line[0]
     source_file: repos/knowledge/deep/langgenius__dify.yaml
     excerpt: Redis
   object_value: Redis
   note: technology stack (tech_stack)
-  fact_id: fact::b429f5cb58e2fa5db6f4f1dd
+  fact_id: fact::00ad7f3d42aa1fa4193c1f67
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: key_features[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[2]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Self-hosted deployment bundle
+  object_value: Self-hosted deployment bundle
+  note: Ships a generated compose stack that wires web, api, workers, databases, Redis,
+    and vector-store options.
+  fact_id: fact::51567c9b8d0d190c1f77147c
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: key_features[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[1]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Split API and worker runtime
+  object_value: Split API and worker runtime
+  note: Runs synchronous HTTP handling separately from Celery queue consumers and
+    scheduler processes.
+  fact_id: fact::2bac8c0e9b1bd9edef986378
 - fact_type: component
   predicate: has_component
   object_kind: concept
   confidence: 0.61
-  as_of: '2026-02-25'
+  as_of: '2026-03-21'
   provenance:
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    source_section: tech_stack[1].line[0]
+    source_section: tech_stack[3].name.line[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
-    ref: tech_stack[1].line[0]
+    ref: tech_stack[3].name.line[0]
     source_file: repos/knowledge/deep/langgenius__dify.yaml
     excerpt: TypeScript
   object_value: TypeScript
   note: technology stack (tech_stack)
-  fact_id: fact::ca4fcbd39102fa66fa1b1c36
+  fact_id: fact::dedf70a3ffc5fce88a38aafc
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.61
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: tech_stack[9].name.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: tech_stack[9].name.line[0]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Weaviate
+  object_value: Weaviate
+  note: technology stack (tech_stack)
+  fact_id: fact::fdaa7f00b8e34a39f8f8a990
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.67
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: key_features[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_features[0]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Workflow and app management platform
+  object_value: Workflow and app management platform
+  note: Supports multiple app modes and exposes both product-facing and admin-facing
+    APIs for app configuration and execution.
+  fact_id: fact::ebd997bebb2b963e8beeed9c
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.72
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: architecture.components[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.components[0]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: api
+  object_value: api
+  note: Flask-based backend runtime that loads config, initializes extensions, exposes
+    service and console APIs, and owns workflow, dataset, and plugin logic.
+  fact_id: fact::a03ac6a0608a165f6562a05f
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.72
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: architecture.components[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.components[3]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: docker
+  object_value: docker
+  note: Auto-generated deployment bundle defining shared environment, startup modes,
+    and infrastructure service composition.
+  fact_id: fact::5b9066e39e9c9a183f340ab4
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.72
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: architecture.components[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.components[4]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: sdks
+  object_value: sdks
+  note: Repository-local SDK area with a published Node client package and links to
+    other language SDK repos.
+  fact_id: fact::1dbb62e0be9d9f36163ea69a
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.72
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: architecture.components[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.components[2]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: web
+  object_value: web
+  note: Next.js frontend application that wraps the console and app UI in providers
+    for i18n, query state, theming, telemetry, and toasts.
+  fact_id: fact::b9a702d47461992fbabe0868
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.72
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: architecture.components[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.components[1]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: worker and worker_beat
+  object_value: worker and worker_beat
+  note: Celery execution surfaces started from the same backend image with alternate
+    MODE values for queue processing and scheduling.
+  fact_id: fact::6fa3abbfaa7f5e3591ba44a4
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: key_files[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[0]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: README.md
+  object_value: README.md
+  fact_id: fact::cb7bc3ecbd8b32e1a18a9a44
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: key_files[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[1]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: api/README.md
+  object_value: api/README.md
+  fact_id: fact::7cfc728c5c0b3fa22aa63232
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: key_files[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[2]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: api/app.py
+  object_value: api/app.py
+  fact_id: fact::2e77dcdbcc1d457fe50bf541
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: architecture.module_breakdown[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[0]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Selects the app factory path for normal runtime versus migration mode
+      and exposes both the Flask app and Celery extension.
+  object_value: api/app.py
+  note: 'responsibility: Selects the app factory path for normal runtime versus migration
+    mode and exposes both the Flask app and Celery extension.; key_files: api/app.py,
+    api/app_factory.py, api/celery_entrypoint.py'
+  fact_id: fact::94fc00bf4cda22b85beddf4f
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: key_files[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[3]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: api/app_factory.py
+  object_value: api/app_factory.py
+  fact_id: fact::cd5f00f4ed6c97419000f39b
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: architecture.module_breakdown[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[2]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Provides authenticated management endpoints mounted under /console/api
+      for app configuration, export, tracing, workspace operations, auth, billing,
+      and datasets.
+  object_value: api/controllers/console/
+  note: 'responsibility: Provides authenticated management endpoints mounted under
+    /console/api for app configuration, export, tracing, workspace operations, auth,
+    billing, and datasets.; key_files: api/controllers/console/__init__.py, api/controllers/console/app/app.py'
+  fact_id: fact::51b77be307289da688f4a3c2
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: key_files[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[5]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: api/controllers/console/app/app.py
+  object_value: api/controllers/console/app/app.py
+  fact_id: fact::bd171c87ceae4657a684d81f
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: architecture.module_breakdown[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[1]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Provides application-facing REST endpoints mounted under /v1 for app
+      metadata, parameters, conversations, datasets, files, and workflow execution.
+  object_value: api/controllers/service_api/
+  note: 'responsibility: Provides application-facing REST endpoints mounted under
+    /v1 for app metadata, parameters, conversations, datasets, files, and workflow
+    execution.; key_files: api/controllers/service_api/__init__.py, api/controllers/service_api/app/app.py'
+  fact_id: fact::16afc28c892dc4a534648480
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: key_files[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[4]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: api/controllers/service_api/app/app.py
+  object_value: api/controllers/service_api/app/app.py
+  fact_id: fact::db474cefaadcbc9ef8febac3
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: key_files[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[6]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: api/docker/entrypoint.sh
+  object_value: api/docker/entrypoint.sh
+  fact_id: fact::74ac6d9a32701c89810ac57c
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: architecture.module_breakdown[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[3]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Switches container behavior between API, worker, beat, migration, and
+      one-shot job modes.
+  object_value: api/docker/entrypoint.sh
+  note: 'responsibility: Switches container behavior between API, worker, beat, migration,
+    and one-shot job modes.; key_files: api/docker/entrypoint.sh'
+  fact_id: fact::e210d65914ea8504a818216c
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: key_files[7]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[7]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: docker/docker-compose.yaml
+  object_value: docker/docker-compose.yaml
+  fact_id: fact::f3a5ec7034ed3ae0be69c448
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: architecture.module_breakdown[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[5]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Maintains the distributable Node SDK package for Dify API integrations.
+  object_value: sdks/nodejs-client
+  note: 'responsibility: Maintains the distributable Node SDK package for Dify API
+    integrations.; key_files: sdks/nodejs-client/package.json, sdks/nodejs-client/README.md,
+    sdks/nodejs-client/pnpm-workspace.yaml'
+  fact_id: fact::2a12f94e66cf35983c65d527
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: key_files[11]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[11]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: sdks/nodejs-client/package.json
+  object_value: sdks/nodejs-client/package.json
+  fact_id: fact::cd3a4ba882583b2434b4de88
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.78
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: architecture.module_breakdown[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: architecture.module_breakdown[4]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Hosts the Next.js application shell, build config, app routes, and frontend
+      tooling.
+  object_value: web/
+  note: 'responsibility: Hosts the Next.js application shell, build config, app routes,
+    and frontend tooling.; key_files: web/package.json, web/app/layout.tsx, web/next.config.ts'
+  fact_id: fact::c9db1b239799180cf8608dbc
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: key_files[9]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[9]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: web/app/layout.tsx
+  object_value: web/app/layout.tsx
+  fact_id: fact::4f865e7256ea8f82f1da6b8d
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: key_files[10]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[10]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: web/next.config.ts
+  object_value: web/next.config.ts
+  fact_id: fact::5d7fdb00de1bb418e7be3f0c
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.72
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: key_files[8]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: key_files[8]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: web/package.json
+  object_value: web/package.json
+  fact_id: fact::758adae602614a99119f1d09
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: configuration.optional[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.optional[3]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: CELERY_AUTO_SCALE / CELERY_MAX_WORKERS / CELERY_MIN_WORKERS / CELERY_WORKER_AMOUNT
+  object_value: CELERY_AUTO_SCALE / CELERY_MAX_WORKERS / CELERY_MIN_WORKERS / CELERY_WORKER_AMOUNT
+  note: 'default: false / unset / 1 / 1; Control worker autoscaling or fixed Celery
+    concurrency.'
+  fact_id: fact::d68c7abebc0a23f0399fd9b1
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: configuration.optional[7]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.optional[7]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: COOKIE_DOMAIN / NEXT_PUBLIC_COOKIE_DOMAIN
+  object_value: COOKIE_DOMAIN / NEXT_PUBLIC_COOKIE_DOMAIN
+  note: Must be aligned when frontend and backend are served from sibling subdomains
+    that share auth cookies.
+  fact_id: fact::f08593d9ab62c8d67059468e
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: configuration.required[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.required[1]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: DB_HOST / DB_PORT / DB_DATABASE / DB_USERNAME / DB_PASSWORD
+  object_value: DB_HOST / DB_PORT / DB_DATABASE / DB_USERNAME / DB_PASSWORD
+  note: Primary relational database connection settings consumed by the backend and
+    compose stack.
+  fact_id: fact::c4c843529c64e75767a43c79
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: configuration.optional[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.optional[1]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: MIGRATION_ENABLED
+  object_value: MIGRATION_ENABLED
+  note: 'default: true; Controls whether startup runs database migrations before entering
+    steady-state mode.'
+  fact_id: fact::0f177af720e239885fc41a02
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: configuration.optional[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.optional[0]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: MODE
+  object_value: MODE
+  note: 'default: api; Selects api, worker, beat, migration, or job behavior in the
+    backend container entrypoint.'
+  fact_id: fact::3da3cce039b890a9c518a1cc
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: configuration.optional[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.optional[6]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: QDRANT_URL
+  object_value: QDRANT_URL
+  note: 'default: http://qdrant:6333; Alternative vector-store endpoint supported
+    by the compose config.'
+  fact_id: fact::90c609058db2a9a869a7dfde
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: configuration.required[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.required[2]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: REDIS_HOST / REDIS_PORT / REDIS_PASSWORD
+  object_value: REDIS_HOST / REDIS_PORT / REDIS_PASSWORD
+  note: Required for queueing, caching, and Celery broker/back-end operation.
+  fact_id: fact::ce1adf81f93b9d5ae9623946
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: configuration.required[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.required[0]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: SECRET_KEY
+  object_value: SECRET_KEY
+  note: Backend secret used by the local-source and self-host setup; the API README
+    explicitly calls out generating it before running services.
+  fact_id: fact::a8d134a954309d844b4586b4
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: configuration.optional[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.optional[2]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: SERVER_WORKER_AMOUNT / SERVER_WORKER_CLASS / SERVER_WORKER_CONNECTIONS
+  object_value: SERVER_WORKER_AMOUNT / SERVER_WORKER_CLASS / SERVER_WORKER_CONNECTIONS
+  note: 'default: 1 / gevent / 10; Tune Gunicorn concurrency for the API container.'
+  fact_id: fact::ec96bd906179a4a110e8b1b0
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: configuration.optional[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.optional[4]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: VECTOR_STORE
+  object_value: VECTOR_STORE
+  note: 'default: weaviate; Selects the vector-store backend in the self-host compose
+    configuration.'
+  fact_id: fact::3577423e029cc5f67c4aeae6
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.72
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: configuration.optional[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: configuration.optional[5]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: WEAVIATE_ENDPOINT / WEAVIATE_GRPC_ENDPOINT
+  object_value: WEAVIATE_ENDPOINT / WEAVIATE_GRPC_ENDPOINT
+  note: 'default: http://weaviate:8080 / grpc://weaviate:50051; Default Weaviate connection
+    values in the generated compose file.'
+  fact_id: fact::1aa0470a5be1ba6f69d3b0fa
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-21'
   provenance:
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    source_section: integrations.providers[1].line[0]
+    source_section: integrations.items[3].role.line[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
-    ref: integrations.providers[1].line[0]
+    ref: integrations.items[3].role.line[0]
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: Anthropic-compatible model providers
-  object_value: Anthropic-compatible model providers
-  note: 'integration group: providers'
-  fact_id: fact::9e374dfb5e0b91c4a570987f
+    excerpt: Alternative vector-store target exposed through compose environment variables.
+  object_value: Alternative vector-store target exposed through compose environment
+    variables.
+  note: 'integration group: items'
+  fact_id: fact::031b2d8560fbc14449221f6c
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-21'
   provenance:
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    source_section: integrations.external_sources[0].line[0]
+    source_section: integrations.items[5].role.line[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
-    ref: integrations.external_sources[0].line[0]
+    ref: integrations.items[5].role.line[0]
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: Notion
-  object_value: Notion
-  note: 'integration group: external_sources'
-  fact_id: fact::7cb0100f554de11359e2bffb
+    excerpt: Both api and web services accept Sentry DSN and sampling configuration
+      in compose.
+  object_value: Both api and web services accept Sentry DSN and sampling configuration
+    in compose.
+  note: 'integration group: items'
+  fact_id: fact::58501aa6314ecef034032128
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-21'
   provenance:
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    source_section: integrations.providers[0].line[0]
+    source_section: integrations.items[0].role.line[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
-    ref: integrations.providers[0].line[0]
+    ref: integrations.items[0].role.line[0]
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: OpenAI-compatible model providers
-  object_value: OpenAI-compatible model providers
-  note: 'integration group: providers'
-  fact_id: fact::2c372bf65dae947aad1290c9
+    excerpt: Default relational store for backend persistence in self-host deployments.
+  object_value: Default relational store for backend persistence in self-host deployments.
+  note: 'integration group: items'
+  fact_id: fact::7c3455309e91ebe1987f2bd6
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
   confidence: 0.64
-  as_of: '2026-02-25'
+  as_of: '2026-03-21'
   provenance:
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    source_section: integrations.external_sources[1].line[0]
+    source_section: integrations.items[2].role.line[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
-    ref: integrations.external_sources[1].line[0]
+    ref: integrations.items[2].role.line[0]
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: Web crawler connectors
-  object_value: Web crawler connectors
-  note: 'integration group: external_sources'
-  fact_id: fact::9a780f92ff8b807137ed3618
+    excerpt: Default vector-store integration in the generated compose stack.
+  object_value: Default vector-store integration in the generated compose stack.
+  note: 'integration group: items'
+  fact_id: fact::67e9eda1aa86f15c4cba60e1
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: integrations.items[6].name.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.items[6].name.line[0]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Node SDK
+  object_value: Node SDK
+  note: 'integration group: items'
+  fact_id: fact::8508cd651b622cb65341d93a
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: integrations.items[4].name.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.items[4].name.line[0]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: OpenTelemetry
+  object_value: OpenTelemetry
+  note: 'integration group: items'
+  fact_id: fact::6e64f3a5c8f0d682b1786aa1
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: integrations.items[0].name.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.items[0].name.line[0]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: PostgreSQL
+  object_value: PostgreSQL
+  note: 'integration group: items'
+  fact_id: fact::49be13c2109b8a3b53d5bf72
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: integrations.items[3].name.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.items[3].name.line[0]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Qdrant
+  object_value: Qdrant
+  note: 'integration group: items'
+  fact_id: fact::e556b34cb1d72d42968d2347
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: integrations.items[1].role.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.items[1].role.line[0]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Queue broker and shared runtime dependency for worker flows.
+  object_value: Queue broker and shared runtime dependency for worker flows.
+  note: 'integration group: items'
+  fact_id: fact::886a6f069413ad05d0a3e727
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: integrations.items[1].name.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.items[1].name.line[0]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Redis
+  object_value: Redis
+  note: 'integration group: items'
+  fact_id: fact::ef0ef418e36efbd574198c69
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: integrations.items[5].name.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.items[5].name.line[0]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Sentry
+  object_value: Sentry
+  note: 'integration group: items'
+  fact_id: fact::2500d8ba063cb394af31e04f
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: integrations.items[6].role.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.items[6].role.line[0]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: The in-repo Node client package provides an external integration surface
+      for consuming the Dify API.
+  object_value: The in-repo Node client package provides an external integration surface
+    for consuming the Dify API.
+  note: 'integration group: items'
+  fact_id: fact::ed6fade6cf822d6ec7a232ec
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: integrations.items[4].role.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.items[4].role.line[0]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Trace context is surfaced in responses and multiple OTEL packages are
+      wired into the backend dependencies.
+  object_value: Trace context is surfaced in responses and multiple OTEL packages
+    are wired into the backend dependencies.
+  note: 'integration group: items'
+  fact_id: fact::4a58b050e646c00fd57c6a68
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.64
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: integrations.items[2].name.line[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: integrations.items[2].name.line[0]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Weaviate
+  object_value: Weaviate
+  note: 'integration group: items'
+  fact_id: fact::a18f1e8db54e7fc0dbb250be
 - fact_type: failure_mode
   predicate: has_failure_mode
   object_kind: issue
   confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-21'
   provenance:
     source_file: repos/knowledge/deep/langgenius__dify.yaml
     source_section: troubleshooting[1]
@@ -325,57 +1407,18 @@ facts:
   - kind: file_block
     ref: troubleshooting[1]
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: API returns 401 or model provider errors despite valid key
-  object_value: API returns 401 or model provider errors despite valid key
-  note: 'cause: ANTHROPIC_API_KEY or equivalent env var not set in the .env file;
-    or .env was not copied from .env.example before first launch.; fix: Confirm .env
-    exists and contains the correct provider key; restart containers with docker compose
-    down && docker compose up -d after edi...'
-  fact_id: fact::13f4d2068926b19435371b4c
+    excerpt: Async workflows, dataset jobs, or scheduled tasks stop progressing.
+  object_value: Async workflows, dataset jobs, or scheduled tasks stop progressing.
+  note: 'cause: The worker or worker_beat process was not started, or Redis/Celery
+    queue settings are misconfigured for the active deployment.; fix: Start the worker
+    and beat services, confirm Redis connectivity, and verify MODE plus Celery queue
+    environment values.'
+  fact_id: fact::513e80ea98bc82a01d0338f4
 - fact_type: failure_mode
   predicate: has_failure_mode
   object_kind: issue
   confidence: 0.74
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/langgenius__dify.yaml
-    source_section: troubleshooting[3]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: troubleshooting[3]
-    source_file: repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: RAG knowledge base returns no results or low-relevance chunks
-  object_value: RAG knowledge base returns no results or low-relevance chunks
-  note: "cause: Embedding model not configured or mismatched with the retrieval model;\
-    \ document not fully indexed.; fix: Verify the embedding model is set under Settings\
-    \ \u2192 Model Provider; re-index the knowledge base document after confirming\
-    \ the embedding provider is reachable."
-  fact_id: fact::7b283585a924d9f9830d6ad1
-- fact_type: failure_mode
-  predicate: has_failure_mode
-  object_kind: issue
-  confidence: 0.74
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/langgenius__dify.yaml
-    source_section: troubleshooting[4]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: troubleshooting[4]
-    source_file: repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: Self-hosted instance loses data after docker compose down
-  object_value: Self-hosted instance loses data after docker compose down
-  note: 'cause: Volumes not persisted; default compose config uses named volumes that
-    may be pruned.; fix: Confirm volume mounts in docker-compose.yaml point to host
-    paths for postgres and storage; avoid docker volume prune on active deployments.'
-  fact_id: fact::c1f127011ea0e4ed5baf6b5f
-- fact_type: failure_mode
-  predicate: has_failure_mode
-  object_kind: issue
-  confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-21'
   provenance:
     source_file: repos/knowledge/deep/langgenius__dify.yaml
     source_section: troubleshooting[2]
@@ -384,18 +1427,58 @@ facts:
   - kind: file_block
     ref: troubleshooting[2]
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: Workflow execution hangs or returns empty output
-  object_value: Workflow execution hangs or returns empty output
-  note: 'cause: LLM provider rate limit hit; or a node in the workflow graph has a
-    misconfigured input variable reference.; fix: Check provider dashboard for rate
-    limit status; inspect workflow node configuration for unresolved variable references;
-    review api container logs with docker...'
-  fact_id: fact::c6289fdbfe6a1638d5b88036
+    excerpt: Frontend login or session sharing breaks across separate frontend and
+      backend subdomains.
+  object_value: Frontend login or session sharing breaks across separate frontend
+    and backend subdomains.
+  note: 'cause: COOKIE_DOMAIN and NEXT_PUBLIC_COOKIE_DOMAIN are not aligned to the
+    same top-level domain.; fix: Set both cookie-domain values for the shared parent
+    domain before restarting api and web.'
+  fact_id: fact::6ad7db1a1e26138a341ea2d6
 - fact_type: failure_mode
   predicate: has_failure_mode
   object_kind: issue
   confidence: 0.74
-  as_of: '2026-02-25'
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: troubleshooting[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[4]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Frontend production build succeeds but type issues are still present.
+  object_value: Frontend production build succeeds but type issues are still present.
+  note: 'cause: web/next.config.ts sets typescript.ignoreBuildErrors to true, so build
+    output is not a full type-safety gate.; fix: Run the explicit frontend type-check
+    script in addition to relying on the Next.js build.'
+  fact_id: fact::87f63ad5ae0077c007174311
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: troubleshooting[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting[3]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Local source development fails even though Docker compose works.
+  object_value: Local source development fails even though Docker compose works.
+  note: 'cause: The local source workflow expects ./dev/setup plus separate middleware,
+    api, web, and worker startup steps rather than only running one process.; fix:
+    Run ./dev/setup, then start middleware, api, web, and worker using the documented
+    dev scripts.'
+  fact_id: fact::57eb1b0f48c6b5b1772fd554
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.74
+  as_of: '2026-03-21'
   provenance:
     source_file: repos/knowledge/deep/langgenius__dify.yaml
     source_section: troubleshooting[0]
@@ -404,154 +1487,173 @@ facts:
   - kind: file_block
     ref: troubleshooting[0]
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: docker compose up -d completes but web UI is unreachable
-  object_value: docker compose up -d completes but web UI is unreachable
-  note: 'cause: Dependent services (PostgreSQL, Redis) not yet healthy; or port 80/443
-    already in use on the host.; fix: Run docker compose ps to check service health;
-    wait for db and redis containers to show healthy; change host port mapping in
-    docker-compose.yaml if conflicts exist.'
-  fact_id: fact::dc129fae426ced22462276dc
+    excerpt: The backend container exits before serving traffic.
+  object_value: The backend container exits before serving traffic.
+  note: 'cause: When MIGRATION_ENABLED is true, startup runs database migrations first,
+    so an unhealthy database dependency stops the process before the API mode begins.;
+    fix: Verify the selected database service is healthy, then rerun the startup flow
+    after the migration step can comp...'
+  fact_id: fact::badf9ad1113bc9c0abef500d
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
-  confidence: 0.64
-  as_of: '2026-02-25'
+  confidence: 0.8
+  as_of: '2026-03-21'
   provenance:
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    source_section: testing.structure.line[0]
+    source_section: implementation_patterns[2]
     extraction_mode: narrative
   evidence:
   - kind: file_block
-    ref: testing.structure.line[0]
+    ref: README.md
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: API unit and integration tests plus workflow engine tests
-  object_value: API unit and integration tests plus workflow engine tests
-  note: 'testing metadata: structure'
-  fact_id: fact::9a85ec86e03d2b665f123890
+    excerpt: The easiest install path is a generated docker-compose stack, while local
+      source development uses dev scripts to start middleware, API, web, and workers
+      separately.
+  object_value: Compose-first self-host workflow
+  note: 'description: The easiest install path is a generated docker-compose stack,
+    while local source development uses dev scripts to start middleware, API, web,
+    and workers separately.; location: README.md'
+  fact_id: fact::4bfe77a4a6f75b5bd3bf3396
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
-  confidence: 0.64
-  as_of: '2026-02-25'
+  confidence: 0.8
+  as_of: '2026-03-21'
   provenance:
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    source_section: testing.coverage_areas[1].line[0]
+    source_section: implementation_patterns[1]
     extraction_mode: narrative
   evidence:
   - kind: file_block
-    ref: testing.coverage_areas[1].line[0]
+    ref: api/controllers/service_api/__init__.py
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: chat and completion message APIs
-  object_value: chat and completion message APIs
-  note: 'testing metadata: coverage_areas'
-  fact_id: fact::2986b9c65e378a8f59ed57d6
+    excerpt: The repo exposes a product-facing /v1 service API and a separate /console/api
+      management API from the same backend codebase.
+  object_value: Dual-surface API design
+  note: 'description: The repo exposes a product-facing /v1 service API and a separate
+    /console/api management API from the same backend codebase.; location: api/controllers/service_api/__init__.py'
+  fact_id: fact::6d2d9c45ecb1147616e5252f
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
-  confidence: 0.64
-  as_of: '2026-02-25'
+  confidence: 0.8
+  as_of: '2026-03-21'
   provenance:
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    source_section: testing.test_patterns[3].line[0]
+    source_section: implementation_patterns[0]
     extraction_mode: narrative
   evidence:
   - kind: file_block
-    ref: testing.test_patterns[3].line[0]
+    ref: api/app_factory.py
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: mocked provider and environment fixtures
-  object_value: mocked provider and environment fixtures
-  note: 'testing metadata: test_patterns'
-  fact_id: fact::1812be0b4f083040303b3f87
+    excerpt: create_app builds the DifyApp instance, loads config, injects before/after
+      request hooks, and initializes extensions in a controlled order.
+  object_value: Factory-driven Flask bootstrap
+  note: 'description: create_app builds the DifyApp instance, loads config, injects
+    before/after request hooks, and initializes extensions in a controlled order.;
+    location: api/app_factory.py'
+  fact_id: fact::f8b9cade1c1abd90c8b7cd19
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
-  confidence: 0.64
-  as_of: '2026-02-25'
+  confidence: 0.8
+  as_of: '2026-03-21'
   provenance:
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    source_section: testing.coverage_areas[2].line[0]
+    source_section: code_patterns[2]
     extraction_mode: narrative
   evidence:
   - kind: file_block
-    ref: testing.coverage_areas[2].line[0]
+    ref: web/app/layout.tsx
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: tool/plugin integration behavior
-  object_value: tool/plugin integration behavior
-  note: 'testing metadata: coverage_areas'
-  fact_id: fact::8ddcc9e2f7009cdcdd604e31
+    excerpt: The web app root composes theme, query, i18n, telemetry, and UI host
+      providers in the top-level layout.
+  object_value: Frontend runtime assembled through provider layering
+  note: 'description: The web app root composes theme, query, i18n, telemetry, and
+    UI host providers in the top-level layout.; location: web/app/layout.tsx'
+  fact_id: fact::b113bca0bbad6e9c559025b5
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
-  confidence: 0.64
-  as_of: '2026-02-25'
+  confidence: 0.8
+  as_of: '2026-03-21'
   provenance:
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    source_section: testing.coverage_areas[0].line[0]
+    source_section: code_patterns[3]
     extraction_mode: narrative
   evidence:
   - kind: file_block
-    ref: testing.coverage_areas[0].line[0]
+    ref: docker/docker-compose.yaml
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: workflow execution and orchestration
-  object_value: workflow execution and orchestration
-  note: 'testing metadata: coverage_areas'
-  fact_id: fact::2ccb1a3d54f012309c379ea9
+    excerpt: The deployment bundle centralizes API and worker settings in a shared
+      YAML anchor and specializes services through overrides.
+  object_value: Generated compose file with shared environment anchor
+  note: 'description: The deployment bundle centralizes API and worker settings in
+    a shared YAML anchor and specializes services through overrides.; location: docker/docker-compose.yaml'
+  fact_id: fact::1cf5ce049e9f8f47f5f78750
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: implementation_patterns[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: sdks/nodejs-client/package.json
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: The Node SDK is versioned and published from a subpackage rather than
+      being treated only as internal client code.
+  object_value: In-repo SDK packaging for external consumers
+  note: 'description: The Node SDK is versioned and published from a subpackage rather
+    than being treated only as internal client code.; location: sdks/nodejs-client/package.json'
+  fact_id: fact::5d05d09a00fe659112c4aa18
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: code_patterns[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api/docker/entrypoint.sh
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: One backend image is reused for API, worker, beat, migration, and job
+      flows by branching on MODE in the shell entrypoint.
+  object_value: Mode-switched backend container entrypoint
+  note: 'description: One backend image is reused for API, worker, beat, migration,
+    and job flows by branching on MODE in the shell entrypoint.; location: api/docker/entrypoint.sh'
+  fact_id: fact::220173514731a58b9ef547ab
+- fact_type: implementation_pattern
+  predicate: implements_pattern
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: code_patterns[1]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: api/controllers/service_api/__init__.py
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Flask-RESTX namespaces split external service APIs from authenticated
+      console-management APIs.
+  object_value: Namespace-partitioned REST controllers
+  note: 'description: Flask-RESTX namespaces split external service APIs from authenticated
+    console-management APIs.; location: api/controllers/service_api/__init__.py'
+  fact_id: fact::af39ce2c947e9844dc81d122
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
   confidence: 0.67
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/langgenius__dify.yaml
-    source_section: quick_reference[1].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[1].line[0]
-    source_file: repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: cd api
-  object_value: cd api
-  note: 'topic: API test commands'
-  fact_id: fact::dc1e98f21d80591ddb4fe452
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/langgenius__dify.yaml
-    source_section: quick_reference[0].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[0].line[0]
-    source_file: repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: cd docker
-  object_value: cd docker
-  note: 'topic: Self-host quick start'
-  fact_id: fact::88bdfc6f652e943c2acbb666
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/langgenius__dify.yaml
-    source_section: quick_reference[0].line[2]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[0].line[2]
-    source_file: repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: docker compose up -d
-  object_value: docker compose up -d
-  note: 'topic: Self-host quick start'
-  fact_id: fact::8846307e84066aa3574b88da
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-02-25'
+  as_of: '2026-03-21'
   provenance:
     source_file: repos/knowledge/deep/langgenius__dify.yaml
     source_section: testing.framework.line[0]
@@ -560,126 +1662,163 @@ facts:
   - kind: file_block
     ref: testing.framework.line[0]
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: pytest (API) and frontend/component test suites
-  object_value: pytest (API) and frontend/component test suites
+    excerpt: pytest via uv for backend, pnpm/vitest-style scripts for web and Node
+      SDK packages
+  object_value: pytest via uv for backend, pnpm/vitest-style scripts for web and Node
+    SDK packages
   note: testing command
-  fact_id: fact::5c89978e07af68ce51981c28
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/langgenius__dify.yaml
-    source_section: testing.test_patterns[0].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: testing.test_patterns[0].line[0]
-    source_file: repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: uv run pytest
-  object_value: uv run pytest
-  note: testing command
-  fact_id: fact::108cceef14768d17022c52f6
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/langgenius__dify.yaml
-    source_section: quick_reference[1].line[1]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[1].line[1]
-    source_file: repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: uv run pytest
-  object_value: uv run pytest
-  note: 'topic: API test commands'
-  fact_id: fact::12605a55fbf725fd4e547f1d
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/langgenius__dify.yaml
-    source_section: quick_reference[1].line[3]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[1].line[3]
-    source_file: repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: uv run pytest tests/integration_tests/
-  object_value: uv run pytest tests/integration_tests/
-  note: 'topic: API test commands'
-  fact_id: fact::03d756a7436ab15857a384c9
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/langgenius__dify.yaml
-    source_section: testing.test_patterns[2].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: testing.test_patterns[2].line[0]
-    source_file: repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: uv run pytest tests/integration_tests/
-  object_value: uv run pytest tests/integration_tests/
-  note: testing command
-  fact_id: fact::1753ca24a5f7b0e985c71125
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/langgenius__dify.yaml
-    source_section: testing.test_patterns[1].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: testing.test_patterns[1].line[0]
-    source_file: repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: uv run pytest tests/unit_tests/
-  object_value: uv run pytest tests/unit_tests/
-  note: testing command
-  fact_id: fact::e5a8c3e1a7bd7f699cd735f9
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/langgenius__dify.yaml
-    source_section: quick_reference[1].line[2]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[1].line[2]
-    source_file: repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: uv run pytest tests/unit_tests/
-  object_value: uv run pytest tests/unit_tests/
-  note: 'topic: API test commands'
-  fact_id: fact::ed7a49c2e4689c5a35c04076
+  fact_id: fact::77c78b78e2cb892cd1f81053
 - fact_type: operational_task
   predicate: supports_task
   object_kind: text
-  confidence: 0.58
-  as_of: '2026-02-25'
+  confidence: 0.68
+  as_of: '2026-03-21'
   provenance:
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    source_section: quick_reference[2]
+    source_section: commands[1]
     extraction_mode: narrative
   evidence:
   - kind: file_block
-    ref: quick_reference[2]
+    ref: commands[1]
     source_file: repos/knowledge/deep/langgenius__dify.yaml
-    excerpt: Common service API paths
-  object_value: Common service API paths
-  note: quick reference topic
-  fact_id: fact::e56a02e8515ba4c8a797aa3d
+    excerpt: Bootstrap local source development
+  object_value: Bootstrap local source development
+  note: Install dependencies and copy local env files for api and web development.
+  fact_id: fact::2c3fbef7bdd1b3589edc0887
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: commands[0]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[0]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Compose quick start
+  object_value: Compose quick start
+  note: Start the default self-host deployment from the generated compose bundle.
+  fact_id: fact::469087cb29a2dacb57d15996
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: commands[7]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[7]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Run backend tests
+  object_value: Run backend tests
+  note: Execute backend unit and integration suites from the api package.
+  fact_id: fact::9785915e0e89a30ccd7dd9c0
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: commands[8]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[8]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Run web tests
+  object_value: Run web tests
+  note: Execute frontend tests from the web package.
+  fact_id: fact::11c8bd04e8785b9e5a8fcc00
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: commands[5]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[5]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Start async worker
+  object_value: Start async worker
+  note: Run the Celery worker for queue-backed tasks.
+  fact_id: fact::995ac747a0a3225de16de6f8
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: commands[3]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[3]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Start backend API
+  object_value: Start backend API
+  note: Run the backend after migrations in the local development flow.
+  fact_id: fact::9bbdafb6f800dcd80258a759
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: commands[4]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[4]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Start frontend web app
+  object_value: Start frontend web app
+  note: Run the Next.js frontend in the local development flow.
+  fact_id: fact::643c4efcf4cc42cfafa5de6a
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: commands[2]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[2]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Start local middleware
+  object_value: Start local middleware
+  note: Bring up supporting services such as PostgreSQL, Redis, and Weaviate for source-based
+    development.
+  fact_id: fact::9dc21bb3cea82035eb8a079c
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.68
+  as_of: '2026-03-21'
+  provenance:
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    source_section: commands[6]
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: commands[6]
+    source_file: repos/knowledge/deep/langgenius__dify.yaml
+    excerpt: Start scheduler
+  object_value: Start scheduler
+  note: Run Celery Beat for scheduled tasks.
+  fact_id: fact::42233bfd6d6b9e6874573824

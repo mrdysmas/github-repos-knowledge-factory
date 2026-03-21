@@ -1,116 +1,312 @@
 name: dify
-node_id: repo::langgenius/dify
+node_id: "repo::langgenius/dify"
 github_full_name: langgenius/dify
 html_url: https://github.com/langgenius/dify
 source: remote_metadata
 provenance:
   shard: repos
   source_file: repos/knowledge/deep/langgenius__dify.yaml
-  as_of: '2026-02-25'
+  as_of: "2026-03-21"
   sourcing_method: code_verified
-  extraction_model: glm-5
-  extraction_agent: kgraph-repos
-augmentation_provenance:
-- sections: [troubleshooting]
-  sourcing_method: training_knowledge
-  extraction_agent: claude-sonnet-4-6
-  session_date: '2026-03-19'
-  version_anchor: null
+  extraction_agent: codex
+directory: remote::langgenius/dify
+category: agent_platform
 sparse: false
 
-description: Open-source LLM application platform with workflow orchestration and RAG support.
+description: "Broad multi-surface LLM application platform with a Flask API and worker runtime, a separate Next.js web app, dockerized self-host deployment, and in-repo SDK surfaces."
 
 tech_stack:
-  - Python
-  - TypeScript
-  - React
-  - Docker Compose
-  - PostgreSQL
-  - Redis
+  - name: Python
+    role: "Primary backend language for the Flask API, Celery workers, workflow engine, and controller namespaces under api/."
+  - name: Flask
+    role: "Main HTTP framework used by the backend app factory, service API, and console API surfaces."
+  - name: Celery
+    role: "Asynchronous execution layer for dataset, workflow, mail, plugin, retention, and scheduler queues."
+  - name: TypeScript
+    role: "Primary language for the web application and the Node SDK package."
+  - name: Next.js
+    role: "Frontend framework for the web application under web/ with standalone build output."
+  - name: pnpm
+    role: "Package manager and script runner for web and Node SDK development."
+  - name: Docker Compose
+    role: "Primary self-host orchestration surface tying together api, worker, beat, web, databases, and vector-store dependencies."
+  - name: PostgreSQL
+    role: "Default relational database in the compose stack and backend configuration."
+  - name: Redis
+    role: "Broker/cache dependency for Celery and backend runtime state."
+  - name: Weaviate
+    role: "Default vector-store target in the generated self-host compose configuration."
+
+architecture:
+  components:
+    - name: api
+      description: "Flask-based backend runtime that loads config, initializes extensions, exposes service and console APIs, and owns workflow, dataset, and plugin logic."
+    - name: worker and worker_beat
+      description: "Celery execution surfaces started from the same backend image with alternate MODE values for queue processing and scheduling."
+    - name: web
+      description: "Next.js frontend application that wraps the console and app UI in providers for i18n, query state, theming, telemetry, and toasts."
+    - name: docker
+      description: "Auto-generated deployment bundle defining shared environment, startup modes, and infrastructure service composition."
+    - name: sdks
+      description: "Repository-local SDK area with a published Node client package and links to other language SDK repos."
+  module_breakdown:
+    - module: api/app.py
+      responsibility: "Selects the app factory path for normal runtime versus migration mode and exposes both the Flask app and Celery extension."
+      key_files:
+        - api/app.py
+        - api/app_factory.py
+        - api/celery_entrypoint.py
+    - module: api/controllers/service_api/
+      responsibility: "Provides application-facing REST endpoints mounted under /v1 for app metadata, parameters, conversations, datasets, files, and workflow execution."
+      key_files:
+        - api/controllers/service_api/__init__.py
+        - api/controllers/service_api/app/app.py
+    - module: api/controllers/console/
+      responsibility: "Provides authenticated management endpoints mounted under /console/api for app configuration, export, tracing, workspace operations, auth, billing, and datasets."
+      key_files:
+        - api/controllers/console/__init__.py
+        - api/controllers/console/app/app.py
+    - module: api/docker/entrypoint.sh
+      responsibility: "Switches container behavior between API, worker, beat, migration, and one-shot job modes."
+      key_files:
+        - api/docker/entrypoint.sh
+    - module: web/
+      responsibility: "Hosts the Next.js application shell, build config, app routes, and frontend tooling."
+      key_files:
+        - web/package.json
+        - web/app/layout.tsx
+        - web/next.config.ts
+    - module: sdks/nodejs-client
+      responsibility: "Maintains the distributable Node SDK package for Dify API integrations."
+      key_files:
+        - sdks/nodejs-client/package.json
+        - sdks/nodejs-client/README.md
+        - sdks/nodejs-client/pnpm-workspace.yaml
+
+code_patterns:
+  - pattern: "Mode-switched backend container entrypoint"
+    description: "One backend image is reused for API, worker, beat, migration, and job flows by branching on MODE in the shell entrypoint."
+    location: api/docker/entrypoint.sh
+  - pattern: "Namespace-partitioned REST controllers"
+    description: "Flask-RESTX namespaces split external service APIs from authenticated console-management APIs."
+    location: api/controllers/service_api/__init__.py
+  - pattern: "Frontend runtime assembled through provider layering"
+    description: "The web app root composes theme, query, i18n, telemetry, and UI host providers in the top-level layout."
+    location: web/app/layout.tsx
+  - pattern: "Generated compose file with shared environment anchor"
+    description: "The deployment bundle centralizes API and worker settings in a shared YAML anchor and specializes services through overrides."
+    location: docker/docker-compose.yaml
+
+implementation_patterns:
+  - pattern: "Factory-driven Flask bootstrap"
+    description: "create_app builds the DifyApp instance, loads config, injects before/after request hooks, and initializes extensions in a controlled order."
+    location: api/app_factory.py
+  - pattern: "Dual-surface API design"
+    description: "The repo exposes a product-facing /v1 service API and a separate /console/api management API from the same backend codebase."
+    location: api/controllers/service_api/__init__.py
+  - pattern: "Compose-first self-host workflow"
+    description: "The easiest install path is a generated docker-compose stack, while local source development uses dev scripts to start middleware, API, web, and workers separately."
+    location: README.md
+  - pattern: "In-repo SDK packaging for external consumers"
+    description: "The Node SDK is versioned and published from a subpackage rather than being treated only as internal client code."
+    location: sdks/nodejs-client/package.json
+
+core_modules:
+  modules:
+    - name: api
+      path: api/
+      purpose: "Backend application, controller namespaces, services, models, tasks, and test suites."
+    - name: service_api
+      path: api/controllers/service_api/
+      purpose: "Application-facing REST surface under /v1."
+    - name: console_api
+      path: api/controllers/console/
+      purpose: "Administrative and configuration REST surface under /console/api."
+    - name: web
+      path: web/
+      purpose: "Next.js frontend and browser-facing product UI."
+    - name: docker
+      path: docker/
+      purpose: "Self-host deployment templates, generated compose files, and bundled infrastructure definitions."
+    - name: sdks
+      path: sdks/
+      purpose: "Language SDK entrypoints, with the Node client maintained directly in-repo."
+
+key_features:
+  - feature: "Workflow and app management platform"
+    description: "Supports multiple app modes and exposes both product-facing and admin-facing APIs for app configuration and execution."
+  - feature: "Split API and worker runtime"
+    description: "Runs synchronous HTTP handling separately from Celery queue consumers and scheduler processes."
+  - feature: "Self-hosted deployment bundle"
+    description: "Ships a generated compose stack that wires web, api, workers, databases, Redis, and vector-store options."
+  - feature: "Browser UI with rich client infrastructure"
+    description: "The frontend includes theming, i18n, telemetry, query caching, toasts, and route-prefix handling at the root layout."
+  - feature: "Embeddable SDK surface"
+    description: "Publishes a Node SDK from sdks/nodejs-client while tracking additional SDKs from sibling repositories."
+
+key_files:
+  - path: README.md
+    purpose: "Primary product overview and compose-based self-host quick start."
+  - path: api/README.md
+    purpose: "Backend local-development flow, env notes, and uv/pytest quality commands."
+  - path: api/app.py
+    purpose: "Runtime entrypoint that selects normal or migration app creation."
+  - path: api/app_factory.py
+    purpose: "Central backend bootstrap sequence, request hooks, and extension loading order."
+  - path: api/controllers/service_api/app/app.py
+    purpose: "Representative /v1 app endpoints for parameters, metadata, and app info."
+  - path: api/controllers/console/app/app.py
+    purpose: "Representative /console/api app-management routes for CRUD, export, and tracing."
+  - path: api/docker/entrypoint.sh
+    purpose: "Container startup policy for api, worker, beat, migration, and job modes."
+  - path: docker/docker-compose.yaml
+    purpose: "Generated self-host deployment bundle describing api, worker, beat, web, and infrastructure services."
+  - path: web/package.json
+    purpose: "Frontend scripts, dependency surface, and Next.js build/test entrypoints."
+  - path: web/app/layout.tsx
+    purpose: "Top-level frontend provider composition and browser shell."
+  - path: web/next.config.ts
+    purpose: "Frontend build behavior, redirects, standalone output, and MDX support."
+  - path: sdks/nodejs-client/package.json
+    purpose: "Node SDK packaging, build, lint, type-check, and publish scripts."
+
+configuration:
+  required:
+    - key: SECRET_KEY
+      description: "Backend secret used by the local-source and self-host setup; the API README explicitly calls out generating it before running services."
+    - key: DB_HOST / DB_PORT / DB_DATABASE / DB_USERNAME / DB_PASSWORD
+      description: "Primary relational database connection settings consumed by the backend and compose stack."
+    - key: REDIS_HOST / REDIS_PORT / REDIS_PASSWORD
+      description: "Required for queueing, caching, and Celery broker/back-end operation."
+  optional:
+    - key: MODE
+      default: "api"
+      description: "Selects api, worker, beat, migration, or job behavior in the backend container entrypoint."
+    - key: MIGRATION_ENABLED
+      default: "true"
+      description: "Controls whether startup runs database migrations before entering steady-state mode."
+    - key: SERVER_WORKER_AMOUNT / SERVER_WORKER_CLASS / SERVER_WORKER_CONNECTIONS
+      default: "1 / gevent / 10"
+      description: "Tune Gunicorn concurrency for the API container."
+    - key: CELERY_AUTO_SCALE / CELERY_MAX_WORKERS / CELERY_MIN_WORKERS / CELERY_WORKER_AMOUNT
+      default: "false / unset / 1 / 1"
+      description: "Control worker autoscaling or fixed Celery concurrency."
+    - key: VECTOR_STORE
+      default: "weaviate"
+      description: "Selects the vector-store backend in the self-host compose configuration."
+    - key: WEAVIATE_ENDPOINT / WEAVIATE_GRPC_ENDPOINT
+      default: "http://weaviate:8080 / grpc://weaviate:50051"
+      description: "Default Weaviate connection values in the generated compose file."
+    - key: QDRANT_URL
+      default: "http://qdrant:6333"
+      description: "Alternative vector-store endpoint supported by the compose config."
+    - key: COOKIE_DOMAIN / NEXT_PUBLIC_COOKIE_DOMAIN
+      default: ""
+      description: "Must be aligned when frontend and backend are served from sibling subdomains that share auth cookies."
+
+commands:
+  - name: "Compose quick start"
+    description: "Start the default self-host deployment from the generated compose bundle."
+    usage: "cd docker && cp .env.example .env && docker compose up -d"
+  - name: "Bootstrap local source development"
+    description: "Install dependencies and copy local env files for api and web development."
+    usage: "./dev/setup"
+  - name: "Start local middleware"
+    description: "Bring up supporting services such as PostgreSQL, Redis, and Weaviate for source-based development."
+    usage: "./dev/start-docker-compose"
+  - name: "Start backend API"
+    description: "Run the backend after migrations in the local development flow."
+    usage: "./dev/start-api"
+  - name: "Start frontend web app"
+    description: "Run the Next.js frontend in the local development flow."
+    usage: "./dev/start-web"
+  - name: "Start async worker"
+    description: "Run the Celery worker for queue-backed tasks."
+    usage: "./dev/start-worker"
+  - name: "Start scheduler"
+    description: "Run Celery Beat for scheduled tasks."
+    usage: "./dev/start-beat"
+  - name: "Run backend tests"
+    description: "Execute backend unit and integration suites from the api package."
+    usage: "cd api && uv run pytest"
+  - name: "Run web tests"
+    description: "Execute frontend tests from the web package."
+    usage: "cd web && pnpm test"
 
 testing:
-  framework: pytest (API) and frontend/component test suites
-  structure: API unit and integration tests plus workflow engine tests
-  coverage_areas:
-    - workflow execution and orchestration
-    - chat and completion message APIs
-    - tool/plugin integration behavior
-  test_patterns:
-    - uv run pytest
-    - uv run pytest tests/unit_tests/
-    - uv run pytest tests/integration_tests/
-    - mocked provider and environment fixtures
+  framework: "pytest via uv for backend, pnpm/vitest-style scripts for web and Node SDK packages"
+  patterns:
+    - name: "Backend unit and integration suites"
+      location: api/tests/
+      description: "Backend coverage is split across unit_tests, integration_tests, and test_containers_integration_tests."
+    - name: "Backend type/lint checks"
+      location: api/README.md
+      description: "Local backend quality flow includes ruff, formatting, and basedpyright."
+    - name: "Frontend package tests"
+      location: web/package.json
+      description: "The web package exposes test, coverage, and build scripts from the root package manifest."
+    - name: "Node SDK package tests"
+      location: sdks/nodejs-client/package.json
+      description: "The Node SDK package has its own build, lint, type-check, and vitest-run scripts."
+  key_files:
+    - api/README.md
+    - api/tests/
+    - web/package.json
+    - sdks/nodejs-client/package.json
 
-quick_reference:
-  - topic: Self-host quick start
-    content: |
-      cd docker
-      cp .env.example .env
-      docker compose up -d
-
-  - topic: API test commands
-    content: |
-      cd api
-      uv run pytest
-      uv run pytest tests/unit_tests/
-      uv run pytest tests/integration_tests/
-
-  - topic: Common service API paths
-    content: |
-      /chat-messages
-      /completion-messages
-      /v1/workflows/run
+api_surface:
+  endpoints:
+    - path: /v1/parameters
+      method: GET
+      description: "Return application input parameters and feature-derived configuration for a token-authenticated app."
+    - path: /v1/meta
+      method: GET
+      description: "Return application metadata through the service API."
+    - path: /v1/info
+      method: GET
+      description: "Return app name, description, tags, mode, and author details."
+    - path: /console/api/apps
+      method: GET
+      description: "List apps in the authenticated console-management surface."
+    - path: /console/api/apps/<uuid:app_id>
+      method: GET
+      description: "Fetch app details in the console-management surface."
+    - path: /console/api/apps/<uuid:app_id>/export
+      method: GET
+      description: "Export app configuration from the console API."
+    - path: /console/api/apps/<uuid:app_id>/trace
+      method: POST
+      description: "Enable or disable per-app tracing configuration from the console API."
 
 integrations:
-  providers:
-    - OpenAI-compatible model providers
-    - Anthropic-compatible model providers
-  external_sources:
-    - Notion
-    - Web crawler connectors
-  api_endpoints:
-    - path: /chat-messages
-      method: POST
-      description: send chat app message and stream/collect response
-    - path: /completion-messages
-      method: POST
-      description: run completion app message generation
-    - path: /v1/workflows/run
-      method: POST
-      description: execute workflow graph run
+  - name: PostgreSQL
+    role: "Default relational store for backend persistence in self-host deployments."
+  - name: Redis
+    role: "Queue broker and shared runtime dependency for worker flows."
+  - name: Weaviate
+    role: "Default vector-store integration in the generated compose stack."
+  - name: Qdrant
+    role: "Alternative vector-store target exposed through compose environment variables."
+  - name: OpenTelemetry
+    role: "Trace context is surfaced in responses and multiple OTEL packages are wired into the backend dependencies."
+  - name: Sentry
+    role: "Both api and web services accept Sentry DSN and sampling configuration in compose."
+  - name: Node SDK
+    role: "The in-repo Node client package provides an external integration surface for consuming the Dify API."
 
 troubleshooting:
-- symptom: docker compose up -d completes but web UI is unreachable
-  cause: Dependent services (PostgreSQL, Redis) not yet healthy; or port 80/443 already in use on the host.
-  fix: Run docker compose ps to check service health; wait for db and redis containers to show healthy; change host port mapping in docker-compose.yaml if conflicts exist.
-- symptom: API returns 401 or model provider errors despite valid key
-  cause: ANTHROPIC_API_KEY or equivalent env var not set in the .env file; or .env was not copied from .env.example before first launch.
-  fix: Confirm .env exists and contains the correct provider key; restart containers with docker compose down && docker compose up -d after editing.
-- symptom: Workflow execution hangs or returns empty output
-  cause: LLM provider rate limit hit; or a node in the workflow graph has a misconfigured input variable reference.
-  fix: Check provider dashboard for rate limit status; inspect workflow node configuration for unresolved variable references; review api container logs with docker compose logs api.
-- symptom: RAG knowledge base returns no results or low-relevance chunks
-  cause: Embedding model not configured or mismatched with the retrieval model; document not fully indexed.
-  fix: Verify the embedding model is set under Settings → Model Provider; re-index the knowledge base document after confirming the embedding provider is reachable.
-- symptom: Self-hosted instance loses data after docker compose down
-  cause: Volumes not persisted; default compose config uses named volumes that may be pruned.
-  fix: Confirm volume mounts in docker-compose.yaml point to host paths for postgres and storage; avoid docker volume prune on active deployments.
-
-api_structure:
-  service_api:
-    - path: /chat-messages
-      operations:
-        - POST
-    - path: /completion-messages
-      operations:
-        - POST
-    - path: /completion-messages/{task_id}/stop
-      operations:
-        - POST
-  app_api:
-    - path: /apps/{app_id}/chat-messages
-      operations:
-        - POST
-    - path: /apps/{app_id}/completion-messages
-      operations:
-        - POST
+  - symptom: "The backend container exits before serving traffic."
+    cause: "When MIGRATION_ENABLED is true, startup runs database migrations first, so an unhealthy database dependency stops the process before the API mode begins."
+    fix: "Verify the selected database service is healthy, then rerun the startup flow after the migration step can complete successfully."
+  - symptom: "Async workflows, dataset jobs, or scheduled tasks stop progressing."
+    cause: "The worker or worker_beat process was not started, or Redis/Celery queue settings are misconfigured for the active deployment."
+    fix: "Start the worker and beat services, confirm Redis connectivity, and verify MODE plus Celery queue environment values."
+  - symptom: "Frontend login or session sharing breaks across separate frontend and backend subdomains."
+    cause: "COOKIE_DOMAIN and NEXT_PUBLIC_COOKIE_DOMAIN are not aligned to the same top-level domain."
+    fix: "Set both cookie-domain values for the shared parent domain before restarting api and web."
+  - symptom: "Local source development fails even though Docker compose works."
+    cause: "The local source workflow expects ./dev/setup plus separate middleware, api, web, and worker startup steps rather than only running one process."
+    fix: "Run ./dev/setup, then start middleware, api, web, and worker using the documented dev scripts."
+  - symptom: "Frontend production build succeeds but type issues are still present."
+    cause: "web/next.config.ts sets typescript.ignoreBuildErrors to true, so build output is not a full type-safety gate."
+    fix: "Run the explicit frontend type-check script in addition to relying on the Next.js build."

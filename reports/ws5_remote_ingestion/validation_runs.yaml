@@ -31,7 +31,8 @@ required_commands:
   expectation: validate.py exits 0
 - step: 6
   command: python3 tools/ws5_remote_ingestion.py --workspace-root /home/abe/scripts/ext_sources/github_repos
-    --input inputs/ws5/B14_graphiti_prepass_intake_manifest.yaml --reports-dir reports/ws5_remote_ingestion
+    --input inputs/ws5/B16_dify_broad_prepass_backfill_manifest.yaml --reports-dir
+    reports/ws5_remote_ingestion
   status: PASS
   exit_code: 0
   expectation: WS5 ingestion writes deterministic reports and WS1-compatible records
@@ -61,14 +62,15 @@ required_commands:
   expectation: hashes unchanged
 artifact_hashes:
   inputs/ws5/ws5_input_manifest.yaml: 200e9a2bfa797920a28814c083a502d4ec9a3e1cbe08b779a2e3ccf115d70c65
-  reports/ws5_remote_ingestion/coverage.yaml: 1eb131321b4b45a5f8b2cc8557cc45b42fbfe6eb0fc09a9c36d172e70fc2f975
+  reports/ws5_remote_ingestion/coverage.yaml: 389aaca65ead56539fe53ec995b04ffd77a7be23da9b6e0436fc95eee3a89bce
   reports/ws5_remote_ingestion/mismatch_report.yaml: 91831e88a1d2d5671058c725dafd30c935b25ae36942b7b0d6105d06353df86f
   inputs/ws5/B9_T3_deep_manifest.yaml: 9894aabf0a0f970f1152e6bab722fe6107e08c1c0097b10773f7b0171b1f2b18
   inputs/ws5/B10_mariadb_manifest.yaml: 45133f6184c2ba67a5d29b19da81d35b8b555927d54e4747bb0cf96f403dd3cf
   inputs/ws5/B11_gitnexus_ladybugdb_deepagents_manifest.yaml: 2b124ee24952442c38983204ae8b3aae012e763363a312e5bf0ada57aa9f31f3
   inputs/ws5/B12_v2_backfill_manifest.yaml: e5cb9ad99f17e63a46b5734a6be48ba70606788f0930132e3bf9a3530996b379
   inputs/ws5/B14_graphiti_prepass_intake_manifest.yaml: 7b9ade989b30e542010739d422bff5f77128f9914ecec565a1b9cb76505e5a98
-input_manifest_sha256: 7b9ade989b30e542010739d422bff5f77128f9914ecec565a1b9cb76505e5a98
+  inputs/ws5/B16_dify_broad_prepass_backfill_manifest.yaml: 589d40b6e564fe8e413e61aed9bebe3b884b51b82f8dac45bd17781101e857bb
+input_manifest_sha256: 589d40b6e564fe8e413e61aed9bebe3b884b51b82f8dac45bd17781101e857bb
 gate_bools:
   manifest_parseable: true
   manifest_entries_present: true

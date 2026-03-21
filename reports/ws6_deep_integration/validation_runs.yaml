@@ -49,8 +49,8 @@ execution_results:
     first_class
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-21T19:23:05Z'
-  duration_ms: 1988
+  ran_at_utc: '2026-03-21T21:19:09Z'
+  duration_ms: 2166
   observation: exit_code=0; ws1_contract_status_pass=true
   output_tail: "stdout_tail:\ncontracts_dir: /home/abe/scripts/ext_sources/github_repos/contracts/ws1\n\
     external_node_policy: first_class\n\nPASS checks:\n  - Contract version aligned\
@@ -64,8 +64,8 @@ execution_results:
   command: python3 tools/trust_gates.py repos/knowledge --production
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-21T19:23:07Z'
-  duration_ms: 1985
+  ran_at_utc: '2026-03-21T21:19:11Z'
+  duration_ms: 2095
   observation: exit_code=0; overall_pass=true; ready_state_allowed_true=true
   output_tail: 'stdout_tail:
 
@@ -87,16 +87,16 @@ execution_results:
     --materialize-spec reports/ws6_deep_integration/spec.yaml
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-21T19:23:03Z'
+  ran_at_utc: '2026-03-21T21:19:07Z'
   duration_ms: 0
-  observation: ws6_gate_ready=true blocking_mismatches=0 facts_materialized=6123
+  observation: ws6_gate_ready=true blocking_mismatches=0 facts_materialized=6186
 - step: 5
   command: python3 tools/ws4_master_compiler.py --workspace-root . --master-index
     master_index.yaml --master-graph master_graph.yaml --reports-dir reports/ws4_master_build
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-21T19:23:20Z'
-  duration_ms: 12802
+  ran_at_utc: '2026-03-21T21:19:24Z'
+  duration_ms: 13436
   observation: exit_code=0; ws4_gate_ready=true
   output_tail: 'stdout_tail:
 
@@ -125,11 +125,11 @@ execution_results:
   command: python3 tools/query_master.py --source yaml stats
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-21T19:23:28Z'
-  duration_ms: 8460
-  observation: exit_code=0; deep_facts=6123
+  ran_at_utc: '2026-03-21T21:19:33Z'
+  duration_ms: 9047
+  observation: exit_code=0; deep_facts=6186
   output_tail: "stdout_tail:\nartifact_type: master_query_stats\ncounts:\n  repos:\
-    \ 122\n  nodes: 136\n  edges: 152\n  deep_facts: 6123\nsources:\n  master_index:\
+    \ 122\n  nodes: 136\n  edges: 152\n  deep_facts: 6186\nsources:\n  master_index:\
     \ /home/abe/scripts/ext_sources/github_repos/master_index.yaml\n  master_graph:\
     \ /home/abe/scripts/ext_sources/github_repos/master_graph.yaml\n  master_deep_facts:\
     \ /home/abe/scripts/ext_sources/github_repos/master_deep_facts.yaml"
@@ -137,13 +137,13 @@ execution_results:
   command: Re-run WS6 command with identical input and verify output hashes unchanged
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-21T19:23:03Z'
+  ran_at_utc: '2026-03-21T21:19:07Z'
   duration_ms: 0
   observation: hash_stability=true
 artifact_hashes:
-  master_deep_facts.yaml: 6d626a51e4de0938d69355562e5100f8403a23941bf9f388683d75b3fe8714e8
-  reports/ws6_deep_integration/coverage.yaml: 29ac8174c725464ad41960d14fd7f5bb65d05a51cd564415287a7618081ca875
-  reports/ws6_deep_integration/mismatch_report.yaml: 3d33ea00243123ecc584537c0c056ad2f065cd5ca460b157069feb151ef154c6
+  master_deep_facts.yaml: 9aa5234137504b97cc54c0eaf144ce2cdad1a7bef98ce30b6df1cf08616029c3
+  reports/ws6_deep_integration/coverage.yaml: 737aa50a4c99d609975c9084350b552ff0cd29f45aaa17ba8759f5830c7f9f94
+  reports/ws6_deep_integration/mismatch_report.yaml: 67be684152d1fcfb64c7eba94e7e714975709656d553b5ece0a110d05b6bfeeb
   repos/knowledge/deep_facts/JeecgBoot.yaml: d262275eb1cd29cc0ebcc53fe545e9c04378fab39f5034bdcb2c494b8df78242
   repos/knowledge/deep_facts/Prompt-Engineering-Guide.yaml: 51ba3af34fc1c235cee9f04d3cfc10a14a43e857928c2147c6384588ef255e80
   repos/knowledge/deep_facts/abhigyanpatwari__gitnexus.yaml: f3097fca86984467b7485f70224256bde2f7f7831e9ed3a80fd0c5bc7ec0f1d3
@@ -192,7 +192,7 @@ artifact_hashes:
   repos/knowledge/deep_facts/lancedb__lancedb.yaml: 21d1ac405a23b23bfb4903c9b0bd46553275e71714ca022b5e9311e07864cc17
   repos/knowledge/deep_facts/langchain-ai__deepagents.yaml: 4c7ef12578be3a3fd6fa19595a3d2e2373cb7bed02ae3ba86ca9d105f2f33fd4
   repos/knowledge/deep_facts/langchain.yaml: 0698025d2cb1d930cdf3ba2d6dadb67086ccd12f58986370629de579e662d884
-  repos/knowledge/deep_facts/langgenius__dify.yaml: 045b427aba7311d0ade486d46e476897cf7e97ec79f78837f9c50e2c25830e63
+  repos/knowledge/deep_facts/langgenius__dify.yaml: e8d2dbcaa3bd7d92cb1b4752a9848c567e4b77293cd8eb17c1f3b82975305539
   repos/knowledge/deep_facts/llama.cpp.yaml: 89d3bd3f31d7ae7c848565f51e0825023975177c91340bef1c2f793a1f2f4d71
   repos/knowledge/deep_facts/llama_index.yaml: 71cd5381ff1bf805a05bc8ef81c888216225455080ea4c0e2210def2c2782439
   repos/knowledge/deep_facts/llamafactory.yaml: e88b5360e95d3f0e9fdce45f6bb510a128001cbb86b2a728025ef004aa1736ec
@@ -275,7 +275,7 @@ gate_bools:
   execution_results_pending_zero: true
   ws6_hash_stable: true
 gate_metrics:
-  unmapped_sections_count: 82
+  unmapped_sections_count: 81
 ws6_gate_ready: true
 validation_suite_complete: true
 validation_suite_passed: true

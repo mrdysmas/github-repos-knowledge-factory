@@ -1,0 +1,31 @@
+artifact_type: ws5_remote_ingestion_input_manifest
+contract_version: 1.0.0-ws1
+defaults:
+  target_shard: repos
+  as_of: "2026-03-21"
+  source: remote_metadata
+repos:
+  - name: dify
+    github_full_name: langgenius/dify
+    file_stem: langgenius__dify
+    html_url: https://github.com/langgenius/dify
+    target_shard: repos
+    source: remote_metadata
+    category: agent_platform
+    summary: Open-source LLM application platform with Python API services, Next.js web UI, SDKs, and self-hosted deployment surfaces.
+    core_concepts:
+      - workflow orchestration
+      - agent capabilities
+      - retrieval-augmented generation
+      - self-hosted AI application platform
+    key_entry_points:
+      - README.md
+      - api/
+      - web/
+      - docker/
+    build_run:
+      language: mixed
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-21"
+    local_cache_dir: null
