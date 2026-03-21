@@ -194,33 +194,37 @@ deferred_investigations:
 in_progress_work:
 
   - topic: shared_dolt_remote_via_nfs
-    status: in_progress
+    status: complete
     goal: >
       Export gbabe's ~/.beads-remote via NFS over Tailscale. Mount it on Mac at
       /Users/szilaa/.beads-remote (same path as the existing local copy), so both machines
-      use file:///~/.beads-remote and neither needs a remote URL change.
+      use file:///~/.beads-remote pointing to the same physical storage.
     rationale: >
       NFS avoids all auth complexity. gbabe already has nfs-kernel-server installed.
       Tailscale provides transport (low latency, trusted network). Concurrent write risk
       (multiple agents pushing simultaneously) is acceptable — dolt push failures are
       non-destructive (fails with "not up to date" rather than silent corruption).
-    preconditions_completed:
-      - Mac's ~/.beads-remote synced to gbabe (Mac was one commit ahead — had the aqi issue gbabe lacked)
-      - nfs-kernel-server confirmed installed on gbabe
-      - Mac Tailscale IP: 100.67.216.25
-      - gbabe abe UID/GID: 1000/1000
-    next_steps:
-      - Configure /etc/exports on gbabe (export scoped to Mac's Tailscale IP only)
-      - sudo exportfs -ra && verify nfs-kernel-server running
-      - On Mac: rename ~/.beads-remote to ~/.beads-remote-backup, create mount point, mount NFS
-      - Update gbabe bd remote to file:///home/abe/.beads-remote (it already is — no change needed)
-      - Test bd dolt push from both machines
+    completed_steps:
+      - Synced Mac's ~/.beads-remote to gbabe (Mac was one commit ahead — had the aqi issue gbabe lacked)
+      - Added /etc/exports entry on gbabe scoped to Mac's Tailscale IP (100.67.216.25)
+      - sudo exportfs -ra; nfs-kernel-server confirmed active
+      - On Mac: renamed ~/.beads-remote to ~/.beads-remote-local-backup, created mount point, mounted NFS
+      - Verified: bd dolt push from Mac succeeded; bd dolt pull on gbabe picked up the aqi issue
+      - Created LaunchAgent on Mac for mount persistence at login
     export_config: >
       /home/abe/.beads-remote 100.67.216.25(rw,sync,no_subtree_check,insecure,all_squash,anonuid=1000,anongid=1000)
+    mac_mount_command: >
+      sudo mount -t nfs -o resvport,rw,soft gbabe:/home/abe/.beads-remote /Users/szilaa/.beads-remote
+    mac_launchagent: ~/Library/LaunchAgents/com.szilaa.nfs.beads-remote.plist
     notes:
       - insecure required: Mac NFS client uses ports > 1024 by default
       - all_squash + anonuid/anongid: maps Mac's szilaa (UID 501) to abe (UID 1000) on gbabe
-      - soft mount recommended on Mac so bd commands fail fast if gbabe is unreachable rather than hanging
+      - soft mount: bd commands fail fast if gbabe unreachable rather than hanging
+      - LaunchAgent runs at login with 10s delay to let Tailscale connect first
+      - If mount fails at login (gbabe offline), run mount command manually before using bd
+      - Both machines keep file:// remotes unchanged; NFS makes them physically identical
+      - remotesapi investigation abandoned: dolt's remotesapi uses symmetric key request sealing
+        (not HTTP Basic auth), designed for DoltHub only, not documented for self-hosted use
 
 known_gotchas:
   - id: path_noninteractive
