@@ -174,6 +174,7 @@ For more details, see README.md and docs/QUICKSTART.md.
    git status  # MUST show "up to date with origin"
    ```
    Beads note: do not blind-retry `bd dolt push`. If the result is uncertain or fails with a remote/backend error, verify state first and then do at most one deliberate retry.
+   Execution note: run this sequence strictly serially. Do not launch `bd dolt push`, `git pull --rebase`, `git push`, or `git status` in parallel, in the background, or through overlapping async tool calls. Wait for each command to fully exit and inspect its result before starting the next one. If you need a post-push confirmation, run a fresh `git status` only after `git push` has completed.
 5. **Clean up** - Clear stashes, prune remote branches
 6. **Verify** - All changes committed AND pushed
 7. **Hand off** - Provide context for next session
