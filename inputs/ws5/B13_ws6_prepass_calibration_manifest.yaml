@@ -1,0 +1,53 @@
+artifact_type: ws5_remote_ingestion_input_manifest
+contract_version: 1.0.0-ws1
+defaults:
+  target_shard: repos
+  as_of: "2026-03-21"
+  source: remote_metadata
+repos:
+  - name: graphiti
+    github_full_name: getzep/graphiti
+    file_stem: getzep__graphiti
+    html_url: https://github.com/getzep/graphiti
+    target_shard: repos
+    source: remote_metadata
+    category: workflow_repos
+    summary: Temporal knowledge graph framework focused on memory updates, provenance, and supersession-aware recall.
+    core_concepts:
+      - temporal knowledge graph
+      - memory updates
+      - provenance
+      - supersession
+    key_entry_points:
+      - README.md
+      - graphiti_core/
+      - server/
+    build_run:
+      language: Python
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-21"
+    local_cache_dir: null
+  - name: hindsight
+    github_full_name: vectorize-io/hindsight
+    file_stem: vectorize-io__hindsight
+    html_url: https://github.com/vectorize-io/hindsight
+    target_shard: repos
+    source: remote_metadata
+    category: workflow_repos
+    summary: Memory-oriented agent support project emphasizing consolidation, reflection, and hybrid retrieval policy.
+    core_concepts:
+      - consolidation
+      - reflection
+      - hybrid retrieval
+      - memory shaping
+    key_entry_points:
+      - README.md
+      - src/
+      - examples/
+    build_run:
+      language: TypeScript
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-21"
+    local_cache_dir: null

@@ -1,0 +1,252 @@
+schema_version: '0.1'
+repo:
+  github_full_name: getzep/graphiti
+  node_id: repo::getzep/graphiti
+  file_stem: getzep__graphiti
+artifact:
+  generated_at_utc: '2026-03-21T17:38:18Z'
+  stage: ws6_structural_prepass
+  mode: filesystem_manifest_entrypoint
+  output_file: reports/ws6_structural_prepass/B13_ws6_prepass_calibration/getzep__graphiti.yaml
+batch:
+  batch_id: B13_ws6_prepass_calibration
+  clone_manifest: reports/ws6_clone_prep/B13_ws6_prepass_calibration_clones.yaml
+source:
+  repo_root: /home/abe/scripts/ext_sources/github_repos/workspace/clones/getzep__graphiti
+  languages:
+  - python
+signals_used:
+- filesystem
+- manifest
+- entrypoint
+- config_routing
+- imports
+package_roots:
+- path: .
+  evidence:
+  - kind: manifest
+    path: pyproject.toml
+    detail: python_manifest
+- path: examples/opentelemetry
+  evidence: &id005
+  - kind: manifest
+    path: examples/opentelemetry/pyproject.toml
+    detail: python_manifest
+- path: examples/quickstart
+  evidence: &id007
+  - kind: manifest
+    path: examples/quickstart/requirements.txt
+    detail: python_requirements
+- path: graphiti_core
+  evidence: &id004
+  - kind: filepath
+    path: graphiti_core/__init__.py
+- path: graphiti_core/cross_encoder
+  evidence: &id001
+  - kind: filepath
+    path: graphiti_core/cross_encoder/__init__.py
+- path: graphiti_core/driver
+  evidence: &id002
+  - kind: filepath
+    path: graphiti_core/driver/__init__.py
+- path: graphiti_core/driver/falkordb
+  evidence: &id003
+  - kind: filepath
+    path: graphiti_core/driver/falkordb/__init__.py
+- path: graphiti_core/driver/falkordb/operations
+  evidence: &id006
+  - kind: filepath
+    path: graphiti_core/driver/falkordb/operations/__init__.py
+entrypoints:
+- path: server/graph_service/main.py
+  kind: app_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: server/graph_service/main.py
+    detail: filename heuristic
+- path: mcp_server/main.py
+  kind: app_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: mcp_server/main.py
+    detail: filename heuristic
+module_groups:
+- name: cross_encoder
+  paths:
+  - graphiti_core/cross_encoder
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence: *id001
+- name: driver
+  paths:
+  - graphiti_core/driver
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence: *id002
+- name: falkordb
+  paths:
+  - graphiti_core/driver/falkordb
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence: *id003
+- name: graphiti_core
+  paths:
+  - graphiti_core
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence: *id004
+- name: opentelemetry
+  paths:
+  - examples/opentelemetry
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence: *id005
+- name: operations
+  paths:
+  - graphiti_core/driver/falkordb/operations
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence: *id006
+- name: quickstart
+  paths:
+  - examples/quickstart
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence: *id007
+- name: tests
+  paths:
+  - tests
+  rationale: directory grouping with repeated source files
+  confidence: medium
+  evidence:
+  - kind: directory
+    path: tests
+filesystem_signals:
+  manifests:
+  - path: pyproject.toml
+    kind: python_manifest
+  - path: examples/opentelemetry/pyproject.toml
+    kind: python_manifest
+  - path: examples/quickstart/requirements.txt
+    kind: python_requirements
+  - path: mcp_server/pyproject.toml
+    kind: python_manifest
+  - path: server/pyproject.toml
+    kind: python_manifest
+  config_files:
+  - path: .env.example
+    kind: env_example
+  - path: docker-compose.yml
+    kind: runtime_config
+  - path: pytest.ini
+    kind: test_config
+  - path: .github/workflows/ai-moderator.yml
+    kind: ci_workflow
+  - path: .github/workflows/cla.yml
+    kind: ci_workflow
+  - path: .github/workflows/claude-code-review-manual.yml
+    kind: ci_workflow
+  - path: .github/workflows/claude-code-review.yml
+    kind: ci_workflow
+  - path: .github/workflows/claude.yml
+    kind: ci_workflow
+  - path: .github/workflows/codeql.yml
+    kind: ci_workflow
+  - path: .github/workflows/lint.yml
+    kind: ci_workflow
+  - path: .github/workflows/release-graphiti-core.yml
+    kind: ci_workflow
+  - path: .github/workflows/release-mcp-server.yml
+    kind: ci_workflow
+  - path: .github/workflows/release-server-container.yml
+    kind: ci_workflow
+  - path: .github/workflows/typecheck.yml
+    kind: ci_workflow
+  - path: .github/workflows/unit_tests.yml
+    kind: ci_workflow
+  - path: examples/azure-openai/.env.example
+    kind: env_example
+  - path: examples/gliner2/.env.example
+    kind: env_example
+  - path: examples/opentelemetry/.env.example
+    kind: env_example
+  - path: mcp_server/.env.example
+    kind: env_example
+  - path: mcp_server/pytest.ini
+    kind: test_config
+  - path: mcp_server/docker/docker-compose.yml
+    kind: runtime_config
+  - path: mcp_server/tests/pytest.ini
+    kind: test_config
+  - path: server/.env.example
+    kind: env_example
+  - path: tests/evals/pytest.ini
+    kind: test_config
+orientation_hints:
+  likely_first_read:
+  - server/graph_service/main.py
+  - mcp_server/main.py
+  - graphiti_core/cross_encoder
+  - graphiti_core/driver
+  - graphiti_core/driver/falkordb
+  - graphiti_core
+  likely_runtime_surfaces:
+  - server/graph_service/main.py
+  - mcp_server/main.py
+  - .env.example
+  - docker-compose.yml
+  - examples/azure-openai/.env.example
+  - examples/gliner2/.env.example
+limitations:
+- module groups are heuristic directory-level clusters
+- no behavioral, failure-mode, or cross-repo claims are emitted
+dependency_signals:
+  internal_modules:
+  - falkordb
+  - falkordb.asyncio
+  - graphiti_core
+  - graphiti_core.cross_encoder
+  - graphiti_core.cross_encoder.bge_reranker_client
+  - graphiti_core.cross_encoder.client
+  - graphiti_core.cross_encoder.gemini_reranker_client
+  - graphiti_core.cross_encoder.openai_reranker_client
+  - graphiti_core.decorators
+  - graphiti_core.driver.driver
+  - graphiti_core.driver.falkordb
+  - graphiti_core.driver.falkordb.operations.community_edge_ops
+  - graphiti_core.driver.falkordb.operations.community_node_ops
+  - graphiti_core.driver.falkordb.operations.entity_edge_ops
+  - graphiti_core.driver.falkordb.operations.entity_node_ops
+  - graphiti_core.driver.falkordb.operations.episode_node_ops
+  - graphiti_core.driver.falkordb.operations.episodic_edge_ops
+  - graphiti_core.driver.falkordb.operations.graph_ops
+  - graphiti_core.driver.falkordb.operations.has_episode_edge_ops
+  - graphiti_core.driver.falkordb.operations.next_episode_edge_ops
+  external_packages:
+  - anthropic
+  - azure-identity
+  - boto3
+  - falkordb
+  - fastapi
+  - fastapi-cli
+  - gliner2
+  - google-genai
+  - graphiti-core
+  - groq
+  - httpx
+  - ipykernel
+  - jupyterlab
+  - kuzu
+  - langchain-anthropic
+  - langchain-aws
+  - langchain-openai
+  - langgraph
+  - langsmith
+  - mcp
+  - neo4j
+  - numpy
+  - openai
+  - opensearch-py
+  - opentelemetry-api
