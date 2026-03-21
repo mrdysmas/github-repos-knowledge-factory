@@ -56,6 +56,48 @@ planning_inputs:
     - "Q3-first execution remains the strongest near-term path: strengthen failure-mode preflight before broader surface expansion."
     - "Use Q3 improvements to build reusable category-scoped and frequency-aware query primitives that Q7 can reuse."
     - "Treat Q7 as the capstone question, but avoid broadening it ahead of reliability and reusable query foundations."
+  question_priority_ranking:
+    note: "2026-03-21 planning clarification: Q3 and Q7 were prioritized first because they combine the strongest non-inferable advisory value with the smallest credible query-layer implementation path. The remaining questions are not 'done'; they rank lower because they are either less urgent, more weakly covered by current ontology/corpus shape, or require heavier ontology/structure work before they can produce trustworthy advisory output."
+    order:
+      - question: "Q3"
+        short_name: "Failure-mode preflight"
+        rank: 1
+        why_now: "Highest non-inferable value and lowest-cost useful improvement path; category-scoped query design was enough to unlock a directly useful advisory surface."
+        current_state: "Implemented and evaluated via pattern frequency primitives plus preflight command."
+      - question: "Q7"
+        short_name: "Implementation-risk check"
+        rank: 2
+        why_now: "Capstone decision-support question; reuses Q3-style category/frequency primitives and gives high-value typicality signals, but needed Q3 groundwork first."
+        current_state: "Implemented in baseline form and partially stabilized; treat as the next advisory surface to harden or extend only where reliability remains acceptable."
+      - question: "Q1"
+        short_name: "Adjacent-pattern discovery"
+        rank: 3
+        why_now: "Strong future query-layer candidate once Q3/Q7 are stable; mainly blocked by adjacency-scoped aggregation and ranking, not by major ontology redesign."
+        current_state: "Partially covered by existing pattern queries, but lacks adjacency-scoped grouped output."
+      - question: "Q4"
+        short_name: "Reference-repo selection"
+        rank: 4
+        why_now: "Another good query-layer expansion candidate after Q3/Q7; needs ranking and feature-aware justification rather than broad new schema."
+        current_state: "Partially covered by graph neighbors and relations, but missing ranked, problem-aware recommendations."
+      - question: "Q5"
+        short_name: "Solution-variant comparison"
+        rank: 5
+        why_now: "Best later ontology candidate once query-first gains flatten; high-value question, but blocked more by ontology shape than by missing query surface alone."
+        current_state: "Weakly covered; current ontology does not represent solution-variant groupings or tradeoff structure well."
+      - question: "Q2"
+        short_name: "Likely-component discovery"
+        rank: 6
+        why_now: "Useful but currently muddied by component normalization issues; likely needs both query work and ontology cleanup before it becomes a sharp advisory surface."
+        current_state: "Partially covered by has_component facts, but normalization inconsistency weakens 'what is typical' answers."
+      - question: "Q6"
+        short_name: "Inspection-priority guidance"
+        rank: 7
+        why_now: "Weakest current fit for the smallest-layer rule; needs richer cross-repo structural abstraction and risks drifting into inferable repo-local guidance."
+        current_state: "Weakly covered; current corpus/ontology does not yet support strong non-obvious structural guidance across repos."
+    next_after_q3_q7_stabilize:
+      - "Default next query-layer candidates: Q1 first, then Q4, unless a concrete use case makes Q4 clearly more urgent."
+      - "Default first ontology-heavy candidate: Q5, but only if query-first gains have flattened and the need for solution-variant/tradeoff structure is still sharp."
+      - "Do not treat Q2/Q6 as the immediate post-Q3/Q7 path unless new evidence shows their current blockers can be solved without broad ontology/structure expansion."
   deprioritized_until_core_gains_land:
     - "Broad ontology expansion that does not clearly improve one anchor question."
     - "New agent packaging or interface surfaces built on unstable query semantics."
