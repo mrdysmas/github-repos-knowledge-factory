@@ -163,7 +163,7 @@ completed_steps_continued:
 deferred_investigations:
 
   - topic: shared_dolt_remote_via_remotesapi
-    status: blocked
+    status: abandoned
     goal: >
       Make gbabe's Dolt server the authoritative remote for both machines, so Mac and gbabe
       push/pull to the same bd state rather than maintaining separate file:// remotes.
@@ -174,26 +174,53 @@ deferred_investigations:
       - WorkingDirectory must be .beads/dolt/ (dolt uses cwd as data dir; --data-dir flag is invalid)
       - Updated Mac's bd remote to http://root:@100.99.99.99:8000/github_repos
       - Tried with password (ALTER USER root IDENTIFIED BY 'doltpass')
-    blocker: >
-      Both bd and raw dolt CLI fail with: "authorization header did not start with 'Basic '"
-      The dolt client is sending a non-Basic auth header (likely a cached DoltHub JWT token)
-      to the self-hosted remotesapi, which expects HTTP Basic auth. This is a credential
-      scheme mismatch between Dolt's client (which prefers DoltHub-style tokens) and
-      self-hosted remotesapi (which requires Basic auth).
-    current_state:
-      gbabe_remote: "file:///home/abe/.beads-remote (reverted)"
-      mac_remote: "file:///Users/szilaa/.beads-remote (original, separate copy)"
-      gbabe_dolt_service: running dolt sql-server directly (not via bd dolt start)
-      remotesapi: enabled on port 8000 but unused
-    next_steps_if_revisited:
-      - Investigate dolt creds system — dolt creds new + import to server may allow proper auth
-      - Check if dolt creds ls shows a cached DoltHub token interfering with self-hosted auth
-      - Alternative: expose ~/.beads-remote via NFS (gbabe already has nfs-server) and mount on Mac
-      - Alternative: accept Mac as legacy-only, gbabe is authoritative, no shared remote needed
-    practical_note: >
-      Since gbabe is the primary machine and Mac is a control node, Mac running bd is not
-      a real use case. Gbabe's bd is authoritative. This is low priority unless the workflow
-      changes to require bd from Mac.
+      - Removed cached DoltHub credential (dolt creds rm) to eliminate JWT token interference
+      - Retried without credentials in URL (http://gbabe:8000/github_repos)
+      - Created fresh dolt credential (dolt creds new) in case empty creds dir was the issue
+    root_cause: >
+      The remotesapi does not use HTTP Basic auth at all. Server logs revealed it uses a
+      symmetric key request sealing protocol: all valid requests must arrive at
+      /single_symmetric_key_sealed_request/. The client must possess the server's public key
+      to seal requests. Without it, dolt reports "invalid creds file" (misleading error —
+      actually means "cannot seal request, no server key available").
+      This protocol is designed for DoltHub integration only and is not documented for
+      self-hosted use. Setting it up would require extracting the server's generated keypair
+      and importing it to the client — undocumented and likely fragile.
+    decision: >
+      Abandoned. Switched to NFS-based shared remote (see in_progress_work below).
+      DoltHub was also considered and rejected — DoltHub had prior reliability issues for
+      this project and the user is intentionally self-hosting.
+
+in_progress_work:
+
+  - topic: shared_dolt_remote_via_nfs
+    status: in_progress
+    goal: >
+      Export gbabe's ~/.beads-remote via NFS over Tailscale. Mount it on Mac at
+      /Users/szilaa/.beads-remote (same path as the existing local copy), so both machines
+      use file:///~/.beads-remote and neither needs a remote URL change.
+    rationale: >
+      NFS avoids all auth complexity. gbabe already has nfs-kernel-server installed.
+      Tailscale provides transport (low latency, trusted network). Concurrent write risk
+      (multiple agents pushing simultaneously) is acceptable — dolt push failures are
+      non-destructive (fails with "not up to date" rather than silent corruption).
+    preconditions_completed:
+      - Mac's ~/.beads-remote synced to gbabe (Mac was one commit ahead — had the aqi issue gbabe lacked)
+      - nfs-kernel-server confirmed installed on gbabe
+      - Mac Tailscale IP: 100.67.216.25
+      - gbabe abe UID/GID: 1000/1000
+    next_steps:
+      - Configure /etc/exports on gbabe (export scoped to Mac's Tailscale IP only)
+      - sudo exportfs -ra && verify nfs-kernel-server running
+      - On Mac: rename ~/.beads-remote to ~/.beads-remote-backup, create mount point, mount NFS
+      - Update gbabe bd remote to file:///home/abe/.beads-remote (it already is — no change needed)
+      - Test bd dolt push from both machines
+    export_config: >
+      /home/abe/.beads-remote 100.67.216.25(rw,sync,no_subtree_check,insecure,all_squash,anonuid=1000,anongid=1000)
+    notes:
+      - insecure required: Mac NFS client uses ports > 1024 by default
+      - all_squash + anonuid/anongid: maps Mac's szilaa (UID 501) to abe (UID 1000) on gbabe
+      - soft mount recommended on Mac so bd commands fail fast if gbabe is unreachable rather than hanging
 
 known_gotchas:
   - id: path_noninteractive
