@@ -1,17 +1,17 @@
 artifact_type: intake_repo_queue
 contract_version: 1.0.0-intake
-generated_at_utc: '2026-03-19T15:11:29Z'
+generated_at_utc: '2026-03-21T16:47:31Z'
 source:
   catalog_file: master_repo_list.yaml
   master_index_file: master_index.yaml
   notes: Queue entries are deduplicated by github_full_name.
 summary:
-  source_rows_total: 126
+  source_rows_total: 128
   source_rows_missing_github_url: 5
   source_rows_invalid_full_name: 0
-  deduped_entries_total: 119
+  deduped_entries_total: 121
   already_canonical_count: 119
-  queued_count: 0
+  queued_count: 2
 policies:
   scan_mode_default: shallow_first
   clone_strategy: clone_on_demand
@@ -425,6 +425,19 @@ entries:
   needs_review_count: 0
   source_row_indexes:
   - 30
+- queue_id: intake::getzep/graphiti
+  github_full_name: getzep/graphiti
+  html_url: https://github.com/getzep/graphiti
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: repos
+  source_categories:
+  - workflow_repos
+  source_local_paths: []
+  needs_review_count: 0
+  source_row_indexes:
+  - 126
 - queue_id: intake::ggml-org/llama.cpp
   github_full_name: ggml-org/llama.cpp
   html_url: https://github.com/ggml-org/llama.cpp
@@ -1530,6 +1543,19 @@ entries:
   needs_review_count: 0
   source_row_indexes:
   - 57
+- queue_id: intake::vectorize-io/hindsight
+  github_full_name: vectorize-io/hindsight
+  html_url: https://github.com/vectorize-io/hindsight
+  canonical_status: queued
+  intake_status: pending
+  recommended_action: candidate_shallow_scan
+  target_shard_hint: repos
+  source_categories:
+  - workflow_repos
+  source_local_paths: []
+  needs_review_count: 0
+  source_row_indexes:
+  - 127
 - queue_id: intake::vllm-project/vllm
   github_full_name: vllm-project/vllm
   html_url: https://github.com/vllm-project/vllm

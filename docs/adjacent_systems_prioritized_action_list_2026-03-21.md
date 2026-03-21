@@ -51,14 +51,15 @@ Existing trackers:
 - github_repos-d6k
 - github_repos-8qc
 
-### 3. Keep Graphiti and Hindsight as prepared corpus candidates, but do not intake them yet
+### 3. Queue Graphiti and Hindsight, then fold them into the next corpus-maintenance batch
 
 Why this is third:
 
-- They remain the best add-next adjacent references once the project is ready
-  for more corpus expansion.
-- They should not be queued ahead of ontology / WS6 structural pre-pass
-  clarification, because that risks avoidable rework and weak extraction shape.
+- They remain the best add-next adjacent references for bounded corpus
+  expansion.
+- The earlier hold is now cleared because the WS6 structural pre-pass contract
+  is defined and the retrieval-helper decision stayed optional rather than
+  workflow-shaping.
 
 Existing tracker:
 
@@ -66,7 +67,9 @@ Existing tracker:
 
 Current rule:
 
-- revisit only after the WS6 structural pre-pass direction is clearer
+- keep both repos queued via the canonical intake path
+- select them as part of the next normal corpus-maintenance batch rather than
+  creating a dedicated adjacent-systems batch
 
 ### 4. Treat Q5-style ontology work as the first serious later candidate
 
