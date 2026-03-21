@@ -8,6 +8,28 @@ migration:
 
 completed_steps:
 
+  - step: install_github_cli
+    summary: Install gh CLI and authenticate with GitHub for push access
+    notes:
+      - Repo is public so clone/pull work without auth; push requires credentials
+      - GPG keyring must be installed before apt can verify the gh repo — the keyring
+        step must succeed before apt update or the package will be unavailable
+      - Install commands in order
+    commands:
+      - "curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg"
+      - "sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg"
+      - "echo \"deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main\" | sudo tee /etc/apt/sources.list.d/github-cli.list"
+      - "sudo apt update && sudo apt install gh -y"
+      - "gh auth login"
+    auth_flow:
+      protocol: HTTPS
+      method: browser (headless-friendly)
+      steps:
+        - gh prints a one-time code and a URL
+        - open the URL on Mac browser, enter the code
+        - gh configures git credential helper automatically
+      result: git push works without a PAT stored in plaintext
+
   - step: install_agent_clis
     summary: Claude Code and Codex CLI installed on gbabe
     notes:
