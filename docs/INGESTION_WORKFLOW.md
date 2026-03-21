@@ -156,9 +156,14 @@ Clones are retained by default after the pipeline completes. Set
 Current policy: the WS6 structural pre-pass is a `soft-optional` orientation
 step, not a default batch step.
 
-Use it after clone prep and before deep authoring when the repo shape is likely
-to be expensive to orient manually, especially when one or more of these cues
-are present:
+Decision rule: make a lightweight repo-shape judgment after clone prep. Run the
+pre-pass after clone prep and before deep authoring when the repo looks broad,
+multi-surface, polyglot, workspace-like, or otherwise noisy enough at the top
+level that manual orientation is likely to cost extra reads. Skip it when the
+repo is small, structurally obvious, or already easy to orient manually.
+
+In practice, that usually means running it when one or more of these cues are
+present:
 
 - multiple sibling package roots or workspace manifests
 - polyglot layout across multiple ecosystems

@@ -83,6 +83,15 @@ Why not:
 
 ## Repo-Shape Cues
 
+Operational wording future agents should follow:
+
+- make a lightweight initial repo-shape judgment
+- run the WS6 structural pre-pass if the repo appears broad, multi-surface,
+  polyglot, workspace-like, or noisy at the top level in ways that are likely
+  to make manual orientation slow
+- skip it when the repo is small, structurally obvious, or easy to orient
+  manually
+
 Run the WS6 structural pre-pass when one or more of these cues are present:
 
 - the repo is a multi-package or workspace-style layout with sibling manifests
