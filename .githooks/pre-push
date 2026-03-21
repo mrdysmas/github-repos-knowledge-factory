@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ "${GUARDED_CLOSEOUT_ALLOW_GIT_PUSH:-0}" == "1" ]]; then
+  exit 0
+fi
+
+if [[ "${GUARDED_CLOSEOUT_BYPASS_PRE_PUSH:-0}" == "1" ]]; then
+  echo "Bypassing guarded closeout pre-push hook because GUARDED_CLOSEOUT_BYPASS_PRE_PUSH=1 is set." >&2
+  exit 0
+fi
+
+cat >&2 <<'EOF'
+Direct git push is blocked in this repo.
+
+Use the guarded wrapper instead:
+  ./tools/guarded_closeout.sh
+
+That path serializes:
+  1. bd dolt push
+  2. git pull --rebase
+  3. git push
+  4. git status
+
+If you truly need to bypass this backup hook, set GUARDED_CLOSEOUT_BYPASS_PRE_PUSH=1 for that command.
+EOF
+exit 1

@@ -100,11 +100,9 @@ For more details, see README.md and docs/QUICKSTART.md.
 3. **Update issue status** - Close finished work, update in-progress items
 4. **PUSH TO REMOTE** - This is MANDATORY:
    ```bash
-   bd dolt push
-   git pull --rebase
-   git push
-   git status  # MUST show "up to date with origin"
+   ./tools/guarded_closeout.sh
    ```
+   The wrapper is the primary path. It serializes `bd dolt push`, `git pull --rebase`, `git push`, and a fresh `git status` under a single repo lock.
 5. **Clean up** - Clear stashes, prune remote branches
 6. **Verify** - All changes committed AND pushed
 7. **Hand off** - Provide context for next session
@@ -113,6 +111,6 @@ For more details, see README.md and docs/QUICKSTART.md.
 - Work is NOT complete until `git push` succeeds
 - NEVER stop before pushing - that leaves work stranded locally
 - NEVER say "ready to push when you are" - YOU must push
-- If push fails, resolve and retry until it succeeds
+- If `git push` fails, resolve and retry until it succeeds
 
 <!-- END BEADS INTEGRATION -->

@@ -168,13 +168,11 @@ For more details, see README.md and docs/QUICKSTART.md.
 3. **Update issue status** - Close finished work, update in-progress items
 4. **PUSH TO REMOTE** - This is MANDATORY:
    ```bash
-   bd dolt push
-   git pull --rebase
-   git push
-   git status  # MUST show "up to date with origin"
+   ./tools/guarded_closeout.sh
    ```
+   The wrapper is the primary path. It serializes `bd dolt push`, `git pull --rebase`, `git push`, and a fresh `git status` under a single repo lock.
    Beads note: do not blind-retry `bd dolt push`. If the result is uncertain or fails with a remote/backend error, verify state first and then do at most one deliberate retry.
-   Execution note: run this sequence strictly serially. Do not launch `bd dolt push`, `git pull --rebase`, `git push`, or `git status` in parallel, in the background, or through overlapping async tool calls. Wait for each command to fully exit and inspect its result before starting the next one. If you need a post-push confirmation, run a fresh `git status` only after `git push` has completed.
+   Execution note: do not bypass the wrapper by launching `bd dolt push`, `git pull --rebase`, `git push`, or `git status` separately or in parallel. If the wrapper reports a stale lock, inspect `.git/guarded-closeout.lock/metadata` and then use `./tools/guarded_closeout.sh --force-clear-stale-lock` only after confirming the recorded PID is gone.
 5. **Clean up** - Clear stashes, prune remote branches
 6. **Verify** - All changes committed AND pushed
 7. **Hand off** - Provide context for next session
