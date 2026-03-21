@@ -4,10 +4,10 @@ repo:
   node_id: repo::langgenius/dify
   file_stem: langgenius__dify
 artifact:
-  generated_at_utc: '2026-03-21T21:40:18Z'
+  generated_at_utc: '2026-03-21T22:48:00Z'
   stage: ws6_structural_prepass
   mode: filesystem_manifest_entrypoint
-  output_file: reports/ws6_structural_prepass/B16_dify_broad_prepass_backfill/langgenius__dify.yaml
+  output_file: reports/ws6_structural_prepass/B16_dify_broad_prepass_backfill/B16_dify_broad_prepass_backfill/langgenius__dify.yaml
 batch:
   batch_id: B16_dify_broad_prepass_backfill
   clone_manifest: reports/ws6_clone_prep/B16_dify_broad_prepass_backfill_clones.yaml
@@ -94,6 +94,13 @@ entrypoints:
   - kind: filepath
     path: api/app.py
     detail: filename heuristic
+- path: api/celery_entrypoint.py
+  kind: worker_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: api/celery_entrypoint.py
+    detail: celery/queue worker bootstrap stem
 - path: api/dify_graph/graph_engine/graph_engine.py
   kind: app_entry
   confidence: high
@@ -121,13 +128,6 @@ entrypoints:
   evidence:
   - kind: filepath
     path: api/dify_graph/graph_engine/worker.py
-    detail: filename heuristic
-- path: api/services/errors/app.py
-  kind: app_entry
-  confidence: high
-  evidence:
-  - kind: filepath
-    path: api/services/errors/app.py
     detail: filename heuristic
 module_groups:
 - name: web
@@ -287,7 +287,7 @@ orientation_hints:
   - api/controllers/service_api/app/app.py
   - api/controllers/console/app/app.py
   - api/app.py
-  - api/dify_graph/graph_engine/graph_engine.py
+  - api/celery_entrypoint.py
   - api/.env.example
   - docker/.env.example
 limitations:

@@ -209,6 +209,16 @@ RUNTIME_TOKENS = {
     "worker",
 }
 
+# File stems that identify Celery/queue worker bootstrap entrypoints.
+# These files are typically small re-export modules that launch a separate
+# worker process (e.g. `celery -A celery_entrypoint worker`).
+WORKER_BOOTSTRAP_STEMS = {
+    "celery_entrypoint",
+    "worker_entrypoint",
+    "queue_worker",
+    "worker_app",
+}
+
 BOUNDARY_TOKENS = {
     "all",
     "client",
@@ -732,6 +742,10 @@ def score_entrypoint(path: Path, source_dir_counts: Counter[str]) -> tuple[int, 
     if name in {"wsgi.py", "asgi.py"}:
         kind = "server_entry"
         note = "framework entry convention"
+    if path.stem.lower() in WORKER_BOOTSTRAP_STEMS:
+        base_score += 5
+        kind = "worker_entry"
+        note = "celery/queue worker bootstrap stem"
     if "worker" in path_tokens(path):
         base_score += 2
     if base_score == 0:
@@ -740,6 +754,8 @@ def score_entrypoint(path: Path, source_dir_counts: Counter[str]) -> tuple[int, 
     subtree_source_count = source_dir_counts.get(ensure_repo_relative(path.parent), 0)
     if subtree_source_count >= 3:
         score += min(subtree_source_count, 18) // 2
+    if kind == "worker_entry" and path_depth(path) <= 2:
+        score += 3
     if len(parts) >= 3 and parts[0] == "cmd" and name == f"{parts[1].lower()}{suffix}":
         score += 6
     if len(parts) >= 3 and parts[0] == "cmd" and name == "main.go" and subtree_source_count <= 2:

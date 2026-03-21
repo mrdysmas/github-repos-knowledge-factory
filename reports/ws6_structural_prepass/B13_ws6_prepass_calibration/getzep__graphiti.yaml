@@ -4,10 +4,10 @@ repo:
   node_id: repo::getzep/graphiti
   file_stem: getzep__graphiti
 artifact:
-  generated_at_utc: '2026-03-21T18:45:38Z'
+  generated_at_utc: '2026-03-21T22:48:16Z'
   stage: ws6_structural_prepass
   mode: filesystem_manifest_entrypoint
-  output_file: reports/ws6_structural_prepass/B13_ws6_prepass_calibration/getzep__graphiti.yaml
+  output_file: reports/ws6_structural_prepass/B13_ws6_prepass_calibration/B13_ws6_prepass_calibration/getzep__graphiti.yaml
 batch:
   batch_id: B13_ws6_prepass_calibration
   clone_manifest: reports/ws6_clone_prep/B13_ws6_prepass_calibration_clones.yaml
@@ -82,6 +82,48 @@ entrypoints:
   - kind: filepath
     path: server/graph_service/main.py
     detail: filename heuristic
+- path: graphiti_core/driver/driver.py
+  kind: app_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: graphiti_core/driver/driver.py
+    detail: directory-matched runtime file
+- path: graphiti_core/search/search.py
+  kind: app_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: graphiti_core/search/search.py
+    detail: directory-matched runtime file
+- path: mcp_server/src/utils/utils.py
+  kind: app_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: mcp_server/src/utils/utils.py
+    detail: directory-matched runtime file
+- path: graphiti_core/telemetry/telemetry.py
+  kind: app_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: graphiti_core/telemetry/telemetry.py
+    detail: directory-matched runtime file
+- path: graphiti_core/driver/graph_operations/graph_operations.py
+  kind: app_entry
+  confidence: medium
+  evidence:
+  - kind: filepath
+    path: graphiti_core/driver/graph_operations/graph_operations.py
+    detail: directory-matched runtime file
+- path: graphiti_core/driver/search_interface/search_interface.py
+  kind: app_entry
+  confidence: medium
+  evidence:
+  - kind: filepath
+    path: graphiti_core/driver/search_interface/search_interface.py
+    detail: directory-matched runtime file
 module_groups:
 - name: graphiti_core
   paths:
@@ -190,19 +232,21 @@ orientation_hints:
   likely_first_read:
   - mcp_server/main.py
   - server/graph_service/main.py
-  - graphiti_core
   - mcp_server
-  - server/graph_service
+  - graphiti_core
+  - mcp_server/src
+  - graphiti_core/driver/driver.py
   likely_runtime_surfaces:
   - mcp_server/main.py
   - server/graph_service/main.py
+  - graphiti_core/driver/driver.py
+  - graphiti_core/search/search.py
   - mcp_server/.env.example
   - mcp_server/docker/docker-compose.yml
-  - server/.env.example
-  - .env.example
 limitations:
 - module groups are heuristic directory-level clusters
 - no behavioral, failure-mode, or cross-repo claims are emitted
+- some entrypoints come from filename or manifest heuristics
 dependency_signals:
   internal_modules:
   - graphiti_core.driver
