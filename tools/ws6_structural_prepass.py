@@ -163,6 +163,16 @@ SUPPORT_TOKENS = {
     "tools",
 }
 
+FRONTEND_TOKENS = {
+    "console",
+    "dashboard",
+    "frontend",
+    "portal",
+    "site",
+    "ui",
+    "web",
+}
+
 GENERIC_GROUP_TOKENS = {
     "app",
     "apps",
@@ -226,6 +236,20 @@ DEV_DEPENDENCY_HINTS = (
     "typescript",
     "vitest",
 )
+
+FRONTEND_FRAMEWORK_CONFIG_NAMES = {
+    "next.config.js",
+    "next.config.mjs",
+    "next.config.ts",
+    "nuxt.config.js",
+    "nuxt.config.ts",
+    "remix.config.js",
+    "remix.config.ts",
+    "svelte.config.js",
+    "svelte.config.ts",
+    "vite.config.js",
+    "vite.config.ts",
+}
 
 
 def utc_now() -> str:
@@ -311,6 +335,59 @@ def orientation_score(path: Path, *, prefer_runtime: bool) -> int:
     if path.name.lower().startswith("readme"):
         score += 2
     return score
+
+
+def frontend_surface_boost(
+    path: Path,
+    *,
+    manifests: list[dict[str, str]],
+    config_files: list[dict[str, str]],
+    source_dir_counts: Counter[str],
+    paths: list[Path],
+) -> int:
+    labels = path_part_labels(path)
+    if not any(label in FRONTEND_TOKENS for label in labels):
+        return 0
+    if is_noise_root(path):
+        return 0
+
+    rel = ensure_repo_relative(path)
+    source_count = source_dir_counts.get(rel, 0)
+    if source_count < 8:
+        return 0
+
+    has_node_manifest = any(
+        Path(item["path"]).parent == path and item["kind"] in {"node_manifest", "node_workspace"}
+        for item in manifests
+    )
+    has_framework_config = any(
+        item["path"].startswith(f"{rel}/") and Path(item["path"]).name in FRONTEND_FRAMEWORK_CONFIG_NAMES
+        for item in config_files
+    )
+    has_frontend_routes = any(
+        len(candidate.parts) >= len(path.parts) + 2
+        and candidate.parts[: len(path.parts)] == path.parts
+        and candidate.parts[len(path.parts)] in {"app", "pages", "routes", "src"}
+        and candidate.suffix.lower() in {".js", ".jsx", ".ts", ".tsx", ".vue", ".svelte"}
+        for candidate in paths
+    )
+    if not (has_node_manifest or has_framework_config or has_frontend_routes):
+        return 0
+
+    boost = 4
+    if has_node_manifest:
+        boost += 2
+    if has_framework_config:
+        boost += 4
+    if has_frontend_routes:
+        boost += 3
+    if len(path.parts) == 1:
+        boost += 2
+    if source_count >= 100:
+        boost += 4
+    elif source_count >= 30:
+        boost += 2
+    return boost
 
 
 def is_noise_root(path: Path) -> bool:
@@ -537,10 +614,16 @@ def collect_config_signals(paths: list[Path]) -> list[dict[str, str]]:
     return configs
 
 
-def choose_package_roots(repo_root: Path, paths: list[Path], manifests: list[dict[str, str]]) -> list[dict[str, Any]]:
+def choose_package_roots(
+    repo_root: Path,
+    paths: list[Path],
+    manifests: list[dict[str, str]],
+    config_files: list[dict[str, str]],
+) -> list[dict[str, Any]]:
     roots: dict[str, dict[str, Any]] = {}
     manifest_paths = {Path(item["path"]): item["kind"] for item in manifests}
     manifest_roots = {manifest_path.parent for manifest_path in manifest_paths}
+    source_dir_counts = build_source_dir_counts(paths)
 
     def register_candidate(path: Path, evidence: dict[str, str], source: str) -> None:
         rel = ensure_repo_relative(path)
@@ -556,6 +639,13 @@ def choose_package_roots(repo_root: Path, paths: list[Path], manifests: list[dic
                 score += 6
             elif source == "workspace_child":
                 score += 7
+            score += frontend_surface_boost(
+                path,
+                manifests=manifests,
+                config_files=config_files,
+                source_dir_counts=source_dir_counts,
+                paths=paths,
+            )
             if is_noise_root(path):
                 score -= 8
             item = roots.setdefault(rel, {"path": rel, "evidence": [], "sources": set(), "_score": score})
@@ -809,6 +899,8 @@ def choose_entrypoints(repo_root: Path, paths: list[Path], manifests: list[dict[
 def choose_module_groups(
     paths: list[Path],
     package_roots: list[dict[str, Any]],
+    manifests: list[dict[str, str]],
+    config_files: list[dict[str, str]],
 ) -> list[dict[str, Any]]:
     groups: dict[str, dict[str, Any]] = {}
     source_dir_counts: Counter[str] = Counter()
@@ -850,7 +942,15 @@ def choose_module_groups(
             package_root["path"],
             "package root or workspace module boundary",
             package_root["evidence"],
-            10 + orientation_score(root_path, prefer_runtime=False),
+            10
+            + orientation_score(root_path, prefer_runtime=False)
+            + frontend_surface_boost(
+                root_path,
+                manifests=manifests,
+                config_files=config_files,
+                source_dir_counts=source_dir_counts,
+                paths=paths,
+            ),
         )
 
     for directory, count in sorted(source_dir_counts.items(), key=lambda item: (-item[1], item[0])):
@@ -1094,9 +1194,12 @@ def build_orientation_hints(
     entrypoints: list[dict[str, Any]],
     module_groups: list[dict[str, Any]],
     config_files: list[dict[str, str]],
+    manifests: list[dict[str, str]],
+    paths: list[Path],
 ) -> dict[str, list[str]]:
     likely_first_read: list[str] = []
     broad_repo = len(entrypoints) >= 6 and len(module_groups) >= 5
+    source_dir_counts = build_source_dir_counts(paths)
 
     first_read_entry_budget = 2 if broad_repo else 3
     first_read_group_budget = 3 if broad_repo else 3
@@ -1105,6 +1208,13 @@ def build_orientation_hints(
         primary_path = Path(group["paths"][0])
         labels = path_part_labels(primary_path)
         score = orientation_score(primary_path, prefer_runtime=False)
+        score += frontend_surface_boost(
+            primary_path,
+            manifests=manifests,
+            config_files=config_files,
+            source_dir_counts=source_dir_counts,
+            paths=paths,
+        )
         if len(primary_path.parts) >= 2:
             score += 4
         if not any(label in GENERIC_GROUP_TOKENS for label in labels):
@@ -1196,9 +1306,9 @@ def analyze_repo(
     manifests = collect_manifest_signals(rel_paths)
     config_files = collect_config_signals(rel_paths)
     languages = detect_languages(rel_paths, manifests)
-    package_roots = choose_package_roots(repo_root, rel_paths, manifests)
+    package_roots = choose_package_roots(repo_root, rel_paths, manifests, config_files)
     entrypoints = choose_entrypoints(repo_root, rel_paths, manifests)
-    module_groups = choose_module_groups(rel_paths, package_roots)
+    module_groups = choose_module_groups(rel_paths, package_roots, manifests, config_files)
     dependency_signals = collect_dependency_signals(
         repo_root,
         manifests,
@@ -1243,7 +1353,7 @@ def analyze_repo(
             "manifests": manifests,
             "config_files": config_files,
         },
-        "orientation_hints": build_orientation_hints(entrypoints, module_groups, config_files),
+        "orientation_hints": build_orientation_hints(entrypoints, module_groups, config_files, manifests, rel_paths),
         "limitations": build_limitations(entrypoints, module_groups, dependency_signals, source_files_scanned),
     }
     if dependency_signals is not None:

@@ -396,6 +396,111 @@ class WS6StructuralPrepassTests(unittest.TestCase):
         self._write_yaml(tmp_path / "reports" / "ws6_clone_prep" / "B_broad_clones.yaml", clone_manifest)
         return tmp_path
 
+    def _make_broad_frontend_workspace(self, tmp_path: Path) -> Path:
+        (tmp_path / "inputs" / "ws5").mkdir(parents=True, exist_ok=True)
+        (tmp_path / "reports" / "ws6_clone_prep").mkdir(parents=True, exist_ok=True)
+        repo_root = tmp_path / "workspace" / "clones" / "acme__product-suite"
+
+        for directory in (
+            repo_root / "api" / "controllers" / "console" / "app",
+            repo_root / "api" / "controllers" / "service_api" / "app",
+            repo_root / "api" / "core",
+            repo_root / "api" / "commands",
+            repo_root / "api" / "configs",
+            repo_root / "web" / "app",
+            repo_root / "web" / "app" / "components",
+            repo_root / "web" / "app" / "dashboard",
+            repo_root / "web" / "app" / "settings",
+            repo_root / "sdks" / "nodejs-client",
+        ):
+            directory.mkdir(parents=True, exist_ok=True)
+
+        (repo_root / "api" / "pyproject.toml").write_text(
+            "\n".join(
+                [
+                    "[project]",
+                    'name = "product-suite-api"',
+                    'dependencies = ["fastapi>=0.110", "uvicorn>=0.29"]',
+                ]
+            )
+            + "\n",
+            encoding="utf-8",
+        )
+        for package_dir in ("core", "commands", "configs"):
+            (repo_root / "api" / package_dir / "__init__.py").write_text("", encoding="utf-8")
+        (repo_root / "api" / "app.py").write_text("from fastapi import FastAPI\napp = FastAPI()\n", encoding="utf-8")
+        (repo_root / "api" / "controllers" / "console" / "app" / "app.py").write_text(
+            "from fastapi import FastAPI\napp = FastAPI()\n",
+            encoding="utf-8",
+        )
+        (repo_root / "api" / "controllers" / "service_api" / "app" / "app.py").write_text(
+            "from fastapi import FastAPI\napp = FastAPI()\n",
+            encoding="utf-8",
+        )
+
+        (repo_root / "web" / "package.json").write_text(
+            json.dumps(
+                {
+                    "name": "@acme/product-web",
+                    "dependencies": {"next": "^16.0.0", "react": "^19.0.0"},
+                },
+                indent=2,
+            )
+            + "\n",
+            encoding="utf-8",
+        )
+        (repo_root / "web" / "next.config.ts").write_text("export default {}\n", encoding="utf-8")
+        (repo_root / "web" / "tsconfig.json").write_text('{"compilerOptions": {"jsx": "preserve"}}\n', encoding="utf-8")
+        (repo_root / "web" / "app" / "layout.tsx").write_text("export default function Layout() { return null }\n", encoding="utf-8")
+        (repo_root / "web" / "app" / "page.tsx").write_text("export default function Page() { return null }\n", encoding="utf-8")
+        for index in range(12):
+            (repo_root / "web" / "app" / "components" / f"widget_{index}.tsx").write_text(
+                "export const Widget = () => null\n",
+                encoding="utf-8",
+            )
+        for index in range(4):
+            (repo_root / "web" / "app" / "dashboard" / f"page_{index}.tsx").write_text(
+                "export default function DashboardPage() { return null }\n",
+                encoding="utf-8",
+            )
+            (repo_root / "web" / "app" / "settings" / f"panel_{index}.tsx").write_text(
+                "export const SettingsPanel = () => null\n",
+                encoding="utf-8",
+            )
+
+        (repo_root / "sdks" / "nodejs-client" / "package.json").write_text(
+            json.dumps({"name": "@acme/node-sdk", "dependencies": {"axios": "^1.0.0"}}, indent=2) + "\n",
+            encoding="utf-8",
+        )
+
+        input_manifest = {
+            "artifact_type": "ws5_remote_ingestion_input_manifest",
+            "contract_version": "1.0.0-ws1",
+            "repos": [
+                {
+                    "github_full_name": "acme/product-suite",
+                    "file_stem": "acme__product-suite",
+                }
+            ],
+        }
+        self._write_yaml(tmp_path / "inputs" / "ws5" / "B_frontend_manifest.yaml", input_manifest)
+
+        clone_manifest = {
+            "batch_id": "B_frontend",
+            "generated_at_utc": "2026-03-21T00:00:00Z",
+            "clone_workdir": "workspace/clones",
+            "repos": [
+                {
+                    "github_full_name": "acme/product-suite",
+                    "local_path": str(repo_root),
+                    "cloned": True,
+                    "skip_reason": None,
+                }
+            ],
+        }
+        self._write_yaml(tmp_path / "reports" / "ws6_clone_prep" / "B_frontend_clones.yaml", clone_manifest)
+        return tmp_path
+
     def test_cli_generates_contract_conforming_artifact_and_summary(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             workspace = self._make_python_workspace(Path(tmp_dir))
@@ -564,6 +669,38 @@ class WS6StructuralPrepassTests(unittest.TestCase):
             self.assertNotIn("cmd/addlicense/main.go", likely_first_read[:2], likely_first_read)
             self.assertIn("control", likely_first_read, likely_first_read)
             self.assertIn("ipn", likely_first_read, likely_first_read)
+
+    def test_broad_repo_surfaces_major_frontend_boundary_without_displacing_primary_backend(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            workspace = self._make_broad_frontend_workspace(Path(tmp_dir))
+            cmd = [
+                sys.executable,
+                str(SCRIPT),
+                "--workspace-root",
+                str(workspace),
+                "--clone-manifest",
+                "reports/ws6_clone_prep/B_frontend_clones.yaml",
+                "--input-manifest",
+                "inputs/ws5/B_frontend_manifest.yaml",
+            ]
+            result = subprocess.run(cmd, capture_output=True, text=True, check=False)
+            self.assertEqual(result.returncode, 0, msg=result.stdout + "\n" + result.stderr)
+
+            artifact_path = workspace / "reports" / "ws6_structural_prepass" / "B_frontend" / "acme__product-suite.yaml"
+            artifact = yaml.safe_load(artifact_path.read_text(encoding="utf-8"))
+
+            module_groups = artifact["module_groups"]
+            self.assertEqual(module_groups[0]["paths"], ["web"])
+            self.assertIn(["api"], [group["paths"] for group in module_groups[:4]])
+
+            likely_first_read = artifact["orientation_hints"]["likely_first_read"]
+            self.assertTrue(likely_first_read[0].startswith("api/"), likely_first_read)
+            self.assertTrue(likely_first_read[1].startswith("api/"), likely_first_read)
+            self.assertIn("web", likely_first_read[:5], likely_first_read)
+            if "api/commands" in likely_first_read:
+                self.assertLess(likely_first_read.index("web"), likely_first_read.index("api/commands"), likely_first_read)
+            if "api/configs" in likely_first_read:
+                self.assertLess(likely_first_read.index("web"), likely_first_read.index("api/configs"), likely_first_read)
 
 
 if __name__ == "__main__":
