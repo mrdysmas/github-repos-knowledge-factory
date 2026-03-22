@@ -408,7 +408,19 @@ def frontend_surface_boost(
 
 def is_noise_root(path: Path) -> bool:
     labels = path_part_labels(path)
-    return any(label in NOISE_TOKENS or label in SUPPORT_TOKENS for label in labels)
+    if any(label in NOISE_TOKENS or label in SUPPORT_TOKENS for label in labels):
+        return True
+    # path_part_labels normalizes hyphens to underscores ("test-fixtures" → "test_fixtures"),
+    # so split compound labels to catch hyphenated noise dirs.  Only flag when ALL
+    # sub-tokens are noise/support words, to avoid false positives on legitimate compound
+    # names like "demo_app" (demo=noise but app=ok → not noise).
+    for label in labels:
+        sub_tokens = [t for t in label.split("_") if t]
+        if len(sub_tokens) >= 2 and all(
+            t in NOISE_TOKENS or t in SUPPORT_TOKENS for t in sub_tokens
+        ):
+            return True
+    return False
 
 
 def dedupe_evidence(entries: list[dict[str, str]]) -> list[dict[str, str]]:
@@ -721,12 +733,21 @@ def score_entrypoint(path: Path, source_dir_counts: Counter[str]) -> tuple[int, 
     suffix = path.suffix.lower()
     if name == "__init__.py":
         return 0, "app_entry", "package init is not a runtime entrypoint"
+    if suffix == ".go" and name.endswith("_test.go"):
+        return 0, "app_entry", "Go test file"
     base_score = 0
     kind = "app_entry"
     note = "filename heuristic"
 
     if name in {"main.py", "main.ts", "main.js", "main.go", "main.rs"}:
         base_score += 5
+    if name == "main.go" and len(parts) == 1:
+        # Root-level main.go is the canonical module bootstrap; boost it above
+        # directory-matched package-entry files (pkg/pkg.go convention) that
+        # accumulate large subtree source bonuses but are not runtime entrypoints.
+        base_score += 8
+        kind = "app_entry"
+        note = "root module bootstrap"
     if name in {"app.py", "server.py", "manage.py", "cli.py", "wsgi.py", "asgi.py", "index.ts", "index.js"}:
         base_score += 4
     if name == "cli.py":
@@ -883,10 +904,28 @@ def package_json_entrypoints(repo_root: Path, rel_path: Path) -> list[dict[str, 
 def choose_entrypoints(repo_root: Path, paths: list[Path], manifests: list[dict[str, str]]) -> list[dict[str, Any]]:
     candidates: dict[str, dict[str, Any]] = {}
     source_dir_counts = build_source_dir_counts(paths)
+
+    # When the repo root has a go.mod, sub-packages with their own go.mod are ancillary
+    # modules (CI tools, scaffolding, test fixtures). Penalize their entrypoints so the
+    # primary root bootstrap (root main.go) is not displaced by sub-tool main.go files.
+    root_has_go_mod = any(m["path"] == "go.mod" and m["kind"] == "go_manifest" for m in manifests)
+    secondary_go_module_parts: list[tuple[str, ...]] = []
+    if root_has_go_mod:
+        for m in manifests:
+            if m["kind"] == "go_manifest" and m["path"] != "go.mod":
+                parent = Path(m["path"]).parent
+                if parent != Path("."):
+                    secondary_go_module_parts.append(parent.parts)
+
     for path in paths:
         if path.suffix.lower() not in SOURCE_EXTENSIONS:
             continue
         score, kind, note = score_entrypoint(path, source_dir_counts)
+        if score >= 4 and secondary_go_module_parts:
+            for sec_parts in secondary_go_module_parts:
+                if path.parts[:len(sec_parts)] == sec_parts:
+                    score -= 10
+                    break
         if score >= 4:
             candidates[ensure_repo_relative(path)] = {
                 "path": ensure_repo_relative(path),
@@ -1319,6 +1358,25 @@ def build_orientation_hints(
                 if path not in likely_runtime_surfaces:
                     likely_runtime_surfaces.append(path)
     else:
+        # Inject dominant module groups before falling back to config files.
+        # This ensures flat-plugin or ecosystem connector surfaces (e.g. internal/service/
+        # in Terraform providers) appear rather than being crowded out by docs/build configs.
+        for group in module_groups[:3]:
+            if len(likely_runtime_surfaces) >= 6:
+                break
+            group_path = group["paths"][0]
+            # Use exact-match only: a specific child path (e.g. internal/service/x/y.go)
+            # does not substitute for the aggregate dir (internal/service).  The aggregate
+            # is more useful to an orienteer than any individual file under it.
+            already_covered = group_path in likely_runtime_surfaces
+            # Only inject groups with a runtime-domain signal (e.g. "service", "api", "worker").
+            # Generic workspace roots like "packages" or "libs" are not runtime surfaces.
+            has_runtime_signal = any(
+                t in RUNTIME_TOKENS for t in path_tokens(Path(group_path))
+            )
+            if not already_covered and has_runtime_signal and source_dir_counts.get(group_path, 0) >= 20:
+                likely_runtime_surfaces.append(group_path)
+
         preferred_config_kinds = {"runtime_config", "env_example"}
         if not entrypoints:
             preferred_config_kinds |= {"framework_config", "typescript_config"}
@@ -1326,7 +1384,11 @@ def build_orientation_hints(
             [item for item in config_files if item["kind"] in preferred_config_kinds],
             key=lambda item: (-orientation_score(Path(item["path"]), prefer_runtime=True), item["path"]),
         )
-        non_ci_configs = [item for item in config_files if item["kind"] != "ci_workflow"]
+        # Exclude docs_config and ci_workflow from fallback — they are not runtime surfaces.
+        non_ci_configs = [
+            item for item in config_files
+            if item["kind"] not in {"ci_workflow", "docs_config"}
+        ]
         fallback_configs = prioritized_configs if prioritized_configs else non_ci_configs
         for config in fallback_configs[:4]:
             if config["path"] not in likely_runtime_surfaces:
