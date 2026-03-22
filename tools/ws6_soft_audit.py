@@ -119,6 +119,52 @@ ARCHETYPES: dict[str, dict[str, Any]] = {
             "protocols": "has_extension_point",
         },
     },
+    "helm_chart_repo": {
+        # Purely declarative repos — no process entrypoints, artifact is the chart collection.
+        # Pre-pass category is provisional (infra_ops); deep files must set category: helm_chart_repo.
+        "categories": ["helm_chart_repo", "helm_charts"],
+        "required_families": ["structure", "failures", "protocols"],
+        "recommended_families": ["tasks"],
+        "predicate_checks": {
+            # values.yaml customization is the defining API interface for Helm charts.
+            # uses_protocol or exposes_api_endpoint alone do not satisfy this archetype.
+            "protocols": "has_extension_point",
+        },
+    },
+    "sdk_library": {
+        # SDK and client library repos — single-package or monorepo, all shapes.
+        # Includes sdk_client (single-package) and sdk_monorepo (multi-package) category values.
+        "categories": ["sdk_library", "sdk_monorepo", "sdk_client"],
+        "required_families": ["structure", "tasks", "failures", "protocols"],
+        "recommended_families": [],
+        "predicate_checks": {
+            # SDKs wrap backend APIs — must have explicit protocol facts, not just extension hooks.
+            "protocols": "uses_protocol",
+        },
+    },
+    "k8s_operator": {
+        # Kubernetes operator repos — Go runtime + CRDs, bridges k8s and external backends.
+        # Pre-pass category is provisional (infra_ops); deep files must set category: k8s_operator.
+        "categories": ["k8s_operator"],
+        "required_families": ["structure", "tasks", "failures", "protocols"],
+        "recommended_families": [],
+        "predicate_checks": {
+            # Backend integrations (Vault, AWS SM, GCP) are the operator's core value.
+            # Extension points alone (e.g. CRD plugin hooks) do not satisfy this archetype.
+            "protocols": "uses_protocol",
+        },
+    },
+    "plugin_ecosystem": {
+        # Plugin/provider ecosystem repos — flat connector surfaces registering resources against a host system.
+        # Terraform providers are the canonical example: 263+ per-service subdirs, one plugin per AWS service.
+        "categories": ["plugin_ecosystem"],
+        "required_families": ["structure", "failures", "protocols"],
+        "recommended_families": ["tasks"],
+        "predicate_checks": {
+            # The provider's backend protocol (e.g. AWS Signature v4, REST) is the key integration fact.
+            "protocols": "uses_protocol",
+        },
+    },
 }
 
 # ---------------------------------------------------------------------------
