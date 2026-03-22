@@ -1,0 +1,29 @@
+name: clerk/javascript
+node_id: repo::clerk/javascript
+github_full_name: clerk/javascript
+html_url: https://github.com/clerk/javascript
+source: remote_metadata
+provenance:
+  shard: repos
+  source_file: repos/knowledge/repos/clerk__javascript.yaml
+  as_of: '2026-03-22'
+directory: remote::clerk/javascript
+category: sdk_client
+summary: Official Clerk JavaScript SDK monorepo — per-platform auth/user-management client libraries.
+core_concepts:
+- authentication SDK
+- session management
+- user management
+- OAuth2/OIDC integration
+key_entry_points:
+- packages/clerk-js/src/index.ts
+build_run:
+  language: typescript
+  build: pnpm build
+  test: pnpm test
+local_cache_dir: null
+extras:
+  refresh:
+    precedence: api_wins_readme_for_missing_required_fields
+    fallback_source: readme_fallback
+    fallback_used: false

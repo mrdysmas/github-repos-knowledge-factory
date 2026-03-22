@@ -1,0 +1,274 @@
+name: clerk/javascript
+node_id: "repo::clerk/javascript"
+github_full_name: clerk/javascript
+html_url: https://github.com/clerk/javascript
+source: remote_metadata
+directory: "remote::clerk/javascript"
+category: sdk_client
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep/clerk__javascript.yaml
+  as_of: "2026-03-22"
+  sourcing_method: knowledge_verified
+  extraction_model: claude-sonnet-4-6
+  extraction_agent: codex
+
+# --- STRUCTURE ---
+
+architecture:
+  overview: |
+    Multi-package TypeScript monorepo managed with pnpm workspaces and changesets.
+    Packages are organized under packages/ with per-platform SDK packages
+    (clerk-js for browser, @clerk/nextjs, @clerk/react, @clerk/vue, @clerk/express,
+    @clerk/backend) plus shared internals (@clerk/shared, @clerk/types, @clerk/errors).
+    All packages publish to npm under the @clerk scope. The browser bundle (clerk-js)
+    is the foundation; framework packages wrap clerk-js via ClerkProvider context.
+  module_breakdown:
+    - module: packages/clerk-js
+      responsibility: Core browser SDK — loads Clerk frontend, manages sessions/tokens,
+        renders hosted UI components (SignIn, SignUp, UserButton)
+      key_files: [packages/clerk-js/src/index.ts, packages/clerk-js/src/core/clerk.ts]
+    - module: packages/react
+      responsibility: React integration — ClerkProvider, useUser, useAuth, useSession hooks
+      key_files: [packages/react/src/index.ts, packages/react/src/contexts/ClerkContextProvider.tsx]
+    - module: packages/nextjs
+      responsibility: Next.js integration — middleware, server actions, clerkMiddleware(), auth()
+      key_files: [packages/nextjs/src/index.ts, packages/nextjs/src/server/clerkMiddleware.ts]
+    - module: packages/backend
+      responsibility: Node.js server-side SDK — verifyToken, users/sessions BAPI client, request helpers
+      key_files: [packages/backend/src/index.ts, packages/backend/src/api/endpoints/UserApi.ts]
+    - module: packages/express
+      responsibility: Express middleware — requireAuth(), clerkMiddleware(), request augmentation
+      key_files: [packages/express/src/index.ts, packages/express/src/clerkMiddleware.ts]
+    - module: packages/shared
+      responsibility: Cross-package utilities — token parsing, clock skew helpers, URL utilities
+      key_files: [packages/shared/src/index.ts]
+    - module: packages/types
+      responsibility: Shared TypeScript types and interfaces for all SDK packages
+      key_files: [packages/types/src/index.ts]
+    - module: packages/errors
+      responsibility: Typed error classes (ClerkAPIError, ClerkRuntimeError) with machine-readable codes
+      key_files: [packages/errors/src/index.ts]
+  data_flow: |
+    Browser: Clerk.load() → FAPI /v1/client → short-lived session token (JWT, ~60s TTL) →
+    stored in __session cookie. Server: extract Bearer token from request header →
+    verifyToken() decodes and validates JWT against JWKS endpoint → auth() returns session claims.
+    Long sessions use refresh tokens exchanged at FAPI /v1/client/sessions/:id/tokens.
+
+key_features:
+  - Per-platform packages for React, Next.js, Vue, Express, Remix, Astro, and plain browser JS
+  - Short-lived session tokens (60s TTL) automatically refreshed by clerk-js background poller
+  - Hosted UI components (SignIn, SignUp, UserButton, OrganizationSwitcher) rendered via iframe
+  - Middleware-based server-side auth for Next.js App Router and Pages Router
+  - Multi-tenant organizations with roles, permissions, and invitation flows
+  - MFA support (TOTP, SMS, backup codes) via hosted UI
+  - Passkey authentication (WebAuthn) in clerk-js 5+
+  - TypeScript-first with full type exports across all packages
+
+key_files:
+  - path: packages/clerk-js/src/core/clerk.ts
+    purpose: Core Clerk class — load(), session polling, FAPI communication, component mounting
+  - path: packages/backend/src/tokens/verify.ts
+    purpose: verifyToken() — JWT validation against JWKS, clock skew tolerance, cache
+  - path: packages/nextjs/src/server/clerkMiddleware.ts
+    purpose: Next.js Edge middleware — route protection, token propagation to Server Components
+  - path: packages/react/src/contexts/ClerkContextProvider.tsx
+    purpose: React ClerkProvider — injects Clerk instance, exposes hooks
+  - path: packages/types/src/index.ts
+    purpose: Canonical type exports used across all packages
+  - path: packages/errors/src/index.ts
+    purpose: Typed error hierarchy — ClerkAPIError carries HTTP status + clerk_error codes
+  - path: packages/shared/src/index.ts
+    purpose: Shared utilities — addClockSkewToToken(), parseJwt(), buildRequestUrl()
+
+api_surface:
+  classes:
+    - name: Clerk (clerk-js)
+      methods:
+        - "load(options?: ClerkOptions): Promise<void>"
+        - "signIn: SignIn — initiates sign-in flow"
+        - "signUp: SignUp — initiates sign-up flow"
+        - "session: ActiveSessionResource | null"
+        - "user: UserResource | null"
+        - "getToken(options?): Promise<string | null>"
+        - "mountSignIn(node, props): void"
+        - "mountSignUp(node, props): void"
+    - name: Backend SDK
+      methods:
+        - "verifyToken(token, options): Promise<JwtPayload>"
+        - "users.getUser(userId): Promise<User>"
+        - "users.getUserList(params?): Promise<PaginatedResourceResponse<User[]>>"
+        - "sessions.getSession(sessionId): Promise<Session>"
+        - "organizations.getOrganization(params): Promise<Organization>"
+    - name: React hooks
+      methods:
+        - "useAuth(): { userId, sessionId, getToken, isLoaded, isSignedIn }"
+        - "useUser(): { user: UserResource | null, isLoaded, isSignedIn }"
+        - "useSession(): { session: SessionResource | null }"
+        - "useClerk(): Clerk"
+        - "useOrganization(): { organization, membership, isLoaded }"
+  type_exports:
+    - "@clerk/types: UserResource, SessionResource, OrganizationResource, ClerkOptions, JwtPayload"
+    - "@clerk/backend: verifyToken, createClerkClient"
+    - "@clerk/errors: ClerkAPIError, ClerkRuntimeError, isClerkAPIResponseError"
+
+configuration:
+  options:
+    - name: publishableKey
+      env_var: NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+      description: Public Clerk key (pk_test_/pk_live_) — required for all packages
+    - name: secretKey
+      env_var: CLERK_SECRET_KEY
+      description: Server-side secret key (sk_test_/sk_live_) — required for backend/middleware
+    - name: jwtKey
+      env_var: CLERK_JWT_KEY
+      description: Optional PEM public key for offline JWT verification (avoids JWKS network call)
+    - name: clockSkewInMs
+      default: 5000
+      description: Tolerated clock skew (ms) when validating JWT exp/nbf claims
+    - name: authorizedParties
+      description: Allowed azp claim values for JWT validation — prevents token reuse across apps
+    - name: domain
+      env_var: CLERK_DOMAIN
+      description: Domain for satellite apps in multi-domain setups
+
+tech_stack:
+  language: TypeScript (compiled to ESM + CJS)
+  runtime: Browser (clerk-js), Node.js 18+ (backend/nextjs/express)
+  package_manager: pnpm workspaces
+  build: tsup (esbuild-based), Rollup for clerk-js browser bundle
+  testing: Vitest (unit), Playwright (E2E in integration tests)
+  linting: ESLint + Prettier
+  versioning: changesets (independent per-package semver)
+
+commands:
+  - name: pnpm build
+    description: Build all packages from TypeScript source to ESM/CJS dist.
+  - name: pnpm test
+    description: Run Vitest unit test suite across all packages.
+  - name: pnpm lint
+    description: Run ESLint across the monorepo.
+  - name: pnpm changeset
+    description: Stage a semver changelog entry for one or more packages before release.
+  - name: pnpm dev
+    description: Watch-mode build for local development across packages.
+
+# --- TASKS ---
+
+common_tasks:
+  - task: Protect a Next.js route server-side
+    steps:
+      - Add clerkMiddleware() to middleware.ts with createRouteMatcher for protected paths
+      - Call auth() in Server Component or Route Handler to get userId/sessionClaims
+      - Redirect to sign-in if userId is null
+    key_files: [packages/nextjs/src/server/clerkMiddleware.ts]
+
+  - task: Verify a session token in a custom Node.js server
+    steps:
+      - Extract Bearer token from Authorization header
+      - Call verifyToken(token, { secretKey }) from @clerk/backend
+      - Inspect returned JwtPayload for userId (sub), sessionId (sid)
+    key_files: [packages/backend/src/tokens/verify.ts]
+
+  - task: Access user data in React
+    steps:
+      - Wrap app with <ClerkProvider publishableKey={...}>
+      - Call useUser() hook — returns { user, isLoaded, isSignedIn }
+      - Gate render on isLoaded before reading user fields
+    key_files: [packages/react/src/contexts/ClerkContextProvider.tsx]
+
+  - task: Trigger sign-in programmatically
+    steps:
+      - Call clerk.openSignIn() or clerk.redirectToSignIn() from clerk-js
+      - Or use <SignIn /> / <SignUp /> hosted components
+    key_files: [packages/clerk-js/src/core/clerk.ts]
+
+  - task: Add organization support
+    steps:
+      - Enable organizations in Clerk Dashboard
+      - Use useOrganization() hook for active org context
+      - Use <OrganizationSwitcher /> for UI-level org switching
+    key_files: [packages/react/src/hooks/useOrganization.ts]
+
+# --- FAILURES ---
+
+troubleshooting:
+  - issue: Session token expired before server receives request
+    symptom: 401 from backend even with active browser session
+    cause: Session tokens have ~60s TTL; clock skew or slow network causes
+      the token to expire in transit
+    solution: "Set clockSkewInMs (default 5000ms) in verifyToken options; use
+      getToken({ skipCache: true }) to force a fresh token before sensitive requests"
+
+  - issue: verifyToken fails with "Unable to find a signing key"
+    symptom: JWT verification throws JWKS fetch error or key-not-found
+    cause: JWKS endpoint unreachable (network policy) or kid in JWT header
+      does not match any key in JWKS response
+    solution: Set jwtKey env var to PEM public key for offline verification;
+      ensure secretKey is set for key rotation fallback
+
+  - issue: authorizedParties mismatch rejection
+    symptom: JWT azp claim mismatch error in verifyToken
+    cause: Token issued for one origin reused against a different app's backend;
+      or authorizedParties list not updated after domain change
+    solution: Pass correct domain(s) in authorizedParties array in verifyToken
+
+  - issue: CORS errors on Clerk Frontend API calls
+    symptom: Browser blocks requests to clerk.<your-domain>.com or clerk.accounts.dev
+    cause: Custom domain not configured; or CSP header missing clerk origins
+    solution: Add Clerk's FAPI domain to CORS allowlist and CSP connect-src
+
+  - issue: clerkMiddleware not protecting routes
+    symptom: Unauthenticated users reach protected pages
+    cause: Middleware matcher not configured to include protected route patterns;
+      or middleware.ts not at correct Next.js project root
+    solution: Verify matcher in middleware.ts includes all protected paths;
+      use createRouteMatcher for granular protection logic
+
+  - issue: useAuth returns isLoaded=false indefinitely
+    symptom: React app stuck in loading state; no auth data ever resolves
+    cause: ClerkProvider missing or publishableKey is undefined/wrong env var name
+    solution: Confirm NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY (or framework equivalent)
+      is set in environment and ClerkProvider wraps the component tree
+
+  - issue: Organization membership not reflected after role change
+    symptom: useOrganization() returns stale membership data
+    cause: Clerk's client-side session token caches org membership claims;
+      role changes don't invalidate the active token immediately
+    solution: Call clerk.session.reload() to force a fresh token with updated claims
+
+# --- PROTOCOLS ---
+
+api_protocols:
+  - OAuth2
+  - OIDC
+  - JWT
+
+supported_protocols:
+  - name: OAuth2
+    role: Authorization Code flow with PKCE for social SSO providers (Google, GitHub, etc.)
+  - name: OIDC
+    role: OpenID Connect layer on top of OAuth2 for identity token issuance and JWKS
+  - name: JWT
+    role: Short-lived session tokens (HS256/RS256); validated via JWKS or offline PEM key
+  - name: WebAuthn
+    role: Passkey authentication (clerk-js 5+) using browser WebAuthn API
+  - name: TOTP
+    role: Time-based one-time passwords for MFA via authenticator apps
+  - name: REST
+    role: Clerk Frontend API (FAPI) and Backend API (BAPI) are JSON REST APIs
+
+sdk_usage:
+  fapi_base: https://<your-domain>.clerk.accounts.dev
+  bapi_base: https://api.clerk.com/v1
+  key_endpoints:
+    - path: /v1/client
+      description: Bootstrap session — returns active session tokens and user data
+    - path: /v1/client/sessions/:id/tokens
+      description: Refresh short-lived session token (~60s JWT)
+    - path: /v1/me
+      description: Fetch current user profile (FAPI, requires session token)
+    - path: /v1/users/:id
+      description: Backend API user lookup (requires secret key)
+    - path: /.well-known/jwks.json
+      description: JWKS endpoint for JWT public key distribution
