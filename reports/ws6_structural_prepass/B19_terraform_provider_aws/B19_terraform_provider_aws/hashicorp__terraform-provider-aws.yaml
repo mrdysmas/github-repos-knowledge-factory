@@ -1,0 +1,351 @@
+schema_version: '0.1'
+repo:
+  github_full_name: hashicorp/terraform-provider-aws
+  node_id: repo::hashicorp/terraform-provider-aws
+  file_stem: hashicorp__terraform-provider-aws
+artifact:
+  generated_at_utc: '2026-03-22T05:49:09Z'
+  stage: ws6_structural_prepass
+  mode: filesystem_manifest_entrypoint
+  output_file: reports/ws6_structural_prepass/B19_terraform_provider_aws/B19_terraform_provider_aws/hashicorp__terraform-provider-aws.yaml
+batch:
+  batch_id: B19_terraform_provider_aws
+  clone_manifest: reports/ws6_clone_prep/B19_terraform_provider_aws_clones.yaml
+source:
+  repo_root: /home/abe/scripts/ext_sources/github_repos/workspace/clones/B19_terraform_provider_aws/hashicorp__terraform-provider-aws
+  languages:
+  - go
+  - javascript
+  - python
+  - kotlin
+  - typescript
+signals_used:
+- filesystem
+- manifest
+- entrypoint
+- config_routing
+- imports
+package_roots:
+- path: .
+  evidence:
+  - kind: manifest
+    path: go.mod
+    detail: go_manifest
+- path: .ci/providerlint
+  evidence:
+  - kind: manifest
+    path: .ci/providerlint/go.mod
+    detail: go_manifest
+- path: skaff
+  evidence:
+  - kind: manifest
+    path: skaff/go.mod
+    detail: go_manifest
+- path: internal/service/cloudformation/test-fixtures/examplecompany-exampleservice-exampleresource
+  evidence:
+  - kind: manifest
+    path: internal/service/cloudformation/test-fixtures/examplecompany-exampleservice-exampleresource/go.mod
+    detail: go_manifest
+- path: internal
+  evidence:
+  - kind: directory
+    path: internal
+- path: .ci/providerlint/passes/AWSAT001/testdata
+  evidence:
+  - kind: manifest
+    path: .ci/providerlint/passes/AWSAT001/testdata/go.mod
+    detail: go_manifest
+- path: .ci/providerlint/passes/AWSAT002/testdata
+  evidence:
+  - kind: manifest
+    path: .ci/providerlint/passes/AWSAT002/testdata/go.mod
+    detail: go_manifest
+- path: .ci/providerlint/passes/AWSAT003/testdata
+  evidence:
+  - kind: manifest
+    path: .ci/providerlint/passes/AWSAT003/testdata/go.mod
+    detail: go_manifest
+entrypoints:
+- path: internal/service/cloudformation/test-fixtures/examplecompany-exampleservice-exampleresource/cmd/main.go
+  kind: cli_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: internal/service/cloudformation/test-fixtures/examplecompany-exampleservice-exampleresource/cmd/main.go
+    detail: cmd main convention
+- path: .ci/providerlint/main.go
+  kind: app_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: .ci/providerlint/main.go
+    detail: filename heuristic
+- path: skaff/main.go
+  kind: app_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: skaff/main.go
+    detail: filename heuristic
+- path: internal/acctest/acctest.go
+  kind: app_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: internal/acctest/acctest.go
+    detail: directory-matched runtime file
+- path: internal/service/kafkaconnect/worker_configuration.go
+  kind: app_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: internal/service/kafkaconnect/worker_configuration.go
+    detail: filename heuristic
+- path: internal/service/kafkaconnect/worker_configuration_data_source.go
+  kind: app_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: internal/service/kafkaconnect/worker_configuration_data_source.go
+    detail: filename heuristic
+- path: internal/service/kafkaconnect/worker_configuration_data_source_test.go
+  kind: app_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: internal/service/kafkaconnect/worker_configuration_data_source_test.go
+    detail: filename heuristic
+- path: internal/service/kafkaconnect/worker_configuration_test.go
+  kind: app_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: internal/service/kafkaconnect/worker_configuration_test.go
+    detail: filename heuristic
+module_groups:
+- name: service
+  paths:
+  - internal/service
+  rationale: directory grouping with repeated source files
+  confidence: medium
+  evidence:
+  - kind: directory
+    path: internal/service
+- name: framework
+  paths:
+  - internal/framework
+  rationale: directory grouping with repeated source files
+  confidence: medium
+  evidence:
+  - kind: directory
+    path: internal/framework
+- name: provider
+  paths:
+  - internal/provider
+  rationale: directory grouping with repeated source files
+  confidence: medium
+  evidence:
+  - kind: directory
+    path: internal/provider
+- name: acctest
+  paths:
+  - internal/acctest
+  rationale: directory grouping with repeated source files
+  confidence: medium
+  evidence:
+  - kind: directory
+    path: internal/acctest
+- name: generate
+  paths:
+  - internal/generate
+  rationale: directory grouping with repeated source files
+  confidence: medium
+  evidence:
+  - kind: directory
+    path: internal/generate
+- name: _ci
+  paths:
+  - .ci
+  rationale: directory grouping with repeated source files
+  confidence: medium
+  evidence:
+  - kind: directory
+    path: .ci
+- name: types
+  paths:
+  - internal/types
+  rationale: directory grouping with repeated source files
+  confidence: medium
+  evidence:
+  - kind: directory
+    path: internal/types
+- name: sdkv2
+  paths:
+  - internal/sdkv2
+  rationale: directory grouping with repeated source files
+  confidence: medium
+  evidence:
+  - kind: directory
+    path: internal/sdkv2
+filesystem_signals:
+  manifests:
+  - path: go.mod
+    kind: go_manifest
+  - path: .ci/providerlint/go.mod
+    kind: go_manifest
+  - path: .ci/providerlint/passes/AWSAT001/testdata/go.mod
+    kind: go_manifest
+  - path: .ci/providerlint/passes/AWSAT002/testdata/go.mod
+    kind: go_manifest
+  - path: .ci/providerlint/passes/AWSAT003/testdata/go.mod
+    kind: go_manifest
+  - path: .ci/providerlint/passes/AWSAT004/testdata/go.mod
+    kind: go_manifest
+  - path: .ci/providerlint/passes/AWSAT005/testdata/go.mod
+    kind: go_manifest
+  - path: .ci/providerlint/passes/AWSAT006/testdata/go.mod
+    kind: go_manifest
+  - path: .ci/providerlint/passes/AWSR001/testdata/go.mod
+    kind: go_manifest
+  - path: .ci/providerlint/passes/AWSV001/testdata/go.mod
+    kind: go_manifest
+  - path: .ci/tools/go.mod
+    kind: go_manifest
+  - path: examples/api-gateway-websocket-chat-app/onconnect/package.json
+    kind: node_manifest
+  - path: examples/api-gateway-websocket-chat-app/ondisconnect/package.json
+    kind: node_manifest
+  - path: examples/api-gateway-websocket-chat-app/sendmessage/package.json
+    kind: node_manifest
+  - path: internal/service/cloudformation/test-fixtures/examplecompany-exampleservice-exampleresource/go.mod
+    kind: go_manifest
+  - path: skaff/go.mod
+    kind: go_manifest
+  - path: tools/literally/go.mod
+    kind: go_manifest
+  - path: tools/tfsdk2fw/go.mod
+    kind: go_manifest
+  config_files:
+  - path: mkdocs.yml
+    kind: docs_config
+  - path: .github/workflows/README.md
+    kind: ci_workflow
+  - path: .github/workflows/acctest-terraform-embedded-lint.yml
+    kind: ci_workflow
+  - path: .github/workflows/acctest-terraform-lint.yml
+    kind: ci_workflow
+  - path: .github/workflows/build.yml
+    kind: ci_workflow
+  - path: .github/workflows/changelog_misspell.yml
+    kind: ci_workflow
+  - path: .github/workflows/closed_items.yml
+    kind: ci_workflow
+  - path: .github/workflows/comments.yml
+    kind: ci_workflow
+  - path: .github/workflows/community_note.yml
+    kind: ci_workflow
+  - path: .github/workflows/copyright.yml
+    kind: ci_workflow
+  - path: .github/workflows/crt-post-promote-production.yml
+    kind: ci_workflow
+  - path: .github/workflows/dependencies.yml
+    kind: ci_workflow
+  - path: .github/workflows/documentation.yml
+    kind: ci_workflow
+  - path: .github/workflows/examples.yml
+    kind: ci_workflow
+  - path: .github/workflows/firewatch.yml
+    kind: ci_workflow
+  - path: .github/workflows/gen-teamcity.yml
+    kind: ci_workflow
+  - path: .github/workflows/generate_changelog.yml
+    kind: ci_workflow
+  - path: .github/workflows/golangci-lint.yml
+    kind: ci_workflow
+  - path: .github/workflows/lock.yml
+    kind: ci_workflow
+  - path: .github/workflows/maintainer_helpers.yml
+    kind: ci_workflow
+  - path: .github/workflows/milestone.yml
+    kind: ci_workflow
+  - path: .github/workflows/mkdocs.yml
+    kind: docs_config
+  - path: .github/workflows/modern_go.yml
+    kind: ci_workflow
+  - path: .github/workflows/naming.yml
+    kind: ci_workflow
+  - path: .github/workflows/post-publish.yml
+    kind: ci_workflow
+  - path: .github/workflows/provider-release.yml
+    kind: ci_workflow
+  - path: .github/workflows/provider.yml
+    kind: ci_workflow
+  - path: .github/workflows/providerlint.yml
+    kind: ci_workflow
+  - path: .github/workflows/pull_request_review.yml
+    kind: ci_workflow
+  - path: .github/workflows/pull_request_target.yml
+    kind: ci_workflow
+  - path: .github/workflows/readiness_comment.yml
+    kind: ci_workflow
+  - path: .github/workflows/registry-check.yml
+    kind: ci_workflow
+  - path: .github/workflows/resource-counts.yml
+    kind: ci_workflow
+  - path: .github/workflows/semgrep-ci.yml
+    kind: ci_workflow
+  - path: .github/workflows/skaff.yml
+    kind: ci_workflow
+  - path: .github/workflows/smarterr.yml
+    kind: ci_workflow
+  - path: .github/workflows/stale.yml
+    kind: ci_workflow
+  - path: .github/workflows/triage.yml
+    kind: ci_workflow
+  - path: .github/workflows/update-changelog.yml
+    kind: ci_workflow
+  - path: .github/workflows/update-list-tracking.yml
+    kind: ci_workflow
+  - path: .github/workflows/website.yml
+    kind: ci_workflow
+  - path: .github/workflows/workflow-lint.yml
+    kind: ci_workflow
+  - path: .github/workflows/yamllint.yml
+    kind: ci_workflow
+orientation_hints:
+  likely_first_read:
+  - internal/service/cloudformation/test-fixtures/examplecompany-exampleservice-exampleresource/cmd/main.go
+  - .ci/providerlint/main.go
+  - .ci
+  - internal/service
+  - internal/acctest
+  - skaff/main.go
+  likely_runtime_surfaces:
+  - internal/service/cloudformation/test-fixtures/examplecompany-exampleservice-exampleresource/cmd/main.go
+  - .ci/providerlint/main.go
+  - skaff/main.go
+  - internal/acctest/acctest.go
+  - mkdocs.yml
+  - .github/workflows/mkdocs.yml
+limitations:
+- module groups are heuristic directory-level clusters
+- no behavioral, failure-mode, or cross-repo claims are emitted
+- import scanning was capped to keep the pre-pass cheap and deterministic
+dependency_signals:
+  internal_modules:
+  - testdata
+  - validators/internal
+  - internal
+  external_packages:
+  - github.com/agext/levenshtein
+  - github.com/apparentlymart/go-textseg/v15
+  - github.com/google/go-cmp
+  - github.com/hashicorp/aws-sdk-go-base/v2
+  - github.com/hashicorp/hcl/v2
+  - github.com/mitchellh/go-wordwrap
+  - github.com/zclconf/go-cty
+  - golang.org/x/mod
+  - golang.org/x/sync
+  - golang.org/x/text
+  - golang.org/x/tools
+  - github.com/ProtonMail/go-crypto
