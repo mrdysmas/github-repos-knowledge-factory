@@ -87,8 +87,8 @@ class WS6StructuralPrepassTests(unittest.TestCase):
             "repos": [
                 {
                     "github_full_name": "ExampleOrg/demo-app",
-                    "local_path": "/Users/old-machine/scripts/ext_sources/github_repos/workspace/clones/ExampleOrg__demo-app",
-                    "cloned": False,
+                    "local_path": str(repo_root),
+                    "cloned": True,
                     "skip_reason": "already_cloned",
                 }
             ],
