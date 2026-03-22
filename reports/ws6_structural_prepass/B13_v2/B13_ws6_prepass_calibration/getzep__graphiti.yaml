@@ -1,0 +1,274 @@
+schema_version: '0.1'
+repo:
+  github_full_name: getzep/graphiti
+  node_id: repo::getzep/graphiti
+  file_stem: getzep__graphiti
+artifact:
+  generated_at_utc: '2026-03-22T01:34:34Z'
+  stage: ws6_structural_prepass
+  mode: filesystem_manifest_entrypoint
+  output_file: reports/ws6_structural_prepass/B13_v2/B13_ws6_prepass_calibration/getzep__graphiti.yaml
+batch:
+  batch_id: B13_ws6_prepass_calibration
+  clone_manifest: reports/ws6_clone_prep/B13_ws6_prepass_calibration_clones.yaml
+source:
+  repo_root: /home/abe/scripts/ext_sources/github_repos/workspace/clones/getzep__graphiti
+  languages:
+  - python
+signals_used:
+- filesystem
+- manifest
+- entrypoint
+- config_routing
+- imports
+package_roots:
+- path: mcp_server
+  evidence:
+  - &id002
+    kind: manifest
+    path: mcp_server/pyproject.toml
+    detail: python_manifest
+- path: .
+  evidence:
+  - kind: manifest
+    path: pyproject.toml
+    detail: python_manifest
+- path: server
+  evidence:
+  - &id005
+    kind: manifest
+    path: server/pyproject.toml
+    detail: python_manifest
+  - &id006
+    kind: directory
+    path: server
+- path: mcp_server/src
+  evidence:
+  - &id004
+    kind: filepath
+    path: mcp_server/src/__init__.py
+- path: server/graph_service
+  evidence:
+  - &id003
+    kind: filepath
+    path: server/graph_service/__init__.py
+- path: graphiti_core
+  evidence:
+  - &id001
+    kind: filepath
+    path: graphiti_core/__init__.py
+- path: examples/opentelemetry
+  evidence:
+  - kind: manifest
+    path: examples/opentelemetry/pyproject.toml
+    detail: python_manifest
+- path: examples/quickstart
+  evidence:
+  - kind: manifest
+    path: examples/quickstart/requirements.txt
+    detail: python_requirements
+entrypoints:
+- path: mcp_server/main.py
+  kind: app_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: mcp_server/main.py
+    detail: filename heuristic
+- path: server/graph_service/main.py
+  kind: app_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: server/graph_service/main.py
+    detail: filename heuristic
+- path: graphiti_core/driver/driver.py
+  kind: app_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: graphiti_core/driver/driver.py
+    detail: directory-matched runtime file
+- path: graphiti_core/search/search.py
+  kind: app_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: graphiti_core/search/search.py
+    detail: directory-matched runtime file
+- path: mcp_server/src/utils/utils.py
+  kind: app_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: mcp_server/src/utils/utils.py
+    detail: directory-matched runtime file
+- path: graphiti_core/telemetry/telemetry.py
+  kind: app_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: graphiti_core/telemetry/telemetry.py
+    detail: directory-matched runtime file
+- path: graphiti_core/driver/graph_operations/graph_operations.py
+  kind: app_entry
+  confidence: medium
+  evidence:
+  - kind: filepath
+    path: graphiti_core/driver/graph_operations/graph_operations.py
+    detail: directory-matched runtime file
+- path: graphiti_core/driver/search_interface/search_interface.py
+  kind: app_entry
+  confidence: medium
+  evidence:
+  - kind: filepath
+    path: graphiti_core/driver/search_interface/search_interface.py
+    detail: directory-matched runtime file
+module_groups:
+- name: graphiti_core
+  paths:
+  - graphiti_core
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence:
+  - *id001
+  - kind: directory
+    path: graphiti_core
+- name: mcp_server
+  paths:
+  - mcp_server
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence:
+  - *id002
+  - kind: directory
+    path: mcp_server
+- name: graph_service
+  paths:
+  - server/graph_service
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence:
+  - *id003
+  - kind: directory
+    path: server/graph_service
+- name: src
+  paths:
+  - mcp_server/src
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence:
+  - *id004
+- name: server
+  paths:
+  - server
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence:
+  - *id005
+  - *id006
+filesystem_signals:
+  manifests:
+  - path: pyproject.toml
+    kind: python_manifest
+  - path: examples/opentelemetry/pyproject.toml
+    kind: python_manifest
+  - path: examples/quickstart/requirements.txt
+    kind: python_requirements
+  - path: mcp_server/pyproject.toml
+    kind: python_manifest
+  - path: server/pyproject.toml
+    kind: python_manifest
+  config_files:
+  - path: .env.example
+    kind: env_example
+  - path: docker-compose.yml
+    kind: runtime_config
+  - path: pytest.ini
+    kind: test_config
+  - path: .github/workflows/ai-moderator.yml
+    kind: ci_workflow
+  - path: .github/workflows/cla.yml
+    kind: ci_workflow
+  - path: .github/workflows/claude-code-review-manual.yml
+    kind: ci_workflow
+  - path: .github/workflows/claude-code-review.yml
+    kind: ci_workflow
+  - path: .github/workflows/claude.yml
+    kind: ci_workflow
+  - path: .github/workflows/codeql.yml
+    kind: ci_workflow
+  - path: .github/workflows/lint.yml
+    kind: ci_workflow
+  - path: .github/workflows/release-graphiti-core.yml
+    kind: ci_workflow
+  - path: .github/workflows/release-mcp-server.yml
+    kind: ci_workflow
+  - path: .github/workflows/release-server-container.yml
+    kind: ci_workflow
+  - path: .github/workflows/typecheck.yml
+    kind: ci_workflow
+  - path: .github/workflows/unit_tests.yml
+    kind: ci_workflow
+  - path: examples/azure-openai/.env.example
+    kind: env_example
+  - path: examples/gliner2/.env.example
+    kind: env_example
+  - path: examples/opentelemetry/.env.example
+    kind: env_example
+  - path: mcp_server/.env.example
+    kind: env_example
+  - path: mcp_server/pytest.ini
+    kind: test_config
+  - path: mcp_server/docker/docker-compose.yml
+    kind: runtime_config
+  - path: mcp_server/tests/pytest.ini
+    kind: test_config
+  - path: server/.env.example
+    kind: env_example
+  - path: tests/evals/pytest.ini
+    kind: test_config
+orientation_hints:
+  likely_first_read:
+  - mcp_server/main.py
+  - server/graph_service/main.py
+  - mcp_server
+  - graphiti_core
+  - mcp_server/src
+  - graphiti_core/driver/driver.py
+  likely_runtime_surfaces:
+  - mcp_server/main.py
+  - server/graph_service/main.py
+  - graphiti_core/driver/driver.py
+  - graphiti_core/search/search.py
+  - mcp_server/.env.example
+  - mcp_server/docker/docker-compose.yml
+limitations:
+- module groups are heuristic directory-level clusters
+- no behavioral, failure-mode, or cross-repo claims are emitted
+- some entrypoints come from filename or manifest heuristics
+dependency_signals:
+  internal_modules:
+  - graphiti_core.driver
+  - graphiti_core.nodes
+  - graphiti_core.utils
+  - graphiti_core.models
+  - graphiti_core.edges
+  - graphiti_core.errors
+  - graphiti_core.llm_client
+  - graphiti_core.search
+  - graphiti_core.helpers
+  - graphiti_core.embedder
+  external_packages:
+  - graphiti-core
+  - pydantic-settings
+  - openai
+  - mcp
+  - pyyaml
+  - typing-extensions
+  - fastapi
+  - httpx
+  - uvicorn
+  - neo4j
+  - numpy
+  - posthog

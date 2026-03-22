@@ -140,6 +140,8 @@ NOISE_TOKENS = {
     "samples",
     "site",
     "storybook",
+    "template",
+    "templates",
     "test",
     "tests",
 }
@@ -682,6 +684,7 @@ def choose_package_roots(
             if not is_noise_root(rel_path):
                 register_candidate(rel_path, file_evidence("directory", rel_path), "structural")
 
+    seen_workspace_children: set[Path] = set()
     package_children = ("packages", "libs")
     for parent in package_children:
         for path in paths:
@@ -691,7 +694,11 @@ def choose_package_roots(
                 child = Path(path.parts[0]) / path.parts[1]
                 if not is_noise_root(child):
                     register_candidate(child, file_evidence("directory", child), "workspace_child")
+                    seen_workspace_children.add(child)
 
+    # +8 gives headroom for root, sub-packages, and playground items that rank
+    # alongside real workspace children.
+    cap = max(8, len(seen_workspace_children) + 8)
     selected = sorted(roots.values(), key=lambda item: (-item["_score"], item["path"]))
     if selected:
         return [
@@ -699,7 +706,7 @@ def choose_package_roots(
                 "path": item["path"],
                 "evidence": dedupe_evidence(item["evidence"]),
             }
-            for item in selected[:8]
+            for item in selected[:cap]
         ]
     return [{"path": ".", "evidence": [file_evidence("directory", Path("."), "repo root fallback")]}]
 
@@ -985,7 +992,8 @@ def choose_module_groups(
     selected = sorted(groups.values(), key=lambda item: (-item["_score"], item["name"]))
     if selected:
         trimmed: list[dict[str, Any]] = []
-        for item in selected[:8]:
+        groups_cap = max(8, len(package_roots))
+        for item in selected[:groups_cap]:
             trimmed.append({
                 "name": item["name"],
                 "paths": sorted(item["paths"]),

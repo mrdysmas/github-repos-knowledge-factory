@@ -1,0 +1,287 @@
+schema_version: '0.1'
+repo:
+  github_full_name: tailscale/tailscale
+  node_id: repo::tailscale/tailscale
+  file_stem: tailscale
+artifact:
+  generated_at_utc: '2026-03-22T01:34:30Z'
+  stage: ws6_structural_prepass
+  mode: filesystem_manifest_entrypoint
+  output_file: reports/ws6_structural_prepass/B15_v2/B15_ws6_prepass_default_promotion_calibration/tailscale.yaml
+batch:
+  batch_id: B15_ws6_prepass_default_promotion_calibration
+  clone_manifest: reports/ws6_clone_prep/B15_ws6_prepass_default_promotion_calibration_clones.yaml
+source:
+  repo_root: /home/abe/scripts/ext_sources/github_repos/workspace/clones/tailscale__tailscale
+  languages:
+  - go
+  - typescript
+  - c
+  - javascript
+signals_used:
+- filesystem
+- manifest
+- entrypoint
+- config_routing
+- imports
+package_roots:
+- path: client/web
+  evidence:
+  - kind: manifest
+    path: client/web/package.json
+    detail: node_manifest
+- path: .
+  evidence:
+  - kind: manifest
+    path: go.mod
+    detail: go_manifest
+- path: cmd/tsconnect
+  evidence:
+  - kind: manifest
+    path: cmd/tsconnect/package.json
+    detail: node_manifest
+- path: cmd
+  evidence:
+  - kind: directory
+    path: cmd
+- path: cmd/k8s-operator/deploy/chart
+  evidence:
+  - kind: manifest
+    path: cmd/k8s-operator/deploy/chart/Chart.yaml
+    detail: helm_chart_manifest
+- path: packages/deb
+  evidence:
+  - kind: directory
+    path: packages/deb
+- path: internal
+  evidence:
+  - kind: directory
+    path: internal
+- path: packages
+  evidence:
+  - kind: directory
+    path: packages
+entrypoints:
+- path: cmd/tailscale/tailscale.go
+  kind: cli_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: cmd/tailscale/tailscale.go
+    detail: directory-matched runtime file
+- path: cmd/tailscaled/tailscaled.go
+  kind: cli_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: cmd/tailscaled/tailscaled.go
+    detail: directory-matched runtime file
+- path: cmd/tsconnect/tsconnect.go
+  kind: cli_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: cmd/tsconnect/tsconnect.go
+    detail: directory-matched runtime file
+- path: cmd/proxy-test-server/proxy-test-server.go
+  kind: cli_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: cmd/proxy-test-server/proxy-test-server.go
+    detail: directory-matched runtime file
+- path: cmd/containerboot/main.go
+  kind: cli_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: cmd/containerboot/main.go
+    detail: cmd main convention
+- path: cmd/tailscale/cli/cli.go
+  kind: cli_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: cmd/tailscale/cli/cli.go
+    detail: directory-matched runtime file
+- path: cmd/derper/derper.go
+  kind: cli_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: cmd/derper/derper.go
+    detail: directory-matched runtime file
+- path: cmd/natc/natc.go
+  kind: cli_entry
+  confidence: high
+  evidence:
+  - kind: filepath
+    path: cmd/natc/natc.go
+    detail: directory-matched runtime file
+module_groups:
+- name: net
+  paths:
+  - net
+  rationale: directory grouping with repeated source files
+  confidence: medium
+  evidence:
+  - kind: directory
+    path: net
+- name: util
+  paths:
+  - util
+  rationale: directory grouping with repeated source files
+  confidence: medium
+  evidence:
+  - kind: directory
+    path: util
+- name: feature
+  paths:
+  - feature
+  rationale: directory grouping with repeated source files
+  confidence: medium
+  evidence:
+  - kind: directory
+    path: feature
+- name: ipn
+  paths:
+  - ipn
+  rationale: directory grouping with repeated source files
+  confidence: medium
+  evidence:
+  - kind: directory
+    path: ipn
+- name: wgengine
+  paths:
+  - wgengine
+  rationale: directory grouping with repeated source files
+  confidence: medium
+  evidence:
+  - kind: directory
+    path: wgengine
+- name: types
+  paths:
+  - types
+  rationale: directory grouping with repeated source files
+  confidence: medium
+  evidence:
+  - kind: directory
+    path: types
+- name: tailscale
+  paths:
+  - cmd/tailscale
+  rationale: directory grouping with repeated source files
+  confidence: medium
+  evidence:
+  - kind: directory
+    path: cmd/tailscale
+- name: client
+  paths:
+  - client
+  - internal/client
+  rationale: merged related package roots with the same module label
+  confidence: high
+  evidence:
+  - kind: directory
+    path: client
+  - kind: directory
+    path: internal/client
+filesystem_signals:
+  manifests:
+  - path: go.mod
+    kind: go_manifest
+  - path: client/web/package.json
+    kind: node_manifest
+  - path: cmd/k8s-operator/deploy/chart/Chart.yaml
+    kind: helm_chart_manifest
+  - path: cmd/tsconnect/package.json
+    kind: node_manifest
+  config_files:
+  - path: .github/workflows/checklocks.yml
+    kind: ci_workflow
+  - path: .github/workflows/cigocacher.yml
+    kind: ci_workflow
+  - path: .github/workflows/codeql-analysis.yml
+    kind: ci_workflow
+  - path: .github/workflows/docker-base.yml
+    kind: ci_workflow
+  - path: .github/workflows/docker-file-build.yml
+    kind: ci_workflow
+  - path: .github/workflows/flakehub-publish-tagged.yml
+    kind: ci_workflow
+  - path: .github/workflows/golangci-lint.yml
+    kind: ci_workflow
+  - path: .github/workflows/govulncheck.yml
+    kind: ci_workflow
+  - path: .github/workflows/installer.yml
+    kind: ci_workflow
+  - path: .github/workflows/kubemanifests.yaml
+    kind: ci_workflow
+  - path: .github/workflows/natlab-integrationtest.yml
+    kind: ci_workflow
+  - path: .github/workflows/pin-github-actions.yml
+    kind: ci_workflow
+  - path: .github/workflows/request-dataplane-review.yml
+    kind: ci_workflow
+  - path: .github/workflows/ssh-integrationtest.yml
+    kind: ci_workflow
+  - path: .github/workflows/test.yml
+    kind: ci_workflow
+  - path: .github/workflows/update-flake.yml
+    kind: ci_workflow
+  - path: .github/workflows/update-webclient-prebuilt.yml
+    kind: ci_workflow
+  - path: .github/workflows/vet.yml
+    kind: ci_workflow
+  - path: .github/workflows/webclient.yml
+    kind: ci_workflow
+  - path: client/web/tsconfig.json
+    kind: typescript_config
+  - path: client/web/vite.config.ts
+    kind: build_config
+  - path: cmd/tsconnect/tsconfig.json
+    kind: typescript_config
+orientation_hints:
+  likely_first_read:
+  - cmd/tailscale/tailscale.go
+  - cmd/tailscaled/tailscaled.go
+  - ipn
+  - wgengine
+  - cmd/tailscale
+  - cmd/tsconnect/tsconnect.go
+  likely_runtime_surfaces:
+  - cmd/tailscale/tailscale.go
+  - cmd/tailscaled/tailscaled.go
+  - cmd/tsconnect/tsconnect.go
+  - cmd/proxy-test-server/proxy-test-server.go
+  - cmd/tsconnect/tsconfig.json
+  - client/web/tsconfig.json
+limitations:
+- module groups are heuristic directory-level clusters
+- no behavioral, failure-mode, or cross-repo claims are emitted
+- import scanning was capped to keep the pre-pass cheap and deterministic
+dependency_signals:
+  internal_modules:
+  - web
+  - deb
+  - cmd
+  - ffcomplete/internal
+  - client/web
+  - deploy/chart
+  - packages
+  - ./cmd
+  - chart
+  - cmd/tsconnect
+  external_packages:
+  - '@radix-ui/react-collapsible'
+  - '@radix-ui/react-dialog'
+  - '@radix-ui/react-popover'
+  - classnames
+  - react
+  - react-dom
+  - swr
+  - wouter
+  - zustand
+  - 4d63.com/gocheckcompilerdirectives
+  - 4d63.com/gochecknoglobals
+  - 9fans.net/go
