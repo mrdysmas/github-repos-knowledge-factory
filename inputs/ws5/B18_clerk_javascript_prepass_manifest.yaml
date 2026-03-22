@@ -1,0 +1,30 @@
+artifact_type: ws5_remote_ingestion_input_manifest
+contract_version: 1.0.0-ws1
+defaults:
+  target_shard: repos
+  as_of: "2026-03-21"
+  source: remote_metadata
+repos:
+  - name: clerk-javascript
+    github_full_name: clerk/javascript
+    file_stem: clerk__javascript
+    html_url: https://github.com/clerk/javascript
+    target_shard: repos
+    source: remote_metadata
+    category: sdk_client
+    summary: Multi-package SDK monorepo for Clerk authentication — per-platform packages (React, Next.js, Remix, etc.) under packages/, shared core under packages/clerk-js/.
+    core_concepts:
+      - authentication SDK
+      - multi-package monorepo
+      - per-platform packages
+    key_entry_points:
+      - README.md
+      - packages/react/
+      - packages/nextjs/
+      - packages/clerk-js/
+    build_run:
+      language: javascript
+      build: See upstream README for project build steps.
+      test: See upstream README for project test steps.
+    as_of: "2026-03-21"
+    local_cache_dir: null
