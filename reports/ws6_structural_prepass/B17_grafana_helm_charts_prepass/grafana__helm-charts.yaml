@@ -4,7 +4,7 @@ repo:
   node_id: repo::grafana/helm-charts
   file_stem: grafana__helm-charts
 artifact:
-  generated_at_utc: '2026-03-21T23:51:02Z'
+  generated_at_utc: '2026-03-22T00:00:49Z'
   stage: ws6_structural_prepass
   mode: filesystem_manifest_entrypoint
   output_file: reports/ws6_structural_prepass/B17_grafana_helm_charts_prepass/grafana__helm-charts.yaml
@@ -20,21 +20,142 @@ signals_used:
 - entrypoint
 - config_routing
 package_roots:
-- path: .
-  evidence: &id001
-  - kind: directory
-    path: .
-    detail: repo root fallback
+- path: charts/agent-operator
+  evidence:
+  - &id001
+    kind: manifest
+    path: charts/agent-operator/Chart.yaml
+    detail: helm_chart_manifest
+- path: charts/enterprise-logs
+  evidence:
+  - &id002
+    kind: manifest
+    path: charts/enterprise-logs/Chart.yaml
+    detail: helm_chart_manifest
+- path: charts/enterprise-metrics
+  evidence:
+  - &id003
+    kind: manifest
+    path: charts/enterprise-metrics/Chart.yaml
+    detail: helm_chart_manifest
+- path: charts/fluent-bit
+  evidence:
+  - &id004
+    kind: manifest
+    path: charts/fluent-bit/Chart.yaml
+    detail: helm_chart_manifest
+- path: charts/grafana-sampling
+  evidence:
+  - &id005
+    kind: manifest
+    path: charts/grafana-sampling/Chart.yaml
+    detail: helm_chart_manifest
+- path: charts/lgtm-distributed
+  evidence:
+  - &id006
+    kind: manifest
+    path: charts/lgtm-distributed/Chart.yaml
+    detail: helm_chart_manifest
+- path: charts/loki-canary
+  evidence:
+  - &id007
+    kind: manifest
+    path: charts/loki-canary/Chart.yaml
+    detail: helm_chart_manifest
+- path: charts/loki-distributed
+  evidence:
+  - &id008
+    kind: manifest
+    path: charts/loki-distributed/Chart.yaml
+    detail: helm_chart_manifest
 entrypoints: []
 module_groups:
-- name: repo_root
+- name: agent_operator
   paths:
-  - .
-  rationale: fallback structural grouping from package root
+  - charts/agent-operator
+  rationale: package root or workspace module boundary
   confidence: medium
-  evidence: *id001
+  evidence:
+  - *id001
+- name: enterprise_logs
+  paths:
+  - charts/enterprise-logs
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence:
+  - *id002
+- name: enterprise_metrics
+  paths:
+  - charts/enterprise-metrics
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence:
+  - *id003
+- name: fluent_bit
+  paths:
+  - charts/fluent-bit
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence:
+  - *id004
+- name: grafana_sampling
+  paths:
+  - charts/grafana-sampling
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence:
+  - *id005
+- name: lgtm_distributed
+  paths:
+  - charts/lgtm-distributed
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence:
+  - *id006
+- name: loki_canary
+  paths:
+  - charts/loki-canary
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence:
+  - *id007
+- name: loki_distributed
+  paths:
+  - charts/loki-distributed
+  rationale: package root or workspace module boundary
+  confidence: medium
+  evidence:
+  - *id008
 filesystem_signals:
-  manifests: []
+  manifests:
+  - path: charts/agent-operator/Chart.yaml
+    kind: helm_chart_manifest
+  - path: charts/enterprise-logs/Chart.yaml
+    kind: helm_chart_manifest
+  - path: charts/enterprise-metrics/Chart.yaml
+    kind: helm_chart_manifest
+  - path: charts/fluent-bit/Chart.yaml
+    kind: helm_chart_manifest
+  - path: charts/grafana-sampling/Chart.yaml
+    kind: helm_chart_manifest
+  - path: charts/lgtm-distributed/Chart.yaml
+    kind: helm_chart_manifest
+  - path: charts/loki-canary/Chart.yaml
+    kind: helm_chart_manifest
+  - path: charts/loki-distributed/Chart.yaml
+    kind: helm_chart_manifest
+  - path: charts/loki-stack/Chart.yaml
+    kind: helm_chart_manifest
+  - path: charts/pdc-agent/Chart.yaml
+    kind: helm_chart_manifest
+  - path: charts/promtail/Chart.yaml
+    kind: helm_chart_manifest
+  - path: charts/rollout-operator/Chart.yaml
+    kind: helm_chart_manifest
+  - path: charts/snyk-exporter/Chart.yaml
+    kind: helm_chart_manifest
+  - path: charts/tempo-distributed/Chart.yaml
+    kind: helm_chart_manifest
   config_files:
   - path: .github/workflows/check-codeowners.yaml
     kind: ci_workflow
@@ -54,12 +175,16 @@ filesystem_signals:
     kind: ci_workflow
 orientation_hints:
   likely_first_read:
-  - .
+  - charts/agent-operator
+  - charts/enterprise-logs
+  - charts/enterprise-metrics
   likely_runtime_surfaces:
-  - .github/workflows/check-codeowners.yaml
-  - .github/workflows/ci.yml
-  - .github/workflows/lint-test.yaml
-  - .github/workflows/linter.yml
+  - charts/agent-operator
+  - charts/enterprise-logs
+  - charts/enterprise-metrics
+  - charts/fluent-bit
+  - charts/grafana-sampling
+  - charts/lgtm-distributed
 limitations:
 - module groups are heuristic directory-level clusters
 - no behavioral, failure-mode, or cross-repo claims are emitted

@@ -68,6 +68,7 @@ MANIFEST_KINDS = {
     "pnpm-workspace.yaml": "node_workspace",
     "go.mod": "go_manifest",
     "Cargo.toml": "rust_manifest",
+    "Chart.yaml": "helm_chart_manifest",
 }
 
 CONFIG_KINDS = {
@@ -1273,15 +1274,24 @@ def build_orientation_hints(
     for entrypoint in entrypoints[:4]:
         if entrypoint["path"] not in likely_runtime_surfaces:
             likely_runtime_surfaces.append(entrypoint["path"])
-    preferred_config_kinds = {"runtime_config", "framework_config", "env_example", "typescript_config"}
-    prioritized_configs = sorted(
-        [item for item in config_files if item["kind"] in preferred_config_kinds],
-        key=lambda item: (-orientation_score(Path(item["path"]), prefer_runtime=True), item["path"]),
-    )
-    fallback_configs = prioritized_configs if prioritized_configs else config_files
-    for config in fallback_configs[:4]:
-        if config["path"] not in likely_runtime_surfaces:
-            likely_runtime_surfaces.append(config["path"])
+    is_helm_repo = any(item["kind"] == "helm_chart_manifest" for item in manifests)
+    if not entrypoints and is_helm_repo:
+        # Helm chart repos: no process entrypoints; chart roots are the deployment surfaces
+        for group in module_groups[:6]:
+            for path in group["paths"]:
+                if path not in likely_runtime_surfaces:
+                    likely_runtime_surfaces.append(path)
+    else:
+        preferred_config_kinds = {"runtime_config", "framework_config", "env_example", "typescript_config"}
+        prioritized_configs = sorted(
+            [item for item in config_files if item["kind"] in preferred_config_kinds],
+            key=lambda item: (-orientation_score(Path(item["path"]), prefer_runtime=True), item["path"]),
+        )
+        non_ci_configs = [item for item in config_files if item["kind"] != "ci_workflow"]
+        fallback_configs = prioritized_configs if prioritized_configs else non_ci_configs
+        for config in fallback_configs[:4]:
+            if config["path"] not in likely_runtime_surfaces:
+                likely_runtime_surfaces.append(config["path"])
 
     return {
         "likely_first_read": likely_first_read[:6],
