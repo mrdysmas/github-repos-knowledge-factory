@@ -40,11 +40,16 @@ baseline:
     deep_facts: 5687
   archetypes: 12
   unmatched_repos: 32
+  # Updated 2026-03-22: 4 new archetype shapes defined (helm_chart_repo, sdk_library,
+  # k8s_operator, plugin_ecosystem) — archetypes now 16; repos not yet ingested so
+  # unmatched count unchanged until 4em calibration repos are promoted.
+  archetypes_current: 16
 
 completed_threads:
   - "Query-gap pass mapped all 7 anchor questions to current query surface — see beads github_repos-9fd (closed) and docs/phase5_query_gap_assessment_2026-03-20.md."
   - "The 7-question anchor is now formalized as project policy in phase_5_anchor_acceptance_rubric.yaml v2 — see beads github_repos-byr (closed)."
   - "Architecture refinement memo translated into concrete Phase 5 planning inputs focused on question-first selection, smallest-layer changes, and core-before-surface sequencing — see beads github_repos-n14 (closed)."
+  - "4 new archetype shapes defined for 4em calibration repos (helm_chart_repo, sdk_library, k8s_operator, plugin_ecosystem) — see beads github_repos-aj0 (closed) and docs/decisions/archetype_definition_process_decision_2026-03-22.md. Deep files not yet written; these archetypes unblock 4em promotion."
 
 planning_inputs:
   work_selection_rules:
@@ -108,7 +113,7 @@ open_threads:
   - "Use phase_5_anchor_acceptance_rubric.yaml to evaluate core Phase 5 work; lightweight mode or exemption is allowed for exploratory/tiny tasks."
   - "Validate or refine the 7 questions using coding-agent principles research — see docs/coding_agent_principles_research_memo_2026-03-20.md and beads github_repos-th0."
   - "Pipeline refactor scope still being discovered — see beads github_repos-6kb."
-  - "32 unmatched repos with no clear new archetype clusters — see beads github_repos-air."
+  - "32 unmatched repos; 4 new archetype shapes now defined (2026-03-22) for calibration repos in 4em — these repos remain uningested until deep files are written. Permanent-skip clusters (documentation, educational) are not expected to reduce this count. See beads github_repos-air and github_repos-4em."
   - "Corpus maintenance track open — see beads github_repos-7yf."
 
 evidence_refs:
