@@ -475,4 +475,165 @@ Items 1–7 are `[CRITICAL]` territory. Items 8–12 are `[WARN]` or `[NIT]` dep
 
 ---
 
-*End of report (both rounds). Next step: build the skill in a fresh session using this document as reference. The four review modes (general / security / agent-output / iterative) are the core design decision to resolve first.*
+---
+
+## 16. Round 3 Findings: Workflow Design, Hooks, and Official Tooling
+
+*Sources: Boris's full Claude Code setup Q&A, 6-month hardcore use tips post, 28+ official plugins thread, MorroHsu CLI agents Part 2, $417 word game post.*
+
+### 16.1 Don't Auto-Trigger Review on Every File Write
+
+From the 6-month tips post, commenter lucianw (high upvotes):
+> "I disagree about running the formatter as a PostToolUse hook. Every time it changes a file on disk, Claude gets a `<system-reminder>` on its next UserPrompt listing all lines changed. These are useless tokens. Remember every token in context costs you — both in price and attention."
+
+This is a direct implementation constraint for the review skill. **Do not wire it as a PostToolUse hook that fires on every file write.** The cost — both token and attention — is too high for routine use.
+
+**Correct trigger pattern:** Explicit invocation by the calling agent or user, not automatic. The agent should call the skill after completing a meaningful unit of work, not after every individual file edit.
+
+Corollary from the Boris Q&A (DCOperator, 229 upvotes):
+> "Load up Claude Code, do nothing but type /context and you see you only have 137k tokens before the dreaded auto-compact. If you stuff everything into CLAUDE.md, you have zero tokens right after loading."
+
+The review skill's system prompt and context injection must be **lean**. A bloated reviewer prompt eats from the same budget as the work being reviewed. The architectural context block should be the file contents + a tight prompt, not an elaborate knowledge dump.
+
+### 16.2 Official Code Review Plugins Exist — Know the Difference
+
+From the plugins thread, commenter wewerecreaturres:
+> "`pr-review-toolkit` seems to be better than `code-review` at catching things in my experience."
+
+There are already two official Claude Code plugins for review: `code-review` and `pr-review-toolkit`. They're accessible via `/plugins` inside Claude Code. 53 plugins total as of early 2026.
+
+**What they don't cover:** Both are oriented toward PR-style review — diffs, changed lines, team workflow. They don't address:
+- Iterative pass-level regression checks
+- Agent-generated code anti-patterns (timing hacks, bloat, silent defaults)
+- Architectural context injection for scripts without a PR context
+- A fresh subagent as the reviewer (they run in the same session)
+
+Our skill fills that gap. But worth knowing the plugins exist — a user who just wants general code review should reach for `code-review` or `pr-review-toolkit` first. The skill is for the agent-iteration use case specifically.
+
+### 16.3 Cross-Model Review: Use a Different Model to Avoid Same-Model Bias
+
+From the $417 Claude Code post, commenter olavla (well-received):
+> "My secret trick: use `git2text` on the codebase. Put everything in Google AI Studio (Gemini 2.5 Pro), let it comment on the code, and have it generate specific to-do lists that I paste back into Claude Code."
+
+This is an independently-discovered, stronger version of the fresh-subagent pattern. The insight: **using a different model to review eliminates model-specific blind spots**, not just context intoxication. Claude reviewing Claude's code may share systematic biases (same training, same tendencies toward certain patterns). A different model has different failure modes.
+
+For the skill design: document this as an optional variant. The default is a fresh Claude subagent (accessible, cheap, works in-session). For high-stakes code, the nuclear option is passing the file to a different model via API — Gemini 2.5 or o3 — and having it return findings that Claude then acts on.
+
+### 16.4 Feature Creep as a Reviewable Pattern
+
+From the $417 post, OP's own comment (120 upvotes):
+> "I would often ask Claude for a relatively simple addition, but it would take it upon itself to add 5 different things. Sometimes they were actually good ideas, but often they weren't and I'd waste time and money telling it to change things back."
+
+This is a concrete, nameable AI anti-pattern: **scope inflation**. The agent adds more than was asked. The review skill should detect this when running in iterative mode:
+
+> "Did this pass add functionality beyond what the task description requested? Flag any additions that weren't explicitly asked for as [WARN: scope inflation]."
+
+Scope inflation is insidious because the added code often works — it just wasn't requested, may not be tested, and adds maintenance surface.
+
+### 16.5 CLAUDE.md Instruction Drift
+
+From the Boris post, commenter WePwnTheSky:
+> "Claude chronically ignores instructions in CLAUDE.md. I implement a new feature requiring a new permission, it never implements the permission and RLS correctly despite CLAUDE.md documenting the pattern and prior pitfalls."
+
+And from kwabaj_ (8 months daily Claude Code use, 29 upvotes):
+> "Skills, an overly extensive CLAUDE.md file, pre-configured subagents — all of that stuff is just pollution. Claude already has a sophisticated well-engineered system prompt. Adding all sorts of skills is doing more harm than good. Just talk to it."
+
+Two complementary data points:
+1. CLAUDE.md instructions don't reliably propagate — agents don't re-read it mid-task.
+2. Over-engineering with skills and subagents has diminishing returns.
+
+**Review skill implication:** The review prompt must be **self-contained**. Don't rely on CLAUDE.md or project-level context files being loaded or respected. Every invocation of the skill must carry all the criteria it needs in its own prompt. No implicit references to "the rules in CLAUDE.md."
+
+### 16.6 Test-Writing as a Verification Step
+
+Two independent sources converged on this:
+
+From the $417 post, commenter kkingsbe:
+> "Have Claude write tests to verify its changes."
+
+From the 100% AI project post (Round 2), commenter hei8ht:
+> "My greatest regret is not writing tests. Now whenever I change something, something always breaks."
+
+**Design implication:** The skill should include an optional `--with-tests` flag or a `verify` mode that, after issuing review findings, asks the reviewer to also generate a minimal test for the highest-risk finding. Not a full test suite — just enough to make the critical finding executable and verifiable.
+
+This turns the review from passive (list of issues) to active (here's a test that will fail if this bug exists). For iterative agent use, that's the difference between "the agent knows there's a problem" and "the agent can confirm it fixed the problem."
+
+### 16.7 Cost Discipline in Iterative Review
+
+From MorroHsu Part 2, commenter mrtrly:
+> "I have watched agent swarms burn through $50 in tokens on tasks that should have cost $2. Each tool call has a price tag. Most agent builders focus on capabilities and forget cost observability."
+
+The iterative review mode needs to be cheap per invocation. Design principles:
+- Max 3 findings in iterative mode (vs. 5 in general mode)
+- No preamble, no explanation of what was checked — findings only
+- Skip NITs entirely in iterative mode
+- The reviewer subagent should use the cheapest capable model (Haiku 4.5 for iterative, Sonnet for general/security passes)
+
+### 16.8 Progressive Tool Discovery (from MorroHsu)
+
+From the CLI agents post, the "Tips Thinking" pattern:
+> "Return a hint on how to fix a command instead of just a raw error code. Massive token saver in long-context loops."
+
+Applied to the review skill: when findings are returned, each finding should include one actionable directive, not just a description of the problem. "Silent default on line 47 — raise ValueError instead of assigning None" is twice as useful as "Line 47 has a silent default assignment."
+
+The finding format should be: **[SEVERITY] Location — problem — one-line fix hint**.
+
+### 16.9 Boris's Actual Workflow (What the Creator Does)
+
+The full picture from his Q&A, stripped of the "unlimited tokens" caveat:
+
+1. **5 parallel sessions** across separate git checkouts (not worktrees — avoids checkout conflicts)
+2. **System notifications** to know when a session needs input — he doesn't watch them continuously
+3. **Hands off work between sessions** using `--teleport` or manual context passing
+4. **Deliberately vanilla** — no elaborate CLAUDE.md, no custom skill stacks, no pre-configured subagents
+
+The review-relevant insight: Boris uses **separate checkouts** to keep parallel work isolated. For the review skill in a personal agent workflow, this suggests: the reviewer should operate on the files as they exist at review time, not during active editing. Trigger review at natural pause points (end of a task phase, before committing), not mid-edit.
+
+---
+
+## 17. Final Consolidated Skill Design
+
+Drawing all three rounds together:
+
+### Architecture
+```
+Caller (main agent or user)
+    ↓  explicit invocation (not hook-triggered)
+Review Skill
+    ↓  reads file(s) + optional context (handover doc, AGENTS.md excerpt)
+Fresh Reviewer Subagent
+    ↓  self-contained prompt (no CLAUDE.md dependency)
+    ↓  model: Haiku for iterative, Sonnet for general/security
+Tagged Findings → returned to caller
+```
+
+### Four Modes
+
+| Mode | Trigger | Model | Max findings | Scope |
+|---|---|---|---|---|
+| `iterative` | After each agent pass on a file | Haiku | 3 | Regressions only, no NITs |
+| `general` | End of task phase | Sonnet | 5 | Full semantic check list |
+| `security` | Before any external exposure | Sonnet | 5 | Auth, credentials, injection |
+| `agent-output` | New file or major addition | Sonnet | 5 | AI-specific anti-patterns |
+
+### Finding Format (all modes)
+```
+[SEVERITY] file.py:line — problem description — fix hint
+```
+Example:
+```
+[CRITICAL] ws6_prepass.py:142 — bare except swallows KeyError silently — raise or catch specifically
+[WARN] ingest.py:89 — scope inflation: added retry logic not in task spec — confirm intentional
+[WARN] pipeline.py:203 — setTimeout(fn, 500) masks race condition — use proper async coordination
+```
+
+### What the Prompt Must Always Include
+1. Mode declaration (iterative/general/security/agent-output)
+2. File contents (full, not diff)
+3. For iterative mode: one-line description of what the agent just did
+4. Severity cap and finding limit
+5. The full check list appropriate to the mode (self-contained — no CLAUDE.md references)
+
+---
+
+*End of report (all rounds). This document is the complete reference for building the skill. Start with `iterative` mode — it's the most-used path and the most constrained design.*
