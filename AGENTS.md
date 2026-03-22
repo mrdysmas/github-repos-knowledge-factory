@@ -43,6 +43,7 @@ Default mode is execution and supervision, not exploration.
 - Archetype definitions live in `tools/ws6_soft_audit.py` (`ARCHETYPES` dict). Do not add new archetypes without first reading `docs/decisions/archetype_definition_process_decision_2026-03-22.md`.
 - Pre-pass manifests use provisional categories (e.g. `infra_ops`). Deep files must set specific categories that match the intended archetype — two repos cannot share a broad category if they will map to different archetypes. Category collision produces a silent audit failure where one repo is misclassified.
 - For repos with no existing deep files, define the archetype shape first, then write the deep file targeting those families. Do not reverse this order.
+- **Pipeline input directories**: `repos/knowledge/deep_facts/` is WS6 output — writing there is silently ignored. To add a new repo, create (1) a shallow entry in `repos/knowledge/repos/` and (2) a narrative file in `repos/knowledge/deep/`. WS6 reads those two and produces `deep_facts/` as output.
 
 ## Intake Enforcement
 

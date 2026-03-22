@@ -54,6 +54,27 @@ For any new shape with no existing archetype:
 - **`k8s_operator`**: Bridges k8s and external backends (Vault, AWS SM, GCP). All 4 families required — the backend integrations are the operator's core value. `uses_protocol` distinguishes from repos that only expose extension hooks.
 - **`plugin_ecosystem`**: Flat connector surface (e.g. 263 per-AWS-service subdirs in terraform-provider-aws). Tasks are secondary — consumers write HCL config, not CLI commands. `uses_protocol` captures the backend API (e.g. AWS Signature v4).
 
+## Pipeline Input Directories (Critical)
+
+`repos/knowledge/deep_facts/` is WS6's **output**, not input. Writing directly there
+is silently ignored — the pipeline will not pick it up.
+
+To add a new repo to the corpus, two input files must be created:
+
+1. **Shallow entry** — `repos/knowledge/repos/<file_stem>.yaml`
+   Repo metadata: name, github_full_name, html_url, category, summary, etc.
+
+2. **Narrative file** — `repos/knowledge/deep/<file_stem>.yaml`
+   Structured narrative sections that WS6 reads to extract facts.
+   Key sections: `architecture`, `key_files`, `key_features`, `common_tasks`,
+   `troubleshooting`, `api_protocols`, `supported_protocols`, `extension_points`.
+   The `category` field here must match the intended archetype (see Category Collision
+   Warning below).
+
+WS6 reads both, extracts facts, and writes `repos/knowledge/deep_facts/` as output.
+Then run: `ws4_master_compiler.py` → `ws6_deep_integrator.py --run-validation-suite`
+→ `ws7_read_model_compiler.py`.
+
 ## Category Collision Warning
 
 Both `grafana/helm-charts` and `external-secrets/external-secrets` have
