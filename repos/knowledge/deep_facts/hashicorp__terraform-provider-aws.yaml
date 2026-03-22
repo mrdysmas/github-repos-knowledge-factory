@@ -1,0 +1,404 @@
+name: terraform-provider-aws
+node_id: repo::hashicorp/terraform-provider-aws
+github_full_name: hashicorp/terraform-provider-aws
+html_url: https://github.com/hashicorp/terraform-provider-aws
+source: remote_metadata
+category: plugin_ecosystem
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+  as_of: '2026-03-22'
+  extractor_version: ws6-deep-integrator-v1
+  extraction_agent: codex
+facts:
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.85
+  as_of: '2026-03-22'
+  provenance:
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    source_section: architecture.resource_types
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: internal/service/s3/
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    excerpt: S3 resource and data source implementations
+  object_value: S3 resource and data source types
+  note: 'Covers bucket management, object storage, lifecycle policies, and replication. Key path: internal/service/s3/'
+  fact_id: fact::3a7f1c2e8d4b9061f5e8c3a0
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.85
+  as_of: '2026-03-22'
+  provenance:
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    source_section: architecture.resource_types
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: internal/service/ec2/
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    excerpt: EC2 instance, VPC, subnet, security group resource implementations
+  object_value: EC2 resource and data source types
+  note: 'Covers instances, VPCs, subnets, security groups, AMIs, key pairs. Key path: internal/service/ec2/'
+  fact_id: fact::b2c4d6e8f0a1b3c5d7e9f1a2
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.85
+  as_of: '2026-03-22'
+  provenance:
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    source_section: architecture.resource_types
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: internal/service/iam/
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    excerpt: IAM role, policy, user, and group resource implementations
+  object_value: IAM resource and data source types
+  note: 'Covers roles, policies, users, groups, instance profiles, OIDC providers. Key path: internal/service/iam/'
+  fact_id: fact::c3d5e7f9a1b3c5d7e9f1a2b3
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.82
+  as_of: '2026-03-22'
+  provenance:
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    source_section: architecture.resource_types
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: internal/service/lambda/
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    excerpt: Lambda function resource and invocation data source implementations
+  object_value: Lambda resource and data source types
+  note: 'Covers functions, event source mappings, permissions, layers. Key path: internal/service/lambda/'
+  fact_id: fact::d4e6f8a0b2c4d6e8f0a1b2c3
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.82
+  as_of: '2026-03-22'
+  provenance:
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    source_section: architecture.resource_types
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: internal/service/rds/
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    excerpt: RDS instance, cluster, and parameter group resource implementations
+  object_value: RDS resource and data source types
+  note: 'Covers DB instances, clusters, parameter groups, subnet groups, snapshots. Key path: internal/service/rds/'
+  fact_id: fact::e5f7a9b1c3d5e7f9a1b3c5d6
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.80
+  as_of: '2026-03-22'
+  provenance:
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    source_section: architecture.resource_types
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: internal/service/eks/
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    excerpt: EKS cluster and node group resource implementations
+  object_value: EKS resource and data source types
+  note: 'Covers clusters, node groups, Fargate profiles, access entries. Key path: internal/service/eks/'
+  fact_id: fact::f6a8b0c2d4e6f8a0b2c4d5e6
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.90
+  as_of: '2026-03-22'
+  provenance:
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    source_section: architecture.layout
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: internal/service/
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    excerpt: 263 per-AWS-service subdirectories containing resource and data source implementations
+  object_value: internal/service/
+  note: Flat connector surface — 263 subdirs, one per AWS service. Each subdir contains resource CRUD and data source read implementations.
+  fact_id: fact::a7b9c1d3e5f7a9b1c3d5e6f7
+- fact_type: component
+  predicate: has_component
+  object_kind: path
+  confidence: 0.88
+  as_of: '2026-03-22'
+  provenance:
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    source_section: architecture.layout
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: internal/provider/
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    excerpt: Provider registration and schema definition
+  object_value: internal/provider/
+  note: Registers all resources and data sources; defines top-level provider configuration schema (region, credentials, endpoints).
+  fact_id: fact::b8c0d2e4f6a8b0c2d4e6f7a8
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.88
+  as_of: '2026-03-22'
+  provenance:
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    source_section: provider_configuration
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: provider "aws" block
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    excerpt: region — AWS region for all resources in this provider block
+  object_value: region
+  note: 'Required provider argument. Can also be set via AWS_DEFAULT_REGION env var. Determines which AWS region API calls target.'
+  fact_id: fact::c9d1e3f5a7b9c1d3e5f7a8b9
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.85
+  as_of: '2026-03-22'
+  provenance:
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    source_section: provider_configuration
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: provider "aws" block
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    excerpt: access_key / secret_key — static credentials for AWS API authentication
+  object_value: access_key / secret_key
+  note: 'Static credential pair. Not recommended for production; prefer instance profiles, OIDC, or environment variables (AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY).'
+  fact_id: fact::d0e2f4a6b8c0d2e4f6a8b9c0
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.85
+  as_of: '2026-03-22'
+  provenance:
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    source_section: provider_configuration
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: provider "aws" block
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    excerpt: assume_role — block to assume an IAM role before making API calls
+  object_value: assume_role
+  note: 'Block argument. Accepts role_arn, session_name, external_id. Common pattern for cross-account deployments.'
+  fact_id: fact::e1f3a5b7c9d1e3f5a7b9c0d1
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.82
+  as_of: '2026-03-22'
+  provenance:
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    source_section: provider_configuration
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: provider "aws" block
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    excerpt: endpoints — override individual AWS service API endpoint URLs
+  object_value: endpoints
+  note: 'Block argument. Used for LocalStack integration or VPC endpoint routing. Maps service name to custom URL.'
+  fact_id: fact::f2a4b6c8d0e2f4a6b8c0d1e2
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.80
+  as_of: '2026-03-22'
+  provenance:
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    source_section: resource_configuration
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: lifecycle block
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    excerpt: ignore_changes — suppress drift detection for specified resource attributes
+  object_value: lifecycle.ignore_changes
+  note: 'Per-resource meta-argument. Common workaround for externally managed attributes (e.g., tags set by AWS outside Terraform).'
+  fact_id: fact::a3b5c7d9e1f3a5b7c9d1e2f3
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.88
+  as_of: '2026-03-22'
+  provenance:
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    source_section: troubleshooting.auth
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting.auth
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    excerpt: NoCredentialProviders / ExpiredTokenException during plan or apply
+  object_value: AWS credential errors (NoCredentialProviders, ExpiredTokenException)
+  note: 'cause: Missing or expired AWS credentials in the credential chain (env vars, ~/.aws/credentials, instance profile). fix: Verify AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY are set, or that the instance profile / OIDC role has the required permissions and the session token is not expired.'
+  fact_id: fact::b4c6d8e0f2a4b6c8d0e2f3a4
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.86
+  as_of: '2026-03-22'
+  provenance:
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    source_section: troubleshooting.api_limits
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting.api_limits
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    excerpt: ThrottlingException or RequestLimitExceeded during large applies
+  object_value: AWS API rate limiting (ThrottlingException, RequestLimitExceeded)
+  note: 'cause: AWS service quotas exceeded when applying many resources concurrently. fix: Reduce Terraform parallelism with -parallelism=N (default 10), add depends_on to sequence resources, or request quota increases via AWS Service Quotas. Provider retries throttled requests with exponential backoff automatically.'
+  fact_id: fact::c5d7e9f1a3b5c7d9e1f3a4b5
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.85
+  as_of: '2026-03-22'
+  provenance:
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    source_section: troubleshooting.conflicts
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting.conflicts
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    excerpt: Resource already exists or conflict with existing resource during create
+  object_value: Resource conflict / already exists errors
+  note: 'cause: A resource with the same name or identifier already exists in AWS but is not tracked in Terraform state. fix: Import the existing resource with terraform import <address> <aws-id>, or remove the conflicting resource manually before applying.'
+  fact_id: fact::d6e8f0a2b4c6d8e0f2a4b5c6
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: issue
+  confidence: 0.85
+  as_of: '2026-03-22'
+  provenance:
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    source_section: troubleshooting.drift
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: troubleshooting.drift
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    excerpt: Plan shows unexpected diffs on attributes not managed in config
+  object_value: State drift from out-of-band AWS changes
+  note: 'cause: AWS services modify resource attributes outside Terraform (e.g., auto-assigned tags, rotated keys, AMI updates). fix: Use lifecycle.ignore_changes to suppress known drifting attributes, or run terraform refresh to sync state without applying changes.'
+  fact_id: fact::e7f9a1b3c5d7e9f1a3b5c6d7
+- fact_type: protocol_usage
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.92
+  as_of: '2026-03-22'
+  provenance:
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    source_section: api_protocols
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: internal/service/
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    excerpt: All AWS service calls use AWS REST/Query APIs signed with AWS Signature Version 4
+  object_value: AWS REST API with Signature Version 4 (SigV4)
+  note: Provider uses the AWS SDK for Go v2, which handles SigV4 request signing automatically. All CRUD operations against AWS services use HTTPS with SigV4 authentication headers.
+  fact_id: fact::f8a0b2c4d6e8f0a2b4c6d7e8
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.88
+  as_of: '2026-03-22'
+  provenance:
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    source_section: architecture.plugin_interface
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: internal/provider/
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    excerpt: Implements the Terraform provider plugin protocol (plugin framework / SDK v2)
+  object_value: Terraform provider plugin interface
+  note: Exposes terraform-plugin-framework and terraform-plugin-sdk/v2 interfaces. Provider binary communicates with Terraform core via gRPC over the plugin protocol. New resources are registered by adding entries to the provider schema.
+  fact_id: fact::a9b1c3d5e7f9a1b3c5d7e8f9
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: concept
+  confidence: 0.82
+  as_of: '2026-03-22'
+  provenance:
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    source_section: architecture.endpoints
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: provider "aws" endpoints block
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    excerpt: Custom endpoint URLs per service (used for LocalStack, VPC endpoints)
+  object_value: Custom service endpoint injection
+  note: Allows routing specific AWS service API calls to alternative endpoints. Enables LocalStack integration and private VPC endpoint usage without code changes.
+  fact_id: fact::b0c2d4e6f8a0b2c4d6e8f9a0
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.82
+  as_of: '2026-03-22'
+  provenance:
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    source_section: tasks.import
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: terraform import command
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    excerpt: Import existing AWS resources into Terraform state without recreation
+  object_value: Import existing AWS resources into state
+  note: 'Run: terraform import <resource_type>.<name> <aws-resource-id>. Each resource type documents its import ID format (e.g., aws_s3_bucket uses bucket name, aws_iam_role uses role name). Required when adopting resources created outside Terraform.'
+  fact_id: fact::c1d3e5f7a9b1c3d5e7f9a0b1
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.82
+  as_of: '2026-03-22'
+  provenance:
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    source_section: tasks.lifecycle
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: resource lifecycle management
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    excerpt: Create, read, update, delete resource lifecycle via plan/apply workflow
+  object_value: Manage full resource lifecycle (create, update, delete)
+  note: 'Standard workflow: terraform init → terraform plan → terraform apply. Provider translates HCL config diffs into AWS API create/update/delete calls. Destruction is deferred until terraform destroy or resource removal from config.'
+  fact_id: fact::d2e4f6a8b0c2d4e6f8a0b1c2
+- fact_type: operational_task
+  predicate: supports_task
+  object_kind: text
+  confidence: 0.78
+  as_of: '2026-03-22'
+  provenance:
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    source_section: tasks.drift
+    extraction_mode: narrative
+  evidence:
+  - kind: file_block
+    ref: terraform refresh / plan -refresh-only
+    source_file: repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
+    excerpt: Sync Terraform state with actual AWS resource state without applying changes
+  object_value: Detect and reconcile state drift
+  note: 'Run: terraform plan -refresh-only to preview drift without changing infrastructure. Use terraform apply -refresh-only to update state. Combine with lifecycle.ignore_changes for attributes that are intentionally managed externally.'
+  fact_id: fact::e3f5a7b9c1d3e5f7a9b1c2d3
