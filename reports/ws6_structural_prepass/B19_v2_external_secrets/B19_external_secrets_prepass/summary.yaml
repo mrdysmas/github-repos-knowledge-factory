@@ -1,0 +1,34 @@
+schema_version: '0.1'
+generated_at_utc: '2026-03-22T05:58:58Z'
+batch_id: B19_external_secrets_prepass
+stage: ws6_structural_prepass
+clone_manifest: reports/ws6_clone_prep/B19_external_secrets_prepass_clones.yaml
+input_manifest: inputs/ws5/B19_external_secrets_prepass_manifest.yaml
+output_dir: reports/ws6_structural_prepass/B19_v2_external_secrets/B19_external_secrets_prepass
+repo_filters: null
+summary:
+  repos_selected: 1
+  repos_generated: 1
+  repos_failed: 0
+  repos_invalid: 0
+  gate_ready: true
+boundary_checks:
+  non_canonical_output_only: true
+  writes_outside_reports: false
+  canonical_files_written: []
+repos:
+- github_full_name: external-secrets/external-secrets
+  file_stem: external-secrets__external-secrets
+  status: ok
+  output_file: reports/ws6_structural_prepass/B19_v2_external_secrets/B19_external_secrets_prepass/external-secrets__external-secrets.yaml
+  repo_root: /home/abe/scripts/ext_sources/github_repos/workspace/clones/B19/external-secrets__external-secrets
+  source_files_seen: 660
+  total_files_seen: 1535
+  validation:
+    valid: true
+    errors: []
+    forbidden_sections_present: []
+    consumption_boundary:
+      non_canonical_output_only: true
+      writes_canonical_files: false
+      ws6_canonical_emitter_unchanged: true

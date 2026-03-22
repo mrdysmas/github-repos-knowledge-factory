@@ -966,12 +966,21 @@ def choose_module_groups(
             continue
         if is_noise_root(root_path):
             continue
+        is_helm_root = any(
+            ev.get("detail") == "helm_chart_manifest" for ev in package_root["evidence"]
+        )
+        base_score = 30 if is_helm_root else 10
+        rationale = (
+            "helm chart deployment artifact root"
+            if is_helm_root
+            else "package root or workspace module boundary"
+        )
         add_group(
             normalized_group_name(root_path),
             package_root["path"],
-            "package root or workspace module boundary",
+            rationale,
             package_root["evidence"],
-            10
+            base_score
             + orientation_score(root_path, prefer_runtime=False)
             + frontend_surface_boost(
                 root_path,
@@ -1260,9 +1269,20 @@ def build_orientation_hints(
         else module_groups
     )
 
+    helm_chart_roots = [
+        str(Path(item["path"]).parent)
+        for item in manifests
+        if item["kind"] == "helm_chart_manifest"
+    ]
+
     for entrypoint in entrypoints[:first_read_entry_budget]:
         if entrypoint["path"] not in likely_first_read:
             likely_first_read.append(entrypoint["path"])
+    # Helm chart roots are first-class deployment artifacts; inject them
+    # alongside runtime entrypoints regardless of whether entrypoints exist.
+    for helm_root in helm_chart_roots[:2]:
+        if helm_root not in likely_first_read:
+            likely_first_read.append(helm_root)
     for group in prioritized_groups[:first_read_group_budget]:
         for path in group["paths"]:
             if path not in likely_first_read:
@@ -1287,6 +1307,10 @@ def build_orientation_hints(
     for entrypoint in entrypoints[:4]:
         if entrypoint["path"] not in likely_runtime_surfaces:
             likely_runtime_surfaces.append(entrypoint["path"])
+    # Helm chart roots are deployment surfaces in both pure-helm and mixed repos.
+    for helm_root in helm_chart_roots[:2]:
+        if helm_root not in likely_runtime_surfaces:
+            likely_runtime_surfaces.append(helm_root)
     is_helm_repo = any(item["kind"] == "helm_chart_manifest" for item in manifests)
     if not entrypoints and is_helm_repo:
         # Helm chart repos: no process entrypoints; chart roots are the deployment surfaces
