@@ -591,6 +591,143 @@ The review-relevant insight: Boris uses **separate checkouts** to keep parallel 
 
 ---
 
+## 18. Round 4 Findings: How to Actually Build the Skill
+
+*Sources: Requirements-gathering slash command system, Complete Guide V3, UI design skill case study, "drunk PhD students" director app, Boris's 10 tips (full text).*
+
+### 18.1 The Core Distinction: Suggestion vs. Enforcement
+
+From the Complete Guide V3 (community consensus, multiple upvoted comments):
+
+> "Skills & Hooks = **deterministic enforcement** over behavioral suggestion."
+
+> "Move hooks up. They provide concrete methods to protect sensitive data in a true concrete way over the 'never' instructions." — sorryimsoawesome
+
+> "You use words like 'NEVER' but LLMs ignore explicit instructions. These tutorials should state it's a probability model, not something exact." — mcs_dodo
+
+CLAUDE.md is probabilistic. Skills are deterministic — they run as code, not as model instructions. This is the reason to build the review as a skill rather than a CLAUDE.md entry. A CLAUDE.md rule saying "always review your code after each pass" will be ignored. A skill invoked by the calling agent or user cannot be ignored — it either runs or doesn't.
+
+**Design implication:** Frame the skill's value proposition correctly. It's not "reminding" the agent to review code. It's injecting a **fresh, external reviewer** that runs outside the agent's context. That framing also shapes how you explain it in the skill's description.
+
+### 18.2 Skills Encode Domain Expertise as Constraints, Not Instructions
+
+From the UI design skill case study (Dammyjay93, `interface-design` skill on GitHub):
+
+> "I condensed 8 years of product design experience into [the skill's constraints]. Opus 4.6 adheres to the skill's design constraints way better than the previous model."
+
+The pattern: encode expertise as **structured constraints in the skill's system prompt**, not as free-form instructions. The skill works because it tells the model what the expert knows, in a form the model can apply consistently.
+
+For the code review skill: this is exactly what the research in Sections 5 and 15 is for. The semantic check taxonomy, the AI anti-pattern list, the severity tiers — these are the "8 years of design experience" encoded into the reviewer's constraints. Don't put them in CLAUDE.md. Put them in the skill's reviewer prompt, where they run fresh every time and can't drift.
+
+The commenter Zulfiqaar's observation is also useful — even a stripped-down version works:
+> "Just a couple extra sentences on the prompt and folder/file hints: 'Ultrathink deeply on best practices, consider various caveats, make a detailed plan after evaluating then deciding on requirements. Then implement.'"
+
+This suggests the skill should have a **minimal invocation path** (fast, cheap, low friction) that still captures the core value, alongside the fuller modes.
+
+### 18.3 Slash Command Argument Pattern
+
+From the requirements-gathering system (`/requirements-start {argument}`):
+
+The pattern for an argument-taking slash command that does multi-step work:
+1. Command accepts a path/argument inline: `/review path/to/file.py`
+2. Skill reads the target, analyzes structure, then invokes the reviewer
+3. Returns structured output
+
+Installation pattern (from the repo):
+```bash
+cp -r commands ~/.claude/commands/
+```
+
+The skill lives in `~/.claude/commands/` or as a project-level skill. For our use case — personal projects where agents run autonomously — the global `~/.claude/skills/` location is right so it's available across all projects without per-repo setup.
+
+### 18.4 The File Size Problem
+
+From the requirements gathering thread, commenter tpcorndog:
+> "Put an update in there: if a file size exceeds 2000 lines, create a technical resource document in MD format as a snapshot of the file, updated in parallel with further updates to the file. The grep thing Claude Code uses is frustrating."
+
+This maps directly to our skill. For files >~500 lines, passing the raw file to a reviewer is inefficient and may exceed what the reviewer can attend to. The skill should handle this:
+
+- **< 300 lines:** pass full file directly
+- **300–800 lines:** pass full file, note line count in prompt header
+- **> 800 lines:** trigger a pre-summarization step — have the reviewer first identify the function/class boundaries, then do a targeted review of the high-risk sections rather than line-by-line
+
+This is a design decision for the skill build, not just a note.
+
+### 18.5 Boris's Full Tips — What's Directly Relevant
+
+From the 10 tips summary (full text recovered):
+
+**Tip 2 (plan review):**
+> "One person even spins up a second Claude to review the plan as a staff engineer."
+
+This is the Claude Code team explicitly endorsing the fresh-reviewer pattern — applied to plans, but the same architecture. Our skill is this pattern applied to code.
+
+**Tip 3 (CLAUDE.md):**
+> "After every correction, add it to CLAUDE.md so Claude knows not to do it next time."
+
+Counterpoint from community: multiple users report Claude ignoring CLAUDE.md mid-task. Boris's team can enforce this because they contribute to CLAUDE.md as a team ritual. Solo personal projects don't have that culture. Skill-enforced review compensates for CLAUDE.md drift — the skill captures what went wrong in its findings, and the user can act on those findings directly rather than hoping CLAUDE.md absorbs them.
+
+**Tip 1 (parallel worktrees):**
+> "Some people set up shell aliases (za, zb, zc) to hop between worktrees in one keystroke."
+
+For the review skill in a worktree workflow: the reviewer should operate on the worktree's files, not the main branch. Specify the working directory explicitly in the skill invocation rather than assuming CWD.
+
+### 18.6 The "Drunk PhD Students" Insight for Skill Placement
+
+From bedel99 (144 upvotes, 30YOE):
+> "You need 30 years of experience to know when it's drunk. It doesn't slur its speech, it doesn't smell. It just confidently goes and does batshit crazy, and argues it's right. I still read every line of code it writes, to make sure it's not being mad."
+
+And from andlewis:
+> "Put tight guardrails up and let 'er rip!"
+
+The review skill is one of those guardrails. The insight about "confidently goes batshit crazy" is the core reason the skill needs to run in a **fresh context with no accumulated task state** — the reviewer hasn't been running for hours in the same task, doesn't have the same assumptions, and isn't invested in defending the previous decisions.
+
+The OP also mentions building "a director app managing multiple sessions, almost 30 tools." The review skill should be designed to be **callable from such a director** — clean JSON-compatible output so a coordinator can parse findings programmatically, not just display them to a human.
+
+### 18.7 What Makes This Skill Different from Existing Ones
+
+Synthesized from all four rounds, the differentiators for this skill vs. anything currently in the ecosystem:
+
+| Property | Official `code-review` plugin | PR-style tools | This skill |
+|---|---|---|---|
+| Input | Diff / PR | Diff / PR | Full file(s) |
+| Reviewer context | Same session | Same session | **Fresh subagent** |
+| Agent-specific checks | No | No | **Yes** (timing hacks, bloat, scope inflation) |
+| Iterative mode | No | No | **Yes** (per-pass, cheap, max 3 findings) |
+| Architectural context | No | PR description | **Explicit context block** |
+| File size handling | Not specified | Not specified | **3-tier by line count** |
+| Output format | Prose | Prose | **Structured: [SEVERITY] file:line — problem — fix hint** |
+| Trigger | Manual | PR hook | **Explicit invocation (not PostToolUse hook)** |
+
+### 18.8 Skill Prompt Architecture (Final)
+
+Based on everything, the skill's reviewer prompt has four parts, in this order:
+
+```
+1. ROLE (3 lines max)
+   "You are a senior [language] developer reviewing agent-generated code.
+   You are operating in [MODE] mode.
+   You have no prior context from the session that produced this code."
+
+2. CONTEXT BLOCK (caller-provided)
+   "## What this code does
+   [purpose / caller / external systems / known risks]"
+
+3. CONSTRAINTS (mode-specific, self-contained)
+   "## Review criteria
+   [check list for this mode — no CLAUDE.md references]
+   Max [N] findings. Format: [SEVERITY] file:line — problem — fix hint.
+   ✅ if nothing critical found."
+
+4. CODE
+   "## Code under review
+   [full file contents or summarized sections for large files]"
+```
+
+Order matters: role → context → constraints → code. The model primes its reviewer identity before seeing the code, not after.
+
+---
+
 ## 17. Final Consolidated Skill Design
 
 Drawing all three rounds together:
