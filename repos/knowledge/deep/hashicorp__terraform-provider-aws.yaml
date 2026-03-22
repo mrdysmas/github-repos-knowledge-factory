@@ -1,0 +1,154 @@
+name: terraform-provider-aws
+node_id: "repo::hashicorp/terraform-provider-aws"
+github_full_name: hashicorp/terraform-provider-aws
+html_url: https://github.com/hashicorp/terraform-provider-aws
+source: remote_metadata
+category: plugin_ecosystem
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep/hashicorp__terraform-provider-aws.yaml
+  as_of: "2026-03-22"
+  sourcing_method: knowledge_verified
+  extraction_model: claude-sonnet-4-6
+  extraction_agent: codex
+
+# --- STRUCTURE ---
+
+architecture:
+  overview: |
+    Flat Terraform provider plugin implemented in Go using the Terraform Plugin Framework
+    (and legacy Plugin SDK for older resources). Exposes 1000+ AWS resources and data
+    sources organized in 263 per-service subdirectories under internal/service/. The
+    provider registers all resources/data-sources with Terraform via the ProviderFunc
+    in internal/provider/. Generated documentation lives in website/docs/.
+  module_breakdown:
+    - module: internal/provider
+      responsibility: Provider entry point — registers all resource/data-source schemas
+        with Terraform; handles provider-level configuration (region, credentials, endpoints)
+      key_files: [internal/provider/provider.go]
+    - module: internal/service
+      responsibility: Per-service resource and data-source implementations; 263 subdirectories
+        (s3, ec2, iam, rds, lambda, etc.) each containing CRUD lifecycle funcs and schema
+      key_files: [internal/service/s3/, internal/service/ec2/, internal/service/iam/]
+    - module: internal/conns
+      responsibility: Shared AWS API client construction; maps Terraform provider config to
+        aws-sdk-go-v2 session and per-service clients
+      key_files: [internal/conns/awsclient.go]
+    - module: website/docs
+      responsibility: Generated HCL documentation for all resources and data sources; source
+        for registry.terraform.io/providers/hashicorp/aws documentation
+      key_files: [website/docs/r/, website/docs/d/]
+  key_abstractions:
+    - name: resource.Resource (Plugin Framework)
+      purpose: Interface each resource implements — Schema(), Create(), Read(), Update(), Delete(), ImportState()
+    - name: datasource.DataSource (Plugin Framework)
+      purpose: Interface each data source implements — Schema(), Read()
+    - name: AWSClient struct
+      purpose: Shared connection pool — holds per-service clients and provider config (region, assume_role, endpoints)
+
+key_features:
+  - 1000+ AWS resources and data sources across all major AWS services
+  - Flat plugin architecture — 263 per-service subdirectories under internal/service/
+  - Terraform Plugin Framework (SDKv2 for legacy, framework for new resources)
+  - Resource import support (terraform import) for most resources
+  - Automatic endpoint override for custom/local AWS endpoints (LocalStack, custom VPC endpoints)
+  - Provider-level assume_role and assume_role_with_web_identity for cross-account access
+  - Generated HCL attribute documentation on registry.terraform.io
+
+key_files:
+  - path: internal/provider/provider.go
+    description: Provider registration — lists all resources/data-sources and provider schema
+  - path: internal/conns/awsclient.go
+    description: AWSClient construction — creates per-service SDK clients from provider config
+  - path: internal/service/s3/bucket.go
+    description: aws_s3_bucket resource — S3 bucket lifecycle (Create/Read/Update/Delete)
+  - path: internal/service/ec2/instance.go
+    description: aws_instance resource — EC2 instance lifecycle
+  - path: internal/service/iam/role.go
+    description: aws_iam_role resource — IAM role lifecycle
+
+# --- TASKS ---
+
+common_tasks:
+  - task: Configure the AWS provider with credentials and region
+    steps:
+      - Add provider "aws" block with region and optional profile/access_key/secret_key
+      - For OIDC/GitHub Actions use assume_role_with_web_identity in provider block
+      - Set AWS_PROFILE or AWS_ACCESS_KEY_ID env vars for local use
+    key_files: [internal/provider/provider.go]
+
+  - task: Import an existing AWS resource into Terraform state
+    steps:
+      - Add the resource block to Terraform config without running apply
+      - Run terraform import aws_s3_bucket.example my-bucket-name
+      - Run terraform plan to verify no drift between imported state and config
+    key_files: [internal/service/s3/bucket.go]
+
+  - task: Use a data source to look up an existing AWS resource
+    steps:
+      - Add data "aws_ami" "latest" {} block with filter expressions
+      - Reference via data.aws_ami.latest.id in resource arguments
+    key_files: [internal/service/ec2/ami_data_source.go]
+
+  - task: Override provider endpoints for LocalStack or custom VPC endpoints
+    steps:
+      - Add endpoints block inside provider "aws" with per-service URL overrides
+      - Set skip_credentials_validation = true and skip_requesting_account_id = true for LocalStack
+    key_files: [internal/provider/provider.go]
+
+# --- FAILURES ---
+
+troubleshooting:
+  - issue: NoCredentialProviders — provider cannot find AWS credentials
+    symptom: Error configuring Terraform AWS Provider — no valid credential sources found
+    cause: AWS_ACCESS_KEY_ID/AWS_SECRET_ACCESS_KEY not set; no ~/.aws/credentials; EC2 instance
+      metadata service unreachable; or profile name misspelled
+    solution: Verify env vars or AWS config file; use aws sts get-caller-identity to confirm
+      credentials resolve outside Terraform; set profile in provider block explicitly
+
+  - issue: AuthorizationError — access denied on resource operation
+    symptom: AccessDeniedException or UnauthorizedOperation during plan or apply
+    cause: IAM policy attached to the principal does not include the required action (e.g.
+      s3:CreateBucket); or resource-level condition blocks the principal
+    solution: Run aws iam simulate-principal-policy to identify missing permissions; attach
+      the required policy to the role/user and re-run apply
+
+  - issue: ResourceConflict — resource already exists outside Terraform state
+    symptom: EntityAlreadyExists or BucketAlreadyExists during apply
+    cause: Resource was created manually or by another Terraform workspace; not in current state
+    solution: Run terraform import to bring the existing resource under management; or rename
+      the resource in Terraform config to use a unique name
+
+  - issue: Rate limiting — ThrottlingException or TooManyRequests during large applies
+    symptom: RequestLimitExceeded errors on EC2 or IAM describe calls during plan/apply
+    cause: Large Terraform plans with many resources trigger AWS API rate limits on describe/list
+    solution: Use -parallelism flag to reduce concurrent operations (default 10); split large
+      workspaces; add retry_mode = "adaptive" to provider block
+
+  - issue: State drift — resource modified outside Terraform
+    symptom: terraform plan shows unexpected changes on next run after manual console edits
+    cause: Resource attributes changed outside Terraform lifecycle; state no longer matches reality
+    solution: Run terraform refresh or use -refresh-only plan to reconcile state; adjust
+      lifecycle.ignore_changes for attributes that change externally
+
+# --- PROTOCOLS ---
+
+api_protocols:
+  - AWS REST API with Signature v4
+  - Terraform Plugin Protocol
+
+supported_protocols:
+  - name: AWS REST API with Signature v4
+    role: All resource CRUD operations call AWS service APIs via aws-sdk-go-v2; requests are
+      signed with SigV4 using credentials resolved from the provider configuration chain
+  - name: Terraform Plugin Protocol (gRPC)
+    role: Provider communicates with Terraform CLI via gRPC Plugin Protocol v5/v6;
+      resources register schema and lifecycle handlers through the Plugin Framework interface
+
+extension_points:
+  - name: Terraform provider plugin interface
+    description: hashicorp/terraform-plugin-framework resource.Resource and datasource.DataSource
+      interfaces are the plugin contract; all 1000+ resources implement Create/Read/Update/Delete/ImportState
+  - name: Endpoint overrides
+    description: Provider endpoints block allows replacing any service URL, enabling LocalStack,
+      custom VPC interface endpoints, or AWS GovCloud endpoint routing

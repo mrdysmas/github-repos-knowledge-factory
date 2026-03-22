@@ -4,9 +4,9 @@ contract_version: 1.0.0-ws1
 metadata:
   source_shards:
   - repos
-  total_repos: 123
+  total_repos: 126
   repo_counts_by_shard:
-    repos: 123
+    repos: 126
   category_counts:
     agent_cli: 13
     agent_framework: 8
@@ -25,14 +25,17 @@ metadata:
     evaluation: 1
     fine_tuning: 1
     inference_serving: 6
+    k8s_operator: 1
     machine_learning: 2
     nearest_neighbor_search: 1
     network_infrastructure: 3
     network_utils: 2
     office_automation: 2
+    plugin_ecosystem: 1
     rag_frameworks: 7
     relational_database: 1
     remote_access: 4
+    sdk_client: 1
     snippet_collection: 1
     static_site_generator: 1
     structured_outputs: 4
@@ -625,6 +628,36 @@ repos:
         precedence: api_wins_readme_for_missing_required_fields
         fallback_source: readme_fallback
         fallback_used: false
+- node_id: repo::clerk/javascript
+  github_full_name: clerk/javascript
+  html_url: https://github.com/clerk/javascript
+  source: compiled_master
+  name: clerk/javascript
+  category: sdk_client
+  summary: "Official Clerk JavaScript SDK monorepo \u2014 per-platform auth/user-management\
+    \ client libraries."
+  core_concepts:
+  - authentication SDK
+  - session management
+  - user management
+  - OAuth2/OIDC integration
+  key_entry_points:
+  - packages/clerk-js/src/index.ts
+  build_run:
+    language: typescript
+    build: pnpm build
+    test: pnpm test
+  provenance:
+    shard: merged
+    source_file: repos/knowledge/repos/clerk__javascript.yaml
+    as_of: '2026-03-22'
+  local_cache_dir: null
+  extras:
+    directory: remote::clerk/javascript
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
 - node_id: repo::cloudflare/cloudflared
   github_full_name: cloudflare/cloudflared
   html_url: https://github.com/cloudflare/cloudflared
@@ -1225,6 +1258,52 @@ repos:
     - Healthcare patient interactions
     - Legal tech with precise responses
     - E-commerce at scale
+- node_id: repo::external-secrets/external-secrets
+  github_full_name: external-secrets/external-secrets
+  html_url: https://github.com/external-secrets/external-secrets
+  source: compiled_master
+  name: external-secrets
+  category: k8s_operator
+  summary: 'Kubernetes operator that syncs secrets from external backends (AWS Secrets
+    Manager, HashiCorp Vault, GCP Secret Manager, and others) into native Kubernetes
+    Secrets via CRDs (ExternalSecret, ClusterExternalSecret, SecretStore, ClusterSecretStore).
+
+    '
+  core_concepts:
+  - Kubernetes operator pattern with controller-runtime
+  - CRD-based secret synchronization
+  - Multi-backend provider abstraction
+  key_entry_points:
+  - README.md
+  - apis/externalsecrets/v1beta1/
+  - pkg/provider/
+  build_run:
+    language: go
+    build: make build
+    test: make test
+  provenance:
+    shard: merged
+    source_file: repos/knowledge/repos/external-secrets__external-secrets.yaml
+    as_of: '2026-03-22T00:00:00Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::external-secrets/external-secrets
+    intake:
+      pilot_batch_id: PHASE-5-4EM-CALIBRATION
+      repo_id: repo::external-secrets/external-secrets
+      queue_id: intake::external-secrets/external-secrets
+      domain_hint: k8s_operator
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-22T00:00:00Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/external-secrets/external-secrets
+      fetched_at_utc: '2026-03-22T00:00:00Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
 - node_id: repo::fatedier/frp
   github_full_name: fatedier/frp
   html_url: https://github.com/fatedier/frp
@@ -1764,6 +1843,50 @@ repos:
       precedence: api_wins_readme_for_missing_required_fields
       fallback_source: readme_fallback
       fallback_used: false
+- node_id: repo::hashicorp/terraform-provider-aws
+  github_full_name: hashicorp/terraform-provider-aws
+  html_url: https://github.com/hashicorp/terraform-provider-aws
+  source: compiled_master
+  name: terraform-provider-aws
+  category: plugin_ecosystem
+  summary: "Official Terraform AWS provider \u2014 flat plugin exposing 1000+ AWS\
+    \ resources and data sources as Terraform configuration. Implements the Terraform\
+    \ Plugin Framework/SDK, with 263 per-service subdirectories under internal/service/.\n"
+  core_concepts:
+  - Terraform provider plugin pattern
+  - AWS API resource lifecycle management
+  - HCL resource/data source schema
+  key_entry_points:
+  - internal/provider/provider.go
+  - internal/service/
+  - website/docs/
+  build_run:
+    language: go
+    build: make build
+    test: make test
+  provenance:
+    shard: merged
+    source_file: repos/knowledge/repos/hashicorp__terraform-provider-aws.yaml
+    as_of: '2026-03-22T00:00:00Z'
+  local_cache_dir: null
+  extras:
+    directory: remote::hashicorp/terraform-provider-aws
+    intake:
+      pilot_batch_id: PHASE-5-4EM-CALIBRATION
+      repo_id: repo::hashicorp/terraform-provider-aws
+      queue_id: intake::hashicorp/terraform-provider-aws
+      domain_hint: plugin_ecosystem
+      source_mode: remote_metadata
+      observed_at_utc: '2026-03-22T00:00:00Z'
+    remote:
+      provider: github
+      mode: metadata
+      endpoint: /repos/hashicorp/terraform-provider-aws
+      fetched_at_utc: '2026-03-22T00:00:00Z'
+      refresh:
+        precedence: api_wins_readme_for_missing_required_fields
+        fallback_source: readme_fallback
+        fallback_used: false
 - node_id: repo::henryboldi/felony
   github_full_name: henryboldi/felony
   html_url: https://github.com/henryboldi/felony

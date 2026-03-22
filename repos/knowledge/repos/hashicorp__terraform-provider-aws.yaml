@@ -1,0 +1,45 @@
+name: terraform-provider-aws
+node_id: repo::hashicorp/terraform-provider-aws
+github_full_name: hashicorp/terraform-provider-aws
+html_url: https://github.com/hashicorp/terraform-provider-aws
+source: remote_metadata
+category: plugin_ecosystem
+provenance:
+  shard: repos
+  source_file: repos/knowledge/repos/hashicorp__terraform-provider-aws.yaml
+  as_of: '2026-03-22T00:00:00Z'
+directory: remote::hashicorp/terraform-provider-aws
+summary: >
+  Official Terraform AWS provider — flat plugin exposing 1000+ AWS resources and data
+  sources as Terraform configuration. Implements the Terraform Plugin Framework/SDK,
+  with 263 per-service subdirectories under internal/service/.
+core_concepts:
+  - Terraform provider plugin pattern
+  - AWS API resource lifecycle management
+  - HCL resource/data source schema
+key_entry_points:
+  - internal/provider/provider.go
+  - internal/service/
+  - website/docs/
+build_run:
+  language: go
+  build: make build
+  test: make test
+local_cache_dir: null
+extras:
+  intake:
+    pilot_batch_id: PHASE-5-4EM-CALIBRATION
+    repo_id: repo::hashicorp/terraform-provider-aws
+    queue_id: intake::hashicorp/terraform-provider-aws
+    domain_hint: plugin_ecosystem
+    source_mode: remote_metadata
+    observed_at_utc: '2026-03-22T00:00:00Z'
+  remote:
+    provider: github
+    mode: metadata
+    endpoint: /repos/hashicorp/terraform-provider-aws
+    fetched_at_utc: '2026-03-22T00:00:00Z'
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false

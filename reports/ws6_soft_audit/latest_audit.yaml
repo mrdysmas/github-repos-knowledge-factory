@@ -1,6 +1,6 @@
 audit_metadata:
-  generated_at: '2026-03-22T07:54:26Z'
-  total_repos: 122
+  generated_at: '2026-03-22T08:20:56Z'
+  total_repos: 126
   archetypes_checked:
   - inference_serving
   - vector_database
@@ -18,10 +18,10 @@ audit_metadata:
   - sdk_library
   - k8s_operator
   - plugin_ecosystem
-  repos_matched: 91
+  repos_matched: 95
   repos_unmatched: 31
-  repos_thin: 0
-  repos_full: 91
+  repos_thin: 1
+  repos_full: 94
 summary_by_archetype:
   inference_serving:
     total: 6
@@ -49,10 +49,11 @@ summary_by_archetype:
     thin: 0
     thin_repos: []
   rag_frameworks:
-    total: 6
+    total: 7
     full: 6
-    thin: 0
-    thin_repos: []
+    thin: 1
+    thin_repos:
+    - vectorize-io/hindsight
   remote_access:
     total: 4
     full: 4
@@ -89,18 +90,18 @@ summary_by_archetype:
     thin: 0
     thin_repos: []
   sdk_library:
-    total: 0
-    full: 0
+    total: 1
+    full: 1
     thin: 0
     thin_repos: []
   k8s_operator:
-    total: 0
-    full: 0
+    total: 1
+    full: 1
     thin: 0
     thin_repos: []
   plugin_ecosystem:
-    total: 0
-    full: 0
+    total: 1
+    full: 1
     thin: 0
     thin_repos: []
 coverage_records:
@@ -2495,6 +2496,22 @@ coverage_records:
     in contract
   - unmapped source_section 'troubleshooting[4]' — produced facts but section not
     in contract
+- repo: vectorize-io/hindsight
+  node_id: repo::vectorize-io/hindsight
+  category: rag_frameworks
+  archetype: rag_frameworks
+  families_present: []
+  families_missing:
+  - structure
+  - tasks
+  - failures
+  predicate_check_failures: []
+  behavioral_coverage: thin
+  flags:
+  - no facts extracted — deep file may be missing or empty
+  - required family 'structure' absent — no has_component/has_config_option facts
+  - required family 'tasks' absent — no supports_task facts
+  - required family 'failures' absent — no has_failure_mode facts
 - repo: mariadb/server
   node_id: repo::mariadb/server
   category: relational_database

@@ -1,5 +1,5 @@
 artifact_type: ws6_deep_integration_validation_runs
-generated_at_utc: '2026-03-21T00:00:00Z'
+generated_at_utc: '2026-03-22T00:00:00Z'
 contract_version: 1.0.0-ws6-draft
 report_semantics:
   required_commands: Execution contract/plan only (status=PLANNED); this section is
@@ -49,14 +49,14 @@ execution_results:
     first_class
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-22T07:45:14Z'
-  duration_ms: 2108
+  ran_at_utc: '2026-03-22T08:20:13Z'
+  duration_ms: 2115
   observation: exit_code=0; ws1_contract_status_pass=true
   output_tail: "stdout_tail:\ncontracts_dir: /home/abe/scripts/ext_sources/github_repos/contracts/ws1\n\
     external_node_policy: first_class\n\nPASS checks:\n  - Contract version aligned\
     \ across WS1 artifacts: 1.0.0-ws1\n  - Source enums aligned and remote-first ready:\
     \ ['compiled_master', 'remote_api', 'remote_metadata', 'repos']\n  - Shallow/deep\
-    \ identity contract OK for repos: shallow=122 deep=121 local_deep_coverage=100%\n\
+    \ identity contract OK for repos: shallow=126 deep=124 local_deep_coverage=100%\n\
     \  - Relation mapping coverage OK: unique=12/12 rows=12/12\n  - External node\
     \ policy mode selected: first_class\n  - Edge/node consistency OK for policy 'first_class'\
     \ (dst_kind integrity enforced)\n\nWS1_CONTRACT_STATUS: PASS"
@@ -64,8 +64,8 @@ execution_results:
   command: python3 tools/trust_gates.py repos/knowledge --production
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-22T07:45:16Z'
-  duration_ms: 2083
+  ran_at_utc: '2026-03-22T08:20:15Z'
+  duration_ms: 2081
   observation: exit_code=0; overall_pass=true; ready_state_allowed_true=true
   output_tail: 'stdout_tail:
 
@@ -87,16 +87,16 @@ execution_results:
     --materialize-spec reports/ws6_deep_integration/spec.yaml
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-22T07:45:12Z'
+  ran_at_utc: '2026-03-22T08:20:11Z'
   duration_ms: 0
-  observation: ws6_gate_ready=true blocking_mismatches=0 facts_materialized=6186
+  observation: ws6_gate_ready=true blocking_mismatches=0 facts_materialized=6310
 - step: 5
   command: python3 tools/ws4_master_compiler.py --workspace-root . --master-index
     master_index.yaml --master-graph master_graph.yaml --reports-dir reports/ws4_master_build
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-22T07:45:30Z'
-  duration_ms: 13455
+  ran_at_utc: '2026-03-22T08:20:28Z'
+  duration_ms: 13333
   observation: exit_code=0; ws4_gate_ready=true
   output_tail: 'stdout_tail:
 
@@ -110,7 +110,7 @@ execution_results:
 
     reports_dir: /home/abe/scripts/ext_sources/github_repos/reports/ws4_master_build
 
-    generated_at_utc: 2026-03-21T00:00:00Z
+    generated_at_utc: 2026-03-22T00:00:00Z
 
     gate_ready: true
 
@@ -125,11 +125,11 @@ execution_results:
   command: python3 tools/query_master.py --source yaml stats
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-22T07:45:39Z'
-  duration_ms: 8841
-  observation: exit_code=0; deep_facts=6186
+  ran_at_utc: '2026-03-22T08:20:38Z'
+  duration_ms: 9252
+  observation: exit_code=0; deep_facts=6310
   output_tail: "stdout_tail:\nartifact_type: master_query_stats\ncounts:\n  repos:\
-    \ 122\n  nodes: 136\n  edges: 152\n  deep_facts: 6186\nsources:\n  master_index:\
+    \ 126\n  nodes: 140\n  edges: 152\n  deep_facts: 6310\nsources:\n  master_index:\
     \ /home/abe/scripts/ext_sources/github_repos/master_index.yaml\n  master_graph:\
     \ /home/abe/scripts/ext_sources/github_repos/master_graph.yaml\n  master_deep_facts:\
     \ /home/abe/scripts/ext_sources/github_repos/master_deep_facts.yaml"
@@ -137,13 +137,13 @@ execution_results:
   command: Re-run WS6 command with identical input and verify output hashes unchanged
   status: PASS
   exit_code: 0
-  ran_at_utc: '2026-03-22T07:45:12Z'
+  ran_at_utc: '2026-03-22T08:20:11Z'
   duration_ms: 0
   observation: hash_stability=true
 artifact_hashes:
-  master_deep_facts.yaml: 9aa5234137504b97cc54c0eaf144ce2cdad1a7bef98ce30b6df1cf08616029c3
-  reports/ws6_deep_integration/coverage.yaml: 737aa50a4c99d609975c9084350b552ff0cd29f45aaa17ba8759f5830c7f9f94
-  reports/ws6_deep_integration/mismatch_report.yaml: 67be684152d1fcfb64c7eba94e7e714975709656d553b5ece0a110d05b6bfeeb
+  master_deep_facts.yaml: 5acf103c3177ea90730256fe3320ad8790970c2fb960b78005ae1fe606344851
+  reports/ws6_deep_integration/coverage.yaml: c0cdf576df39a436260e2ac22b2fc0d612797aa3b86d7bea153a18b60a4391ac
+  reports/ws6_deep_integration/mismatch_report.yaml: af28f395d4f381de2729e4f1dc2cb4882b7df12762eaff8fb63884af2e8170e2
   repos/knowledge/deep_facts/JeecgBoot.yaml: d262275eb1cd29cc0ebcc53fe545e9c04378fab39f5034bdcb2c494b8df78242
   repos/knowledge/deep_facts/Prompt-Engineering-Guide.yaml: 51ba3af34fc1c235cee9f04d3cfc10a14a43e857928c2147c6384588ef255e80
   repos/knowledge/deep_facts/abhigyanpatwari__gitnexus.yaml: f3097fca86984467b7485f70224256bde2f7f7831e9ed3a80fd0c5bc7ec0f1d3
@@ -164,12 +164,14 @@ artifact_hashes:
   repos/knowledge/deep_facts/ccs.yaml: b6589b98bb53e8b44900a3980b4d46103b830fa749af2998869a1ce80ca73515
   repos/knowledge/deep_facts/claude-code-tips.yaml: 296f22ddddec06c31c694cb07e1ffad8e27b1e8fd6ebc4445ff0ada903d53092
   repos/knowledge/deep_facts/claude-mem.yaml: 70b6eb204796e62c619ec4e2d50213d88c068a88ca550f6f8120b2f2fdef6c1b
+  repos/knowledge/deep_facts/clerk__javascript.yaml: 773b264996366d4e775b02179abd7d20d81ab39384f76919f5592249ca399359
   repos/knowledge/deep_facts/cloudflared.yaml: dbbc2e41882cf894c2cf74c9ee750574c06f68c88e77f013b74daf04f71b4097
   repos/knowledge/deep_facts/codemoot.yaml: e35ccd6bdc7163dd3d77a7386d17438660bc6c6760047a6834f0ad62c9a300e2
   repos/knowledge/deep_facts/coder__code-server.yaml: 0d230c83e8bd15b16cc91150970d297b27038fe547be39e66e5e11e167ee8e54
   repos/knowledge/deep_facts/composiohq__awesome-claude-skills.yaml: 6ec6ad5fd478ea49e1c56958adaf3a216fc44ca974a2f8c19e203dd10936a1ec
   repos/knowledge/deep_facts/containers__podman.yaml: 0b5572413cedc106e5371611b584b3e28b697baf6df2874aa763cda46a82a053
   repos/knowledge/deep_facts/dottxt-ai__outlines.yaml: 5e90cac04ecb72df2130ef82ee738c48bda97082797a5ea0ab607c92b36daef3
+  repos/knowledge/deep_facts/external-secrets__external-secrets.yaml: 5581555677c817ffb770410cb4bb18b2247541cc867fd88f39f0cf2f3247de12
   repos/knowledge/deep_facts/felony.yaml: 58e47062970390653b6904c5fc7867e8d0fb18b2803f46da5b5deec59842e97e
   repos/knowledge/deep_facts/flowiseai__flowise.yaml: fa8b640247e914652416f54d4d1c60d10e6acf10628098ccb2d9a17b78c99957
   repos/knowledge/deep_facts/frp.yaml: adb33acb92d90e8b68f6905a28f5d3f918da689df84bb5f931d6c64f1b34ef56
@@ -179,6 +181,7 @@ artifact_hashes:
   repos/knowledge/deep_facts/gohugoio__hugo.yaml: 45b21bd626c1e1dad051ca425ef6c76ea62f2012becaa705929eece4018687eb
   repos/knowledge/deep_facts/gost.yaml: 6fb95d25e99e1a92c2333e55432bf6d295e7a37cb24006942f8d12e4cb023a1c
   repos/knowledge/deep_facts/graphrag.yaml: cba2ca9facbe05b3e363ac38cd5ecee5e3c8869412dcdc7a62f660c3bc090fa6
+  repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml: bfafb38bfa70df94af333e3d355f973255c5c62d9cd4f60e9f43c59d18dc038f
   repos/knowledge/deep_facts/headscale.yaml: dfdbbfa7a15954621cc5889b57b8086f82375358f8a0eda9e6ceec79a2043e4c
   repos/knowledge/deep_facts/hiddify-app.yaml: bb9c25b72a3bb0aa44b08ec357a106ea6a18330cc708a9e1e0e04852fbbb9033
   repos/knowledge/deep_facts/hsync.yaml: 2b7e76d59c5ff6506b4aa2b5b09c12c813b5420cd72204a523fd04568eb76960

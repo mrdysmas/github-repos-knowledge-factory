@@ -1,12 +1,12 @@
 artifact_type: ws6_deep_integration_mismatch_report
-generated_at_utc: '2026-03-21T00:00:00Z'
+generated_at_utc: '2026-03-22T00:00:00Z'
 contract_version: 1.0.0-ws6-draft
 summary:
   blocking_mismatches_count: 0
   non_blocking_mismatches_count: 81
   unknown_predicates_count: 0
   unmapped_sections_count: 81
-  dropped_facts_count: 0
+  dropped_facts_count: 7
 blocking_findings: []
 non_blocking_findings:
 - severity: non_blocking
@@ -576,7 +576,63 @@ non_blocking_findings:
   repo_node_id: repo::zilliztech/vectordbbench
   detail: section 'augmentation_provenance' has no WS6 extractor
   section: augmentation_provenance
-dropped_facts: []
+dropped_facts:
+- reason: duplicate_derived_merged
+  repo_node_id: repo::clerk/javascript
+  source_file: repos/knowledge/deep/clerk__javascript.yaml
+  fact_summary:
+    fact_type: protocol_usage
+    predicate: uses_protocol
+    object_kind: protocol
+    object_value: JWT
+- reason: duplicate_derived_merged
+  repo_node_id: repo::clerk/javascript
+  source_file: repos/knowledge/deep/clerk__javascript.yaml
+  fact_summary:
+    fact_type: protocol_usage
+    predicate: uses_protocol
+    object_kind: protocol
+    object_value: OAuth2
+- reason: duplicate_derived_merged
+  repo_node_id: repo::clerk/javascript
+  source_file: repos/knowledge/deep/clerk__javascript.yaml
+  fact_summary:
+    fact_type: protocol_usage
+    predicate: uses_protocol
+    object_kind: protocol
+    object_value: OIDC
+- reason: duplicate_derived_merged
+  repo_node_id: repo::external-secrets/external-secrets
+  source_file: repos/knowledge/deep/external-secrets__external-secrets.yaml
+  fact_summary:
+    fact_type: protocol_usage
+    predicate: uses_protocol
+    object_kind: protocol
+    object_value: AWS Secrets Manager API
+- reason: duplicate_derived_merged
+  repo_node_id: repo::external-secrets/external-secrets
+  source_file: repos/knowledge/deep/external-secrets__external-secrets.yaml
+  fact_summary:
+    fact_type: protocol_usage
+    predicate: uses_protocol
+    object_kind: protocol
+    object_value: GCP Secret Manager API
+- reason: duplicate_derived_merged
+  repo_node_id: repo::external-secrets/external-secrets
+  source_file: repos/knowledge/deep/external-secrets__external-secrets.yaml
+  fact_summary:
+    fact_type: protocol_usage
+    predicate: uses_protocol
+    object_kind: protocol
+    object_value: HashiCorp Vault API
+- reason: duplicate_derived_merged
+  repo_node_id: repo::hashicorp/terraform-provider-aws
+  source_file: repos/knowledge/deep/hashicorp__terraform-provider-aws.yaml
+  fact_summary:
+    fact_type: protocol_usage
+    predicate: uses_protocol
+    object_kind: protocol
+    object_value: AWS REST API with Signature v4
 duplicate_fact_ids: []
 gate_bools:
   deep_facts_parseable: true

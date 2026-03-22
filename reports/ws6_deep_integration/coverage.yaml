@@ -1,17 +1,17 @@
 artifact_type: ws6_deep_integration_coverage
-generated_at_utc: '2026-03-21T00:00:00Z'
+generated_at_utc: '2026-03-22T00:00:00Z'
 contract_version: 1.0.0-ws6-draft
 input_scope:
-  deep_narrative_files_total: 121
+  deep_narrative_files_total: 124
   deep_fact_draft_files_total: 0
-  repos_with_any_deep_inputs: 121
-  repos_materialized: 121
+  repos_with_any_deep_inputs: 124
+  repos_materialized: 124
 metrics:
-  facts_materialized_total: 6186
+  facts_materialized_total: 6310
   facts_with_evidence_pct: 100.0
   confidence_bounds_valid_pct: 100.0
   draft_overrides_count: 0
-  derived_dedupe_merges_count: 0
+  derived_dedupe_merges_count: 7
   unmapped_sections_count: 81
   unmapped_sections_by_repo:
     repo::1panel-dev/maxkb: 4
@@ -274,6 +274,19 @@ metrics:
     facts_emitted: 76
     blocked_facts: 0
     unmapped_sections_count: 1
+  - node_id: repo::clerk/javascript
+    github_full_name: clerk/javascript
+    shard: repos
+    narrative_files: 1
+    draft_files: 0
+    narrative_facts_raw: 61
+    draft_facts_raw: 0
+    derived_facts_after_dedupe: 58
+    draft_overrides: 0
+    evidence_merges: 3
+    facts_emitted: 58
+    blocked_facts: 0
+    unmapped_sections_count: 0
   - node_id: repo::cloudflare/cloudflared
     github_full_name: cloudflare/cloudflared
     shard: repos
@@ -430,6 +443,19 @@ metrics:
     facts_emitted: 22
     blocked_facts: 0
     unmapped_sections_count: 3
+  - node_id: repo::external-secrets/external-secrets
+    github_full_name: external-secrets/external-secrets
+    shard: repos
+    narrative_files: 1
+    draft_files: 0
+    narrative_facts_raw: 36
+    draft_facts_raw: 0
+    derived_facts_after_dedupe: 33
+    draft_overrides: 0
+    evidence_merges: 3
+    facts_emitted: 33
+    blocked_facts: 0
+    unmapped_sections_count: 0
   - node_id: repo::fatedier/frp
     github_full_name: fatedier/frp
     shard: repos
@@ -586,6 +612,19 @@ metrics:
     facts_emitted: 72
     blocked_facts: 0
     unmapped_sections_count: 1
+  - node_id: repo::hashicorp/terraform-provider-aws
+    github_full_name: hashicorp/terraform-provider-aws
+    shard: repos
+    narrative_files: 1
+    draft_files: 0
+    narrative_facts_raw: 34
+    draft_facts_raw: 0
+    derived_facts_after_dedupe: 33
+    draft_overrides: 0
+    evidence_merges: 1
+    facts_emitted: 33
+    blocked_facts: 0
+    unmapped_sections_count: 0
   - node_id: repo::henryboldi/felony
     github_full_name: henryboldi/felony
     shard: repos
@@ -1674,12 +1713,14 @@ actions:
   - repos/knowledge/deep_facts/ccs.yaml
   - repos/knowledge/deep_facts/claude-code-tips.yaml
   - repos/knowledge/deep_facts/claude-mem.yaml
+  - repos/knowledge/deep_facts/clerk__javascript.yaml
   - repos/knowledge/deep_facts/cloudflared.yaml
   - repos/knowledge/deep_facts/codemoot.yaml
   - repos/knowledge/deep_facts/coder__code-server.yaml
   - repos/knowledge/deep_facts/composiohq__awesome-claude-skills.yaml
   - repos/knowledge/deep_facts/containers__podman.yaml
   - repos/knowledge/deep_facts/dottxt-ai__outlines.yaml
+  - repos/knowledge/deep_facts/external-secrets__external-secrets.yaml
   - repos/knowledge/deep_facts/felony.yaml
   - repos/knowledge/deep_facts/flowiseai__flowise.yaml
   - repos/knowledge/deep_facts/frp.yaml
@@ -1689,6 +1730,7 @@ actions:
   - repos/knowledge/deep_facts/gohugoio__hugo.yaml
   - repos/knowledge/deep_facts/gost.yaml
   - repos/knowledge/deep_facts/graphrag.yaml
+  - repos/knowledge/deep_facts/hashicorp__terraform-provider-aws.yaml
   - repos/knowledge/deep_facts/headscale.yaml
   - repos/knowledge/deep_facts/hiddify-app.yaml
   - repos/knowledge/deep_facts/hsync.yaml
