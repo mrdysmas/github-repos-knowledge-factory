@@ -92,10 +92,8 @@ facts:
   - kind: file_block
     ref: key_features[0]
     source_file: repos/knowledge/deep/wetty.yaml
-    excerpt: Browser-based terminal over HTTP/HTTPS using xterm.js and WebSockets
-      (Socket.IO)
-  object_value: Browser-based terminal over HTTP/HTTPS using xterm.js and WebSockets
-    (Socket.IO)
+    excerpt: Browser-based terminal over HTTP/HTTPS using xterm.js and WebSockets (Socket.IO)
+  object_value: Browser-based terminal over HTTP/HTTPS using xterm.js and WebSockets (Socket.IO)
   fact_id: fact::948537231459344a09daef42
 - fact_type: component
   predicate: has_component
@@ -174,8 +172,7 @@ facts:
   - kind: file_block
     ref: architecture.key_abstractions[0]
     source_file: repos/knowledge/deep/wetty.yaml
-    excerpt: Bidirectional flow control preventing buffer overflow between PTY and
-      WebSocket
+    excerpt: Bidirectional flow control preventing buffer overflow between PTY and WebSocket
   object_value: FlowControlServer / FlowControlClient
   note: Bidirectional flow control preventing buffer overflow between PTY and WebSocket
   fact_id: fact::a1e4d60fcfcb8a7956fa445d
@@ -241,10 +238,8 @@ facts:
   - kind: file_block
     ref: key_features[8]
     source_file: repos/knowledge/deep/wetty.yaml
-    excerpt: Prometheus metrics endpoint (/wetty/metrics) with connection gauge and
-      GC stats
-  object_value: Prometheus metrics endpoint (/wetty/metrics) with connection gauge
-    and GC stats
+    excerpt: Prometheus metrics endpoint (/wetty/metrics) with connection gauge and GC stats
+  object_value: Prometheus metrics endpoint (/wetty/metrics) with connection gauge and GC stats
   fact_id: fact::af73c2bd8925d64cb0444598
 - fact_type: component
   predicate: has_component
@@ -259,10 +254,8 @@ facts:
   - kind: file_block
     ref: key_features[1]
     source_file: repos/knowledge/deep/wetty.yaml
-    excerpt: SSH gateway - connects to remote hosts via ssh or local /bin/login when
-      running as root
-  object_value: SSH gateway - connects to remote hosts via ssh or local /bin/login
-    when running as root
+    excerpt: SSH gateway - connects to remote hosts via ssh or local /bin/login when running as root
+  object_value: SSH gateway - connects to remote hosts via ssh or local /bin/login when running as root
   fact_id: fact::3da8dc2cb1e52cad76a1f20f
 - fact_type: component
   predicate: has_component
@@ -663,44 +656,11 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[6]
     source_file: repos/knowledge/deep/wetty.yaml
-    excerpt: Browser client - xterm.js terminal, Socket.IO connection, file download,
-      mobile keyboard
+    excerpt: Browser client - xterm.js terminal, Socket.IO connection, file download, mobile keyboard
   object_value: src/client/wetty.ts
-  note: 'responsibility: Browser client - xterm.js terminal, Socket.IO connection,
-    file download, mobile keyboard; key_files: src/client/wetty.ts'
+  note: 'responsibility: Browser client - xterm.js terminal, Socket.IO connection, file download, mobile keyboard; key_files:
+    src/client/wetty.ts'
   fact_id: fact::3db0140fad0544a32b46862c
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-17'
-  provenance:
-    source_file: repos/knowledge/deep/wetty.yaml
-    source_section: key_files[6]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[6]
-    source_file: repos/knowledge/deep/wetty.yaml
-    excerpt: src/client/wetty.ts
-  object_value: src/client/wetty.ts
-  fact_id: fact::da5de10162fc88b4cc0f01ab
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-17'
-  provenance:
-    source_file: repos/knowledge/deep/wetty.yaml
-    source_section: key_files[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[0]
-    source_file: repos/knowledge/deep/wetty.yaml
-    excerpt: src/main.ts
-  object_value: src/main.ts
-  fact_id: fact::4471a0192dcabb26b97fd1fa
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -716,25 +676,8 @@ facts:
     source_file: repos/knowledge/deep/wetty.yaml
     excerpt: CLI entry point - parses yargs options, loads config, starts server
   object_value: src/main.ts
-  note: 'responsibility: CLI entry point - parses yargs options, loads config, starts
-    server; key_files: src/main.ts'
+  note: 'responsibility: CLI entry point - parses yargs options, loads config, starts server; key_files: src/main.ts'
   fact_id: fact::531f681dd1fbcfb111ac419f
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-17'
-  provenance:
-    source_file: repos/knowledge/deep/wetty.yaml
-    source_section: key_files[1]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[1]
-    source_file: repos/knowledge/deep/wetty.yaml
-    excerpt: src/server.ts
-  object_value: src/server.ts
-  fact_id: fact::7500413d3b07addfb94c6189
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -748,11 +691,10 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[0]
     source_file: repos/knowledge/deep/wetty.yaml
-    excerpt: Main server module - creates Express app, sets up Socket.IO, spawns PTY
-      on connection
+    excerpt: Main server module - creates Express app, sets up Socket.IO, spawns PTY on connection
   object_value: src/server.ts
-  note: 'responsibility: Main server module - creates Express app, sets up Socket.IO,
-    spawns PTY on connection; key_files: src/server.ts'
+  note: 'responsibility: Main server module - creates Express app, sets up Socket.IO, spawns PTY on connection; key_files:
+    src/server.ts'
   fact_id: fact::8658c79c7eb5125d398f852b
 - fact_type: component
   predicate: has_component
@@ -767,44 +709,10 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[4]
     source_file: repos/knowledge/deep/wetty.yaml
-    excerpt: Command builder - determines ssh vs login command based on host/user/root
-      status
+    excerpt: Command builder - determines ssh vs login command based on host/user/root status
   object_value: src/server/command.ts
-  note: 'responsibility: Command builder - determines ssh vs login command based on
-    host/user/root status; key_files: src/server/command.ts'
+  note: 'responsibility: Command builder - determines ssh vs login command based on host/user/root status; key_files: src/server/command.ts'
   fact_id: fact::1ff91c5f366514df73fea229
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-17'
-  provenance:
-    source_file: repos/knowledge/deep/wetty.yaml
-    source_section: key_files[4]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[4]
-    source_file: repos/knowledge/deep/wetty.yaml
-    excerpt: src/server/command.ts
-  object_value: src/server/command.ts
-  fact_id: fact::5f3904dfee9c4e294237e859
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-17'
-  provenance:
-    source_file: repos/knowledge/deep/wetty.yaml
-    source_section: key_files[5]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[5]
-    source_file: repos/knowledge/deep/wetty.yaml
-    excerpt: src/server/flowcontrol.ts
-  object_value: src/server/flowcontrol.ts
-  fact_id: fact::2bd01e7b2029a9e62a77f504
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -818,11 +726,9 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[5]
     source_file: repos/knowledge/deep/wetty.yaml
-    excerpt: Server-side flow control to prevent PTY output from overwhelming the
-      WebSocket
+    excerpt: Server-side flow control to prevent PTY output from overwhelming the WebSocket
   object_value: src/server/flowcontrol.ts
-  note: 'responsibility: Server-side flow control to prevent PTY output from overwhelming
-    the WebSocket; key_files: src/server/flowcontrol.ts'
+  note: 'responsibility: Server-side flow control to prevent PTY output from overwhelming the WebSocket; key_files: src/server/flowcontrol.ts'
   fact_id: fact::faf30c5ae0d652309b90f0e8
 - fact_type: component
   predicate: has_component
@@ -837,44 +743,11 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[2]
     source_file: repos/knowledge/deep/wetty.yaml
-    excerpt: Express middleware stack - compression, security policies, static assets,
-      SSL, Socket.IO listener
+    excerpt: Express middleware stack - compression, security policies, static assets, SSL, Socket.IO listener
   object_value: src/server/socketServer.ts
-  note: 'responsibility: Express middleware stack - compression, security policies,
-    static assets, SSL, Socket.IO listener; key_files: src/server/socketServer.ts'
+  note: 'responsibility: Express middleware stack - compression, security policies, static assets, SSL, Socket.IO listener;
+    key_files: src/server/socketServer.ts'
   fact_id: fact::0dd2facf478e3a6b91737fd7
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-17'
-  provenance:
-    source_file: repos/knowledge/deep/wetty.yaml
-    source_section: key_files[2]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[2]
-    source_file: repos/knowledge/deep/wetty.yaml
-    excerpt: src/server/socketServer.ts
-  object_value: src/server/socketServer.ts
-  fact_id: fact::da15e04f3152830194e2f6d7
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-17'
-  provenance:
-    source_file: repos/knowledge/deep/wetty.yaml
-    source_section: key_files[3]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[3]
-    source_file: repos/knowledge/deep/wetty.yaml
-    excerpt: src/server/spawn.ts
-  object_value: src/server/spawn.ts
-  fact_id: fact::8ce35969c8b706eadf5184b5
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -890,8 +763,7 @@ facts:
     source_file: repos/knowledge/deep/wetty.yaml
     excerpt: PTY process spawning via node-pty with flow control and Socket.IO bridge
   object_value: src/server/spawn.ts
-  note: 'responsibility: PTY process spawning via node-pty with flow control and Socket.IO
-    bridge; key_files: src/server/spawn.ts'
+  note: 'responsibility: PTY process spawning via node-pty with flow control and Socket.IO bridge; key_files: src/server/spawn.ts'
   fact_id: fact::b985443efa1fd83fe4f5d6c0
 - fact_type: component
   predicate: has_component
@@ -906,12 +778,10 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[7]
     source_file: repos/knowledge/deep/wetty.yaml
-    excerpt: Shared types (interfaces.ts), defaults (defaults.ts), config loading,
-      logging
+    excerpt: Shared types (interfaces.ts), defaults (defaults.ts), config loading, logging
   object_value: src/shared/
-  note: 'responsibility: Shared types (interfaces.ts), defaults (defaults.ts), config
-    loading, logging; key_files: src/shared/interfaces.ts, src/shared/defaults.ts,
-    src/shared/config.ts, src/shared/logger.ts'
+  note: 'responsibility: Shared types (interfaces.ts), defaults (defaults.ts), config loading, logging; key_files: src/shared/interfaces.ts,
+    src/shared/defaults.ts, src/shared/config.ts, src/shared/logger.ts'
   fact_id: fact::3d93e3c08ebebf263bbafee0
 - fact_type: component
   predicate: has_component
@@ -1011,8 +881,7 @@ facts:
     source_file: repos/knowledge/deep/wetty.yaml
     excerpt: base
   object_value: base
-  note: 'type: string; default: /wetty/ (BASE env); Base URL path for reverse proxy
-    setups'
+  note: 'type: string; default: /wetty/ (BASE env); Base URL path for reverse proxy setups'
   fact_id: fact::d67eff7ecb62565608ddfb3a
 - fact_type: config_option
   predicate: has_config_option
@@ -1046,8 +915,7 @@ facts:
     source_file: repos/knowledge/deep/wetty.yaml
     excerpt: file
   object_value: file
-  note: 'default: conf/config.json5 (JSON5 format, path via --conf flag); configuration
-    default for file'
+  note: 'default: conf/config.json5 (JSON5 format, path via --conf flag); configuration default for file'
   fact_id: fact::bd4cd020186c0b93a2ee67ce
 - fact_type: config_option
   predicate: has_config_option
@@ -1064,8 +932,7 @@ facts:
     source_file: repos/knowledge/deep/wetty.yaml
     excerpt: force-ssh
   object_value: force-ssh
-  note: 'type: boolean; default: false (FORCESSH env); Force SSH even when running
-    as root'
+  note: 'type: boolean; default: false (FORCESSH env); Force SSH even when running as root'
   fact_id: fact::7e14695656b0c546fe706a5f
 - fact_type: config_option
   predicate: has_config_option
@@ -1116,8 +983,7 @@ facts:
     source_file: repos/knowledge/deep/wetty.yaml
     excerpt: ssh-auth
   object_value: ssh-auth
-  note: 'type: string; default: password (SSHAUTH env); SSH auth method (password,
-    publickey,password)'
+  note: 'type: string; default: password (SSHAUTH env); SSH auth method (password, publickey,password)'
   fact_id: fact::83b4114d2b9f1cc5f7ce6160
 - fact_type: config_option
   predicate: has_config_option
@@ -1134,8 +1000,7 @@ facts:
     source_file: repos/knowledge/deep/wetty.yaml
     excerpt: ssh-host
   object_value: ssh-host
-  note: 'type: string; default: localhost (SSHHOST env); SSH server host to connect
-    to'
+  note: 'type: string; default: localhost (SSHHOST env); SSH server host to connect to'
   fact_id: fact::8221fe163eb3fe32f01f1885
 - fact_type: config_option
   predicate: has_config_option
@@ -1220,8 +1085,7 @@ facts:
     source_file: repos/knowledge/deep/wetty.yaml
     excerpt: title
   object_value: title
-  note: 'type: string; default: WeTTY - The Web Terminal Emulator (TITLE env); Browser
-    window title'
+  note: 'type: string; default: WeTTY - The Web Terminal Emulator (TITLE env); Browser window title'
   fact_id: fact::328fb64bcea50addb7877016
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1253,11 +1117,10 @@ facts:
   - kind: file_block
     ref: src/server/command.ts
     source_file: repos/knowledge/deep/wetty.yaml
-    excerpt: When running as root on localhost, uses /bin/login; otherwise uses ssh
-      with full option chain
+    excerpt: When running as root on localhost, uses /bin/login; otherwise uses ssh with full option chain
   object_value: Conditional SSH vs Login
-  note: 'description: When running as root on localhost, uses /bin/login; otherwise
-    uses ssh with full option chain; location: src/server/command.ts'
+  note: 'description: When running as root on localhost, uses /bin/login; otherwise uses ssh with full option chain; location:
+    src/server/command.ts'
   fact_id: fact::d569bd3dc17a341d2620216c
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1272,11 +1135,10 @@ facts:
   - kind: file_block
     ref: src/shared/defaults.ts
     source_file: repos/knowledge/deep/wetty.yaml
-    excerpt: All defaults read from env vars (SSHHOST, SSHPORT, SSHUSER, SSHAUTH,
-      PORT, BASE, TITLE) with sensible fallbacks
+    excerpt: All defaults read from env vars (SSHHOST, SSHPORT, SSHUSER, SSHAUTH, PORT, BASE, TITLE) with sensible fallbacks
   object_value: Environment-Based Defaults
-  note: 'description: All defaults read from env vars (SSHHOST, SSHPORT, SSHUSER,
-    SSHAUTH, PORT, BASE, TITLE) with sensible fallbacks; location: src/shared/defaults.ts'
+  note: 'description: All defaults read from env vars (SSHHOST, SSHPORT, SSHUSER, SSHAUTH, PORT, BASE, TITLE) with sensible
+    fallbacks; location: src/shared/defaults.ts'
   fact_id: fact::c038e7a7fa03755ba555f3ef
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1291,12 +1153,11 @@ facts:
   - kind: file_block
     ref: src/server/spawn.ts, src/client/wetty.ts
     source_file: repos/knowledge/deep/wetty.yaml
-    excerpt: Server pauses PTY when buffer exceeds 524KB; client sends 'commit' events
-      to acknowledge bytes; server resumes PTY on commit
+    excerpt: Server pauses PTY when buffer exceeds 524KB; client sends 'commit' events to acknowledge bytes; server resumes
+      PTY on commit
   object_value: Flow Control Protocol
-  note: 'description: Server pauses PTY when buffer exceeds 524KB; client sends ''commit''
-    events to acknowledge bytes; server resumes PTY on commit; location: src/server/spawn.ts,
-    src/client/wetty.ts'
+  note: 'description: Server pauses PTY when buffer exceeds 524KB; client sends ''commit'' events to acknowledge bytes; server
+    resumes PTY on commit; location: src/server/spawn.ts, src/client/wetty.ts'
   fact_id: fact::29a07191edf1492fa5f43c15
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1328,11 +1189,11 @@ facts:
   - kind: file_block
     ref: src/server/spawn.ts
     source_file: repos/knowledge/deep/wetty.yaml
-    excerpt: node-pty spawns shell process; onData pipes to Socket.IO via tinybuffer;
-      socket input/resize/disconnect events control PTY
+    excerpt: node-pty spawns shell process; onData pipes to Socket.IO via tinybuffer; socket input/resize/disconnect events
+      control PTY
   object_value: PTY-to-WebSocket Bridge
-  note: 'description: node-pty spawns shell process; onData pipes to Socket.IO via
-    tinybuffer; socket input/resize/disconnect events control PTY; location: src/server/spawn.ts'
+  note: 'description: node-pty spawns shell process; onData pipes to Socket.IO via tinybuffer; socket input/resize/disconnect
+    events control PTY; location: src/server/spawn.ts'
   fact_id: fact::07c4496e8aa8292012bacf1f
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1347,11 +1208,10 @@ facts:
   - kind: file_block
     ref: src/server.ts, src/server/metrics.ts
     source_file: repos/knowledge/deep/wetty.yaml
-    excerpt: prom-client collectDefaultMetrics plus custom wetty_connections gauge
-      and GC stats
+    excerpt: prom-client collectDefaultMetrics plus custom wetty_connections gauge and GC stats
   object_value: Prometheus Metrics
-  note: 'description: prom-client collectDefaultMetrics plus custom wetty_connections
-    gauge and GC stats; location: src/server.ts, src/server/metrics.ts'
+  note: 'description: prom-client collectDefaultMetrics plus custom wetty_connections gauge and GC stats; location: src/server.ts,
+    src/server/metrics.ts'
   fact_id: fact::ed838be7ef0e0f472ef0a4f7
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1366,11 +1226,9 @@ facts:
   - kind: file_block
     ref: src/server/socketServer.ts
     source_file: repos/knowledge/deep/wetty.yaml
-    excerpt: helmet for HTTP headers, compression, express-winston logging, iframe
-      policy control
+    excerpt: helmet for HTTP headers, compression, express-winston logging, iframe policy control
   object_value: Security Middleware Stack
-  note: 'description: helmet for HTTP headers, compression, express-winston logging,
-    iframe policy control; location: src/server/socketServer.ts'
+  note: 'description: helmet for HTTP headers, compression, express-winston logging, iframe policy control; location: src/server/socketServer.ts'
   fact_id: fact::cbea1b9aa08818d6236a767e
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1472,8 +1330,7 @@ facts:
     source_file: repos/knowledge/deep/wetty.yaml
     excerpt: wetty --ssh-host myserver.example.com --ssh-user admin
   object_value: wetty --ssh-host myserver.example.com --ssh-user admin
-  note: Start WeTTY as an SSH gateway, connecting to a remote host on every browser
-    session
+  note: Start WeTTY as an SSH gateway, connecting to a remote host on every browser session
   fact_id: fact::834652558e77292f52b12b1c
 - fact_type: operational_task
   predicate: supports_task

@@ -167,23 +167,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/ruvnet__claude-flow.yaml
-    source_section: core_modules.cli_surface
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.cli_surface
-    source_file: repos/knowledge/deep/ruvnet__claude-flow.yaml
-    excerpt: src/cli
-  object_value: src/cli
-  note: CLI interface for creating and running flow definitions.
-  fact_id: fact::781fd9f79912c16260891679
-- fact_type: component
-  predicate: has_component
-  object_kind: path
   confidence: 0.78
   as_of: '2026-03-05'
   provenance:
@@ -196,8 +179,7 @@ facts:
     source_file: repos/knowledge/deep/ruvnet__claude-flow.yaml
     excerpt: Command-line entrypoints for orchestrating multi-agent workflows.
   object_value: src/cli
-  note: 'responsibility: Command-line entrypoints for orchestrating multi-agent workflows.;
-    key_files: src/cli/index.ts, src/cli/commands'
+  note: 'responsibility: Command-line entrypoints for orchestrating multi-agent workflows.; key_files: src/cli/index.ts, src/cli/commands'
   fact_id: fact::f7c05e957a4fcc549a29f87a
 - fact_type: component
   predicate: has_component
@@ -231,26 +213,9 @@ facts:
     source_file: repos/knowledge/deep/ruvnet__claude-flow.yaml
     excerpt: Workflow graph execution, task routing, and state coordination.
   object_value: src/core
-  note: 'responsibility: Workflow graph execution, task routing, and state coordination.;
-    key_files: src/core/orchestrator.ts, src/core/workflow.ts'
+  note: 'responsibility: Workflow graph execution, task routing, and state coordination.; key_files: src/core/orchestrator.ts,
+    src/core/workflow.ts'
   fact_id: fact::a578410b3ffa41600bc686ae
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/ruvnet__claude-flow.yaml
-    source_section: core_modules.orchestration_engine
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.orchestration_engine
-    source_file: repos/knowledge/deep/ruvnet__claude-flow.yaml
-    excerpt: src/core
-  object_value: src/core
-  note: Core runtime for task scheduling and agent handoff.
-  fact_id: fact::cc24efdfd684699fffdfb529
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -300,26 +265,8 @@ facts:
     source_file: repos/knowledge/deep/ruvnet__claude-flow.yaml
     excerpt: Provider and tool adapters used by orchestration flows.
   object_value: src/integrations
-  note: 'responsibility: Provider and tool adapters used by orchestration flows.;
-    key_files: src/integrations'
+  note: 'responsibility: Provider and tool adapters used by orchestration flows.; key_files: src/integrations'
   fact_id: fact::0544f714bbfbbb8bbb941ca7
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/ruvnet__claude-flow.yaml
-    source_section: core_modules.integration_layer
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.integration_layer
-    source_file: repos/knowledge/deep/ruvnet__claude-flow.yaml
-    excerpt: src/integrations
-  object_value: src/integrations
-  note: External tool and provider bindings.
-  fact_id: fact::1958e23498fd3a4e0d1fa756
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
@@ -522,8 +469,7 @@ facts:
     source_file: repos/knowledge/deep/ruvnet__claude-flow.yaml
     excerpt: CLI handlers route user commands to orchestration services.
   object_value: CLI command dispatch
-  note: 'description: CLI handlers route user commands to orchestration services.;
-    location: src/cli/index.ts'
+  note: 'description: CLI handlers route user commands to orchestration services.; location: src/cli/index.ts'
   fact_id: fact::a1e650d1b445b8dfb6095f98
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -540,8 +486,7 @@ facts:
     source_file: repos/knowledge/deep/ruvnet__claude-flow.yaml
     excerpt: Workflow structure can be assembled from declarative configuration.
   object_value: Config-driven pipeline assembly
-  note: 'description: Workflow structure can be assembled from declarative configuration.;
-    location: src/core/workflow.ts'
+  note: 'description: Workflow structure can be assembled from declarative configuration.; location: src/core/workflow.ts'
   fact_id: fact::4807740e1e943bba8ca09161
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -558,8 +503,7 @@ facts:
     source_file: repos/knowledge/deep/ruvnet__claude-flow.yaml
     excerpt: Workflow execution is represented as nodes and edges with explicit dependencies.
   object_value: Graph-driven orchestration
-  note: 'description: Workflow execution is represented as nodes and edges with explicit
-    dependencies.; location: src/core/workflow.ts'
+  note: 'description: Workflow execution is represented as nodes and edges with explicit dependencies.; location: src/core/workflow.ts'
   fact_id: fact::3604ff61a774335139bb75bf
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -593,8 +537,7 @@ facts:
     source_file: repos/knowledge/deep/ruvnet__claude-flow.yaml
     excerpt: Integrations are encapsulated behind adapter interfaces.
   object_value: Provider abstraction layer
-  note: 'description: Integrations are encapsulated behind adapter interfaces.; location:
-    src/integrations'
+  note: 'description: Integrations are encapsulated behind adapter interfaces.; location: src/integrations'
   fact_id: fact::466de252ecfea97b92ab1694
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -628,8 +571,7 @@ facts:
     source_file: repos/knowledge/deep/ruvnet__claude-flow.yaml
     excerpt: Execution state is updated between stages to support resumable flow runs.
   object_value: Task-state checkpointing
-  note: 'description: Execution state is updated between stages to support resumable
-    flow runs.; location: src/core/orchestrator.ts'
+  note: 'description: Execution state is updated between stages to support resumable flow runs.; location: src/core/orchestrator.ts'
   fact_id: fact::329a0ef69ae8a0d862c58fa9
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -685,23 +627,6 @@ facts:
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/ruvnet__claude-flow.yaml
-    source_section: quick_reference[0].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[0].line[0]
-    source_file: repos/knowledge/deep/ruvnet__claude-flow.yaml
-    excerpt: npm install
-  object_value: npm install
-  note: 'topic: Install dependencies'
-  fact_id: fact::166e2eda89ff945ebf23a2e9
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
   confidence: 0.68
   as_of: '2026-03-05'
   provenance:
@@ -733,57 +658,6 @@ facts:
   object_value: npm run build
   note: Compile TypeScript sources.
   fact_id: fact::cd0e9f47fad70d179439b4ef
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/ruvnet__claude-flow.yaml
-    source_section: quick_reference[1].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[1].line[0]
-    source_file: repos/knowledge/deep/ruvnet__claude-flow.yaml
-    excerpt: npm run build
-  object_value: npm run build
-  note: 'topic: Build project'
-  fact_id: fact::df6e6317da3cfb62a5b267e2
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/ruvnet__claude-flow.yaml
-    source_section: testing.test_patterns[0].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: testing.test_patterns[0].line[0]
-    source_file: repos/knowledge/deep/ruvnet__claude-flow.yaml
-    excerpt: npm test
-  object_value: npm test
-  note: testing command
-  fact_id: fact::4ec109786e2530708239fd15
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/ruvnet__claude-flow.yaml
-    source_section: quick_reference[2].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[2].line[0]
-    source_file: repos/knowledge/deep/ruvnet__claude-flow.yaml
-    excerpt: npm test
-  object_value: npm test
-  note: 'topic: Run tests'
-  fact_id: fact::58b3ecc8aeaea323e30ffd43
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command

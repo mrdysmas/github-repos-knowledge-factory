@@ -34,23 +34,6 @@ facts:
   as_of: '2026-02-25'
   provenance:
     source_file: repos/knowledge/deep/pydantic__pydantic-ai.yaml
-    source_section: integrations.api_endpoints[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: integrations.api_endpoints[0]
-    source_file: repos/knowledge/deep/pydantic__pydantic-ai.yaml
-    excerpt: /agents
-  object_value: /agents
-  note: GET; docs entry for typed agent API patterns
-  fact_id: fact::36b5655792168fe5b388a2f1
-- fact_type: api_endpoint
-  predicate: exposes_api_endpoint
-  object_kind: api_route
-  confidence: 0.73
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/pydantic__pydantic-ai.yaml
     source_section: api_structure.docs_surface[4]
     extraction_mode: narrative
   evidence:
@@ -93,22 +76,6 @@ facts:
   object_value: /models/overview
   note: GET; docs entry for model and provider adapters
   fact_id: fact::03127cd09875aefcf2320dc7
-- fact_type: api_endpoint
-  predicate: exposes_api_endpoint
-  object_kind: api_route
-  confidence: 0.73
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/pydantic__pydantic-ai.yaml
-    source_section: api_structure.docs_surface[1]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: api_structure.docs_surface[1]
-    source_file: repos/knowledge/deep/pydantic__pydantic-ai.yaml
-    excerpt: /models/overview
-  object_value: /models/overview
-  fact_id: fact::67cb1001fa61309d7c48875c
 - fact_type: api_endpoint
   predicate: exposes_api_endpoint
   object_kind: api_route
@@ -499,23 +466,6 @@ facts:
   object_value: pytest
   note: 'topic: Install and run'
   fact_id: fact::46d213efe6fe23d637b8bfef
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/pydantic__pydantic-ai.yaml
-    source_section: testing.test_patterns[0].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: testing.test_patterns[0].line[0]
-    source_file: repos/knowledge/deep/pydantic__pydantic-ai.yaml
-    excerpt: pytest
-  object_value: pytest
-  note: testing command
-  fact_id: fact::761d555419aeabafdfc6a1e7
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command

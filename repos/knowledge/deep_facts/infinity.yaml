@@ -150,23 +150,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/infinity.yaml
-    source_section: key_files[3]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[3]
-    source_file: repos/knowledge/deep/infinity.yaml
-    excerpt: docs/
-  object_value: docs/
-  note: Operational docs and usage examples.
-  fact_id: fact::5d170cc03494848b71280827
-- fact_type: component
-  predicate: has_component
-  object_kind: path
   confidence: 0.78
   as_of: '2026-03-18'
   provenance:
@@ -177,63 +160,10 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[2]
     source_file: repos/knowledge/deep/infinity.yaml
-    excerpt: Operational guidance and usage documentation for deployment and query
-      flows.
+    excerpt: Operational guidance and usage documentation for deployment and query flows.
   object_value: docs/
-  note: 'responsibility: Operational guidance and usage documentation for deployment
-    and query flows.; key_files: docs/'
+  note: 'responsibility: Operational guidance and usage documentation for deployment and query flows.; key_files: docs/'
   fact_id: fact::cad9766aea26a7ed47c021d6
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/infinity.yaml
-    source_section: core_modules.docs_surface
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.docs_surface
-    source_file: repos/knowledge/deep/infinity.yaml
-    excerpt: docs/
-  object_value: docs/
-  note: Usage and deployment documentation.
-  fact_id: fact::f58a435bdfcd52b78d2af18e
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/infinity.yaml
-    source_section: core_modules.python_sdk
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.python_sdk
-    source_file: repos/knowledge/deep/infinity.yaml
-    excerpt: python/
-  object_value: python/
-  note: Python client interfaces for operational usage.
-  fact_id: fact::369c7f639d063dfe5bc1a860
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/infinity.yaml
-    source_section: key_files[2]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[2]
-    source_file: repos/knowledge/deep/infinity.yaml
-    excerpt: python/
-  object_value: python/
-  note: Python interface and integration code.
-  fact_id: fact::84b449349a08154b23fb4346
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -249,8 +179,7 @@ facts:
     source_file: repos/knowledge/deep/infinity.yaml
     excerpt: Python client and integration surfaces for retrieval workloads.
   object_value: python/
-  note: 'responsibility: Python client and integration surfaces for retrieval workloads.;
-    key_files: python/'
+  note: 'responsibility: Python client and integration surfaces for retrieval workloads.; key_files: python/'
   fact_id: fact::d1c1e2d0d374db6234af2811
 - fact_type: component
   predicate: has_component
@@ -267,43 +196,8 @@ facts:
     source_file: repos/knowledge/deep/infinity.yaml
     excerpt: Core database engine for indexing, query planning, and execution.
   object_value: src/core
-  note: 'responsibility: Core database engine for indexing, query planning, and execution.;
-    key_files: src/core'
+  note: 'responsibility: Core database engine for indexing, query planning, and execution.; key_files: src/core'
   fact_id: fact::6af3fd9dbc7c5337282a859d
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/infinity.yaml
-    source_section: key_files[1]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[1]
-    source_file: repos/knowledge/deep/infinity.yaml
-    excerpt: src/core
-  object_value: src/core
-  note: Core database runtime and query components.
-  fact_id: fact::e27a4243fe88d4653eefca70
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/infinity.yaml
-    source_section: core_modules.db_engine
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.db_engine
-    source_file: repos/knowledge/deep/infinity.yaml
-    excerpt: src/core
-  object_value: src/core
-  note: Database engine internals for indexing and query execution.
-  fact_id: fact::ffdc98a38688045033a15ec8
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
@@ -504,14 +398,11 @@ facts:
   - kind: file_block
     ref: troubleshooting[2]
     source_file: repos/knowledge/deep/infinity.yaml
-    excerpt: Hybrid query returns incorrect ranking when combining vector and scalar
-      filters
-  object_value: Hybrid query returns incorrect ranking when combining vector and scalar
-    filters
-  note: 'cause: The hybrid query execution pipeline weights vector similarity against
-    scalar filter scores; mismatched ef_search values cause the graph traversal to
-    stop before collecting enough candidates to satisfy the filter; fix: Increase
-    ef_search to ensure enough candidate vector...'
+    excerpt: Hybrid query returns incorrect ranking when combining vector and scalar filters
+  object_value: Hybrid query returns incorrect ranking when combining vector and scalar filters
+  note: 'cause: The hybrid query execution pipeline weights vector similarity against scalar filter scores; mismatched ef_search
+    values cause the graph traversal to stop before collecting enough candidates to satisfy the filter; fix: Increase ef_search
+    to ensure enough candidate vector...'
   fact_id: fact::6ff34ddd87a37d4de40a9830
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -528,10 +419,9 @@ facts:
     source_file: repos/knowledge/deep/infinity.yaml
     excerpt: Index build fails or times out on large vector collections
   object_value: Index build fails or times out on large vector collections
-  note: 'cause: IndexManager must process all segments before the index is queryable;
-    large batch ingestion fills storage segments faster than the build can complete
-    under memory constraints; fix: Reduce batch_size configuration to ingest in smaller
-    chunks, allow the IndexManager to co...'
+  note: 'cause: IndexManager must process all segments before the index is queryable; large batch ingestion fills storage
+    segments faster than the build can complete under memory constraints; fix: Reduce batch_size configuration to ingest in
+    smaller chunks, allow the IndexManager to co...'
   fact_id: fact::140d153e6b1b25824b463312
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -548,9 +438,8 @@ facts:
     source_file: repos/knowledge/deep/infinity.yaml
     excerpt: Storage path fills and writes fail silently during batch ingestion
   object_value: Storage path fills and writes fail silently during batch ingestion
-  note: 'cause: StorageSegments are written to the configured storage_path; when disk
-    is exhausted, the batch ingestion path cannot flush segments and returns errors
-    or blocks; fix: Monitor disk usage on the storage_path volume; expand disk or
+  note: 'cause: StorageSegments are written to the configured storage_path; when disk is exhausted, the batch ingestion path
+    cannot flush segments and returns errors or blocks; fix: Monitor disk usage on the storage_path volume; expand disk or
     reduce dataset size; check ingestion error...'
   fact_id: fact::65bc754920254e37c1d5edbf
 - fact_type: failure_mode
@@ -568,9 +457,8 @@ facts:
     source_file: repos/knowledge/deep/infinity.yaml
     excerpt: Vector search returns no results despite data being ingested
   object_value: Vector search returns no results despite data being ingested
-  note: 'cause: QueryPlanner falls through to a scan-only path when no index metadata
-    is present for the target column; index must be explicitly created after ingestion;
-    fix: Call create_index() after bulk ingestion to trigger IndexManager to build
+  note: 'cause: QueryPlanner falls through to a scan-only path when no index metadata is present for the target column; index
+    must be explicitly created after ingestion; fix: Call create_index() after bulk ingestion to trigger IndexManager to build
     the vector index; verify the index co...'
   fact_id: fact::f7b9e88d31dba1f74e499b49
 - fact_type: implementation_pattern
@@ -588,8 +476,7 @@ facts:
     source_file: repos/knowledge/deep/infinity.yaml
     excerpt: Ingestion supports batched writes for large vector payloads.
   object_value: Batch ingestion path
-  note: 'description: Ingestion supports batched writes for large vector payloads.;
-    location: src/core'
+  note: 'description: Ingestion supports batched writes for large vector payloads.; location: src/core'
   fact_id: fact::f7e5d56eb41391fce66dc664
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -623,8 +510,7 @@ facts:
     source_file: repos/knowledge/deep/infinity.yaml
     excerpt: Python interfaces wrap lower-level APIs for common retrieval workflows.
   object_value: Client-wrapper abstraction
-  note: 'description: Python interfaces wrap lower-level APIs for common retrieval
-    workflows.; location: python/'
+  note: 'description: Python interfaces wrap lower-level APIs for common retrieval workflows.; location: python/'
   fact_id: fact::790035e2da1e0f34c52ac20c
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -639,10 +525,8 @@ facts:
   - kind: file_block
     ref: testing.structure.line[0]
     source_file: repos/knowledge/deep/infinity.yaml
-    excerpt: Coverage includes index behavior, retrieval correctness, and client integration
-      workflows.
-  object_value: Coverage includes index behavior, retrieval correctness, and client
-    integration workflows.
+    excerpt: Coverage includes index behavior, retrieval correctness, and client integration workflows.
+  object_value: Coverage includes index behavior, retrieval correctness, and client integration workflows.
   note: 'testing metadata: structure'
   fact_id: fact::5c61d3564eee965ee47f3576
 - fact_type: implementation_pattern
@@ -658,11 +542,9 @@ facts:
   - kind: file_block
     ref: src/core
     source_file: repos/knowledge/deep/infinity.yaml
-    excerpt: Query pipeline combines vector similarity with scalar filters and ranking
-      signals.
+    excerpt: Query pipeline combines vector similarity with scalar filters and ranking signals.
   object_value: Hybrid query execution
-  note: 'description: Query pipeline combines vector similarity with scalar filters
-    and ranking signals.; location: src/core'
+  note: 'description: Query pipeline combines vector similarity with scalar filters and ranking signals.; location: src/core'
   fact_id: fact::8cca63c015516027a45b53f6
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -694,11 +576,10 @@ facts:
   - kind: file_block
     ref: src/core
     source_file: repos/knowledge/deep/infinity.yaml
-    excerpt: Query planning and execution responsibilities are separated to allow
-      optimization passes.
+    excerpt: Query planning and execution responsibilities are separated to allow optimization passes.
   object_value: Planner-and-executor split
-  note: 'description: Query planning and execution responsibilities are separated
-    to allow optimization passes.; location: src/core'
+  note: 'description: Query planning and execution responsibilities are separated to allow optimization passes.; location:
+    src/core'
   fact_id: fact::741c3213321b8ffc8c34cfa5
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -715,8 +596,7 @@ facts:
     source_file: repos/knowledge/deep/infinity.yaml
     excerpt: Data paths separate segments to balance ingestion and retrieval performance.
   object_value: Segmented storage layout
-  note: 'description: Data paths separate segments to balance ingestion and retrieval
-    performance.; location: src/core'
+  note: 'description: Data paths separate segments to balance ingestion and retrieval performance.; location: src/core'
   fact_id: fact::b9ddbf7a06c36364d750b25f
 - fact_type: implementation_pattern
   predicate: implements_pattern

@@ -162,8 +162,7 @@ facts:
     source_file: repos/knowledge/deep/anthropics__claude-code.yaml
     excerpt: Reference usage patterns for real project workflows.
   object_value: examples
-  note: 'responsibility: Reference usage patterns for real project workflows.; key_files:
-    examples/'
+  note: 'responsibility: Reference usage patterns for real project workflows.; key_files: examples/'
   fact_id: fact::90155a47563485a89eaf2212
 - fact_type: component
   predicate: has_component
@@ -180,8 +179,7 @@ facts:
     source_file: repos/knowledge/deep/anthropics__claude-code.yaml
     excerpt: Extension catalog that augments default Claude Code behavior.
   object_value: plugins
-  note: 'responsibility: Extension catalog that augments default Claude Code behavior.;
-    key_files: plugins/, plugins/README.md'
+  note: 'responsibility: Extension catalog that augments default Claude Code behavior.; key_files: plugins/, plugins/README.md'
   fact_id: fact::aad64cd1cfce80cb8610257d
 - fact_type: component
   predicate: has_component
@@ -198,8 +196,7 @@ facts:
     source_file: repos/knowledge/deep/anthropics__claude-code.yaml
     excerpt: Installer and operational scripts for multi-platform setup.
   object_value: scripts
-  note: 'responsibility: Installer and operational scripts for multi-platform setup.;
-    key_files: scripts/'
+  note: 'responsibility: Installer and operational scripts for multi-platform setup.; key_files: scripts/'
   fact_id: fact::646fa442002da58f1a41fc97
 - fact_type: component
   predicate: has_component
@@ -221,23 +218,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-19'
-  provenance:
-    source_file: repos/knowledge/deep/anthropics__claude-code.yaml
-    source_section: core_modules.examples
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.examples
-    source_file: repos/knowledge/deep/anthropics__claude-code.yaml
-    excerpt: examples
-  object_value: examples
-  note: Scenario-driven usage examples for developers.
-  fact_id: fact::12d7aeeecab9d81e07530c58
-- fact_type: component
-  predicate: has_component
-  object_kind: path
   confidence: 0.72
   as_of: '2026-03-19'
   provenance:
@@ -255,23 +235,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-19'
-  provenance:
-    source_file: repos/knowledge/deep/anthropics__claude-code.yaml
-    source_section: core_modules.extensions
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.extensions
-    source_file: repos/knowledge/deep/anthropics__claude-code.yaml
-    excerpt: plugins
-  object_value: plugins
-  note: 'Claude Code plugin ecosystem content and examples. Submodules: plugins/README.md'
-  fact_id: fact::17ec56e2bb6dbc017a017cd3
-- fact_type: component
-  predicate: has_component
-  object_kind: path
   confidence: 0.72
   as_of: '2026-03-19'
   provenance:
@@ -286,23 +249,6 @@ facts:
   object_value: plugins/
   note: Plugin definitions and documentation.
   fact_id: fact::e52e78da5103addda3ea5283
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-19'
-  provenance:
-    source_file: repos/knowledge/deep/anthropics__claude-code.yaml
-    source_section: core_modules.installation
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.installation
-    source_file: repos/knowledge/deep/anthropics__claude-code.yaml
-    excerpt: scripts
-  object_value: scripts
-  note: Install and maintenance scripts for supported environments.
-  fact_id: fact::32de460799ac28afe8e9d226
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -335,8 +281,7 @@ facts:
     source_file: repos/knowledge/deep/anthropics__claude-code.yaml
     excerpt: install_method
   object_value: install_method
-  note: 'default: official_install_script; Recommended setup path via hosted install
-    script.'
+  note: 'default: official_install_script; Recommended setup path via hosted install script.'
   fact_id: fact::92d41fd47c3c1e854c6e5c20
 - fact_type: config_option
   predicate: has_config_option
@@ -455,8 +400,7 @@ facts:
     source_file: repos/knowledge/deep/anthropics__claude-code.yaml
     excerpt: claude terminal command
   object_value: claude terminal command
-  note: Primary CLI entrypoint for starting sessions and running coding tasks.; claude
-    <subcommand>; README.md
+  note: Primary CLI entrypoint for starting sessions and running coding tasks.; claude <subcommand>; README.md
   fact_id: fact::17666ea60b3c4bd53f44cac1
 - fact_type: extension_point
   predicate: has_extension_point
@@ -507,8 +451,7 @@ facts:
     source_file: repos/knowledge/deep/anthropics__claude-code.yaml
     excerpt: plugin command contract
   object_value: plugin command contract
-  note: Standardized extension interface for custom plugin-provided commands.; plugin-defined
-    command handlers; plugins/
+  note: Standardized extension interface for custom plugin-provided commands.; plugin-defined command handlers; plugins/
   fact_id: fact::a0c1810285e3e85afa30710c
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -525,9 +468,8 @@ facts:
     source_file: repos/knowledge/deep/anthropics__claude-code.yaml
     excerpt: Authentication error on first launch (401 or credential prompt loop)
   object_value: Authentication error on first launch (401 or credential prompt loop)
-  note: 'cause: ANTHROPIC_API_KEY environment variable is missing, empty, or has an
-    invalid format.; fix: Set ANTHROPIC_API_KEY to a valid key from console.anthropic.com
-    and restart the session.'
+  note: 'cause: ANTHROPIC_API_KEY environment variable is missing, empty, or has an invalid format.; fix: Set ANTHROPIC_API_KEY
+    to a valid key from console.anthropic.com and restart the session.'
   fact_id: fact::18b33ddb1ab9e0fee54e8ede
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -544,9 +486,8 @@ facts:
     source_file: repos/knowledge/deep/anthropics__claude-code.yaml
     excerpt: Plugin commands not discovered or not available in session
   object_value: Plugin commands not discovered or not available in session
-  note: 'cause: Plugin directory is not on the expected path or plugin files have
-    incorrect format.; fix: Confirm plugin assets are in the plugins/ directory and
-    follow the documented plugin command contract.'
+  note: 'cause: Plugin directory is not on the expected path or plugin files have incorrect format.; fix: Confirm plugin assets
+    are in the plugins/ directory and follow the documented plugin command contract.'
   fact_id: fact::8f86c766bff9e877afbcdd85
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -563,9 +504,8 @@ facts:
     source_file: repos/knowledge/deep/anthropics__claude-code.yaml
     excerpt: Rate limit error (429) during active sessions
   object_value: Rate limit error (429) during active sessions
-  note: 'cause: Exceeded per-minute or per-day token quota for the associated API
-    key tier.; fix: Wait for the rate limit window to reset, reduce request frequency,
-    or upgrade to a higher API tier.'
+  note: 'cause: Exceeded per-minute or per-day token quota for the associated API key tier.; fix: Wait for the rate limit
+    window to reset, reduce request frequency, or upgrade to a higher API tier.'
   fact_id: fact::247ec4a3026d9b8eeb2f9829
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -582,9 +522,8 @@ facts:
     source_file: repos/knowledge/deep/anthropics__claude-code.yaml
     excerpt: claude command not found after installation
   object_value: claude command not found after installation
-  note: 'cause: Installation did not add the binary to PATH, or the shell session
-    was not restarted after install.; fix: Restart the terminal session or run the
-    install script again; verify with ''which claude''.'
+  note: 'cause: Installation did not add the binary to PATH, or the shell session was not restarted after install.; fix: Restart
+    the terminal session or run the install script again; verify with ''which claude''.'
   fact_id: fact::01510f70ecced7198978d7ac
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -601,9 +540,8 @@ facts:
     source_file: repos/knowledge/deep/anthropics__claude-code.yaml
     excerpt: curl install script fails with SSL or permission error
   object_value: curl install script fails with SSL or permission error
-  note: 'cause: curl cannot verify the TLS certificate, or the install target directory
-    is not writable.; fix: Ensure curl is up to date and the install destination is
-    writable; use ''brew install --cask claude-code'' as an alternative on macOS.'
+  note: 'cause: curl cannot verify the TLS certificate, or the install target directory is not writable.; fix: Ensure curl
+    is up to date and the install destination is writable; use ''brew install --cask claude-code'' as an alternative on macOS.'
   fact_id: fact::dbc38d633d71d9b0df0b930e
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -618,11 +556,9 @@ facts:
   - kind: file_block
     ref: README.md
     source_file: repos/knowledge/deep/anthropics__claude-code.yaml
-    excerpt: User intent is captured in plain language and routed through command
-      execution flows.
+    excerpt: User intent is captured in plain language and routed through command execution flows.
   object_value: Command-driven terminal interactions
-  note: 'description: User intent is captured in plain language and routed through
-    command execution flows.; location: README.md'
+  note: 'description: User intent is captured in plain language and routed through command execution flows.; location: README.md'
   fact_id: fact::1137e1c7ba74db677227b507
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -637,11 +573,9 @@ facts:
   - kind: file_block
     ref: README.md
     source_file: repos/knowledge/deep/anthropics__claude-code.yaml
-    excerpt: Operational commands are documented alongside tool behavior for fast
-      onboarding.
+    excerpt: Operational commands are documented alongside tool behavior for fast onboarding.
   object_value: Docs-linked command workflows
-  note: 'description: Operational commands are documented alongside tool behavior
-    for fast onboarding.; location: README.md'
+  note: 'description: Operational commands are documented alongside tool behavior for fast onboarding.; location: README.md'
   fact_id: fact::f529ca3ea6e6279c0b8b056b
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -656,11 +590,10 @@ facts:
   - kind: file_block
     ref: plugins/
     source_file: repos/knowledge/deep/anthropics__claude-code.yaml
-    excerpt: Plugin assets are versioned with docs so custom behavior can be distributed
-      with the project.
+    excerpt: Plugin assets are versioned with docs so custom behavior can be distributed with the project.
   object_value: Extension-first repository structure
-  note: 'description: Plugin assets are versioned with docs so custom behavior can
-    be distributed with the project.; location: plugins/'
+  note: 'description: Plugin assets are versioned with docs so custom behavior can be distributed with the project.; location:
+    plugins/'
   fact_id: fact::b912804cd85e8821b4ae8694
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -677,8 +610,7 @@ facts:
     source_file: repos/knowledge/deep/anthropics__claude-code.yaml
     excerpt: Separate shell and PowerShell installation paths reduce platform friction.
   object_value: Platform-specific install orchestration
-  note: 'description: Separate shell and PowerShell installation paths reduce platform
-    friction.; location: README.md'
+  note: 'description: Separate shell and PowerShell installation paths reduce platform friction.; location: README.md'
   fact_id: fact::cd422ec5b02e3fcc7bc53036
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -695,8 +627,7 @@ facts:
     source_file: repos/knowledge/deep/anthropics__claude-code.yaml
     excerpt: Optional functionality is segmented into discrete plugin packages.
   object_value: Plugin modularization
-  note: 'description: Optional functionality is segmented into discrete plugin packages.;
-    location: plugins/'
+  note: 'description: Optional functionality is segmented into discrete plugin packages.; location: plugins/'
   fact_id: fact::21762b1deb9d9954bc9c7227
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -711,10 +642,8 @@ facts:
   - kind: file_block
     ref: testing.structure.line[0]
     source_file: repos/knowledge/deep/anthropics__claude-code.yaml
-    excerpt: Repository quality is validated through scripts, plugin checks, and release
-      workflows.
-  object_value: Repository quality is validated through scripts, plugin checks, and
-    release workflows.
+    excerpt: Repository quality is validated through scripts, plugin checks, and release workflows.
+  object_value: Repository quality is validated through scripts, plugin checks, and release workflows.
   note: 'testing metadata: structure'
   fact_id: fact::a26d639a5fe2fc651363fcc3
 - fact_type: implementation_pattern
@@ -805,23 +734,6 @@ facts:
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-19'
-  provenance:
-    source_file: repos/knowledge/deep/anthropics__claude-code.yaml
-    source_section: quick_reference[2].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[2].line[0]
-    source_file: repos/knowledge/deep/anthropics__claude-code.yaml
-    excerpt: brew install --cask claude-code
-  object_value: brew install --cask claude-code
-  note: 'topic: Install via Homebrew'
-  fact_id: fact::00fe538667b77af2c63a0308
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
   confidence: 0.68
   as_of: '2026-03-19'
   provenance:
@@ -836,23 +748,6 @@ facts:
   object_value: brew install --cask claude-code
   note: Homebrew cask installation path.
   fact_id: fact::dcdab25610d59531676c198f
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-19'
-  provenance:
-    source_file: repos/knowledge/deep/anthropics__claude-code.yaml
-    source_section: quick_reference[1].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[1].line[0]
-    source_file: repos/knowledge/deep/anthropics__claude-code.yaml
-    excerpt: curl -fsSL https://claude.ai/install.sh | bash
-  object_value: curl -fsSL https://claude.ai/install.sh | bash
-  note: 'topic: Install on macOS/Linux'
-  fact_id: fact::b03f0dfb62754db7c897ab72
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command

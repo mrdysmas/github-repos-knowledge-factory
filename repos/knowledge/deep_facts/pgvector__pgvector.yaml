@@ -174,10 +174,8 @@ facts:
   - kind: file_block
     ref: key_features[0]
     source_file: repos/knowledge/deep/pgvector__pgvector.yaml
-    excerpt: PostgreSQL-native vector, halfvec, sparsevec, and bit-based similarity
-      operations.
-  object_value: PostgreSQL-native vector, halfvec, sparsevec, and bit-based similarity
-    operations.
+    excerpt: PostgreSQL-native vector, halfvec, sparsevec, and bit-based similarity operations.
+  object_value: PostgreSQL-native vector, halfvec, sparsevec, and bit-based similarity operations.
   fact_id: fact::cce32a64a4e2fec6356cbc15
 - fact_type: component
   predicate: has_component
@@ -213,23 +211,6 @@ facts:
   object_value: approximate index layer
   note: Provides HNSW and IVFFlat access methods with tunable query/build parameters.
   fact_id: fact::000abd9c2263f7e372d158dd
-- fact_type: component
-  predicate: has_component
-  object_kind: concept
-  confidence: 0.61
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/pgvector__pgvector.yaml
-    source_section: languages[0].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: languages[0].line[0]
-    source_file: repos/knowledge/deep/pgvector__pgvector.yaml
-    excerpt: c
-  object_value: c
-  note: language ecosystem
-  fact_id: fact::a4955ee96192800d267dcdbc
 - fact_type: component
   predicate: has_component
   object_kind: concept
@@ -335,23 +316,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/pgvector__pgvector.yaml
-    source_section: key_files[6]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[6]
-    source_file: repos/knowledge/deep/pgvector__pgvector.yaml
-    excerpt: sql/vector.sql
-  object_value: sql/vector.sql
-  note: Extension SQL declarations.
-  fact_id: fact::260784695d025a353a133dc2
-- fact_type: component
-  predicate: has_component
-  object_kind: path
   confidence: 0.74
   as_of: '2026-03-04'
   provenance:
@@ -379,11 +343,10 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[4]
     source_file: repos/knowledge/deep/pgvector__pgvector.yaml
-    excerpt: SQL-facing type/operator/function declarations and extension version
-      migration.
+    excerpt: SQL-facing type/operator/function declarations and extension version migration.
   object_value: sql/vector.sql and upgrade SQLs
-  note: 'responsibility: SQL-facing type/operator/function declarations and extension
-    version migration.; key_files: sql/vector.sql, sql/vector--0.8.1--0.8.2.sql'
+  note: 'responsibility: SQL-facing type/operator/function declarations and extension version migration.; key_files: sql/vector.sql,
+    sql/vector--0.8.1--0.8.2.sql'
   fact_id: fact::8bb14aaa2be5a29a99e6f77c
 - fact_type: component
   predicate: has_component
@@ -402,23 +365,6 @@ facts:
   object_value: src/bitvec.c
   note: Bit-vector metrics support.
   fact_id: fact::041cbf89f798cb2537185a7e
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/pgvector__pgvector.yaml
-    source_section: key_files[3]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[3]
-    source_file: repos/knowledge/deep/pgvector__pgvector.yaml
-    excerpt: src/halfvec.c
-  object_value: src/halfvec.c
-  note: Half-precision vector support.
-  fact_id: fact::45918deff75c8a56e2c836a3
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -451,8 +397,8 @@ facts:
     source_file: repos/knowledge/deep/pgvector__pgvector.yaml
     excerpt: Additional storage/metric types (half precision, sparse, binary).
   object_value: src/halfvec.c / src/sparsevec.c / src/bitvec.c
-  note: 'responsibility: Additional storage/metric types (half precision, sparse,
-    binary).; key_files: src/halfvec.c, src/sparsevec.c, src/bitvec.c'
+  note: 'responsibility: Additional storage/metric types (half precision, sparse, binary).; key_files: src/halfvec.c, src/sparsevec.c,
+    src/bitvec.c'
   fact_id: fact::2ba3bf2b5ba99a16f983cad1
 - fact_type: component
   predicate: has_component
@@ -469,26 +415,9 @@ facts:
     source_file: repos/knowledge/deep/pgvector__pgvector.yaml
     excerpt: HNSW index build, insert, scan, utility, and vacuum paths.
   object_value: src/hnsw*.c
-  note: 'responsibility: HNSW index build, insert, scan, utility, and vacuum paths.;
-    key_files: src/hnsw.c, src/hnswbuild.c, src/hnswscan.c'
+  note: 'responsibility: HNSW index build, insert, scan, utility, and vacuum paths.; key_files: src/hnsw.c, src/hnswbuild.c,
+    src/hnswscan.c'
   fact_id: fact::9b934973181a886274525e18
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/pgvector__pgvector.yaml
-    source_section: key_files[1]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[1]
-    source_file: repos/knowledge/deep/pgvector__pgvector.yaml
-    excerpt: src/hnsw.c
-  object_value: src/hnsw.c
-  note: HNSW index core.
-  fact_id: fact::0bcb8f96aa553fd173ba975b
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -521,26 +450,9 @@ facts:
     source_file: repos/knowledge/deep/pgvector__pgvector.yaml
     excerpt: IVFFlat index build, insert, scan, kmeans, and maintenance routines.
   object_value: src/ivf*.c
-  note: 'responsibility: IVFFlat index build, insert, scan, kmeans, and maintenance
-    routines.; key_files: src/ivfflat.c, src/ivfbuild.c, src/ivfscan.c'
+  note: 'responsibility: IVFFlat index build, insert, scan, kmeans, and maintenance routines.; key_files: src/ivfflat.c, src/ivfbuild.c,
+    src/ivfscan.c'
   fact_id: fact::5c9cd17f7800577d78eeb987
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/pgvector__pgvector.yaml
-    source_section: key_files[2]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[2]
-    source_file: repos/knowledge/deep/pgvector__pgvector.yaml
-    excerpt: src/ivfflat.c
-  object_value: src/ivfflat.c
-  note: IVFFlat index core.
-  fact_id: fact::0bd6c44b5af897aefa20ef02
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -590,43 +502,8 @@ facts:
     source_file: repos/knowledge/deep/pgvector__pgvector.yaml
     excerpt: Core vector type, operators, and function bindings for PostgreSQL.
   object_value: src/vector.c
-  note: 'responsibility: Core vector type, operators, and function bindings for PostgreSQL.;
-    key_files: src/vector.c, src/vector.h'
+  note: 'responsibility: Core vector type, operators, and function bindings for PostgreSQL.; key_files: src/vector.c, src/vector.h'
   fact_id: fact::724497fff678a0ab45f08fff
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/pgvector__pgvector.yaml
-    source_section: core_modules.core_type
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.core_type
-    source_file: repos/knowledge/deep/pgvector__pgvector.yaml
-    excerpt: src/vector.c
-  object_value: src/vector.c
-  note: Dense vector types and operators.
-  fact_id: fact::896f15e5eb413db6035222f9
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/pgvector__pgvector.yaml
-    source_section: key_files[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[0]
-    source_file: repos/knowledge/deep/pgvector__pgvector.yaml
-    excerpt: src/vector.c
-  object_value: src/vector.c
-  note: Core vector type/operator implementation.
-  fact_id: fact::b862a70e8e5810454ae119bf
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
@@ -642,8 +519,7 @@ facts:
     source_file: repos/knowledge/deep/pgvector__pgvector.yaml
     excerpt: hnsw.ef_search
   object_value: hnsw.ef_search
-  note: 'default: 40; Candidate list size during HNSW search; higher values improve
-    recall at extra cost.'
+  note: 'default: 40; Candidate list size during HNSW search; higher values improve recall at extra cost.'
   fact_id: fact::d4eb7d8902eb1a77680c4140
 - fact_type: config_option
   predicate: has_config_option
@@ -677,8 +553,7 @@ facts:
     source_file: repos/knowledge/deep/pgvector__pgvector.yaml
     excerpt: hnsw.max_scan_tuples
   object_value: hnsw.max_scan_tuples
-  note: 'default: implementation default; Upper bound for tuple scan expansion during
-    iterative scans.'
+  note: 'default: implementation default; Upper bound for tuple scan expansion during iterative scans.'
   fact_id: fact::03c481edec43671632c56902
 - fact_type: config_option
   predicate: has_config_option
@@ -746,8 +621,7 @@ facts:
     source_file: repos/knowledge/deep/pgvector__pgvector.yaml
     excerpt: maintenance_work_mem
   object_value: maintenance_work_mem
-  note: 'default: postgresql default; Strongly affects ANN index build performance
-    (especially HNSW).'
+  note: 'default: postgresql default; Strongly affects ANN index build performance (especially HNSW).'
   fact_id: fact::d848de0c0eaee6604ff4a849
 - fact_type: extension_point
   predicate: has_extension_point
@@ -864,14 +738,11 @@ facts:
   - kind: file_block
     ref: troubleshooting[0]
     source_file: repos/knowledge/deep/pgvector__pgvector.yaml
-    excerpt: ANN index is not used and query falls back to sequential scan despite
-      index existing
-  object_value: ANN index is not used and query falls back to sequential scan despite
-    index existing
-  note: 'cause: The query planner bypasses the ANN index when no LIMIT clause is present,
-    when the ORDER BY operator does not match the indexed operator class, or when
-    enable_indexscan is off; fix: Always pair ORDER BY with a LIMIT clause; ensure
-    the operator in ORDER BY matches the in...'
+    excerpt: ANN index is not used and query falls back to sequential scan despite index existing
+  object_value: ANN index is not used and query falls back to sequential scan despite index existing
+  note: 'cause: The query planner bypasses the ANN index when no LIMIT clause is present, when the ORDER BY operator does
+    not match the indexed operator class, or when enable_indexscan is off; fix: Always pair ORDER BY with a LIMIT clause;
+    ensure the operator in ORDER BY matches the in...'
   fact_id: fact::b1faff016b5e54c15a6d9eb0
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -886,14 +757,11 @@ facts:
   - kind: file_block
     ref: troubleshooting[2]
     source_file: repos/knowledge/deep/pgvector__pgvector.yaml
-    excerpt: Dimension mismatch error when inserting vectors or querying against an
-      indexed column
-  object_value: Dimension mismatch error when inserting vectors or querying against
-    an indexed column
-  note: 'cause: pgvector enforces a fixed dimension for vector-typed columns; inserting
-    a vector with a different number of dimensions than declared in the column definition
-    raises an error; fix: Ensure all vectors inserted have exactly the dimension declared
-    in CREATE TABLE (e.g. vect...'
+    excerpt: Dimension mismatch error when inserting vectors or querying against an indexed column
+  object_value: Dimension mismatch error when inserting vectors or querying against an indexed column
+  note: 'cause: pgvector enforces a fixed dimension for vector-typed columns; inserting a vector with a different number of
+    dimensions than declared in the column definition raises an error; fix: Ensure all vectors inserted have exactly the dimension
+    declared in CREATE TABLE (e.g. vect...'
   fact_id: fact::287eb4e450cba60167fc420d
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -910,10 +778,9 @@ facts:
     source_file: repos/knowledge/deep/pgvector__pgvector.yaml
     excerpt: Index build runs out of memory or is killed on large datasets
   object_value: Index build runs out of memory or is killed on large datasets
-  note: "cause: HNSW and IVFFlat index builds load data into memory; HNSW in particular\
-    \ requires memory proportional to dataset size \xD7 m parameter; default maintenance_work_mem\
-    \ may be too small; fix: Increase maintenance_work_mem before building the index\
-    \ (SET maintenance_work_mem = '8..."
+  note: 'cause: HNSW and IVFFlat index builds load data into memory; HNSW in particular requires memory proportional to dataset
+    size × m parameter; default maintenance_work_mem may be too small; fix: Increase maintenance_work_mem before building
+    the index (SET maintenance_work_mem = ''8...'
   fact_id: fact::5cb66c7a1d1b13246d2a7441
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -930,10 +797,9 @@ facts:
     source_file: repos/knowledge/deep/pgvector__pgvector.yaml
     excerpt: Low recall when using IVFFlat index even with correct operator class
   object_value: Low recall when using IVFFlat index even with correct operator class
-  note: 'cause: ivfflat.probes defaults to a small value (1); with many lists, only
-    a fraction of the data is scanned per query, which degrades recall significantly
-    on dense datasets; fix: Increase ivfflat.probes (SET ivfflat.probes = 10 or higher)
-    before querying; a common guideline i...'
+  note: 'cause: ivfflat.probes defaults to a small value (1); with many lists, only a fraction of the data is scanned per
+    query, which degrades recall significantly on dense datasets; fix: Increase ivfflat.probes (SET ivfflat.probes = 10 or
+    higher) before querying; a common guideline i...'
   fact_id: fact::b648f3b8f10905c498cad925
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -948,12 +814,11 @@ facts:
   - kind: file_block
     ref: src/hnsw.c
     source_file: repos/knowledge/deep/pgvector__pgvector.yaml
-    excerpt: Graph-based ANN index (CREATE INDEX ... USING hnsw) providing high recall
-      with tunable ef_search and M parameters; implemented in src/hnsw*.c.
+    excerpt: Graph-based ANN index (CREATE INDEX ... USING hnsw) providing high recall with tunable ef_search and M parameters;
+      implemented in src/hnsw*.c.
   object_value: HNSW index
-  note: 'description: Graph-based ANN index (CREATE INDEX ... USING hnsw) providing
-    high recall with tunable ef_search and M parameters; implemented in src/hnsw*.c.;
-    location: src/hnsw.c'
+  note: 'description: Graph-based ANN index (CREATE INDEX ... USING hnsw) providing high recall with tunable ef_search and
+    M parameters; implemented in src/hnsw*.c.; location: src/hnsw.c'
   fact_id: fact::7027e69d078d6c09c1cfea08
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -968,13 +833,11 @@ facts:
   - kind: file_block
     ref: src/ivfflat.c
     source_file: repos/knowledge/deep/pgvector__pgvector.yaml
-    excerpt: List-partitioned ANN index (CREATE INDEX ... USING ivfflat) with tunable
-      lists and probes parameters; lower memory footprint than HNSW at the cost of
-      recall; implemented in src/ivf*.c.
+    excerpt: List-partitioned ANN index (CREATE INDEX ... USING ivfflat) with tunable lists and probes parameters; lower memory
+      footprint than HNSW at the cost of recall; implemented in src/ivf*.c.
   object_value: IVFFlat index
-  note: 'description: List-partitioned ANN index (CREATE INDEX ... USING ivfflat)
-    with tunable lists and probes parameters; lower memory footprint than HNSW at
-    the cost of recall; implemented in src/ivf*.c.; location: src/ivfflat.c'
+  note: 'description: List-partitioned ANN index (CREATE INDEX ... USING ivfflat) with tunable lists and probes parameters;
+    lower memory footprint than HNSW at the cost of recall; implemented in src/ivf*.c.; location: src/ivfflat.c'
   fact_id: fact::5c6e40cb350892bafefd988a
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -989,11 +852,10 @@ facts:
   - kind: file_block
     ref: README examples and SQL definitions
     source_file: repos/knowledge/deep/pgvector__pgvector.yaml
-    excerpt: Query behavior centers on SQL operators used in ORDER BY and predicate
-      expressions.
+    excerpt: Query behavior centers on SQL operators used in ORDER BY and predicate expressions.
   object_value: Operator-driven API
-  note: 'description: Query behavior centers on SQL operators used in ORDER BY and
-    predicate expressions.; location: README examples and SQL definitions'
+  note: 'description: Query behavior centers on SQL operators used in ORDER BY and predicate expressions.; location: README
+    examples and SQL definitions'
   fact_id: fact::2ea3f607ec0f61e660c0c0eb
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1008,11 +870,10 @@ facts:
   - kind: file_block
     ref: sql/vector.sql
     source_file: repos/knowledge/deep/pgvector__pgvector.yaml
-    excerpt: C functions are surfaced through SQL declarations in sql/vector.sql and
-      upgrade scripts.
+    excerpt: C functions are surfaced through SQL declarations in sql/vector.sql and upgrade scripts.
   object_value: PostgreSQL extension pattern
-  note: 'description: C functions are surfaced through SQL declarations in sql/vector.sql
-    and upgrade scripts.; location: sql/vector.sql'
+  note: 'description: C functions are surfaced through SQL declarations in sql/vector.sql and upgrade scripts.; location:
+    sql/vector.sql'
   fact_id: fact::91077c19496c3851bf6b0b7e
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1044,11 +905,10 @@ facts:
   - kind: file_block
     ref: src/hnsw*.c and src/ivf*.c
     source_file: repos/knowledge/deep/pgvector__pgvector.yaml
-    excerpt: Separate build/insert/scan/vacuum files for HNSW and IVFFlat keep code
-      paths explicit.
+    excerpt: Separate build/insert/scan/vacuum files for HNSW and IVFFlat keep code paths explicit.
   object_value: Split index implementation per algorithm
-  note: 'description: Separate build/insert/scan/vacuum files for HNSW and IVFFlat
-    keep code paths explicit.; location: src/hnsw*.c and src/ivf*.c'
+  note: 'description: Separate build/insert/scan/vacuum files for HNSW and IVFFlat keep code paths explicit.; location: src/hnsw*.c
+    and src/ivf*.c'
   fact_id: fact::65edcd393d011b3fe067f9df
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1148,10 +1008,8 @@ facts:
   - kind: file_block
     ref: cli_commands[2]
     source_file: repos/knowledge/deep/pgvector__pgvector.yaml
-    excerpt: CREATE INDEX ON items USING ivfflat (embedding vector_l2_ops) WITH (lists
-      = 100);
-  object_value: CREATE INDEX ON items USING ivfflat (embedding vector_l2_ops) WITH
-    (lists = 100);
+    excerpt: CREATE INDEX ON items USING ivfflat (embedding vector_l2_ops) WITH (lists = 100);
+  object_value: CREATE INDEX ON items USING ivfflat (embedding vector_l2_ops) WITH (lists = 100);
   note: Build IVFFlat ANN index.
   fact_id: fact::12df833ae42c572a588925ab
 - fact_type: operational_task

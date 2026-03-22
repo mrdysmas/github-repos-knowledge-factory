@@ -74,10 +74,8 @@ facts:
   - kind: file_block
     ref: key_features[0]
     source_file: repos/knowledge/deep/wez__wezterm.yaml
-    excerpt: Multi-binary architecture (wezterm, wezterm-gui, wezterm-mux-server)
-      with shared command model.
-  object_value: Multi-binary architecture (wezterm, wezterm-gui, wezterm-mux-server)
-    with shared command model.
+    excerpt: Multi-binary architecture (wezterm, wezterm-gui, wezterm-mux-server) with shared command model.
+  object_value: Multi-binary architecture (wezterm, wezterm-gui, wezterm-mux-server) with shared command model.
   fact_id: fact::43763f60459ba66942527f61
 - fact_type: component
   predicate: has_component
@@ -159,8 +157,7 @@ facts:
     ref: key_features[4]
     source_file: repos/knowledge/deep/wez__wezterm.yaml
     excerpt: Workspace-aware tab/window management and optional daemonized mux server.
-  object_value: Workspace-aware tab/window management and optional daemonized mux
-    server.
+  object_value: Workspace-aware tab/window management and optional daemonized mux server.
   fact_id: fact::9c2eac492ca0933948cbd7e8
 - fact_type: component
   predicate: has_component
@@ -260,8 +257,7 @@ facts:
   - kind: file_block
     ref: architecture.key_abstractions[0]
     source_file: repos/knowledge/deep/wez__wezterm.yaml
-    excerpt: Uniform abstraction for local, unix socket, ssh, serial, and tls-backed
-      sessions.
+    excerpt: Uniform abstraction for local, unix socket, ssh, serial, and tls-backed sessions.
   object_value: multiplexer domains
   note: Uniform abstraction for local, unix socket, ssh, serial, and tls-backed sessions.
   fact_id: fact::c3b941c4bca2bb2f3a3e8d23
@@ -302,23 +298,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: concept
-  confidence: 0.61
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/wez__wezterm.yaml
-    source_section: languages[0].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: languages[0].line[0]
-    source_file: repos/knowledge/deep/wez__wezterm.yaml
-    excerpt: rust
-  object_value: rust
-  note: language ecosystem
-  fact_id: fact::10b8d37264c4ae4996890af0
-- fact_type: component
-  predicate: has_component
-  object_kind: concept
   confidence: 0.74
   as_of: '2026-03-04'
   provenance:
@@ -329,11 +308,9 @@ facts:
   - kind: file_block
     ref: architecture.key_abstractions[2]
     source_file: repos/knowledge/deep/wez__wezterm.yaml
-    excerpt: Single executable exposes startup, mux interaction, utility, and automation
-      workflows.
+    excerpt: Single executable exposes startup, mux interaction, utility, and automation workflows.
   object_value: subcommand-oriented CLI
-  note: Single executable exposes startup, mux interaction, utility, and automation
-    workflows.
+  note: Single executable exposes startup, mux interaction, utility, and automation workflows.
   fact_id: fact::706bc84dbcbe8432354b3b1e
 - fact_type: component
   predicate: has_component
@@ -401,26 +378,8 @@ facts:
     source_file: repos/knowledge/deep/wez__wezterm.yaml
     excerpt: Configuration loading, defaults, and typed config surfaces.
   object_value: config/
-  note: 'responsibility: Configuration loading, defaults, and typed config surfaces.;
-    key_files: config/Cargo.toml, docs/config/files.md'
+  note: 'responsibility: Configuration loading, defaults, and typed config surfaces.; key_files: config/Cargo.toml, docs/config/files.md'
   fact_id: fact::5c2253c136e3ead406e496dd
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/wez__wezterm.yaml
-    source_section: core_modules.config_core
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.config_core
-    source_file: repos/knowledge/deep/wez__wezterm.yaml
-    excerpt: config/
-  object_value: config/
-  note: Config loading and typed settings.
-  fact_id: fact::676eb1e8dec95b82931a6c82
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -487,43 +446,8 @@ facts:
     source_file: repos/knowledge/deep/wez__wezterm.yaml
     excerpt: Multiplexer model for windows/tabs/panes and domain abstractions.
   object_value: mux/
-  note: 'responsibility: Multiplexer model for windows/tabs/panes and domain abstractions.;
-    key_files: mux/Cargo.toml'
+  note: 'responsibility: Multiplexer model for windows/tabs/panes and domain abstractions.; key_files: mux/Cargo.toml'
   fact_id: fact::3c1a5c8dde4a474079589fc8
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/wez__wezterm.yaml
-    source_section: core_modules.mux_core
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.mux_core
-    source_file: repos/knowledge/deep/wez__wezterm.yaml
-    excerpt: mux/
-  object_value: mux/
-  note: Shared pane/tab/window model and domains.
-  fact_id: fact::eea68f9d2c90bef4098459ed
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/wez__wezterm.yaml
-    source_section: core_modules.terminal_core
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.terminal_core
-    source_file: repos/knowledge/deep/wez__wezterm.yaml
-    excerpt: termwiz/
-  object_value: termwiz/
-  note: Terminal emulation primitives and capabilities.
-  fact_id: fact::df9d1a15f8b8e3dfef653349
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -539,8 +463,7 @@ facts:
     source_file: repos/knowledge/deep/wez__wezterm.yaml
     excerpt: Terminal capabilities, parsing, and surface primitives used by the emulator.
   object_value: termwiz/
-  note: 'responsibility: Terminal capabilities, parsing, and surface primitives used
-    by the emulator.; key_files: termwiz/Cargo.toml'
+  note: 'responsibility: Terminal capabilities, parsing, and surface primitives used by the emulator.; key_files: termwiz/Cargo.toml'
   fact_id: fact::ea35965d7f5005db2fee93b0
 - fact_type: component
   predicate: has_component
@@ -555,11 +478,9 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[1]
     source_file: repos/knowledge/deep/wez__wezterm.yaml
-    excerpt: GUI runtime, window management, rendering loop, and command execution
-      integration.
+    excerpt: GUI runtime, window management, rendering loop, and command execution integration.
   object_value: wezterm-gui/
-  note: 'responsibility: GUI runtime, window management, rendering loop, and command
-    execution integration.; key_files: wezterm-gui/src/main.rs'
+  note: 'responsibility: GUI runtime, window management, rendering loop, and command execution integration.; key_files: wezterm-gui/src/main.rs'
   fact_id: fact::4870e70c5f2566942c2496f5
 - fact_type: component
   predicate: has_component
@@ -581,23 +502,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/wez__wezterm.yaml
-    source_section: key_files[2]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[2]
-    source_file: repos/knowledge/deep/wez__wezterm.yaml
-    excerpt: wezterm-gui/src/main.rs
-  object_value: wezterm-gui/src/main.rs
-  note: GUI runtime entrypoint.
-  fact_id: fact::99ece1fb41faf8f13da904d7
-- fact_type: component
-  predicate: has_component
-  object_kind: path
   confidence: 0.78
   as_of: '2026-03-04'
   provenance:
@@ -610,8 +514,7 @@ facts:
     source_file: repos/knowledge/deep/wez__wezterm.yaml
     excerpt: Standalone mux server runtime with optional daemonization.
   object_value: wezterm-mux-server/
-  note: 'responsibility: Standalone mux server runtime with optional daemonization.;
-    key_files: wezterm-mux-server/src/main.rs'
+  note: 'responsibility: Standalone mux server runtime with optional daemonization.; key_files: wezterm-mux-server/src/main.rs'
   fact_id: fact::b619ffe7ee08af45390f6de8
 - fact_type: component
   predicate: has_component
@@ -633,23 +536,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/wez__wezterm.yaml
-    source_section: key_files[3]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[3]
-    source_file: repos/knowledge/deep/wez__wezterm.yaml
-    excerpt: wezterm-mux-server/src/main.rs
-  object_value: wezterm-mux-server/src/main.rs
-  note: Mux server executable.
-  fact_id: fact::8e5262cceea67fc9d8d7c72e
-- fact_type: component
-  predicate: has_component
-  object_kind: path
   confidence: 0.78
   as_of: '2026-03-04'
   provenance:
@@ -662,8 +548,7 @@ facts:
     source_file: repos/knowledge/deep/wez__wezterm.yaml
     excerpt: SSH transport integration used by wezterm ssh and multiplexing workflows.
   object_value: wezterm-ssh/
-  note: 'responsibility: SSH transport integration used by wezterm ssh and multiplexing
-    workflows.; key_files: wezterm-ssh/Cargo.toml'
+  note: 'responsibility: SSH transport integration used by wezterm ssh and multiplexing workflows.; key_files: wezterm-ssh/Cargo.toml'
   fact_id: fact::60c8b99e18205f37265f5cd5
 - fact_type: component
   predicate: has_component
@@ -680,8 +565,7 @@ facts:
     source_file: repos/knowledge/deep/wez__wezterm.yaml
     excerpt: Primary CLI binary and shared command dispatch for end-user entrypoint.
   object_value: wezterm/
-  note: 'responsibility: Primary CLI binary and shared command dispatch for end-user
-    entrypoint.; key_files: wezterm/src/main.rs'
+  note: 'responsibility: Primary CLI binary and shared command dispatch for end-user entrypoint.; key_files: wezterm/src/main.rs'
   fact_id: fact::8a79e854724389ae072078ac
 - fact_type: component
   predicate: has_component
@@ -700,23 +584,6 @@ facts:
   object_value: wezterm/src/main.rs
   note: Top-level command parser and dispatch.
   fact_id: fact::99968b0bf15f87dc943fdc5d
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/wez__wezterm.yaml
-    source_section: key_files[1]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[1]
-    source_file: repos/knowledge/deep/wez__wezterm.yaml
-    excerpt: wezterm/src/main.rs
-  object_value: wezterm/src/main.rs
-  note: Primary CLI binary command wiring.
-  fact_id: fact::a7045a747240b6a0d1d1a952
 - fact_type: config_option
   predicate: has_config_option
   object_kind: command
@@ -1140,10 +1007,9 @@ facts:
     source_file: repos/knowledge/deep/wez__wezterm.yaml
     excerpt: Colors look wrong or 24-bit color not rendering
   object_value: Colors look wrong or 24-bit color not rendering
-  note: 'cause: TERM not set to xterm-256color or wezterm inside the session; outer
-    terminal overriding color capability.; fix: Ensure TERM=wezterm or TERM=xterm-256color
-    inside wezterm sessions; check for conflicting SSH or tmux TERM overrides when
-    running nested sessions.'
+  note: 'cause: TERM not set to xterm-256color or wezterm inside the session; outer terminal overriding color capability.;
+    fix: Ensure TERM=wezterm or TERM=xterm-256color inside wezterm sessions; check for conflicting SSH or tmux TERM overrides
+    when running nested sessions.'
   fact_id: fact::36a802b87601b61fa66150c7
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -1160,10 +1026,9 @@ facts:
     source_file: repos/knowledge/deep/wez__wezterm.yaml
     excerpt: Font glyphs missing or rendered as boxes
   object_value: Font glyphs missing or rendered as boxes
-  note: "cause: Configured font not installed on the system; or fallback font chain\
-    \ does not cover the required Unicode range.; fix: Run wezterm ls-fonts --text\
-    \ \"\u26A1\" to see which font would render a character; install the missing font\
-    \ or add a fallback in wezterm.lua via font_with_fallb..."
+  note: 'cause: Configured font not installed on the system; or fallback font chain does not cover the required Unicode range.;
+    fix: Run wezterm ls-fonts --text "⚡" to see which font would render a character; install the missing font or add a fallback
+    in wezterm.lua via font_with_fallb...'
   fact_id: fact::51a22228e8f84c30445870ef
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -1180,9 +1045,8 @@ facts:
     source_file: repos/knowledge/deep/wez__wezterm.yaml
     excerpt: SSH domain connection fails with authentication error or timeout
   object_value: SSH domain connection fails with authentication error or timeout
-  note: 'cause: SSH agent not running or not forwarding credentials; wrong username
-    or host in ssh_domains config; host key not accepted.; fix: Verify SSH_AUTH_SOCK
-    is set and ssh-agent has keys loaded (ssh-add -l); test connectivity with plain
+  note: 'cause: SSH agent not running or not forwarding credentials; wrong username or host in ssh_domains config; host key
+    not accepted.; fix: Verify SSH_AUTH_SOCK is set and ssh-agent has keys loaded (ssh-add -l); test connectivity with plain
     ssh first; set ssh_domains.username and c...'
   fact_id: fact::192c3fa1a31d9bd6eb150ca0
 - fact_type: failure_mode
@@ -1200,10 +1064,9 @@ facts:
     source_file: repos/knowledge/deep/wez__wezterm.yaml
     excerpt: wezterm cli commands fail with "no mux server" or connection refused
   object_value: wezterm cli commands fail with "no mux server" or connection refused
-  note: 'cause: The wezterm GUI or mux server is not running; wezterm cli requires
-    an active mux server to connect to.; fix: Start wezterm normally to bring up the
-    mux server; for headless use, run wezterm-mux-server --daemonize and then use
-    wezterm cli.'
+  note: 'cause: The wezterm GUI or mux server is not running; wezterm cli requires an active mux server to connect to.; fix:
+    Start wezterm normally to bring up the mux server; for headless use, run wezterm-mux-server --daemonize and then use wezterm
+    cli.'
   fact_id: fact::3cccb277141334d9908cc6b0
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -1220,10 +1083,9 @@ facts:
     source_file: repos/knowledge/deep/wez__wezterm.yaml
     excerpt: wezterm fails to start or shows a Lua error on launch
   object_value: wezterm fails to start or shows a Lua error on launch
-  note: 'cause: Syntax error or runtime error in wezterm.lua config; wezterm evaluates
-    the config at startup and aborts if it throws.; fix: Run wezterm --config-file
-    /dev/null to start with no config and confirm the binary works; then bisect wezterm.lua
-    to isolate the offending line.'
+  note: 'cause: Syntax error or runtime error in wezterm.lua config; wezterm evaluates the config at startup and aborts if
+    it throws.; fix: Run wezterm --config-file /dev/null to start with no config and confirm the binary works; then bisect
+    wezterm.lua to isolate the offending line.'
   fact_id: fact::1d47d5e22459989f5408f27b
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1240,8 +1102,7 @@ facts:
     source_file: repos/knowledge/deep/wez__wezterm.yaml
     excerpt: Config file, --config overrides, and defaults are merged during startup.
   object_value: Config layering
-  note: 'description: Config file, --config overrides, and defaults are merged during
-    startup.; location: wezterm/src/main.rs'
+  note: 'description: Config file, --config overrides, and defaults are merged during startup.; location: wezterm/src/main.rs'
   fact_id: fact::229ccb684cc334d941f6956f
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1256,11 +1117,10 @@ facts:
   - kind: file_block
     ref: wezterm-gui/src/main.rs
     source_file: repos/knowledge/deep/wez__wezterm.yaml
-    excerpt: Commands connect through domain objects rather than hardcoding transport-specific
-      logic.
+    excerpt: Commands connect through domain objects rather than hardcoding transport-specific logic.
   object_value: Domain-driven mux abstraction
-  note: 'description: Commands connect through domain objects rather than hardcoding
-    transport-specific logic.; location: wezterm-gui/src/main.rs'
+  note: 'description: Commands connect through domain objects rather than hardcoding transport-specific logic.; location:
+    wezterm-gui/src/main.rs'
   fact_id: fact::04000c874b02fa659d1192c8
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1275,11 +1135,9 @@ facts:
   - kind: file_block
     ref: wezterm-mux-server/src/main.rs
     source_file: repos/knowledge/deep/wez__wezterm.yaml
-    excerpt: wezterm-mux-server supports --daemonize and re-exec flow to stabilize
-      runtime state.
+    excerpt: wezterm-mux-server supports --daemonize and re-exec flow to stabilize runtime state.
   object_value: Optional daemonization path for mux server
-  note: 'description: wezterm-mux-server supports --daemonize and re-exec flow to
-    stabilize runtime state.; location: wezterm-mux-server/src/main.rs'
+  note: 'description: wezterm-mux-server supports --daemonize and re-exec flow to stabilize runtime state.; location: wezterm-mux-server/src/main.rs'
   fact_id: fact::4cf3b1fd305f7b7ee5308e58
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1296,8 +1154,8 @@ facts:
     source_file: repos/knowledge/deep/wez__wezterm.yaml
     excerpt: Opt/SubCommand enums appear in binaries to keep command semantics consistent.
   object_value: Reused clap command model across binaries
-  note: 'description: Opt/SubCommand enums appear in binaries to keep command semantics
-    consistent.; location: wezterm/src/main.rs and wezterm-gui/src/main.rs'
+  note: 'description: Opt/SubCommand enums appear in binaries to keep command semantics consistent.; location: wezterm/src/main.rs
+    and wezterm-gui/src/main.rs'
   fact_id: fact::beaef227e074f921bb403bd5
 - fact_type: implementation_pattern
   predicate: implements_pattern

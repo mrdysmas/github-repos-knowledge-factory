@@ -126,11 +126,10 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[1]
     source_file: repos/knowledge/deep/containers__podman.yaml
-    excerpt: Core runtime library for containers, pods, storage coordination, and
-      lifecycle behavior.
+    excerpt: Core runtime library for containers, pods, storage coordination, and lifecycle behavior.
   object_value: libpod
-  note: 'responsibility: Core runtime library for containers, pods, storage coordination,
-    and lifecycle behavior.; key_files: libpod'
+  note: 'responsibility: Core runtime library for containers, pods, storage coordination, and lifecycle behavior.; key_files:
+    libpod'
   fact_id: fact::38bfc0d65000963452c4c714
 - fact_type: component
   predicate: has_component
@@ -169,23 +168,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-13'
-  provenance:
-    source_file: repos/knowledge/deep/containers__podman.yaml
-    source_section: core_modules.cli
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.cli
-    source_file: repos/knowledge/deep/containers__podman.yaml
-    excerpt: cmd/podman
-  object_value: cmd/podman
-  note: CLI command tree for container workflows.
-  fact_id: fact::502e92e2b922e830b1efef9e
-- fact_type: component
-  predicate: has_component
-  object_kind: path
   confidence: 0.78
   as_of: '2026-03-13'
   provenance:
@@ -196,29 +178,10 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[0]
     source_file: repos/knowledge/deep/containers__podman.yaml
-    excerpt: Primary CLI commands for container, image, machine, network, and kube
-      workflows.
+    excerpt: Primary CLI commands for container, image, machine, network, and kube workflows.
   object_value: cmd/podman
-  note: 'responsibility: Primary CLI commands for container, image, machine, network,
-    and kube workflows.; key_files: cmd/podman'
+  note: 'responsibility: Primary CLI commands for container, image, machine, network, and kube workflows.; key_files: cmd/podman'
   fact_id: fact::d1581b7ba63d2dfc22f13098
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-13'
-  provenance:
-    source_file: repos/knowledge/deep/containers__podman.yaml
-    source_section: key_files[2]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[2]
-    source_file: repos/knowledge/deep/containers__podman.yaml
-    excerpt: cmd/podman
-  object_value: cmd/podman
-  note: CLI command implementation tree.
-  fact_id: fact::d5935c9454d473640d8109be
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -249,46 +212,11 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[3]
     source_file: repos/knowledge/deep/containers__podman.yaml
-    excerpt: Shared domain logic, local API behaviors, and internal orchestration
-      helpers.
+    excerpt: Shared domain logic, local API behaviors, and internal orchestration helpers.
   object_value: internal and pkg/domain
-  note: 'responsibility: Shared domain logic, local API behaviors, and internal orchestration
-    helpers.; key_files: internal, pkg/domain'
+  note: 'responsibility: Shared domain logic, local API behaviors, and internal orchestration helpers.; key_files: internal,
+    pkg/domain'
   fact_id: fact::32eab7ad5abe4e4340df4b7f
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-13'
-  provenance:
-    source_file: repos/knowledge/deep/containers__podman.yaml
-    source_section: key_files[3]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[3]
-    source_file: repos/knowledge/deep/containers__podman.yaml
-    excerpt: libpod
-  object_value: libpod
-  note: Core runtime package.
-  fact_id: fact::dbdaef8625ccccecddbe0226
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-13'
-  provenance:
-    source_file: repos/knowledge/deep/containers__podman.yaml
-    source_section: core_modules.runtime
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.runtime
-    source_file: repos/knowledge/deep/containers__podman.yaml
-    excerpt: libpod
-  object_value: libpod
-  note: Core runtime and lifecycle management.
-  fact_id: fact::e4137b1c4d8f9bf6b0202832
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -309,23 +237,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-13'
-  provenance:
-    source_file: repos/knowledge/deep/containers__podman.yaml
-    source_section: key_files[4]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[4]
-    source_file: repos/knowledge/deep/containers__podman.yaml
-    excerpt: pkg/api
-  object_value: pkg/api
-  note: API server packages.
-  fact_id: fact::9e28536c4063de3c9c601ce4
-- fact_type: component
-  predicate: has_component
-  object_kind: path
   confidence: 0.78
   as_of: '2026-03-13'
   provenance:
@@ -338,8 +249,7 @@ facts:
     source_file: repos/knowledge/deep/containers__podman.yaml
     excerpt: API server and client bindings for remote or programmatic control.
   object_value: pkg/api and pkg/bindings
-  note: 'responsibility: API server and client bindings for remote or programmatic
-    control.; key_files: pkg/api, pkg/bindings'
+  note: 'responsibility: API server and client bindings for remote or programmatic control.; key_files: pkg/api, pkg/bindings'
   fact_id: fact::896254bbd8142523bc3c6db7
 - fact_type: component
   predicate: has_component
@@ -593,11 +503,9 @@ facts:
     ref: troubleshooting[0]
     source_file: repos/knowledge/deep/containers__podman.yaml
     excerpt: Container fails to start in rootless mode with cgroup or permission errors
-  object_value: Container fails to start in rootless mode with cgroup or permission
-    errors
-  note: 'cause: Rootless Podman requires cgroup v2 support; systems still on cgroup
-    v1 or with rootless cgroup delegation disabled will reject container resource
-    constraints; fix: Verify cgroup v2 is active (mount | grep cgroup2); enable cgroup
+  object_value: Container fails to start in rootless mode with cgroup or permission errors
+  note: 'cause: Rootless Podman requires cgroup v2 support; systems still on cgroup v1 or with rootless cgroup delegation
+    disabled will reject container resource constraints; fix: Verify cgroup v2 is active (mount | grep cgroup2); enable cgroup
     delegation for systemd users (loginctl en...'
   fact_id: fact::4b00adfd5e630389dd2391b7
 - fact_type: failure_mode
@@ -615,10 +523,9 @@ facts:
     source_file: repos/knowledge/deep/containers__podman.yaml
     excerpt: Image pull fails with authentication or manifest not found error
   object_value: Image pull fails with authentication or manifest not found error
-  note: 'cause: The registry requires authentication and credentials have not been
-    stored; or the image name or tag does not exist in the target registry; fix: Run
-    podman login <registry> to store credentials; verify the full image reference
-    including tag (e.g. docker.io/library/nginx:...'
+  note: 'cause: The registry requires authentication and credentials have not been stored; or the image name or tag does not
+    exist in the target registry; fix: Run podman login <registry> to store credentials; verify the full image reference including
+    tag (e.g. docker.io/library/nginx:...'
   fact_id: fact::938cb90d933841133c84cdad
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -633,13 +540,10 @@ facts:
   - kind: file_block
     ref: troubleshooting[1]
     source_file: repos/knowledge/deep/containers__podman.yaml
-    excerpt: 'podman: command cannot connect to Podman socket when using API or remote
-      bindings'
-  object_value: 'podman: command cannot connect to Podman socket when using API or
-    remote bindings'
-  note: 'cause: The Podman REST API socket is not running; bindings require an active
-    podman system service listener on the expected socket path; fix: Start the socket
-    with podman system service --time=0 or enable the systemd socket unit (systemctl
+    excerpt: 'podman: command cannot connect to Podman socket when using API or remote bindings'
+  object_value: 'podman: command cannot connect to Podman socket when using API or remote bindings'
+  note: 'cause: The Podman REST API socket is not running; bindings require an active podman system service listener on the
+    expected socket path; fix: Start the socket with podman system service --time=0 or enable the systemd socket unit (systemctl
     --user enable --now podman.socket); v...'
   fact_id: fact::4d70f202a94b439f0fbc1fd0
 - fact_type: implementation_pattern
@@ -691,8 +595,7 @@ facts:
     source_file: repos/knowledge/deep/containers__podman.yaml
     excerpt: Command families are grouped by domain under cmd/podman.
   object_value: CLI subcommand decomposition
-  note: 'description: Command families are grouped by domain under cmd/podman.; location:
-    cmd/podman'
+  note: 'description: Command families are grouped by domain under cmd/podman.; location: cmd/podman'
   fact_id: fact::5f4bccc73848f9be411f2b31
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -724,11 +627,10 @@ facts:
   - kind: file_block
     ref: libpod
     source_file: repos/knowledge/deep/containers__podman.yaml
-    excerpt: Container operations are implemented around local runtime management
-      rather than a long-lived daemon requirement.
+    excerpt: Container operations are implemented around local runtime management rather than a long-lived daemon requirement.
   object_value: Daemonless container workflow
-  note: 'description: Container operations are implemented around local runtime management
-    rather than a long-lived daemon requirement.; location: libpod'
+  note: 'description: Container operations are implemented around local runtime management rather than a long-lived daemon
+    requirement.; location: libpod'
   fact_id: fact::84c162d37def44ea2595a027
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -745,8 +647,7 @@ facts:
     source_file: repos/knowledge/deep/containers__podman.yaml
     excerpt: Shared domain logic is separated into pkg/domain and internal packages.
   object_value: Domain layering
-  note: 'description: Shared domain logic is separated into pkg/domain and internal
-    packages.; location: pkg/domain'
+  note: 'description: Shared domain logic is separated into pkg/domain and internal packages.; location: pkg/domain'
   fact_id: fact::4a95f3184ee82df308a0595a
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -761,11 +662,10 @@ facts:
   - kind: file_block
     ref: pkg/api
     source_file: repos/knowledge/deep/containers__podman.yaml
-    excerpt: CLI, API, and bindings packages expose the same runtime capabilities
-      through separate interfaces.
+    excerpt: CLI, API, and bindings packages expose the same runtime capabilities through separate interfaces.
   object_value: Local and remote control surfaces
-  note: 'description: CLI, API, and bindings packages expose the same runtime capabilities
-    through separate interfaces.; location: pkg/api'
+  note: 'description: CLI, API, and bindings packages expose the same runtime capabilities through separate interfaces.; location:
+    pkg/api'
   fact_id: fact::fc9c585c129a022b6a9308ca
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -780,10 +680,8 @@ facts:
   - kind: file_block
     ref: testing.structure.line[0]
     source_file: repos/knowledge/deep/containers__podman.yaml
-    excerpt: Repository includes Go tests and scenario coverage across runtime, API,
-      and CLI workflows.
-  object_value: Repository includes Go tests and scenario coverage across runtime,
-    API, and CLI workflows.
+    excerpt: Repository includes Go tests and scenario coverage across runtime, API, and CLI workflows.
+  object_value: Repository includes Go tests and scenario coverage across runtime, API, and CLI workflows.
   note: 'testing metadata: structure'
   fact_id: fact::870a9010416d8faba058cb0c
 - fact_type: implementation_pattern
@@ -799,11 +697,10 @@ facts:
   - kind: file_block
     ref: libpod
     source_file: repos/knowledge/deep/containers__podman.yaml
-    excerpt: Core runtime behavior lives in libpod while remote and programmatic surfaces
-      live in pkg/api and pkg/bindings.
+    excerpt: Core runtime behavior lives in libpod while remote and programmatic surfaces live in pkg/api and pkg/bindings.
   object_value: Runtime-and-API split
-  note: 'description: Core runtime behavior lives in libpod while remote and programmatic
-    surfaces live in pkg/api and pkg/bindings.; location: libpod'
+  note: 'description: Core runtime behavior lives in libpod while remote and programmatic surfaces live in pkg/api and pkg/bindings.;
+    location: libpod'
   fact_id: fact::b99854357342a7722fb52574
 - fact_type: operational_task
   predicate: supports_task
@@ -825,40 +722,6 @@ facts:
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-13'
-  provenance:
-    source_file: repos/knowledge/deep/containers__podman.yaml
-    source_section: quick_reference[0].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[0].line[0]
-    source_file: repos/knowledge/deep/containers__podman.yaml
-    excerpt: make
-  object_value: make
-  note: 'topic: Build project'
-  fact_id: fact::cd00f688a1074ec3ca390c93
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-13'
-  provenance:
-    source_file: repos/knowledge/deep/containers__podman.yaml
-    source_section: testing.framework.line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: testing.framework.line[0]
-    source_file: repos/knowledge/deep/containers__podman.yaml
-    excerpt: make test
-  object_value: make test
-  note: testing command
-  fact_id: fact::3c246c187fcb9192f4e800d0
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
   confidence: 0.68
   as_of: '2026-03-13'
   provenance:
@@ -873,20 +736,3 @@ facts:
   object_value: make test
   note: Run test suite.
   fact_id: fact::4e0a98db5f6bd53d3c2b9a6a
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-13'
-  provenance:
-    source_file: repos/knowledge/deep/containers__podman.yaml
-    source_section: quick_reference[1].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[1].line[0]
-    source_file: repos/knowledge/deep/containers__podman.yaml
-    excerpt: make test
-  object_value: make test
-  note: 'topic: Run tests'
-  fact_id: fact::72c8e6ce1a62b38d4a05549a

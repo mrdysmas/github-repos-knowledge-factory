@@ -162,8 +162,7 @@ facts:
     source_file: repos/knowledge/deep/gost.yaml
     excerpt: Entry point - SIGHUP hot-reload, multi-process support via -- separator
   object_value: cmd/gost/main.go
-  note: 'responsibility: Entry point - SIGHUP hot-reload, multi-process support via
-    -- separator; key_files: cmd/gost/main.go'
+  note: 'responsibility: Entry point - SIGHUP hot-reload, multi-process support via -- separator; key_files: cmd/gost/main.go'
   fact_id: fact::409a15e4e5dc24fb4deec5e8
 - fact_type: component
   predicate: has_component
@@ -180,8 +179,7 @@ facts:
     source_file: repos/knowledge/deep/gost.yaml
     excerpt: Service lifecycle - Init/Start/Stop/Reload orchestration
   object_value: cmd/gost/program.go
-  note: 'responsibility: Service lifecycle - Init/Start/Stop/Reload orchestration;
-    key_files: cmd/gost/program.go'
+  note: 'responsibility: Service lifecycle - Init/Start/Stop/Reload orchestration; key_files: cmd/gost/program.go'
   fact_id: fact::6bec9c52f53eb183f5b2e909
 - fact_type: component
   predicate: has_component
@@ -198,8 +196,7 @@ facts:
     source_file: repos/knowledge/deep/gost.yaml
     excerpt: Protocol registration via blank imports with init() functions
   object_value: cmd/gost/register.go
-  note: 'responsibility: Protocol registration via blank imports with init() functions;
-    key_files: cmd/gost/register.go'
+  note: 'responsibility: Protocol registration via blank imports with init() functions; key_files: cmd/gost/register.go'
   fact_id: fact::06c316239c092c3a25d169e1
 - fact_type: component
   predicate: has_component
@@ -216,8 +213,7 @@ facts:
     source_file: repos/knowledge/deep/gost.yaml
     excerpt: Core interfaces - service definitions, registries, base types
   object_value: github.com/go-gost/core
-  note: 'responsibility: Core interfaces - service definitions, registries, base types;
-    key_files: cmd/gost/register.go'
+  note: 'responsibility: Core interfaces - service definitions, registries, base types; key_files: cmd/gost/register.go'
   fact_id: fact::b507e3afdfd5ad76f82b8416
 - fact_type: component
   predicate: has_component
@@ -234,8 +230,7 @@ facts:
     source_file: repos/knowledge/deep/gost.yaml
     excerpt: Protocol implementations - 40+ connectors/dialers/handlers/listeners
   object_value: github.com/go-gost/x
-  note: 'responsibility: Protocol implementations - 40+ connectors/dialers/handlers/listeners;
-    key_files: cmd/gost/register.go'
+  note: 'responsibility: Protocol implementations - 40+ connectors/dialers/handlers/listeners; key_files: cmd/gost/register.go'
   fact_id: fact::b0445aa33b40b0c8a082ee05
 - fact_type: config_option
   predicate: has_config_option
@@ -320,8 +315,7 @@ facts:
     source_file: repos/knowledge/deep/gost.yaml
     excerpt: chains[].hops[].nodes[].dialer.type
   object_value: chains[].hops[].nodes[].dialer.type
-  note: 'type: string; default: required; Outbound protocol (tcp, tls, quic, kcp,
-    etc.)'
+  note: 'type: string; default: required; Outbound protocol (tcp, tls, quic, kcp, etc.)'
   fact_id: fact::f1c0a2c508e6c422643bd195
 - fact_type: config_option
   predicate: has_config_option
@@ -610,80 +604,8 @@ facts:
     source_file: repos/knowledge/deep/gost.yaml
     excerpt: cmd/gost/register.go
   object_value: cmd/gost/register.go
-  note: Register new inbound protocol (e.g., custom proxy); Connector interface (from
-    go-gost/core)
+  note: Register new inbound protocol (e.g., custom proxy); Connector interface (from go-gost/core)
   fact_id: fact::2fc3cb3b011a876ead86703c
-- fact_type: extension_point
-  predicate: has_extension_point
-  object_kind: path
-  confidence: 0.71
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/gost.yaml
-    source_section: extension_points[3]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: extension_points[3]
-    source_file: repos/knowledge/deep/gost.yaml
-    excerpt: cmd/gost/register.go
-  object_value: cmd/gost/register.go
-  note: Register new listener type (e.g., custom transport); Listener interface (from
-    go-gost/core)
-  fact_id: fact::45eea564c94b09b40bab8ec4
-- fact_type: extension_point
-  predicate: has_extension_point
-  object_kind: path
-  confidence: 0.71
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/gost.yaml
-    source_section: extension_points[4]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: extension_points[4]
-    source_file: repos/knowledge/deep/gost.yaml
-    excerpt: cmd/gost/register.go
-  object_value: cmd/gost/register.go
-  note: Add _ "your-module/connector" to register custom protocol; Blank import section
-  fact_id: fact::793c31c4c0f87b95533afbc5
-- fact_type: extension_point
-  predicate: has_extension_point
-  object_kind: path
-  confidence: 0.71
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/gost.yaml
-    source_section: extension_points[2]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: extension_points[2]
-    source_file: repos/knowledge/deep/gost.yaml
-    excerpt: cmd/gost/register.go
-  object_value: cmd/gost/register.go
-  note: Register new request handler (e.g., custom routing); Handler interface (from
-    go-gost/core)
-  fact_id: fact::7a44fbb96dd7946a19060612
-- fact_type: extension_point
-  predicate: has_extension_point
-  object_kind: path
-  confidence: 0.71
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/gost.yaml
-    source_section: extension_points[1]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: extension_points[1]
-    source_file: repos/knowledge/deep/gost.yaml
-    excerpt: cmd/gost/register.go
-  object_value: cmd/gost/register.go
-  note: Register new outbound protocol (e.g., QUIC variant); Dialer interface (from
-    go-gost/core)
-  fact_id: fact::fa8072bae9b833dd8dfa4079
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
@@ -801,8 +723,7 @@ facts:
     source_file: repos/knowledge/deep/gost.yaml
     excerpt: Split on --, workers coordinated via _GOST_ID env var
   object_value: Multi-Process Mode
-  note: 'description: Split on --, workers coordinated via _GOST_ID env var; location:
-    cmd/gost/main.go:106'
+  note: 'description: Split on --, workers coordinated via _GOST_ID env var; location: cmd/gost/main.go:106'
   fact_id: fact::6f7343e7c66d9a065e0f20f5
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -836,8 +757,7 @@ facts:
     source_file: repos/knowledge/deep/gost.yaml
     excerpt: Components registered by type, retrieved by name
   object_value: Registry-based DI
-  note: 'description: Components registered by type, retrieved by name; location:
-    cmd/gost/program.go:80'
+  note: 'description: Components registered by type, retrieved by name; location: cmd/gost/program.go:80'
   fact_id: fact::c55bea301c9fece4c885b061
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -854,8 +774,7 @@ facts:
     source_file: repos/knowledge/deep/gost.yaml
     excerpt: Init/Start/Stop/Reload methods for managed services
   object_value: Service Lifecycle Interface
-  note: 'description: Init/Start/Stop/Reload methods for managed services; location:
-    cmd/gost/program.go:35-194'
+  note: 'description: Init/Start/Stop/Reload methods for managed services; location: cmd/gost/program.go:35-194'
   fact_id: fact::70359ff74c7c23639ffe467f
 - fact_type: implementation_pattern
   predicate: implements_pattern

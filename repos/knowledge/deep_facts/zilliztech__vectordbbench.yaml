@@ -57,8 +57,7 @@ facts:
   - kind: file_block
     ref: architecture.key_abstractions[2]
     source_file: repos/knowledge/deep/zilliztech__vectordbbench.yaml
-    excerpt: Captures QPS, recall, and latency metrics from a completed benchmark
-      run
+    excerpt: Captures QPS, recall, and latency metrics from a completed benchmark run
   object_value: CaseResult
   note: Captures QPS, recall, and latency metrics from a completed benchmark run
   fact_id: fact::8a076d7e0770c93eb3266421
@@ -142,10 +141,8 @@ facts:
   - kind: file_block
     ref: key_features[1]
     source_file: repos/knowledge/deep/zilliztech__vectordbbench.yaml
-    excerpt: Pluggable database adapters for Milvus, Qdrant, Weaviate, pgvector, Pinecone,
-      and more
-  object_value: Pluggable database adapters for Milvus, Qdrant, Weaviate, pgvector,
-    Pinecone, and more
+    excerpt: Pluggable database adapters for Milvus, Qdrant, Weaviate, pgvector, Pinecone, and more
+  object_value: Pluggable database adapters for Milvus, Qdrant, Weaviate, pgvector, Pinecone, and more
   fact_id: fact::4726c4e7bdd31966aac9a0fc
 - fact_type: component
   predicate: has_component
@@ -210,10 +207,8 @@ facts:
   - kind: file_block
     ref: key_features[0]
     source_file: repos/knowledge/deep/zilliztech__vectordbbench.yaml
-    excerpt: Standardized benchmark cases for capacity, performance, and filtered
-      search
-  object_value: Standardized benchmark cases for capacity, performance, and filtered
-    search
+    excerpt: Standardized benchmark cases for capacity, performance, and filtered search
+  object_value: Standardized benchmark cases for capacity, performance, and filtered search
   fact_id: fact::bd3f36173de2a07866b636fa
 - fact_type: component
   predicate: has_component
@@ -295,11 +290,9 @@ facts:
   - kind: file_block
     ref: architecture.key_abstractions[0]
     source_file: repos/knowledge/deep/zilliztech__vectordbbench.yaml
-    excerpt: "Abstract interface every database client must implement \u2014 load,\
-      \ search, optimize, ready, clean"
+    excerpt: Abstract interface every database client must implement — load, search, optimize, ready, clean
   object_value: VectorDB (base class)
-  note: "Abstract interface every database client must implement \u2014 load, search,\
-    \ optimize, ready, clean"
+  note: Abstract interface every database client must implement — load, search, optimize, ready, clean
   fact_id: fact::7e307e3b9fc5f81b18e73217
 - fact_type: component
   predicate: has_component
@@ -330,11 +323,10 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[0]
     source_file: repos/knowledge/deep/zilliztech__vectordbbench.yaml
-    excerpt: "Core benchmark orchestration \u2014 task runner, metric collector, case\
-      \ definitions"
+    excerpt: Core benchmark orchestration — task runner, metric collector, case definitions
   object_value: vectordb_bench/
-  note: "responsibility: Core benchmark orchestration \u2014 task runner, metric collector,\
-    \ case definitions; key_files: vectordb_bench/backend/runner.py, vectordb_bench/backend/cases.py"
+  note: 'responsibility: Core benchmark orchestration — task runner, metric collector, case definitions; key_files: vectordb_bench/backend/runner.py,
+    vectordb_bench/backend/cases.py'
   fact_id: fact::40abc6ad60da323c99a4b619
 - fact_type: component
   predicate: has_component
@@ -355,22 +347,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/zilliztech__vectordbbench.yaml
-    source_section: key_files[2]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[2]
-    source_file: repos/knowledge/deep/zilliztech__vectordbbench.yaml
-    excerpt: vectordb_bench/backend/clients/
-  object_value: vectordb_bench/backend/clients/
-  fact_id: fact::9ee26f30f61355ba0943ef86
-- fact_type: component
-  predicate: has_component
-  object_kind: path
   confidence: 0.78
   as_of: '2026-03-18'
   provenance:
@@ -381,11 +357,10 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[1]
     source_file: repos/knowledge/deep/zilliztech__vectordbbench.yaml
-    excerpt: Per-database client adapters implementing a common API for load, search,
-      and teardown
+    excerpt: Per-database client adapters implementing a common API for load, search, and teardown
   object_value: vectordb_bench/backend/clients/
-  note: 'responsibility: Per-database client adapters implementing a common API for
-    load, search, and teardown; key_files: vectordb_bench/backend/clients/'
+  note: 'responsibility: Per-database client adapters implementing a common API for load, search, and teardown; key_files:
+    vectordb_bench/backend/clients/'
   fact_id: fact::df1353976564987ecfc6dde2
 - fact_type: component
   predicate: has_component
@@ -418,8 +393,7 @@ facts:
     source_file: repos/knowledge/deep/zilliztech__vectordbbench.yaml
     excerpt: Streamlit web dashboard for visualizing benchmark results
   object_value: vectordb_bench/frontend/
-  note: 'responsibility: Streamlit web dashboard for visualizing benchmark results;
-    key_files: vectordb_bench/frontend/'
+  note: 'responsibility: Streamlit web dashboard for visualizing benchmark results; key_files: vectordb_bench/frontend/'
   fact_id: fact::1869f4cd8477bc9ed9da8b85
 - fact_type: component
   predicate: has_component
@@ -436,25 +410,8 @@ facts:
     source_file: repos/knowledge/deep/zilliztech__vectordbbench.yaml
     excerpt: Metric collection and aggregation (QPS, recall, latency percentiles)
   object_value: vectordb_bench/metric.py
-  note: 'responsibility: Metric collection and aggregation (QPS, recall, latency percentiles);
-    key_files: vectordb_bench/metric.py'
+  note: 'responsibility: Metric collection and aggregation (QPS, recall, latency percentiles); key_files: vectordb_bench/metric.py'
   fact_id: fact::ea517b407cd55529e16fdb03
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/zilliztech__vectordbbench.yaml
-    source_section: key_files[3]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[3]
-    source_file: repos/knowledge/deep/zilliztech__vectordbbench.yaml
-    excerpt: vectordb_bench/metric.py
-  object_value: vectordb_bench/metric.py
-  fact_id: fact::f2ac3ee2a68ebc2badd3ae31
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
@@ -638,14 +595,11 @@ facts:
   - kind: file_block
     ref: troubleshooting[0]
     source_file: repos/knowledge/deep/zilliztech__vectordbbench.yaml
-    excerpt: Benchmark run exits with connection refused or client timeout before
-      load phase completes
-  object_value: Benchmark run exits with connection refused or client timeout before
-    load phase completes
-  note: 'cause: The database under test is not ready or fully initialized when the
-    VectorDB.ready() check returns; slow index build or cold-start latency in the
-    target database causes the client adapter to time out; fix: Increase the client
-    adapter''s timeout or retry count in the datab...'
+    excerpt: Benchmark run exits with connection refused or client timeout before load phase completes
+  object_value: Benchmark run exits with connection refused or client timeout before load phase completes
+  note: 'cause: The database under test is not ready or fully initialized when the VectorDB.ready() check returns; slow index
+    build or cold-start latency in the target database causes the client adapter to time out; fix: Increase the client adapter''s
+    timeout or retry count in the datab...'
   fact_id: fact::b02589301258f13d313a1581
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -662,10 +616,9 @@ facts:
     source_file: repos/knowledge/deep/zilliztech__vectordbbench.yaml
     excerpt: OOM during the load phase for large datasets (LAION-100M, Cohere-1M)
   object_value: OOM during the load phase for large datasets (LAION-100M, Cohere-1M)
-  note: 'cause: The runner loads dataset vectors in batches via NumPy arrays; if the
-    batch size is too large relative to available RAM, the process is killed by the
-    OS before the load phase completes; fix: Reduce the batch_size parameter in the
-    TaskConfig or the database client adapter...'
+  note: 'cause: The runner loads dataset vectors in batches via NumPy arrays; if the batch size is too large relative to available
+    RAM, the process is killed by the OS before the load phase completes; fix: Reduce the batch_size parameter in the TaskConfig
+    or the database client adapter...'
   fact_id: fact::b93ffb2d5338c96d92eeb198
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -680,13 +633,10 @@ facts:
   - kind: file_block
     ref: troubleshooting[1]
     source_file: repos/knowledge/deep/zilliztech__vectordbbench.yaml
-    excerpt: Recall metric is reported as 0.0 or NaN even though search results are
-      returned
-  object_value: Recall metric is reported as 0.0 or NaN even though search results
-    are returned
-  note: 'cause: Recall computation in vectordb_bench/metric.py compares search result
-    IDs against ground-truth nearest neighbors from the dataset; if the ground-truth
-    file is missing or the dataset download was incomplete, the comparison produces
+    excerpt: Recall metric is reported as 0.0 or NaN even though search results are returned
+  object_value: Recall metric is reported as 0.0 or NaN even though search results are returned
+  note: 'cause: Recall computation in vectordb_bench/metric.py compares search result IDs against ground-truth nearest neighbors
+    from the dataset; if the ground-truth file is missing or the dataset download was incomplete, the comparison produces
     zero matches; fix: Re-run dataset downl...'
   fact_id: fact::47a3d31ee1a09e1f6e784ee5
 - fact_type: failure_mode
@@ -704,9 +654,8 @@ facts:
     source_file: repos/knowledge/deep/zilliztech__vectordbbench.yaml
     excerpt: Streamlit dashboard shows no results after a completed benchmark run
   object_value: Streamlit dashboard shows no results after a completed benchmark run
-  note: 'cause: Results are written to a local directory by the runner and read by
-    the dashboard; if the run failed mid-benchmark or results were saved to a non-default
-    path, the dashboard finds no result files to display; fix: Check the results directory
+  note: 'cause: Results are written to a local directory by the runner and read by the dashboard; if the run failed mid-benchmark
+    or results were saved to a non-default path, the dashboard finds no result files to display; fix: Check the results directory
     (default: results/) for JSON o...'
   fact_id: fact::f69f83aec4052d743c5aff20
 - fact_type: operational_task

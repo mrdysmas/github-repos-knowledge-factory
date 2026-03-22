@@ -41,8 +41,7 @@ facts:
   - kind: file_block
     ref: architecture.key_abstractions[0]
     source_file: repos/knowledge/deep/coder__code-server.yaml
-    excerpt: Main server class managing HTTP listener, VS Code process, and session
-      state
+    excerpt: Main server class managing HTTP listener, VS Code process, and session state
   object_value: CodeServer
   note: Main server class managing HTTP listener, VS Code process, and session state
   fact_id: fact::2cdbe73c2ae55f04a5a87c4c
@@ -358,8 +357,7 @@ facts:
     source_file: repos/knowledge/deep/coder__code-server.yaml
     excerpt: Build scripts, release packaging, and install scripts
   object_value: ci/
-  note: 'responsibility: Build scripts, release packaging, and install scripts; key_files:
-    ci/build.sh, ci/release.sh'
+  note: 'responsibility: Build scripts, release packaging, and install scripts; key_files: ci/build.sh, ci/release.sh'
   fact_id: fact::b0fb20a615a040f025dc0999
 - fact_type: component
   predicate: has_component
@@ -392,8 +390,7 @@ facts:
     source_file: repos/knowledge/deep/coder__code-server.yaml
     excerpt: Vendored VS Code source used for patching and building the server bundle
   object_value: lib/vscode/
-  note: 'responsibility: Vendored VS Code source used for patching and building the
-    server bundle; key_files: lib/vscode/'
+  note: 'responsibility: Vendored VS Code source used for patching and building the server bundle; key_files: lib/vscode/'
   fact_id: fact::10480d07696e02d65de210a7
 - fact_type: component
   predicate: has_component
@@ -408,11 +405,10 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[0]
     source_file: repos/knowledge/deep/coder__code-server.yaml
-    excerpt: "Node.js server \u2014 HTTP listener, proxy, authentication, CLI argument\
-      \ handling"
+    excerpt: Node.js server — HTTP listener, proxy, authentication, CLI argument handling
   object_value: src/node/
-  note: "responsibility: Node.js server \u2014 HTTP listener, proxy, authentication,\
-    \ CLI argument handling; key_files: src/node/app.ts, src/node/cli.ts, src/node/server.ts"
+  note: 'responsibility: Node.js server — HTTP listener, proxy, authentication, CLI argument handling; key_files: src/node/app.ts,
+    src/node/cli.ts, src/node/server.ts'
   fact_id: fact::05c26ae8f1976561e361abce
 - fact_type: component
   predicate: has_component
@@ -461,8 +457,7 @@ facts:
     source_file: repos/knowledge/deep/coder__code-server.yaml
     excerpt: HTTP/S proxy support for environments behind corporate proxies
   object_value: src/node/proxy_agent.ts
-  note: 'responsibility: HTTP/S proxy support for environments behind corporate proxies;
-    key_files: src/node/proxy_agent.ts'
+  note: 'responsibility: HTTP/S proxy support for environments behind corporate proxies; key_files: src/node/proxy_agent.ts'
   fact_id: fact::7ceaafe2255cc7c57b89c1cc
 - fact_type: component
   predicate: has_component
@@ -479,25 +474,8 @@ facts:
     source_file: repos/knowledge/deep/coder__code-server.yaml
     excerpt: Express route handlers for login, healthcheck, and VS Code app serving
   object_value: src/node/routes/
-  note: 'responsibility: Express route handlers for login, healthcheck, and VS Code
-    app serving; key_files: src/node/routes/'
+  note: 'responsibility: Express route handlers for login, healthcheck, and VS Code app serving; key_files: src/node/routes/'
   fact_id: fact::9b96d523416d84022186a726
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-17'
-  provenance:
-    source_file: repos/knowledge/deep/coder__code-server.yaml
-    source_section: key_files[2]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[2]
-    source_file: repos/knowledge/deep/coder__code-server.yaml
-    excerpt: src/node/routes/
-  object_value: src/node/routes/
-  fact_id: fact::ce7e3245557660d9e32414f6
 - fact_type: config_option
   predicate: has_config_option
   object_kind: command
@@ -666,8 +644,7 @@ facts:
     source_file: repos/knowledge/deep/coder__code-server.yaml
     excerpt: bind-addr
   object_value: bind-addr
-  note: 'type: string; default: 127.0.0.1:8080; Address and port the server binds
-    on'
+  note: 'type: string; default: 127.0.0.1:8080; Address and port the server binds on'
   fact_id: fact::f42951f8765ffa6e97d668bb
 - fact_type: config_option
   predicate: has_config_option
@@ -684,8 +661,7 @@ facts:
     source_file: repos/knowledge/deep/coder__code-server.yaml
     excerpt: cert
   object_value: cert
-  note: 'type: boolean/string; Enable HTTPS; optionally specify a certificate file
-    path'
+  note: 'type: boolean/string; Enable HTTPS; optionally specify a certificate file path'
   fact_id: fact::2cce2b058586c7566a87492c
 - fact_type: config_option
   predicate: has_config_option

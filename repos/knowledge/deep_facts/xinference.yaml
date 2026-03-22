@@ -120,23 +120,6 @@ facts:
   as_of: '2026-02-25'
   provenance:
     source_file: repos/knowledge/deep/xinference.yaml
-    source_section: configuration[1].options[1]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: configuration[1].options[1]
-    source_file: repos/knowledge/deep/xinference.yaml
-    excerpt: max_num_seqs
-  object_value: max_num_seqs
-  note: 'default: 256; Max concurrent sequences'
-  fact_id: fact::eba732ac1904fa99b827bb4a
-- fact_type: config_option
-  predicate: has_config_option
-  object_kind: config_key
-  confidence: 0.72
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/xinference.yaml
     source_section: configuration[0].options[2]
     extraction_mode: narrative
   evidence:
@@ -400,8 +383,7 @@ facts:
     source_file: repos/knowledge/deep/xinference.yaml
     excerpt: GPU not detected
   object_value: GPU not detected
-  note: 'cause: Driver or engine mismatch; fix: Check CUDA works, verify engine supports
-    GPU (llama.cpp needs GGUF)'
+  note: 'cause: Driver or engine mismatch; fix: Check CUDA works, verify engine supports GPU (llama.cpp needs GGUF)'
   fact_id: fact::6a85a13f820d83046f7c3211
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -418,8 +400,7 @@ facts:
     source_file: repos/knowledge/deep/xinference.yaml
     excerpt: Model not found
   object_value: Model not found
-  note: 'cause: Model name doesn''t match registry; fix: Use ''xinference list'' to
-    see available models, check spelling'
+  note: 'cause: Model name doesn''t match registry; fix: Use ''xinference list'' to see available models, check spelling'
   fact_id: fact::879abaf56723eff3b5ab9765
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -436,8 +417,7 @@ facts:
     source_file: repos/knowledge/deep/xinference.yaml
     excerpt: Out of memory
   object_value: Out of memory
-  note: 'cause: Model too large for GPU; fix: Use quantization, reduce gpu_memory_utilization,
-    or use CPU'
+  note: 'cause: Model too large for GPU; fix: Use quantization, reduce gpu_memory_utilization, or use CPU'
   fact_id: fact::d5dd14fb0a8b9e56ed791690
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -454,8 +434,7 @@ facts:
     source_file: repos/knowledge/deep/xinference.yaml
     excerpt: Slow first request
   object_value: Slow first request
-  note: 'cause: Model loading or compilation; fix: Pre-warm model, use smaller quantization,
-    increase load timeout'
+  note: 'cause: Model loading or compilation; fix: Pre-warm model, use smaller quantization, increase load timeout'
   fact_id: fact::70653e876c03388e91983b30
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -710,9 +689,8 @@ facts:
     source_file: repos/knowledge/deep/xinference.yaml
     excerpt: Deploy Local Server
   object_value: Deploy Local Server
-  note: 'pip install xinference, xinference-local --host 0.0.0.0 --port 9997, Access
-    at http://localhost:9997, Query models: xinference list; First launch downloads
-    model - can take time, Default uses transformers engine - vLLM faster for production'
+  note: 'pip install xinference, xinference-local --host 0.0.0.0 --port 9997, Access at http://localhost:9997, Query models:
+    xinference list; First launch downloads model - can take time, Default uses transformers engine - vLLM faster for production'
   fact_id: fact::250582a79e37c5294699cc95
 - fact_type: operational_task
   predicate: supports_task
@@ -729,10 +707,9 @@ facts:
     source_file: repos/knowledge/deep/xinference.yaml
     excerpt: Distributed Deployment
   object_value: Distributed Deployment
-  note: 'Start supervisor: xinference-supervisor -H 0.0.0.0 -p 9997, Start workers:
-    xinference-worker --endpoint http://supervisor:9997, Launch with replica > 1 or
-    n_worker > 1; Workers need network access to supervisor, Model files must be accessible
-    on all workers'
+  note: 'Start supervisor: xinference-supervisor -H 0.0.0.0 -p 9997, Start workers: xinference-worker --endpoint http://supervisor:9997,
+    Launch with replica > 1 or n_worker > 1; Workers need network access to supervisor, Model files must be accessible on
+    all workers'
   fact_id: fact::4903daf0cd5c2e97129a7a61
 - fact_type: operational_task
   predicate: supports_task
@@ -749,9 +726,9 @@ facts:
     source_file: repos/knowledge/deep/xinference.yaml
     excerpt: Launch Model via CLI
   object_value: Launch Model via CLI
-  note: 'Query engines: xinference engine --model-name llama-3, Launch: xinference
-    launch -n llama-3 -en vLLM -f pytorch, Test: curl http://localhost:9997/v1/chat/completions;
-    Model name must match built-in registry exactly, GGUF models need llama.cpp engine'
+  note: 'Query engines: xinference engine --model-name llama-3, Launch: xinference launch -n llama-3 -en vLLM -f pytorch,
+    Test: curl http://localhost:9997/v1/chat/completions; Model name must match built-in registry exactly, GGUF models need
+    llama.cpp engine'
   fact_id: fact::42669cc7a5bc122c005cc1ef
 - fact_type: operational_task
   predicate: supports_task
@@ -802,10 +779,9 @@ facts:
     source_file: repos/knowledge/deep/xinference.yaml
     excerpt: Register Custom Model
   object_value: Register Custom Model
-  note: 'Create model config JSON with LLMFamilyV2 schema, Register: xinference register
-    --model-type LLM --file model.json, Add --persist to save across restarts, Launch:
-    xinference launch -n my-custom-model; model_id must be valid HuggingFace repo
-    or local path, chat_template format...'
+  note: 'Create model config JSON with LLMFamilyV2 schema, Register: xinference register --model-type LLM --file model.json,
+    Add --persist to save across restarts, Launch: xinference launch -n my-custom-model; model_id must be valid HuggingFace
+    repo or local path, chat_template format...'
   fact_id: fact::486fcb323d680fbd1b29ade4
 - fact_type: operational_task
   predicate: supports_task

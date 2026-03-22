@@ -194,11 +194,9 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[2]
     source_file: repos/knowledge/deep/gin-gonic__gin.yaml
-    excerpt: Input binding and validation adapters for JSON, form, URI, and query
-      payloads.
+    excerpt: Input binding and validation adapters for JSON, form, URI, and query payloads.
   object_value: binding
-  note: 'responsibility: Input binding and validation adapters for JSON, form, URI,
-    and query payloads.; key_files: binding/'
+  note: 'responsibility: Input binding and validation adapters for JSON, form, URI, and query payloads.; key_files: binding/'
   fact_id: fact::553c72134df5000dc4062aee
 - fact_type: component
   predicate: has_component
@@ -215,8 +213,7 @@ facts:
     source_file: repos/knowledge/deep/gin-gonic__gin.yaml
     excerpt: Response rendering for JSON, XML, HTML, and related formats.
   object_value: render
-  note: 'responsibility: Response rendering for JSON, XML, HTML, and related formats.;
-    key_files: render/'
+  note: 'responsibility: Response rendering for JSON, XML, HTML, and related formats.; key_files: render/'
   fact_id: fact::83ad2d61ad87fd506228966d
 - fact_type: component
   predicate: has_component
@@ -235,23 +232,6 @@ facts:
   object_value: README.md
   note: Framework overview and quickstart guide.
   fact_id: fact::c63bd6f995d18953d6df7a1b
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/gin-gonic__gin.yaml
-    source_section: core_modules.binding_layer
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.binding_layer
-    source_file: repos/knowledge/deep/gin-gonic__gin.yaml
-    excerpt: binding
-  object_value: binding
-  note: Input decoding and validation adapters.
-  fact_id: fact::48c4b7fe8f9e8666a40e492a
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -284,61 +264,8 @@ facts:
     source_file: repos/knowledge/deep/gin-gonic__gin.yaml
     excerpt: Request-scoped context abstraction for binding, rendering, and flow control.
   object_value: context.go
-  note: 'responsibility: Request-scoped context abstraction for binding, rendering,
-    and flow control.; key_files: context.go'
+  note: 'responsibility: Request-scoped context abstraction for binding, rendering, and flow control.; key_files: context.go'
   fact_id: fact::8aa47a098733a6afe1f99deb
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/gin-gonic__gin.yaml
-    source_section: core_modules.request_context
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.request_context
-    source_file: repos/knowledge/deep/gin-gonic__gin.yaml
-    excerpt: context.go
-  object_value: context.go
-  note: Request-scoped helper APIs for binding, rendering, and control flow.
-  fact_id: fact::abaff7bc67e0afc3f45ba314
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/gin-gonic__gin.yaml
-    source_section: key_files[2]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[2]
-    source_file: repos/knowledge/deep/gin-gonic__gin.yaml
-    excerpt: context.go
-  object_value: context.go
-  note: Request context API and middleware flow helpers.
-  fact_id: fact::f09d2bd64b06b1e24f9baec8
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/gin-gonic__gin.yaml
-    source_section: core_modules.router_engine
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.router_engine
-    source_file: repos/knowledge/deep/gin-gonic__gin.yaml
-    excerpt: gin.go
-  object_value: gin.go
-  note: 'Engine lifecycle and route registration behaviors. Submodules: routergroup.go,
-    tree.go'
-  fact_id: fact::00cde2ce4daf4b43d04eca9a
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -354,43 +281,8 @@ facts:
     source_file: repos/knowledge/deep/gin-gonic__gin.yaml
     excerpt: Router engine creation, middleware wiring, and route registration APIs.
   object_value: gin.go
-  note: 'responsibility: Router engine creation, middleware wiring, and route registration
-    APIs.; key_files: gin.go, routergroup.go'
+  note: 'responsibility: Router engine creation, middleware wiring, and route registration APIs.; key_files: gin.go, routergroup.go'
   fact_id: fact::53442634216e9d0a71aff616
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/gin-gonic__gin.yaml
-    source_section: key_files[1]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[1]
-    source_file: repos/knowledge/deep/gin-gonic__gin.yaml
-    excerpt: gin.go
-  object_value: gin.go
-  note: Engine creation and top-level router setup.
-  fact_id: fact::b588e1fc482bb24fcf570d70
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/gin-gonic__gin.yaml
-    source_section: core_modules.rendering_layer
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.rendering_layer
-    source_file: repos/knowledge/deep/gin-gonic__gin.yaml
-    excerpt: render
-  object_value: render
-  note: Output encoders for common response formats.
-  fact_id: fact::8d64a30bf84a56b18a9e4806
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -474,8 +366,7 @@ facts:
     source_file: repos/knowledge/deep/gin-gonic__gin.yaml
     excerpt: trusted_proxies
   object_value: trusted_proxies
-  note: 'default: explicit_list_required; Proxy trust configuration for secure client
-    IP handling.'
+  note: 'default: explicit_list_required; Proxy trust configuration for secure client IP handling.'
   fact_id: fact::0ba3c8e3c2476d43b1020b0c
 - fact_type: extension_point
   predicate: has_extension_point
@@ -492,8 +383,7 @@ facts:
     source_file: repos/knowledge/deep/gin-gonic__gin.yaml
     excerpt: Context.JSON
   object_value: Context.JSON
-  note: Serializes structured JSON responses for handlers.; func (c *Context) JSON(code
-    int, obj any); context.go
+  note: Serializes structured JSON responses for handlers.; func (c *Context) JSON(code int, obj any); context.go
   fact_id: fact::1b48a56d2b391bd01c9c7253
 - fact_type: extension_point
   predicate: has_extension_point
@@ -629,8 +519,7 @@ facts:
     source_file: repos/knowledge/deep/gin-gonic__gin.yaml
     excerpt: gin.Default
   object_value: gin.Default
-  note: Creates an Engine preloaded with logger and recovery middleware.; func Default()
-    *Engine; gin.go
+  note: Creates an Engine preloaded with logger and recovery middleware.; func Default() *Engine; gin.go
   fact_id: fact::60a83fa1577367a120b3e32d
 - fact_type: extension_point
   predicate: has_extension_point
@@ -647,8 +536,7 @@ facts:
     source_file: repos/knowledge/deep/gin-gonic__gin.yaml
     excerpt: gin.New
   object_value: gin.New
-  note: Creates a bare Engine for custom middleware composition.; func New() *Engine;
-    gin.go
+  note: Creates a bare Engine for custom middleware composition.; func New() *Engine; gin.go
   fact_id: fact::bec939a671bc9ea592458cb1
 - fact_type: extension_point
   predicate: has_extension_point
@@ -682,9 +570,8 @@ facts:
     source_file: repos/knowledge/deep/gin-gonic__gin.yaml
     excerpt: Address already in use error on r.Run()
   object_value: Address already in use error on r.Run()
-  note: 'cause: Another process is bound to the target port; or a prior instance did
-    not shut down cleanly.; fix: Change the port in r.Run(":PORT") or terminate the
-    conflicting process; use SO_REUSEPORT if multiple listeners are needed.'
+  note: 'cause: Another process is bound to the target port; or a prior instance did not shut down cleanly.; fix: Change the
+    port in r.Run(":PORT") or terminate the conflicting process; use SO_REUSEPORT if multiple listeners are needed.'
   fact_id: fact::00369da16929df0e710a2573
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -701,10 +588,9 @@ facts:
     source_file: repos/knowledge/deep/gin-gonic__gin.yaml
     excerpt: Binding returns validation error despite correct request body
   object_value: Binding returns validation error despite correct request body
-  note: 'cause: Struct tag mismatch (json vs form vs uri); or required field missing
-    from payload; or Content-Type header not set correctly on the request.; fix: Verify
-    struct binding tags match the request format; ensure Content-Type is set to application/json
-    for JSON payloads; use c...'
+  note: 'cause: Struct tag mismatch (json vs form vs uri); or required field missing from payload; or Content-Type header
+    not set correctly on the request.; fix: Verify struct binding tags match the request format; ensure Content-Type is set
+    to application/json for JSON payloads; use c...'
   fact_id: fact::69a57ae606fda5de91b0cc89
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -721,9 +607,9 @@ facts:
     source_file: repos/knowledge/deep/gin-gonic__gin.yaml
     excerpt: Client IP logged as proxy IP instead of real remote address
   object_value: Client IP logged as proxy IP instead of real remote address
-  note: 'cause: Trusted proxies not configured; gin defaults to trusting all proxies
-    which logs the wrong IP in many reverse-proxy setups.; fix: Call r.SetTrustedProxies([]string{"127.0.0.1"})
-    or the actual proxy CIDR; or r.SetTrustedProxies(nil) to disable proxy trust entirely.'
+  note: 'cause: Trusted proxies not configured; gin defaults to trusting all proxies which logs the wrong IP in many reverse-proxy
+    setups.; fix: Call r.SetTrustedProxies([]string{"127.0.0.1"}) or the actual proxy CIDR; or r.SetTrustedProxies(nil) to
+    disable proxy trust entirely.'
   fact_id: fact::941a24b8b1516f95f1361c1e
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -740,9 +626,8 @@ facts:
     source_file: repos/knowledge/deep/gin-gonic__gin.yaml
     excerpt: Handler panics and server crashes
   object_value: Handler panics and server crashes
-  note: 'cause: Unrecovered panic in a handler; gin.Default() includes a recovery
-    middleware but gin.New() does not.; fix: Use gin.Default() instead of gin.New(),
-    or explicitly add gin.Recovery() middleware; log panics with a custom recovery
+  note: 'cause: Unrecovered panic in a handler; gin.Default() includes a recovery middleware but gin.New() does not.; fix:
+    Use gin.Default() instead of gin.New(), or explicitly add gin.Recovery() middleware; log panics with a custom recovery
     handler for observability.'
   fact_id: fact::57139b20627a5d91699ef5a3
 - fact_type: failure_mode
@@ -760,10 +645,8 @@ facts:
     source_file: repos/knowledge/deep/gin-gonic__gin.yaml
     excerpt: Middleware not executing for a route group
   object_value: Middleware not executing for a route group
-  note: "cause: Middleware added to engine after route registration, or added to wrong\
-    \ RouterGroup scope.; fix: Register middleware before route definitions; verify\
-    \ the group hierarchy \u2014 middleware on r does not propagate to independently\
-    \ created RouterGroups."
+  note: 'cause: Middleware added to engine after route registration, or added to wrong RouterGroup scope.; fix: Register middleware
+    before route definitions; verify the group hierarchy — middleware on r does not propagate to independently created RouterGroups.'
   fact_id: fact::58a0ded3a9a3aca77c10f29c
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -780,8 +663,7 @@ facts:
     source_file: repos/knowledge/deep/gin-gonic__gin.yaml
     excerpt: Binding package routes payload decoding to typed binders by request format.
   object_value: Binder abstraction per content type
-  note: 'description: Binding package routes payload decoding to typed binders by
-    request format.; location: binding/'
+  note: 'description: Binding package routes payload decoding to typed binders by request format.; location: binding/'
   fact_id: fact::98c11c48e573924172c0eba4
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -798,8 +680,7 @@ facts:
     source_file: repos/knowledge/deep/gin-gonic__gin.yaml
     excerpt: Runtime reuses context objects to reduce allocations per request.
   object_value: Context object reuse
-  note: 'description: Runtime reuses context objects to reduce allocations per request.;
-    location: context.go'
+  note: 'description: Runtime reuses context objects to reduce allocations per request.; location: context.go'
   fact_id: fact::f6d6cc7106965fd57099729f
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -816,8 +697,7 @@ facts:
     source_file: repos/knowledge/deep/gin-gonic__gin.yaml
     excerpt: RouterGroup supports hierarchical path prefixes and shared middleware.
   object_value: Grouped route registration
-  note: 'description: RouterGroup supports hierarchical path prefixes and shared middleware.;
-    location: routergroup.go'
+  note: 'description: RouterGroup supports hierarchical path prefixes and shared middleware.; location: routergroup.go'
   fact_id: fact::a0bf8d231ecc5cd7c4d680df
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -832,11 +712,9 @@ facts:
   - kind: file_block
     ref: context.go
     source_file: repos/knowledge/deep/gin-gonic__gin.yaml
-    excerpt: Request handling executes through ordered handlers using Next and Abort
-      controls.
+    excerpt: Request handling executes through ordered handlers using Next and Abort controls.
   object_value: Middleware chain composition
-  note: 'description: Request handling executes through ordered handlers using Next
-    and Abort controls.; location: context.go'
+  note: 'description: Request handling executes through ordered handlers using Next and Abort controls.; location: context.go'
   fact_id: fact::22a15c1e085fe060b8a1af24
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -853,8 +731,7 @@ facts:
     source_file: repos/knowledge/deep/gin-gonic__gin.yaml
     excerpt: Default engine composition includes logging and panic recovery handlers.
   object_value: Recovery-first default middleware
-  note: 'description: Default engine composition includes logging and panic recovery
-    handlers.; location: gin.go'
+  note: 'description: Default engine composition includes logging and panic recovery handlers.; location: gin.go'
   fact_id: fact::742f577621c3157b9a642ae0
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -869,10 +746,8 @@ facts:
   - kind: file_block
     ref: testing.structure.line[0]
     source_file: repos/knowledge/deep/gin-gonic__gin.yaml
-    excerpt: Unit, integration, and benchmark tests are distributed across root and
-      package directories.
-  object_value: Unit, integration, and benchmark tests are distributed across root
-    and package directories.
+    excerpt: Unit, integration, and benchmark tests are distributed across root and package directories.
+  object_value: Unit, integration, and benchmark tests are distributed across root and package directories.
   note: 'testing metadata: structure'
   fact_id: fact::1fcdfc4b208e8288f957877b
 - fact_type: implementation_pattern
@@ -967,23 +842,6 @@ facts:
   as_of: '2026-03-05'
   provenance:
     source_file: repos/knowledge/deep/gin-gonic__gin.yaml
-    source_section: quick_reference[1].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[1].line[0]
-    source_file: repos/knowledge/deep/gin-gonic__gin.yaml
-    excerpt: go build ./...
-  object_value: go build ./...
-  note: 'topic: Build packages'
-  fact_id: fact::b63a7aadac90beb3efd25a60
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/gin-gonic__gin.yaml
     source_section: testing.framework.line[0]
     extraction_mode: narrative
   evidence:
@@ -994,23 +852,6 @@ facts:
   object_value: go test
   note: testing command
   fact_id: fact::745e347a0e4f775235e14e15
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/gin-gonic__gin.yaml
-    source_section: testing.test_patterns[1].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: testing.test_patterns[1].line[0]
-    source_file: repos/knowledge/deep/gin-gonic__gin.yaml
-    excerpt: go test -bench . ./...
-  object_value: go test -bench . ./...
-  note: testing command
-  fact_id: fact::cf3bd968ba9e05296a83a7da
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
@@ -1045,40 +886,6 @@ facts:
   object_value: go test ./...
   note: Run full test suite.
   fact_id: fact::64ea5f7b35de056c5a1f05da
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/gin-gonic__gin.yaml
-    source_section: testing.test_patterns[0].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: testing.test_patterns[0].line[0]
-    source_file: repos/knowledge/deep/gin-gonic__gin.yaml
-    excerpt: go test ./...
-  object_value: go test ./...
-  note: testing command
-  fact_id: fact::c241f26c03fe3166cf8bff21
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/gin-gonic__gin.yaml
-    source_section: quick_reference[0].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[0].line[0]
-    source_file: repos/knowledge/deep/gin-gonic__gin.yaml
-    excerpt: go test ./...
-  object_value: go test ./...
-  note: 'topic: Run tests'
-  fact_id: fact::e8b1e9663012edfe03f9aaca
 - fact_type: operational_task
   predicate: supports_task
   object_kind: text

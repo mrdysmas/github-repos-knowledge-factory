@@ -30,23 +30,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: concept
-  confidence: 0.61
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/nexa_sdk.yaml
-    source_section: languages[0].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: languages[0].line[0]
-    source_file: repos/knowledge/deep/nexa_sdk.yaml
-    excerpt: Go
-  object_value: Go
-  note: language ecosystem
-  fact_id: fact::80f2fa71baea19df7758fb7f
-- fact_type: component
-  predicate: has_component
-  object_kind: concept
   confidence: 0.66
   as_of: '2026-03-18'
   provenance:
@@ -225,9 +208,8 @@ facts:
     source_file: repos/knowledge/deep/nexa_sdk.yaml
     excerpt: '''model type not support'' error returned by the chat API endpoint'
   object_value: '''model type not support'' error returned by the chat API endpoint'
-  note: 'cause: The loaded model type does not implement the chat completion handler;
-    e.g. an ASR or image-gen model is addressed via the /v1/chat/completions route;
-    fix: Use the correct API endpoint for the model type (e.g. /v1/audio/transcriptions
+  note: 'cause: The loaded model type does not implement the chat completion handler; e.g. an ASR or image-gen model is addressed
+    via the /v1/chat/completions route; fix: Use the correct API endpoint for the model type (e.g. /v1/audio/transcriptions
     for ASR, /v1/images/generations for...'
   fact_id: fact::071a3731223278ba73dff809
 - fact_type: failure_mode
@@ -245,9 +227,8 @@ facts:
     source_file: repos/knowledge/deep/nexa_sdk.yaml
     excerpt: ML_ERROR_LLM_TOKENIZATION_CONTEXT_LENGTH error during inference
   object_value: ML_ERROR_LLM_TOKENIZATION_CONTEXT_LENGTH error during inference
-  note: 'cause: Input token count exceeds the model''s configured context length limit;
-    fix: Shorten the prompt or set a smaller max_tokens in GenerationConfig; for longer
-    contexts use a model variant with a larger context window; verification_note:
+  note: 'cause: Input token count exceeds the model''s configured context length limit; fix: Shorten the prompt or set a smaller
+    max_tokens in GenerationConfig; for longer contexts use a model variant with a larger context window; verification_note:
     Error constant ML_ERROR_LLM_TOKENIZAT...'
   fact_id: fact::98416ded5c11b3b3cbef0b69
 - fact_type: failure_mode
@@ -265,9 +246,8 @@ facts:
     source_file: repos/knowledge/deep/nexa_sdk.yaml
     excerpt: NPU inference silently falls back to CPU with no error message
   object_value: NPU inference silently falls back to CPU with no error message
-  note: 'cause: NEXA_TOKEN environment variable is not set or holds an invalid license
-    key; NPU components require a valid per-device license token; fix: Set NEXA_TOKEN
-    to the key from sdk.nexa.ai/model, or run ''nexa config set license <token>''
+  note: 'cause: NEXA_TOKEN environment variable is not set or holds an invalid license key; NPU components require a valid
+    per-device license token; fix: Set NEXA_TOKEN to the key from sdk.nexa.ai/model, or run ''nexa config set license <token>''
     to persist it; free personal-use keys are...'
   fact_id: fact::03bd54eb9cc4081b01277dc0
 - fact_type: failure_mode
@@ -285,10 +265,9 @@ facts:
     source_file: repos/knowledge/deep/nexa_sdk.yaml
     excerpt: SDKError(ML_ERROR_COMMON_MODEL_LOAD) during model initialization
   object_value: SDKError(ML_ERROR_COMMON_MODEL_LOAD) during model initialization
-  note: 'cause: Model file is corrupted, the quantization level requested is not present
-    in the downloaded artifact, or the model format (GGUF, MLX, NEXA) is not compatible
-    with the selected backend; fix: Re-download the model with ''nexa pull <model>'',
-    confirm the quant tag matches an...'
+  note: 'cause: Model file is corrupted, the quantization level requested is not present in the downloaded artifact, or the
+    model format (GGUF, MLX, NEXA) is not compatible with the selected backend; fix: Re-download the model with ''nexa pull
+    <model>'', confirm the quant tag matches an...'
   fact_id: fact::361f01c41701571e58adf121
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -305,10 +284,9 @@ facts:
     source_file: repos/knowledge/deep/nexa_sdk.yaml
     excerpt: SDKError(ML_ERROR_COMMON_PLUGIN_LOAD) when specifying plugin_id 'npu'
   object_value: SDKError(ML_ERROR_COMMON_PLUGIN_LOAD) when specifying plugin_id 'npu'
-  note: 'cause: The NPU backend shared library for the target hardware (Qualcomm Hexagon,
-    Apple ANE, Intel NPU, AMD NPU) is not present or not loadable on the current device;
-    fix: Verify the device matches a supported NPU platform; run ''nexa infer'' without
-    plugin_id to fall back to CPU...'
+  note: 'cause: The NPU backend shared library for the target hardware (Qualcomm Hexagon, Apple ANE, Intel NPU, AMD NPU) is
+    not present or not loadable on the current device; fix: Verify the device matches a supported NPU platform; run ''nexa
+    infer'' without plugin_id to fall back to CPU...'
   fact_id: fact::cbac2e305dd2599acad39844
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -325,9 +303,8 @@ facts:
     source_file: repos/knowledge/deep/nexa_sdk.yaml
     excerpt: nexa serve fails to start with 'address already in use' on port 18181
   object_value: nexa serve fails to start with 'address already in use' on port 18181
-  note: 'cause: Another process is already bound to the default server port 18181;
-    fix: Set NEXA_HOST environment variable to an alternative host:port (e.g. NEXA_HOST=127.0.0.1:18182)
-    before running ''nexa serve'''
+  note: 'cause: Another process is already bound to the default server port 18181; fix: Set NEXA_HOST environment variable
+    to an alternative host:port (e.g. NEXA_HOST=127.0.0.1:18182) before running ''nexa serve'''
   fact_id: fact::0956e909b949455bbfc14206
 - fact_type: operational_task
   predicate: supports_task

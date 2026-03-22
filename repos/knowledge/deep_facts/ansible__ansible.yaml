@@ -126,11 +126,9 @@ facts:
   - kind: file_block
     ref: architecture.key_abstractions[1]
     source_file: repos/knowledge/deep/ansible__ansible.yaml
-    excerpt: Adds transport, module, and callback behaviors without altering core
-      engine code.
+    excerpt: Adds transport, module, and callback behaviors without altering core engine code.
   object_value: Plugin-based extensibility
-  note: Adds transport, module, and callback behaviors without altering core engine
-    code.
+  note: Adds transport, module, and callback behaviors without altering core engine code.
   fact_id: fact::811fe080b56d0c861757fb5f
 - fact_type: component
   predicate: has_component
@@ -164,8 +162,7 @@ facts:
     source_file: repos/knowledge/deep/ansible__ansible.yaml
     excerpt: User-facing executables for ad hoc command and playbook execution.
   object_value: bin and CLI entrypoints
-  note: 'responsibility: User-facing executables for ad hoc command and playbook execution.;
-    key_files: bin/ansible, bin/ansible-playbook'
+  note: 'responsibility: User-facing executables for ad hoc command and playbook execution.; key_files: bin/ansible, bin/ansible-playbook'
   fact_id: fact::9f0cae7de99a212a1fbf99dc
 - fact_type: component
   predicate: has_component
@@ -221,24 +218,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/ansible__ansible.yaml
-    source_section: core_modules.engine
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.engine
-    source_file: repos/knowledge/deep/ansible__ansible.yaml
-    excerpt: lib/ansible
-  object_value: lib/ansible
-  note: 'Core orchestration, parser, and execution engine. Submodules: lib/ansible/executor,
-    lib/ansible/playbook'
-  fact_id: fact::2a9b064097d644a9918b7f26
-- fact_type: component
-  predicate: has_component
-  object_kind: path
   confidence: 0.78
   as_of: '2026-03-05'
   provenance:
@@ -251,8 +230,7 @@ facts:
     source_file: repos/knowledge/deep/ansible__ansible.yaml
     excerpt: Core runtime for inventory handling, execution strategy, and plugin loading.
   object_value: lib/ansible
-  note: 'responsibility: Core runtime for inventory handling, execution strategy,
-    and plugin loading.; key_files: lib/ansible/'
+  note: 'responsibility: Core runtime for inventory handling, execution strategy, and plugin loading.; key_files: lib/ansible/'
   fact_id: fact::e203d8e22895c5f36dc18924
 - fact_type: component
   predicate: has_component
@@ -274,23 +252,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/ansible__ansible.yaml
-    source_section: core_modules.plugins
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.plugins
-    source_file: repos/knowledge/deep/ansible__ansible.yaml
-    excerpt: lib/ansible/plugins
-  object_value: lib/ansible/plugins
-  note: Pluggable integrations for modules, callbacks, and inventory drivers.
-  fact_id: fact::74f20df994b1f327d44a0bb4
-- fact_type: component
-  predicate: has_component
-  object_kind: path
   confidence: 0.78
   as_of: '2026-03-05'
   provenance:
@@ -303,8 +264,7 @@ facts:
     source_file: repos/knowledge/deep/ansible__ansible.yaml
     excerpt: Plugin interfaces for modules, connection backends, callbacks, and inventories.
   object_value: lib/ansible/plugins
-  note: 'responsibility: Plugin interfaces for modules, connection backends, callbacks,
-    and inventories.; key_files: lib/ansible/plugins/'
+  note: 'responsibility: Plugin interfaces for modules, connection backends, callbacks, and inventories.; key_files: lib/ansible/plugins/'
   fact_id: fact::bf107cf30534715bf699c686
 - fact_type: component
   predicate: has_component
@@ -457,8 +417,7 @@ facts:
     source_file: repos/knowledge/deep/ansible__ansible.yaml
     excerpt: ansible ad hoc command
   object_value: ansible ad hoc command
-  note: Runs one-off module actions against host patterns.; ansible <pattern> -m <module>
-    -a <args>; bin/ansible
+  note: Runs one-off module actions against host patterns.; ansible <pattern> -m <module> -a <args>; bin/ansible
   fact_id: fact::d0767ae91bf99b65b1aa55f1
 - fact_type: extension_point
   predicate: has_extension_point
@@ -492,8 +451,7 @@ facts:
     source_file: repos/knowledge/deep/ansible__ansible.yaml
     excerpt: ansible-playbook command
   object_value: ansible-playbook command
-  note: Executes declarative playbook workflows against inventory targets.; ansible-playbook
-    <playbook.yml> [options]; bin/ansible-playbook
+  note: Executes declarative playbook workflows against inventory targets.; ansible-playbook <playbook.yml> [options]; bin/ansible-playbook
   fact_id: fact::82cee2e4c4dc6517db4e3fc3
 - fact_type: extension_point
   predicate: has_extension_point
@@ -527,8 +485,7 @@ facts:
     source_file: repos/knowledge/deep/ansible__ansible.yaml
     excerpt: YAML-authored playbooks map desired state into repeatable execution plans.
   object_value: Declarative task execution
-  note: 'description: YAML-authored playbooks map desired state into repeatable execution
-    plans.; location: lib/ansible/playbook/'
+  note: 'description: YAML-authored playbooks map desired state into repeatable execution plans.; location: lib/ansible/playbook/'
   fact_id: fact::4515ec23ac90e7cb29acdf3e
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -545,8 +502,7 @@ facts:
     source_file: repos/knowledge/deep/ansible__ansible.yaml
     excerpt: Modules report changed state and support repeated convergence runs.
   object_value: Idempotent operation model
-  note: 'description: Modules report changed state and support repeated convergence
-    runs.; location: lib/ansible/modules/'
+  note: 'description: Modules report changed state and support repeated convergence runs.; location: lib/ansible/modules/'
   fact_id: fact::b3a41b4a02ed0566072be94a
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -563,8 +519,7 @@ facts:
     source_file: repos/knowledge/deep/ansible__ansible.yaml
     excerpt: Host group resolution feeds execution planning and variable scoping.
   object_value: Inventory-driven orchestration
-  note: 'description: Host group resolution feeds execution planning and variable
-    scoping.; location: lib/ansible/inventory/'
+  note: 'description: Host group resolution feeds execution planning and variable scoping.; location: lib/ansible/inventory/'
   fact_id: fact::42260a5b207ee02827e9eb9b
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -581,8 +536,7 @@ facts:
     source_file: repos/knowledge/deep/ansible__ansible.yaml
     excerpt: Runtime behavior is selected via pluggable module and connection backends.
   object_value: Plugin registry dispatch
-  note: 'description: Runtime behavior is selected via pluggable module and connection
-    backends.; location: lib/ansible/plugins/'
+  note: 'description: Runtime behavior is selected via pluggable module and connection backends.; location: lib/ansible/plugins/'
   fact_id: fact::08079d193d172713b7f47de1
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -597,10 +551,8 @@ facts:
   - kind: file_block
     ref: testing.structure.line[0]
     source_file: repos/knowledge/deep/ansible__ansible.yaml
-    excerpt: Python test suites and integration scenarios validate engine and plugin
-      behavior.
-  object_value: Python test suites and integration scenarios validate engine and plugin
-    behavior.
+    excerpt: Python test suites and integration scenarios validate engine and plugin behavior.
+  object_value: Python test suites and integration scenarios validate engine and plugin behavior.
   note: 'testing metadata: structure'
   fact_id: fact::264339555b21e965df60461a
 - fact_type: implementation_pattern
@@ -616,11 +568,9 @@ facts:
   - kind: file_block
     ref: lib/ansible/
     source_file: repos/knowledge/deep/ansible__ansible.yaml
-    excerpt: Playbook declarations and Python module internals work as paired control
-      planes.
+    excerpt: Playbook declarations and Python module internals work as paired control planes.
   object_value: YAML plus Python hybrid architecture
-  note: 'description: Playbook declarations and Python module internals work as paired
-    control planes.; location: lib/ansible/'
+  note: 'description: Playbook declarations and Python module internals work as paired control planes.; location: lib/ansible/'
   fact_id: fact::017f35dde2feed58d64b134c
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -724,23 +674,6 @@ facts:
   object_value: python3 -m pytest
   note: 'topic: Run unit tests'
   fact_id: fact::20b909dd8ae10fd05a7e4ba4
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/ansible__ansible.yaml
-    source_section: testing.test_patterns[0].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: testing.test_patterns[0].line[0]
-    source_file: repos/knowledge/deep/ansible__ansible.yaml
-    excerpt: python3 -m pytest
-  object_value: python3 -m pytest
-  note: testing command
-  fact_id: fact::55a5dcd39cf0b9fe37dcb5fc
 - fact_type: operational_task
   predicate: supports_task
   object_kind: text

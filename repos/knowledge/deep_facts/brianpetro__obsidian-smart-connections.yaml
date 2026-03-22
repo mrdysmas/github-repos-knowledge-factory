@@ -73,8 +73,8 @@ facts:
   - kind: file_block
     ref: key_features[5]
     source_file: repos/knowledge/deep/brianpetro__obsidian-smart-connections.yaml
-    excerpt: "Incremental index updates \u2014 only re-embeds changed notes"
-  object_value: "Incremental index updates \u2014 only re-embeds changed notes"
+    excerpt: Incremental index updates — only re-embeds changed notes
+  object_value: Incremental index updates — only re-embeds changed notes
   fact_id: fact::c695d5e04009d997f3196ee6
 - fact_type: component
   predicate: has_component
@@ -238,9 +238,9 @@ facts:
   - kind: file_block
     ref: architecture.key_abstractions[0]
     source_file: repos/knowledge/deep/brianpetro__obsidian-smart-connections.yaml
-    excerpt: "Main Obsidian plugin class \u2014 registers views, commands, and settings"
+    excerpt: Main Obsidian plugin class — registers views, commands, and settings
   object_value: SmartConnectionsPlugin
-  note: "Main Obsidian plugin class \u2014 registers views, commands, and settings"
+  note: Main Obsidian plugin class — registers views, commands, and settings
   fact_id: fact::b1a149fc8252035d66534859
 - fact_type: component
   predicate: has_component
@@ -272,8 +272,7 @@ facts:
   - kind: file_block
     ref: architecture.key_abstractions[1]
     source_file: repos/knowledge/deep/brianpetro__obsidian-smart-connections.yaml
-    excerpt: Embedding abstraction that routes to local transformers.js or remote
-      API
+    excerpt: Embedding abstraction that routes to local transformers.js or remote API
   object_value: SmartEmbed
   note: Embedding abstraction that routes to local transformers.js or remote API
   fact_id: fact::a481e48c0c6e9098fd2625a8
@@ -290,11 +289,9 @@ facts:
   - kind: file_block
     ref: architecture.key_abstractions[2]
     source_file: repos/knowledge/deep/brianpetro__obsidian-smart-connections.yaml
-    excerpt: "Manages the note vector store \u2014 index building, updates, and nearest-neighbor\
-      \ lookup"
+    excerpt: Manages the note vector store — index building, updates, and nearest-neighbor lookup
   object_value: SmartEmbedConnections
-  note: "Manages the note vector store \u2014 index building, updates, and nearest-neighbor\
-    \ lookup"
+  note: Manages the note vector store — index building, updates, and nearest-neighbor lookup
   fact_id: fact::9febb44f151b47a331623521
 - fact_type: component
   predicate: has_component
@@ -354,22 +351,6 @@ facts:
   as_of: '2026-03-17'
   provenance:
     source_file: repos/knowledge/deep/brianpetro__obsidian-smart-connections.yaml
-    source_section: key_files[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[0]
-    source_file: repos/knowledge/deep/brianpetro__obsidian-smart-connections.yaml
-    excerpt: main.js
-  object_value: main.js
-  fact_id: fact::d074a1bd2dbc19707ea2fedb
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-17'
-  provenance:
-    source_file: repos/knowledge/deep/brianpetro__obsidian-smart-connections.yaml
     source_section: key_files[3]
     extraction_mode: narrative
   evidence:
@@ -392,11 +373,10 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[0]
     source_file: repos/knowledge/deep/brianpetro__obsidian-smart-connections.yaml
-    excerpt: "Core plugin TypeScript source \u2014 view components, embedding orchestration,\
-      \ settings"
+    excerpt: Core plugin TypeScript source — view components, embedding orchestration, settings
   object_value: src/
-  note: "responsibility: Core plugin TypeScript source \u2014 view components, embedding\
-    \ orchestration, settings; key_files: src/smart_connections_plugin.js, src/views/"
+  note: 'responsibility: Core plugin TypeScript source — view components, embedding orchestration, settings; key_files: src/smart_connections_plugin.js,
+    src/views/'
   fact_id: fact::d532a9c1b111b43762ef5101
 - fact_type: component
   predicate: has_component
@@ -413,8 +393,7 @@ facts:
     source_file: repos/knowledge/deep/brianpetro__obsidian-smart-connections.yaml
     excerpt: Chat interface modules for querying vault content via LLM
   object_value: src/smart_chat/
-  note: 'responsibility: Chat interface modules for querying vault content via LLM;
-    key_files: src/smart_chat/'
+  note: 'responsibility: Chat interface modules for querying vault content via LLM; key_files: src/smart_chat/'
   fact_id: fact::532d200d8c26b1cb8920cd6c
 - fact_type: component
   predicate: has_component
@@ -445,28 +424,11 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[1]
     source_file: repos/knowledge/deep/brianpetro__obsidian-smart-connections.yaml
-    excerpt: Embedding adapter layer supporting local (transformers.js) and remote
-      (OpenAI) models
+    excerpt: Embedding adapter layer supporting local (transformers.js) and remote (OpenAI) models
   object_value: src/smart_embed/
-  note: 'responsibility: Embedding adapter layer supporting local (transformers.js)
-    and remote (OpenAI) models; key_files: src/smart_embed/'
+  note: 'responsibility: Embedding adapter layer supporting local (transformers.js) and remote (OpenAI) models; key_files:
+    src/smart_embed/'
   fact_id: fact::20c3127149d7356bbc26a09a
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-17'
-  provenance:
-    source_file: repos/knowledge/deep/brianpetro__obsidian-smart-connections.yaml
-    source_section: key_files[2]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[2]
-    source_file: repos/knowledge/deep/brianpetro__obsidian-smart-connections.yaml
-    excerpt: src/smart_embed/
-  object_value: src/smart_embed/
-  fact_id: fact::8f26809bd2ecbdb75979f8bd
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
@@ -550,8 +512,7 @@ facts:
     source_file: repos/knowledge/deep/brianpetro__obsidian-smart-connections.yaml
     excerpt: smart_connections_folder
   object_value: smart_connections_folder
-  note: 'default: .smart-connections; Vault folder where Smart Connections stores
-    its index data'
+  note: 'default: .smart-connections; Vault folder where Smart Connections stores its index data'
   fact_id: fact::b77954d63b9554d074ef4d1e
 - fact_type: extension_point
   predicate: has_extension_point
@@ -568,8 +529,7 @@ facts:
     source_file: repos/knowledge/deep/brianpetro__obsidian-smart-connections.yaml
     excerpt: src/smart_embed/
   object_value: src/smart_embed/
-  note: Implement a custom embedding adapter for a different model provider; SmartEmbed
-    class
+  note: Implement a custom embedding adapter for a different model provider; SmartEmbed class
   fact_id: fact::739010d85efeb9fdac77d864
 - fact_type: operational_task
   predicate: supports_task
@@ -620,6 +580,5 @@ facts:
     source_file: repos/knowledge/deep/brianpetro__obsidian-smart-connections.yaml
     excerpt: npm run dev
   object_value: npm run dev
-  note: Start the development build watcher for live plugin reloading during Obsidian
-    development.
+  note: Start the development build watcher for live plugin reloading during Obsidian development.
   fact_id: fact::21a8f1f93bb7b90cb8d0af72

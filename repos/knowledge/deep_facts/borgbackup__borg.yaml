@@ -92,8 +92,7 @@ facts:
     ref: key_features[0]
     source_file: repos/knowledge/deep/borgbackup__borg.yaml
     excerpt: Deduplicated, encrypted backup archives with repository-level chunk reuse.
-  object_value: Deduplicated, encrypted backup archives with repository-level chunk
-    reuse.
+  object_value: Deduplicated, encrypted backup archives with repository-level chunk reuse.
   fact_id: fact::ae2786fe482ff5c47be13f85
 - fact_type: component
   predicate: has_component
@@ -311,8 +310,7 @@ facts:
     source_file: repos/knowledge/deep/borgbackup__borg.yaml
     excerpt: Build system, extension compilation, and native dependency discovery.
   object_value: setup.py and pyproject.toml
-  note: 'responsibility: Build system, extension compilation, and native dependency
-    discovery.; key_files: setup.py, pyproject.toml'
+  note: 'responsibility: Build system, extension compilation, and native dependency discovery.; key_files: setup.py, pyproject.toml'
   fact_id: fact::5c238c022ef3e611583a6523
 - fact_type: component
   predicate: has_component
@@ -361,29 +359,11 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[6]
     source_file: repos/knowledge/deep/borgbackup__borg.yaml
-    excerpt: Internal architecture narrative for repository, manifest, archives, and
-      dedup model.
+    excerpt: Internal architecture narrative for repository, manifest, archives, and dedup model.
   object_value: docs/internals.rst
-  note: 'responsibility: Internal architecture narrative for repository, manifest,
-    archives, and dedup model.; key_files: docs/internals.rst'
+  note: 'responsibility: Internal architecture narrative for repository, manifest, archives, and dedup model.; key_files:
+    docs/internals.rst'
   fact_id: fact::7a3355b30803a9d80e26b37e
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/borgbackup__borg.yaml
-    source_section: key_files[7]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[7]
-    source_file: repos/knowledge/deep/borgbackup__borg.yaml
-    excerpt: docs/internals.rst
-  object_value: docs/internals.rst
-  note: Internal architecture documentation.
-  fact_id: fact::b487766d48d6c9fc7750b7a3
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -404,23 +384,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/borgbackup__borg.yaml
-    source_section: key_files[3]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[3]
-    source_file: repos/knowledge/deep/borgbackup__borg.yaml
-    excerpt: src/borg/archive.py
-  object_value: src/borg/archive.py
-  note: Archive object model.
-  fact_id: fact::7f48a9e5115ba1857557cffc
-- fact_type: component
-  predicate: has_component
-  object_kind: path
   confidence: 0.78
   as_of: '2026-03-04'
   provenance:
@@ -433,26 +396,8 @@ facts:
     source_file: repos/knowledge/deep/borgbackup__borg.yaml
     excerpt: Archive object creation, metadata handling, and chunk stream integration.
   object_value: src/borg/archive.py
-  note: 'responsibility: Archive object creation, metadata handling, and chunk stream
-    integration.; key_files: src/borg/archive.py'
+  note: 'responsibility: Archive object creation, metadata handling, and chunk stream integration.; key_files: src/borg/archive.py'
   fact_id: fact::c20c67edc98fbfcadcb1452e
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/borgbackup__borg.yaml
-    source_section: core_modules.archive_core
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.archive_core
-    source_file: repos/knowledge/deep/borgbackup__borg.yaml
-    excerpt: src/borg/archive.py
-  object_value: src/borg/archive.py
-  note: Archive metadata/content model.
-  fact_id: fact::f04ebae8f20418a6c9d1d641
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -466,30 +411,11 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[0]
     source_file: repos/knowledge/deep/borgbackup__borg.yaml
-    excerpt: CLI command mixins and command parser for create/extract/check/prune/repo
-      operations.
+    excerpt: CLI command mixins and command parser for create/extract/check/prune/repo operations.
   object_value: src/borg/archiver/
-  note: 'responsibility: CLI command mixins and command parser for create/extract/check/prune/repo
-    operations.; key_files: src/borg/archiver/__init__.py, src/borg/archiver/create_cmd.py,
-    src/borg/archiver/check_cmd.py, src/borg/archiver/prune_cmd.py'
+  note: 'responsibility: CLI command mixins and command parser for create/extract/check/prune/repo operations.; key_files:
+    src/borg/archiver/__init__.py, src/borg/archiver/create_cmd.py, src/borg/archiver/check_cmd.py, src/borg/archiver/prune_cmd.py'
   fact_id: fact::63b1962ce5a9efa9c77f7faa
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/borgbackup__borg.yaml
-    source_section: core_modules.cli_archiver
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.cli_archiver
-    source_file: repos/knowledge/deep/borgbackup__borg.yaml
-    excerpt: src/borg/archiver/
-  object_value: src/borg/archiver/
-  note: Command parser and handlers.
-  fact_id: fact::cbcf612b1a56c6ee752a21bd
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -544,40 +470,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/borgbackup__borg.yaml
-    source_section: core_modules.cache_core
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.cache_core
-    source_file: repos/knowledge/deep/borgbackup__borg.yaml
-    excerpt: src/borg/cache.py
-  object_value: src/borg/cache.py
-  note: Dedup and metadata caching.
-  fact_id: fact::9961ec26622cdf3b33895f07
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/borgbackup__borg.yaml
-    source_section: key_files[5]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[5]
-    source_file: repos/knowledge/deep/borgbackup__borg.yaml
-    excerpt: src/borg/cache.py
-  object_value: src/borg/cache.py
-  note: Cache model and secure checks.
-  fact_id: fact::ebcc94fdaf91d74058fa947c
-- fact_type: component
-  predicate: has_component
-  object_kind: path
   confidence: 0.78
   as_of: '2026-03-04'
   provenance:
@@ -590,26 +482,8 @@ facts:
     source_file: repos/knowledge/deep/borgbackup__borg.yaml
     excerpt: Chunks/files cache management and secure repository checks.
   object_value: src/borg/cache.py
-  note: 'responsibility: Chunks/files cache management and secure repository checks.;
-    key_files: src/borg/cache.py'
+  note: 'responsibility: Chunks/files cache management and secure repository checks.; key_files: src/borg/cache.py'
   fact_id: fact::ef78b024c94f5e4a5d5d0da1
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/borgbackup__borg.yaml
-    source_section: core_modules.chunking_core
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.chunking_core
-    source_file: repos/knowledge/deep/borgbackup__borg.yaml
-    excerpt: src/borg/chunkers/
-  object_value: src/borg/chunkers/
-  note: Content chunking pipeline.
-  fact_id: fact::1e6f03ee2c7660a1a8f63426
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -625,8 +499,8 @@ facts:
     source_file: repos/knowledge/deep/borgbackup__borg.yaml
     excerpt: Chunking implementations (including buzhash/buzhash64 variants).
   object_value: src/borg/chunkers/
-  note: 'responsibility: Chunking implementations (including buzhash/buzhash64 variants).;
-    key_files: src/borg/chunkers/buzhash.pyx, src/borg/chunkers/buzhash64.pyx, src/borg/chunkers/reader.pyx'
+  note: 'responsibility: Chunking implementations (including buzhash/buzhash64 variants).; key_files: src/borg/chunkers/buzhash.pyx,
+    src/borg/chunkers/buzhash64.pyx, src/borg/chunkers/reader.pyx'
   fact_id: fact::e7eff9979d4ee7665eef2ad0
 - fact_type: component
   predicate: has_component
@@ -648,40 +522,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/borgbackup__borg.yaml
-    source_section: key_files[4]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[4]
-    source_file: repos/knowledge/deep/borgbackup__borg.yaml
-    excerpt: src/borg/repository.py
-  object_value: src/borg/repository.py
-  note: Repository implementation.
-  fact_id: fact::b98252bd7541ccff5660f607
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/borgbackup__borg.yaml
-    source_section: core_modules.repository_core
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.repository_core
-    source_file: repos/knowledge/deep/borgbackup__borg.yaml
-    excerpt: src/borg/repository.py
-  object_value: src/borg/repository.py
-  note: Repository backend behavior.
-  fact_id: fact::da0618d7d936902b5d80d51b
-- fact_type: component
-  predicate: has_component
-  object_kind: path
   confidence: 0.78
   as_of: '2026-03-04'
   provenance:
@@ -692,29 +532,10 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[1]
     source_file: repos/knowledge/deep/borgbackup__borg.yaml
-    excerpt: Repository abstraction for local and supported remote/backed storage
-      protocols.
+    excerpt: Repository abstraction for local and supported remote/backed storage protocols.
   object_value: src/borg/repository.py
-  note: 'responsibility: Repository abstraction for local and supported remote/backed
-    storage protocols.; key_files: src/borg/repository.py'
+  note: 'responsibility: Repository abstraction for local and supported remote/backed storage protocols.; key_files: src/borg/repository.py'
   fact_id: fact::ec342dbe7f3f249ad5041575
-- fact_type: config_option
-  predicate: has_config_option
-  object_kind: config_key
-  confidence: 0.7
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/borgbackup__borg.yaml
-    source_section: environment_variables[5]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: environment_variables[5]
-    source_file: repos/knowledge/deep/borgbackup__borg.yaml
-    excerpt: BORG_EXIT_CODES
-  object_value: BORG_EXIT_CODES
-  note: Exit code mode (modern/legacy).
-  fact_id: fact::3669f2b6e4ed5f3deac3fb83
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
@@ -732,23 +553,6 @@ facts:
   object_value: BORG_EXIT_CODES
   note: 'default: modern; Exit code style selection.'
   fact_id: fact::e67c202d3f7246ca29c14446
-- fact_type: config_option
-  predicate: has_config_option
-  object_kind: config_key
-  confidence: 0.7
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/borgbackup__borg.yaml
-    source_section: environment_variables[6]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: environment_variables[6]
-    source_file: repos/knowledge/deep/borgbackup__borg.yaml
-    excerpt: BORG_FUSE_IMPL
-  object_value: BORG_FUSE_IMPL
-  note: Mount backend selection.
-  fact_id: fact::b00b90d615a28b7e35ad74b1
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
@@ -786,23 +590,6 @@ facts:
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
-  confidence: 0.7
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/borgbackup__borg.yaml
-    source_section: environment_variables[2]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: environment_variables[2]
-    source_file: repos/knowledge/deep/borgbackup__borg.yaml
-    excerpt: BORG_PASSCOMMAND
-  object_value: BORG_PASSCOMMAND
-  note: Command to emit passphrase.
-  fact_id: fact::7573ede469694b4e7e4e55c4
-- fact_type: config_option
-  predicate: has_config_option
-  object_kind: config_key
   confidence: 0.72
   as_of: '2026-03-04'
   provenance:
@@ -817,23 +604,6 @@ facts:
   object_value: BORG_PASSPHRASE
   note: 'default: none; Passphrase source for key handling.'
   fact_id: fact::38b6d7c222cc7f5bca9c8a5e
-- fact_type: config_option
-  predicate: has_config_option
-  object_kind: config_key
-  confidence: 0.7
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/borgbackup__borg.yaml
-    source_section: environment_variables[1]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: environment_variables[1]
-    source_file: repos/knowledge/deep/borgbackup__borg.yaml
-    excerpt: BORG_PASSPHRASE
-  object_value: BORG_PASSPHRASE
-  note: Direct passphrase value.
-  fact_id: fact::52bb3dfb1f9787a544dd83b0
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
@@ -854,23 +624,6 @@ facts:
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
-  confidence: 0.7
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/borgbackup__borg.yaml
-    source_section: environment_variables[3]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: environment_variables[3]
-    source_file: repos/knowledge/deep/borgbackup__borg.yaml
-    excerpt: BORG_PASSPHRASE_FD
-  object_value: BORG_PASSPHRASE_FD
-  note: Passphrase file descriptor.
-  fact_id: fact::d822866320638143481edbea
-- fact_type: config_option
-  predicate: has_config_option
-  object_kind: config_key
   confidence: 0.72
   as_of: '2026-03-04'
   provenance:
@@ -888,23 +641,6 @@ facts:
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
-  confidence: 0.7
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/borgbackup__borg.yaml
-    source_section: environment_variables[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: environment_variables[0]
-    source_file: repos/knowledge/deep/borgbackup__borg.yaml
-    excerpt: BORG_REPO
-  object_value: BORG_REPO
-  note: Repository path/URL default.
-  fact_id: fact::7418e598fc2120ef6764e2ef
-- fact_type: config_option
-  predicate: has_config_option
-  object_kind: config_key
   confidence: 0.72
   as_of: '2026-03-04'
   provenance:
@@ -919,23 +655,6 @@ facts:
   object_value: BORG_RSH
   note: 'default: ssh; Remote shell transport wrapper/override.'
   fact_id: fact::40f4ae515474189cb611df1a
-- fact_type: config_option
-  predicate: has_config_option
-  object_kind: config_key
-  confidence: 0.7
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/borgbackup__borg.yaml
-    source_section: environment_variables[4]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: environment_variables[4]
-    source_file: repos/knowledge/deep/borgbackup__borg.yaml
-    excerpt: BORG_RSH
-  object_value: BORG_RSH
-  note: Remote shell command override.
-  fact_id: fact::5553341bc0a2605f130092f0
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: concept
@@ -1019,9 +738,8 @@ facts:
     source_file: repos/knowledge/deep/borgbackup__borg.yaml
     excerpt: Broken pipe or connection reset during remote backup over SSH
   object_value: Broken pipe or connection reset during remote backup over SSH
-  note: 'cause: SSH connection dropped mid-transfer; server-side borg not installed
-    or wrong version; BORG_RSH not pointing to a compatible SSH binary.; fix: Verify
-    borg is installed on the remote host at the same major version; test SSH connectivity
+  note: 'cause: SSH connection dropped mid-transfer; server-side borg not installed or wrong version; BORG_RSH not pointing
+    to a compatible SSH binary.; fix: Verify borg is installed on the remote host at the same major version; test SSH connectivity
     manually; increase SSH keepalive se...'
   fact_id: fact::0426b0f69fa7a73a6e1e52e9
 - fact_type: failure_mode
@@ -1039,9 +757,8 @@ facts:
     source_file: repos/knowledge/deep/borgbackup__borg.yaml
     excerpt: Cache out of sync warning or slow deduplication performance
   object_value: Cache out of sync warning or slow deduplication performance
-  note: 'cause: Cache was deleted, corrupted, or is stale relative to the repository
-    state.; fix: Run borg delete --cache-only to wipe the local cache, then let borg
-    rebuild it on next access; rebuild is slow but restores correct dedup behavior.'
+  note: 'cause: Cache was deleted, corrupted, or is stale relative to the repository state.; fix: Run borg delete --cache-only
+    to wipe the local cache, then let borg rebuild it on next access; rebuild is slow but restores correct dedup behavior.'
   fact_id: fact::462ed23b0c72c8dc2089436f
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -1058,10 +775,9 @@ facts:
     source_file: repos/knowledge/deep/borgbackup__borg.yaml
     excerpt: Passphrase prompt loop or "wrong passphrase" error
   object_value: Passphrase prompt loop or "wrong passphrase" error
-  note: 'cause: BORG_PASSPHRASE is unset or incorrect; or the key file is missing/corrupted
-    for keyfile-mode repositories.; fix: Set BORG_PASSPHRASE correctly in the environment
-    or use BORG_PASSCOMMAND; for keyfile repos verify the key file exists and matches
-    with borg key export.'
+  note: 'cause: BORG_PASSPHRASE is unset or incorrect; or the key file is missing/corrupted for keyfile-mode repositories.;
+    fix: Set BORG_PASSPHRASE correctly in the environment or use BORG_PASSCOMMAND; for keyfile repos verify the key file exists
+    and matches with borg key export.'
   fact_id: fact::ee4745722ed4fb58710f76c0
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -1078,10 +794,9 @@ facts:
     source_file: repos/knowledge/deep/borgbackup__borg.yaml
     excerpt: Repository is locked and borg commands hang or refuse to run
   object_value: Repository is locked and borg commands hang or refuse to run
-  note: 'cause: A previous borg process crashed without releasing the lock; or a parallel
-    borg operation is running on the same repository.; fix: Confirm no borg process
-    is running (ps aux | grep borg); if safe, run borg break-lock <repo> to release
-    the stale lock.'
+  note: 'cause: A previous borg process crashed without releasing the lock; or a parallel borg operation is running on the
+    same repository.; fix: Confirm no borg process is running (ps aux | grep borg); if safe, run borg break-lock <repo> to
+    release the stale lock.'
   fact_id: fact::17dffdff1325525b8236e013
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -1098,9 +813,8 @@ facts:
     source_file: repos/knowledge/deep/borgbackup__borg.yaml
     excerpt: borg check reports errors or inconsistencies in repository
   object_value: borg check reports errors or inconsistencies in repository
-  note: "cause: Chunk data corrupted on disk; incomplete prior borg create or compact\
-    \ operation.; fix: Run borg check --repair (with caution \u2014 creates a repaired\
-    \ version); restore from a secondary repository copy if corruption is extensive."
+  note: 'cause: Chunk data corrupted on disk; incomplete prior borg create or compact operation.; fix: Run borg check --repair
+    (with caution — creates a repaired version); restore from a secondary repository copy if corruption is extensive.'
   fact_id: fact::a7b780882d31a0bdbb397602
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1117,8 +831,7 @@ facts:
     source_file: repos/knowledge/deep/borgbackup__borg.yaml
     excerpt: Archiver aggregates many *MixIn classes, one per command domain.
   object_value: Command mixin composition
-  note: 'description: Archiver aggregates many *MixIn classes, one per command domain.;
-    location: src/borg/archiver/__init__.py'
+  note: 'description: Archiver aggregates many *MixIn classes, one per command domain.; location: src/borg/archiver/__init__.py'
   fact_id: fact::cf1af77f8f9b3cd3c680f16e
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1135,8 +848,7 @@ facts:
     source_file: repos/knowledge/deep/borgbackup__borg.yaml
     excerpt: Chunker implementations and helpers are compiled from .pyx sources.
   object_value: Cython for performance-sensitive chunking
-  note: 'description: Chunker implementations and helpers are compiled from .pyx sources.;
-    location: setup.py and src/borg/chunkers/'
+  note: 'description: Chunker implementations and helpers are compiled from .pyx sources.; location: setup.py and src/borg/chunkers/'
   fact_id: fact::098a3f4534d4baeaf5c30310
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1153,8 +865,7 @@ facts:
     source_file: repos/knowledge/deep/borgbackup__borg.yaml
     excerpt: with_repository centralizes lock/open/manifest/cache setup.
   object_value: Decorator-based repository context management
-  note: 'description: with_repository centralizes lock/open/manifest/cache setup.;
-    location: src/borg/archiver/_common.py'
+  note: 'description: with_repository centralizes lock/open/manifest/cache setup.; location: src/borg/archiver/_common.py'
   fact_id: fact::0e4479c1f9c54718de334941
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1171,8 +882,7 @@ facts:
     source_file: repos/knowledge/deep/borgbackup__borg.yaml
     excerpt: Command modules (create_cmd.py, extract_cmd.py, etc.) keep logic isolated.
   object_value: Explicit command handlers per operation
-  note: 'description: Command modules (create_cmd.py, extract_cmd.py, etc.) keep logic
-    isolated.; location: src/borg/archiver/'
+  note: 'description: Command modules (create_cmd.py, extract_cmd.py, etc.) keep logic isolated.; location: src/borg/archiver/'
   fact_id: fact::808600d714d20193930585e7
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1187,10 +897,8 @@ facts:
   - kind: file_block
     ref: testing.framework.line[0]
     source_file: repos/knowledge/deep/borgbackup__borg.yaml
-    excerpt: Python test suite under src/borg/testsuite with tox environments and
-      multiple FUSE backends.
-  object_value: Python test suite under src/borg/testsuite with tox environments and
-    multiple FUSE backends.
+    excerpt: Python test suite under src/borg/testsuite with tox environments and multiple FUSE backends.
+  object_value: Python test suite under src/borg/testsuite with tox environments and multiple FUSE backends.
   note: 'testing metadata: framework'
   fact_id: fact::00735c92764243045a4d5203
 - fact_type: implementation_pattern

@@ -207,10 +207,8 @@ facts:
   - kind: file_block
     ref: key_features[0]
     source_file: repos/knowledge/deep/capistrano__capistrano.yaml
-    excerpt: Stage-based deployments (production, staging, etc.) with per-stage config
-      files.
-  object_value: Stage-based deployments (production, staging, etc.) with per-stage
-    config files.
+    excerpt: Stage-based deployments (production, staging, etc.) with per-stage config files.
+  object_value: Stage-based deployments (production, staging, etc.) with per-stage config files.
   fact_id: fact::f3a0479b31c05d05b4aea429
 - fact_type: component
   predicate: has_component
@@ -263,23 +261,6 @@ facts:
   object_value: rake
   note: language ecosystem
   fact_id: fact::d54ee818dfc863e41ad667e3
-- fact_type: component
-  predicate: has_component
-  object_kind: concept
-  confidence: 0.61
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/capistrano__capistrano.yaml
-    source_section: languages[0].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: languages[0].line[0]
-    source_file: repos/knowledge/deep/capistrano__capistrano.yaml
-    excerpt: ruby
-  object_value: ruby
-  note: language ecosystem
-  fact_id: fact::532915f8a73d845ec03def5f
 - fact_type: component
   predicate: has_component
   object_kind: concept
@@ -346,43 +327,8 @@ facts:
     source_file: repos/knowledge/deep/capistrano__capistrano.yaml
     excerpt: Executable shim that boots Capistrano application.
   object_value: bin/cap
-  note: 'responsibility: Executable shim that boots Capistrano application.; key_files:
-    bin/cap'
+  note: 'responsibility: Executable shim that boots Capistrano application.; key_files: bin/cap'
   fact_id: fact::efa993f6337de13e1b7f5155
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/capistrano__capistrano.yaml
-    source_section: key_files[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[0]
-    source_file: repos/knowledge/deep/capistrano__capistrano.yaml
-    excerpt: bin/cap
-  object_value: bin/cap
-  note: Executable entrypoint.
-  fact_id: fact::fc53d7946b593e163e7a806e
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/capistrano__capistrano.yaml
-    source_section: key_files[1]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[1]
-    source_file: repos/knowledge/deep/capistrano__capistrano.yaml
-    excerpt: lib/capistrano/application.rb
-  object_value: lib/capistrano/application.rb
-  note: CLI and app runtime wiring.
-  fact_id: fact::7798d8170330882264a73625
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -398,60 +344,8 @@ facts:
     source_file: repos/knowledge/deep/capistrano__capistrano.yaml
     excerpt: Custom Rake application, CLI option handling, and stage/task routing.
   object_value: lib/capistrano/application.rb
-  note: 'responsibility: Custom Rake application, CLI option handling, and stage/task
-    routing.; key_files: lib/capistrano/application.rb'
+  note: 'responsibility: Custom Rake application, CLI option handling, and stage/task routing.; key_files: lib/capistrano/application.rb'
   fact_id: fact::bb71992d37a26af1abbe1a81
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/capistrano__capistrano.yaml
-    source_section: core_modules.app_runtime
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.app_runtime
-    source_file: repos/knowledge/deep/capistrano__capistrano.yaml
-    excerpt: lib/capistrano/application.rb
-  object_value: lib/capistrano/application.rb
-  note: Capistrano-specific Rake application.
-  fact_id: fact::efc923395a9cdcff65f41e74
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/capistrano__capistrano.yaml
-    source_section: core_modules.config_runtime
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.config_runtime
-    source_file: repos/knowledge/deep/capistrano__capistrano.yaml
-    excerpt: lib/capistrano/configuration.rb
-  object_value: lib/capistrano/configuration.rb
-  note: Variable/host/backend orchestration.
-  fact_id: fact::74f6575a843de77fb1d0b220
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/capistrano__capistrano.yaml
-    source_section: key_files[2]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[2]
-    source_file: repos/knowledge/deep/capistrano__capistrano.yaml
-    excerpt: lib/capistrano/configuration.rb
-  object_value: lib/capistrano/configuration.rb
-  note: Core config + backend integration.
-  fact_id: fact::8b32c9f848a0d9d74f12d2b4
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -465,11 +359,10 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[2]
     source_file: repos/knowledge/deep/capistrano__capistrano.yaml
-    excerpt: Central configuration store, server role registry, backend setup, and
-      plugin installation.
+    excerpt: Central configuration store, server role registry, backend setup, and plugin installation.
   object_value: lib/capistrano/configuration.rb
-  note: 'responsibility: Central configuration store, server role registry, backend
-    setup, and plugin installation.; key_files: lib/capistrano/configuration.rb'
+  note: 'responsibility: Central configuration store, server role registry, backend setup, and plugin installation.; key_files:
+    lib/capistrano/configuration.rb'
   fact_id: fact::a1246f3e8aa943341441d779
 - fact_type: component
   predicate: has_component
@@ -503,43 +396,8 @@ facts:
     source_file: repos/knowledge/deep/capistrano__capistrano.yaml
     excerpt: End-user DSL surface (on, invoke, task helpers, filters).
   object_value: lib/capistrano/dsl.rb
-  note: 'responsibility: End-user DSL surface (on, invoke, task helpers, filters).;
-    key_files: lib/capistrano/dsl.rb'
+  note: 'responsibility: End-user DSL surface (on, invoke, task helpers, filters).; key_files: lib/capistrano/dsl.rb'
   fact_id: fact::88170e3a6e16a9c13bee4488
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/capistrano__capistrano.yaml
-    source_section: core_modules.dsl_layer
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.dsl_layer
-    source_file: repos/knowledge/deep/capistrano__capistrano.yaml
-    excerpt: lib/capistrano/dsl.rb
-  object_value: lib/capistrano/dsl.rb
-  note: Task authoring surface.
-  fact_id: fact::b68f920797ee0ef849d68cd2
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/capistrano__capistrano.yaml
-    source_section: key_files[3]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[3]
-    source_file: repos/knowledge/deep/capistrano__capistrano.yaml
-    excerpt: lib/capistrano/dsl.rb
-  object_value: lib/capistrano/dsl.rb
-  note: Deployment DSL methods.
-  fact_id: fact::d515ca5aa32c90b7f7cf2190
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -572,8 +430,7 @@ facts:
     source_file: repos/knowledge/deep/capistrano__capistrano.yaml
     excerpt: SCM adapters and resolver logic (git, svn, hg).
   object_value: lib/capistrano/scm/*.rb
-  note: 'responsibility: SCM adapters and resolver logic (git, svn, hg).; key_files:
-    lib/capistrano/scm/git.rb, lib/capistrano/scm_resolver.rb'
+  note: 'responsibility: SCM adapters and resolver logic (git, svn, hg).; key_files: lib/capistrano/scm/git.rb, lib/capistrano/scm_resolver.rb'
   fact_id: fact::5aa17027e1aec165031d516f
 - fact_type: component
   predicate: has_component
@@ -590,43 +447,8 @@ facts:
     source_file: repos/knowledge/deep/capistrano__capistrano.yaml
     excerpt: Core deployment workflow tasks (check, symlink, cleanup, rollback hooks).
   object_value: lib/capistrano/tasks/deploy.rake
-  note: 'responsibility: Core deployment workflow tasks (check, symlink, cleanup,
-    rollback hooks).; key_files: lib/capistrano/tasks/deploy.rake'
+  note: 'responsibility: Core deployment workflow tasks (check, symlink, cleanup, rollback hooks).; key_files: lib/capistrano/tasks/deploy.rake'
   fact_id: fact::3d914ad6308ea8c6d30be945
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/capistrano__capistrano.yaml
-    source_section: core_modules.deploy_tasks
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.deploy_tasks
-    source_file: repos/knowledge/deep/capistrano__capistrano.yaml
-    excerpt: lib/capistrano/tasks/deploy.rake
-  object_value: lib/capistrano/tasks/deploy.rake
-  note: Deployment pipeline tasks.
-  fact_id: fact::a9621d670877d8e2d95b0d99
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/capistrano__capistrano.yaml
-    source_section: key_files[5]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[5]
-    source_file: repos/knowledge/deep/capistrano__capistrano.yaml
-    excerpt: lib/capistrano/tasks/deploy.rake
-  object_value: lib/capistrano/tasks/deploy.rake
-  note: Canonical deploy lifecycle tasks.
-  fact_id: fact::b002022d72bd87a84141cf36
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -778,8 +600,7 @@ facts:
     source_file: repos/knowledge/deep/capistrano__capistrano.yaml
     excerpt: application
   object_value: application
-  note: 'default: required by user template; Deployment application name used in paths
-    and labels.'
+  note: 'default: required by user template; Deployment application name used in paths and labels.'
   fact_id: fact::3279ce82655103bb294a85e5
 - fact_type: config_option
   predicate: has_config_option
@@ -1017,10 +838,9 @@ facts:
     source_file: repos/knowledge/deep/capistrano__capistrano.yaml
     excerpt: Deploy runs but changes are not reflected on the server
   object_value: Deploy runs but changes are not reflected on the server
-  note: 'cause: Application server (e.g., Puma, Passenger) not restarted after deploy;
-    symlink pointing to previous release.; fix: Add a restart hook in deploy.rb (e.g.,
-    after "deploy:publishing", "deploy:restart"); verify current/ symlink points to
-    the latest release with ls -la on th...'
+  note: 'cause: Application server (e.g., Puma, Passenger) not restarted after deploy; symlink pointing to previous release.;
+    fix: Add a restart hook in deploy.rb (e.g., after "deploy:publishing", "deploy:restart"); verify current/ symlink points
+    to the latest release with ls -la on th...'
   fact_id: fact::77c2ac56c2aa06df9e389e41
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -1037,9 +857,8 @@ facts:
     source_file: repos/knowledge/deep/capistrano__capistrano.yaml
     excerpt: Rollback leaves the site in a broken state
   object_value: Rollback leaves the site in a broken state
-  note: 'cause: Rolling back code without rolling back the database migration; or
-    linked_dirs not consistent between releases.; fix: Implement a deploy:rollback
-    hook that also rolls back migrations; ensure database migrations are backward-compatible
+  note: 'cause: Rolling back code without rolling back the database migration; or linked_dirs not consistent between releases.;
+    fix: Implement a deploy:rollback hook that also rolls back migrations; ensure database migrations are backward-compatible
     before deploying.'
   fact_id: fact::f43515f9c122abe71ff92497
 - fact_type: failure_mode
@@ -1057,10 +876,9 @@ facts:
     source_file: repos/knowledge/deep/capistrano__capistrano.yaml
     excerpt: SSH authentication failure during deploy
   object_value: SSH authentication failure during deploy
-  note: 'cause: SSH agent not forwarding keys to remote host; or deploy user does
-    not have access to the target server.; fix: Ensure ssh-agent is running with the
-    correct key loaded (ssh-add -l); enable agent forwarding in deploy.rb with set
-    :ssh_options, forward_agent: true; verify th...'
+  note: 'cause: SSH agent not forwarding keys to remote host; or deploy user does not have access to the target server.; fix:
+    Ensure ssh-agent is running with the correct key loaded (ssh-add -l); enable agent forwarding in deploy.rb with set :ssh_options,
+    forward_agent: true; verify th...'
   fact_id: fact::641da867fcbc839c640a2d05
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -1077,10 +895,9 @@ facts:
     source_file: repos/knowledge/deep/capistrano__capistrano.yaml
     excerpt: cap -T shows no tasks or stage tasks missing
   object_value: cap -T shows no tasks or stage tasks missing
-  note: 'cause: Capfile not requiring the correct plugins or stage files; or require
-    capistrano/deploy not present.; fix: Check Capfile for require "capistrano/deploy"
-    and any SCM/plugin requires; ensure config/deploy/<stage>.rb files exist for each
-    stage.'
+  note: 'cause: Capfile not requiring the correct plugins or stage files; or require capistrano/deploy not present.; fix:
+    Check Capfile for require "capistrano/deploy" and any SCM/plugin requires; ensure config/deploy/<stage>.rb files exist
+    for each stage.'
   fact_id: fact::2445395a68f901ad14238e15
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -1097,9 +914,8 @@ facts:
     source_file: repos/knowledge/deep/capistrano__capistrano.yaml
     excerpt: deploy fails with "linked file does not exist" error
   object_value: deploy fails with "linked file does not exist" error
-  note: 'cause: A file listed in linked_files has not been created in the shared/
-    directory on the server before first deploy.; fix: SSH to the server and manually
-    create the required files under shared/ (e.g., shared/config/database.yml); these
+  note: 'cause: A file listed in linked_files has not been created in the shared/ directory on the server before first deploy.;
+    fix: SSH to the server and manually create the required files under shared/ (e.g., shared/config/database.yml); these
     are not created automatically by Capistr...'
   fact_id: fact::7eae09ea87c229593d153c21
 - fact_type: implementation_pattern
@@ -1117,8 +933,7 @@ facts:
     source_file: repos/knowledge/deep/capistrano__capistrano.yaml
     excerpt: SSHKit backend selected/configured at runtime from config values.
   object_value: Backend abstraction over SSH
-  note: 'description: SSHKit backend selected/configured at runtime from config values.;
-    location: lib/capistrano/configuration.rb'
+  note: 'description: SSHKit backend selected/configured at runtime from config values.; location: lib/capistrano/configuration.rb'
   fact_id: fact::d89b087d6874ecd065d2c67a
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1150,11 +965,9 @@ facts:
   - kind: file_block
     ref: lib/capistrano/dsl.rb
     source_file: repos/knowledge/deep/capistrano__capistrano.yaml
-    excerpt: Deployment logic is represented as composable tasks and hooks through
-      Ruby DSL.
+    excerpt: Deployment logic is represented as composable tasks and hooks through Ruby DSL.
   object_value: DSL-driven orchestration
-  note: 'description: Deployment logic is represented as composable tasks and hooks
-    through Ruby DSL.; location: lib/capistrano/dsl.rb'
+  note: 'description: Deployment logic is represented as composable tasks and hooks through Ruby DSL.; location: lib/capistrano/dsl.rb'
   fact_id: fact::d5f824c0ec17533ceb5e450a
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1171,8 +984,7 @@ facts:
     source_file: repos/knowledge/deep/capistrano__capistrano.yaml
     excerpt: Prevents late plugin loading mistakes in deploy.rb/stage files.
   object_value: Immutable load defaults guard
-  note: 'description: Prevents late plugin loading mistakes in deploy.rb/stage files.;
-    location: lib/capistrano/immutable_task.rb'
+  note: 'description: Prevents late plugin loading mistakes in deploy.rb/stage files.; location: lib/capistrano/immutable_task.rb'
   fact_id: fact::d513b4fc1576607c4aadfc82
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1204,11 +1016,9 @@ facts:
   - kind: file_block
     ref: lib/capistrano/application.rb
     source_file: repos/knowledge/deep/capistrano__capistrano.yaml
-    excerpt: Capistrano customizes task loading and option parsing by subclassing
-      Rake::Application.
+    excerpt: Capistrano customizes task loading and option parsing by subclassing Rake::Application.
   object_value: Rake application subclassing
-  note: 'description: Capistrano customizes task loading and option parsing by subclassing
-    Rake::Application.; location: lib/capistrano/application.rb'
+  note: 'description: Capistrano customizes task loading and option parsing by subclassing Rake::Application.; location: lib/capistrano/application.rb'
   fact_id: fact::a2ad9ef6ad99849cab185872
 - fact_type: implementation_pattern
   predicate: implements_pattern

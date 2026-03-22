@@ -26,8 +26,8 @@ facts:
     source_file: repos/knowledge/deep/ccs.yaml
     excerpt: Dashboard server combines REST, SPA assets, and WebSockets
   object_value: Dashboard server combines REST, SPA assets, and WebSockets
-  note: The web server starts Express, mounts `/api`, `/api/shared`, `/api/overview`,
-    and `/api/usage`, then attaches a WebSocket server and optional Vite middleware.
+  note: The web server starts Express, mounts `/api`, `/api/shared`, `/api/overview`, and `/api/usage`, then attaches a WebSocket
+    server and optional Vite middleware.
   fact_id: fact::90eb40958bd93e030f87067a
 - fact_type: component
   predicate: has_component
@@ -44,9 +44,8 @@ facts:
     source_file: repos/knowledge/deep/ccs.yaml
     excerpt: Embedded proxy execution for third-party providers
   object_value: Embedded proxy execution for third-party providers
-  note: The `execClaudeWithProxy` path starts a local proxy, injects `ANTHROPIC_BASE_URL`,
-    `ANTHROPIC_AUTH_TOKEN`, and `ANTHROPIC_MODEL`, then launches the Claude CLI with
-    profile-specific hook environments.
+  note: The `execClaudeWithProxy` path starts a local proxy, injects `ANTHROPIC_BASE_URL`, `ANTHROPIC_AUTH_TOKEN`, and `ANTHROPIC_MODEL`,
+    then launches the Claude CLI with profile-specific hook environments.
   fact_id: fact::97f10f487ee018171a8e643d
 - fact_type: component
   predicate: has_component
@@ -63,9 +62,8 @@ facts:
     source_file: repos/knowledge/deep/ccs.yaml
     excerpt: Global CLI entrypoint with multi-command dispatch
   object_value: Global CLI entrypoint with multi-command dispatch
-  note: The package publishes `ccs` and `ccsd` bins, and `src/ccs.ts` imports handlers
-    for install, doctor, sync, update, shell completion, API, cursor, cliproxy, and
-    config flows.
+  note: The package publishes `ccs` and `ccsd` bins, and `src/ccs.ts` imports handlers for install, doctor, sync, update,
+    shell completion, API, cursor, cliproxy, and config flows.
   fact_id: fact::b54e964477ab37111022a9f9
 - fact_type: component
   predicate: has_component
@@ -82,8 +80,7 @@ facts:
     source_file: repos/knowledge/deep/ccs.yaml
     excerpt: Profile auto-detection from the first positional argument
   object_value: Profile auto-detection from the first positional argument
-  note: The `detectProfile` helper treats the first non-flag token as a profile name
-    and otherwise defaults to `default`.
+  note: The `detectProfile` helper treats the first non-flag token as a profile name and otherwise defaults to `default`.
   fact_id: fact::fe7c6df7fd454c58373b2e12
 - fact_type: component
   predicate: has_component
@@ -130,29 +127,11 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[4]
     source_file: repos/knowledge/deep/ccs.yaml
-    excerpt: Profile lifecycle, preset, validation, and catalog services used by the
-      dashboard API.
+    excerpt: Profile lifecycle, preset, validation, and catalog services used by the dashboard API.
   object_value: src/api/services/
-  note: 'responsibility: Profile lifecycle, preset, validation, and catalog services
-    used by the dashboard API.; key_files: src/api/services/profile-lifecycle-service.ts,
-    src/api/services/openrouter-catalog.ts'
+  note: 'responsibility: Profile lifecycle, preset, validation, and catalog services used by the dashboard API.; key_files:
+    src/api/services/profile-lifecycle-service.ts, src/api/services/openrouter-catalog.ts'
   fact_id: fact::6ad31d41c7d5a734d3135eb5
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-19'
-  provenance:
-    source_file: repos/knowledge/deep/ccs.yaml
-    source_section: key_files[1]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[1]
-    source_file: repos/knowledge/deep/ccs.yaml
-    excerpt: src/ccs.ts
-  object_value: src/ccs.ts
-  fact_id: fact::8be8a1561e387ad1532a95ac
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -166,11 +145,11 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[0]
     source_file: repos/knowledge/deep/ccs.yaml
-    excerpt: Main CLI dispatcher that detects profiles, resolves target adapters,
-      and launches proxy-backed or direct CLI execution.
+    excerpt: Main CLI dispatcher that detects profiles, resolves target adapters, and launches proxy-backed or direct CLI
+      execution.
   object_value: src/ccs.ts
-  note: 'responsibility: Main CLI dispatcher that detects profiles, resolves target
-    adapters, and launches proxy-backed or direct CLI execution.; key_files: src/ccs.ts'
+  note: 'responsibility: Main CLI dispatcher that detects profiles, resolves target adapters, and launches proxy-backed or
+    direct CLI execution.; key_files: src/ccs.ts'
   fact_id: fact::f9bd1fe444cb17fd924758d0
 - fact_type: component
   predicate: has_component
@@ -185,11 +164,10 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[2]
     source_file: repos/knowledge/deep/ccs.yaml
-    excerpt: Local proxy management, quota tracking, sync, and provider-specific adapter
-      helpers.
+    excerpt: Local proxy management, quota tracking, sync, and provider-specific adapter helpers.
   object_value: src/cliproxy/
-  note: 'responsibility: Local proxy management, quota tracking, sync, and provider-specific
-    adapter helpers.; key_files: src/cliproxy/index.ts, src/cliproxy/quota-manager.ts'
+  note: 'responsibility: Local proxy management, quota tracking, sync, and provider-specific adapter helpers.; key_files:
+    src/cliproxy/index.ts, src/cliproxy/quota-manager.ts'
   fact_id: fact::1a92348ac94034912a7351eb
 - fact_type: component
   predicate: has_component
@@ -204,12 +182,10 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[1]
     source_file: repos/knowledge/deep/ccs.yaml
-    excerpt: Command handlers for setup, install, doctor, sync, cursor, cliproxy,
-      config, and persistence flows.
+    excerpt: Command handlers for setup, install, doctor, sync, cursor, cliproxy, config, and persistence flows.
   object_value: src/commands/
-  note: 'responsibility: Command handlers for setup, install, doctor, sync, cursor,
-    cliproxy, config, and persistence flows.; key_files: src/commands/install-command.ts,
-    src/commands/doctor-command.ts'
+  note: 'responsibility: Command handlers for setup, install, doctor, sync, cursor, cliproxy, config, and persistence flows.;
+    key_files: src/commands/install-command.ts, src/commands/doctor-command.ts'
   fact_id: fact::bd3860cc13c6527bddc5d47d
 - fact_type: component
   predicate: has_component
@@ -226,8 +202,8 @@ facts:
     source_file: repos/knowledge/deep/ccs.yaml
     excerpt: Express dashboard, route registration, health checks, and WebSocket updates.
   object_value: src/web-server/
-  note: 'responsibility: Express dashboard, route registration, health checks, and
-    WebSocket updates.; key_files: src/web-server/index.ts, src/web-server/routes/index.ts'
+  note: 'responsibility: Express dashboard, route registration, health checks, and WebSocket updates.; key_files: src/web-server/index.ts,
+    src/web-server/routes/index.ts'
   fact_id: fact::594e829256a76036024d4c95
 - fact_type: component
   predicate: has_component
@@ -260,9 +236,8 @@ facts:
     source_file: repos/knowledge/deep/ccs.yaml
     excerpt: startServer
   object_value: startServer
-  note: 'Start the dashboard HTTP server with WebSocket support, REST routes, and
-    optional Vite middleware.; async function startServer(options: ServerOptions):
-    Promise<ServerInstance>; src/web-server/index.ts'
+  note: 'Start the dashboard HTTP server with WebSocket support, REST routes, and optional Vite middleware.; async function
+    startServer(options: ServerOptions): Promise<ServerInstance>; src/web-server/index.ts'
   fact_id: fact::6d84b0cd5da748beb9f31b80
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -279,10 +254,9 @@ facts:
     source_file: repos/knowledge/deep/ccs.yaml
     excerpt: Authentication fails on first launch with a provider profile
   object_value: Authentication fails on first launch with a provider profile
-  note: 'cause: The API key for the selected provider is not set in the environment
-    or profile config; fix: Run `ccs config` to set the correct API key, or export
-    the provider''s token environment variable (e.g., ANTHROPIC_AUTH_TOKEN) before
-    invoking ccs.'
+  note: 'cause: The API key for the selected provider is not set in the environment or profile config; fix: Run `ccs config`
+    to set the correct API key, or export the provider''s token environment variable (e.g., ANTHROPIC_AUTH_TOKEN) before invoking
+    ccs.'
   fact_id: fact::2bfa452769fb6e327d710ce8
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -299,9 +273,8 @@ facts:
     source_file: repos/knowledge/deep/ccs.yaml
     excerpt: Dashboard fails to load in browser after starting ccsd
   object_value: Dashboard fails to load in browser after starting ccsd
-  note: 'cause: Vite dev middleware not built or Express failed to bind to the configured
-    port; fix: Run the project build step first, confirm no other process is listening
-    on the dashboard port, and restart ccsd.'
+  note: 'cause: Vite dev middleware not built or Express failed to bind to the configured port; fix: Run the project build
+    step first, confirm no other process is listening on the dashboard port, and restart ccsd.'
   fact_id: fact::5b9d5c68e1d898340b549cb7
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -316,11 +289,10 @@ facts:
   - kind: file_block
     ref: troubleshooting[3]
     source_file: repos/knowledge/deep/ccs.yaml
-    excerpt: "Profile not detected \u2014 falls back to default unexpectedly"
-  object_value: "Profile not detected \u2014 falls back to default unexpectedly"
-  note: 'cause: The first positional argument does not match any configured profile
-    name; fix: Check available profiles with `ccs config` and pass the exact profile
-    name as the first argument.'
+    excerpt: Profile not detected — falls back to default unexpectedly
+  object_value: Profile not detected — falls back to default unexpectedly
+  note: 'cause: The first positional argument does not match any configured profile name; fix: Check available profiles with
+    `ccs config` and pass the exact profile name as the first argument.'
   fact_id: fact::11cf7b6f51f05def323f60fe
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -337,9 +309,8 @@ facts:
     source_file: repos/knowledge/deep/ccs.yaml
     excerpt: Proxy port conflict error on startup
   object_value: Proxy port conflict error on startup
-  note: 'cause: The local proxy used by cliproxy is already bound to the configured
-    port from a previous session; fix: Kill the stale proxy process or change the
-    proxy port in the CCS config, then retry.'
+  note: 'cause: The local proxy used by cliproxy is already bound to the configured port from a previous session; fix: Kill
+    the stale proxy process or change the proxy port in the CCS config, then retry.'
   fact_id: fact::bf6b8fcbfeb9daf25ffd7f72
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -356,9 +327,8 @@ facts:
     source_file: repos/knowledge/deep/ccs.yaml
     excerpt: Rate limit quota exceeded mid-session
   object_value: Rate limit quota exceeded mid-session
-  note: 'cause: The quota-manager has detected the provider''s hourly or daily limit
-    has been reached for the active profile; fix: Switch to a different profile with
-    remaining quota, or wait for the quota window to reset before retrying.'
+  note: 'cause: The quota-manager has detected the provider''s hourly or daily limit has been reached for the active profile;
+    fix: Switch to a different profile with remaining quota, or wait for the quota window to reset before retrying.'
   fact_id: fact::2d9470ab722a944cde7bbef5
 - fact_type: operational_task
   predicate: supports_task
@@ -375,8 +345,8 @@ facts:
     source_file: repos/knowledge/deep/ccs.yaml
     excerpt: ccs
   object_value: ccs
-  note: "Launch the CCS CLI with a provider profile \u2014 detects the first positional\
-    \ argument as a profile name and proxies the session through the configured adapter."
+  note: Launch the CCS CLI with a provider profile — detects the first positional argument as a profile name and proxies the
+    session through the configured adapter.
   fact_id: fact::35c052f9bd064aefc7d55cd4
 - fact_type: operational_task
   predicate: supports_task
@@ -393,8 +363,7 @@ facts:
     source_file: repos/knowledge/deep/ccs.yaml
     excerpt: ccs config
   object_value: ccs config
-  note: Open or edit the CCS configuration file to manage profiles, targets, and proxy
-    settings.
+  note: Open or edit the CCS configuration file to manage profiles, targets, and proxy settings.
   fact_id: fact::6d15cb058a46c3dc63445170
 - fact_type: operational_task
   predicate: supports_task
@@ -411,8 +380,7 @@ facts:
     source_file: repos/knowledge/deep/ccs.yaml
     excerpt: ccs doctor
   object_value: ccs doctor
-  note: "Check environment health \u2014 verifies that required API keys, proxy ports,\
-    \ and provider config are correctly set up."
+  note: Check environment health — verifies that required API keys, proxy ports, and provider config are correctly set up.
   fact_id: fact::30876b3b9039aeb9cb52926e
 - fact_type: operational_task
   predicate: supports_task
@@ -429,8 +397,7 @@ facts:
     source_file: repos/knowledge/deep/ccs.yaml
     excerpt: ccs install
   object_value: ccs install
-  note: Run the install flow to set up CCS, configure targets, and register the global
-    CLI.
+  note: Run the install flow to set up CCS, configure targets, and register the global CLI.
   fact_id: fact::aea8d023f397c0d4e563409b
 - fact_type: operational_task
   predicate: supports_task
@@ -447,8 +414,7 @@ facts:
     source_file: repos/knowledge/deep/ccs.yaml
     excerpt: ccs sync
   object_value: ccs sync
-  note: Sync provider profiles and credentials with the configured upstream or local
-    store.
+  note: Sync provider profiles and credentials with the configured upstream or local store.
   fact_id: fact::1ac0c79183137fc95ad243c4
 - fact_type: operational_task
   predicate: supports_task
@@ -465,6 +431,5 @@ facts:
     source_file: repos/knowledge/deep/ccs.yaml
     excerpt: ccsd
   object_value: ccsd
-  note: Start the CCS dashboard server, including REST API, WebSocket updates, and
-    optionally the Vite dev middleware.
+  note: Start the CCS dashboard server, including REST API, WebSocket updates, and optionally the Vite dev middleware.
   fact_id: fact::da3712311e13feaa08584cef

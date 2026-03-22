@@ -60,8 +60,7 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
     excerpt: Granular error reporting
   object_value: Granular error reporting
-  note: ValidationError and related error structures preserve location and context
-    data.
+  note: ValidationError and related error structures preserve location and context data.
   fact_id: fact::082210cbe054f428fa7ba043
 - fact_type: component
   predicate: has_component
@@ -214,8 +213,8 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
     excerpt: Exposes the Python import surface and typed helper structures.
   object_value: python/pydantic_core
-  note: 'responsibility: Exposes the Python import surface and typed helper structures.;
-    key_files: python/pydantic_core/__init__.py, python/pydantic_core/core_schema.py'
+  note: 'responsibility: Exposes the Python import surface and typed helper structures.; key_files: python/pydantic_core/__init__.py,
+    python/pydantic_core/core_schema.py'
   fact_id: fact::8a0f8e5880436acec9340fb8
 - fact_type: component
   predicate: has_component
@@ -237,23 +236,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
-    source_section: key_files[5]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[5]
-    source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
-    excerpt: python/pydantic_core/__init__.py
-  object_value: python/pydantic_core/__init__.py
-  note: Python import surface and __all__ export definitions.
-  fact_id: fact::aaa332c5d0ccaaa152c41263
-- fact_type: component
-  predicate: has_component
-  object_kind: path
   confidence: 0.78
   as_of: '2026-03-05'
   provenance:
@@ -266,8 +248,7 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
     excerpt: Defines validation and serialization error types and reporting structures.
   object_value: src/errors
-  note: 'responsibility: Defines validation and serialization error types and reporting
-    structures.; key_files: src/errors'
+  note: 'responsibility: Defines validation and serialization error types and reporting structures.; key_files: src/errors'
   fact_id: fact::f1c5cf02ea0b86a1c9d0597f
 - fact_type: component
   predicate: has_component
@@ -282,46 +263,10 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[0]
     source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
-    excerpt: Defines the PyO3 extension module and exports validator and serializer
-      entrypoints.
+    excerpt: Defines the PyO3 extension module and exports validator and serializer entrypoints.
   object_value: src/lib.rs
-  note: 'responsibility: Defines the PyO3 extension module and exports validator and
-    serializer entrypoints.; key_files: src/lib.rs'
+  note: 'responsibility: Defines the PyO3 extension module and exports validator and serializer entrypoints.; key_files: src/lib.rs'
   fact_id: fact::124e3b59bcd14234735b11f3
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
-    source_section: key_files[2]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[2]
-    source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
-    excerpt: src/lib.rs
-  object_value: src/lib.rs
-  note: Rust extension entrypoint and exported module wiring.
-  fact_id: fact::13476cab5278797d97bde709
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
-    source_section: core_modules.rust_entrypoint
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.rust_entrypoint
-    source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
-    excerpt: src/lib.rs
-  object_value: src/lib.rs
-  note: Extension module initialization and top-level function exports.
-  fact_id: fact::801841177b0de78107ebea86
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -337,26 +282,8 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
     excerpt: Implements to_python and to_json serialization pathways.
   object_value: src/serializers
-  note: 'responsibility: Implements to_python and to_json serialization pathways.;
-    key_files: src/serializers/mod.rs, src/serializers/type_serializers'
+  note: 'responsibility: Implements to_python and to_json serialization pathways.; key_files: src/serializers/mod.rs, src/serializers/type_serializers'
   fact_id: fact::e1ee8aa5e5fec0aac306373b
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
-    source_section: key_files[4]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[4]
-    source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
-    excerpt: src/serializers/mod.rs
-  object_value: src/serializers/mod.rs
-  note: Serializer core implementation and JSON/Python output logic.
-  fact_id: fact::14da5b20432942bcbf8d0f80
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -372,8 +299,7 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
     excerpt: src/serializers/mod.rs
   object_value: src/serializers/mod.rs
-  note: 'SchemaSerializer implementation and serialization pipelines. Submodules:
-    src/serializers/type_serializers, src/serializers/shared.rs'
+  note: 'SchemaSerializer implementation and serialization pipelines. Submodules: src/serializers/type_serializers, src/serializers/shared.rs'
   fact_id: fact::78127f774f68b201b9379c43
 - fact_type: component
   predicate: has_component
@@ -390,8 +316,8 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
     excerpt: Implements schema-driven validation logic across Python and JSON inputs.
   object_value: src/validators
-  note: 'responsibility: Implements schema-driven validation logic across Python and
-    JSON inputs.; key_files: src/validators/mod.rs, src/validators/model.rs, src/validators/typed_dict.rs'
+  note: 'responsibility: Implements schema-driven validation logic across Python and JSON inputs.; key_files: src/validators/mod.rs,
+    src/validators/model.rs, src/validators/typed_dict.rs'
   fact_id: fact::f6e8e15ab9b8e81ff512821d
 - fact_type: component
   predicate: has_component
@@ -408,26 +334,9 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
     excerpt: src/validators/mod.rs
   object_value: src/validators/mod.rs
-  note: 'SchemaValidator implementation and type-specific validator wiring. Submodules:
-    src/validators/model.rs, src/validators/union.rs, src/validators/typed_dict.rs'
+  note: 'SchemaValidator implementation and type-specific validator wiring. Submodules: src/validators/model.rs, src/validators/union.rs,
+    src/validators/typed_dict.rs'
   fact_id: fact::c7a9fc2f03c8086309840f21
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
-    source_section: key_files[3]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[3]
-    source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
-    excerpt: src/validators/mod.rs
-  object_value: src/validators/mod.rs
-  note: Validator core implementation and module composition.
-  fact_id: fact::dd1bac30707d7929e8ce9d68
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
@@ -528,8 +437,7 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
     excerpt: module-name
   object_value: module-name
-  note: 'default: pydantic_core._pydantic_core; Maturin module name for the compiled
-    extension.'
+  note: 'default: pydantic_core._pydantic_core; Maturin module name for the compiled extension.'
   fact_id: fact::0990af0f8b89179923c731ee
 - fact_type: config_option
   predicate: has_config_option
@@ -614,8 +522,7 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
     excerpt: SchemaSerializer
   object_value: SchemaSerializer
-  note: Serialize validated data into Python objects or JSON bytes.; class SchemaSerializer;
-    python/pydantic_core/__init__.py
+  note: Serialize validated data into Python objects or JSON bytes.; class SchemaSerializer; python/pydantic_core/__init__.py
   fact_id: fact::df9701c61976ac77e8fc9b89
 - fact_type: extension_point
   predicate: has_extension_point
@@ -632,8 +539,7 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
     excerpt: SchemaValidator
   object_value: SchemaValidator
-  note: Validate Python and JSON inputs against compiled CoreSchema definitions.;
-    class SchemaValidator; python/pydantic_core/__init__.py
+  note: Validate Python and JSON inputs against compiled CoreSchema definitions.; class SchemaValidator; python/pydantic_core/__init__.py
   fact_id: fact::b3bbe2e87cf424dfbcb48076
 - fact_type: extension_point
   predicate: has_extension_point
@@ -650,8 +556,7 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
     excerpt: ValidationError
   object_value: ValidationError
-  note: Expose structured validation failures to Python callers.; class ValidationError;
-    python/pydantic_core/__init__.py
+  note: Expose structured validation failures to Python callers.; class ValidationError; python/pydantic_core/__init__.py
   fact_id: fact::134771e59fd44351afbaec75
 - fact_type: extension_point
   predicate: has_extension_point
@@ -668,8 +573,7 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
     excerpt: from_json
   object_value: from_json
-  note: Parse JSON input with pydantic-core parser controls.; def from_json(...);
-    python/pydantic_core/__init__.py
+  note: Parse JSON input with pydantic-core parser controls.; def from_json(...); python/pydantic_core/__init__.py
   fact_id: fact::374ab40122c8ba523b28a197
 - fact_type: extension_point
   predicate: has_extension_point
@@ -754,8 +658,7 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
     excerpt: to_json
   object_value: to_json
-  note: Serialize objects into JSON using schema-aware serializers.; def to_json(...);
-    python/pydantic_core/__init__.py
+  note: Serialize objects into JSON using schema-aware serializers.; def to_json(...); python/pydantic_core/__init__.py
   fact_id: fact::a1066e27f538f4d80e8986a0
 - fact_type: extension_point
   predicate: has_extension_point
@@ -772,8 +675,7 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
     excerpt: to_jsonable_python
   object_value: to_jsonable_python
-  note: Serialize objects into Python structures ready for JSON encoding.; def to_jsonable_python(...);
-    python/pydantic_core/__init__.py
+  note: Serialize objects into Python structures ready for JSON encoding.; def to_jsonable_python(...); python/pydantic_core/__init__.py
   fact_id: fact::ac2ce859eea872cfe3324619
 - fact_type: extension_point
   predicate: has_extension_point
@@ -805,11 +707,10 @@ facts:
   - kind: file_block
     ref: src/lib.rs
     source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
-    excerpt: from_json accepts partial parsing and string cache modes for controlled
-      parsing behavior.
+    excerpt: from_json accepts partial parsing and string cache modes for controlled parsing behavior.
   object_value: Configurable partial JSON parsing
-  note: 'description: from_json accepts partial parsing and string cache modes for
-    controlled parsing behavior.; location: src/lib.rs'
+  note: 'description: from_json accepts partial parsing and string cache modes for controlled parsing behavior.; location:
+    src/lib.rs'
   fact_id: fact::9e0a98035e29fd99f39a6779
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -824,11 +725,9 @@ facts:
   - kind: file_block
     ref: src/validators/mod.rs
     source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
-    excerpt: Validator and serializer construction use shared definition graphs before
-      finalization.
+    excerpt: Validator and serializer construction use shared definition graphs before finalization.
   object_value: DefinitionsBuilder for schema compilation
-  note: 'description: Validator and serializer construction use shared definition
-    graphs before finalization.; location: src/validators/mod.rs'
+  note: 'description: Validator and serializer construction use shared definition graphs before finalization.; location: src/validators/mod.rs'
   fact_id: fact::d56c5573fbea1cf8b9702415
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -843,11 +742,10 @@ facts:
   - kind: file_block
     ref: src/validators/mod.rs
     source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
-    excerpt: Validation behavior is split into dedicated modules such as list, dict,
-      tuple, and union.
+    excerpt: Validation behavior is split into dedicated modules such as list, dict, tuple, and union.
   object_value: Per-type validator modules
-  note: 'description: Validation behavior is split into dedicated modules such as
-    list, dict, tuple, and union.; location: src/validators/mod.rs'
+  note: 'description: Validation behavior is split into dedicated modules such as list, dict, tuple, and union.; location:
+    src/validators/mod.rs'
   fact_id: fact::41eac7a0151787ee5dac941f
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -862,11 +760,9 @@ facts:
   - kind: file_block
     ref: src/lib.rs
     source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
-    excerpt: Rust functions and classes are exposed through a single _pydantic_core
-      pymodule.
+    excerpt: Rust functions and classes are exposed through a single _pydantic_core pymodule.
   object_value: PyO3 export module for Python bindings
-  note: 'description: Rust functions and classes are exposed through a single _pydantic_core
-    pymodule.; location: src/lib.rs'
+  note: 'description: Rust functions and classes are exposed through a single _pydantic_core pymodule.; location: src/lib.rs'
   fact_id: fact::ac853e557e9b9693deb839f0
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -898,11 +794,10 @@ facts:
   - kind: file_block
     ref: src/serializers/mod.rs
     source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
-    excerpt: SchemaSerializer tracks expected JSON size to optimize repeated serialization
-      allocations.
+    excerpt: SchemaSerializer tracks expected JSON size to optimize repeated serialization allocations.
   object_value: Rust-side JSON size caching
-  note: 'description: SchemaSerializer tracks expected JSON size to optimize repeated
-    serialization allocations.; location: src/serializers/mod.rs'
+  note: 'description: SchemaSerializer tracks expected JSON size to optimize repeated serialization allocations.; location:
+    src/serializers/mod.rs'
   fact_id: fact::e64ed009c01258d437cc289e
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -934,11 +829,9 @@ facts:
   - kind: file_block
     ref: src/serializers/mod.rs
     source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
-    excerpt: Serialization paths track warnings and options through explicit state
-      objects.
+    excerpt: Serialization paths track warnings and options through explicit state objects.
   object_value: Serializer state with warning control
-  note: 'description: Serialization paths track warnings and options through explicit
-    state objects.; location: src/serializers/mod.rs'
+  note: 'description: Serialization paths track warnings and options through explicit state objects.; location: src/serializers/mod.rs'
   fact_id: fact::2bcede7c3646f844dd331323
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -955,8 +848,7 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
     excerpt: Validation entrypoints accept strict and extra controls for runtime behavior.
   object_value: Strict and extra behavior flags
-  note: 'description: Validation entrypoints accept strict and extra controls for
-    runtime behavior.; location: src/validators/mod.rs'
+  note: 'description: Validation entrypoints accept strict and extra controls for runtime behavior.; location: src/validators/mod.rs'
   fact_id: fact::df0646b0449c7abbc8919d4d
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -971,10 +863,8 @@ facts:
   - kind: file_block
     ref: testing.structure.line[0]
     source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
-    excerpt: Tests are organized under tests/, including dedicated validators/ and
-      serializers/ suites.
-  object_value: Tests are organized under tests/, including dedicated validators/
-    and serializers/ suites.
+    excerpt: Tests are organized under tests/, including dedicated validators/ and serializers/ suites.
+  object_value: Tests are organized under tests/, including dedicated validators/ and serializers/ suites.
   note: 'testing metadata: structure'
   fact_id: fact::2127e34bcf1035eb82accdaa
 - fact_type: implementation_pattern
@@ -1035,23 +925,6 @@ facts:
   as_of: '2026-03-05'
   provenance:
     source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
-    source_section: quick_reference[0].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[0].line[0]
-    source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
-    excerpt: make build-dev
-  object_value: make build-dev
-  note: 'topic: Build development extension'
-  fact_id: fact::854ec1aadbca15ba67f764cd
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
     source_section: quick_reference[3].line[0]
     extraction_mode: narrative
   evidence:
@@ -1062,23 +935,6 @@ facts:
   object_value: make build-prod
   note: 'topic: Build production extension'
   fact_id: fact::55e521ed54e91c0f0f633298
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
-    source_section: quick_reference[2].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[2].line[0]
-    source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
-    excerpt: make lint
-  object_value: make lint
-  note: 'topic: Run lint suite'
-  fact_id: fact::28127123cdee68672823e034
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
@@ -1096,23 +952,6 @@ facts:
   object_value: make lint
   note: Run rust and python lint checks.
   fact_id: fact::5b29424e8d13dffad1a6afcb
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
-    source_section: quick_reference[1].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[1].line[0]
-    source_file: repos/knowledge/deep/pydantic__pydantic-core.yaml
-    excerpt: make test
-  object_value: make test
-  note: 'topic: Run full test suite'
-  fact_id: fact::3f4f82efc2da9a6fe6003502
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command

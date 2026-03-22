@@ -43,8 +43,7 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
     excerpt: CLI-backed settings parsing
   object_value: CLI-backed settings parsing
-  note: Settings models can be materialized from CLI arguments via CliSettingsSource
-    and CliApp.
+  note: Settings models can be materialized from CLI arguments via CliSettingsSource and CliApp.
   fact_id: fact::33c0184443cb27bf4c88a050
 - fact_type: component
   predicate: has_component
@@ -78,8 +77,7 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
     excerpt: Cloud secret providers
   object_value: Cloud secret providers
-  note: Optional adapters integrate AWS Secrets Manager, Azure Key Vault, and Google
-    Secret Manager.
+  note: Optional adapters integrate AWS Secrets Manager, Azure Key Vault, and Google Secret Manager.
   fact_id: fact::f31904967ca1d45c426f6951
 - fact_type: component
   predicate: has_component
@@ -96,8 +94,7 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
     excerpt: Config-file providers
   object_value: Config-file providers
-  note: JSON, TOML, YAML, dotenv, and pyproject providers are available as first-class
-    sources.
+  note: JSON, TOML, YAML, dotenv, and pyproject providers are available as first-class sources.
   fact_id: fact::3c2b3515855e781b978d5132
 - fact_type: component
   predicate: has_component
@@ -163,11 +160,9 @@ facts:
   - kind: file_block
     ref: architecture.key_abstractions[1]
     source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
-    excerpt: Typed configuration schema for environment, CLI, file, and secret provider
-      behavior.
+    excerpt: Typed configuration schema for environment, CLI, file, and secret provider behavior.
   object_value: SettingsConfigDict
-  note: Typed configuration schema for environment, CLI, file, and secret provider
-    behavior.
+  note: Typed configuration schema for environment, CLI, file, and secret provider behavior.
   fact_id: fact::68ff60680bf63afcba769828
 - fact_type: component
   predicate: has_component
@@ -218,78 +213,8 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
     excerpt: Defines BaseSettings, source initialization, and value merge orchestration.
   object_value: pydantic_settings/main.py
-  note: 'responsibility: Defines BaseSettings, source initialization, and value merge
-    orchestration.; key_files: pydantic_settings/main.py'
+  note: 'responsibility: Defines BaseSettings, source initialization, and value merge orchestration.; key_files: pydantic_settings/main.py'
   fact_id: fact::03fd74a137cf9864d6bcba73
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
-    source_section: key_files[3]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[3]
-    source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
-    excerpt: pydantic_settings/main.py
-  object_value: pydantic_settings/main.py
-  note: BaseSettings implementation and source merge flow.
-  fact_id: fact::3092afbf9ddacee1b374114d
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
-    source_section: core_modules.settings_runtime
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.settings_runtime
-    source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
-    excerpt: pydantic_settings/main.py
-  object_value: pydantic_settings/main.py
-  note: 'BaseSettings lifecycle, source initialization, and merge algorithm. Submodules:
-    pydantic_settings/exceptions.py, pydantic_settings/utils.py'
-  fact_id: fact::a2538b6ee9a992b536bafef0
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
-    source_section: key_files[4]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[4]
-    source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
-    excerpt: pydantic_settings/sources/base.py
-  object_value: pydantic_settings/sources/base.py
-  note: Source abstractions and shared value preparation logic.
-  fact_id: fact::70db441de6f760632d5fd413
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
-    source_section: core_modules.source_contracts
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.source_contracts
-    source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
-    excerpt: pydantic_settings/sources/base.py
-  object_value: pydantic_settings/sources/base.py
-  note: Source abstractions and reusable file-loading helper mixins.
-  fact_id: fact::954aaaa9fb432a8d4084077a
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -305,8 +230,7 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
     excerpt: Defines abstract source interfaces and shared config file helper mixins.
   object_value: pydantic_settings/sources/base.py
-  note: 'responsibility: Defines abstract source interfaces and shared config file
-    helper mixins.; key_files: pydantic_settings/sources/base.py'
+  note: 'responsibility: Defines abstract source interfaces and shared config file helper mixins.; key_files: pydantic_settings/sources/base.py'
   fact_id: fact::ee056b53ab772b4c4a6625e8
 - fact_type: component
   predicate: has_component
@@ -321,33 +245,11 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[2]
     source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
-    excerpt: Implements concrete providers for env, dotenv, CLI, secrets, and config
-      files.
+    excerpt: Implements concrete providers for env, dotenv, CLI, secrets, and config files.
   object_value: pydantic_settings/sources/providers
-  note: 'responsibility: Implements concrete providers for env, dotenv, CLI, secrets,
-    and config files.; key_files: pydantic_settings/sources/providers/env.py, pydantic_settings/sources/providers/dotenv.py,
-    pydantic_settings/sources/providers/cli.py, pydantic_settings/sources/providers...'
+  note: 'responsibility: Implements concrete providers for env, dotenv, CLI, secrets, and config files.; key_files: pydantic_settings/sources/providers/env.py,
+    pydantic_settings/sources/providers/dotenv.py, pydantic_settings/sources/providers/cli.py, pydantic_settings/sources/providers...'
   fact_id: fact::56ad31c974dbb44e2f6177f9
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
-    source_section: core_modules.provider_implementations
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.provider_implementations
-    source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
-    excerpt: pydantic_settings/sources/providers
-  object_value: pydantic_settings/sources/providers
-  note: 'Concrete providers for environment, dotenv, CLI, secrets, and config files.
-    Submodules: pydantic_settings/sources/providers/env.py, pydantic_settings/sources/providers/cli.py,
-    pydantic_settings/sources/providers/dotenv.py, pydantic_settings/sources/providers/toml.py,
-    pydantic_...'
-  fact_id: fact::bbb82f938f6f8669b308a4c2
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -363,8 +265,7 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
     excerpt: Optional provider for AWS Secrets Manager backed settings values.
   object_value: pydantic_settings/sources/providers/aws.py
-  note: 'responsibility: Optional provider for AWS Secrets Manager backed settings
-    values.; key_files: pydantic_settings/sources/providers/aws.py'
+  note: 'responsibility: Optional provider for AWS Secrets Manager backed settings values.; key_files: pydantic_settings/sources/providers/aws.py'
   fact_id: fact::e3188497267d7ed2f42bb37c
 - fact_type: component
   predicate: has_component
@@ -381,8 +282,7 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
     excerpt: Optional provider for Azure Key Vault backed settings values.
   object_value: pydantic_settings/sources/providers/azure.py
-  note: 'responsibility: Optional provider for Azure Key Vault backed settings values.;
-    key_files: pydantic_settings/sources/providers/azure.py'
+  note: 'responsibility: Optional provider for Azure Key Vault backed settings values.; key_files: pydantic_settings/sources/providers/azure.py'
   fact_id: fact::709de39ca46c8e3a42da23c2
 - fact_type: component
   predicate: has_component
@@ -416,8 +316,7 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
     excerpt: Optional provider for Google Secret Manager backed settings values.
   object_value: pydantic_settings/sources/providers/gcp.py
-  note: 'responsibility: Optional provider for Google Secret Manager backed settings
-    values.; key_files: pydantic_settings/sources/providers/gcp.py'
+  note: 'responsibility: Optional provider for Google Secret Manager backed settings values.; key_files: pydantic_settings/sources/providers/gcp.py'
   fact_id: fact::55bd30a6d54b85cdfd9f21f4
 - fact_type: component
   predicate: has_component
@@ -774,8 +673,7 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
     excerpt: BaseSettings
   object_value: BaseSettings
-  note: Base class for settings models composed from multiple sources.; class BaseSettings;
-    pydantic_settings/main.py
+  note: Base class for settings models composed from multiple sources.; class BaseSettings; pydantic_settings/main.py
   fact_id: fact::18937e56886cb493a0b5bff3
 - fact_type: extension_point
   predicate: has_extension_point
@@ -792,8 +690,7 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
     excerpt: CliApp
   object_value: CliApp
-  note: CLI-oriented helper for running settings-backed command patterns.; class CliApp;
-    pydantic_settings/main.py
+  note: CLI-oriented helper for running settings-backed command patterns.; class CliApp; pydantic_settings/main.py
   fact_id: fact::075c5171d2adb9682c902f72
 - fact_type: extension_point
   predicate: has_extension_point
@@ -810,8 +707,7 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
     excerpt: SettingsConfigDict
   object_value: SettingsConfigDict
-  note: Typed config dictionary for environment, CLI, file, and secret behavior.;
-    class SettingsConfigDict; pydantic_settings/main.py
+  note: Typed config dictionary for environment, CLI, file, and secret behavior.; class SettingsConfigDict; pydantic_settings/main.py
   fact_id: fact::01ce713b030831e8b1f5bd93
 - fact_type: extension_point
   predicate: has_extension_point
@@ -879,8 +775,7 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
     excerpt: get_subcommand
   object_value: get_subcommand
-  note: Resolve the selected CLI subcommand from settings models.; def get_subcommand(...);
-    pydantic_settings/sources/base.py
+  note: Resolve the selected CLI subcommand from settings models.; def get_subcommand(...); pydantic_settings/sources/base.py
   fact_id: fact::e9502e9bdc307e351197a5ee
 - fact_type: extension_point
   predicate: has_extension_point
@@ -931,8 +826,8 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
     excerpt: settings_customise_sources
   object_value: settings_customise_sources
-  note: Override source ordering and inclusion for settings resolution.; @classmethod
-    def settings_customise_sources(...); pydantic_settings/main.py
+  note: Override source ordering and inclusion for settings resolution.; @classmethod def settings_customise_sources(...);
+    pydantic_settings/main.py
   fact_id: fact::015b0d291a8ac346458a465a
 - fact_type: extension_point
   predicate: has_extension_point
@@ -964,11 +859,9 @@ facts:
   - kind: file_block
     ref: pydantic_settings/main.py
     source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
-    excerpt: _settings_restore_init_kwarg_names maps merged keys back to init argument
-      naming.
+    excerpt: _settings_restore_init_kwarg_names maps merged keys back to init argument naming.
   object_value: Alias-aware state normalization
-  note: 'description: _settings_restore_init_kwarg_names maps merged keys back to
-    init argument naming.; location: pydantic_settings/main.py'
+  note: 'description: _settings_restore_init_kwarg_names maps merged keys back to init argument naming.; location: pydantic_settings/main.py'
   fact_id: fact::0f38ad0b5ae6c7c5d0547077
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1000,11 +893,9 @@ facts:
   - kind: file_block
     ref: pydantic_settings/sources/providers
     source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
-    excerpt: Providers share abstract base behavior and specialize loading strategy
-      by source type.
+    excerpt: Providers share abstract base behavior and specialize loading strategy by source type.
   object_value: Composable provider classes
-  note: 'description: Providers share abstract base behavior and specialize loading
-    strategy by source type.; location: pydantic_settings/sources/providers'
+  note: 'description: Providers share abstract base behavior and specialize loading strategy by source type.; location: pydantic_settings/sources/providers'
   fact_id: fact::7372a6f8eed8f7a8605ea0dd
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1019,11 +910,9 @@ facts:
   - kind: file_block
     ref: pydantic_settings/sources/base.py
     source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
-    excerpt: Source values for complex fields are decoded through shared complex-value
-      handlers.
+    excerpt: Source values for complex fields are decoded through shared complex-value handlers.
   object_value: Deferred parsing for complex values
-  note: 'description: Source values for complex fields are decoded through shared
-    complex-value handlers.; location: pydantic_settings/sources/base.py'
+  note: 'description: Source values for complex fields are decoded through shared complex-value handlers.; location: pydantic_settings/sources/base.py'
   fact_id: fact::1d97c8ca3b0ef99a93995c01
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1038,11 +927,9 @@ facts:
   - kind: file_block
     ref: pydantic_settings/main.py
     source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
-    excerpt: _settings_build_values iterates sources, merges state, then strips unchanged
-      defaults.
+    excerpt: _settings_build_values iterates sources, merges state, then strips unchanged defaults.
   object_value: Deterministic source merge
-  note: 'description: _settings_build_values iterates sources, merges state, then
-    strips unchanged defaults.; location: pydantic_settings/main.py'
+  note: 'description: _settings_build_values iterates sources, merges state, then strips unchanged defaults.; location: pydantic_settings/main.py'
   fact_id: fact::8407b6c53cb96ca929ead817
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1076,8 +963,7 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
     excerpt: CLI source is prepended only when configured or explicitly supplied.
   object_value: Optional CLI injection
-  note: 'description: CLI source is prepended only when configured or explicitly supplied.;
-    location: pydantic_settings/main.py'
+  note: 'description: CLI source is prepended only when configured or explicitly supplied.; location: pydantic_settings/main.py'
   fact_id: fact::3a6eb4b5920612e85882d5cd
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1111,8 +997,7 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
     excerpt: ConfigFileSourceMixin centralizes multi-file read and deep-merge behavior.
   object_value: Provider mixin for config files
-  note: 'description: ConfigFileSourceMixin centralizes multi-file read and deep-merge
-    behavior.; location: pydantic_settings/sources/base.py'
+  note: 'description: ConfigFileSourceMixin centralizes multi-file read and deep-merge behavior.; location: pydantic_settings/sources/base.py'
   fact_id: fact::7def7b5e225ca562ce79c870
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1146,8 +1031,7 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
     excerpt: settings_customise_sources controls ordering and inclusion of value sources.
   object_value: Source priority hook
-  note: 'description: settings_customise_sources controls ordering and inclusion of
-    value sources.; location: pydantic_settings/main.py'
+  note: 'description: settings_customise_sources controls ordering and inclusion of value sources.; location: pydantic_settings/main.py'
   fact_id: fact::03a1502ec667a73cea11ad2b
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1162,10 +1046,8 @@ facts:
   - kind: file_block
     ref: testing.structure.line[0]
     source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
-    excerpt: Tests are centralized under tests/ and exercised through coverage-enabled
-      pytest runs.
-  object_value: Tests are centralized under tests/ and exercised through coverage-enabled
-    pytest runs.
+    excerpt: Tests are centralized under tests/ and exercised through coverage-enabled pytest runs.
+  object_value: Tests are centralized under tests/ and exercised through coverage-enabled pytest runs.
   note: 'testing metadata: structure'
   fact_id: fact::bfeb54f8a22db20dc704f402
 - fact_type: operational_task
@@ -1188,23 +1070,6 @@ facts:
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
-    source_section: quick_reference[0].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[0].line[0]
-    source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
-    excerpt: make install
-  object_value: make install
-  note: 'topic: Install all extras and dev groups'
-  fact_id: fact::ddbecbe2f2cfcc17401a42ba
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
   confidence: 0.68
   as_of: '2026-03-05'
   provenance:
@@ -1219,40 +1084,6 @@ facts:
   object_value: make lint
   note: Run ruff lint and formatting checks.
   fact_id: fact::cefef2e7c47774a5ba123328
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
-    source_section: quick_reference[1].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[1].line[0]
-    source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
-    excerpt: make lint
-  object_value: make lint
-  note: 'topic: Run lint checks'
-  fact_id: fact::ddd681a31394ab88e8c761c6
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
-    source_section: quick_reference[2].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[2].line[0]
-    source_file: repos/knowledge/deep/pydantic__pydantic-settings.yaml
-    excerpt: make mypy
-  object_value: make mypy
-  note: 'topic: Run mypy checks'
-  fact_id: fact::40d111b1aa5f291f120aa00f
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command

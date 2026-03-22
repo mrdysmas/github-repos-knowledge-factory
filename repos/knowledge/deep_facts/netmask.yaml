@@ -58,8 +58,7 @@ facts:
   - kind: file_block
     ref: architecture.key_abstractions[0]
     source_file: repos/knowledge/deep/netmask.yaml
-    excerpt: Main server class handling connections, TCP/UDP protocols, dual-stack
-      networking
+    excerpt: Main server class handling connections, TCP/UDP protocols, dual-stack networking
   object_value: NetmaskServer
   note: Main server class handling connections, TCP/UDP protocols, dual-stack networking
   fact_id: fact::2967c9e2890a137bfba19a66
@@ -95,8 +94,7 @@ facts:
     source_file: repos/knowledge/deep/netmask.yaml
     excerpt: NetmaskClient class with TCP/UDP forwarding threads and connection management
   object_value: client/main.py
-  note: 'responsibility: NetmaskClient class with TCP/UDP forwarding threads and connection
-    management; key_files: netmask/client/main.py'
+  note: 'responsibility: NetmaskClient class with TCP/UDP forwarding threads and connection management; key_files: netmask/client/main.py'
   fact_id: fact::419cf9a63ce041cd9a87907f
 - fact_type: component
   predicate: has_component
@@ -111,11 +109,9 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[3]
     source_file: repos/knowledge/deep/netmask.yaml
-    excerpt: ProtocolHandler base class for packet serialization/deserialization with
-      encryption
+    excerpt: ProtocolHandler base class for packet serialization/deserialization with encryption
   object_value: impl/packets.py
-  note: 'responsibility: ProtocolHandler base class for packet serialization/deserialization
-    with encryption; key_files: netmask/impl/packets.py'
+  note: 'responsibility: ProtocolHandler base class for packet serialization/deserialization with encryption; key_files: netmask/impl/packets.py'
   fact_id: fact::2b8456841971f102f4d2a6ea
 - fact_type: component
   predicate: has_component
@@ -132,8 +128,7 @@ facts:
     source_file: repos/knowledge/deep/netmask.yaml
     excerpt: CLI entry points for server and client
   object_value: netmasks.py / netmaskc.py
-  note: 'responsibility: CLI entry points for server and client; key_files: netmask/netmasks.py,
-    netmask/netmaskc.py'
+  note: 'responsibility: CLI entry points for server and client; key_files: netmask/netmasks.py, netmask/netmaskc.py'
   fact_id: fact::7c4689a83192bf32a99bddf0
 - fact_type: component
   predicate: has_component
@@ -148,11 +143,10 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[1]
     source_file: repos/knowledge/deep/netmask.yaml
-    excerpt: NetmaskServer class handling TCP/UDP listeners, client connections, tunnel
-      management
+    excerpt: NetmaskServer class handling TCP/UDP listeners, client connections, tunnel management
   object_value: server/main.py
-  note: 'responsibility: NetmaskServer class handling TCP/UDP listeners, client connections,
-    tunnel management; key_files: netmask/server/main.py'
+  note: 'responsibility: NetmaskServer class handling TCP/UDP listeners, client connections, tunnel management; key_files:
+    netmask/server/main.py'
   fact_id: fact::a93d9b2627b41269ef2c3346
 - fact_type: component
   predicate: has_component
@@ -169,8 +163,7 @@ facts:
     source_file: repos/knowledge/deep/netmask.yaml
     excerpt: NetmaskEncryption class implementing rolling key XOR cipher
   object_value: utils/encryption.py
-  note: 'responsibility: NetmaskEncryption class implementing rolling key XOR cipher;
-    key_files: netmask/utils/encryption.py'
+  note: 'responsibility: NetmaskEncryption class implementing rolling key XOR cipher; key_files: netmask/utils/encryption.py'
   fact_id: fact::a3fb245b7d3f1d7e10e1f64c
 - fact_type: config_option
   predicate: has_config_option
@@ -340,8 +333,7 @@ facts:
     source_file: repos/knowledge/deep/netmask.yaml
     excerpt: NetmaskServer.start
   object_value: NetmaskServer.start
-  note: Start server with dual-stack listeners; def start(self, ipv4host, ipv6host,
-    port); netmask/server/main.py
+  note: Start server with dual-stack listeners; def start(self, ipv4host, ipv6host, port); netmask/server/main.py
   fact_id: fact::78ad1713de99f3bedc7216b6
 - fact_type: extension_point
   predicate: has_extension_point
@@ -418,23 +410,6 @@ facts:
   as_of: '2026-02-25'
   provenance:
     source_file: repos/knowledge/deep/netmask.yaml
-    source_section: extension_points[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: extension_points[0]
-    source_file: repos/knowledge/deep/netmask.yaml
-    excerpt: netmask/impl/packets.py
-  object_value: netmask/impl/packets.py
-  note: Override for custom connection termination logic; terminateConnection()
-  fact_id: fact::da7259835e37383db8a1da11
-- fact_type: extension_point
-  predicate: has_extension_point
-  object_kind: path
-  confidence: 0.71
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/netmask.yaml
     source_section: extension_points[3]
     extraction_mode: narrative
   evidence:
@@ -475,11 +450,9 @@ facts:
   - kind: file_block
     ref: netmask/server/main.py
     source_file: repos/knowledge/deep/netmask.yaml
-    excerpt: AsyncTCPWrapper bridges sync/async gap with bidirectional forwarding
-      via asyncio.gather
+    excerpt: AsyncTCPWrapper bridges sync/async gap with bidirectional forwarding via asyncio.gather
   object_value: Async TCP Handler
-  note: 'description: AsyncTCPWrapper bridges sync/async gap with bidirectional forwarding
-    via asyncio.gather; location: netmask/server/main.py'
+  note: 'description: AsyncTCPWrapper bridges sync/async gap with bidirectional forwarding via asyncio.gather; location: netmask/server/main.py'
   fact_id: fact::9dff88f0afdf90b0dddb9294
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -496,8 +469,7 @@ facts:
     source_file: repos/knowledge/deep/netmask.yaml
     excerpt: IPv6 socket with IPV6_V6ONLY=0 for simultaneous IPv4/IPv6 binding
   object_value: Dual-Stack IPv4/IPv6
-  note: 'description: IPv6 socket with IPV6_V6ONLY=0 for simultaneous IPv4/IPv6 binding;
-    location: netmask/server/main.py'
+  note: 'description: IPv6 socket with IPV6_V6ONLY=0 for simultaneous IPv4/IPv6 binding; location: netmask/server/main.py'
   fact_id: fact::2939b5db34ba2535b15d3463
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -565,8 +537,7 @@ facts:
     source_file: repos/knowledge/deep/netmask.yaml
     excerpt: Challenge-response with SHA-256 hash validation before tunnel establishment
   object_value: Proof-of-Encryption Handshake
-  note: 'description: Challenge-response with SHA-256 hash validation before tunnel
-    establishment; location: netmask/impl/packets.py'
+  note: 'description: Challenge-response with SHA-256 hash validation before tunnel establishment; location: netmask/impl/packets.py'
   fact_id: fact::c54e8bbb72ee09d2e543b9a8
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -583,8 +554,7 @@ facts:
     source_file: repos/knowledge/deep/netmask.yaml
     excerpt: SHA-256 rolling keys change per packet with Shake-256 XOR encryption
   object_value: Rolling Key Encryption
-  note: 'description: SHA-256 rolling keys change per packet with Shake-256 XOR encryption;
-    location: netmask/utils/encryption.py'
+  note: 'description: SHA-256 rolling keys change per packet with Shake-256 XOR encryption; location: netmask/utils/encryption.py'
   fact_id: fact::4cf2c7000f3aadf9da66d72b
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -601,6 +571,5 @@ facts:
     source_file: repos/knowledge/deep/netmask.yaml
     excerpt: Connectionless protocol with address-based client tracking and buffering
   object_value: UDP Datagram Handler
-  note: 'description: Connectionless protocol with address-based client tracking and
-    buffering; location: netmask/server/main.py'
+  note: 'description: Connectionless protocol with address-based client tracking and buffering; location: netmask/server/main.py'
   fact_id: fact::e2bcbedb05a1eb42f8e41a10

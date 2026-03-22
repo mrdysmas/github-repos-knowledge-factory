@@ -56,11 +56,9 @@ facts:
   - kind: file_block
     ref: architecture.key_abstractions[0]
     source_file: repos/knowledge/deep/instructor-ai__instructor.yaml
-    excerpt: Client wrapper that intercepts chat.completions.create and handles response_model
-      lifecycle
+    excerpt: Client wrapper that intercepts chat.completions.create and handles response_model lifecycle
   object_value: Instructor
-  note: Client wrapper that intercepts chat.completions.create and handles response_model
-    lifecycle
+  note: Client wrapper that intercepts chat.completions.create and handles response_model lifecycle
   fact_id: fact::2979cbf078b3b78d583d6bcd
 - fact_type: component
   predicate: has_component
@@ -75,10 +73,8 @@ facts:
   - kind: file_block
     ref: key_features[4]
     source_file: repos/knowledge/deep/instructor-ai__instructor.yaml
-    excerpt: Iterable[T] support for extracting lists of structured objects in one
-      call
-  object_value: Iterable[T] support for extracting lists of structured objects in
-    one call
+    excerpt: Iterable[T] support for extracting lists of structured objects in one call
+  object_value: Iterable[T] support for extracting lists of structured objects in one call
   fact_id: fact::03434224f6ec09aa00ea0a91
 - fact_type: component
   predicate: has_component
@@ -110,10 +106,8 @@ facts:
   - kind: file_block
     ref: key_features[3]
     source_file: repos/knowledge/deep/instructor-ai__instructor.yaml
-    excerpt: 'Multi-backend factory functions: from_openai, from_anthropic, from_cohere,
-      from_gemini'
-  object_value: 'Multi-backend factory functions: from_openai, from_anthropic, from_cohere,
-    from_gemini'
+    excerpt: 'Multi-backend factory functions: from_openai, from_anthropic, from_cohere, from_gemini'
+  object_value: 'Multi-backend factory functions: from_openai, from_anthropic, from_cohere, from_gemini'
   fact_id: fact::b376539ccdbcd19c16d78c86
 - fact_type: component
   predicate: has_component
@@ -297,10 +291,8 @@ facts:
   - kind: file_block
     ref: key_features[0]
     source_file: repos/knowledge/deep/instructor-ai__instructor.yaml
-    excerpt: response_model parameter on create() returns a validated Pydantic model
-      instance
-  object_value: response_model parameter on create() returns a validated Pydantic
-    model instance
+    excerpt: response_model parameter on create() returns a validated Pydantic model instance
+  object_value: response_model parameter on create() returns a validated Pydantic model instance
   fact_id: fact::ae73f91c2cb5be0fe9b2557e
 - fact_type: component
   predicate: has_component
@@ -315,11 +307,9 @@ facts:
   - kind: file_block
     ref: architecture.key_abstractions[3]
     source_file: repos/knowledge/deep/instructor-ai__instructor.yaml
-    excerpt: Validation retry loop feeding Pydantic error messages back to the model
-      on failure
+    excerpt: Validation retry loop feeding Pydantic error messages back to the model on failure
   object_value: retry_sync / retry_async
-  note: Validation retry loop feeding Pydantic error messages back to the model on
-    failure
+  note: Validation retry loop feeding Pydantic error messages back to the model on failure
   fact_id: fact::863802f607c88c396ebaff73
 - fact_type: component
   predicate: has_component
@@ -336,25 +326,8 @@ facts:
     source_file: repos/knowledge/deep/instructor-ai__instructor.yaml
     excerpt: Core Instructor class and from_openai/from_anthropic factory functions
   object_value: instructor/client.py
-  note: 'responsibility: Core Instructor class and from_openai/from_anthropic factory
-    functions; key_files: instructor/client.py'
+  note: 'responsibility: Core Instructor class and from_openai/from_anthropic factory functions; key_files: instructor/client.py'
   fact_id: fact::1a8e41d76a9a5850df6566dc
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-17'
-  provenance:
-    source_file: repos/knowledge/deep/instructor-ai__instructor.yaml
-    source_section: key_files[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[0]
-    source_file: repos/knowledge/deep/instructor-ai__instructor.yaml
-    excerpt: instructor/client.py
-  object_value: instructor/client.py
-  fact_id: fact::e6024e9238f7632143de613c
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -368,11 +341,10 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[5]
     source_file: repos/knowledge/deep/instructor-ai__instructor.yaml
-    excerpt: DSL helpers including Partial for streaming structured output and Maybe
-      for optional fields
+    excerpt: DSL helpers including Partial for streaming structured output and Maybe for optional fields
   object_value: instructor/dsl/
-  note: 'responsibility: DSL helpers including Partial for streaming structured output
-    and Maybe for optional fields; key_files: instructor/dsl/'
+  note: 'responsibility: DSL helpers including Partial for streaming structured output and Maybe for optional fields; key_files:
+    instructor/dsl/'
   fact_id: fact::6afccac6200e6d4d7192af26
 - fact_type: component
   predicate: has_component
@@ -393,22 +365,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-17'
-  provenance:
-    source_file: repos/knowledge/deep/instructor-ai__instructor.yaml
-    source_section: key_files[1]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[1]
-    source_file: repos/knowledge/deep/instructor-ai__instructor.yaml
-    excerpt: instructor/mode.py
-  object_value: instructor/mode.py
-  fact_id: fact::c74a1249ec3877379c344426
-- fact_type: component
-  predicate: has_component
-  object_kind: path
   confidence: 0.78
   as_of: '2026-03-17'
   provenance:
@@ -419,11 +375,10 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[4]
     source_file: repos/knowledge/deep/instructor-ai__instructor.yaml
-    excerpt: 'Mode enum defining extraction strategies: TOOLS, JSON, MD_JSON, ANTHROPIC_TOOLS,
-      etc.'
+    excerpt: 'Mode enum defining extraction strategies: TOOLS, JSON, MD_JSON, ANTHROPIC_TOOLS, etc.'
   object_value: instructor/mode.py
-  note: 'responsibility: Mode enum defining extraction strategies: TOOLS, JSON, MD_JSON,
-    ANTHROPIC_TOOLS, etc.; key_files: instructor/mode.py'
+  note: 'responsibility: Mode enum defining extraction strategies: TOOLS, JSON, MD_JSON, ANTHROPIC_TOOLS, etc.; key_files:
+    instructor/mode.py'
   fact_id: fact::eed7a1ff3514793c6d61b9c7
 - fact_type: component
   predicate: has_component
@@ -440,8 +395,7 @@ facts:
     source_file: repos/knowledge/deep/instructor-ai__instructor.yaml
     excerpt: Legacy patch() function wrapping an existing OpenAI client
   object_value: instructor/patch.py
-  note: 'responsibility: Legacy patch() function wrapping an existing OpenAI client;
-    key_files: instructor/patch.py'
+  note: 'responsibility: Legacy patch() function wrapping an existing OpenAI client; key_files: instructor/patch.py'
   fact_id: fact::05af77c7205af307c7df86d1
 - fact_type: component
   predicate: has_component
@@ -458,41 +412,8 @@ facts:
     source_file: repos/knowledge/deep/instructor-ai__instructor.yaml
     excerpt: Response parsing and Pydantic model instantiation from completion output
   object_value: instructor/process_response.py
-  note: 'responsibility: Response parsing and Pydantic model instantiation from completion
-    output; key_files: instructor/process_response.py'
+  note: 'responsibility: Response parsing and Pydantic model instantiation from completion output; key_files: instructor/process_response.py'
   fact_id: fact::13fe210edf68bcb9bd8b22d3
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-17'
-  provenance:
-    source_file: repos/knowledge/deep/instructor-ai__instructor.yaml
-    source_section: key_files[3]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[3]
-    source_file: repos/knowledge/deep/instructor-ai__instructor.yaml
-    excerpt: instructor/process_response.py
-  object_value: instructor/process_response.py
-  fact_id: fact::24ac82282b5435b535e366de
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-17'
-  provenance:
-    source_file: repos/knowledge/deep/instructor-ai__instructor.yaml
-    source_section: key_files[2]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[2]
-    source_file: repos/knowledge/deep/instructor-ai__instructor.yaml
-    excerpt: instructor/retry.py
-  object_value: instructor/retry.py
-  fact_id: fact::2807a33242681b427f739bc2
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -506,11 +427,9 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[2]
     source_file: repos/knowledge/deep/instructor-ai__instructor.yaml
-    excerpt: Sync and async retry loops that re-prompt the model on Pydantic validation
-      failure
+    excerpt: Sync and async retry loops that re-prompt the model on Pydantic validation failure
   object_value: instructor/retry.py
-  note: 'responsibility: Sync and async retry loops that re-prompt the model on Pydantic
-    validation failure; key_files: instructor/retry.py'
+  note: 'responsibility: Sync and async retry loops that re-prompt the model on Pydantic validation failure; key_files: instructor/retry.py'
   fact_id: fact::ce0d44c89aa43ef0351ce5df
 - fact_type: component
   predicate: has_component
@@ -543,8 +462,7 @@ facts:
     source_file: repos/knowledge/deep/instructor-ai__instructor.yaml
     excerpt: Instructor.chat.completions.create
   object_value: Instructor.chat.completions.create
-  note: Drop-in replacement for openai create(); accepts response_model, max_retries,
-    validation_context; instructor/client.py
+  note: Drop-in replacement for openai create(); accepts response_model, max_retries, validation_context; instructor/client.py
   fact_id: fact::43c9bc85c401f7c6c8aa790b
 - fact_type: extension_point
   predicate: has_extension_point
@@ -578,8 +496,7 @@ facts:
     source_file: repos/knowledge/deep/instructor-ai__instructor.yaml
     excerpt: instructor.from_openai
   object_value: instructor.from_openai
-  note: Create an Instructor client wrapping an openai.OpenAI or AsyncOpenAI instance;
-    instructor/client.py
+  note: Create an Instructor client wrapping an openai.OpenAI or AsyncOpenAI instance; instructor/client.py
   fact_id: fact::f3ea90d2788e6ef5607c2be5
 - fact_type: extension_point
   predicate: has_extension_point
@@ -611,11 +528,10 @@ facts:
   - kind: file_block
     ref: instructor/client.py
     source_file: repos/knowledge/deep/instructor-ai__instructor.yaml
-    excerpt: Intercepts client.chat.completions.create via __call__ override to inject
-      response_model logic
+    excerpt: Intercepts client.chat.completions.create via __call__ override to inject response_model logic
   object_value: Client Wrapping
-  note: 'description: Intercepts client.chat.completions.create via __call__ override
-    to inject response_model logic; location: instructor/client.py'
+  note: 'description: Intercepts client.chat.completions.create via __call__ override to inject response_model logic; location:
+    instructor/client.py'
   fact_id: fact::22b5505c8266066689a192d1
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -632,8 +548,7 @@ facts:
     source_file: repos/knowledge/deep/instructor-ai__instructor.yaml
     excerpt: Mode enum drives which JSON extraction strategy is used per provider
   object_value: Mode-Based Dispatch
-  note: 'description: Mode enum drives which JSON extraction strategy is used per
-    provider; location: instructor/mode.py'
+  note: 'description: Mode enum drives which JSON extraction strategy is used per provider; location: instructor/mode.py'
   fact_id: fact::a833b50f62b53e093d8be49d
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -648,11 +563,10 @@ facts:
   - kind: file_block
     ref: instructor/dsl/partial.py
     source_file: repos/knowledge/deep/instructor-ai__instructor.yaml
-    excerpt: Wraps response model with Partial[T] to incrementally emit valid partial
-      Pydantic instances
+    excerpt: Wraps response model with Partial[T] to incrementally emit valid partial Pydantic instances
   object_value: Partial Streaming
-  note: 'description: Wraps response model with Partial[T] to incrementally emit valid
-    partial Pydantic instances; location: instructor/dsl/partial.py'
+  note: 'description: Wraps response model with Partial[T] to incrementally emit valid partial Pydantic instances; location:
+    instructor/dsl/partial.py'
   fact_id: fact::9b54b7a6c6285360c5777ea8
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -667,11 +581,10 @@ facts:
   - kind: file_block
     ref: instructor/retry.py
     source_file: repos/knowledge/deep/instructor-ai__instructor.yaml
-    excerpt: Catches ValidationError, formats field-level error messages, and re-calls
-      the model up to max_retries
+    excerpt: Catches ValidationError, formats field-level error messages, and re-calls the model up to max_retries
   object_value: Pydantic Retry Loop
-  note: 'description: Catches ValidationError, formats field-level error messages,
-    and re-calls the model up to max_retries; location: instructor/retry.py'
+  note: 'description: Catches ValidationError, formats field-level error messages, and re-calls the model up to max_retries;
+    location: instructor/retry.py'
   fact_id: fact::b85185656ba81c2f79c316d8
 - fact_type: operational_task
   predicate: supports_task

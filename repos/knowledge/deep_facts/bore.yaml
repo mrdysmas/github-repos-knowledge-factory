@@ -77,8 +77,7 @@ facts:
     source_file: repos/knowledge/deep/bore.yaml
     excerpt: HMAC authentication using SHA256 challenge-response
   object_value: src/auth.rs
-  note: 'responsibility: HMAC authentication using SHA256 challenge-response; key_files:
-    src/auth.rs'
+  note: 'responsibility: HMAC authentication using SHA256 challenge-response; key_files: src/auth.rs'
   fact_id: fact::dfb78fdcfb9a59b133f21fcf
 - fact_type: component
   predicate: has_component
@@ -93,11 +92,10 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[0]
     source_file: repos/knowledge/deep/bore.yaml
-    excerpt: Client implementation - establishes control connection, handles incoming
-      connections
+    excerpt: Client implementation - establishes control connection, handles incoming connections
   object_value: src/client.rs
-  note: 'responsibility: Client implementation - establishes control connection, handles
-    incoming connections; key_files: src/client.rs'
+  note: 'responsibility: Client implementation - establishes control connection, handles incoming connections; key_files:
+    src/client.rs'
   fact_id: fact::9b3e800b53f40fbefef1330d
 - fact_type: component
   predicate: has_component
@@ -129,11 +127,10 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[1]
     source_file: repos/knowledge/deep/bore.yaml
-    excerpt: Server implementation - accepts clients, manages port allocation, proxies
-      connections
+    excerpt: Server implementation - accepts clients, manages port allocation, proxies connections
   object_value: src/server.rs
-  note: 'responsibility: Server implementation - accepts clients, manages port allocation,
-    proxies connections; key_files: src/server.rs'
+  note: 'responsibility: Server implementation - accepts clients, manages port allocation, proxies connections; key_files:
+    src/server.rs'
   fact_id: fact::486a0379c3f1b7f6fd286ebd
 - fact_type: component
   predicate: has_component
@@ -150,8 +147,7 @@ facts:
     source_file: repos/knowledge/deep/bore.yaml
     excerpt: Protocol definitions - message types, delimited codec, constants
   object_value: src/shared.rs
-  note: 'responsibility: Protocol definitions - message types, delimited codec, constants;
-    key_files: src/shared.rs'
+  note: 'responsibility: Protocol definitions - message types, delimited codec, constants; key_files: src/shared.rs'
   fact_id: fact::fde653ca69cda27c38cc532a
 - fact_type: config_option
   predicate: has_config_option
@@ -296,23 +292,6 @@ facts:
   as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/bore.yaml
-    source_section: configuration.options[7]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: configuration.options[7]
-    source_file: repos/knowledge/deep/bore.yaml
-    excerpt: secret
-  object_value: secret
-  note: 'type: Option<String>; default: None; Required authentication secret'
-  fact_id: fact::da543340b14d8caf23106add
-- fact_type: config_option
-  predicate: has_config_option
-  object_kind: config_key
-  confidence: 0.72
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/bore.yaml
     source_section: configuration.options[2]
     extraction_mode: narrative
   evidence:
@@ -355,8 +334,7 @@ facts:
     source_file: repos/knowledge/deep/bore.yaml
     excerpt: Authenticator::validate
   object_value: Authenticator::validate
-  note: 'Validate HMAC response; pub fn validate(&self, challenge: &Uuid, tag: &str)
-    -> bool; src/auth.rs:40'
+  note: 'Validate HMAC response; pub fn validate(&self, challenge: &Uuid, tag: &str) -> bool; src/auth.rs:40'
   fact_id: fact::e0bbb3bb359353f31b345535
 - fact_type: extension_point
   predicate: has_extension_point
@@ -373,8 +351,7 @@ facts:
     source_file: repos/knowledge/deep/bore.yaml
     excerpt: Client::listen
   object_value: Client::listen
-  note: Start listening for server messages and handle connections; pub async fn listen(self)
-    -> Result<()>; src/client.rs:62-119
+  note: Start listening for server messages and handle connections; pub async fn listen(self) -> Result<()>; src/client.rs:62-119
   fact_id: fact::3e7a4d9ba418b2eba0ce7d4f
 - fact_type: extension_point
   predicate: has_extension_point
@@ -391,9 +368,8 @@ facts:
     source_file: repos/knowledge/deep/bore.yaml
     excerpt: Client::new
   object_value: Client::new
-  note: 'Create client and establish control connection; pub async fn new(to: &str,
-    local_port: u16, local_host: &str, port: u16, secret: Option<&str>) -> Result<Self>;
-    src/client.rs:36-60'
+  note: 'Create client and establish control connection; pub async fn new(to: &str, local_port: u16, local_host: &str, port:
+    u16, secret: Option<&str>) -> Result<Self>; src/client.rs:36-60'
   fact_id: fact::5a02d8d07e46cef23f0f401e
 - fact_type: extension_point
   predicate: has_extension_point
@@ -427,8 +403,7 @@ facts:
     source_file: repos/knowledge/deep/bore.yaml
     excerpt: Server::listen
   object_value: Server::listen
-  note: Start accepting control connections; pub async fn listen(self) -> Result<()>;
-    src/server.rs:67-187
+  note: Start accepting control connections; pub async fn listen(self) -> Result<()>; src/server.rs:67-187
   fact_id: fact::53807213bdb9d6557fcd3b53
 - fact_type: extension_point
   predicate: has_extension_point
@@ -445,8 +420,8 @@ facts:
     source_file: repos/knowledge/deep/bore.yaml
     excerpt: Server::new
   object_value: Server::new
-  note: 'Create server with port range and optional auth; pub fn new(port_range: RangeInclusive<u16>,
-    secret: Option<&str>) -> Self; src/server.rs:59'
+  note: 'Create server with port range and optional auth; pub fn new(port_range: RangeInclusive<u16>, secret: Option<&str>)
+    -> Self; src/server.rs:59'
   fact_id: fact::d9a954d42340999276e4b3ae
 - fact_type: extension_point
   predicate: has_extension_point
@@ -514,8 +489,7 @@ facts:
     source_file: repos/knowledge/deep/bore.yaml
     excerpt: src/shared.rs:24-53
   object_value: src/shared.rs:24-53
-  note: Add new message types for protocol extensions; ClientMessage/ServerMessage
-    enums
+  note: Add new message types for protocol extensions; ClientMessage/ServerMessage enums
   fact_id: fact::d1a968cce8b70afe449d8d59
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -530,11 +504,10 @@ facts:
   - kind: file_block
     ref: src/client.rs:88, src/server.rs:67
     source_file: repos/knowledge/deep/bore.yaml
-    excerpt: tokio::spawn for concurrent connection handling, copy_bidirectional for
-      data transfer
+    excerpt: tokio::spawn for concurrent connection handling, copy_bidirectional for data transfer
   object_value: Async Tokio Runtime
-  note: 'description: tokio::spawn for concurrent connection handling, copy_bidirectional
-    for data transfer; location: src/client.rs:88, src/server.rs:67'
+  note: 'description: tokio::spawn for concurrent connection handling, copy_bidirectional for data transfer; location: src/client.rs:88,
+    src/server.rs:67'
   fact_id: fact::3317992ab254b84b81082298
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -585,8 +558,7 @@ facts:
     source_file: repos/knowledge/deep/bore.yaml
     excerpt: tokio::io::copy_bidirectional for efficient byte forwarding
   object_value: Bidirectional Copy
-  note: 'description: tokio::io::copy_bidirectional for efficient byte forwarding;
-    location: src/client.rs:116, src/server.rs:178'
+  note: 'description: tokio::io::copy_bidirectional for efficient byte forwarding; location: src/client.rs:116, src/server.rs:178'
   fact_id: fact::ed7a77c1f9eb77027e32507f
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -603,8 +575,7 @@ facts:
     source_file: repos/knowledge/deep/bore.yaml
     excerpt: 10-second timeout for pending connections before cleanup
   object_value: Connection Timeout
-  note: 'description: 10-second timeout for pending connections before cleanup; location:
-    src/server.rs:162-166'
+  note: 'description: 10-second timeout for pending connections before cleanup; location: src/server.rs:162-166'
   fact_id: fact::34f0cd2817ccdeb507c8e159
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -619,11 +590,9 @@ facts:
   - kind: file_block
     ref: src/auth.rs:22-48
     source_file: repos/knowledge/deep/bore.yaml
-    excerpt: Server sends UUID challenge, client responds with HMAC-SHA256(secret,
-      challenge)
+    excerpt: Server sends UUID challenge, client responds with HMAC-SHA256(secret, challenge)
   object_value: HMAC Challenge-Response
-  note: 'description: Server sends UUID challenge, client responds with HMAC-SHA256(secret,
-    challenge); location: src/auth.rs:22-48'
+  note: 'description: Server sends UUID challenge, client responds with HMAC-SHA256(secret, challenge); location: src/auth.rs:22-48'
   fact_id: fact::72e5d135710fba7c67ad13fd
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -691,8 +660,7 @@ facts:
     source_file: repos/knowledge/deep/bore.yaml
     excerpt: Messages framed with null byte for clean separation over TCP
   object_value: Null-Delimited JSON Framing
-  note: 'description: Messages framed with null byte for clean separation over TCP;
-    location: src/shared.rs:65-99'
+  note: 'description: Messages framed with null byte for clean separation over TCP; location: src/shared.rs:65-99'
   fact_id: fact::2776492bbf941b8b7f0659cf
 - fact_type: implementation_pattern
   predicate: implements_pattern

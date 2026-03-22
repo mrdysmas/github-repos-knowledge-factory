@@ -108,10 +108,8 @@ facts:
   - kind: file_block
     ref: tech_stack[2].role.line[0]
     source_file: repos/knowledge/deep/getzep__graphiti.yaml
-    excerpt: Alternative graph backend and the default database provider in the MCP
-      server config.
-  object_value: Alternative graph backend and the default database provider in the
-    MCP server config.
+    excerpt: Alternative graph backend and the default database provider in the MCP server config.
+  object_value: Alternative graph backend and the default database provider in the MCP server config.
   note: technology stack (tech_stack)
   fact_id: fact::efe78924c3554f75aefff803
 - fact_type: component
@@ -127,10 +125,8 @@ facts:
   - kind: file_block
     ref: tech_stack[1].role.line[0]
     source_file: repos/knowledge/deep/getzep__graphiti.yaml
-    excerpt: Default graph database backend for the core client, quickstarts, and
-      graph-service.
-  object_value: Default graph database backend for the core client, quickstarts, and
-    graph-service.
+    excerpt: Default graph database backend for the core client, quickstarts, and graph-service.
+  object_value: Default graph database backend for the core client, quickstarts, and graph-service.
   note: technology stack (tech_stack)
   fact_id: fact::ba54dbceb118638dfbb3886a
 - fact_type: component
@@ -214,11 +210,9 @@ facts:
   - kind: file_block
     ref: architecture.key_abstractions[1]
     source_file: repos/knowledge/deep/getzep__graphiti.yaml
-    excerpt: Backend abstraction that lets the same ingestion and search flow target
-      Neo4j, FalkorDB, Kuzu, or Neptune.
+    excerpt: Backend abstraction that lets the same ingestion and search flow target Neo4j, FalkorDB, Kuzu, or Neptune.
   object_value: GraphDriver
-  note: Backend abstraction that lets the same ingestion and search flow target Neo4j,
-    FalkorDB, Kuzu, or Neptune.
+  note: Backend abstraction that lets the same ingestion and search flow target Neo4j, FalkorDB, Kuzu, or Neptune.
   fact_id: fact::fb3f20815a3eda34f713e131
 - fact_type: component
   predicate: has_component
@@ -233,11 +227,9 @@ facts:
   - kind: file_block
     ref: architecture.key_abstractions[0]
     source_file: repos/knowledge/deep/getzep__graphiti.yaml
-    excerpt: Primary async client that builds indices, ingests episodes, and runs
-      fact or node search.
+    excerpt: Primary async client that builds indices, ingests episodes, and runs fact or node search.
   object_value: Graphiti
-  note: Primary async client that builds indices, ingests episodes, and runs fact
-    or node search.
+  note: Primary async client that builds indices, ingests episodes, and runs fact or node search.
   fact_id: fact::f13ea9119b769bcdcba05665
 - fact_type: component
   predicate: has_component
@@ -252,11 +244,11 @@ facts:
   - kind: file_block
     ref: architecture.key_abstractions[2]
     source_file: repos/knowledge/deep/getzep__graphiti.yaml
-    excerpt: MCP-side service that creates provider clients and the selected graph
-      driver from YAML configuration before exposing tools.
+    excerpt: MCP-side service that creates provider clients and the selected graph driver from YAML configuration before exposing
+      tools.
   object_value: GraphitiService
-  note: MCP-side service that creates provider clients and the selected graph driver
-    from YAML configuration before exposing tools.
+  note: MCP-side service that creates provider clients and the selected graph driver from YAML configuration before exposing
+    tools.
   fact_id: fact::b1b2d6f918304c3e37b59b46
 - fact_type: component
   predicate: has_component
@@ -305,10 +297,8 @@ facts:
   - kind: file_block
     ref: tech_stack[6].role.line[0]
     source_file: repos/knowledge/deep/getzep__graphiti.yaml
-    excerpt: Optional tracing integration enabled through the tracing extra and example
-      code.
-  object_value: Optional tracing integration enabled through the tracing extra and
-    example code.
+    excerpt: Optional tracing integration enabled through the tracing extra and example code.
+  object_value: Optional tracing integration enabled through the tracing extra and example code.
   note: technology stack (tech_stack)
   fact_id: fact::f74e70a59d6e183fa1f51c02
 - fact_type: component
@@ -324,10 +314,8 @@ facts:
   - kind: file_block
     ref: tech_stack[0].role.line[0]
     source_file: repos/knowledge/deep/getzep__graphiti.yaml
-    excerpt: Primary implementation language across the core library, REST service,
-      MCP server, and examples.
-  object_value: Primary implementation language across the core library, REST service,
-    MCP server, and examples.
+    excerpt: Primary implementation language across the core library, REST service, MCP server, and examples.
+  object_value: Primary implementation language across the core library, REST service, MCP server, and examples.
   note: technology stack (tech_stack)
   fact_id: fact::2b43b5541cd4f7052c96fc86
 - fact_type: component
@@ -394,10 +382,8 @@ facts:
   - kind: file_block
     ref: tech_stack[5].role.line[0]
     source_file: repos/knowledge/deep/getzep__graphiti.yaml
-    excerpt: Typed schema and settings layer for request models, config, and dynamic
-      entity types.
-  object_value: Typed schema and settings layer for request models, config, and dynamic
-    entity types.
+    excerpt: Typed schema and settings layer for request models, config, and dynamic entity types.
+  object_value: Typed schema and settings layer for request models, config, and dynamic entity types.
   note: technology stack (tech_stack)
   fact_id: fact::52540b952dc2e970d4649a96
 - fact_type: component
@@ -415,8 +401,7 @@ facts:
     source_file: repos/knowledge/deep/getzep__graphiti.yaml
     excerpt: examples
   object_value: examples
-  note: Quickstarts and provider-specific samples for Neo4j, FalkorDB, Neptune, Azure
-    OpenAI, and OpenTelemetry.
+  note: Quickstarts and provider-specific samples for Neo4j, FalkorDB, Neptune, Azure OpenAI, and OpenTelemetry.
   fact_id: fact::c5bc6e176fa0c426fdbdc742
 - fact_type: component
   predicate: has_component
@@ -433,8 +418,8 @@ facts:
     source_file: repos/knowledge/deep/getzep__graphiti.yaml
     excerpt: graph-service
   object_value: graph-service
-  note: FastAPI wrapper that initializes Graphiti on startup and exposes HTTP endpoints
-    for ingest, retrieval, deletion, and graph reset.
+  note: FastAPI wrapper that initializes Graphiti on startup and exposes HTTP endpoints for ingest, retrieval, deletion, and
+    graph reset.
   fact_id: fact::92b4adbc5ccff339bd16be18
 - fact_type: component
   predicate: has_component
@@ -451,8 +436,7 @@ facts:
     source_file: repos/knowledge/deep/getzep__graphiti.yaml
     excerpt: graphiti_core
   object_value: graphiti_core
-  note: Core temporal graph library that manages episode ingestion, entity and edge
-    extraction, search, and backend abstraction.
+  note: Core temporal graph library that manages episode ingestion, entity and edge extraction, search, and backend abstraction.
   fact_id: fact::e5abf9c440b5e10f6fa2df63
 - fact_type: component
   predicate: has_component
@@ -469,8 +453,8 @@ facts:
     source_file: repos/knowledge/deep/getzep__graphiti.yaml
     excerpt: mcp_server
   object_value: mcp_server
-  note: MCP-facing runtime that builds provider and database clients from YAML config,
-    then exposes Graphiti operations as tools.
+  note: MCP-facing runtime that builds provider and database clients from YAML config, then exposes Graphiti operations as
+    tools.
   fact_id: fact::d4802719f9f5df009204286c
 - fact_type: component
   predicate: has_component
@@ -535,9 +519,8 @@ facts:
     source_file: repos/knowledge/deep/getzep__graphiti.yaml
     excerpt: Implements pluggable graph backends for Neo4j, FalkorDB, Kuzu, and Neptune.
   object_value: graphiti_core/driver/
-  note: 'responsibility: Implements pluggable graph backends for Neo4j, FalkorDB,
-    Kuzu, and Neptune.; key_files: graphiti_core/driver/neo4j_driver.py, graphiti_core/driver/falkordb_driver.py,
-    graphiti_core/driver/kuzu_driver.py, graphiti_core/driver/neptune_driver.py'
+  note: 'responsibility: Implements pluggable graph backends for Neo4j, FalkorDB, Kuzu, and Neptune.; key_files: graphiti_core/driver/neo4j_driver.py,
+    graphiti_core/driver/falkordb_driver.py, graphiti_core/driver/kuzu_driver.py, graphiti_core/driver/neptune_driver.py'
   fact_id: fact::c7eee89b9abdd44f6cf75509
 - fact_type: component
   predicate: has_component
@@ -552,29 +535,11 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[0]
     source_file: repos/knowledge/deep/getzep__graphiti.yaml
-    excerpt: Defines the main Graphiti client API, including index setup, episode
-      ingestion, and hybrid search methods.
+    excerpt: Defines the main Graphiti client API, including index setup, episode ingestion, and hybrid search methods.
   object_value: graphiti_core/graphiti.py
-  note: 'responsibility: Defines the main Graphiti client API, including index setup,
-    episode ingestion, and hybrid search methods.; key_files: graphiti_core/__init__.py,
-    graphiti_core/graphiti.py'
+  note: 'responsibility: Defines the main Graphiti client API, including index setup, episode ingestion, and hybrid search
+    methods.; key_files: graphiti_core/__init__.py, graphiti_core/graphiti.py'
   fact_id: fact::63785a36a01130aa9649dbfe
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-21'
-  provenance:
-    source_file: repos/knowledge/deep/getzep__graphiti.yaml
-    source_section: key_files[2]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[2]
-    source_file: repos/knowledge/deep/getzep__graphiti.yaml
-    excerpt: graphiti_core/graphiti.py
-  object_value: graphiti_core/graphiti.py
-  fact_id: fact::d3ca22a550e0052ad21a811a
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -588,12 +553,10 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[2]
     source_file: repos/knowledge/deep/getzep__graphiti.yaml
-    excerpt: Provides search configuration recipes plus edge and node retrieval logic
-      for hybrid and graph-aware queries.
+    excerpt: Provides search configuration recipes plus edge and node retrieval logic for hybrid and graph-aware queries.
   object_value: graphiti_core/search/
-  note: 'responsibility: Provides search configuration recipes plus edge and node
-    retrieval logic for hybrid and graph-aware queries.; key_files: graphiti_core/search/search.py,
-    graphiti_core/search/search_config.py, graphiti_core/search/search_config_recipes.py'
+  note: 'responsibility: Provides search configuration recipes plus edge and node retrieval logic for hybrid and graph-aware
+    queries.; key_files: graphiti_core/search/search.py, graphiti_core/search/search_config.py, graphiti_core/search/search_config_recipes.py'
   fact_id: fact::f762d497b8e699bba4eb1631
 - fact_type: component
   predicate: has_component
@@ -624,12 +587,10 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[4]
     source_file: repos/knowledge/deep/getzep__graphiti.yaml
-    excerpt: Hosts the MCP entrypoint, queue-based ingestion service, and provider/database
-      factories.
+    excerpt: Hosts the MCP entrypoint, queue-based ingestion service, and provider/database factories.
   object_value: mcp_server/src/
-  note: 'responsibility: Hosts the MCP entrypoint, queue-based ingestion service,
-    and provider/database factories.; key_files: mcp_server/main.py, mcp_server/src/graphiti_mcp_server.py,
-    mcp_server/src/services/factories.py, mcp_server/src/services/queue_service.py'
+  note: 'responsibility: Hosts the MCP entrypoint, queue-based ingestion service, and provider/database factories.; key_files:
+    mcp_server/main.py, mcp_server/src/graphiti_mcp_server.py, mcp_server/src/services/factories.py, mcp_server/src/services/queue_service.py'
   fact_id: fact::8bf892b1bbce9a3a49f58c20
 - fact_type: component
   predicate: has_component
@@ -676,12 +637,11 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[3]
     source_file: repos/knowledge/deep/getzep__graphiti.yaml
-    excerpt: Hosts the REST service configuration, dependency wiring, and routers
-      for search, message ingestion, and graph maintenance.
+    excerpt: Hosts the REST service configuration, dependency wiring, and routers for search, message ingestion, and graph
+      maintenance.
   object_value: server/graph_service/
-  note: 'responsibility: Hosts the REST service configuration, dependency wiring,
-    and routers for search, message ingestion, and graph maintenance.; key_files:
-    server/graph_service/main.py, server/graph_service/routers/ingest.py, server/graph_service/routers/retrieve.py'
+  note: 'responsibility: Hosts the REST service configuration, dependency wiring, and routers for search, message ingestion,
+    and graph maintenance.; key_files: server/graph_service/main.py, server/graph_service/routers/ingest.py, server/graph_service/routers/retrieve.py'
   fact_id: fact::0f552b70e2f177466c6a751b
 - fact_type: component
   predicate: has_component
@@ -812,10 +772,8 @@ facts:
   - kind: file_block
     ref: integrations.items[0].role.line[0]
     source_file: repos/knowledge/deep/getzep__graphiti.yaml
-    excerpt: Default graph database backend for the core client, graph-service, and
-      one MCP deployment path.
-  object_value: Default graph database backend for the core client, graph-service,
-    and one MCP deployment path.
+    excerpt: Default graph database backend for the core client, graph-service, and one MCP deployment path.
+  object_value: Default graph database backend for the core client, graph-service, and one MCP deployment path.
   note: 'integration group: items'
   fact_id: fact::6368874c5e352e5bcc185803
 - fact_type: extension_point
@@ -867,8 +825,8 @@ facts:
     source_file: repos/knowledge/deep/getzep__graphiti.yaml
     excerpt: Graphiti.add_episode
   object_value: Graphiti.add_episode
-  note: Convert a text, message, or JSON episode into temporal graph updates with
-    entity and relationship extraction.; async def add_episode(...); graphiti_core/graphiti.py
+  note: Convert a text, message, or JSON episode into temporal graph updates with entity and relationship extraction.; async
+    def add_episode(...); graphiti_core/graphiti.py
   fact_id: fact::e2146d63667e4482c505b816
 - fact_type: extension_point
   predicate: has_extension_point
@@ -885,8 +843,8 @@ facts:
     source_file: repos/knowledge/deep/getzep__graphiti.yaml
     excerpt: Graphiti.build_indices_and_constraints
   object_value: Graphiti.build_indices_and_constraints
-  note: 'Create graph indexes and constraints before ingestion or service startup.;
-    async def build_indices_and_constraints(delete_existing: bool = False); graphiti_core/graphiti.py'
+  note: 'Create graph indexes and constraints before ingestion or service startup.; async def build_indices_and_constraints(delete_existing:
+    bool = False); graphiti_core/graphiti.py'
   fact_id: fact::a9f4a71c70056e176821b201
 - fact_type: extension_point
   predicate: has_extension_point
@@ -903,8 +861,8 @@ facts:
     source_file: repos/knowledge/deep/getzep__graphiti.yaml
     excerpt: Graphiti.search
   object_value: Graphiti.search
-  note: Run hybrid fact retrieval, optionally scoped by group IDs or reranked around
-    a center node.; async def search(...); graphiti_core/graphiti.py
+  note: Run hybrid fact retrieval, optionally scoped by group IDs or reranked around a center node.; async def search(...);
+    graphiti_core/graphiti.py
   fact_id: fact::0f0a5a7488a10e2cd69a8577
 - fact_type: extension_point
   predicate: has_extension_point
@@ -1074,10 +1032,9 @@ facts:
     source_file: repos/knowledge/deep/getzep__graphiti.yaml
     excerpt: '"Graph not found: default_db" appears during quickstart execution.'
   object_value: '"Graph not found: default_db" appears during quickstart execution.'
-  note: 'cause: The selected backend is pointing at a graph or database name that
-    does not exist for the active driver.; fix: Create the target database or pass
-    an explicit database name when constructing the driver instead of relying on the
-    missing default.'
+  note: 'cause: The selected backend is pointing at a graph or database name that does not exist for the active driver.; fix:
+    Create the target database or pass an explicit database name when constructing the driver instead of relying on the missing
+    default.'
   fact_id: fact::698bc2c68d1e15457b8ba500
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -1094,9 +1051,8 @@ facts:
     source_file: repos/knowledge/deep/getzep__graphiti.yaml
     excerpt: Episode ingestion returns 429 errors or throughput becomes unstable.
   object_value: Episode ingestion returns 429 errors or throughput becomes unstable.
-  note: 'cause: SEMAPHORE_LIMIT allows too many simultaneous episode tasks, and each
-    task expands into several LLM calls.; fix: Lower SEMAPHORE_LIMIT for the current
-    provider tier, then raise it gradually only after checking rate-limit headroom.'
+  note: 'cause: SEMAPHORE_LIMIT allows too many simultaneous episode tasks, and each task expands into several LLM calls.;
+    fix: Lower SEMAPHORE_LIMIT for the current provider tier, then raise it gradually only after checking rate-limit headroom.'
   fact_id: fact::5e842ba8876c9df967573865
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -1111,14 +1067,11 @@ facts:
   - kind: file_block
     ref: troubleshooting[1]
     source_file: repos/knowledge/deep/getzep__graphiti.yaml
-    excerpt: Extraction fails with incorrect output schemas when using alternate LLM
-      providers.
-  object_value: Extraction fails with incorrect output schemas when using alternate
-    LLM providers.
-  note: 'cause: Providers without reliable structured-output support can return responses
-    Graphiti cannot parse into the expected extraction schema.; fix: Use OpenAI, Gemini,
-    or another OpenAI-compatible provider that reliably preserves structured outputs
-    for Graphiti extraction.'
+    excerpt: Extraction fails with incorrect output schemas when using alternate LLM providers.
+  object_value: Extraction fails with incorrect output schemas when using alternate LLM providers.
+  note: 'cause: Providers without reliable structured-output support can return responses Graphiti cannot parse into the expected
+    extraction schema.; fix: Use OpenAI, Gemini, or another OpenAI-compatible provider that reliably preserves structured
+    outputs for Graphiti extraction.'
   fact_id: fact::b7b5bdbff8c2f6b356eeb610
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -1135,10 +1088,9 @@ facts:
     source_file: repos/knowledge/deep/getzep__graphiti.yaml
     excerpt: The MCP server fails during startup with a database connection error.
   object_value: The MCP server fails during startup with a database connection error.
-  note: 'cause: The configured Neo4j or FalkorDB endpoint is unreachable, so GraphitiService
-    cannot initialize the selected graph driver.; fix: Start the matching Docker Compose
-    stack or correct the database URI, credentials, and provider selection before
-    launching the server.'
+  note: 'cause: The configured Neo4j or FalkorDB endpoint is unreachable, so GraphitiService cannot initialize the selected
+    graph driver.; fix: Start the matching Docker Compose stack or correct the database URI, credentials, and provider selection
+    before launching the server.'
   fact_id: fact::cedb8a345a68aaecfee4188f
 - fact_type: operational_task
   predicate: supports_task
@@ -1189,8 +1141,7 @@ facts:
     source_file: repos/knowledge/deep/getzep__graphiti.yaml
     excerpt: Run the Neo4j quickstart
   object_value: Run the Neo4j quickstart
-  note: Initialize indices, ingest sample episodes, and exercise hybrid fact and node
-    search against a local Neo4j instance.
+  note: Initialize indices, ingest sample episodes, and exercise hybrid fact and node search against a local Neo4j instance.
   fact_id: fact::c9aa637636d50c7c156335f7
 - fact_type: operational_task
   predicate: supports_task
@@ -1207,8 +1158,7 @@ facts:
     source_file: repos/knowledge/deep/getzep__graphiti.yaml
     excerpt: Run the core library quality checks
   object_value: Run the core library quality checks
-  note: Install dev dependencies and execute format, lint, type-check, and non-integration
-    test coverage for graphiti-core.
+  note: Install dev dependencies and execute format, lint, type-check, and non-integration test coverage for graphiti-core.
   fact_id: fact::cb97e57448e445262129c744
 - fact_type: operational_task
   predicate: supports_task
@@ -1242,8 +1192,7 @@ facts:
     source_file: repos/knowledge/deep/getzep__graphiti.yaml
     excerpt: Start the MCP server with the default FalkorDB bundle
   object_value: Start the MCP server with the default FalkorDB bundle
-  note: Run the Graphiti MCP server with its default HTTP transport and bundled FalkorDB
-    deployment.
+  note: Run the Graphiti MCP server with its default HTTP transport and bundled FalkorDB deployment.
   fact_id: fact::7510e7f57f5add88b862b07a
 - fact_type: operational_task
   predicate: supports_task

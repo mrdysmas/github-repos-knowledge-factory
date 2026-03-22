@@ -75,8 +75,7 @@ facts:
   - kind: file_block
     ref: architecture.key_abstractions[2]
     source_file: repos/knowledge/deep/lancedb__lancedb.yaml
-    excerpt: Composable query interface for vector search, filtering, and reranking
-      options.
+    excerpt: Composable query interface for vector search, filtering, and reranking options.
   object_value: QueryBuilder
   note: Composable query interface for vector search, filtering, and reranking options.
   fact_id: fact::89a39f0f2004f117c90a8670
@@ -151,23 +150,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/lancedb__lancedb.yaml
-    source_section: core_modules.node_sdk
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.node_sdk
-    source_file: repos/knowledge/deep/lancedb__lancedb.yaml
-    excerpt: node/src
-  object_value: node/src
-  note: Node/TypeScript bindings for client usage.
-  fact_id: fact::a2aa32ebc6961481e7109a3a
-- fact_type: component
-  predicate: has_component
-  object_kind: path
   confidence: 0.78
   as_of: '2026-03-18'
   provenance:
@@ -180,8 +162,7 @@ facts:
     source_file: repos/knowledge/deep/lancedb__lancedb.yaml
     excerpt: TypeScript bindings and client surface for Node.js consumers.
   object_value: node/src
-  note: 'responsibility: TypeScript bindings and client surface for Node.js consumers.;
-    key_files: node/src/index.ts'
+  note: 'responsibility: TypeScript bindings and client surface for Node.js consumers.; key_files: node/src/index.ts'
   fact_id: fact::dd86b46c20e2e78b7b5df768
 - fact_type: component
   predicate: has_component
@@ -215,26 +196,9 @@ facts:
     source_file: repos/knowledge/deep/lancedb__lancedb.yaml
     excerpt: Python client API for table management, ingestion, and vector queries.
   object_value: python/python/lancedb
-  note: 'responsibility: Python client API for table management, ingestion, and vector
-    queries.; key_files: python/python/lancedb/__init__.py, python/python/lancedb/table.py'
+  note: 'responsibility: Python client API for table management, ingestion, and vector queries.; key_files: python/python/lancedb/__init__.py,
+    python/python/lancedb/table.py'
   fact_id: fact::ad9f3724fabc1dfc3fea9851
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/lancedb__lancedb.yaml
-    source_section: core_modules.python_sdk
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.python_sdk
-    source_file: repos/knowledge/deep/lancedb__lancedb.yaml
-    excerpt: python/python/lancedb
-  object_value: python/python/lancedb
-  note: Python package for table lifecycle and query APIs.
-  fact_id: fact::d9b94baadc611baa6e42189b
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -255,23 +219,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/lancedb__lancedb.yaml
-    source_section: core_modules.engine
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.engine
-    source_file: repos/knowledge/deep/lancedb__lancedb.yaml
-    excerpt: rust/lancedb
-  object_value: rust/lancedb
-  note: Core storage, indexing, and query execution runtime.
-  fact_id: fact::385182de0b0d06d1551a533d
-- fact_type: component
-  predicate: has_component
-  object_kind: path
   confidence: 0.78
   as_of: '2026-03-18'
   provenance:
@@ -284,8 +231,8 @@ facts:
     source_file: repos/knowledge/deep/lancedb__lancedb.yaml
     excerpt: Core Rust database engine, index management, and query execution.
   object_value: rust/lancedb
-  note: 'responsibility: Core Rust database engine, index management, and query execution.;
-    key_files: rust/lancedb/src/lib.rs, rust/lancedb/src/connection.rs'
+  note: 'responsibility: Core Rust database engine, index management, and query execution.; key_files: rust/lancedb/src/lib.rs,
+    rust/lancedb/src/connection.rs'
   fact_id: fact::57387571a64678ae84ade913
 - fact_type: component
   predicate: has_component
@@ -540,10 +487,9 @@ facts:
     source_file: repos/knowledge/deep/lancedb__lancedb.yaml
     excerpt: Index build OOM or process killed during create_index on a large table
   object_value: Index build OOM or process killed during create_index on a large table
-  note: 'cause: IVF-PQ and other index types load partition data into memory during
-    training; large tables with high-dimensional vectors can exhaust available RAM;
-    fix: Reduce num_partitions or num_sub_vectors, process the table in smaller Lance
-    fragments, or run index building on a ma...'
+  note: 'cause: IVF-PQ and other index types load partition data into memory during training; large tables with high-dimensional
+    vectors can exhaust available RAM; fix: Reduce num_partitions or num_sub_vectors, process the table in smaller Lance fragments,
+    or run index building on a ma...'
   fact_id: fact::1cb45f00300e22a8768d1e01
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -560,9 +506,8 @@ facts:
     source_file: repos/knowledge/deep/lancedb__lancedb.yaml
     excerpt: Remote connection fails with authentication or URI error
   object_value: Remote connection fails with authentication or URI error
-  note: 'cause: The remote backend (LanceDB Cloud) requires an API key and a cloud
-    URI; a local path passed to the remote connection constructor is rejected at the
-    Rust core level; fix: Set the uri to the cloud endpoint (e.g. db://my-project)
+  note: 'cause: The remote backend (LanceDB Cloud) requires an API key and a cloud URI; a local path passed to the remote
+    connection constructor is rejected at the Rust core level; fix: Set the uri to the cloud endpoint (e.g. db://my-project)
     and provide the api_key parameter to lanced...'
   fact_id: fact::9175cbb16be6f3a7f8f9dc80
 - fact_type: failure_mode
@@ -580,10 +525,9 @@ facts:
     source_file: repos/knowledge/deep/lancedb__lancedb.yaml
     excerpt: Schema validation error on table.add() when inserting new rows
   object_value: Schema validation error on table.add() when inserting new rows
-  note: 'cause: Incoming Arrow RecordBatch or dict rows have a schema that does not
-    match the table''s fixed schema; schema-on-write validation rejects mismatches
-    before persistence; fix: Cast or reorder columns in the incoming data to match
-    the table schema, or use table.merge_insert()...'
+  note: 'cause: Incoming Arrow RecordBatch or dict rows have a schema that does not match the table''s fixed schema; schema-on-write
+    validation rejects mismatches before persistence; fix: Cast or reorder columns in the incoming data to match the table
+    schema, or use table.merge_insert()...'
   fact_id: fact::aafaf61871c0ac702a10e985
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -598,14 +542,11 @@ facts:
   - kind: file_block
     ref: troubleshooting[0]
     source_file: repos/knowledge/deep/lancedb__lancedb.yaml
-    excerpt: Vector search returns unordered or incorrect results despite an index
-      existing
-  object_value: Vector search returns unordered or incorrect results despite an index
-    existing
-  note: 'cause: ANN index is not used when the query vector dimension does not match
-    the indexed column dimension, or when no index has been built on the queried vector
-    column; fix: Confirm the vector column name passed to search() matches the indexed
-    column, and call create_index() on...'
+    excerpt: Vector search returns unordered or incorrect results despite an index existing
+  object_value: Vector search returns unordered or incorrect results despite an index existing
+  note: 'cause: ANN index is not used when the query vector dimension does not match the indexed column dimension, or when
+    no index has been built on the queried vector column; fix: Confirm the vector column name passed to search() matches the
+    indexed column, and call create_index() on...'
   fact_id: fact::4e9af743529b26d77e2c62e1
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -620,11 +561,9 @@ facts:
   - kind: file_block
     ref: rust/lancedb/src
     source_file: repos/knowledge/deep/lancedb__lancedb.yaml
-    excerpt: Arrow data structures are used as canonical in-memory representation
-      for table IO.
+    excerpt: Arrow data structures are used as canonical in-memory representation for table IO.
   object_value: Arrow-first data interchange
-  note: 'description: Arrow data structures are used as canonical in-memory representation
-    for table IO.; location: rust/lancedb/src'
+  note: 'description: Arrow data structures are used as canonical in-memory representation for table IO.; location: rust/lancedb/src'
   fact_id: fact::35842cb6f751756c90dbe3a5
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -641,8 +580,7 @@ facts:
     source_file: repos/knowledge/deep/lancedb__lancedb.yaml
     excerpt: Query options chain through fluent methods before execution.
   object_value: Builder-style query construction
-  note: 'description: Query options chain through fluent methods before execution.;
-    location: python/python/lancedb/table.py'
+  note: 'description: Query options chain through fluent methods before execution.; location: python/python/lancedb/table.py'
   fact_id: fact::f8d885410e6699cf5f4ac187
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -674,13 +612,11 @@ facts:
   - kind: file_block
     ref: rust/lancedb/src
     source_file: repos/knowledge/deep/lancedb__lancedb.yaml
-    excerpt: Inverted file with product quantization; primary ANN index type for large-scale
-      vector search; parameterized by num_partitions and num_sub_vectors; build can
-      OOM on large high-dimensional tables.
+    excerpt: Inverted file with product quantization; primary ANN index type for large-scale vector search; parameterized
+      by num_partitions and num_sub_vectors; build can OOM on large high-dimensional tables.
   object_value: IVF-PQ index
-  note: 'description: Inverted file with product quantization; primary ANN index type
-    for large-scale vector search; parameterized by num_partitions and num_sub_vectors;
-    build can OOM on large high-dimensional tables.; location: rust/lancedb/src'
+  note: 'description: Inverted file with product quantization; primary ANN index type for large-scale vector search; parameterized
+    by num_partitions and num_sub_vectors; build can OOM on large high-dimensional tables.; location: rust/lancedb/src'
   fact_id: fact::550bee42b958413d6e87a06b
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -712,11 +648,9 @@ facts:
   - kind: file_block
     ref: rust/lancedb/src
     source_file: repos/knowledge/deep/lancedb__lancedb.yaml
-    excerpt: Search execution path chooses ANN-capable routes when index metadata
-      is present.
+    excerpt: Search execution path chooses ANN-capable routes when index metadata is present.
   object_value: Index-aware search dispatch
-  note: 'description: Search execution path chooses ANN-capable routes when index
-    metadata is present.; location: rust/lancedb/src'
+  note: 'description: Search execution path chooses ANN-capable routes when index metadata is present.; location: rust/lancedb/src'
   fact_id: fact::15d349d35b3169d4287a0d48
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -733,8 +667,7 @@ facts:
     source_file: repos/knowledge/deep/lancedb__lancedb.yaml
     excerpt: Rust core capabilities are surfaced through Python and Node bindings.
   object_value: Multi-language binding surface
-  note: 'description: Rust core capabilities are surfaced through Python and Node
-    bindings.; location: rust/lancedb/src/lib.rs'
+  note: 'description: Rust core capabilities are surfaced through Python and Node bindings.; location: rust/lancedb/src/lib.rs'
   fact_id: fact::de1b1969c4148d990b368419
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -749,10 +682,8 @@ facts:
   - kind: file_block
     ref: testing.structure.line[0]
     source_file: repos/knowledge/deep/lancedb__lancedb.yaml
-    excerpt: Repository includes Rust and SDK test coverage for table operations and
-      query behavior.
-  object_value: Repository includes Rust and SDK test coverage for table operations
-    and query behavior.
+    excerpt: Repository includes Rust and SDK test coverage for table operations and query behavior.
+  object_value: Repository includes Rust and SDK test coverage for table operations and query behavior.
   note: 'testing metadata: structure'
   fact_id: fact::6714b1e7ae2db2d7f93aa41c
 - fact_type: implementation_pattern
@@ -787,8 +718,7 @@ facts:
     source_file: repos/knowledge/deep/lancedb__lancedb.yaml
     excerpt: Incoming rows are validated against table schema before persistence.
   object_value: Schema-on-write validation
-  note: 'description: Incoming rows are validated against table schema before persistence.;
-    location: python/python/lancedb/table.py'
+  note: 'description: Incoming rows are validated against table schema before persistence.; location: python/python/lancedb/table.py'
   fact_id: fact::b0f3ad71d7660a1c78e7741b
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -827,23 +757,6 @@ facts:
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/lancedb__lancedb.yaml
-    source_section: quick_reference[0].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[0].line[0]
-    source_file: repos/knowledge/deep/lancedb__lancedb.yaml
-    excerpt: cargo build
-  object_value: cargo build
-  note: 'topic: Build Rust core'
-  fact_id: fact::a79b4855416b583914d4d232
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
   confidence: 0.68
   as_of: '2026-03-18'
   provenance:
@@ -865,23 +778,6 @@ facts:
   as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/lancedb__lancedb.yaml
-    source_section: testing.test_patterns[0].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: testing.test_patterns[0].line[0]
-    source_file: repos/knowledge/deep/lancedb__lancedb.yaml
-    excerpt: cargo test
-  object_value: cargo test
-  note: testing command
-  fact_id: fact::e1d8a977c0e6dbf0be54f296
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/lancedb__lancedb.yaml
     source_section: testing.test_patterns[2].line[0]
     extraction_mode: narrative
   evidence:
@@ -892,23 +788,6 @@ facts:
   object_value: npm test
   note: testing command
   fact_id: fact::6016223c03099ad38ad64058
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/lancedb__lancedb.yaml
-    source_section: quick_reference[2].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[2].line[0]
-    source_file: repos/knowledge/deep/lancedb__lancedb.yaml
-    excerpt: npm test
-  object_value: npm test
-  note: 'topic: Run Node tests'
-  fact_id: fact::b3794be77a3a5582e8de9d55
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
@@ -926,40 +805,6 @@ facts:
   object_value: pytest
   note: Run Python SDK tests.
   fact_id: fact::26801bed6df981cd7c4724c4
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/lancedb__lancedb.yaml
-    source_section: testing.test_patterns[1].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: testing.test_patterns[1].line[0]
-    source_file: repos/knowledge/deep/lancedb__lancedb.yaml
-    excerpt: pytest
-  object_value: pytest
-  note: testing command
-  fact_id: fact::586edb3a3d15b3c20cf70653
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/lancedb__lancedb.yaml
-    source_section: quick_reference[1].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[1].line[0]
-    source_file: repos/knowledge/deep/lancedb__lancedb.yaml
-    excerpt: pytest
-  object_value: pytest
-  note: 'topic: Run Python tests'
-  fact_id: fact::f100a83dace2ce449d0078ae
 - fact_type: protocol_usage
   predicate: uses_protocol
   object_kind: protocol

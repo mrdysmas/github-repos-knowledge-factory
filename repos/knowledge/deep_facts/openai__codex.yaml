@@ -111,8 +111,7 @@ facts:
     source_file: repos/knowledge/deep/openai__codex.yaml
     excerpt: Sandbox and execution bridge
   object_value: Sandbox and execution bridge
-  note: Coordinates local command execution and filesystem interaction from agent
-    actions.
+  note: Coordinates local command execution and filesystem interaction from agent actions.
   fact_id: fact::74f180701d8562950aa5e358
 - fact_type: component
   predicate: has_component
@@ -127,8 +126,7 @@ facts:
   - kind: file_block
     ref: architecture.key_abstractions[0]
     source_file: repos/knowledge/deep/openai__codex.yaml
-    excerpt: Maintains model interaction state and tool execution boundaries across
-      commands.
+    excerpt: Maintains model interaction state and tool execution boundaries across commands.
   object_value: Session lifecycle orchestration
   note: Maintains model interaction state and tool execution boundaries across commands.
   fact_id: fact::7a4d5dfbebf5f664753299ce
@@ -147,8 +145,7 @@ facts:
     source_file: repos/knowledge/deep/openai__codex.yaml
     excerpt: Tool-augmented execution loop
   object_value: Tool-augmented execution loop
-  note: Agent actions can call shell tooling and repository operations under configured
-    policies.
+  note: Agent actions can call shell tooling and repository operations under configured policies.
   fact_id: fact::db2dbcbb002f7f78500de55d
 - fact_type: component
   predicate: has_component
@@ -165,8 +162,7 @@ facts:
     source_file: repos/knowledge/deep/openai__codex.yaml
     excerpt: Terminal UX, command parsing, and user-facing agent loop entrypoints.
   object_value: codex-cli
-  note: 'responsibility: Terminal UX, command parsing, and user-facing agent loop
-    entrypoints.; key_files: codex-cli/, package.json'
+  note: 'responsibility: Terminal UX, command parsing, and user-facing agent loop entrypoints.; key_files: codex-cli/, package.json'
   fact_id: fact::c39c1b4e837ee3f2093a6f09
 - fact_type: component
   predicate: has_component
@@ -181,11 +177,10 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[1]
     source_file: repos/knowledge/deep/openai__codex.yaml
-    excerpt: Rust runtime and core orchestration layers for agent execution and tool
-      interaction.
+    excerpt: Rust runtime and core orchestration layers for agent execution and tool interaction.
   object_value: codex-rs
-  note: 'responsibility: Rust runtime and core orchestration layers for agent execution
-    and tool interaction.; key_files: codex-rs/, codex-rs/core/'
+  note: 'responsibility: Rust runtime and core orchestration layers for agent execution and tool interaction.; key_files:
+    codex-rs/, codex-rs/core/'
   fact_id: fact::eb69f7b818b3776dce7f8dda
 - fact_type: component
   predicate: has_component
@@ -202,8 +197,7 @@ facts:
     source_file: repos/knowledge/deep/openai__codex.yaml
     excerpt: Shared SDK utilities for integrations and embedding Codex workflows.
   object_value: sdk
-  note: 'responsibility: Shared SDK utilities for integrations and embedding Codex
-    workflows.; key_files: sdk/'
+  note: 'responsibility: Shared SDK utilities for integrations and embedding Codex workflows.; key_files: sdk/'
   fact_id: fact::a6f57b454420ecc5c102a2cb
 - fact_type: component
   predicate: has_component
@@ -225,23 +219,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-19'
-  provenance:
-    source_file: repos/knowledge/deep/openai__codex.yaml
-    source_section: core_modules.cli_surface
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.cli_surface
-    source_file: repos/knowledge/deep/openai__codex.yaml
-    excerpt: codex-cli
-  object_value: codex-cli
-  note: 'User command interface and interactive terminal behaviors. Submodules: codex-cli/src'
-  fact_id: fact::bd8c8f325d11270c5c3ec2c5
-- fact_type: component
-  predicate: has_component
-  object_kind: path
   confidence: 0.72
   as_of: '2026-03-19'
   provenance:
@@ -256,24 +233,6 @@ facts:
   object_value: codex-cli/
   note: CLI-facing project code.
   fact_id: fact::5f3a52cec0cfcfc62d973024
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-19'
-  provenance:
-    source_file: repos/knowledge/deep/openai__codex.yaml
-    source_section: core_modules.runtime_core
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.runtime_core
-    source_file: repos/knowledge/deep/openai__codex.yaml
-    excerpt: codex-rs
-  object_value: codex-rs
-  note: 'Core runtime, tool integration, and orchestration internals. Submodules:
-    codex-rs/core, codex-rs/sandbox'
-  fact_id: fact::e3bf707f0b435db91357505a
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -357,8 +316,7 @@ facts:
     source_file: repos/knowledge/deep/openai__codex.yaml
     excerpt: approval_policy
   object_value: approval_policy
-  note: 'default: interactive; Controls when privileged operations require explicit
-    approval.'
+  note: 'default: interactive; Controls when privileged operations require explicit approval.'
   fact_id: fact::25657d09fece3ed0f638a012
 - fact_type: config_option
   predicate: has_config_option
@@ -477,8 +435,7 @@ facts:
     source_file: repos/knowledge/deep/openai__codex.yaml
     excerpt: codex CLI command surface
   object_value: codex CLI command surface
-  note: Entry contract for terminal invocation and interactive workflow control.;
-    codex <command>; codex-cli/
+  note: Entry contract for terminal invocation and interactive workflow control.; codex <command>; codex-cli/
   fact_id: fact::087d85d9f31a5211ac76d22e
 - fact_type: extension_point
   predicate: has_extension_point
@@ -495,8 +452,7 @@ facts:
     source_file: repos/knowledge/deep/openai__codex.yaml
     excerpt: runtime orchestration core
   object_value: runtime orchestration core
-  note: Coordinates agent planning, tool dispatch, and execution policy checks.; internal
-    runtime interfaces; codex-rs/
+  note: Coordinates agent planning, tool dispatch, and execution policy checks.; internal runtime interfaces; codex-rs/
   fact_id: fact::df1aea5a4a2ba9848efe47c8
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -511,11 +467,10 @@ facts:
   - kind: file_block
     ref: troubleshooting[0]
     source_file: repos/knowledge/deep/openai__codex.yaml
-    excerpt: "OPENAI_API_KEY not set \u2014 authentication fails on launch"
-  object_value: "OPENAI_API_KEY not set \u2014 authentication fails on launch"
-  note: 'cause: The CLI requires OPENAI_API_KEY (or the configured provider''s key)
-    to be present in the environment before any session can start.; fix: Export the
-    correct API key environment variable and restart the terminal; verify with ''echo
+    excerpt: OPENAI_API_KEY not set — authentication fails on launch
+  object_value: OPENAI_API_KEY not set — authentication fails on launch
+  note: 'cause: The CLI requires OPENAI_API_KEY (or the configured provider''s key) to be present in the environment before
+    any session can start.; fix: Export the correct API key environment variable and restart the terminal; verify with ''echo
     $OPENAI_API_KEY''.'
   fact_id: fact::84656e5bf564f26188f9728a
 - fact_type: failure_mode
@@ -533,9 +488,8 @@ facts:
     source_file: repos/knowledge/deep/openai__codex.yaml
     excerpt: Rate limit error (429) during long coding sessions
   object_value: Rate limit error (429) during long coding sessions
-  note: 'cause: Sustained tool-calling and code generation exceeds per-minute token
-    quota for the API key tier in use.; fix: Reduce request frequency, pause between
-    large tasks, or upgrade to a higher-capacity API tier with increased rate limits.'
+  note: 'cause: Sustained tool-calling and code generation exceeds per-minute token quota for the API key tier in use.; fix:
+    Reduce request frequency, pause between large tasks, or upgrade to a higher-capacity API tier with increased rate limits.'
   fact_id: fact::4e96df8cc30794405973eeff
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -550,11 +504,10 @@ facts:
   - kind: file_block
     ref: troubleshooting[2]
     source_file: repos/knowledge/deep/openai__codex.yaml
-    excerpt: "Sandbox execution denied \u2014 file operation blocked unexpectedly"
-  object_value: "Sandbox execution denied \u2014 file operation blocked unexpectedly"
-  note: 'cause: The active sandbox_mode or approval_policy restricts the path the
-    agent is trying to write to.; fix: Check the configured approval_policy setting;
-    switch to a more permissive sandbox mode or approve the specific operation when
+    excerpt: Sandbox execution denied — file operation blocked unexpectedly
+  object_value: Sandbox execution denied — file operation blocked unexpectedly
+  note: 'cause: The active sandbox_mode or approval_policy restricts the path the agent is trying to write to.; fix: Check
+    the configured approval_policy setting; switch to a more permissive sandbox mode or approve the specific operation when
     prompted.'
   fact_id: fact::a7e9f3cdd18c266670613e68
 - fact_type: failure_mode
@@ -572,9 +525,8 @@ facts:
     source_file: repos/knowledge/deep/openai__codex.yaml
     excerpt: codex session hangs with no output after tool invocation
   object_value: codex session hangs with no output after tool invocation
-  note: 'cause: A shell command or tool execution blocked indefinitely, often due
-    to a process waiting for stdin.; fix: Send an interrupt signal (Ctrl+C), then
-    resume with a narrower task scope; avoid commands that require interactive input.'
+  note: 'cause: A shell command or tool execution blocked indefinitely, often due to a process waiting for stdin.; fix: Send
+    an interrupt signal (Ctrl+C), then resume with a narrower task scope; avoid commands that require interactive input.'
   fact_id: fact::0ab65f5b2a9e5f0fd9d996bd
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -591,9 +543,8 @@ facts:
     source_file: repos/knowledge/deep/openai__codex.yaml
     excerpt: npm install -g @openai/codex fails with permission error
   object_value: npm install -g @openai/codex fails with permission error
-  note: 'cause: Global npm installs require write access to the Node.js prefix directory,
-    which may be root-owned.; fix: Use a Node version manager (nvm, fnm) so the prefix
-    is user-writable, or install via Homebrew cask instead.'
+  note: 'cause: Global npm installs require write access to the Node.js prefix directory, which may be root-owned.; fix: Use
+    a Node version manager (nvm, fnm) so the prefix is user-writable, or install via Homebrew cask instead.'
   fact_id: fact::2ec87f3619ca967c05a6f305
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -642,11 +593,9 @@ facts:
   - kind: file_block
     ref: codex-cli/
     source_file: repos/knowledge/deep/openai__codex.yaml
-    excerpt: Frontend command parsing is decoupled from lower-level execution and
-      state management.
+    excerpt: Frontend command parsing is decoupled from lower-level execution and state management.
   object_value: CLI plus runtime layering
-  note: 'description: Frontend command parsing is decoupled from lower-level execution
-    and state management.; location: codex-cli/'
+  note: 'description: Frontend command parsing is decoupled from lower-level execution and state management.; location: codex-cli/'
   fact_id: fact::50970550d99bcdd523a61b7e
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -661,11 +610,9 @@ facts:
   - kind: file_block
     ref: codex-cli/
     source_file: repos/knowledge/deep/openai__codex.yaml
-    excerpt: User prompts route through a command loop that can invoke tools and shell
-      actions.
+    excerpt: User prompts route through a command loop that can invoke tools and shell actions.
   object_value: Command-driven task loop
-  note: 'description: User prompts route through a command loop that can invoke tools
-    and shell actions.; location: codex-cli/'
+  note: 'description: User prompts route through a command loop that can invoke tools and shell actions.; location: codex-cli/'
   fact_id: fact::d4d7c8891e3058aa9764750d
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -682,8 +629,7 @@ facts:
     source_file: repos/knowledge/deep/openai__codex.yaml
     excerpt: JavaScript package surfaces integrate with Rust-heavy runtime components.
   object_value: Cross-language integration boundary
-  note: 'description: JavaScript package surfaces integrate with Rust-heavy runtime
-    components.; location: codex-rs/'
+  note: 'description: JavaScript package surfaces integrate with Rust-heavy runtime components.; location: codex-rs/'
   fact_id: fact::9d009255672919048b9c6bd1
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -698,11 +644,9 @@ facts:
   - kind: file_block
     ref: pnpm-workspace.yaml
     source_file: repos/knowledge/deep/openai__codex.yaml
-    excerpt: CLI surface, Rust core, SDK, and shell MCP components are kept in separate
-      packages.
+    excerpt: CLI surface, Rust core, SDK, and shell MCP components are kept in separate packages.
   object_value: Multi-package monorepo split by responsibility
-  note: 'description: CLI surface, Rust core, SDK, and shell MCP components are kept
-    in separate packages.; location: pnpm-workspace.yaml'
+  note: 'description: CLI surface, Rust core, SDK, and shell MCP components are kept in separate packages.; location: pnpm-workspace.yaml'
   fact_id: fact::f7a6a4fefa5fa98032b88f99
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -719,8 +663,7 @@ facts:
     source_file: repos/knowledge/deep/openai__codex.yaml
     excerpt: Runtime constraints and approval modes gate file/system operations.
   object_value: Policy-gated execution
-  note: 'description: Runtime constraints and approval modes gate file/system operations.;
-    location: codex-rs/'
+  note: 'description: Runtime constraints and approval modes gate file/system operations.; location: codex-rs/'
   fact_id: fact::3d9ba97c0f7fa2628e5f94ea
 - fact_type: implementation_pattern
   predicate: implements_pattern

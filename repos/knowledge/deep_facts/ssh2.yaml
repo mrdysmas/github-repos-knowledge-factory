@@ -206,10 +206,8 @@ facts:
   - kind: file_block
     ref: key_features[1]
     source_file: repos/knowledge/deep/ssh2.yaml
-    excerpt: SFTP support with full file operation API (read, write, mkdir, stat,
-      etc.)
-  object_value: SFTP support with full file operation API (read, write, mkdir, stat,
-    etc.)
+    excerpt: SFTP support with full file operation API (read, write, mkdir, stat, etc.)
+  object_value: SFTP support with full file operation API (read, write, mkdir, stat, etc.)
   fact_id: fact::079ad2288c85839d3e75da1e
 - fact_type: component
   predicate: has_component
@@ -389,28 +387,11 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[3]
     source_file: repos/knowledge/deep/ssh2.yaml
-    excerpt: Duplex stream abstraction for SSH channels with flow control (MAX_WINDOW
-      2MB, PACKET_SIZE 32KB)
+    excerpt: Duplex stream abstraction for SSH channels with flow control (MAX_WINDOW 2MB, PACKET_SIZE 32KB)
   object_value: lib/Channel.js
-  note: 'responsibility: Duplex stream abstraction for SSH channels with flow control
-    (MAX_WINDOW 2MB, PACKET_SIZE 32KB); key_files: lib/Channel.js'
+  note: 'responsibility: Duplex stream abstraction for SSH channels with flow control (MAX_WINDOW 2MB, PACKET_SIZE 32KB);
+    key_files: lib/Channel.js'
   fact_id: fact::31c9233bb7641bd31c714065
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-17'
-  provenance:
-    source_file: repos/knowledge/deep/ssh2.yaml
-    source_section: key_files[3]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[3]
-    source_file: repos/knowledge/deep/ssh2.yaml
-    excerpt: lib/Channel.js
-  object_value: lib/Channel.js
-  fact_id: fact::837aa9ad111accb645c9246a
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -424,28 +405,11 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[4]
     source_file: repos/knowledge/deep/ssh2.yaml
-    excerpt: SSH agent protocol implementations - OpenSSH, Pageant (Windows), Cygwin
-      agent support
+    excerpt: SSH agent protocol implementations - OpenSSH, Pageant (Windows), Cygwin agent support
   object_value: lib/agent.js
-  note: 'responsibility: SSH agent protocol implementations - OpenSSH, Pageant (Windows),
-    Cygwin agent support; key_files: lib/agent.js'
+  note: 'responsibility: SSH agent protocol implementations - OpenSSH, Pageant (Windows), Cygwin agent support; key_files:
+    lib/agent.js'
   fact_id: fact::dfefea2f76d10f129b0f8165
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-17'
-  provenance:
-    source_file: repos/knowledge/deep/ssh2.yaml
-    source_section: key_files[1]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[1]
-    source_file: repos/knowledge/deep/ssh2.yaml
-    excerpt: lib/client.js
-  object_value: lib/client.js
-  fact_id: fact::2717348bb104b7257448b608
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -459,11 +423,10 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[1]
     source_file: repos/knowledge/deep/ssh2.yaml
-    excerpt: SSH client implementation - connection, authentication, shell/exec/sftp
-      session management
+    excerpt: SSH client implementation - connection, authentication, shell/exec/sftp session management
   object_value: lib/client.js
-  note: 'responsibility: SSH client implementation - connection, authentication, shell/exec/sftp
-    session management; key_files: lib/client.js'
+  note: 'responsibility: SSH client implementation - connection, authentication, shell/exec/sftp session management; key_files:
+    lib/client.js'
   fact_id: fact::e4631e49b9298ed53b3b9de4
 - fact_type: component
   predicate: has_component
@@ -478,28 +441,10 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[5]
     source_file: repos/knowledge/deep/ssh2.yaml
-    excerpt: Custom http.Agent/https.Agent that tunnel HTTP requests through SSH port
-      forwarding
+    excerpt: Custom http.Agent/https.Agent that tunnel HTTP requests through SSH port forwarding
   object_value: lib/http-agents.js
-  note: 'responsibility: Custom http.Agent/https.Agent that tunnel HTTP requests through
-    SSH port forwarding; key_files: lib/http-agents.js'
+  note: 'responsibility: Custom http.Agent/https.Agent that tunnel HTTP requests through SSH port forwarding; key_files: lib/http-agents.js'
   fact_id: fact::4e5e8b7270fa0313237c5755
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-17'
-  provenance:
-    source_file: repos/knowledge/deep/ssh2.yaml
-    source_section: key_files[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[0]
-    source_file: repos/knowledge/deep/ssh2.yaml
-    excerpt: lib/index.js
-  object_value: lib/index.js
-  fact_id: fact::1db9a958c210c20861f8e82a
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -513,11 +458,10 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[0]
     source_file: repos/knowledge/deep/ssh2.yaml
-    excerpt: Package entry point - re-exports Client, Server, agent classes, HTTP
-      agents, and utils
+    excerpt: Package entry point - re-exports Client, Server, agent classes, HTTP agents, and utils
   object_value: lib/index.js
-  note: 'responsibility: Package entry point - re-exports Client, Server, agent classes,
-    HTTP agents, and utils; key_files: lib/index.js'
+  note: 'responsibility: Package entry point - re-exports Client, Server, agent classes, HTTP agents, and utils; key_files:
+    lib/index.js'
   fact_id: fact::2ab955abfd2e7d7775e7567e
 - fact_type: component
   predicate: has_component
@@ -534,8 +478,7 @@ facts:
     source_file: repos/knowledge/deep/ssh2.yaml
     excerpt: SSH key generation - RSA, ECDSA, ED25519 with OpenSSH format output
   object_value: lib/keygen.js
-  note: 'responsibility: SSH key generation - RSA, ECDSA, ED25519 with OpenSSH format
-    output; key_files: lib/keygen.js'
+  note: 'responsibility: SSH key generation - RSA, ECDSA, ED25519 with OpenSSH format output; key_files: lib/keygen.js'
   fact_id: fact::5d444e9a6b788271f391116f
 - fact_type: component
   predicate: has_component
@@ -552,9 +495,8 @@ facts:
     source_file: repos/knowledge/deep/ssh2.yaml
     excerpt: Low-level SSH protocol layer - key exchange, crypto, SFTP, packet parsing
   object_value: lib/protocol/
-  note: 'responsibility: Low-level SSH protocol layer - key exchange, crypto, SFTP,
-    packet parsing; key_files: lib/protocol/Protocol.js, lib/protocol/SFTP.js, lib/protocol/kex.js,
-    lib/protocol/keyParser.js'
+  note: 'responsibility: Low-level SSH protocol layer - key exchange, crypto, SFTP, packet parsing; key_files: lib/protocol/Protocol.js,
+    lib/protocol/SFTP.js, lib/protocol/kex.js, lib/protocol/keyParser.js'
   fact_id: fact::0c55757d474749f4216a5f55
 - fact_type: component
   predicate: has_component
@@ -639,22 +581,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-17'
-  provenance:
-    source_file: repos/knowledge/deep/ssh2.yaml
-    source_section: key_files[2]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[2]
-    source_file: repos/knowledge/deep/ssh2.yaml
-    excerpt: lib/server.js
-  object_value: lib/server.js
-  fact_id: fact::82e89fac75c73702725bffa9
-- fact_type: component
-  predicate: has_component
-  object_kind: path
   confidence: 0.78
   as_of: '2026-03-17'
   provenance:
@@ -665,11 +591,10 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[2]
     source_file: repos/knowledge/deep/ssh2.yaml
-    excerpt: SSH server implementation - accepts connections, handles auth contexts
-      (password, publickey, keyboard-interactive)
+    excerpt: SSH server implementation - accepts connections, handles auth contexts (password, publickey, keyboard-interactive)
   object_value: lib/server.js
-  note: 'responsibility: SSH server implementation - accepts connections, handles
-    auth contexts (password, publickey, keyboard-interactive); key_files: lib/server.js'
+  note: 'responsibility: SSH server implementation - accepts connections, handles auth contexts (password, publickey, keyboard-interactive);
+    key_files: lib/server.js'
   fact_id: fact::ea398209a9969f6b84981209
 - fact_type: config_option
   predicate: has_config_option
@@ -703,8 +628,7 @@ facts:
     source_file: repos/knowledge/deep/ssh2.yaml
     excerpt: file
   object_value: file
-  note: 'default: Client.connect() options object (no config file); configuration
-    default for file'
+  note: 'default: Client.connect() options object (no config file); configuration default for file'
   fact_id: fact::d483f052f97f418f2bfe1b7f
 - fact_type: config_option
   predicate: has_config_option
@@ -840,9 +764,8 @@ facts:
     source_file: repos/knowledge/deep/ssh2.yaml
     excerpt: All configured authentication methods failed
   object_value: All configured authentication methods failed
-  note: 'cause: The private key format is not supported (e.g., new OpenSSH format
-    with bcrypt headers requires passphrase even when not encrypted), or the server
-    does not accept publickey auth for that user.; fix: Confirm the key is readable
+  note: 'cause: The private key format is not supported (e.g., new OpenSSH format with bcrypt headers requires passphrase
+    even when not encrypted), or the server does not accept publickey auth for that user.; fix: Confirm the key is readable
     by passing it through utils.parseKey(key, pa...'
   fact_id: fact::a5e0452a182722b585a840bf
 - fact_type: failure_mode
@@ -860,10 +783,9 @@ facts:
     source_file: repos/knowledge/deep/ssh2.yaml
     excerpt: Connection times out or drops silently during idle periods
   object_value: Connection times out or drops silently during idle periods
-  note: 'cause: Intermediate firewalls or NAT gateways close idle TCP connections;
-    no keepalive is configured to prevent this.; fix: Set keepaliveInterval (e.g.,
-    10000 ms) and keepaliveCountMax in connect() options to send periodic keepalive
-    packets and detect dead connections promptly.'
+  note: 'cause: Intermediate firewalls or NAT gateways close idle TCP connections; no keepalive is configured to prevent this.;
+    fix: Set keepaliveInterval (e.g., 10000 ms) and keepaliveCountMax in connect() options to send periodic keepalive packets
+    and detect dead connections promptly.'
   fact_id: fact::cf91d8e9c5adb3ffec643b8f
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -880,9 +802,8 @@ facts:
     source_file: repos/knowledge/deep/ssh2.yaml
     excerpt: ECONNREFUSED when calling client.connect()
   object_value: ECONNREFUSED when calling client.connect()
-  note: 'cause: The SSH server is not running on the target host/port combination,
-    or a firewall is blocking port 22.; fix: Verify the host and port values; confirm
-    the SSH daemon is running on the server (systemctl status sshd); test reachability
+  note: 'cause: The SSH server is not running on the target host/port combination, or a firewall is blocking port 22.; fix:
+    Verify the host and port values; confirm the SSH daemon is running on the server (systemctl status sshd); test reachability
     with a plain TCP connect before debugg...'
   fact_id: fact::0f25831a77c50114cb2182f3
 - fact_type: failure_mode
@@ -900,10 +821,9 @@ facts:
     source_file: repos/knowledge/deep/ssh2.yaml
     excerpt: 'Handshake failed: no matching key exchange algorithm'
   object_value: 'Handshake failed: no matching key exchange algorithm'
-  note: 'cause: The remote server only supports older kex algorithms (e.g., diffie-hellman-group1-sha1)
-    that are not in ssh2''s default list.; fix: Pass an algorithms option in connect()
-    with the required kex entries added; e.g., algorithms.kex includes ''diffie-hellman-group14-sha1''
-    for...'
+  note: 'cause: The remote server only supports older kex algorithms (e.g., diffie-hellman-group1-sha1) that are not in ssh2''s
+    default list.; fix: Pass an algorithms option in connect() with the required kex entries added; e.g., algorithms.kex includes
+    ''diffie-hellman-group14-sha1'' for...'
   fact_id: fact::ebee68327e9441821a0b5abc
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -920,10 +840,9 @@ facts:
     source_file: repos/knowledge/deep/ssh2.yaml
     excerpt: SFTP read or write operation hangs and never calls back
   object_value: SFTP read or write operation hangs and never calls back
-  note: "cause: The SSH channel window is exhausted \u2014 data is queued but the\
-    \ remote side has not sent a window-adjust message, usually because buffered data\
-    \ is not being consumed.; fix: Always consume (pipe or read) data from exec/shell\
-    \ streams even when only SFTP is needed; ensure SFT..."
+  note: 'cause: The SSH channel window is exhausted — data is queued but the remote side has not sent a window-adjust message,
+    usually because buffered data is not being consumed.; fix: Always consume (pipe or read) data from exec/shell streams
+    even when only SFTP is needed; ensure SFT...'
   fact_id: fact::eb7cee22e9c069c10f4dcf11
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -938,11 +857,11 @@ facts:
   - kind: file_block
     ref: lib/server.js
     source_file: repos/knowledge/deep/ssh2.yaml
-    excerpt: Server creates typed AuthContext subclasses (password, publickey, hostbased,
-      keyboard-interactive) with accept/reject callbacks
+    excerpt: Server creates typed AuthContext subclasses (password, publickey, hostbased, keyboard-interactive) with accept/reject
+      callbacks
   object_value: Auth Context Chain
-  note: 'description: Server creates typed AuthContext subclasses (password, publickey,
-    hostbased, keyboard-interactive) with accept/reject callbacks; location: lib/server.js'
+  note: 'description: Server creates typed AuthContext subclasses (password, publickey, hostbased, keyboard-interactive) with
+    accept/reject callbacks; location: lib/server.js'
   fact_id: fact::1e4a430b56800a029800e990
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -991,11 +910,10 @@ facts:
   - kind: file_block
     ref: lib/client.js, lib/server.js
     source_file: repos/knowledge/deep/ssh2.yaml
-    excerpt: Client and Server extend EventEmitter; lifecycle events like ready, error,
-      close, authentication drive the flow
+    excerpt: Client and Server extend EventEmitter; lifecycle events like ready, error, close, authentication drive the flow
   object_value: EventEmitter-based API
-  note: 'description: Client and Server extend EventEmitter; lifecycle events like
-    ready, error, close, authentication drive the flow; location: lib/client.js, lib/server.js'
+  note: 'description: Client and Server extend EventEmitter; lifecycle events like ready, error, close, authentication drive
+    the flow; location: lib/client.js, lib/server.js'
   fact_id: fact::4256134e47440fe46984cdb9
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1027,11 +945,10 @@ facts:
   - kind: file_block
     ref: lib/http-agents.js
     source_file: repos/knowledge/deep/ssh2.yaml
-    excerpt: http-agents.js defers require of client.js until first use to avoid circular
-      dependencies
+    excerpt: http-agents.js defers require of client.js until first use to avoid circular dependencies
   object_value: Lazy Module Loading
-  note: 'description: http-agents.js defers require of client.js until first use to
-    avoid circular dependencies; location: lib/http-agents.js'
+  note: 'description: http-agents.js defers require of client.js until first use to avoid circular dependencies; location:
+    lib/http-agents.js'
   fact_id: fact::0cd95d561a33332f4d68ba35
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1046,11 +963,9 @@ facts:
   - kind: file_block
     ref: install.js
     source_file: repos/knowledge/deep/ssh2.yaml
-    excerpt: install.js attempts to build native crypto addon; falls back gracefully
-      to pure JS
+    excerpt: install.js attempts to build native crypto addon; falls back gracefully to pure JS
   object_value: Optional Native Acceleration
-  note: 'description: install.js attempts to build native crypto addon; falls back
-    gracefully to pure JS; location: install.js'
+  note: 'description: install.js attempts to build native crypto addon; falls back gracefully to pure JS; location: install.js'
   fact_id: fact::bc10854e4eddc15a992be22c
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1082,11 +997,10 @@ facts:
   - kind: file_block
     ref: lib/Channel.js
     source_file: repos/knowledge/deep/ssh2.yaml
-    excerpt: Channels use MAX_WINDOW (2MB) with WINDOW_THRESHOLD (1MB) triggering
-      windowAdjust messages
+    excerpt: Channels use MAX_WINDOW (2MB) with WINDOW_THRESHOLD (1MB) triggering windowAdjust messages
   object_value: Windowed Flow Control
-  note: 'description: Channels use MAX_WINDOW (2MB) with WINDOW_THRESHOLD (1MB) triggering
-    windowAdjust messages; location: lib/Channel.js'
+  note: 'description: Channels use MAX_WINDOW (2MB) with WINDOW_THRESHOLD (1MB) triggering windowAdjust messages; location:
+    lib/Channel.js'
   fact_id: fact::1279b07f298bc79013a7875b
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1120,9 +1034,8 @@ facts:
     source_file: repos/knowledge/deep/ssh2.yaml
     excerpt: Authenticate with an SSH key
   object_value: Authenticate with an SSH key
-  note: Pass privateKey as a Buffer or string (fs.readFileSync) in the connect() options;
-    use passphrase if the key is encrypted; alternatively set agent to process.env.SSH_AUTH_SOCK
-    to delegate to the system SSH agent.
+  note: Pass privateKey as a Buffer or string (fs.readFileSync) in the connect() options; use passphrase if the key is encrypted;
+    alternatively set agent to process.env.SSH_AUTH_SOCK to delegate to the system SSH agent.
   fact_id: fact::8d380d04a00ec4eefc636cb3
 - fact_type: operational_task
   predicate: supports_task
@@ -1139,9 +1052,8 @@ facts:
     source_file: repos/knowledge/deep/ssh2.yaml
     excerpt: Execute a remote command and capture output
   object_value: Execute a remote command and capture output
-  note: Call client.exec(command, (err, stream) => ...) after the 'ready' event; pipe
-    stream to collect stdout/stderr and listen for the 'close' event to get the exit
-    code.
+  note: Call client.exec(command, (err, stream) => ...) after the 'ready' event; pipe stream to collect stdout/stderr and
+    listen for the 'close' event to get the exit code.
   fact_id: fact::4fdffe7c944de0507cfe6feb
 - fact_type: operational_task
   predicate: supports_task
@@ -1158,9 +1070,8 @@ facts:
     source_file: repos/knowledge/deep/ssh2.yaml
     excerpt: Open an interactive shell session
   object_value: Open an interactive shell session
-  note: Call client.shell((err, stream) => ...) to get a bidirectional Channel stream;
-    pipe stdin to stream and stream to stdout; send resize signals via stream.setWindow(rows,
-    cols).
+  note: Call client.shell((err, stream) => ...) to get a bidirectional Channel stream; pipe stdin to stream and stream to
+    stdout; send resize signals via stream.setWindow(rows, cols).
   fact_id: fact::a10f160e2f4e12fa27647d97
 - fact_type: operational_task
   predicate: supports_task
@@ -1177,9 +1088,8 @@ facts:
     source_file: repos/knowledge/deep/ssh2.yaml
     excerpt: Set up local port forwarding
   object_value: Set up local port forwarding
-  note: Call client.forwardOut(srcHost, srcPort, dstHost, dstPort, (err, channel)
-    => ...) to open a forwarded channel and pipe it to a local TCP socket for tunneling
-    database or HTTP connections through SSH.
+  note: Call client.forwardOut(srcHost, srcPort, dstHost, dstPort, (err, channel) => ...) to open a forwarded channel and
+    pipe it to a local TCP socket for tunneling database or HTTP connections through SSH.
   fact_id: fact::1bc4aec626703f339e53ff1a
 - fact_type: operational_task
   predicate: supports_task
@@ -1196,6 +1106,6 @@ facts:
     source_file: repos/knowledge/deep/ssh2.yaml
     excerpt: Upload or download files over SFTP
   object_value: Upload or download files over SFTP
-  note: Call client.sftp((err, sftp) => ...) to open an SFTP session; use sftp.fastPut(localPath,
-    remotePath, cb) for uploads and sftp.fastGet(remotePath, localPath, cb) for downloads.
+  note: Call client.sftp((err, sftp) => ...) to open an SFTP session; use sftp.fastPut(localPath, remotePath, cb) for uploads
+    and sftp.fastGet(remotePath, localPath, cb) for downloads.
   fact_id: fact::00156bb7c40e5820ab81d744

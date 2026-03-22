@@ -35,23 +35,6 @@ facts:
   as_of: '2026-02-25'
   provenance:
     source_file: repos/knowledge/deep/mem0.yaml
-    source_section: configuration[3].options[5]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: configuration[3].options[5]
-    source_file: repos/knowledge/deep/mem0.yaml
-    excerpt: api_key
-  object_value: api_key
-  note: 'default: null; Qdrant Cloud API key'
-  fact_id: fact::d6abde3c0600560ec4472703
-- fact_type: config_option
-  predicate: has_config_option
-  object_kind: config_key
-  confidence: 0.72
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/mem0.yaml
     source_section: configuration[3].options[0]
     extraction_mode: narrative
   evidence:
@@ -222,23 +205,6 @@ facts:
   as_of: '2026-02-25'
   provenance:
     source_file: repos/knowledge/deep/mem0.yaml
-    source_section: configuration[2].options[1]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: configuration[2].options[1]
-    source_file: repos/knowledge/deep/mem0.yaml
-    excerpt: model
-  object_value: model
-  note: 'default: text-embedding-3-small; Embedding model name'
-  fact_id: fact::5183dbbbc659b95f2cbbcb82
-- fact_type: config_option
-  predicate: has_config_option
-  object_kind: config_key
-  confidence: 0.72
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/mem0.yaml
     source_section: configuration[3].options[4]
     extraction_mode: narrative
   evidence:
@@ -300,23 +266,6 @@ facts:
   object_value: provider
   note: 'default: openai; Provider: openai, ollama, anthropic, groq, together, etc.'
   fact_id: fact::a46c953a9e4b7c76b1327370
-- fact_type: config_option
-  predicate: has_config_option
-  object_kind: config_key
-  confidence: 0.72
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/mem0.yaml
-    source_section: configuration[2].options[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: configuration[2].options[0]
-    source_file: repos/knowledge/deep/mem0.yaml
-    excerpt: provider
-  object_value: provider
-  note: 'default: openai; Provider: openai, ollama, huggingface, azure, gemini'
-  fact_id: fact::cdf723684f6a5e7fb65d4f35
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
@@ -400,8 +349,8 @@ facts:
     source_file: repos/knowledge/deep/mem0.yaml
     excerpt: Embedding dimension mismatch
   object_value: Embedding dimension mismatch
-  note: 'cause: Embedder output doesn''t match vector store config; fix: Match embedding_dims
-    in embedder config with vector store dimensions'
+  note: 'cause: Embedder output doesn''t match vector store config; fix: Match embedding_dims in embedder config with vector
+    store dimensions'
   fact_id: fact::542fab3d2c9bf16df811b014
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -418,8 +367,8 @@ facts:
     source_file: repos/knowledge/deep/mem0.yaml
     excerpt: LLM extraction not working
   object_value: LLM extraction not working
-  note: 'cause: Missing API key or provider misconfiguration; fix: Set api_key in
-    llm config, verify provider name matches exactly'
+  note: 'cause: Missing API key or provider misconfiguration; fix: Set api_key in llm config, verify provider name matches
+    exactly'
   fact_id: fact::dff88902a3273e4417d435ee
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -436,8 +385,7 @@ facts:
     source_file: repos/knowledge/deep/mem0.yaml
     excerpt: No memories found after add
   object_value: No memories found after add
-  note: 'cause: Missing user_id or wrong scope; fix: Always pass user_id (or agent_id/run_id)
-    to both add and search'
+  note: 'cause: Missing user_id or wrong scope; fix: Always pass user_id (or agent_id/run_id) to both add and search'
   fact_id: fact::55a58890fc140b2d807f6fb9
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -454,8 +402,8 @@ facts:
     source_file: repos/knowledge/deep/mem0.yaml
     excerpt: Slow memory operations
   object_value: Slow memory operations
-  note: 'cause: Large memory count or missing vector index; fix: Enable reranking
-    for better results, use smaller top_k, check vector store indexes'
+  note: 'cause: Large memory count or missing vector index; fix: Enable reranking for better results, use smaller top_k, check
+    vector store indexes'
   fact_id: fact::d63062904bcc9bc12f62bc10
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -506,8 +454,7 @@ facts:
     source_file: repos/knowledge/deep/mem0.yaml
     excerpt: Configure LLM for fact extraction and memory processing
   object_value: LLM Provider Configuration
-  note: 'description: Configure LLM for fact extraction and memory processing; location:
-    mem0/llms/configs.py'
+  note: 'description: Configure LLM for fact extraction and memory processing; location: mem0/llms/configs.py'
   fact_id: fact::fcb5f13820466245ee332d26
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -524,8 +471,7 @@ facts:
     source_file: repos/knowledge/deep/mem0.yaml
     excerpt: Core memory add, get, search, update, delete operations
   object_value: Memory CRUD Operations
-  note: 'description: Core memory add, get, search, update, delete operations; location:
-    mem0/memory/main.py'
+  note: 'description: Core memory add, get, search, update, delete operations; location: mem0/memory/main.py'
   fact_id: fact::de9ead8673a22ed7318a693e
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -542,8 +488,7 @@ facts:
     source_file: repos/knowledge/deep/mem0.yaml
     excerpt: Multi-level memory hierarchy with user/agent/run scope
   object_value: Session Scoping Pattern
-  note: 'description: Multi-level memory hierarchy with user/agent/run scope; location:
-    mem0/memory/main.py'
+  note: 'description: Multi-level memory hierarchy with user/agent/run scope; location: mem0/memory/main.py'
   fact_id: fact::9974f39a4e17a7f45a0961e7
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -577,9 +522,8 @@ facts:
     source_file: repos/knowledge/deep/mem0.yaml
     excerpt: Basic Memory Setup
   object_value: Basic Memory Setup
-  note: 'pip install mem0ai, from mem0 import Memory, memory = Memory() # Uses defaults:
-    Qdrant local, OpenAI, Set OPENAI_API_KEY env var; Default uses Qdrant in-memory
-    - data lost on restart, OpenAI API key required for fact extraction (infer=True)'
+  note: 'pip install mem0ai, from mem0 import Memory, memory = Memory() # Uses defaults: Qdrant local, OpenAI, Set OPENAI_API_KEY
+    env var; Default uses Qdrant in-memory - data lost on restart, OpenAI API key required for fact extraction (infer=True)'
   fact_id: fact::66cb5198681a11837611c314
 - fact_type: operational_task
   predicate: supports_task
@@ -596,9 +540,8 @@ facts:
     source_file: repos/knowledge/deep/mem0.yaml
     excerpt: Integrate with AI Agent
   object_value: Integrate with AI Agent
-  note: Create memory tools wrapping add/search, Pass user_id from agent context to
-    memory calls, Use search before generation for context, Save important facts after
-    conversation; Always scope with user_id for multi-tenant isolation, Batch memory
+  note: Create memory tools wrapping add/search, Pass user_id from agent context to memory calls, Use search before generation
+    for context, Save important facts after conversation; Always scope with user_id for multi-tenant isolation, Batch memory
     adds to reduce LLM calls
   fact_id: fact::3f1c4d737185be94ee890dfe
 - fact_type: operational_task
@@ -667,10 +610,9 @@ facts:
     source_file: repos/knowledge/deep/mem0.yaml
     excerpt: Production Configuration
   object_value: Production Configuration
-  note: 'Choose vector store: qdrant, pgvector, pinecone, etc., Configure LLM provider
-    (or use local via ollama), Set up embedder (match dims with vector store), Create
-    Memory.from_config(config_dict); Embedding dimensions must match vector store
-    expectations, Use persistent storage (o...'
+  note: 'Choose vector store: qdrant, pgvector, pinecone, etc., Configure LLM provider (or use local via ollama), Set up embedder
+    (match dims with vector store), Create Memory.from_config(config_dict); Embedding dimensions must match vector store expectations,
+    Use persistent storage (o...'
   fact_id: fact::4729ebd04b7ad8fdfb7bf9b8
 - fact_type: operational_task
   predicate: supports_task

@@ -94,8 +94,7 @@ facts:
     source_file: repos/knowledge/deep/mmar.yaml
     excerpt: Default ports, timeouts, environment variable names
   object_value: constants
-  note: 'responsibility: Default ports, timeouts, environment variable names; key_files:
-    constants/main.go'
+  note: 'responsibility: Default ports, timeouts, environment variable names; key_files: constants/main.go'
   fact_id: fact::51f5ec79bf367391ddf37c5d
 - fact_type: component
   predicate: has_component
@@ -112,8 +111,7 @@ facts:
     source_file: repos/knowledge/deep/mmar.yaml
     excerpt: CLI entry point with server/client/version subcommands
   object_value: cmd/mmar
-  note: 'responsibility: CLI entry point with server/client/version subcommands; key_files:
-    cmd/mmar/main.go'
+  note: 'responsibility: CLI entry point with server/client/version subcommands; key_files: cmd/mmar/main.go'
   fact_id: fact::291fcc11b2bf2540b780fb3e
 - fact_type: component
   predicate: has_component
@@ -130,8 +128,7 @@ facts:
     source_file: repos/knowledge/deep/mmar.yaml
     excerpt: MmarClient with TCP connection, tunnel creation, request processing
   object_value: internal/client
-  note: 'responsibility: MmarClient with TCP connection, tunnel creation, request
-    processing; key_files: internal/client/main.go'
+  note: 'responsibility: MmarClient with TCP connection, tunnel creation, request processing; key_files: internal/client/main.go'
   fact_id: fact::a6a0b63fc3f2b2a232568b3c
 - fact_type: component
   predicate: has_component
@@ -165,8 +162,7 @@ facts:
     source_file: repos/knowledge/deep/mmar.yaml
     excerpt: Tunnel struct and message serialization/deserialization
   object_value: internal/protocol
-  note: 'responsibility: Tunnel struct and message serialization/deserialization;
-    key_files: internal/protocol/main.go'
+  note: 'responsibility: Tunnel struct and message serialization/deserialization; key_files: internal/protocol/main.go'
   fact_id: fact::b52c2076a869d029a8c3f3ad
 - fact_type: component
   predicate: has_component
@@ -183,8 +179,7 @@ facts:
     source_file: repos/knowledge/deep/mmar.yaml
     excerpt: MmarServer with HTTP server for public requests, TCP server for clients
   object_value: internal/server
-  note: 'responsibility: MmarServer with HTTP server for public requests, TCP server
-    for clients; key_files: internal/server/main.go'
+  note: 'responsibility: MmarServer with HTTP server for public requests, TCP server for clients; key_files: internal/server/main.go'
   fact_id: fact::2511f833d03d1efc1440d485
 - fact_type: component
   predicate: has_component
@@ -201,8 +196,7 @@ facts:
     source_file: repos/knowledge/deep/mmar.yaml
     excerpt: Subdomain extraction, ID generation utilities
   object_value: internal/utils
-  note: 'responsibility: Subdomain extraction, ID generation utilities; key_files:
-    internal/utils/main.go'
+  note: 'responsibility: Subdomain extraction, ID generation utilities; key_files: internal/utils/main.go'
   fact_id: fact::023563d38b3746b2ee74fcfb
 - fact_type: config_option
   predicate: has_config_option
@@ -338,8 +332,7 @@ facts:
     source_file: repos/knowledge/deep/mmar.yaml
     excerpt: Tunnel.SendMessage
   object_value: Tunnel.SendMessage
-  note: Send message through tunnel; func (t *Tunnel) SendMessage(msg TunnelMessage);
-    internal/protocol/main.go
+  note: Send message through tunnel; func (t *Tunnel) SendMessage(msg TunnelMessage); internal/protocol/main.go
   fact_id: fact::547078a658322a30ad0a37da
 - fact_type: extension_point
   predicate: has_extension_point
@@ -373,8 +366,7 @@ facts:
     source_file: repos/knowledge/deep/mmar.yaml
     excerpt: server.Run
   object_value: server.Run
-  note: Start server with HTTP and TCP listeners; func Run(config ConfigOptions);
-    internal/server/main.go:582
+  note: Start server with HTTP and TCP listeners; func Run(config ConfigOptions); internal/server/main.go:582
   fact_id: fact::d018e4ec784d3698c1c2fd2a
 - fact_type: extension_point
   predicate: has_extension_point
@@ -391,27 +383,8 @@ facts:
     source_file: repos/knowledge/deep/mmar.yaml
     excerpt: internal/protocol/main.go
   object_value: internal/protocol/main.go
-  note: Update range check for new message types; isValidTunnelMessageType() (lines
-    39-49)
+  note: Update range check for new message types; isValidTunnelMessageType() (lines 39-49)
   fact_id: fact::04753188dff453c5e4c249ea
-- fact_type: extension_point
-  predicate: has_extension_point
-  object_kind: path
-  confidence: 0.71
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/mmar.yaml
-    source_section: extension_points[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: extension_points[0]
-    source_file: repos/knowledge/deep/mmar.yaml
-    excerpt: internal/protocol/main.go
-  object_value: internal/protocol/main.go
-  note: Add new message types (NEW_MESSAGE_TYPE = uint8(iota + 35)); Message type
-    constants (lines 20-34)
-  fact_id: fact::ab5e7a9bc7e1ec65a4da3814
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
@@ -427,27 +400,8 @@ facts:
     source_file: repos/knowledge/deep/mmar.yaml
     excerpt: internal/server/main.go
   object_value: internal/server/main.go
-  note: Add authentication, rate limiting, request transformation; ServeHTTP() (lines
-    171-246)
+  note: Add authentication, rate limiting, request transformation; ServeHTTP() (lines 171-246)
   fact_id: fact::b9db49b1321812c42c42d109
-- fact_type: extension_point
-  predicate: has_extension_point
-  object_kind: path
-  confidence: 0.71
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/mmar.yaml
-    source_section: extension_points[1]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: extension_points[1]
-    source_file: repos/knowledge/deep/mmar.yaml
-    excerpt: internal/server/main.go
-  object_value: internal/server/main.go
-  note: Custom naming schemes, user-provided subdomains, hash-based generation; GenerateUniqueSubdomain()
-    (lines 248-257)
-  fact_id: fact::d7872b227aaa1714e7fdd678
 - fact_type: implementation_pattern
   predicate: implements_pattern
   object_kind: concept
@@ -461,11 +415,9 @@ facts:
   - kind: file_block
     ref: internal/client/main.go:174-203
     source_file: repos/knowledge/deep/mmar.yaml
-    excerpt: Client detects disconnection, reconnects, sends RECLAIM_TUNNEL with previous
-      subdomain
+    excerpt: Client detects disconnection, reconnects, sends RECLAIM_TUNNEL with previous subdomain
   object_value: Auto-Reconnect with Reclamation
-  note: 'description: Client detects disconnection, reconnects, sends RECLAIM_TUNNEL
-    with previous subdomain; location: internal/client/main.go:174-203'
+  note: 'description: Client detects disconnection, reconnects, sends RECLAIM_TUNNEL with previous subdomain; location: internal/client/main.go:174-203'
   fact_id: fact::7ef4fde01fe72923c30899df
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -480,11 +432,9 @@ facts:
   - kind: file_block
     ref: internal/protocol/main.go:99-126
     source_file: repos/knowledge/deep/mmar.yaml
-    excerpt: Version (1 byte) + MsgType (1 byte) + Length (varies) + Delimiter (1
-      byte) + Data
+    excerpt: Version (1 byte) + MsgType (1 byte) + Length (varies) + Delimiter (1 byte) + Data
   object_value: Binary Protocol
-  note: 'description: Version (1 byte) + MsgType (1 byte) + Length (varies) + Delimiter
-    (1 byte) + Data; location: internal/protocol/main.go:99-126'
+  note: 'description: Version (1 byte) + MsgType (1 byte) + Length (varies) + Delimiter (1 byte) + Data; location: internal/protocol/main.go:99-126'
   fact_id: fact::383cc025cb8b074fea9eba35
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -586,8 +536,7 @@ facts:
     source_file: repos/knowledge/deep/mmar.yaml
     excerpt: Bidirectional heartbeats with read deadline extension
   object_value: Heartbeat Mechanism
-  note: 'description: Bidirectional heartbeats with read deadline extension; location:
-    internal/client/main.go:211-231, internal/server/main.go:449-463'
+  note: 'description: Bidirectional heartbeats with read deadline extension; location: internal/client/main.go:211-231, internal/server/main.go:449-463'
   fact_id: fact::6115a272528c0bd6640f8632
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -621,8 +570,7 @@ facts:
     source_file: repos/knowledge/deep/mmar.yaml
     excerpt: HTTP request serialized to bytes for tunnel transport
   object_value: Request Serialization
-  note: 'description: HTTP request serialized to bytes for tunnel transport; location:
-    internal/server/main.go:171-246'
+  note: 'description: HTTP request serialized to bytes for tunnel transport; location: internal/server/main.go:171-246'
   fact_id: fact::5f29b3f88f12c1fd3d9e35da
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -656,8 +604,7 @@ facts:
     source_file: repos/knowledge/deep/mmar.yaml
     excerpt: Random ID generation with reserved subdomain exclusion (admin, stats)
   object_value: Subdomain Generation
-  note: 'description: Random ID generation with reserved subdomain exclusion (admin,
-    stats); location: internal/server/main.go:248-257'
+  note: 'description: Random ID generation with reserved subdomain exclusion (admin, stats); location: internal/server/main.go:248-257'
   fact_id: fact::dc0355941c878afd098641ce
 - fact_type: implementation_pattern
   predicate: implements_pattern

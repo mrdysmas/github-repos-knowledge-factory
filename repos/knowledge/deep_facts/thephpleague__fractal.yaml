@@ -298,23 +298,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: concept
-  confidence: 0.61
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/thephpleague__fractal.yaml
-    source_section: languages[0].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: languages[0].line[0]
-    source_file: repos/knowledge/deep/thephpleague__fractal.yaml
-    excerpt: php
-  object_value: php
-  note: language ecosystem
-  fact_id: fact::08ad9e2b57be404061959fa2
-- fact_type: component
-  predicate: has_component
-  object_kind: concept
   confidence: 0.66
   as_of: '2026-03-04'
   provenance:
@@ -429,43 +412,8 @@ facts:
     source_file: repos/knowledge/deep/thephpleague__fractal.yaml
     excerpt: Entry API for include/exclude/fieldset parsing and root scope creation.
   object_value: src/Manager.php
-  note: 'responsibility: Entry API for include/exclude/fieldset parsing and root scope
-    creation.; key_files: src/Manager.php'
+  note: 'responsibility: Entry API for include/exclude/fieldset parsing and root scope creation.; key_files: src/Manager.php'
   fact_id: fact::088bcdfa0a2e48602a0ac295
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/thephpleague__fractal.yaml
-    source_section: core_modules.manager_layer
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.manager_layer
-    source_file: repos/knowledge/deep/thephpleague__fractal.yaml
-    excerpt: src/Manager.php
-  object_value: src/Manager.php
-  note: User-facing orchestration and configuration.
-  fact_id: fact::3f7b71379bab3553ae218ecf
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/thephpleague__fractal.yaml
-    source_section: key_files[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[0]
-    source_file: repos/knowledge/deep/thephpleague__fractal.yaml
-    excerpt: src/Manager.php
-  object_value: src/Manager.php
-  note: Main orchestration API for transformation requests.
-  fact_id: fact::f6248a22663f9864e33c902d
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -481,27 +429,9 @@ facts:
     source_file: repos/knowledge/deep/thephpleague__fractal.yaml
     excerpt: Paginator adapters for framework-specific pagination implementations.
   object_value: src/Pagination/
-  note: 'responsibility: Paginator adapters for framework-specific pagination implementations.;
-    key_files: src/Pagination/PaginatorInterface.php, src/Pagination/DoctrinePaginatorAdapter.php,
-    src/Pagination/IlluminatePaginatorAdapter.php'
+  note: 'responsibility: Paginator adapters for framework-specific pagination implementations.; key_files: src/Pagination/PaginatorInterface.php,
+    src/Pagination/DoctrinePaginatorAdapter.php, src/Pagination/IlluminatePaginatorAdapter.php'
   fact_id: fact::d4497cbbc7768f95f89aaeed
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/thephpleague__fractal.yaml
-    source_section: core_modules.pagination_layer
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.pagination_layer
-    source_file: repos/knowledge/deep/thephpleague__fractal.yaml
-    excerpt: src/Pagination/
-  object_value: src/Pagination/
-  note: Framework pagination adapters.
-  fact_id: fact::e1583a0b5235bd8b89177a73
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -522,23 +452,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/thephpleague__fractal.yaml
-    source_section: core_modules.resource_layer
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.resource_layer
-    source_file: repos/knowledge/deep/thephpleague__fractal.yaml
-    excerpt: src/Resource/
-  object_value: src/Resource/
-  note: Resource wrappers and metadata carriers.
-  fact_id: fact::67fd80f079d5041f58bf8cc5
-- fact_type: component
-  predicate: has_component
-  object_kind: path
   confidence: 0.78
   as_of: '2026-03-04'
   provenance:
@@ -551,9 +464,8 @@ facts:
     source_file: repos/knowledge/deep/thephpleague__fractal.yaml
     excerpt: Resource wrappers for item/collection/primitive/null payloads plus metadata.
   object_value: src/Resource/
-  note: 'responsibility: Resource wrappers for item/collection/primitive/null payloads
-    plus metadata.; key_files: src/Resource/ResourceAbstract.php, src/Resource/Item.php,
-    src/Resource/Collection.php, src/Resource/Primitive.php'
+  note: 'responsibility: Resource wrappers for item/collection/primitive/null payloads plus metadata.; key_files: src/Resource/ResourceAbstract.php,
+    src/Resource/Item.php, src/Resource/Collection.php, src/Resource/Primitive.php'
   fact_id: fact::b8c186fb1413fbe86538a3db
 - fact_type: component
   predicate: has_component
@@ -572,23 +484,6 @@ facts:
   object_value: src/Resource/ResourceAbstract.php
   note: Base resource wrapper implementation.
   fact_id: fact::f62228e305742c351465d329
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/thephpleague__fractal.yaml
-    source_section: key_files[1]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[1]
-    source_file: repos/knowledge/deep/thephpleague__fractal.yaml
-    excerpt: src/Scope.php
-  object_value: src/Scope.php
-  note: Scope graph execution and serialization logic.
-  fact_id: fact::6de2d712e673f3aabec85cea
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -621,26 +516,9 @@ facts:
     source_file: repos/knowledge/deep/thephpleague__fractal.yaml
     excerpt: Builds scope graph and executes transformation/serialization pipeline.
   object_value: src/Scope.php and src/ScopeFactory.php
-  note: 'responsibility: Builds scope graph and executes transformation/serialization
-    pipeline.; key_files: src/Scope.php, src/ScopeFactory.php'
+  note: 'responsibility: Builds scope graph and executes transformation/serialization pipeline.; key_files: src/Scope.php,
+    src/ScopeFactory.php'
   fact_id: fact::409d8415666cca321319ec78
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/thephpleague__fractal.yaml
-    source_section: core_modules.serializer_layer
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.serializer_layer
-    source_file: repos/knowledge/deep/thephpleague__fractal.yaml
-    excerpt: src/Serializer/
-  object_value: src/Serializer/
-  note: Output format strategies.
-  fact_id: fact::1bb1ca619f869134538470e6
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -656,9 +534,8 @@ facts:
     source_file: repos/knowledge/deep/thephpleague__fractal.yaml
     excerpt: Output envelope strategies (Array/DataArray/JsonApi and interface contract).
   object_value: src/Serializer/
-  note: 'responsibility: Output envelope strategies (Array/DataArray/JsonApi and interface
-    contract).; key_files: src/Serializer/Serializer.php, src/Serializer/SerializerAbstract.php,
-    src/Serializer/ArraySerializer.php, src/Serializer/DataArraySerializer.php'
+  note: 'responsibility: Output envelope strategies (Array/DataArray/JsonApi and interface contract).; key_files: src/Serializer/Serializer.php,
+    src/Serializer/SerializerAbstract.php, src/Serializer/ArraySerializer.php, src/Serializer/DataArraySerializer.php'
   fact_id: fact::83cdc677a96ba8c56d25e835
 - fact_type: component
   predicate: has_component
@@ -697,40 +574,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/thephpleague__fractal.yaml
-    source_section: core_modules.transformer_layer
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.transformer_layer
-    source_file: repos/knowledge/deep/thephpleague__fractal.yaml
-    excerpt: src/TransformerAbstract.php
-  object_value: src/TransformerAbstract.php
-  note: Custom transformation extensibility base.
-  fact_id: fact::8bd33e4d0a6941ad18a3e673
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/thephpleague__fractal.yaml
-    source_section: key_files[2]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[2]
-    source_file: repos/knowledge/deep/thephpleague__fractal.yaml
-    excerpt: src/TransformerAbstract.php
-  object_value: src/TransformerAbstract.php
-  note: Base transformer with include lifecycle helpers.
-  fact_id: fact::9f27e14083c3d9a6af619439
-- fact_type: component
-  predicate: has_component
-  object_kind: path
   confidence: 0.78
   as_of: '2026-03-04'
   provenance:
@@ -743,8 +586,7 @@ facts:
     source_file: repos/knowledge/deep/thephpleague__fractal.yaml
     excerpt: Base transformer contract for core transform logic and include handling.
   object_value: src/TransformerAbstract.php
-  note: 'responsibility: Base transformer contract for core transform logic and include
-    handling.; key_files: src/TransformerAbstract.php'
+  note: 'responsibility: Base transformer contract for core transform logic and include handling.; key_files: src/TransformerAbstract.php'
   fact_id: fact::ef1e10f0ecf90da9e91c6671
 - fact_type: config_option
   predicate: has_config_option
@@ -1067,8 +909,7 @@ facts:
     source_file: repos/knowledge/deep/thephpleague__fractal.yaml
     excerpt: Parses `include:modifier(param|param)` style include modifiers into ParamBag.
   object_value: include param parsing by modifier syntax
-  note: 'description: Parses `include:modifier(param|param)` style include modifiers
-    into ParamBag.; location: src/Manager.php'
+  note: 'description: Parses `include:modifier(param|param)` style include modifiers into ParamBag.; location: src/Manager.php'
   fact_id: fact::b70fbb1937e5ceadd4c78933
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1083,11 +924,9 @@ facts:
   - kind: file_block
     ref: src/Manager.php
     source_file: repos/knowledge/deep/thephpleague__fractal.yaml
-    excerpt: Include paths are trimmed to configured recursion limit to bound traversal
-      depth.
+    excerpt: Include paths are trimmed to configured recursion limit to bound traversal depth.
   object_value: include recursion limiting
-  note: 'description: Include paths are trimmed to configured recursion limit to bound
-    traversal depth.; location: src/Manager.php'
+  note: 'description: Include paths are trimmed to configured recursion limit to bound traversal depth.; location: src/Manager.php'
   fact_id: fact::668c3669b83e2abaf38e197e
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1136,11 +975,9 @@ facts:
   - kind: file_block
     ref: src/Resource/ResourceAbstract.php
     source_file: repos/knowledge/deep/thephpleague__fractal.yaml
-    excerpt: Item/Collection/Primitive wrappers carry data, transformer, meta, and
-      keys.
+    excerpt: Item/Collection/Primitive wrappers carry data, transformer, meta, and keys.
   object_value: resource wrapper abstraction
-  note: 'description: Item/Collection/Primitive wrappers carry data, transformer,
-    meta, and keys.; location: src/Resource/ResourceAbstract.php'
+  note: 'description: Item/Collection/Primitive wrappers carry data, transformer, meta, and keys.; location: src/Resource/ResourceAbstract.php'
   fact_id: fact::5845a8ec27e489bcb823fb4f
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1174,8 +1011,7 @@ facts:
     source_file: repos/knowledge/deep/thephpleague__fractal.yaml
     excerpt: Scope checks requested/excluded include segments relative to parent chain.
   object_value: scope-aware include filtering
-  note: 'description: Scope checks requested/excluded include segments relative to
-    parent chain.; location: src/Scope.php'
+  note: 'description: Scope checks requested/excluded include segments relative to parent chain.; location: src/Scope.php'
   fact_id: fact::6eed01d8cd12b38fe6c2a001
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1192,8 +1028,7 @@ facts:
     source_file: repos/knowledge/deep/thephpleague__fractal.yaml
     excerpt: Each transformed node runs in a Scope with parent/child identifiers.
   object_value: scope-based traversal
-  note: 'description: Each transformed node runs in a Scope with parent/child identifiers.;
-    location: src/Scope.php'
+  note: 'description: Each transformed node runs in a Scope with parent/child identifiers.; location: src/Scope.php'
   fact_id: fact::d1b962e640f85c466450e4fb
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1208,11 +1043,10 @@ facts:
   - kind: file_block
     ref: src/Serializer/SerializerAbstract.php and src/Serializer/JsonApiSerializer.php
     source_file: repos/knowledge/deep/thephpleague__fractal.yaml
-    excerpt: Serializer methods can merge includes, inject metadata, and post-filter
-      includes.
+    excerpt: Serializer methods can merge includes, inject metadata, and post-filter includes.
   object_value: serializer hook chain
-  note: 'description: Serializer methods can merge includes, inject metadata, and
-    post-filter includes.; location: src/Serializer/SerializerAbstract.php and src/Serializer/JsonApiSerializer.php'
+  note: 'description: Serializer methods can merge includes, inject metadata, and post-filter includes.; location: src/Serializer/SerializerAbstract.php
+    and src/Serializer/JsonApiSerializer.php'
   fact_id: fact::6783df76cf0000f92d7adf72
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1246,8 +1080,8 @@ facts:
     source_file: repos/knowledge/deep/thephpleague__fractal.yaml
     excerpt: Manager delegates output envelope shape to configured Serializer implementation.
   object_value: serializer strategy selection
-  note: 'description: Manager delegates output envelope shape to configured Serializer
-    implementation.; location: src/Manager.php and src/Serializer/'
+  note: 'description: Manager delegates output envelope shape to configured Serializer implementation.; location: src/Manager.php
+    and src/Serializer/'
   fact_id: fact::4218d04c1d53abdbe7a75ce5
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1262,9 +1096,7 @@ facts:
   - kind: file_block
     ref: src/TransformerAbstract.php
     source_file: repos/knowledge/deep/thephpleague__fractal.yaml
-    excerpt: User transformers expose `transform()` plus `includeX()` methods for
-      nested resources.
+    excerpt: User transformers expose `transform()` plus `includeX()` methods for nested resources.
   object_value: transformer pattern with include methods
-  note: 'description: User transformers expose `transform()` plus `includeX()` methods
-    for nested resources.; location: src/TransformerAbstract.php'
+  note: 'description: User transformers expose `transform()` plus `includeX()` methods for nested resources.; location: src/TransformerAbstract.php'
   fact_id: fact::99051d5da4b933d80db74583

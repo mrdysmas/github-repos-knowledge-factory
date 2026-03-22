@@ -111,8 +111,7 @@ facts:
     source_file: repos/knowledge/deep/weaviate__weaviate.yaml
     excerpt: External interfaces, client adapters, storage-facing repos, and handlers.
   object_value: adapters
-  note: 'responsibility: External interfaces, client adapters, storage-facing repos,
-    and handlers.; key_files: adapters'
+  note: 'responsibility: External interfaces, client adapters, storage-facing repos, and handlers.; key_files: adapters'
   fact_id: fact::075e01e3da9a843d2016064e
 - fact_type: component
   predicate: has_component
@@ -129,8 +128,7 @@ facts:
     source_file: repos/knowledge/deep/weaviate__weaviate.yaml
     excerpt: Distributed coordination, replication, RPC, and cluster operations.
   object_value: cluster and grpc
-  note: 'responsibility: Distributed coordination, replication, RPC, and cluster operations.;
-    key_files: cluster, grpc'
+  note: 'responsibility: Distributed coordination, replication, RPC, and cluster operations.; key_files: cluster, grpc'
   fact_id: fact::8c790fe857bbfbdda4c40365
 - fact_type: component
   predicate: has_component
@@ -164,8 +162,7 @@ facts:
     source_file: repos/knowledge/deep/weaviate__weaviate.yaml
     excerpt: Extensible vectorization and module integrations.
   object_value: modules
-  note: 'responsibility: Extensible vectorization and module integrations.; key_files:
-    modules'
+  note: 'responsibility: Extensible vectorization and module integrations.; key_files: modules'
   fact_id: fact::6ac35a703b0ad93e18c8e37e
 - fact_type: component
   predicate: has_component
@@ -180,11 +177,10 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[2]
     source_file: repos/knowledge/deep/weaviate__weaviate.yaml
-    excerpt: Core application logic, domain models, schema behavior, and business
-      workflows.
+    excerpt: Core application logic, domain models, schema behavior, and business workflows.
   object_value: usecases and entities
-  note: 'responsibility: Core application logic, domain models, schema behavior, and
-    business workflows.; key_files: usecases, entities'
+  note: 'responsibility: Core application logic, domain models, schema behavior, and business workflows.; key_files: usecases,
+    entities'
   fact_id: fact::9241f276e05ab31eee30a55f
 - fact_type: component
   predicate: has_component
@@ -227,23 +223,6 @@ facts:
   as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/weaviate__weaviate.yaml
-    source_section: core_modules.adapters_layer
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.adapters_layer
-    source_file: repos/knowledge/deep/weaviate__weaviate.yaml
-    excerpt: adapters
-  object_value: adapters
-  note: Handlers, repos, and external-facing adapters.
-  fact_id: fact::f0b4efa11727bbc1857e997d
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/weaviate__weaviate.yaml
     source_section: core_modules.cluster_runtime
     extraction_mode: narrative
   evidence:
@@ -254,23 +233,6 @@ facts:
   object_value: cluster
   note: Cluster coordination and replication subsystems.
   fact_id: fact::05f9f8b2ad1e54b4e622de67
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/weaviate__weaviate.yaml
-    source_section: core_modules.server
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.server
-    source_file: repos/knowledge/deep/weaviate__weaviate.yaml
-    excerpt: cmd/weaviate-server
-  object_value: cmd/weaviate-server
-  note: Primary server entrypoint.
-  fact_id: fact::88a902660a62a77ab16a8a77
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -286,26 +248,8 @@ facts:
     source_file: repos/knowledge/deep/weaviate__weaviate.yaml
     excerpt: Server entrypoint and process bootstrap for the database runtime.
   object_value: cmd/weaviate-server
-  note: 'responsibility: Server entrypoint and process bootstrap for the database
-    runtime.; key_files: cmd/weaviate-server'
+  note: 'responsibility: Server entrypoint and process bootstrap for the database runtime.; key_files: cmd/weaviate-server'
   fact_id: fact::d1343fba990b5f9b02725751
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/weaviate__weaviate.yaml
-    source_section: key_files[3]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[3]
-    source_file: repos/knowledge/deep/weaviate__weaviate.yaml
-    excerpt: cmd/weaviate-server
-  object_value: cmd/weaviate-server
-  note: Main server command.
-  fact_id: fact::eb88c805c60b830b015e6f51
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -357,23 +301,6 @@ facts:
   object_value: usecases
   note: Core business logic for query and schema workflows.
   fact_id: fact::7d076a30adef93f66cc651ef
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/weaviate__weaviate.yaml
-    source_section: key_files[4]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[4]
-    source_file: repos/knowledge/deep/weaviate__weaviate.yaml
-    excerpt: usecases
-  object_value: usecases
-  note: Application logic package tree.
-  fact_id: fact::f5487f20102b3faa187db942
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
@@ -593,10 +520,9 @@ facts:
     source_file: repos/knowledge/deep/weaviate__weaviate.yaml
     excerpt: Batch import throughput drops to near zero under write-heavy load
   object_value: Batch import throughput drops to near zero under write-heavy load
-  note: 'cause: LSM memtable flushes and segment compaction compete with batch writes
-    for I/O; lsm_active_segments grows until compaction catches up; fix: Monitor lsm_memtable_size
-    and lsm_active_segments; reduce batch sizes or add rate limiting; use batch_durations_ms
-    histogram to ide...'
+  note: 'cause: LSM memtable flushes and segment compaction compete with batch writes for I/O; lsm_active_segments grows until
+    compaction catches up; fix: Monitor lsm_memtable_size and lsm_active_segments; reduce batch sizes or add rate limiting;
+    use batch_durations_ms histogram to ide...'
   fact_id: fact::40d677df549b4ccaae1c53dd
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -611,13 +537,10 @@ facts:
   - kind: file_block
     ref: troubleshooting[0]
     source_file: repos/knowledge/deep/weaviate__weaviate.yaml
-    excerpt: Shard remains in LOADING state and queries against that collection time
-      out
-  object_value: Shard remains in LOADING state and queries against that collection
-    time out
-  note: 'cause: Shards load concurrently on startup; database_shards_loading metric
-    stays elevated when I/O throughput is insufficient to restore HNSW index from
-    disk within the query timeout; fix: Monitor startup_progress and startup_diskio_throughput
+    excerpt: Shard remains in LOADING state and queries against that collection time out
+  object_value: Shard remains in LOADING state and queries against that collection time out
+  note: 'cause: Shards load concurrently on startup; database_shards_loading metric stays elevated when I/O throughput is
+    insufficient to restore HNSW index from disk within the query timeout; fix: Monitor startup_progress and startup_diskio_throughput
     Prometheus metrics; reduce max_co...'
   fact_id: fact::4745f9727a3ccfe3f95ee6c0
 - fact_type: failure_mode
@@ -633,13 +556,10 @@ facts:
   - kind: file_block
     ref: troubleshooting[1]
     source_file: repos/knowledge/deep/weaviate__weaviate.yaml
-    excerpt: Vector index tombstone count grows steadily and delete-heavy workloads
-      slow down
-  object_value: Vector index tombstone count grows steadily and delete-heavy workloads
-    slow down
-  note: 'cause: Deleted objects leave tombstones in the HNSW index; tombstone cleanup
-    cycles (vector_index_tombstone_cycle_progress metric) run asynchronously and may
-    lag behind high delete rates; fix: Monitor vector_index_tombstones gauge per shard;
+    excerpt: Vector index tombstone count grows steadily and delete-heavy workloads slow down
+  object_value: Vector index tombstone count grows steadily and delete-heavy workloads slow down
+  note: 'cause: Deleted objects leave tombstones in the HNSW index; tombstone cleanup cycles (vector_index_tombstone_cycle_progress
+    metric) run asynchronously and may lag behind high delete rates; fix: Monitor vector_index_tombstones gauge per shard;
     allow the tombstone cleanup cycle t...'
   fact_id: fact::330b427989f5f1187dd346ce
 - fact_type: failure_mode
@@ -657,9 +577,8 @@ facts:
     source_file: repos/knowledge/deep/weaviate__weaviate.yaml
     excerpt: gRPC connection refused on port expected to be available
   object_value: gRPC connection refused on port expected to be available
-  note: 'cause: Weaviate startup wiring in configure_api.go initializes gRPC after
-    REST; if module registration or schema recovery fails, gRPC server may not start;
-    fix: Check startup logs for errors in MakeAppState() module registration phase;
+  note: 'cause: Weaviate startup wiring in configure_api.go initializes gRPC after REST; if module registration or schema
+    recovery fails, gRPC server may not start; fix: Check startup logs for errors in MakeAppState() module registration phase;
     ensure all required module environment va...'
   fact_id: fact::54fbc321dfd021302bb2cfda
 - fact_type: implementation_pattern
@@ -675,11 +594,9 @@ facts:
   - kind: file_block
     ref: client
     source_file: repos/knowledge/deep/weaviate__weaviate.yaml
-    excerpt: Generated or organized client operations live separately from server
-      usecase logic.
+    excerpt: Generated or organized client operations live separately from server usecase logic.
   object_value: Client and API surface partitioning
-  note: 'description: Generated or organized client operations live separately from
-    server usecase logic.; location: client'
+  note: 'description: Generated or organized client operations live separately from server usecase logic.; location: client'
   fact_id: fact::2237f99e009780ed1f8a5f8e
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -713,8 +630,7 @@ facts:
     source_file: repos/knowledge/deep/weaviate__weaviate.yaml
     excerpt: Distributed concerns are factored into dedicated cluster and grpc packages.
   object_value: Clustered service decomposition
-  note: 'description: Distributed concerns are factored into dedicated cluster and
-    grpc packages.; location: cluster'
+  note: 'description: Distributed concerns are factored into dedicated cluster and grpc packages.; location: cluster'
   fact_id: fact::f9d537f485da2a6c88ce8635
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -729,12 +645,11 @@ facts:
   - kind: file_block
     ref: adapters (vector index subsystem)
     source_file: repos/knowledge/deep/weaviate__weaviate.yaml
-    excerpt: Primary ANN index algorithm for all vector collections; shard loading,
-      tombstone cleanup, and startup metrics all reference the HNSW graph index directly.
+    excerpt: Primary ANN index algorithm for all vector collections; shard loading, tombstone cleanup, and startup metrics
+      all reference the HNSW graph index directly.
   object_value: HNSW vector index
-  note: 'description: Primary ANN index algorithm for all vector collections; shard
-    loading, tombstone cleanup, and startup metrics all reference the HNSW graph index
-    directly.; location: adapters (vector index subsystem)'
+  note: 'description: Primary ANN index algorithm for all vector collections; shard loading, tombstone cleanup, and startup
+    metrics all reference the HNSW graph index directly.; location: adapters (vector index subsystem)'
   fact_id: fact::08c78d6a7a1c010840f39b85
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -749,11 +664,10 @@ facts:
   - kind: file_block
     ref: adapters
     source_file: repos/knowledge/deep/weaviate__weaviate.yaml
-    excerpt: External interfaces, application logic, and domain types are separated
-      into dedicated top-level packages.
+    excerpt: External interfaces, application logic, and domain types are separated into dedicated top-level packages.
   object_value: Layered adapters/usecases/entities architecture
-  note: 'description: External interfaces, application logic, and domain types are
-    separated into dedicated top-level packages.; location: adapters'
+  note: 'description: External interfaces, application logic, and domain types are separated into dedicated top-level packages.;
+    location: adapters'
   fact_id: fact::48dc36f7f2c5bfb2ead4abc6
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -787,8 +701,7 @@ facts:
     source_file: repos/knowledge/deep/weaviate__weaviate.yaml
     excerpt: Optional vectorization and integration features are organized under modules.
   object_value: Pluggable modules layout
-  note: 'description: Optional vectorization and integration features are organized
-    under modules.; location: modules'
+  note: 'description: Optional vectorization and integration features are organized under modules.; location: modules'
   fact_id: fact::ac92d52363a7c99f4d247bb8
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -803,10 +716,8 @@ facts:
   - kind: file_block
     ref: testing.structure.line[0]
     source_file: repos/knowledge/deep/weaviate__weaviate.yaml
-    excerpt: Repository includes test coverage across server, cluster, modules, and
-      integration scenarios.
-  object_value: Repository includes test coverage across server, cluster, modules,
-    and integration scenarios.
+    excerpt: Repository includes test coverage across server, cluster, modules, and integration scenarios.
+  object_value: Repository includes test coverage across server, cluster, modules, and integration scenarios.
   note: 'testing metadata: structure'
   fact_id: fact::fb64af3130a3d9d93c124bc5
 - fact_type: implementation_pattern
@@ -839,11 +750,10 @@ facts:
   - kind: file_block
     ref: cmd/weaviate-server
     source_file: repos/knowledge/deep/weaviate__weaviate.yaml
-    excerpt: The main server binary is isolated under cmd with package-level infrastructure
-      below it.
+    excerpt: The main server binary is isolated under cmd with package-level infrastructure below it.
   object_value: Server bootstrap via cmd package
-  note: 'description: The main server binary is isolated under cmd with package-level
-    infrastructure below it.; location: cmd/weaviate-server'
+  note: 'description: The main server binary is isolated under cmd with package-level infrastructure below it.; location:
+    cmd/weaviate-server'
   fact_id: fact::4b2a4a1899886ccd6152157e
 - fact_type: operational_task
   predicate: supports_task
@@ -862,57 +772,6 @@ facts:
   object_value: go build ./cmd/weaviate-server
   note: Build the main Weaviate server binary.
   fact_id: fact::484c5b88c5967845d3e31f06
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/weaviate__weaviate.yaml
-    source_section: quick_reference[0].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[0].line[0]
-    source_file: repos/knowledge/deep/weaviate__weaviate.yaml
-    excerpt: go build ./cmd/weaviate-server
-  object_value: go build ./cmd/weaviate-server
-  note: 'topic: Build server'
-  fact_id: fact::faead7038bc48580375d0977
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/weaviate__weaviate.yaml
-    source_section: testing.test_patterns[0].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: testing.test_patterns[0].line[0]
-    source_file: repos/knowledge/deep/weaviate__weaviate.yaml
-    excerpt: go test ./...
-  object_value: go test ./...
-  note: testing command
-  fact_id: fact::150b3967bfd370159c2fe86c
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/weaviate__weaviate.yaml
-    source_section: quick_reference[1].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[1].line[0]
-    source_file: repos/knowledge/deep/weaviate__weaviate.yaml
-    excerpt: go test ./...
-  object_value: go test ./...
-  note: 'topic: Run tests'
-  fact_id: fact::3724b36dea823605466ae9f0
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command

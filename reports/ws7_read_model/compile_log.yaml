@@ -1,7 +1,7 @@
 compile_run:
-  started_at_utc: '2026-03-22T08:20:42Z'
-  finished_at_utc: '2026-03-22T08:20:52Z'
-  duration_ms: 10371
+  started_at_utc: '2026-03-22T08:47:07Z'
+  finished_at_utc: '2026-03-22T08:47:17Z'
+  duration_ms: 9757
   result: ok
   force_flag: false
 source_files:
@@ -18,9 +18,9 @@ source_files:
     edge_count: 152
   facts:
     path: master_deep_facts.yaml
-    sha256: 5acf103c3177ea90730256fe3320ad8790970c2fb960b78005ae1fe606344851
+    sha256: dd740da2866ff9d216e6c1e5b783806adf714ca2fc0635cbff5f989ed2d54ec3
     generated_at_utc: '2026-03-22T00:00:00Z'
-    fact_count: 6310
+    fact_count: 6000
 gates:
   snapshot_consistency:
     status: pass
@@ -31,12 +31,12 @@ gates:
       repos: 126
       nodes: 140
       edges: 152
-      facts: 6310
+      facts: 6000
     actual:
       repos: 126
       nodes: 140
       edges: 152
-      facts: 6310
+      facts: 6000
   orphan_edge_detection:
     status: pass
     orphan_count: 0
@@ -60,16 +60,16 @@ gates:
     - check: first_fact_node_lookup
       status: pass
       node_id: repo::1panel-dev/maxkb
-      rows: 35
+      rows: 30
   deterministic_rebuild:
     status: pass
     detail: all compared tables match
 output:
   path: knowledge.db
-  size_bytes: 9187328
+  size_bytes: 8806400
   table_counts:
     repos: 126
     nodes: 140
     edges: 152
-    facts: 6310
+    facts: 6000
     compile_metadata: 1

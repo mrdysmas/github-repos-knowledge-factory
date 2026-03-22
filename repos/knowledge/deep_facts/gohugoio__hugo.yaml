@@ -259,8 +259,7 @@ facts:
     source_file: repos/knowledge/deep/gohugoio__hugo.yaml
     excerpt: module system
   object_value: module system
-  note: Reuses content/assets/templates/config across projects via module imports
-    and mounts.
+  note: Reuses content/assets/templates/config across projects via module imports and mounts.
   fact_id: fact::cc3691e974e632507c388f44
 - fact_type: component
   predicate: has_component
@@ -350,23 +349,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/gohugoio__hugo.yaml
-    source_section: core_modules.command_layer
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.command_layer
-    source_file: repos/knowledge/deep/gohugoio__hugo.yaml
-    excerpt: commands/
-  object_value: commands/
-  note: CLI command definitions and runtime command plumbing.
-  fact_id: fact::0c78cacf39da16772cf38be6
-- fact_type: component
-  predicate: has_component
-  object_kind: path
   confidence: 0.78
   as_of: '2026-03-04'
   provenance:
@@ -379,9 +361,8 @@ facts:
     source_file: repos/knowledge/deep/gohugoio__hugo.yaml
     excerpt: CLI commands for build, server, new, mod, deploy, config, and utilities.
   object_value: commands/
-  note: 'responsibility: CLI commands for build, server, new, mod, deploy, config,
-    and utilities.; key_files: commands/commands.go, commands/server.go, commands/new.go,
-    commands/mod.go'
+  note: 'responsibility: CLI commands for build, server, new, mod, deploy, config, and utilities.; key_files: commands/commands.go,
+    commands/server.go, commands/new.go, commands/mod.go'
   fact_id: fact::6c7dda17c361bfeddc8a7202
 - fact_type: component
   predicate: has_component
@@ -437,23 +418,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/gohugoio__hugo.yaml
-    source_section: core_modules.config_layer
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.config_layer
-    source_file: repos/knowledge/deep/gohugoio__hugo.yaml
-    excerpt: config/
-  object_value: config/
-  note: Settings model and loading.
-  fact_id: fact::20098ce73335041bf3a01a81
-- fact_type: component
-  predicate: has_component
-  object_kind: path
   confidence: 0.78
   as_of: '2026-03-04'
   provenance:
@@ -466,8 +430,8 @@ facts:
     source_file: repos/knowledge/deep/gohugoio__hugo.yaml
     excerpt: Typed config loading/merging including module-aware config phases.
   object_value: config/
-  note: 'responsibility: Typed config loading/merging including module-aware config
-    phases.; key_files: config/allconfig/load.go, config/allconfig/allconfig.go'
+  note: 'responsibility: Typed config loading/merging including module-aware config phases.; key_files: config/allconfig/load.go,
+    config/allconfig/allconfig.go'
   fact_id: fact::f004e216f5943ac5bd45e0b5
 - fact_type: component
   predicate: has_component
@@ -518,43 +482,8 @@ facts:
     source_file: repos/knowledge/deep/gohugoio__hugo.yaml
     excerpt: Core site build engine, content pipeline, page model, and output generation.
   object_value: hugolib/
-  note: 'responsibility: Core site build engine, content pipeline, page model, and
-    output generation.; key_files: hugolib/'
+  note: 'responsibility: Core site build engine, content pipeline, page model, and output generation.; key_files: hugolib/'
   fact_id: fact::50c714d6484d49dc174d0758
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/gohugoio__hugo.yaml
-    source_section: key_files[5]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[5]
-    source_file: repos/knowledge/deep/gohugoio__hugo.yaml
-    excerpt: hugolib/
-  object_value: hugolib/
-  note: Core build engine.
-  fact_id: fact::70979a0e445eae02b3e7c398
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/gohugoio__hugo.yaml
-    source_section: core_modules.build_engine
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.build_engine
-    source_file: repos/knowledge/deep/gohugoio__hugo.yaml
-    excerpt: hugolib/
-  object_value: hugolib/
-  note: Core site compilation.
-  fact_id: fact::8e45465a187ab30b16a52517
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -570,43 +499,8 @@ facts:
     source_file: repos/knowledge/deep/gohugoio__hugo.yaml
     excerpt: Entrypoint that delegates to CLI command execution package.
   object_value: main.go
-  note: 'responsibility: Entrypoint that delegates to CLI command execution package.;
-    key_files: main.go'
+  note: 'responsibility: Entrypoint that delegates to CLI command execution package.; key_files: main.go'
   fact_id: fact::9882e8a107b5e45c3b79cfd4
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/gohugoio__hugo.yaml
-    source_section: key_files[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[0]
-    source_file: repos/knowledge/deep/gohugoio__hugo.yaml
-    excerpt: main.go
-  object_value: main.go
-  note: Entry binary.
-  fact_id: fact::d457870996a0d5c374c2e096
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/gohugoio__hugo.yaml
-    source_section: core_modules.markup_layer
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.markup_layer
-    source_file: repos/knowledge/deep/gohugoio__hugo.yaml
-    excerpt: markup/
-  object_value: markup/
-  note: Markdown/rendering pipeline.
-  fact_id: fact::423223d92f0894cb2d292075
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -622,26 +516,8 @@ facts:
     source_file: repos/knowledge/deep/gohugoio__hugo.yaml
     excerpt: Markdown and rendering configuration (including Goldmark integration).
   object_value: markup/
-  note: 'responsibility: Markdown and rendering configuration (including Goldmark
-    integration).; key_files: markup/'
+  note: 'responsibility: Markdown and rendering configuration (including Goldmark integration).; key_files: markup/'
   fact_id: fact::bc3dba3b30a30dd720b30bf7
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/gohugoio__hugo.yaml
-    source_section: core_modules.module_layer
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.module_layer
-    source_file: repos/knowledge/deep/gohugoio__hugo.yaml
-    excerpt: modules/
-  object_value: modules/
-  note: Module dependency and mount integration.
-  fact_id: fact::0959121d8a064087e90c6f0c
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -657,8 +533,7 @@ facts:
     source_file: repos/knowledge/deep/gohugoio__hugo.yaml
     excerpt: Dependency/module collection, mounts, and project composition.
   object_value: modules/
-  note: 'responsibility: Dependency/module collection, mounts, and project composition.;
-    key_files: modules/, commands/mod.go'
+  note: 'responsibility: Dependency/module collection, mounts, and project composition.; key_files: modules/, commands/mod.go'
   fact_id: fact::4b6e2d256f167895ea880186
 - fact_type: component
   predicate: has_component
@@ -675,26 +550,8 @@ facts:
     source_file: repos/knowledge/deep/gohugoio__hugo.yaml
     excerpt: Template functions, render hooks, and embedded template behavior.
   object_value: tpl/
-  note: 'responsibility: Template functions, render hooks, and embedded template behavior.;
-    key_files: tpl/'
+  note: 'responsibility: Template functions, render hooks, and embedded template behavior.; key_files: tpl/'
   fact_id: fact::050f8902bc40457d66865cce
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/gohugoio__hugo.yaml
-    source_section: core_modules.template_layer
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.template_layer
-    source_file: repos/knowledge/deep/gohugoio__hugo.yaml
-    excerpt: tpl/
-  object_value: tpl/
-  note: Template and shortcode engine.
-  fact_id: fact::53ca65234f4a4a5daaa70373
 - fact_type: config_option
   predicate: has_config_option
   object_kind: command
@@ -829,8 +686,7 @@ facts:
     source_file: repos/knowledge/deep/gohugoio__hugo.yaml
     excerpt: baseURL
   object_value: baseURL
-  note: 'default: required in most deployments; Canonical base URL for generated links
-    and site metadata.'
+  note: 'default: required in most deployments; Canonical base URL for generated links and site metadata.'
   fact_id: fact::14e3224efde481ca0565b5cf
 - fact_type: config_option
   predicate: has_config_option
@@ -1017,10 +873,9 @@ facts:
     source_file: repos/knowledge/deep/gohugoio__hugo.yaml
     excerpt: Build fails with template execution error
   object_value: Build fails with template execution error
-  note: 'cause: Template references an undefined variable or calls a function with
-    wrong argument types; errors surface with file and line number in Hugo output.;
-    fix: Read the error message for the template file and line; use {{ printf "%T
-    %v" . }} to inspect the data context; run hug...'
+  note: 'cause: Template references an undefined variable or calls a function with wrong argument types; errors surface with
+    file and line number in Hugo output.; fix: Read the error message for the template file and line; use {{ printf "%T %v"
+    . }} to inspect the data context; run hug...'
   fact_id: fact::8a54608e0c081e16c20a0aea
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -1037,10 +892,9 @@ facts:
     source_file: repos/knowledge/deep/gohugoio__hugo.yaml
     excerpt: Content pages not appearing in the generated site
   object_value: Content pages not appearing in the generated site
-  note: 'cause: Front matter has draft: true or a future date with buildFuture: false
-    (default); or content is outside the configured contentDir.; fix: Add --buildDrafts
-    and/or --buildFuture flags to include excluded content; verify front matter date
-    format and draft status.'
+  note: 'cause: Front matter has draft: true or a future date with buildFuture: false (default); or content is outside the
+    configured contentDir.; fix: Add --buildDrafts and/or --buildFuture flags to include excluded content; verify front matter
+    date format and draft status.'
   fact_id: fact::c5a49a50a8ca239fd84ef44b
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -1057,9 +911,8 @@ facts:
     source_file: repos/knowledge/deep/gohugoio__hugo.yaml
     excerpt: Generated links are absolute paths to localhost or wrong domain
   object_value: Generated links are absolute paths to localhost or wrong domain
-  note: 'cause: baseURL not set or set to "/" in config; Hugo uses baseURL for all
-    canonical link generation.; fix: Set baseURL to the production URL in hugo.toml/config.yaml;
-    use --baseURL flag override for preview builds.'
+  note: 'cause: baseURL not set or set to "/" in config; Hugo uses baseURL for all canonical link generation.; fix: Set baseURL
+    to the production URL in hugo.toml/config.yaml; use --baseURL flag override for preview builds.'
   fact_id: fact::ffb76f5134adeb7988c2147e
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -1076,9 +929,8 @@ facts:
     source_file: repos/knowledge/deep/gohugoio__hugo.yaml
     excerpt: Theme or module not found error at build time
   object_value: Theme or module not found error at build time
-  note: 'cause: Hugo module dependencies not fetched; or theme directory missing from
-    themes/ and not configured as a module.; fix: Run hugo mod get to fetch module
-    dependencies; verify go.mod and config module imports are correct; run hugo mod
+  note: 'cause: Hugo module dependencies not fetched; or theme directory missing from themes/ and not configured as a module.;
+    fix: Run hugo mod get to fetch module dependencies; verify go.mod and config module imports are correct; run hugo mod
     tidy to clean up stale references.'
   fact_id: fact::0e0e15caf8b471e22e2aa7b2
 - fact_type: failure_mode
@@ -1096,9 +948,9 @@ facts:
     source_file: repos/knowledge/deep/gohugoio__hugo.yaml
     excerpt: hugo server does not pick up file changes / rebuild is stale
   object_value: hugo server does not pick up file changes / rebuild is stale
-  note: 'cause: Watch path not covering the changed file location; or OS file notification
-    limit hit on Linux.; fix: Check that the modified file is inside contentDir, layoutDir,
-    or a mounted module path; on Linux increase inotify watch limit with sysctl fs.inotify.max_user_watches.'
+  note: 'cause: Watch path not covering the changed file location; or OS file notification limit hit on Linux.; fix: Check
+    that the modified file is inside contentDir, layoutDir, or a mounted module path; on Linux increase inotify watch limit
+    with sysctl fs.inotify.max_user_watches.'
   fact_id: fact::f0eb0d7ed8588fc67f714f44
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1115,8 +967,7 @@ facts:
     source_file: repos/knowledge/deep/gohugoio__hugo.yaml
     excerpt: Root command wires many discrete command implementations.
   object_value: Command composition via simplecobra
-  note: 'description: Root command wires many discrete command implementations.; location:
-    commands/commands.go'
+  note: 'description: Root command wires many discrete command implementations.; location: commands/commands.go'
   fact_id: fact::b4e7dca9e24d6fcde70237e0
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1133,8 +984,7 @@ facts:
     source_file: repos/knowledge/deep/gohugoio__hugo.yaml
     excerpt: Config loader merges project and module config before build.
   object_value: Config loaded in multiple passes
-  note: 'description: Config loader merges project and module config before build.;
-    location: config/allconfig/load.go'
+  note: 'description: Config loader merges project and module config before build.; location: config/allconfig/load.go'
   fact_id: fact::9cadc2a2e536e6d30d13922a
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1168,8 +1018,8 @@ facts:
     source_file: repos/knowledge/deep/gohugoio__hugo.yaml
     excerpt: Module/client code maps source directories into Hugo's component folders.
   object_value: Module mount remapping
-  note: 'description: Module/client code maps source directories into Hugo''s component
-    folders.; location: config/allconfig/load.go and hugolib/filesystems/basefs.go'
+  note: 'description: Module/client code maps source directories into Hugo''s component folders.; location: config/allconfig/load.go
+    and hugolib/filesystems/basefs.go'
   fact_id: fact::b827ba95c57374052a61d420
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1186,8 +1036,7 @@ facts:
     source_file: repos/knowledge/deep/gohugoio__hugo.yaml
     excerpt: Server command tracks file events and performs targeted rebuilds.
   object_value: Watch + incremental rebuild loop
-  note: 'description: Server command tracks file events and performs targeted rebuilds.;
-    location: commands/server.go'
+  note: 'description: Server command tracks file events and performs targeted rebuilds.; location: commands/server.go'
   fact_id: fact::18571e7174deb89c4ac32886
 - fact_type: implementation_pattern
   predicate: implements_pattern

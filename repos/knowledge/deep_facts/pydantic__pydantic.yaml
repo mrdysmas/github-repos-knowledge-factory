@@ -201,23 +201,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/pydantic__pydantic.yaml
-    source_section: core_modules.internals
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.internals
-    source_file: repos/knowledge/deep/pydantic__pydantic.yaml
-    excerpt: pydantic/_internal
-  object_value: pydantic/_internal
-  note: Private engine modules for config, fields, decorators, and serializers.
-  fact_id: fact::028764b49b7c96a1b65f9340
-- fact_type: component
-  predicate: has_component
-  object_kind: path
   confidence: 0.78
   as_of: '2026-03-05'
   provenance:
@@ -230,44 +213,9 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic.yaml
     excerpt: Implements schema generation, config handling, and model internals.
   object_value: pydantic/_internal
-  note: 'responsibility: Implements schema generation, config handling, and model
-    internals.; key_files: pydantic/_internal/_generate_schema.py, pydantic/_internal/_fields.py,
-    pydantic/_internal/_serializers.py'
+  note: 'responsibility: Implements schema generation, config handling, and model internals.; key_files: pydantic/_internal/_generate_schema.py,
+    pydantic/_internal/_fields.py, pydantic/_internal/_serializers.py'
   fact_id: fact::17fe93021f738e28191ef16c
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/pydantic__pydantic.yaml
-    source_section: key_files[5]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[5]
-    source_file: repos/knowledge/deep/pydantic__pydantic.yaml
-    excerpt: pydantic/json_schema.py
-  object_value: pydantic/json_schema.py
-  note: JSON Schema generation pipeline.
-  fact_id: fact::5e1280ddece787f619f3d7d2
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/pydantic__pydantic.yaml
-    source_section: core_modules.schema_generation
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.schema_generation
-    source_file: repos/knowledge/deep/pydantic__pydantic.yaml
-    excerpt: pydantic/json_schema.py
-  object_value: pydantic/json_schema.py
-  note: 'JSON Schema generation and schema mode handling. Submodules: pydantic/_internal/_generate_schema.py'
-  fact_id: fact::8225426df227ae00219e0a0b
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -283,44 +231,8 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic.yaml
     excerpt: Converts core schemas into JSON Schema representations.
   object_value: pydantic/json_schema.py
-  note: 'responsibility: Converts core schemas into JSON Schema representations.;
-    key_files: pydantic/json_schema.py'
+  note: 'responsibility: Converts core schemas into JSON Schema representations.; key_files: pydantic/json_schema.py'
   fact_id: fact::bda2ac6442fe8cf5dc06d2c1
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/pydantic__pydantic.yaml
-    source_section: core_modules.model_runtime
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.model_runtime
-    source_file: repos/knowledge/deep/pydantic__pydantic.yaml
-    excerpt: pydantic/main.py
-  object_value: pydantic/main.py
-  note: 'BaseModel definitions and model lifecycle methods. Submodules: pydantic/root_model.py,
-    pydantic/fields.py'
-  fact_id: fact::02db6b77efe26d58072176d6
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/pydantic__pydantic.yaml
-    source_section: key_files[3]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[3]
-    source_file: repos/knowledge/deep/pydantic__pydantic.yaml
-    excerpt: pydantic/main.py
-  object_value: pydantic/main.py
-  note: BaseModel and create_model implementation.
-  fact_id: fact::9fea4c8ceec959bdb4dbba94
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -336,8 +248,8 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic.yaml
     excerpt: Defines BaseModel runtime behavior and dynamic model creation entrypoints.
   object_value: pydantic/main.py
-  note: 'responsibility: Defines BaseModel runtime behavior and dynamic model creation
-    entrypoints.; key_files: pydantic/main.py, pydantic/_internal/_model_construction.py'
+  note: 'responsibility: Defines BaseModel runtime behavior and dynamic model creation entrypoints.; key_files: pydantic/main.py,
+    pydantic/_internal/_model_construction.py'
   fact_id: fact::cac384c5a37221f9e0c2e848
 - fact_type: component
   predicate: has_component
@@ -354,8 +266,7 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic.yaml
     excerpt: Provides plugin hooks around schema validation internals.
   object_value: pydantic/plugin
-  note: 'responsibility: Provides plugin hooks around schema validation internals.;
-    key_files: pydantic/plugin/_schema_validator.py'
+  note: 'responsibility: Provides plugin hooks around schema validation internals.; key_files: pydantic/plugin/_schema_validator.py'
   fact_id: fact::90df1da967c4b9359d755828
 - fact_type: component
   predicate: has_component
@@ -372,44 +283,9 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic.yaml
     excerpt: Builds validation and serialization adapters for arbitrary Python types.
   object_value: pydantic/type_adapter.py
-  note: 'responsibility: Builds validation and serialization adapters for arbitrary
-    Python types.; key_files: pydantic/type_adapter.py, pydantic/_internal/_generate_schema.py'
+  note: 'responsibility: Builds validation and serialization adapters for arbitrary Python types.; key_files: pydantic/type_adapter.py,
+    pydantic/_internal/_generate_schema.py'
   fact_id: fact::16d60291d64cd34f24322f17
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/pydantic__pydantic.yaml
-    source_section: core_modules.type_adaptation
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.type_adaptation
-    source_file: repos/knowledge/deep/pydantic__pydantic.yaml
-    excerpt: pydantic/type_adapter.py
-  object_value: pydantic/type_adapter.py
-  note: 'TypeAdapter implementation for arbitrary type validation and dumps. Submodules:
-    pydantic/_internal/_namespace_utils.py, pydantic/_internal/_typing_extra.py'
-  fact_id: fact::a13b29ffe0b60d890366910a
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/pydantic__pydantic.yaml
-    source_section: key_files[4]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[4]
-    source_file: repos/knowledge/deep/pydantic__pydantic.yaml
-    excerpt: pydantic/type_adapter.py
-  object_value: pydantic/type_adapter.py
-  note: TypeAdapter runtime implementation.
-  fact_id: fact::e7f34ecf87d423558c14b5c4
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -595,8 +471,7 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic.yaml
     excerpt: TypeAdapter
   object_value: TypeAdapter
-  note: Validate and serialize arbitrary Python types without a model class.; class
-    TypeAdapter; pydantic/type_adapter.py
+  note: Validate and serialize arbitrary Python types without a model class.; class TypeAdapter; pydantic/type_adapter.py
   fact_id: fact::606a324b2293b2c9e62869dc
 - fact_type: extension_point
   predicate: has_extension_point
@@ -766,8 +641,7 @@ facts:
     source_file: repos/knowledge/deep/pydantic__pydantic.yaml
     excerpt: validate_call
   object_value: validate_call
-  note: Decorator that validates callable inputs and outputs.; def validate_call(...);
-    pydantic/validate_call_decorator.py
+  note: Decorator that validates callable inputs and outputs.; def validate_call(...); pydantic/validate_call_decorator.py
   fact_id: fact::89fcba911cef9f08a171beda
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -782,11 +656,10 @@ facts:
   - kind: file_block
     ref: pydantic/aliases.py
     source_file: repos/knowledge/deep/pydantic__pydantic.yaml
-    excerpt: Alias metadata and field mapping logic are reused across validation and
-      serialization flows.
+    excerpt: Alias metadata and field mapping logic are reused across validation and serialization flows.
   object_value: Alias-aware field reconstruction
-  note: 'description: Alias metadata and field mapping logic are reused across validation
-    and serialization flows.; location: pydantic/aliases.py'
+  note: 'description: Alias metadata and field mapping logic are reused across validation and serialization flows.; location:
+    pydantic/aliases.py'
   fact_id: fact::02b705d43c4e99d391ccbac6
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -801,11 +674,10 @@ facts:
   - kind: file_block
     ref: pydantic/_internal/_generate_schema.py
     source_file: repos/knowledge/deep/pydantic__pydantic.yaml
-    excerpt: Python-side schema generation is compiled into pydantic-core validators
-      and serializers.
+    excerpt: Python-side schema generation is compiled into pydantic-core validators and serializers.
   object_value: Core schema bridge to pydantic-core
-  note: 'description: Python-side schema generation is compiled into pydantic-core
-    validators and serializers.; location: pydantic/_internal/_generate_schema.py'
+  note: 'description: Python-side schema generation is compiled into pydantic-core validators and serializers.; location:
+    pydantic/_internal/_generate_schema.py'
   fact_id: fact::c13d99d9196a4fae5b690e2d
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -820,11 +692,9 @@ facts:
   - kind: file_block
     ref: pydantic/validate_call_decorator.py
     source_file: repos/knowledge/deep/pydantic__pydantic.yaml
-    excerpt: validate_call decorates callables with argument and return validation
-      plumbing.
+    excerpt: validate_call decorates callables with argument and return validation plumbing.
   object_value: Decorator wrapping for callable validation
-  note: 'description: validate_call decorates callables with argument and return validation
-    plumbing.; location: pydantic/validate_call_decorator.py'
+  note: 'description: validate_call decorates callables with argument and return validation plumbing.; location: pydantic/validate_call_decorator.py'
   fact_id: fact::839624c4116ac31fe56d2595
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -839,11 +709,10 @@ facts:
   - kind: file_block
     ref: pydantic/__init__.py
     source_file: repos/knowledge/deep/pydantic__pydantic.yaml
-    excerpt: Top-level symbols are resolved lazily to keep imports organized while
-      preserving public API.
+    excerpt: Top-level symbols are resolved lazily to keep imports organized while preserving public API.
   object_value: Dynamic export routing through module __getattr__
-  note: 'description: Top-level symbols are resolved lazily to keep imports organized
-    while preserving public API.; location: pydantic/__init__.py'
+  note: 'description: Top-level symbols are resolved lazily to keep imports organized while preserving public API.; location:
+    pydantic/__init__.py'
   fact_id: fact::2c2e86f43d6f65748f3a6378
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -875,11 +744,10 @@ facts:
   - kind: file_block
     ref: pydantic/_internal/_model_construction.py
     source_file: repos/knowledge/deep/pydantic__pydantic.yaml
-    excerpt: Model class creation routes through internal construction helpers to
-      build fields and core schema artifacts.
+    excerpt: Model class creation routes through internal construction helpers to build fields and core schema artifacts.
   object_value: Metaclass-driven model assembly
-  note: 'description: Model class creation routes through internal construction helpers
-    to build fields and core schema artifacts.; location: pydantic/_internal/_model_construction.py'
+  note: 'description: Model class creation routes through internal construction helpers to build fields and core schema artifacts.;
+    location: pydantic/_internal/_model_construction.py'
   fact_id: fact::e44bd5e097b9a731e1f86296
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -928,11 +796,10 @@ facts:
   - kind: file_block
     ref: pydantic/_internal/_serializers.py
     source_file: repos/knowledge/deep/pydantic__pydantic.yaml
-    excerpt: Serialization behavior derives from generated schema metadata instead
-      of ad hoc per-field logic.
+    excerpt: Serialization behavior derives from generated schema metadata instead of ad hoc per-field logic.
   object_value: Schema-first serialization
-  note: 'description: Serialization behavior derives from generated schema metadata
-    instead of ad hoc per-field logic.; location: pydantic/_internal/_serializers.py'
+  note: 'description: Serialization behavior derives from generated schema metadata instead of ad hoc per-field logic.; location:
+    pydantic/_internal/_serializers.py'
   fact_id: fact::206c6e146d44c1cdaa07a935
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -947,11 +814,9 @@ facts:
   - kind: file_block
     ref: pydantic/main.py
     source_file: repos/knowledge/deep/pydantic__pydantic.yaml
-    excerpt: Validation pathways are parameterized by strictness and extra handling
-      semantics.
+    excerpt: Validation pathways are parameterized by strictness and extra handling semantics.
   object_value: Strict-vs-lax validation modes
-  note: 'description: Validation pathways are parameterized by strictness and extra
-    handling semantics.; location: pydantic/main.py'
+  note: 'description: Validation pathways are parameterized by strictness and extra handling semantics.; location: pydantic/main.py'
   fact_id: fact::47d7543eaad6c318c648eaa8
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -973,23 +838,6 @@ facts:
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/pydantic__pydantic.yaml
-    source_section: quick_reference[3].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[3].line[0]
-    source_file: repos/knowledge/deep/pydantic__pydantic.yaml
-    excerpt: make docs
-  object_value: make docs
-  note: 'topic: Build docs'
-  fact_id: fact::b3a65620099058145590ce9f
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
   confidence: 0.68
   as_of: '2026-03-05'
   provenance:
@@ -1004,23 +852,6 @@ facts:
   object_value: make docs
   note: Build documentation in strict mode.
   fact_id: fact::f12a4241b2684c949784fd08
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/pydantic__pydantic.yaml
-    source_section: quick_reference[0].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[0].line[0]
-    source_file: repos/knowledge/deep/pydantic__pydantic.yaml
-    excerpt: make install
-  object_value: make install
-  note: 'topic: Install development environment'
-  fact_id: fact::9578e52f79103059e4582a52
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
@@ -1041,23 +872,6 @@ facts:
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/pydantic__pydantic.yaml
-    source_section: quick_reference[2].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[2].line[0]
-    source_file: repos/knowledge/deep/pydantic__pydantic.yaml
-    excerpt: make lint
-  object_value: make lint
-  note: 'topic: Run lint suite'
-  fact_id: fact::15f39c08b8590d9cdb84b11f
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
   confidence: 0.68
   as_of: '2026-03-05'
   provenance:
@@ -1072,23 +886,6 @@ facts:
   object_value: make lint
   note: Run python and rust lint tasks.
   fact_id: fact::7e1a120094fbc33afe3f8ef6
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/pydantic__pydantic.yaml
-    source_section: quick_reference[1].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[1].line[0]
-    source_file: repos/knowledge/deep/pydantic__pydantic.yaml
-    excerpt: make test
-  object_value: make test
-  note: 'topic: Run core test suite'
-  fact_id: fact::53003c67b0950bcb90cb9bbc
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command

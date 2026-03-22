@@ -41,10 +41,8 @@ facts:
   - kind: file_block
     ref: key_features[0]
     source_file: repos/knowledge/deep/tmux__tmux.yaml
-    excerpt: Client-server architecture with shared sessions for multiple attached
-      clients.
-  object_value: Client-server architecture with shared sessions for multiple attached
-    clients.
+    excerpt: Client-server architecture with shared sessions for multiple attached clients.
+  object_value: Client-server architecture with shared sessions for multiple attached clients.
   fact_id: fact::85590f064ac7ba9dd28b10f8
 - fact_type: component
   predicate: has_component
@@ -75,10 +73,8 @@ facts:
   - kind: file_block
     ref: key_features[3]
     source_file: repos/knowledge/deep/tmux__tmux.yaml
-    excerpt: Extensive interactive and non-interactive CLI control through tmux.1
-      command set.
-  object_value: Extensive interactive and non-interactive CLI control through tmux.1
-    command set.
+    excerpt: Extensive interactive and non-interactive CLI control through tmux.1 command set.
+  object_value: Extensive interactive and non-interactive CLI control through tmux.1 command set.
   fact_id: fact::c5e2ea38cc78330b03d1dc40
 - fact_type: component
   predicate: has_component
@@ -132,23 +128,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: concept
-  confidence: 0.61
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/tmux__tmux.yaml
-    source_section: languages[0].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: languages[0].line[0]
-    source_file: repos/knowledge/deep/tmux__tmux.yaml
-    excerpt: c
-  object_value: c
-  note: language ecosystem
-  fact_id: fact::102a2df674883deaef864b9a
-- fact_type: component
-  predicate: has_component
-  object_kind: concept
   confidence: 0.66
   as_of: '2026-03-04'
   provenance:
@@ -193,11 +172,9 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[2]
     source_file: repos/knowledge/deep/tmux__tmux.yaml
-    excerpt: Client connection/retry logic, startup handshake, and per-client exit
-      handling.
+    excerpt: Client connection/retry logic, startup handshake, and per-client exit handling.
   object_value: client.c
-  note: 'responsibility: Client connection/retry logic, startup handshake, and per-client
-    exit handling.; key_files: client.c'
+  note: 'responsibility: Client connection/retry logic, startup handshake, and per-client exit handling.; key_files: client.c'
   fact_id: fact::c64a620910e3da802a86072e
 - fact_type: component
   predicate: has_component
@@ -214,8 +191,8 @@ facts:
     source_file: repos/knowledge/deep/tmux__tmux.yaml
     excerpt: Command implementations invoked through command parsing tables.
   object_value: cmd-*.c
-  note: 'responsibility: Command implementations invoked through command parsing tables.;
-    key_files: cmd-new-session.c, cmd-split-window.c, cmd-attach-session.c'
+  note: 'responsibility: Command implementations invoked through command parsing tables.; key_files: cmd-new-session.c, cmd-split-window.c,
+    cmd-attach-session.c'
   fact_id: fact::f6e429d57090a9c044355417
 - fact_type: component
   predicate: has_component
@@ -232,8 +209,7 @@ facts:
     source_file: repos/knowledge/deep/tmux__tmux.yaml
     excerpt: Escape-sequence parser feeding screen model updates.
   object_value: input.c
-  note: 'responsibility: Escape-sequence parser feeding screen model updates.; key_files:
-    input.c'
+  note: 'responsibility: Escape-sequence parser feeding screen model updates.; key_files: input.c'
   fact_id: fact::80471377860f790e428aa86c
 - fact_type: component
   predicate: has_component
@@ -284,8 +260,7 @@ facts:
     source_file: repos/knowledge/deep/tmux__tmux.yaml
     excerpt: Hierarchical option system for server, session, window, and pane scopes.
   object_value: options.c
-  note: 'responsibility: Hierarchical option system for server, session, window, and
-    pane scopes.; key_files: options.c'
+  note: 'responsibility: Hierarchical option system for server, session, window, and pane scopes.; key_files: options.c'
   fact_id: fact::a840deac77a2acc642b964d1
 - fact_type: component
   predicate: has_component
@@ -302,8 +277,7 @@ facts:
     source_file: repos/knowledge/deep/tmux__tmux.yaml
     excerpt: pane screen model
   object_value: pane screen model
-  note: Each pane has a virtual screen and buffers that persist state across redraws
-    and reattachment.
+  note: Each pane has a virtual screen and buffers that persist state across redraws and reattachment.
   fact_id: fact::61244c5cf2099ecc5f709215
 - fact_type: component
   predicate: has_component
@@ -337,8 +311,7 @@ facts:
     source_file: repos/knowledge/deep/tmux__tmux.yaml
     excerpt: server runtime
   object_value: server runtime
-  note: Maintains sessions, windows, panes, key tables, and message log while clients
-    attach/detach.
+  note: Maintains sessions, windows, panes, key tables, and message log while clients attach/detach.
   fact_id: fact::88c7ccb1c8288de2a823441b
 - fact_type: component
   predicate: has_component
@@ -353,11 +326,10 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[1]
     source_file: repos/knowledge/deep/tmux__tmux.yaml
-    excerpt: Long-running server process, accepts AF_UNIX client connections, manages
-      global session/window lifecycle.
+    excerpt: Long-running server process, accepts AF_UNIX client connections, manages global session/window lifecycle.
   object_value: server.c
-  note: 'responsibility: Long-running server process, accepts AF_UNIX client connections,
-    manages global session/window lifecycle.; key_files: server.c'
+  note: 'responsibility: Long-running server process, accepts AF_UNIX client connections, manages global session/window lifecycle.;
+    key_files: server.c'
   fact_id: fact::f762303ca933ee6ab76de5c2
 - fact_type: component
   predicate: has_component
@@ -440,11 +412,10 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[0]
     source_file: repos/knowledge/deep/tmux__tmux.yaml
-    excerpt: CLI entrypoint, argument parsing, socket label/path resolution, and bootstrap
-      into client/server mode.
+    excerpt: CLI entrypoint, argument parsing, socket label/path resolution, and bootstrap into client/server mode.
   object_value: tmux.c
-  note: 'responsibility: CLI entrypoint, argument parsing, socket label/path resolution,
-    and bootstrap into client/server mode.; key_files: tmux.c'
+  note: 'responsibility: CLI entrypoint, argument parsing, socket label/path resolution, and bootstrap into client/server
+    mode.; key_files: tmux.c'
   fact_id: fact::6c0c7bd80f08ea80e901edee
 - fact_type: component
   predicate: has_component
@@ -459,131 +430,10 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[3]
     source_file: repos/knowledge/deep/tmux__tmux.yaml
-    excerpt: Core window and pane data structures, pane IO buffering, and window/pane
-      indexing.
+    excerpt: Core window and pane data structures, pane IO buffering, and window/pane indexing.
   object_value: window.c
-  note: 'responsibility: Core window and pane data structures, pane IO buffering,
-    and window/pane indexing.; key_files: window.c'
+  note: 'responsibility: Core window and pane data structures, pane IO buffering, and window/pane indexing.; key_files: window.c'
   fact_id: fact::bd321d1a3ea4102a25ea5d39
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/tmux__tmux.yaml
-    source_section: key_files[2]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[2]
-    source_file: repos/knowledge/deep/tmux__tmux.yaml
-    excerpt: client.c
-  object_value: client.c
-  note: Client connection logic and exit handling.
-  fact_id: fact::c1f324258da29e08b060baca
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/tmux__tmux.yaml
-    source_section: core_modules.client_runtime
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.client_runtime
-    source_file: repos/knowledge/deep/tmux__tmux.yaml
-    excerpt: client.c
-  object_value: client.c
-  note: Connection management and interactive client behavior.
-  fact_id: fact::ecd9ca857d6de90618d33e3c
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/tmux__tmux.yaml
-    source_section: core_modules.command_handlers
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.command_handlers
-    source_file: repos/knowledge/deep/tmux__tmux.yaml
-    excerpt: cmd-*.c
-  object_value: cmd-*.c
-  note: Concrete command implementations.
-  fact_id: fact::c44e5206c13d045ba778f77f
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/tmux__tmux.yaml
-    source_section: key_files[5]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[5]
-    source_file: repos/knowledge/deep/tmux__tmux.yaml
-    excerpt: input.c
-  object_value: input.c
-  note: Terminal escape parsing.
-  fact_id: fact::2e43acd4bb17f7aeda502401
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/tmux__tmux.yaml
-    source_section: key_files[4]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[4]
-    source_file: repos/knowledge/deep/tmux__tmux.yaml
-    excerpt: options.c
-  object_value: options.c
-  note: Option storage and scope resolution.
-  fact_id: fact::97e7e72a0726ee247ddb9dfc
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/tmux__tmux.yaml
-    source_section: core_modules.server_runtime
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.server_runtime
-    source_file: repos/knowledge/deep/tmux__tmux.yaml
-    excerpt: server.c
-  object_value: server.c
-  note: Event loop, accept, and lifecycle management.
-  fact_id: fact::79d79f4008859ec0f7c448bf
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/tmux__tmux.yaml
-    source_section: key_files[1]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[1]
-    source_file: repos/knowledge/deep/tmux__tmux.yaml
-    excerpt: server.c
-  object_value: server.c
-  note: Server runtime and listener loop.
-  fact_id: fact::a5609edfa79ef6ca6007a04d
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -601,74 +451,6 @@ facts:
   object_value: tmux.1
   note: Canonical command/options/configuration reference.
   fact_id: fact::06e048a47bce56f947362308
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/tmux__tmux.yaml
-    source_section: core_modules.entrypoint
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.entrypoint
-    source_file: repos/knowledge/deep/tmux__tmux.yaml
-    excerpt: tmux.c
-  object_value: tmux.c
-  note: Option parsing and bootstrap.
-  fact_id: fact::361ccd432777ccc73426c41a
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/tmux__tmux.yaml
-    source_section: key_files[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[0]
-    source_file: repos/knowledge/deep/tmux__tmux.yaml
-    excerpt: tmux.c
-  object_value: tmux.c
-  note: Main executable entrypoint and global startup path.
-  fact_id: fact::f9490335612e2b89b88f2d09
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/tmux__tmux.yaml
-    source_section: core_modules.window_model
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.window_model
-    source_file: repos/knowledge/deep/tmux__tmux.yaml
-    excerpt: window.c
-  object_value: window.c
-  note: In-memory model for windows, panes, and links.
-  fact_id: fact::31e70ccc6d0b2b6c93b40757
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/tmux__tmux.yaml
-    source_section: key_files[3]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[3]
-    source_file: repos/knowledge/deep/tmux__tmux.yaml
-    excerpt: window.c
-  object_value: window.c
-  note: Window/pane model and IO buffering.
-  fact_id: fact::38589189f51702053ccb3f60
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -871,8 +653,7 @@ facts:
     source_file: repos/knowledge/deep/tmux__tmux.yaml
     excerpt: default-shell
   object_value: default-shell
-  note: 'default: $SHELL or passwd shell; Shell used for commands/panes when launching
-    new sessions.'
+  note: 'default: $SHELL or passwd shell; Shell used for commands/panes when launching new sessions.'
   fact_id: fact::f32dfbad13d99a6bbfa4df72
 - fact_type: config_option
   predicate: has_config_option
@@ -1059,9 +840,8 @@ facts:
     source_file: repos/knowledge/deep/tmux__tmux.yaml
     excerpt: Configuration changes in ~/.tmux.conf have no effect
   object_value: Configuration changes in ~/.tmux.conf have no effect
-  note: 'cause: The running server is using a cached config; source-file was not run
-    after editing.; fix: Reload with tmux source-file ~/.tmux.conf from inside a session,
-    or use prefix + : to open the command prompt and type source-file ~/.tmux.conf
+  note: 'cause: The running server is using a cached config; source-file was not run after editing.; fix: Reload with tmux
+    source-file ~/.tmux.conf from inside a session, or use prefix + : to open the command prompt and type source-file ~/.tmux.conf
     interactively.'
   fact_id: fact::e45c03b2c4e6ec9de369edfd
 - fact_type: failure_mode
@@ -1079,10 +859,9 @@ facts:
     source_file: repos/knowledge/deep/tmux__tmux.yaml
     excerpt: Garbage characters or broken rendering inside tmux panes
   object_value: Garbage characters or broken rendering inside tmux panes
-  note: 'cause: TERM mismatch between outer terminal and tmux; or a program inside
-    the pane is not handling the tmux-256color terminal type correctly.; fix: Set
-    TERM=xterm-256color in the outer terminal before launching tmux; or add set -g
-    default-terminal "tmux-256color" in tmux.conf.'
+  note: 'cause: TERM mismatch between outer terminal and tmux; or a program inside the pane is not handling the tmux-256color
+    terminal type correctly.; fix: Set TERM=xterm-256color in the outer terminal before launching tmux; or add set -g default-terminal
+    "tmux-256color" in tmux.conf.'
   fact_id: fact::e3d33c47fb1600cd48b0e37b
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -1099,10 +878,9 @@ facts:
     source_file: repos/knowledge/deep/tmux__tmux.yaml
     excerpt: Key bindings not responding or wrong action triggered
   object_value: Key bindings not responding or wrong action triggered
-  note: 'cause: A plugin or config entry rebound the prefix or overrode the binding;
-    or the key table is not the one currently active.; fix: Inspect bindings with
-    tmux list-keys; remove conflicting bind-key entries in tmux.conf; ensure prefix
-    is correctly set.'
+  note: 'cause: A plugin or config entry rebound the prefix or overrode the binding; or the key table is not the one currently
+    active.; fix: Inspect bindings with tmux list-keys; remove conflicting bind-key entries in tmux.conf; ensure prefix is
+    correctly set.'
   fact_id: fact::e65eb11dbdabfc67c840cf94
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -1119,10 +897,9 @@ facts:
     source_file: repos/knowledge/deep/tmux__tmux.yaml
     excerpt: Session or pane contents lost unexpectedly
   object_value: Session or pane contents lost unexpectedly
-  note: "cause: The tmux server was killed (SIGKILL or system reboot) \u2014 sessions\
-    \ are in-memory only and not persisted by default.; fix: Use a session persistence\
-    \ plugin (e.g., tmux-resurrect) or script session save/restore; note that clean\
-    \ server shutdown (tmux kill-server) also destro..."
+  note: 'cause: The tmux server was killed (SIGKILL or system reboot) — sessions are in-memory only and not persisted by default.;
+    fix: Use a session persistence plugin (e.g., tmux-resurrect) or script session save/restore; note that clean server shutdown
+    (tmux kill-server) also destro...'
   fact_id: fact::f6c08b95597282e4f21665f7
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -1139,9 +916,8 @@ facts:
     source_file: repos/knowledge/deep/tmux__tmux.yaml
     excerpt: tmux reports "no server running on socket" or fails to attach
   object_value: tmux reports "no server running on socket" or fails to attach
-  note: 'cause: The tmux server process died (e.g., after a reboot or logout); or
-    a non-default socket name/path is in use.; fix: Confirm the socket path with tmux
-    -L <name> or check TMUX_TMPDIR; start a new session with tmux new-session if the
+  note: 'cause: The tmux server process died (e.g., after a reboot or logout); or a non-default socket name/path is in use.;
+    fix: Confirm the socket path with tmux -L <name> or check TMUX_TMPDIR; start a new session with tmux new-session if the
     server is genuinely gone.'
   fact_id: fact::d00d6811cb35a75ebf5c8193
 - fact_type: implementation_pattern
@@ -1157,10 +933,8 @@ facts:
   - kind: file_block
     ref: testing.framework.line[0]
     source_file: repos/knowledge/deep/tmux__tmux.yaml
-    excerpt: C test/build checks through make targets plus manual command-level validation
-      from tmux.1 workflows.
-  object_value: C test/build checks through make targets plus manual command-level
-    validation from tmux.1 workflows.
+    excerpt: C test/build checks through make targets plus manual command-level validation from tmux.1 workflows.
+  object_value: C test/build checks through make targets plus manual command-level validation from tmux.1 workflows.
   note: 'testing metadata: framework'
   fact_id: fact::776b5914670a6347bb8bbe2c
 - fact_type: implementation_pattern
@@ -1176,11 +950,9 @@ facts:
   - kind: file_block
     ref: client.c
     source_file: repos/knowledge/deep/tmux__tmux.yaml
-    excerpt: Client retries connection and can trigger server startup with lock-file
-      coordination.
+    excerpt: Client retries connection and can trigger server startup with lock-file coordination.
   object_value: Client/Server split over AF_UNIX
-  note: 'description: Client retries connection and can trigger server startup with
-    lock-file coordination.; location: client.c'
+  note: 'description: Client retries connection and can trigger server startup with lock-file coordination.; location: client.c'
   fact_id: fact::5980b841f18d5976fab578f0
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1195,11 +967,10 @@ facts:
   - kind: file_block
     ref: options.c
     source_file: repos/knowledge/deep/tmux__tmux.yaml
-    excerpt: Defaults and scoped options (global/session/window/pane) are resolved
-      through options APIs.
+    excerpt: Defaults and scoped options (global/session/window/pane) are resolved through options APIs.
   object_value: Configurable option hierarchy
-  note: 'description: Defaults and scoped options (global/session/window/pane) are
-    resolved through options APIs.; location: options.c'
+  note: 'description: Defaults and scoped options (global/session/window/pane) are resolved through options APIs.; location:
+    options.c'
   fact_id: fact::75d6fae72dcbf80bc6192f26
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1214,11 +985,10 @@ facts:
   - kind: file_block
     ref: server.c
     source_file: repos/knowledge/deep/tmux__tmux.yaml
-    excerpt: Server uses event callbacks for accept, child/signal handling, and periodic
-      tidy operations.
+    excerpt: Server uses event callbacks for accept, child/signal handling, and periodic tidy operations.
   object_value: Event-driven server loop
-  note: 'description: Server uses event callbacks for accept, child/signal handling,
-    and periodic tidy operations.; location: server.c'
+  note: 'description: Server uses event callbacks for accept, child/signal handling, and periodic tidy operations.; location:
+    server.c'
   fact_id: fact::53fa1b5ca7c97559204fb3af
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1233,11 +1003,10 @@ facts:
   - kind: file_block
     ref: window.c
     source_file: repos/knowledge/deep/tmux__tmux.yaml
-    excerpt: Global windows, panes, and winlinks are tracked with balanced trees and
-      queues for fast lookup.
+    excerpt: Global windows, panes, and winlinks are tracked with balanced trees and queues for fast lookup.
   object_value: RB-tree and queue-based state indexes
-  note: 'description: Global windows, panes, and winlinks are tracked with balanced
-    trees and queues for fast lookup.; location: window.c'
+  note: 'description: Global windows, panes, and winlinks are tracked with balanced trees and queues for fast lookup.; location:
+    window.c'
   fact_id: fact::349f557904f31c8bf5fdaf6b
 - fact_type: implementation_pattern
   predicate: implements_pattern

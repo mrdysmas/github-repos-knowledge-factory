@@ -126,11 +126,10 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[2]
     source_file: repos/knowledge/deep/microsoft__llguidance.yaml
-    excerpt: Exposes integration points for external inference stacks and orchestration
-      layers.
+    excerpt: Exposes integration points for external inference stacks and orchestration layers.
   object_value: bindings
-  note: 'responsibility: Exposes integration points for external inference stacks
-    and orchestration layers.; key_files: python/, js/'
+  note: 'responsibility: Exposes integration points for external inference stacks and orchestration layers.; key_files: python/,
+    js/'
   fact_id: fact::b507576141f4dd51a53435cc
 - fact_type: component
   predicate: has_component
@@ -145,11 +144,10 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[0]
     source_file: repos/knowledge/deep/microsoft__llguidance.yaml
-    excerpt: Parses guidance grammar definitions and builds executable constraint
-      representations.
+    excerpt: Parses guidance grammar definitions and builds executable constraint representations.
   object_value: parser_core
-  note: 'responsibility: Parses guidance grammar definitions and builds executable
-    constraint representations.; key_files: src/lib.rs, src/parser'
+  note: 'responsibility: Parses guidance grammar definitions and builds executable constraint representations.; key_files:
+    src/lib.rs, src/parser'
   fact_id: fact::f5562dd0918c01fa08216fc3
 - fact_type: component
   predicate: has_component
@@ -166,8 +164,7 @@ facts:
     source_file: repos/knowledge/deep/microsoft__llguidance.yaml
     excerpt: Applies grammar constraints during token selection and generation loops.
   object_value: runtime_guidance
-  note: 'responsibility: Applies grammar constraints during token selection and generation
-    loops.; key_files: src/runtime'
+  note: 'responsibility: Applies grammar constraints during token selection and generation loops.; key_files: src/runtime'
   fact_id: fact::308560e5c602c6a11da80c3d
 - fact_type: component
   predicate: has_component
@@ -223,23 +220,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/microsoft__llguidance.yaml
-    source_section: key_files[2]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[2]
-    source_file: repos/knowledge/deep/microsoft__llguidance.yaml
-    excerpt: src/parser
-  object_value: src/parser
-  note: Grammar parsing and normalization modules.
-  fact_id: fact::31953ea370205e73a8ed806e
-- fact_type: component
-  predicate: has_component
-  object_kind: path
   confidence: 0.74
   as_of: '2026-03-05'
   provenance:
@@ -271,23 +251,6 @@ facts:
   object_value: src/runtime
   note: Constraint-aware generation runtime.
   fact_id: fact::163757525b39a35712348074
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/microsoft__llguidance.yaml
-    source_section: key_files[3]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[3]
-    source_file: repos/knowledge/deep/microsoft__llguidance.yaml
-    excerpt: src/runtime
-  object_value: src/runtime
-  note: Constraint enforcement during generation.
-  fact_id: fact::d73fd2b8acf80914cbe7cdab
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
@@ -505,11 +468,9 @@ facts:
   - kind: file_block
     ref: src/runtime
     source_file: repos/knowledge/deep/microsoft__llguidance.yaml
-    excerpt: Token selection flow validates candidate tokens against active grammar
-      state.
+    excerpt: Token selection flow validates candidate tokens against active grammar state.
   object_value: Constraint-first decoding loop
-  note: 'description: Token selection flow validates candidate tokens against active
-    grammar state.; location: src/runtime'
+  note: 'description: Token selection flow validates candidate tokens against active grammar state.; location: src/runtime'
   fact_id: fact::546dec9d4bdbed52e7ea352b
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -524,11 +485,9 @@ facts:
   - kind: file_block
     ref: src/lib.rs
     source_file: repos/knowledge/deep/microsoft__llguidance.yaml
-    excerpt: Constraint checks prefer deterministic acceptance or rejection for each
-      token step.
+    excerpt: Constraint checks prefer deterministic acceptance or rejection for each token step.
   object_value: Deterministic validation path
-  note: 'description: Constraint checks prefer deterministic acceptance or rejection
-    for each token step.; location: src/lib.rs'
+  note: 'description: Constraint checks prefer deterministic acceptance or rejection for each token step.; location: src/lib.rs'
   fact_id: fact::4b68caf800f9042f01738c99
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -560,11 +519,9 @@ facts:
   - kind: file_block
     ref: src/parser
     source_file: repos/knowledge/deep/microsoft__llguidance.yaml
-    excerpt: Static guidance rules are compiled into structures optimized for decoding-time
-      checks.
+    excerpt: Static guidance rules are compiled into structures optimized for decoding-time checks.
   object_value: Grammar-to-runtime compilation
-  note: 'description: Static guidance rules are compiled into structures optimized
-    for decoding-time checks.; location: src/parser'
+  note: 'description: Static guidance rules are compiled into structures optimized for decoding-time checks.; location: src/parser'
   fact_id: fact::602c1a267dfe938820bbee8e
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -598,8 +555,7 @@ facts:
     source_file: repos/knowledge/deep/microsoft__llguidance.yaml
     excerpt: Bindings separate inference-provider details from core guidance logic.
   object_value: Provider adapter boundary
-  note: 'description: Bindings separate inference-provider details from core guidance
-    logic.; location: python/'
+  note: 'description: Bindings separate inference-provider details from core guidance logic.; location: python/'
   fact_id: fact::1dfc3acc96b859da6e18950f
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -633,8 +589,7 @@ facts:
     source_file: repos/knowledge/deep/microsoft__llguidance.yaml
     excerpt: Runtime tracks grammar progress as state transitions across emitted tokens.
   object_value: State-machine decoding
-  note: 'description: Runtime tracks grammar progress as state transitions across
-    emitted tokens.; location: src/runtime'
+  note: 'description: Runtime tracks grammar progress as state transitions across emitted tokens.; location: src/runtime'
   fact_id: fact::0c4eccf496a62f38c7707ec0
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -649,10 +604,8 @@ facts:
   - kind: file_block
     ref: testing.structure.line[0]
     source_file: repos/knowledge/deep/microsoft__llguidance.yaml
-    excerpt: Validation covers grammar parsing, constrained decoding behavior, and
-      adapter integration paths.
-  object_value: Validation covers grammar parsing, constrained decoding behavior,
-    and adapter integration paths.
+    excerpt: Validation covers grammar parsing, constrained decoding behavior, and adapter integration paths.
+  object_value: Validation covers grammar parsing, constrained decoding behavior, and adapter integration paths.
   note: 'testing metadata: structure'
   fact_id: fact::d7fec6fd92b4a7a0549c1f7e
 - fact_type: implementation_pattern
@@ -675,23 +628,6 @@ facts:
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/microsoft__llguidance.yaml
-    source_section: quick_reference[0].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[0].line[0]
-    source_file: repos/knowledge/deep/microsoft__llguidance.yaml
-    excerpt: cargo build
-  object_value: cargo build
-  note: 'topic: Build core library'
-  fact_id: fact::36d97dffa486eb23b20ff956
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
   confidence: 0.68
   as_of: '2026-03-05'
   provenance:
@@ -706,40 +642,6 @@ facts:
   object_value: cargo build
   note: Compile core guidance crates.
   fact_id: fact::e47f972746a8fad1f742f813
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/microsoft__llguidance.yaml
-    source_section: quick_reference[1].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[1].line[0]
-    source_file: repos/knowledge/deep/microsoft__llguidance.yaml
-    excerpt: cargo test
-  object_value: cargo test
-  note: 'topic: Run tests'
-  fact_id: fact::1c38feb990ff5eca80293b7e
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/microsoft__llguidance.yaml
-    source_section: testing.test_patterns[0].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: testing.test_patterns[0].line[0]
-    source_file: repos/knowledge/deep/microsoft__llguidance.yaml
-    excerpt: cargo test
-  object_value: cargo test
-  note: testing command
-  fact_id: fact::49f693e4394bd54c37ef39f5
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command

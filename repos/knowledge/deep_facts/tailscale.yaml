@@ -75,8 +75,7 @@ facts:
   - kind: file_block
     ref: architecture.key_abstractions[0]
     source_file: repos/knowledge/deep/tailscale.yaml
-    excerpt: Coordinates node state, preferences, and authenticated control-plane
-      interactions.
+    excerpt: Coordinates node state, preferences, and authenticated control-plane interactions.
   object_value: LocalBackend
   note: Coordinates node state, preferences, and authenticated control-plane interactions.
   fact_id: fact::39721fa033d28997a37642c0
@@ -129,8 +128,8 @@ facts:
     source_file: repos/knowledge/deep/tailscale.yaml
     excerpt: Node state management, local API serving, preferences, and backend orchestration.
   object_value: ipn
-  note: 'responsibility: Node state management, local API serving, preferences, and
-    backend orchestration.; key_files: ipn/ipnlocal, ipn/localapi, ipn/ipnserver'
+  note: 'responsibility: Node state management, local API serving, preferences, and backend orchestration.; key_files: ipn/ipnlocal,
+    ipn/localapi, ipn/ipnserver'
   fact_id: fact::ac7865303bdbf748b104d6e3
 - fact_type: component
   predicate: has_component
@@ -145,29 +144,11 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[3]
     source_file: repos/knowledge/deep/tailscale.yaml
-    excerpt: Network utilities, DERP/discovery coordination, and shared control-plane
-      types.
+    excerpt: Network utilities, DERP/discovery coordination, and shared control-plane types.
   object_value: net and tailcfg
-  note: 'responsibility: Network utilities, DERP/discovery coordination, and shared
-    control-plane types.; key_files: net, tailcfg, derp'
+  note: 'responsibility: Network utilities, DERP/discovery coordination, and shared control-plane types.; key_files: net,
+    tailcfg, derp'
   fact_id: fact::d351778cdd3b7317c213b4cb
-- fact_type: component
-  predicate: has_component
-  object_kind: concept
-  confidence: 0.74
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/tailscale.yaml
-    source_section: architecture.key_abstractions[1]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: architecture.key_abstractions[1]
-    source_file: repos/knowledge/deep/tailscale.yaml
-    excerpt: Encapsulates WireGuard dataplane and peer connectivity behavior.
-  object_value: wgengine
-  note: Encapsulates WireGuard dataplane and peer connectivity behavior.
-  fact_id: fact::5de78d8534cccfee3bbb8862
 - fact_type: component
   predicate: has_component
   object_kind: concept
@@ -183,8 +164,7 @@ facts:
     source_file: repos/knowledge/deep/tailscale.yaml
     excerpt: WireGuard engine integration, peer connectivity, and dataplane behavior.
   object_value: wgengine
-  note: 'responsibility: WireGuard engine integration, peer connectivity, and dataplane
-    behavior.; key_files: wgengine'
+  note: 'responsibility: WireGuard engine integration, peer connectivity, and dataplane behavior.; key_files: wgengine'
   fact_id: fact::7716685679f806ee28eac7d1
 - fact_type: component
   predicate: has_component
@@ -250,11 +230,10 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[0]
     source_file: repos/knowledge/deep/tailscale.yaml
-    excerpt: CLI and daemon entrypoints for node control, login, and background networking
-      services.
+    excerpt: CLI and daemon entrypoints for node control, login, and background networking services.
   object_value: cmd/tailscale and cmd/tailscaled
-  note: 'responsibility: CLI and daemon entrypoints for node control, login, and background
-    networking services.; key_files: cmd/tailscale, cmd/tailscaled'
+  note: 'responsibility: CLI and daemon entrypoints for node control, login, and background networking services.; key_files:
+    cmd/tailscale, cmd/tailscaled'
   fact_id: fact::8447c61e8d987bff2486fa79
 - fact_type: component
   predicate: has_component
@@ -273,23 +252,6 @@ facts:
   object_value: cmd/tailscaled
   note: Daemon entrypoint.
   fact_id: fact::10efc83931870642b3562483
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/tailscale.yaml
-    source_section: core_modules.state_backend
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.state_backend
-    source_file: repos/knowledge/deep/tailscale.yaml
-    excerpt: ipn
-  object_value: ipn
-  note: State management, preferences, auth, and local API surfaces.
-  fact_id: fact::7e50a8b2455b70c534149a41
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -324,40 +286,6 @@ facts:
   object_value: net
   note: Discovery, DNS, proxy, and network monitoring helpers.
   fact_id: fact::940630c6d4294fd89db715e6
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/tailscale.yaml
-    source_section: key_files[4]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[4]
-    source_file: repos/knowledge/deep/tailscale.yaml
-    excerpt: wgengine
-  object_value: wgengine
-  note: WireGuard engine integration.
-  fact_id: fact::9931033b293eac7d53527f1d
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/tailscale.yaml
-    source_section: core_modules.dataplane
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.dataplane
-    source_file: repos/knowledge/deep/tailscale.yaml
-    excerpt: wgengine
-  object_value: wgengine
-  note: WireGuard engine integration and peer networking.
-  fact_id: fact::e23106bc320d6f84e1c6b4f4
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
@@ -592,11 +520,10 @@ facts:
   - kind: file_block
     ref: ipn
     source_file: repos/knowledge/deep/tailscale.yaml
-    excerpt: Configuration/state logic lives in ipn while packet transport concerns
-      live in wgengine and net.
+    excerpt: Configuration/state logic lives in ipn while packet transport concerns live in wgengine and net.
   object_value: Control-plane and dataplane separation
-  note: 'description: Configuration/state logic lives in ipn while packet transport
-    concerns live in wgengine and net.; location: ipn'
+  note: 'description: Configuration/state logic lives in ipn while packet transport concerns live in wgengine and net.; location:
+    ipn'
   fact_id: fact::78d971c9c246a81312888e8c
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -611,11 +538,10 @@ facts:
   - kind: file_block
     ref: derp
     source_file: repos/knowledge/deep/tailscale.yaml
-    excerpt: Relay and discovery support is organized as explicit subsystems for peer
-      connectivity fallback.
+    excerpt: Relay and discovery support is organized as explicit subsystems for peer connectivity fallback.
   object_value: DERP fallback networking
-  note: 'description: Relay and discovery support is organized as explicit subsystems
-    for peer connectivity fallback.; location: derp'
+  note: 'description: Relay and discovery support is organized as explicit subsystems for peer connectivity fallback.; location:
+    derp'
   fact_id: fact::659e268d1085e889080b4525
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -632,8 +558,7 @@ facts:
     source_file: repos/knowledge/deep/tailscale.yaml
     excerpt: Operational commands are separated from the long-running networking daemon.
   object_value: Daemon-plus-CLI split
-  note: 'description: Operational commands are separated from the long-running networking
-    daemon.; location: cmd/tailscale'
+  note: 'description: Operational commands are separated from the long-running networking daemon.; location: cmd/tailscale'
   fact_id: fact::62f5e2dd064ce917dc10b37b
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -665,11 +590,10 @@ facts:
   - kind: file_block
     ref: ipn/localapi
     source_file: repos/knowledge/deep/tailscale.yaml
-    excerpt: Client-facing commands route through a local API/backend layer instead
-      of mutating daemon state directly.
+    excerpt: Client-facing commands route through a local API/backend layer instead of mutating daemon state directly.
   object_value: Local API mediation
-  note: 'description: Client-facing commands route through a local API/backend layer
-    instead of mutating daemon state directly.; location: ipn/localapi'
+  note: 'description: Client-facing commands route through a local API/backend layer instead of mutating daemon state directly.;
+    location: ipn/localapi'
   fact_id: fact::a42e5d0ce65fe7f1313528b3
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -701,11 +625,10 @@ facts:
   - kind: file_block
     ref: net
     source_file: repos/knowledge/deep/tailscale.yaml
-    excerpt: Network checks, DNS handling, and discovery paths are factored into dedicated
-      subpackages.
+    excerpt: Network checks, DNS handling, and discovery paths are factored into dedicated subpackages.
   object_value: Package-oriented networking utilities
-  note: 'description: Network checks, DNS handling, and discovery paths are factored
-    into dedicated subpackages.; location: net'
+  note: 'description: Network checks, DNS handling, and discovery paths are factored into dedicated subpackages.; location:
+    net'
   fact_id: fact::cbfe5e92c5f9d794ff5ff122
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -720,10 +643,8 @@ facts:
   - kind: file_block
     ref: testing.structure.line[0]
     source_file: repos/knowledge/deep/tailscale.yaml
-    excerpt: Repository includes package-level tests across networking, control-plane,
-      and client modules.
-  object_value: Repository includes package-level tests across networking, control-plane,
-    and client modules.
+    excerpt: Repository includes package-level tests across networking, control-plane, and client modules.
+  object_value: Repository includes package-level tests across networking, control-plane, and client modules.
   note: 'testing metadata: structure'
   fact_id: fact::5bc84944e51df72a3b665875
 - fact_type: implementation_pattern
@@ -743,23 +664,6 @@ facts:
   object_value: WireGuard engine and peer connectivity
   note: 'testing metadata: coverage_areas'
   fact_id: fact::3aa0d9e7f7ac6fd18e030b06
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/tailscale.yaml
-    source_section: quick_reference[0].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[0].line[0]
-    source_file: repos/knowledge/deep/tailscale.yaml
-    excerpt: go build ./cmd/tailscale ./cmd/tailscaled
-  object_value: go build ./cmd/tailscale ./cmd/tailscaled
-  note: 'topic: Build CLI and daemon'
-  fact_id: fact::7465b90ffc1c8ca050e7fe9e
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
@@ -794,40 +698,6 @@ facts:
   object_value: go test
   note: testing command
   fact_id: fact::61ece38a6bfda50429dacf26
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/tailscale.yaml
-    source_section: testing.test_patterns[0].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: testing.test_patterns[0].line[0]
-    source_file: repos/knowledge/deep/tailscale.yaml
-    excerpt: go test ./...
-  object_value: go test ./...
-  note: testing command
-  fact_id: fact::0cc0ea20f7180c10f3f8cadd
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/tailscale.yaml
-    source_section: quick_reference[1].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[1].line[0]
-    source_file: repos/knowledge/deep/tailscale.yaml
-    excerpt: go test ./...
-  object_value: go test ./...
-  note: 'topic: Run tests'
-  fact_id: fact::21a0973a935b58160f93d7c8
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command

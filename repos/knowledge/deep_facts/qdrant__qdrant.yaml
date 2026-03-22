@@ -35,22 +35,6 @@ facts:
   as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
-    source_section: api_structure.rest[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: api_structure.rest[0]
-    source_file: repos/knowledge/deep/qdrant__qdrant.yaml
-    excerpt: /collections
-  object_value: /collections
-  fact_id: fact::458d371ff4eedeb8d937baf1
-- fact_type: api_endpoint
-  predicate: exposes_api_endpoint
-  object_kind: api_route
-  confidence: 0.73
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     source_section: api_structure.rest[1]
     extraction_mode: narrative
   evidence:
@@ -84,22 +68,6 @@ facts:
   as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
-    source_section: api_structure.rest[2]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: api_structure.rest[2]
-    source_file: repos/knowledge/deep/qdrant__qdrant.yaml
-    excerpt: /collections/{collection_name}/points/query
-  object_value: /collections/{collection_name}/points/query
-  fact_id: fact::396ef4fc03242000e18efb4d
-- fact_type: api_endpoint
-  predicate: exposes_api_endpoint
-  object_kind: api_route
-  confidence: 0.73
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     source_section: api_structure.rest[4]
     extraction_mode: narrative
   evidence:
@@ -126,22 +94,6 @@ facts:
   object_value: /collections/{collection_name}/points/search
   note: POST; nearest-neighbor point search
   fact_id: fact::507a71bc66925592602cabc4
-- fact_type: api_endpoint
-  predicate: exposes_api_endpoint
-  object_kind: api_route
-  confidence: 0.73
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/qdrant__qdrant.yaml
-    source_section: api_structure.rest[3]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: api_structure.rest[3]
-    source_file: repos/knowledge/deep/qdrant__qdrant.yaml
-    excerpt: /collections/{collection_name}/points/search
-  object_value: /collections/{collection_name}/points/search
-  fact_id: fact::9e92846398fd4b7f7f058909
 - fact_type: api_endpoint
   predicate: exposes_api_endpoint
   object_kind: api_route
@@ -425,14 +377,11 @@ facts:
   - kind: file_block
     ref: troubleshooting[0]
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
-    excerpt: Collection search returns stale results or HNSW index is not used after
-      bulk upsert
-  object_value: Collection search returns stale results or HNSW index is not used
-    after bulk upsert
-  note: "cause: Optimizer has not finished building the HNSW index; segments below\
-    \ indexing_threshold_kb (default 10 MB) use plain brute-force scan rather than\
-    \ the graph index; fix: Wait for optimizer to complete \u2014 poll GET /collections/{name}\
-    \ until optimizer_status is ok \u2014 or lower in..."
+    excerpt: Collection search returns stale results or HNSW index is not used after bulk upsert
+  object_value: Collection search returns stale results or HNSW index is not used after bulk upsert
+  note: 'cause: Optimizer has not finished building the HNSW index; segments below indexing_threshold_kb (default 10 MB) use
+    plain brute-force scan rather than the graph index; fix: Wait for optimizer to complete — poll GET /collections/{name}
+    until optimizer_status is ok — or lower in...'
   fact_id: fact::06d9a07add972e2b9f0e4a1e
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -447,14 +396,11 @@ facts:
   - kind: file_block
     ref: troubleshooting[4]
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
-    excerpt: Disk full causes Qdrant to stop accepting writes but REST API remains
-      up
-  object_value: Disk full causes Qdrant to stop accepting writes but REST API remains
-    up
-  note: 'cause: Qdrant writes WAL and segment files to storage_path; when disk is
-    exhausted it cannot flush and returns storage errors on write paths; fix: Free
-    disk space or mount a larger volume at the storage_path; Qdrant will resume writes
-    automatically once space is available'
+    excerpt: Disk full causes Qdrant to stop accepting writes but REST API remains up
+  object_value: Disk full causes Qdrant to stop accepting writes but REST API remains up
+  note: 'cause: Qdrant writes WAL and segment files to storage_path; when disk is exhausted it cannot flush and returns storage
+    errors on write paths; fix: Free disk space or mount a larger volume at the storage_path; Qdrant will resume writes automatically
+    once space is available'
   fact_id: fact::0a4cb29aacc3c450eaf69f2b
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -470,12 +416,9 @@ facts:
     ref: troubleshooting[1]
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     excerpt: Service fails to start with address already in use on port 6333 or 6334
-  object_value: Service fails to start with address already in use on port 6333 or
-    6334
-  note: 'cause: Another process is bound to the REST port (6333) or gRPC port (6334)
-    configured in service.http_port / service.grpc_port; fix: Change http_port and
-    grpc_port in production.yaml, or stop the conflicting process before starting
-    Qdrant'
+  object_value: Service fails to start with address already in use on port 6333 or 6334
+  note: 'cause: Another process is bound to the REST port (6333) or gRPC port (6334) configured in service.http_port / service.grpc_port;
+    fix: Change http_port and grpc_port in production.yaml, or stop the conflicting process before starting Qdrant'
   fact_id: fact::c228a34ac4719c7ef003049b
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -492,10 +435,9 @@ facts:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     excerpt: Vector dimension mismatch error on point upsert
   object_value: Vector dimension mismatch error on point upsert
-  note: 'cause: Points were inserted with a vector length that does not match the
-    dimension declared when the collection was created; fix: Delete and recreate the
-    collection with the correct dimension, or re-embed data to match the existing
-    collection''s vector size'
+  note: 'cause: Points were inserted with a vector length that does not match the dimension declared when the collection was
+    created; fix: Delete and recreate the collection with the correct dimension, or re-embed data to match the existing collection''s
+    vector size'
   fact_id: fact::077e0279faa004907e3195ab
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -512,9 +454,9 @@ facts:
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
     excerpt: WAL segment fills causing write latency spikes
   object_value: WAL segment fills causing write latency spikes
-  note: 'cause: wal_capacity_mb (default 32 MB) segments fill quickly under high write
-    throughput, stalling upserts while a new segment is created; fix: Increase storage.wal.wal_capacity_mb
-    in config.yaml, or reduce write batch sizes to spread segment boundaries'
+  note: 'cause: wal_capacity_mb (default 32 MB) segments fill quickly under high write throughput, stalling upserts while
+    a new segment is created; fix: Increase storage.wal.wal_capacity_mb in config.yaml, or reduce write batch sizes to spread
+    segment boundaries'
   fact_id: fact::f6f947693cd5fc9f2840e180
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -529,13 +471,11 @@ facts:
   - kind: file_block
     ref: config.yaml (optimizer_config.indexing_threshold_kb)
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
-    excerpt: Segments below indexing_threshold_kb (default 10 MB) are searched with
-      a plain brute-force scan rather than the HNSW graph; no explicit flat index
-      creation required.
+    excerpt: Segments below indexing_threshold_kb (default 10 MB) are searched with a plain brute-force scan rather than the
+      HNSW graph; no explicit flat index creation required.
   object_value: Flat (brute-force) scan
-  note: 'description: Segments below indexing_threshold_kb (default 10 MB) are searched
-    with a plain brute-force scan rather than the HNSW graph; no explicit flat index
-    creation required.; location: config.yaml (optimizer_config.indexing_threshold_kb)'
+  note: 'description: Segments below indexing_threshold_kb (default 10 MB) are searched with a plain brute-force scan rather
+    than the HNSW graph; no explicit flat index creation required.; location: config.yaml (optimizer_config.indexing_threshold_kb)'
   fact_id: fact::aba98b5b86b82ef1ab01e8f8
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -550,13 +490,11 @@ facts:
   - kind: file_block
     ref: README.md / config.yaml (hnsw_config section)
     source_file: repos/knowledge/deep/qdrant__qdrant.yaml
-    excerpt: Primary ANN index algorithm used for all vector collections; segments
-      above indexing_threshold_kb are indexed with HNSW for approximate nearest-neighbor
-      search.
+    excerpt: Primary ANN index algorithm used for all vector collections; segments above indexing_threshold_kb are indexed
+      with HNSW for approximate nearest-neighbor search.
   object_value: HNSW index
-  note: 'description: Primary ANN index algorithm used for all vector collections;
-    segments above indexing_threshold_kb are indexed with HNSW for approximate nearest-neighbor
-    search.; location: README.md / config.yaml (hnsw_config section)'
+  note: 'description: Primary ANN index algorithm used for all vector collections; segments above indexing_threshold_kb are
+    indexed with HNSW for approximate nearest-neighbor search.; location: README.md / config.yaml (hnsw_config section)'
   fact_id: fact::55734b1975f52948f49f4de6
 - fact_type: implementation_pattern
   predicate: implements_pattern

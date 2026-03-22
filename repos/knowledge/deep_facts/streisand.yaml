@@ -94,8 +94,7 @@ facts:
     source_file: repos/knowledge/deep/streisand.yaml
     excerpt: Cloud provider provisioning (AWS, Azure, DO, GCE, Linode, Rackspace)
   object_value: playbooks/roles/*-genesis
-  note: 'responsibility: Cloud provider provisioning (AWS, Azure, DO, GCE, Linode,
-    Rackspace); key_files: playbooks/roles/genesis-digitalocean/'
+  note: 'responsibility: Cloud provider provisioning (AWS, Azure, DO, GCE, Linode, Rackspace); key_files: playbooks/roles/genesis-digitalocean/'
   fact_id: fact::c4993faf28f0136e21ac5178
 - fact_type: component
   predicate: has_component
@@ -129,8 +128,7 @@ facts:
     source_file: repos/knowledge/deep/streisand.yaml
     excerpt: OpenVPN with TCP/UDP, multiple ports, stunnel support
   object_value: playbooks/roles/openvpn
-  note: 'responsibility: OpenVPN with TCP/UDP, multiple ports, stunnel support; key_files:
-    playbooks/roles/openvpn/'
+  note: 'responsibility: OpenVPN with TCP/UDP, multiple ports, stunnel support; key_files: playbooks/roles/openvpn/'
   fact_id: fact::5c4f181be4f7d8b671ec7630
 - fact_type: component
   predicate: has_component
@@ -147,8 +145,7 @@ facts:
     source_file: repos/knowledge/deep/streisand.yaml
     excerpt: Shadowsocks proxy with chacha20-ietf-poly1305
   object_value: playbooks/roles/shadowsocks
-  note: 'responsibility: Shadowsocks proxy with chacha20-ietf-poly1305; key_files:
-    playbooks/roles/shadowsocks/'
+  note: 'responsibility: Shadowsocks proxy with chacha20-ietf-poly1305; key_files: playbooks/roles/shadowsocks/'
   fact_id: fact::5bf56f566a5eca5c1f2928a4
 - fact_type: component
   predicate: has_component
@@ -233,8 +230,7 @@ facts:
     source_file: repos/knowledge/deep/streisand.yaml
     excerpt: Master playbook orchestrating all role imports
   object_value: playbooks/streisand.yml
-  note: 'responsibility: Master playbook orchestrating all role imports; key_files:
-    playbooks/streisand.yml'
+  note: 'responsibility: Master playbook orchestrating all role imports; key_files: playbooks/streisand.yml'
   fact_id: fact::3f74a083f19ccd138b11361d
 - fact_type: config_option
   predicate: has_config_option
@@ -455,27 +451,8 @@ facts:
     source_file: repos/knowledge/deep/streisand.yaml
     excerpt: playbooks/roles/
   object_value: playbooks/roles/
-  note: Create role with tasks/, defaults/, templates/, docs.yml, mirror.yml; New
-    VPN protocol role (create new subdirectory)
+  note: Create role with tasks/, defaults/, templates/, docs.yml, mirror.yml; New VPN protocol role (create new subdirectory)
   fact_id: fact::4686b656cc0a66765f5fa59a
-- fact_type: extension_point
-  predicate: has_extension_point
-  object_kind: path
-  confidence: 0.71
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/streisand.yaml
-    source_section: extension_points[3]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: extension_points[3]
-    source_file: repos/knowledge/deep/streisand.yaml
-    excerpt: playbooks/roles/
-  object_value: playbooks/roles/
-  note: Implement genesis pattern with provider-specific API calls; New cloud provider
-    genesis role
-  fact_id: fact::75d7b3739bd24d3a5a0da5de
 - fact_type: extension_point
   predicate: has_extension_point
   object_kind: path
@@ -559,8 +536,7 @@ facts:
     source_file: repos/knowledge/deep/streisand.yaml
     excerpt: 'Services enabled/disabled via when: streisand_*_enabled'
   object_value: Conditional Role Enablement
-  note: 'description: Services enabled/disabled via when: streisand_*_enabled; location:
-    playbooks/streisand.yml'
+  note: 'description: Services enabled/disabled via when: streisand_*_enabled; location: playbooks/streisand.yml'
   fact_id: fact::ef690f7dac552ace5dc33570
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -577,8 +553,7 @@ facts:
     source_file: repos/knowledge/deep/streisand.yaml
     excerpt: i18n-docs generates HTML docs in multiple languages
   object_value: Gateway Documentation
-  note: 'description: i18n-docs generates HTML docs in multiple languages; location:
-    playbooks/roles/i18n-docs/'
+  note: 'description: i18n-docs generates HTML docs in multiple languages; location: playbooks/roles/i18n-docs/'
   fact_id: fact::b3ec9d51ca1098f6454fbb3a
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -595,8 +570,7 @@ facts:
     source_file: repos/knowledge/deep/streisand.yaml
     excerpt: 'All providers follow same pattern: SSH key, create instance, wait, inventory'
   object_value: Genesis Pattern
-  note: 'description: All providers follow same pattern: SSH key, create instance,
-    wait, inventory; location: playbooks/roles/genesis-digitalocean/tasks/main.yml'
+  note: 'description: All providers follow same pattern: SSH key, create instance, wait, inventory; location: playbooks/roles/genesis-digitalocean/tasks/main.yml'
   fact_id: fact::ba62ec1a4ab05fd454e0032e
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -613,8 +587,7 @@ facts:
     source_file: repos/knowledge/deep/streisand.yaml
     excerpt: Service configs generated from templates with variable substitution
   object_value: Jinja2 Configuration Templates
-  note: 'description: Service configs generated from templates with variable substitution;
-    location: playbooks/roles/openvpn/templates/'
+  note: 'description: Service configs generated from templates with variable substitution; location: playbooks/roles/openvpn/templates/'
   fact_id: fact::a79e8538b9a7b3e7e4a55b2b
 - fact_type: implementation_pattern
   predicate: implements_pattern

@@ -35,22 +35,6 @@ facts:
   as_of: '2026-02-25'
   provenance:
     source_file: repos/knowledge/deep/flowiseai__flowise.yaml
-    source_section: api_structure.public_routes[1]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: api_structure.public_routes[1]
-    source_file: repos/knowledge/deep/flowiseai__flowise.yaml
-    excerpt: /api/v1/chatflows-streaming/{chatflowId}
-  object_value: /api/v1/chatflows-streaming/{chatflowId}
-  fact_id: fact::830af5f837e1c257df1152e1
-- fact_type: api_endpoint
-  predicate: exposes_api_endpoint
-  object_kind: api_route
-  confidence: 0.73
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/flowiseai__flowise.yaml
     source_section: api_structure.system_routes[0]
     extraction_mode: narrative
   evidence:
@@ -76,23 +60,6 @@ facts:
     excerpt: /api/v1/prediction/{chatflowId}
   object_value: /api/v1/prediction/{chatflowId}
   fact_id: fact::17f0a54958190c427f9528ca
-- fact_type: api_endpoint
-  predicate: exposes_api_endpoint
-  object_kind: api_route
-  confidence: 0.73
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/flowiseai__flowise.yaml
-    source_section: integrations.api_endpoints[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: integrations.api_endpoints[0]
-    source_file: repos/knowledge/deep/flowiseai__flowise.yaml
-    excerpt: /api/v1/prediction/{chatflowId}
-  object_value: /api/v1/prediction/{chatflowId}
-  note: POST; run prediction for chatflow or agentflow
-  fact_id: fact::40c8298a6d2ad762d549d46c
 - fact_type: api_endpoint
   predicate: exposes_api_endpoint
   object_kind: api_route
@@ -126,22 +93,6 @@ facts:
   object_value: /api/v1/public-chatflows
   note: GET; list or retrieve public chatflow metadata
   fact_id: fact::518fbb5630d0cbafce09dd1e
-- fact_type: api_endpoint
-  predicate: exposes_api_endpoint
-  object_kind: api_route
-  confidence: 0.73
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/flowiseai__flowise.yaml
-    source_section: api_structure.public_routes[2]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: api_structure.public_routes[2]
-    source_file: repos/knowledge/deep/flowiseai__flowise.yaml
-    excerpt: /api/v1/public-chatflows
-  object_value: /api/v1/public-chatflows
-  fact_id: fact::ca2ababa5ba0f4f1c1b37902
 - fact_type: api_endpoint
   predicate: exposes_api_endpoint
   object_kind: api_route
@@ -464,23 +415,6 @@ facts:
   object_value: pnpm build
   note: 'topic: Developer workflow'
   fact_id: fact::39edbadb21246ce934313d6a
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/flowiseai__flowise.yaml
-    source_section: testing.test_patterns[2].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: testing.test_patterns[2].line[0]
-    source_file: repos/knowledge/deep/flowiseai__flowise.yaml
-    excerpt: pnpm build
-  object_value: pnpm build
-  note: testing command
-  fact_id: fact::7278051a779a6b66ef14faa1
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command

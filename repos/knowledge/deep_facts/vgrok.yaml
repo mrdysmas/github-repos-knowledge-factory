@@ -24,9 +24,9 @@ facts:
   - kind: file_block
     ref: architecture.key_abstractions[2]
     source_file: repos/knowledge/deep/vgrok.yaml
-    excerpt: "Manages local \u2194 sandbox connection and lifecycle"
+    excerpt: Manages local ↔ sandbox connection and lifecycle
   object_value: Client
-  note: "Manages local \u2194 sandbox connection and lifecycle"
+  note: Manages local ↔ sandbox connection and lifecycle
   fact_id: fact::4d7e4c4a509118cf49261cc3
 - fact_type: component
   predicate: has_component
@@ -75,11 +75,9 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[1]
     source_file: repos/knowledge/deep/vgrok.yaml
-    excerpt: Core tunnel client - manages Vercel sandbox, WebSocket tunnel, request
-      forwarding
+    excerpt: Core tunnel client - manages Vercel sandbox, WebSocket tunnel, request forwarding
   object_value: src/client.ts
-  note: 'responsibility: Core tunnel client - manages Vercel sandbox, WebSocket tunnel,
-    request forwarding; key_files: src/client.ts'
+  note: 'responsibility: Core tunnel client - manages Vercel sandbox, WebSocket tunnel, request forwarding; key_files: src/client.ts'
   fact_id: fact::8cf83b253d86f150f6e46ab2
 - fact_type: component
   predicate: has_component
@@ -96,8 +94,7 @@ facts:
     source_file: repos/knowledge/deep/vgrok.yaml
     excerpt: HTTP/WebSocket server deployed to Vercel sandbox for public access
   object_value: src/server.ts
-  note: 'responsibility: HTTP/WebSocket server deployed to Vercel sandbox for public
-    access; key_files: src/server.ts'
+  note: 'responsibility: HTTP/WebSocket server deployed to Vercel sandbox for public access; key_files: src/server.ts'
   fact_id: fact::04e593660b7bab848e0d9fba
 - fact_type: component
   predicate: has_component
@@ -114,8 +111,7 @@ facts:
     source_file: repos/knowledge/deep/vgrok.yaml
     excerpt: Extracts Vercel credentials from CLI config or environment
   object_value: src/vercel-cli-auth.ts
-  note: 'responsibility: Extracts Vercel credentials from CLI config or environment;
-    key_files: src/vercel-cli-auth.ts'
+  note: 'responsibility: Extracts Vercel credentials from CLI config or environment; key_files: src/vercel-cli-auth.ts'
   fact_id: fact::f5263bd31799424a88990d01
 - fact_type: component
   predicate: has_component
@@ -132,8 +128,7 @@ facts:
     source_file: repos/knowledge/deep/vgrok.yaml
     excerpt: CLI entry point - parses args, manages tunnel lifecycle with start/stop
   object_value: src/vgrok.ts
-  note: 'responsibility: CLI entry point - parses args, manages tunnel lifecycle with
-    start/stop; key_files: src/vgrok.ts'
+  note: 'responsibility: CLI entry point - parses args, manages tunnel lifecycle with start/stop; key_files: src/vgrok.ts'
   fact_id: fact::c8620893d951d50f83948757
 - fact_type: config_option
   predicate: has_config_option
@@ -252,8 +247,7 @@ facts:
     source_file: repos/knowledge/deep/vgrok.yaml
     excerpt: localPortToSandbox
   object_value: localPortToSandbox
-  note: 'type: Record<string, {id, createdAt}>; Mapping of local ports to sandbox
-    IDs'
+  note: 'type: Record<string, {id, createdAt}>; Mapping of local ports to sandbox IDs'
   fact_id: fact::c21e95f02e14e718c54c6fbd
 - fact_type: config_option
   predicate: has_config_option
@@ -347,41 +341,6 @@ facts:
   as_of: '2026-03-18'
   provenance:
     source_file: repos/knowledge/deep/vgrok.yaml
-    source_section: extension_points[4]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: extension_points[4]
-    source_file: repos/knowledge/deep/vgrok.yaml
-    excerpt: src/client.ts
-  object_value: src/client.ts
-  note: Database/cloud storage instead of temp file; Persistence strategies
-  fact_id: fact::79bb255ec71f5793bfced1bc
-- fact_type: extension_point
-  predicate: has_extension_point
-  object_kind: path
-  confidence: 0.71
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/vgrok.yaml
-    source_section: extension_points[5]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: extension_points[5]
-    source_file: repos/knowledge/deep/vgrok.yaml
-    excerpt: src/client.ts
-  object_value: src/client.ts
-  note: Modify requests before forwarding or responses before returning; Transformation
-    hooks for request/response pipeline
-  fact_id: fact::85f796117613bdc8f192336a
-- fact_type: extension_point
-  predicate: has_extension_point
-  object_kind: path
-  confidence: 0.71
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/vgrok.yaml
     source_section: extension_points[0]
     extraction_mode: narrative
   evidence:
@@ -458,8 +417,7 @@ facts:
     source_file: repos/knowledge/deep/vgrok.yaml
     excerpt: Server runs detached in sandbox, independent of client
   object_value: Detached Process Pattern
-  note: 'description: Server runs detached in sandbox, independent of client; location:
-    src/client.ts:97-107'
+  note: 'description: Server runs detached in sandbox, independent of client; location: src/client.ts:97-107'
   fact_id: fact::2dcde9d5e89d45c1d5d79c80
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -476,8 +434,7 @@ facts:
     source_file: repos/knowledge/deep/vgrok.yaml
     excerpt: Deploys tunnel server code dynamically to sandbox
   object_value: File Injection Pattern
-  note: 'description: Deploys tunnel server code dynamically to sandbox; location:
-    src/client.ts:83-92'
+  note: 'description: Deploys tunnel server code dynamically to sandbox; location: src/client.ts:83-92'
   fact_id: fact::e7a43fa17d189b9adfd0f149
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -545,8 +502,7 @@ facts:
     source_file: repos/knowledge/deep/vgrok.yaml
     excerpt: Reuses existing sandbox if running and not expired
   object_value: Sandbox Reuse Pattern
-  note: 'description: Reuses existing sandbox if running and not expired; location:
-    src/client.ts:42-54'
+  note: 'description: Reuses existing sandbox if running and not expired; location: src/client.ts:42-54'
   fact_id: fact::200bddae8849060fbdbc8a2c
 - fact_type: protocol_usage
   predicate: uses_protocol

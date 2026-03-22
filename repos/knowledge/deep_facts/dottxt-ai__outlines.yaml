@@ -24,8 +24,7 @@ facts:
   - kind: file_block
     ref: architecture.key_abstractions[3]
     source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
-    excerpt: Reusable composition of prompt template and output type over a target
-      model.
+    excerpt: Reusable composition of prompt template and output type over a target model.
   object_value: Application
   note: Reusable composition of prompt template and output type over a target model.
   fact_id: fact::34ad5e592d3928902e57c5b1
@@ -59,8 +58,7 @@ facts:
   - kind: file_block
     ref: architecture.key_abstractions[0]
     source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
-    excerpt: Factory that selects steerable or black-box generation strategy for a
-      model.
+    excerpt: Factory that selects steerable or black-box generation strategy for a model.
   object_value: Generator
   note: Factory that selects steerable or black-box generation strategy for a model.
   fact_id: fact::3fede8279917916582abbf18
@@ -79,8 +77,7 @@ facts:
     source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
     excerpt: Multi-provider model adapters
   object_value: Multi-provider model adapters
-  note: Supports OpenAI, Ollama, Transformers, vLLM, TGI, and other providers through
-    adapter factories.
+  note: Supports OpenAI, Ollama, Transformers, vLLM, TGI, and other providers through adapter factories.
   fact_id: fact::70428d3db312f6e6848d5203
 - fact_type: component
   predicate: has_component
@@ -112,11 +109,9 @@ facts:
   - kind: file_block
     ref: architecture.key_abstractions[1]
     source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
-    excerpt: Uses backend logits processors to enforce regex, JSON schema, or CFG
-      constraints during generation.
+    excerpt: Uses backend logits processors to enforce regex, JSON schema, or CFG constraints during generation.
   object_value: SteerableGenerator
-  note: Uses backend logits processors to enforce regex, JSON schema, or CFG constraints
-    during generation.
+  note: Uses backend logits processors to enforce regex, JSON schema, or CFG constraints during generation.
   fact_id: fact::98a2c734ac637715442a5255
 - fact_type: component
   predicate: has_component
@@ -233,11 +228,9 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[5]
     source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
-    excerpt: Combines templates, output types, and models into reusable application
-      wrappers.
+    excerpt: Combines templates, output types, and models into reusable application wrappers.
   object_value: outlines/applications.py
-  note: 'responsibility: Combines templates, output types, and models into reusable
-    application wrappers.; key_files: outlines/applications.py'
+  note: 'responsibility: Combines templates, output types, and models into reusable application wrappers.; key_files: outlines/applications.py'
   fact_id: fact::c335c980323d093c6a628be8
 - fact_type: component
   predicate: has_component
@@ -254,27 +247,9 @@ facts:
     source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
     excerpt: Creates logits processors for regex, JSON schema, and CFG constraints.
   object_value: outlines/backends
-  note: 'responsibility: Creates logits processors for regex, JSON schema, and CFG
-    constraints.; key_files: outlines/backends/__init__.py, outlines/backends/base.py'
+  note: 'responsibility: Creates logits processors for regex, JSON schema, and CFG constraints.; key_files: outlines/backends/__init__.py,
+    outlines/backends/base.py'
   fact_id: fact::2c45aaad6732132dac91614f
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
-    source_section: core_modules.constraint_backends
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.constraint_backends
-    source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
-    excerpt: outlines/backends
-  object_value: outlines/backends
-  note: 'Logits processor backends for JSON schema, regex, and CFG constraints. Submodules:
-    outlines/backends/outlines_core.py, outlines/backends/llguidance.py, outlines/backends/xgrammar.py'
-  fact_id: fact::6fc5902f6dc0b5dea45f27bf
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -295,23 +270,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
-    source_section: core_modules.generation_runtime
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.generation_runtime
-    source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
-    excerpt: outlines/generator.py
-  object_value: outlines/generator.py
-  note: Generator classes and dispatch factory for constrained generation.
-  fact_id: fact::660397c7d9766dfeb7ac7500
-- fact_type: component
-  predicate: has_component
-  object_kind: path
   confidence: 0.78
   as_of: '2026-03-05'
   provenance:
@@ -322,29 +280,11 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[0]
     source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
-    excerpt: Builds generator objects that route output constraints into model-specific
-      generation flows.
+    excerpt: Builds generator objects that route output constraints into model-specific generation flows.
   object_value: outlines/generator.py
-  note: 'responsibility: Builds generator objects that route output constraints into
-    model-specific generation flows.; key_files: outlines/generator.py'
+  note: 'responsibility: Builds generator objects that route output constraints into model-specific generation flows.; key_files:
+    outlines/generator.py'
   fact_id: fact::a1e04746f652b63e0347fa98
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
-    source_section: key_files[3]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[3]
-    source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
-    excerpt: outlines/generator.py
-  object_value: outlines/generator.py
-  note: Generator strategy implementations and dispatch function.
-  fact_id: fact::f3d9e0ac0a5845ad31359a60
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -358,32 +298,11 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[1]
     source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
-    excerpt: Defines provider adapters and from_<provider> constructors for external
-      model backends.
+    excerpt: Defines provider adapters and from_<provider> constructors for external model backends.
   object_value: outlines/models
-  note: 'responsibility: Defines provider adapters and from_<provider> constructors
-    for external model backends.; key_files: outlines/models/__init__.py, outlines/models/base.py,
-    outlines/models/openai.py, outlines/models/transformers.py'
+  note: 'responsibility: Defines provider adapters and from_<provider> constructors for external model backends.; key_files:
+    outlines/models/__init__.py, outlines/models/base.py, outlines/models/openai.py, outlines/models/transformers.py'
   fact_id: fact::9ce742e7e1eebf9ff6f04bb3
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
-    source_section: core_modules.model_adapters
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.model_adapters
-    source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
-    excerpt: outlines/models
-  object_value: outlines/models
-  note: 'Provider-specific model adapters and constructors for local and API models.
-    Submodules: outlines/models/openai.py, outlines/models/ollama.py, outlines/models/transformers.py,
-    outlines/models/vllm.py'
-  fact_id: fact::acecdeb8d7c965e0009df5a9
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -404,23 +323,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
-    source_section: core_modules.templating
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.templating
-    source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
-    excerpt: outlines/templates.py
-  object_value: outlines/templates.py
-  note: Jinja-based prompt template composition.
-  fact_id: fact::9e1ba2d22af2a811ad59d235
-- fact_type: component
-  predicate: has_component
-  object_kind: path
   confidence: 0.78
   as_of: '2026-03-05'
   provenance:
@@ -433,26 +335,8 @@ facts:
     source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
     excerpt: Provides prompt templating utilities built on Jinja2.
   object_value: outlines/templates.py
-  note: 'responsibility: Provides prompt templating utilities built on Jinja2.; key_files:
-    outlines/templates.py'
+  note: 'responsibility: Provides prompt templating utilities built on Jinja2.; key_files: outlines/templates.py'
   fact_id: fact::e8a1904bbcedf5f11c93b2d1
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
-    source_section: key_files[6]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[6]
-    source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
-    excerpt: outlines/templates.py
-  object_value: outlines/templates.py
-  note: Template abstraction and Jinja environment setup.
-  fact_id: fact::f4f90a2b786afd684a69d72d
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -468,27 +352,9 @@ facts:
     source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
     excerpt: Defines structured output DSL primitives and helper type constructors.
   object_value: outlines/types
-  note: 'responsibility: Defines structured output DSL primitives and helper type
-    constructors.; key_files: outlines/types/__init__.py, outlines/types/dsl.py'
+  note: 'responsibility: Defines structured output DSL primitives and helper type constructors.; key_files: outlines/types/__init__.py,
+    outlines/types/dsl.py'
   fact_id: fact::0b74915ef7e2d084b43d24b2
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
-    source_section: core_modules.types_dsl
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.types_dsl
-    source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
-    excerpt: outlines/types
-  object_value: outlines/types
-  note: 'Structured output type constructors and regex/CFG helper primitives. Submodules:
-    outlines/types/dsl.py, outlines/types/__init__.py'
-  fact_id: fact::9867c76d50ab568a3862da3b
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -725,8 +591,7 @@ facts:
     source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
     excerpt: Application
   object_value: Application
-  note: Reusable callable that combines template rendering and constrained generation.;
-    class Application; outlines/applications.py
+  note: Reusable callable that combines template rendering and constrained generation.; class Application; outlines/applications.py
   fact_id: fact::20644c8ffe651c475a9f7519
 - fact_type: extension_point
   predicate: has_extension_point
@@ -760,8 +625,8 @@ facts:
     source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
     excerpt: Generator
   object_value: Generator
-  note: Factory that creates model-specific generator implementations.; def Generator(model,
-    output_type=None, backend=None, *, processor=None); outlines/generator.py
+  note: Factory that creates model-specific generator implementations.; def Generator(model, output_type=None, backend=None,
+    *, processor=None); outlines/generator.py
   fact_id: fact::98d271604ed49d27afcac5df
 - fact_type: extension_point
   predicate: has_extension_point
@@ -863,8 +728,7 @@ facts:
     source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
     excerpt: Template
   object_value: Template
-  note: Prompt template abstraction with from_string and from_file constructors.;
-    class Template; outlines/templates.py
+  note: Prompt template abstraction with from_string and from_file constructors.; class Template; outlines/templates.py
   fact_id: fact::9a6fcb242128a66d67ac90dc
 - fact_type: extension_point
   predicate: has_extension_point
@@ -898,8 +762,7 @@ facts:
     source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
     excerpt: from_ollama
   object_value: from_ollama
-  note: Build model adapter for Ollama client integrations.; def from_ollama(...);
-    outlines/models/ollama.py
+  note: Build model adapter for Ollama client integrations.; def from_ollama(...); outlines/models/ollama.py
   fact_id: fact::9848e090840700d7e341926d
 - fact_type: extension_point
   predicate: has_extension_point
@@ -916,8 +779,7 @@ facts:
     source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
     excerpt: from_openai
   object_value: from_openai
-  note: Build model adapter for OpenAI-compatible clients.; def from_openai(...);
-    outlines/models/openai.py
+  note: Build model adapter for OpenAI-compatible clients.; def from_openai(...); outlines/models/openai.py
   fact_id: fact::1b4808f6d36d5a820367ad3c
 - fact_type: extension_point
   predicate: has_extension_point
@@ -934,8 +796,7 @@ facts:
     source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
     excerpt: from_transformers
   object_value: from_transformers
-  note: Build model adapters from Hugging Face Transformers models/tokenizers.; def
-    from_transformers(...); outlines/models/transformers.py
+  note: Build model adapters from Hugging Face Transformers models/tokenizers.; def from_transformers(...); outlines/models/transformers.py
   fact_id: fact::4f11b9434f1acfa4a637ccc6
 - fact_type: extension_point
   predicate: has_extension_point
@@ -1071,8 +932,7 @@ facts:
     source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
     excerpt: Different constraint families map to default backend names.
   object_value: Backend defaults per constraint class
-  note: 'description: Different constraint families map to default backend names.;
-    location: outlines/backends/__init__.py'
+  note: 'description: Different constraint families map to default backend names.; location: outlines/backends/__init__.py'
   fact_id: fact::bd649a0111a00ac47d12233d
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1087,11 +947,10 @@ facts:
   - kind: file_block
     ref: outlines/backends/__init__.py
     source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
-    excerpt: Backends are selected by string name and produce logits processors for
-      constraint modes.
+    excerpt: Backends are selected by string name and produce logits processors for constraint modes.
   object_value: Backend plug-in selection
-  note: 'description: Backends are selected by string name and produce logits processors
-    for constraint modes.; location: outlines/backends/__init__.py'
+  note: 'description: Backends are selected by string name and produce logits processors for constraint modes.; location:
+    outlines/backends/__init__.py'
   fact_id: fact::4abda34eb34a983cbf3e0e5b
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1123,11 +982,10 @@ facts:
   - kind: file_block
     ref: outlines/generator.py
     source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
-    excerpt: Generator selects SteerableGenerator, BlackBoxGenerator, or AsyncBlackBoxGenerator
-      by model type.
+    excerpt: Generator selects SteerableGenerator, BlackBoxGenerator, or AsyncBlackBoxGenerator by model type.
   object_value: Generator strategy dispatch
-  note: 'description: Generator selects SteerableGenerator, BlackBoxGenerator, or
-    AsyncBlackBoxGenerator by model type.; location: outlines/generator.py'
+  note: 'description: Generator selects SteerableGenerator, BlackBoxGenerator, or AsyncBlackBoxGenerator by model type.; location:
+    outlines/generator.py'
   fact_id: fact::37876f8cc560dbde93e1ef42
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1142,11 +1000,10 @@ facts:
   - kind: file_block
     ref: outlines/models/base.py
     source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
-    excerpt: Each model carries a type adapter responsible for formatting inputs and
-      output constraints.
+    excerpt: Each model carries a type adapter responsible for formatting inputs and output constraints.
   object_value: Model type adapter abstraction
-  note: 'description: Each model carries a type adapter responsible for formatting
-    inputs and output constraints.; location: outlines/models/base.py'
+  note: 'description: Each model carries a type adapter responsible for formatting inputs and output constraints.; location:
+    outlines/models/base.py'
   fact_id: fact::e73d96a7c91bcf60ec4bec02
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1178,11 +1035,10 @@ facts:
   - kind: file_block
     ref: outlines/models/__init__.py
     source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
-    excerpt: Model modules expose from_<provider> factories that normalize clients
-      into a common model API.
+    excerpt: Model modules expose from_<provider> factories that normalize clients into a common model API.
   object_value: Provider adapter constructors
-  note: 'description: Model modules expose from_<provider> factories that normalize
-    clients into a common model API.; location: outlines/models/__init__.py'
+  note: 'description: Model modules expose from_<provider> factories that normalize clients into a common model API.; location:
+    outlines/models/__init__.py'
   fact_id: fact::1a7ab861ec1f4fdb47a749db
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1214,11 +1070,9 @@ facts:
   - kind: file_block
     ref: outlines/applications.py
     source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
-    excerpt: Application caches generator instances and rebuilds only when model identity
-      changes.
+    excerpt: Application caches generator instances and rebuilds only when model identity changes.
   object_value: Reusable generator caching in Application
-  note: 'description: Application caches generator instances and rebuilds only when
-    model identity changes.; location: outlines/applications.py'
+  note: 'description: Application caches generator instances and rebuilds only when model identity changes.; location: outlines/applications.py'
   fact_id: fact::f46242e188da05fd4cec6b3b
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1250,11 +1104,9 @@ facts:
   - kind: file_block
     ref: outlines/templates.py
     source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
-    excerpt: Template rendering uses a Jinja environment configured to error on missing
-      values.
+    excerpt: Template rendering uses a Jinja environment configured to error on missing values.
   object_value: Template rendering with strict undefineds
-  note: 'description: Template rendering uses a Jinja environment configured to error
-    on missing values.; location: outlines/templates.py'
+  note: 'description: Template rendering uses a Jinja environment configured to error on missing values.; location: outlines/templates.py'
   fact_id: fact::b83cdbb3019ae8dfca269abd
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1269,10 +1121,8 @@ facts:
   - kind: file_block
     ref: testing.structure.line[0]
     source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
-    excerpt: Tests cover backends, models, processors, types, and utility behavior
-      under tests/.
-  object_value: Tests cover backends, models, processors, types, and utility behavior
-    under tests/.
+    excerpt: Tests cover backends, models, processors, types, and utility behavior under tests/.
+  object_value: Tests cover backends, models, processors, types, and utility behavior under tests/.
   note: 'testing metadata: structure'
   fact_id: fact::8766271187b213e779243700
 - fact_type: implementation_pattern
@@ -1288,29 +1138,11 @@ facts:
   - kind: file_block
     ref: outlines/generator.py
     source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
-    excerpt: Output types are converted to CFG, JSON schema, or regex terms before
-      processor construction.
+    excerpt: Output types are converted to CFG, JSON schema, or regex terms before processor construction.
   object_value: Type-to-constraint compilation
-  note: 'description: Output types are converted to CFG, JSON schema, or regex terms
-    before processor construction.; location: outlines/generator.py'
+  note: 'description: Output types are converted to CFG, JSON schema, or regex terms before processor construction.; location:
+    outlines/generator.py'
   fact_id: fact::c4ad104f092ca20f51382f51
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
-    source_section: quick_reference[0].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[0].line[0]
-    source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
-    excerpt: pip install outlines
-  object_value: pip install outlines
-  note: 'topic: Install base package'
-  fact_id: fact::83d68d57efdab57534be4d21
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
@@ -1352,23 +1184,6 @@ facts:
   as_of: '2026-03-05'
   provenance:
     source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
-    source_section: quick_reference[1].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[1].line[0]
-    source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
-    excerpt: pip install outlines[openai]
-  object_value: pip install outlines[openai]
-  note: 'topic: Install OpenAI integration extras'
-  fact_id: fact::cc3a555d507885b2161207d3
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
     source_section: testing.framework.line[0]
     extraction_mode: narrative
   evidence:
@@ -1379,23 +1194,6 @@ facts:
   object_value: pytest
   note: testing command
   fact_id: fact::e6cb19bd7b749560979038a5
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
-    source_section: quick_reference[2].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: quick_reference[2].line[0]
-    source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
-    excerpt: pytest tests
-  object_value: pytest tests
-  note: 'topic: Run tests'
-  fact_id: fact::315b7e8ccd65ea7703c2eacf
 - fact_type: operational_task
   predicate: supports_task
   object_kind: command
@@ -1413,20 +1211,3 @@ facts:
   object_value: pytest tests
   note: Run repository test suite discovered from tests/.
   fact_id: fact::c3328d167218be507351d4e8
-- fact_type: operational_task
-  predicate: supports_task
-  object_kind: command
-  confidence: 0.67
-  as_of: '2026-03-05'
-  provenance:
-    source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
-    source_section: testing.test_patterns[0].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: testing.test_patterns[0].line[0]
-    source_file: repos/knowledge/deep/dottxt-ai__outlines.yaml
-    excerpt: pytest tests
-  object_value: pytest tests
-  note: testing command
-  fact_id: fact::dae95a3be2cdff4de3d130eb

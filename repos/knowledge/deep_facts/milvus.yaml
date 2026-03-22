@@ -47,23 +47,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: concept
-  confidence: 0.61
-  as_of: '2026-02-25'
-  provenance:
-    source_file: repos/knowledge/deep/milvus.yaml
-    source_section: languages[0].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: languages[0].line[0]
-    source_file: repos/knowledge/deep/milvus.yaml
-    excerpt: Go
-  object_value: Go
-  note: language ecosystem
-  fact_id: fact::232301e0eed2661f612b66f1
-- fact_type: component
-  predicate: has_component
-  object_kind: concept
   confidence: 0.66
   as_of: '2026-02-25'
   provenance:
@@ -787,8 +770,8 @@ facts:
     source_file: repos/knowledge/deep/milvus.yaml
     excerpt: Collection not loaded error
   object_value: Collection not loaded error
-  note: 'cause: Collection must be explicitly loaded into memory; fix: Call client.LoadCollection(ctx,
-    collectionName) before search'
+  note: 'cause: Collection must be explicitly loaded into memory; fix: Call client.LoadCollection(ctx, collectionName) before
+    search'
   fact_id: fact::ef13169ffaf1a7ce0ddbb78b
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -805,8 +788,7 @@ facts:
     source_file: repos/knowledge/deep/milvus.yaml
     excerpt: Connection refused
   object_value: Connection refused
-  note: 'cause: Server not running or wrong address; fix: Check docker compose status,
-    verify port 19530 is accessible'
+  note: 'cause: Server not running or wrong address; fix: Check docker compose status, verify port 19530 is accessible'
   fact_id: fact::5d34447f641e79f464398a3a
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -823,8 +805,8 @@ facts:
     source_file: repos/knowledge/deep/milvus.yaml
     excerpt: Index creation timeout
   object_value: Index creation timeout
-  note: 'cause: Large dataset or insufficient resources; fix: Increase index.build_parallel_rate
-    in config, use simpler index type'
+  note: 'cause: Large dataset or insufficient resources; fix: Increase index.build_parallel_rate in config, use simpler index
+    type'
   fact_id: fact::d19bca935951a9a96554b460
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -841,8 +823,7 @@ facts:
     source_file: repos/knowledge/deep/milvus.yaml
     excerpt: Memory allocation failed
   object_value: Memory allocation failed
-  note: 'cause: Insufficient memory for vectors; fix: Use IvfPQ index, enable mmap,
-    or add more memory'
+  note: 'cause: Insufficient memory for vectors; fix: Use IvfPQ index, enable mmap, or add more memory'
   fact_id: fact::d650568d467a5bc2ed0106b2
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -859,8 +840,8 @@ facts:
     source_file: repos/knowledge/deep/milvus.yaml
     excerpt: Search returns empty results
   object_value: Search returns empty results
-  note: 'cause: Wrong metric type or no data in partition; fix: Verify metric matches
-    index, check partition has data, verify search vector dimensions'
+  note: 'cause: Wrong metric type or no data in partition; fix: Verify metric matches index, check partition has data, verify
+    search vector dimensions'
   fact_id: fact::bad6f5e812c0a6d5c1bac860
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -996,10 +977,9 @@ facts:
     source_file: repos/knowledge/deep/milvus.yaml
     excerpt: Create and Search Collection
   object_value: Create and Search Collection
-  note: Create schema with primary key + vector field, Create collection with schema,
-    Create index on vector field, Load collection into memory, Insert vectors with
-    metadata, Search with query vector; Collection must be loaded before search, Index
-    creation is async - wait for completi...
+  note: Create schema with primary key + vector field, Create collection with schema, Create index on vector field, Load collection
+    into memory, Insert vectors with metadata, Search with query vector; Collection must be loaded before search, Index creation
+    is async - wait for completi...
   fact_id: fact::ee8d967bf4249bc2bb192079
 - fact_type: operational_task
   predicate: supports_task
@@ -1017,8 +997,8 @@ facts:
     excerpt: Deploy Standalone (Docker)
   object_value: Deploy Standalone (Docker)
   note: 'Download: wget https://github.com/milvus-io/milvus/releases/download/v2.3.0/milvus-standalone-docker-compose.yml
-    -O docker-compose.yml, Start: docker compose up -d, Verify: curl http://localhost:9091/healthz,
-    Connect: localhost:19530; Needs 8GB+ RAM for standalone, Data stored...'
+    -O docker-compose.yml, Start: docker compose up -d, Verify: curl http://localhost:9091/healthz, Connect: localhost:19530;
+    Needs 8GB+ RAM for standalone, Data stored...'
   fact_id: fact::1fb96048671280a4bb84822a
 - fact_type: operational_task
   predicate: supports_task
@@ -1103,8 +1083,7 @@ facts:
     source_file: repos/knowledge/deep/milvus.yaml
     excerpt: Scale to Cluster (Kubernetes)
   object_value: Scale to Cluster (Kubernetes)
-  note: 'Add Milvus Helm repo: helm repo add milvus https://milvus-io.github.io/milvus-helm,
-    Install: helm install my-release milvus/milvus, Configure: values.yaml for resources,
-    storage, Expose: kubectl port-forward svc/my-release-milvus 19530:19530; Production
-    needs: etcd cluster, mi...'
+  note: 'Add Milvus Helm repo: helm repo add milvus https://milvus-io.github.io/milvus-helm, Install: helm install my-release
+    milvus/milvus, Configure: values.yaml for resources, storage, Expose: kubectl port-forward svc/my-release-milvus 19530:19530;
+    Production needs: etcd cluster, mi...'
   fact_id: fact::71245dfc6d9dbf5dd9421c28

@@ -90,10 +90,8 @@ facts:
   - kind: file_block
     ref: key_features[4]
     source_file: repos/knowledge/deep/xqsit94__glm.yaml
-    excerpt: Unknown flag forwarding to preserve compatibility with upstream Claude
-      flags.
-  object_value: Unknown flag forwarding to preserve compatibility with upstream Claude
-    flags.
+    excerpt: Unknown flag forwarding to preserve compatibility with upstream Claude flags.
+  object_value: Unknown flag forwarding to preserve compatibility with upstream Claude flags.
   fact_id: fact::d25b567b6e1358d40f37bc51
 - fact_type: component
   predicate: has_component
@@ -266,23 +264,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/xqsit94__glm.yaml
-    source_section: core_modules.command_layer
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.command_layer
-    source_file: repos/knowledge/deep/xqsit94__glm.yaml
-    excerpt: cmd/
-  object_value: cmd/
-  note: Cobra commands and subcommands.
-  fact_id: fact::199614c7436d4d776ec124d8
-- fact_type: component
-  predicate: has_component
-  object_kind: path
   confidence: 0.78
   as_of: '2026-03-04'
   provenance:
@@ -295,8 +276,8 @@ facts:
     source_file: repos/knowledge/deep/xqsit94__glm.yaml
     excerpt: Command tree (root, token, install, update, deprecated enable/disable).
   object_value: cmd/
-  note: 'responsibility: Command tree (root, token, install, update, deprecated enable/disable).;
-    key_files: cmd/root.go, cmd/token.go, cmd/install.go, cmd/update.go'
+  note: 'responsibility: Command tree (root, token, install, update, deprecated enable/disable).; key_files: cmd/root.go,
+    cmd/token.go, cmd/install.go, cmd/update.go'
   fact_id: fact::ff009f66daff02371063195b
 - fact_type: component
   predicate: has_component
@@ -347,8 +328,7 @@ facts:
     source_file: repos/knowledge/deep/xqsit94__glm.yaml
     excerpt: Config file read/write for ~/.glm/config.json.
   object_value: internal/config/
-  note: 'responsibility: Config file read/write for ~/.glm/config.json.; key_files:
-    internal/config/config.go'
+  note: 'responsibility: Config file read/write for ~/.glm/config.json.; key_files: internal/config/config.go'
   fact_id: fact::aae5e4186ae1154b57577e5d
 - fact_type: component
   predicate: has_component
@@ -370,23 +350,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/xqsit94__glm.yaml
-    source_section: key_files[4]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[4]
-    source_file: repos/knowledge/deep/xqsit94__glm.yaml
-    excerpt: internal/config/config.go
-  object_value: internal/config/config.go
-  note: Config persistence logic.
-  fact_id: fact::41053d8b7a03d80161c71ba7
-- fact_type: component
-  predicate: has_component
-  object_kind: path
   confidence: 0.78
   as_of: '2026-03-04'
   provenance:
@@ -397,29 +360,10 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[2]
     source_file: repos/knowledge/deep/xqsit94__glm.yaml
-    excerpt: Session launch integration that wraps Claude CLI with GLM-specific env
-      vars.
+    excerpt: Session launch integration that wraps Claude CLI with GLM-specific env vars.
   object_value: internal/glm/
-  note: 'responsibility: Session launch integration that wraps Claude CLI with GLM-specific
-    env vars.; key_files: internal/glm/glm.go'
+  note: 'responsibility: Session launch integration that wraps Claude CLI with GLM-specific env vars.; key_files: internal/glm/glm.go'
   fact_id: fact::dc392c04946616056db2ec30
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/xqsit94__glm.yaml
-    source_section: key_files[3]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[3]
-    source_file: repos/knowledge/deep/xqsit94__glm.yaml
-    excerpt: internal/glm/glm.go
-  object_value: internal/glm/glm.go
-  note: Claude launch integration.
-  fact_id: fact::345318325db1cc3d2b69d50f
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -452,8 +396,7 @@ facts:
     source_file: repos/knowledge/deep/xqsit94__glm.yaml
     excerpt: Claude installation and binary update flows.
   object_value: internal/installer/ and internal/updater/
-  note: 'responsibility: Claude installation and binary update flows.; key_files:
-    internal/installer/installer.go, internal/updater/updater.go'
+  note: 'responsibility: Claude installation and binary update flows.; key_files: internal/installer/installer.go, internal/updater/updater.go'
   fact_id: fact::d59dbf04722167e20c3259ea
 - fact_type: component
   predicate: has_component
@@ -470,8 +413,7 @@ facts:
     source_file: repos/knowledge/deep/xqsit94__glm.yaml
     excerpt: Token storage/retrieval and management helpers.
   object_value: internal/token/
-  note: 'responsibility: Token storage/retrieval and management helpers.; key_files:
-    internal/token/token.go'
+  note: 'responsibility: Token storage/retrieval and management helpers.; key_files: internal/token/token.go'
   fact_id: fact::ac0f874035cf4eb6c44f58e2
 - fact_type: component
   predicate: has_component
@@ -493,23 +435,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/xqsit94__glm.yaml
-    source_section: key_files[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[0]
-    source_file: repos/knowledge/deep/xqsit94__glm.yaml
-    excerpt: main.go
-  object_value: main.go
-  note: Entrypoint.
-  fact_id: fact::a1a9ef73a612d80925af6db2
-- fact_type: component
-  predicate: has_component
-  object_kind: path
   confidence: 0.78
   as_of: '2026-03-04'
   provenance:
@@ -522,8 +447,7 @@ facts:
     source_file: repos/knowledge/deep/xqsit94__glm.yaml
     excerpt: Program entrypoint delegating to root cobra command.
   object_value: main.go
-  note: 'responsibility: Program entrypoint delegating to root cobra command.; key_files:
-    main.go'
+  note: 'responsibility: Program entrypoint delegating to root cobra command.; key_files: main.go'
   fact_id: fact::b6a62d773f73c110eed826cd
 - fact_type: config_option
   predicate: has_config_option
@@ -630,23 +554,6 @@ facts:
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
-  confidence: 0.7
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/xqsit94__glm.yaml
-    source_section: environment_variables[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: environment_variables[0]
-    source_file: repos/knowledge/deep/xqsit94__glm.yaml
-    excerpt: ANTHROPIC_AUTH_TOKEN
-  object_value: ANTHROPIC_AUTH_TOKEN
-  note: Authentication token for API calls.
-  fact_id: fact::7fad497a0044353a3108d6d8
-- fact_type: config_option
-  predicate: has_config_option
-  object_kind: config_key
   confidence: 0.72
   as_of: '2026-03-04'
   provenance:
@@ -659,26 +566,8 @@ facts:
     source_file: repos/knowledge/deep/xqsit94__glm.yaml
     excerpt: ANTHROPIC_BASE_URL
   object_value: ANTHROPIC_BASE_URL
-  note: 'default: https://open.bigmodel.cn/api/anthropic; API base URL used for launched
-    Claude sessions.'
+  note: 'default: https://open.bigmodel.cn/api/anthropic; API base URL used for launched Claude sessions.'
   fact_id: fact::debf94b40908175d728cece3
-- fact_type: config_option
-  predicate: has_config_option
-  object_kind: config_key
-  confidence: 0.7
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/xqsit94__glm.yaml
-    source_section: environment_variables[1]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: environment_variables[1]
-    source_file: repos/knowledge/deep/xqsit94__glm.yaml
-    excerpt: ANTHROPIC_BASE_URL
-  object_value: ANTHROPIC_BASE_URL
-  note: Endpoint override for GLM backend.
-  fact_id: fact::f2befe6fa633316402bdd381
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
@@ -696,23 +585,6 @@ facts:
   object_value: ANTHROPIC_MODEL
   note: 'default: glm-5; Selected model for launched session.'
   fact_id: fact::2e35b79c8668bd0a35e2e65b
-- fact_type: config_option
-  predicate: has_config_option
-  object_kind: config_key
-  confidence: 0.7
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/xqsit94__glm.yaml
-    source_section: environment_variables[2]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: environment_variables[2]
-    source_file: repos/knowledge/deep/xqsit94__glm.yaml
-    excerpt: ANTHROPIC_MODEL
-  object_value: ANTHROPIC_MODEL
-  note: Model override for launched session.
-  fact_id: fact::6192b0a163d419a3e7bcd468
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
@@ -796,8 +668,7 @@ facts:
     source_file: repos/knowledge/deep/xqsit94__glm.yaml
     excerpt: Command/subcommand assembly is centralized in cmd package with RunE handlers.
   object_value: Cobra command composition
-  note: 'description: Command/subcommand assembly is centralized in cmd package with
-    RunE handlers.; location: cmd/*.go'
+  note: 'description: Command/subcommand assembly is centralized in cmd package with RunE handlers.; location: cmd/*.go'
   fact_id: fact::23e113ef88f0efca0a16a339
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -829,11 +700,10 @@ facts:
   - kind: file_block
     ref: README.md and internal/glm/glm.go
     source_file: repos/knowledge/deep/xqsit94__glm.yaml
-    excerpt: Environment variables are set for launched process rather than mutating
-      Claude config files.
+    excerpt: Environment variables are set for launched process rather than mutating Claude config files.
   object_value: Session-scoped configuration
-  note: 'description: Environment variables are set for launched process rather than
-    mutating Claude config files.; location: README.md and internal/glm/glm.go'
+  note: 'description: Environment variables are set for launched process rather than mutating Claude config files.; location:
+    README.md and internal/glm/glm.go'
   fact_id: fact::7545702c239b3f11e7e81591
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -848,11 +718,9 @@ facts:
   - kind: file_block
     ref: cmd/root.go
     source_file: repos/knowledge/deep/xqsit94__glm.yaml
-    excerpt: Root command whitelists known flags and appends unknown ones to downstream
-      args.
+    excerpt: Root command whitelists known flags and appends unknown ones to downstream args.
   object_value: Unknown flag forwarding
-  note: 'description: Root command whitelists known flags and appends unknown ones
-    to downstream args.; location: cmd/root.go'
+  note: 'description: Root command whitelists known flags and appends unknown ones to downstream args.; location: cmd/root.go'
   fact_id: fact::1ea1d5e3bffac154318b00a4
 - fact_type: implementation_pattern
   predicate: implements_pattern

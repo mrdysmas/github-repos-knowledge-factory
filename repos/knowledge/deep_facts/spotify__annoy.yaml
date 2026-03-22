@@ -124,10 +124,8 @@ facts:
   - kind: file_block
     ref: key_features[1]
     source_file: repos/knowledge/deep/spotify__annoy.yaml
-    excerpt: Multiple metrics including angular, euclidean, manhattan, hamming, and
-      dot.
-  object_value: Multiple metrics including angular, euclidean, manhattan, hamming,
-    and dot.
+    excerpt: Multiple metrics including angular, euclidean, manhattan, hamming, and dot.
+  object_value: Multiple metrics including angular, euclidean, manhattan, hamming, and dot.
   fact_id: fact::05073b77c9b05f2c75a78fcd
 - fact_type: component
   predicate: has_component
@@ -259,8 +257,7 @@ facts:
   - kind: file_block
     ref: architecture.key_abstractions[1]
     source_file: repos/knowledge/deep/spotify__annoy.yaml
-    excerpt: Compile-time metric behavior (angular, euclidean, manhattan, hamming,
-      dot).
+    excerpt: Compile-time metric behavior (angular, euclidean, manhattan, hamming, dot).
   object_value: metric-specific index templates
   note: Compile-time metric behavior (angular, euclidean, manhattan, hamming, dot).
   fact_id: fact::588f701339432107e0d434cb
@@ -364,26 +361,8 @@ facts:
     source_file: repos/knowledge/deep/spotify__annoy.yaml
     excerpt: Python-facing wrapper and alias (AnnoyIndex).
   object_value: annoy/__init__.py
-  note: 'responsibility: Python-facing wrapper and alias (AnnoyIndex).; key_files:
-    annoy/__init__.py, annoy/__init__.pyi'
+  note: 'responsibility: Python-facing wrapper and alias (AnnoyIndex).; key_files: annoy/__init__.py, annoy/__init__.pyi'
   fact_id: fact::b9b506712d9a597e17981b08
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/spotify__annoy.yaml
-    source_section: key_files[2]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[2]
-    source_file: repos/knowledge/deep/spotify__annoy.yaml
-    excerpt: annoy/__init__.py
-  object_value: annoy/__init__.py
-  note: Python wrapper aliasing.
-  fact_id: fact::bd80b48ab7a9084bc22cc00d
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -421,23 +400,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/spotify__annoy.yaml
-    source_section: key_files[6]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[6]
-    source_file: repos/knowledge/deep/spotify__annoy.yaml
-    excerpt: setup.py
-  object_value: setup.py
-  note: Build and extension packaging.
-  fact_id: fact::c76c2275b3c09ff95c51e83b
-- fact_type: component
-  predicate: has_component
-  object_kind: path
   confidence: 0.78
   as_of: '2026-03-04'
   provenance:
@@ -450,26 +412,8 @@ facts:
     source_file: repos/knowledge/deep/spotify__annoy.yaml
     excerpt: Build configuration and platform-specific compiler flags.
   object_value: setup.py / CMakeLists.txt
-  note: 'responsibility: Build configuration and platform-specific compiler flags.;
-    key_files: setup.py, CMakeLists.txt'
+  note: 'responsibility: Build configuration and platform-specific compiler flags.; key_files: setup.py, CMakeLists.txt'
   fact_id: fact::4b660b4eab80ffb416f6db04
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/spotify__annoy.yaml
-    source_section: core_modules.index_core
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.index_core
-    source_file: repos/knowledge/deep/spotify__annoy.yaml
-    excerpt: src/annoylib.h
-  object_value: src/annoylib.h
-  note: ANN tree structures and search/build implementation.
-  fact_id: fact::7b4f7fee836a8968b6a3d7a3
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -485,43 +429,8 @@ facts:
     source_file: repos/knowledge/deep/spotify__annoy.yaml
     excerpt: Core index data structures, distance metrics, and tree build/search algorithms.
   object_value: src/annoylib.h
-  note: 'responsibility: Core index data structures, distance metrics, and tree build/search
-    algorithms.; key_files: src/annoylib.h'
+  note: 'responsibility: Core index data structures, distance metrics, and tree build/search algorithms.; key_files: src/annoylib.h'
   fact_id: fact::a938b72336c7475b822a455d
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/spotify__annoy.yaml
-    source_section: key_files[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[0]
-    source_file: repos/knowledge/deep/spotify__annoy.yaml
-    excerpt: src/annoylib.h
-  object_value: src/annoylib.h
-  note: Core ANN algorithms and data model.
-  fact_id: fact::c472279610d84678283247b5
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/spotify__annoy.yaml
-    source_section: core_modules.python_binding
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.python_binding
-    source_file: repos/knowledge/deep/spotify__annoy.yaml
-    excerpt: src/annoymodule.cc
-  object_value: src/annoymodule.cc
-  note: CPython module bridge.
-  fact_id: fact::20e6ca73e7235eaab11363a4
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -537,26 +446,8 @@ facts:
     source_file: repos/knowledge/deep/spotify__annoy.yaml
     excerpt: CPython extension bindings exposing Annoy index API to Python.
   object_value: src/annoymodule.cc
-  note: 'responsibility: CPython extension bindings exposing Annoy index API to Python.;
-    key_files: src/annoymodule.cc'
+  note: 'responsibility: CPython extension bindings exposing Annoy index API to Python.; key_files: src/annoymodule.cc'
   fact_id: fact::50501c9be04651fa31ee171c
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/spotify__annoy.yaml
-    source_section: key_files[1]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[1]
-    source_file: repos/knowledge/deep/spotify__annoy.yaml
-    excerpt: src/annoymodule.cc
-  object_value: src/annoymodule.cc
-  note: Python extension bindings.
-  fact_id: fact::78ec36494ee81472b01c4a56
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -572,26 +463,8 @@ facts:
     source_file: repos/knowledge/deep/spotify__annoy.yaml
     excerpt: mmap compatibility layer for Windows environments.
   object_value: src/mman.h
-  note: 'responsibility: mmap compatibility layer for Windows environments.; key_files:
-    src/mman.h'
+  note: 'responsibility: mmap compatibility layer for Windows environments.; key_files: src/mman.h'
   fact_id: fact::a08badd4299f79ec280f9cc8
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/spotify__annoy.yaml
-    source_section: key_files[4]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[4]
-    source_file: repos/knowledge/deep/spotify__annoy.yaml
-    excerpt: src/mman.h
-  object_value: src/mman.h
-  note: Windows mmap compatibility implementation.
-  fact_id: fact::ac3841a13c4f1e1fab4e737a
 - fact_type: config_option
   predicate: has_config_option
   object_kind: config_key
@@ -641,8 +514,7 @@ facts:
     source_file: repos/knowledge/deep/spotify__annoy.yaml
     excerpt: n_trees
   object_value: n_trees
-  note: 'default: required by build call; Number of trees; higher improves recall
-    at cost of build time/size.'
+  note: 'default: required by build call; Number of trees; higher improves recall at cost of build time/size.'
   fact_id: fact::0f060c34421a7e9aca183086
 - fact_type: config_option
   predicate: has_config_option
@@ -846,8 +718,7 @@ facts:
     source_file: repos/knowledge/deep/spotify__annoy.yaml
     excerpt: Core ANN logic lives primarily in annoylib.h templates and inline functions.
   object_value: Header-centric C++ core
-  note: 'description: Core ANN logic lives primarily in annoylib.h templates and inline
-    functions.; location: src/annoylib.h'
+  note: 'description: Core ANN logic lives primarily in annoylib.h templates and inline functions.; location: src/annoylib.h'
   fact_id: fact::b633611b4a3601d8624fae36
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -862,11 +733,10 @@ facts:
   - kind: file_block
     ref: src/mman.h and setup.py
     source_file: repos/knowledge/deep/spotify__annoy.yaml
-    excerpt: Windows mmap/compile compatibility implemented in dedicated support headers
-      and flags.
+    excerpt: Windows mmap/compile compatibility implemented in dedicated support headers and flags.
   object_value: Platform compatibility shims
-  note: 'description: Windows mmap/compile compatibility implemented in dedicated
-    support headers and flags.; location: src/mman.h and setup.py'
+  note: 'description: Windows mmap/compile compatibility implemented in dedicated support headers and flags.; location: src/mman.h
+    and setup.py'
   fact_id: fact::8204e46bd66334f2f762e3e4
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -898,11 +768,9 @@ facts:
   - kind: file_block
     ref: src/annoymodule.cc
     source_file: repos/knowledge/deep/spotify__annoy.yaml
-    excerpt: annoymodule.cc forwards Python calls to underlying metric-specialized
-      index instances.
+    excerpt: annoymodule.cc forwards Python calls to underlying metric-specialized index instances.
   object_value: Thin language-binding wrapper
-  note: 'description: annoymodule.cc forwards Python calls to underlying metric-specialized
-    index instances.; location: src/annoymodule.cc'
+  note: 'description: annoymodule.cc forwards Python calls to underlying metric-specialized index instances.; location: src/annoymodule.cc'
   fact_id: fact::6862389a3124e9d8695d6418
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -934,11 +802,10 @@ facts:
   - kind: file_block
     ref: README.rst and src/annoylib.h
     source_file: repos/knowledge/deep/spotify__annoy.yaml
-    excerpt: Saved index files are loaded with mmap and can be prefaulted for faster
-      early queries.
+    excerpt: Saved index files are loaded with mmap and can be prefaulted for faster early queries.
   object_value: mmap-first persistence
-  note: 'description: Saved index files are loaded with mmap and can be prefaulted
-    for faster early queries.; location: README.rst and src/annoylib.h'
+  note: 'description: Saved index files are loaded with mmap and can be prefaulted for faster early queries.; location: README.rst
+    and src/annoylib.h'
   fact_id: fact::ca04b10a96e7fe190ae9a11d
 - fact_type: implementation_pattern
   predicate: implements_pattern

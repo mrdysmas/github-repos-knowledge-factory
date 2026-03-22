@@ -157,8 +157,7 @@ facts:
     ref: key_features[3]
     source_file: repos/knowledge/deep/sharkdp__fd.yaml
     excerpt: Rich filtering (type, extension, size, time, depth, hidden/ignored controls).
-  object_value: Rich filtering (type, extension, size, time, depth, hidden/ignored
-    controls).
+  object_value: Rich filtering (type, extension, size, time, depth, hidden/ignored controls).
   fact_id: fact::47d2fbe89451cd9380b4f21c
 - fact_type: component
   predicate: has_component
@@ -367,23 +366,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: concept
-  confidence: 0.61
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/sharkdp__fd.yaml
-    source_section: languages[0].line[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: languages[0].line[0]
-    source_file: repos/knowledge/deep/sharkdp__fd.yaml
-    excerpt: rust
-  object_value: rust
-  note: language ecosystem
-  fact_id: fact::78ce374fa88a2f161b3c6c3a
-- fact_type: component
-  predicate: has_component
-  object_kind: concept
   confidence: 0.66
   as_of: '2026-03-04'
   provenance:
@@ -447,43 +429,8 @@ facts:
     source_file: repos/knowledge/deep/sharkdp__fd.yaml
     excerpt: Defines full command-line contract and option semantics.
   object_value: src/cli.rs
-  note: 'responsibility: Defines full command-line contract and option semantics.;
-    key_files: src/cli.rs'
+  note: 'responsibility: Defines full command-line contract and option semantics.; key_files: src/cli.rs'
   fact_id: fact::19c0b72e08b73bb1a811e503
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/sharkdp__fd.yaml
-    source_section: core_modules.cli_layer
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.cli_layer
-    source_file: repos/knowledge/deep/sharkdp__fd.yaml
-    excerpt: src/cli.rs
-  object_value: src/cli.rs
-  note: CLI contract and parsing.
-  fact_id: fact::5f38c52b0bd653fcf7651835
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/sharkdp__fd.yaml
-    source_section: key_files[1]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[1]
-    source_file: repos/knowledge/deep/sharkdp__fd.yaml
-    excerpt: src/cli.rs
-  object_value: src/cli.rs
-  note: Public CLI option model and help docs.
-  fact_id: fact::c4eda87d9b7a5a178c7bab9e
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -499,26 +446,8 @@ facts:
     source_file: repos/knowledge/deep/sharkdp__fd.yaml
     excerpt: Handles `--exec` and `--exec-batch` command generation/execution.
   object_value: src/exec/
-  note: 'responsibility: Handles `--exec` and `--exec-batch` command generation/execution.;
-    key_files: src/exec/mod.rs'
+  note: 'responsibility: Handles `--exec` and `--exec-batch` command generation/execution.; key_files: src/exec/mod.rs'
   fact_id: fact::5ea97673b75dc72e3fe6c298
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/sharkdp__fd.yaml
-    source_section: core_modules.execution_layer
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.execution_layer
-    source_file: repos/knowledge/deep/sharkdp__fd.yaml
-    excerpt: src/exec/
-  object_value: src/exec/
-  note: External command templating and execution.
-  fact_id: fact::a327bbf25f22b4747e67ee65
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -539,40 +468,6 @@ facts:
 - fact_type: component
   predicate: has_component
   object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/sharkdp__fd.yaml
-    source_section: core_modules.filtering_layer
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.filtering_layer
-    source_file: repos/knowledge/deep/sharkdp__fd.yaml
-    excerpt: src/filter/
-  object_value: src/filter/
-  note: File metadata and type/time/size filtering.
-  fact_id: fact::bfa22951c56fe9017ae72ebb
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/sharkdp__fd.yaml
-    source_section: key_files[5]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[5]
-    source_file: repos/knowledge/deep/sharkdp__fd.yaml
-    excerpt: src/filter/
-  object_value: src/filter/
-  note: Search-time filter predicates.
-  fact_id: fact::e54b54e4078719234de92d81
-- fact_type: component
-  predicate: has_component
-  object_kind: path
   confidence: 0.78
   as_of: '2026-03-04'
   provenance:
@@ -585,26 +480,8 @@ facts:
     source_file: repos/knowledge/deep/sharkdp__fd.yaml
     excerpt: Filetype, size, time, and ownership filtering logic.
   object_value: src/filter/
-  note: 'responsibility: Filetype, size, time, and ownership filtering logic.; key_files:
-    src/filter/'
+  note: 'responsibility: Filetype, size, time, and ownership filtering logic.; key_files: src/filter/'
   fact_id: fact::f5e8b828a372670661d74bdb
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/sharkdp__fd.yaml
-    source_section: core_modules.orchestration_layer
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.orchestration_layer
-    source_file: repos/knowledge/deep/sharkdp__fd.yaml
-    excerpt: src/main.rs
-  object_value: src/main.rs
-  note: Search setup and pipeline initialization.
-  fact_id: fact::6413586082262eb8136ae80c
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -620,26 +497,8 @@ facts:
     source_file: repos/knowledge/deep/sharkdp__fd.yaml
     excerpt: Entrypoint, option parsing, pattern compilation, and run orchestration.
   object_value: src/main.rs
-  note: 'responsibility: Entrypoint, option parsing, pattern compilation, and run
-    orchestration.; key_files: src/main.rs'
+  note: 'responsibility: Entrypoint, option parsing, pattern compilation, and run orchestration.; key_files: src/main.rs'
   fact_id: fact::bcc77a6f0cc17e47daf13079
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/sharkdp__fd.yaml
-    source_section: key_files[0]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[0]
-    source_file: repos/knowledge/deep/sharkdp__fd.yaml
-    excerpt: src/main.rs
-  object_value: src/main.rs
-  note: Top-level execution flow and config building.
-  fact_id: fact::e8df033990e87e00936ec21f
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -672,43 +531,9 @@ facts:
     source_file: repos/knowledge/deep/sharkdp__fd.yaml
     excerpt: Formats and prints entries, including list-details and path formatting.
   object_value: src/output.rs and src/fmt/
-  note: 'responsibility: Formats and prints entries, including list-details and path
-    formatting.; key_files: src/output.rs, src/fmt/'
+  note: 'responsibility: Formats and prints entries, including list-details and path formatting.; key_files: src/output.rs,
+    src/fmt/'
   fact_id: fact::bec1cb839d4ec94c37283ffb
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/sharkdp__fd.yaml
-    source_section: key_files[2]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[2]
-    source_file: repos/knowledge/deep/sharkdp__fd.yaml
-    excerpt: src/walk.rs
-  object_value: src/walk.rs
-  note: Parallel traversal, filtering, and result handling.
-  fact_id: fact::3f4ad4ac7a31777c5ae43dff
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.74
-  as_of: '2026-03-04'
-  provenance:
-    source_file: repos/knowledge/deep/sharkdp__fd.yaml
-    source_section: core_modules.traversal_layer
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: core_modules.traversal_layer
-    source_file: repos/knowledge/deep/sharkdp__fd.yaml
-    excerpt: src/walk.rs
-  object_value: src/walk.rs
-  note: Parallel walk and result transport.
-  fact_id: fact::775353824c5c4c722343ffa4
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -722,11 +547,9 @@ facts:
   - kind: file_block
     ref: architecture.module_breakdown[2]
     source_file: repos/knowledge/deep/sharkdp__fd.yaml
-    excerpt: Builds ignore-based parallel walker, applies filters, buffers/streams
-      results.
+    excerpt: Builds ignore-based parallel walker, applies filters, buffers/streams results.
   object_value: src/walk.rs
-  note: 'responsibility: Builds ignore-based parallel walker, applies filters, buffers/streams
-    results.; key_files: src/walk.rs'
+  note: 'responsibility: Builds ignore-based parallel walker, applies filters, buffers/streams results.; key_files: src/walk.rs'
   fact_id: fact::8d5b7407ca30da5fc75b2ea7
 - fact_type: config_option
   predicate: has_config_option
@@ -981,8 +804,7 @@ facts:
     source_file: repos/knowledge/deep/sharkdp__fd.yaml
     excerpt: --type / -t
   object_value: --type / -t
-  note: Restricts results to selected file types (file, dir, symlink, executable,
-    etc.).
+  note: Restricts results to selected file types (file, dir, symlink, executable, etc.).
   fact_id: fact::ab4f7b2c0d3cb5905094d0cd
 - fact_type: config_option
   predicate: has_config_option
@@ -1101,8 +923,7 @@ facts:
     source_file: repos/knowledge/deep/sharkdp__fd.yaml
     excerpt: ignore behavior
   object_value: ignore behavior
-  note: 'default: respect `.gitignore` and `.fdignore`; Tuned via `--no-ignore`, `--no-ignore-vcs`,
-    and related flags.'
+  note: 'default: respect `.gitignore` and `.fdignore`; Tuned via `--no-ignore`, `--no-ignore-vcs`, and related flags.'
   fact_id: fact::e7770c2c6d60c8a9c8f76c7b
 - fact_type: config_option
   predicate: has_config_option
@@ -1153,8 +974,7 @@ facts:
     source_file: repos/knowledge/deep/sharkdp__fd.yaml
     excerpt: search concurrency
   object_value: search concurrency
-  note: 'default: number of available CPUs (capped in implementation); Controlled
-    by `--threads`.'
+  note: 'default: number of available CPUs (capped in implementation); Controlled by `--threads`.'
   fact_id: fact::33917b4cb9cd62f2abdae676
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -1171,10 +991,9 @@ facts:
     source_file: repos/knowledge/deep/sharkdp__fd.yaml
     excerpt: --exec command runs in wrong order or produces interleaved output
   object_value: --exec command runs in wrong order or produces interleaved output
-  note: 'cause: fd''s parallel walker dispatches --exec commands concurrently across
-    multiple threads; output order is non-deterministic and may interleave across
-    results; fix: Use --threads 1 (-j 1) to force single-threaded execution and preserve
-    result order; for grouped output use --...'
+  note: 'cause: fd''s parallel walker dispatches --exec commands concurrently across multiple threads; output order is non-deterministic
+    and may interleave across results; fix: Use --threads 1 (-j 1) to force single-threaded execution and preserve result
+    order; for grouped output use --...'
   fact_id: fact::5a2310cf995ca76df2454a79
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -1191,10 +1010,9 @@ facts:
     source_file: repos/knowledge/deep/sharkdp__fd.yaml
     excerpt: Pattern does not match expected filenames even when they exist
   object_value: Pattern does not match expected filenames even when they exist
-  note: 'cause: fd matches against the filename only (not the full path) by default;
-    also fd uses regex matching by default, not glob, so special characters have regex
-    meaning; fix: Use --full-path (-p) to match against the complete path; use --glob
-    (-g) for glob-style patterns; escape...'
+  note: 'cause: fd matches against the filename only (not the full path) by default; also fd uses regex matching by default,
+    not glob, so special characters have regex meaning; fix: Use --full-path (-p) to match against the complete path; use
+    --glob (-g) for glob-style patterns; escape...'
   fact_id: fact::c533a93718e8d5447837fade
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -1211,9 +1029,8 @@ facts:
     source_file: repos/knowledge/deep/sharkdp__fd.yaml
     excerpt: fd returns no results for files that find would return
   object_value: fd returns no results for files that find would return
-  note: 'cause: fd respects .gitignore and .fdignore files by default; files listed
-    in ignore files are excluded from results even when they exist on disk; fix: Use
-    --no-ignore to disable ignore-file filtering, or --hidden (-H) to include hidden
+  note: 'cause: fd respects .gitignore and .fdignore files by default; files listed in ignore files are excluded from results
+    even when they exist on disk; fix: Use --no-ignore to disable ignore-file filtering, or --hidden (-H) to include hidden
     files; combine both (fd -HI) to match fi...'
   fact_id: fact::c880b8fd37344700b81856db
 - fact_type: implementation_pattern
@@ -1265,8 +1082,7 @@ facts:
     source_file: repos/knowledge/deep/sharkdp__fd.yaml
     excerpt: Distinct pipelines for per-entry and batched command invocation.
   object_value: configurable command execution modes
-  note: 'description: Distinct pipelines for per-entry and batched command invocation.;
-    location: src/exec/mod.rs and src/walk.rs'
+  note: 'description: Distinct pipelines for per-entry and batched command invocation.; location: src/exec/mod.rs and src/walk.rs'
   fact_id: fact::cf67661714fa89ed97e0c3bf
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1334,8 +1150,7 @@ facts:
     source_file: repos/knowledge/deep/sharkdp__fd.yaml
     excerpt: Uses WalkBuilder/WalkParallel with ignore rules and overrides for speed.
   object_value: parallel walker over ignore crate
-  note: 'description: Uses WalkBuilder/WalkParallel with ignore rules and overrides
-    for speed.; location: src/walk.rs'
+  note: 'description: Uses WalkBuilder/WalkParallel with ignore rules and overrides for speed.; location: src/walk.rs'
   fact_id: fact::0fecf63160136fc046ef6b7b
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1352,8 +1167,7 @@ facts:
     source_file: repos/knowledge/deep/sharkdp__fd.yaml
     excerpt: Buffers early results, then switches to streaming mode after threshold/deadline.
   object_value: receiver buffering to preserve sortability for short runs
-  note: 'description: Buffers early results, then switches to streaming mode after
-    threshold/deadline.; location: src/walk.rs'
+  note: 'description: Buffers early results, then switches to streaming mode after threshold/deadline.; location: src/walk.rs'
   fact_id: fact::1e7b9f53ff09173be325c885
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -1370,8 +1184,7 @@ facts:
     source_file: repos/knowledge/deep/sharkdp__fd.yaml
     excerpt: Builds regex behavior from case flags and pattern content.
   object_value: smart-case and mode-aware pattern compilation
-  note: 'description: Builds regex behavior from case flags and pattern content.;
-    location: src/main.rs'
+  note: 'description: Builds regex behavior from case flags and pattern content.; location: src/main.rs'
   fact_id: fact::392e593119a763d7d234cf61
 - fact_type: operational_task
   predicate: supports_task

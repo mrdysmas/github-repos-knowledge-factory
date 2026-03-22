@@ -325,25 +325,8 @@ facts:
     source_file: repos/knowledge/deep/spotify__voyager.yaml
     excerpt: C++ hnswlib wrapper with voyager-specific memory and serialization extensions
   object_value: cpp/src/
-  note: 'responsibility: C++ hnswlib wrapper with voyager-specific memory and serialization
-    extensions; key_files: cpp/src/'
+  note: 'responsibility: C++ hnswlib wrapper with voyager-specific memory and serialization extensions; key_files: cpp/src/'
   fact_id: fact::e1257a8b8b4b0e6142b9b9fc
-- fact_type: component
-  predicate: has_component
-  object_kind: path
-  confidence: 0.72
-  as_of: '2026-03-18'
-  provenance:
-    source_file: repos/knowledge/deep/spotify__voyager.yaml
-    source_section: key_files[1]
-    extraction_mode: narrative
-  evidence:
-  - kind: file_block
-    ref: key_files[1]
-    source_file: repos/knowledge/deep/spotify__voyager.yaml
-    excerpt: cpp/src/
-  object_value: cpp/src/
-  fact_id: fact::f5462607a281187e6de05050
 - fact_type: component
   predicate: has_component
   object_kind: path
@@ -359,8 +342,7 @@ facts:
     source_file: repos/knowledge/deep/spotify__voyager.yaml
     excerpt: Java bindings exposing Index class via JNI for JVM-based services
   object_value: java/
-  note: 'responsibility: Java bindings exposing Index class via JNI for JVM-based
-    services; key_files: java/src/main/java/com/spotify/voyager/jni/'
+  note: 'responsibility: Java bindings exposing Index class via JNI for JVM-based services; key_files: java/src/main/java/com/spotify/voyager/jni/'
   fact_id: fact::5d4aa68df59e891d53e94913
 - fact_type: component
   predicate: has_component
@@ -409,8 +391,8 @@ facts:
     source_file: repos/knowledge/deep/spotify__voyager.yaml
     excerpt: Python package with Index class, Space enum, and StorageDataType
   object_value: python/voyager/
-  note: 'responsibility: Python package with Index class, Space enum, and StorageDataType;
-    key_files: python/voyager/__init__.pyi, python/voyager/index.py'
+  note: 'responsibility: Python package with Index class, Space enum, and StorageDataType; key_files: python/voyager/__init__.pyi,
+    python/voyager/index.py'
   fact_id: fact::6883fd6e3267af91fffa48bb
 - fact_type: component
   predicate: has_component
@@ -528,8 +510,7 @@ facts:
     source_file: repos/knowledge/deep/spotify__voyager.yaml
     excerpt: Index.__init__
   object_value: Index.__init__
-  note: Construct an index with space, num_dimensions, M, ef_construction, max_elements;
-    python/voyager/__init__.pyi
+  note: Construct an index with space, num_dimensions, M, ef_construction, max_elements; python/voyager/__init__.pyi
   fact_id: fact::621cbc0155f2cd7d258055b5
 - fact_type: extension_point
   predicate: has_extension_point
@@ -597,8 +578,7 @@ facts:
     source_file: repos/knowledge/deep/spotify__voyager.yaml
     excerpt: Index.query
   object_value: Index.query
-  note: Find k nearest neighbors for a query vector; returns labels and distances;
-    python/voyager/__init__.pyi
+  note: Find k nearest neighbors for a query vector; returns labels and distances; python/voyager/__init__.pyi
   fact_id: fact::e84ac59bc96584924e3086a0
 - fact_type: extension_point
   predicate: has_extension_point
@@ -632,10 +612,9 @@ facts:
     source_file: repos/knowledge/deep/spotify__voyager.yaml
     excerpt: Index.add_items() raises an error about exceeding max_elements
   object_value: Index.add_items() raises an error about exceeding max_elements
-  note: 'cause: Voyager pre-allocates a fixed capacity at construction time via max_elements;
-    inserting more items than this limit fails because the underlying hnswlib graph
-    cannot grow beyond the declared capacity; fix: Set max_elements to a value larger
-    than the expected dataset size...'
+  note: 'cause: Voyager pre-allocates a fixed capacity at construction time via max_elements; inserting more items than this
+    limit fails because the underlying hnswlib graph cannot grow beyond the declared capacity; fix: Set max_elements to a
+    value larger than the expected dataset size...'
   fact_id: fact::fd6719fe4461db337b4672c5
 - fact_type: failure_mode
   predicate: has_failure_mode
@@ -652,9 +631,8 @@ facts:
     source_file: repos/knowledge/deep/spotify__voyager.yaml
     excerpt: Index.load_from_file() raises a dimension or space mismatch error
   object_value: Index.load_from_file() raises a dimension or space mismatch error
-  note: 'cause: The Space enum and num_dimensions are embedded in the serialized index
-    file; loading a file with a different Space (e.g., Cosine vs. Euclidean) or dimension
-    than the caller expects raises a mismatch; fix: Ensure the Space and num_dimensions
+  note: 'cause: The Space enum and num_dimensions are embedded in the serialized index file; loading a file with a different
+    Space (e.g., Cosine vs. Euclidean) or dimension than the caller expects raises a mismatch; fix: Ensure the Space and num_dimensions
     passed to load_from_file matc...'
   fact_id: fact::b01fea4870e3e5aa1e45172c
 - fact_type: failure_mode
@@ -670,13 +648,10 @@ facts:
   - kind: file_block
     ref: troubleshooting[3]
     source_file: repos/knowledge/deep/spotify__voyager.yaml
-    excerpt: Memory usage grows unexpectedly large during index construction for high-dimensional
-      vectors
-  object_value: Memory usage grows unexpectedly large during index construction for
-    high-dimensional vectors
-  note: 'cause: HNSW graph construction allocates M * num_dimensions * 4 bytes per
-    node across multiple layers; high M and ef_construction values multiply memory
-    pressure during the build phase; fix: Reduce M (default 12) or ef_construction
+    excerpt: Memory usage grows unexpectedly large during index construction for high-dimensional vectors
+  object_value: Memory usage grows unexpectedly large during index construction for high-dimensional vectors
+  note: 'cause: HNSW graph construction allocates M * num_dimensions * 4 bytes per node across multiple layers; high M and
+    ef_construction values multiply memory pressure during the build phase; fix: Reduce M (default 12) or ef_construction
     (default 200) at construction time; lower M r...'
   fact_id: fact::9d7641270f33f30653fc1293
 - fact_type: failure_mode
@@ -692,14 +667,11 @@ facts:
   - kind: file_block
     ref: troubleshooting[2]
     source_file: repos/knowledge/deep/spotify__voyager.yaml
-    excerpt: Query results differ significantly between Float32 and E4M3 storage types
-      for the same dataset
-  object_value: Query results differ significantly between Float32 and E4M3 storage
-    types for the same dataset
-  note: 'cause: E4M3 (8-bit float) quantization introduces precision loss; for datasets
-    where fine-grained distance ranking matters, the reduced precision changes nearest-neighbor
-    ordering; fix: Use StorageDataType.Float32 when recall accuracy is critical; use
-    E4M3 or Float8 only when...'
+    excerpt: Query results differ significantly between Float32 and E4M3 storage types for the same dataset
+  object_value: Query results differ significantly between Float32 and E4M3 storage types for the same dataset
+  note: 'cause: E4M3 (8-bit float) quantization introduces precision loss; for datasets where fine-grained distance ranking
+    matters, the reduced precision changes nearest-neighbor ordering; fix: Use StorageDataType.Float32 when recall accuracy
+    is critical; use E4M3 or Float8 only when...'
   fact_id: fact::50a9f2513e3fab0cc00dfd2a
 - fact_type: implementation_pattern
   predicate: implements_pattern
@@ -714,13 +686,11 @@ facts:
   - kind: file_block
     ref: cpp/src/
     source_file: repos/knowledge/deep/spotify__voyager.yaml
-    excerpt: Voyager is an hnswlib wrapper; all ANN search uses the HNSW algorithm
-      with configurable M and ef_construction parameters exposed through the Index
-      class.
+    excerpt: Voyager is an hnswlib wrapper; all ANN search uses the HNSW algorithm with configurable M and ef_construction
+      parameters exposed through the Index class.
   object_value: HNSW index via hnswlib
-  note: 'description: Voyager is an hnswlib wrapper; all ANN search uses the HNSW
-    algorithm with configurable M and ef_construction parameters exposed through the
-    Index class.; location: cpp/src/'
+  note: 'description: Voyager is an hnswlib wrapper; all ANN search uses the HNSW algorithm with configurable M and ef_construction
+    parameters exposed through the Index class.; location: cpp/src/'
   fact_id: fact::f7290b40340f16e6e46ca35b
 - fact_type: operational_task
   predicate: supports_task
