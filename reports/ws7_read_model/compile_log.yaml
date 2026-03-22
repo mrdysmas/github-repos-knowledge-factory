@@ -1,20 +1,20 @@
 compile_run:
-  started_at_utc: '2026-03-22T07:45:41Z'
-  finished_at_utc: '2026-03-22T07:45:50Z'
-  duration_ms: 9705
+  started_at_utc: '2026-03-22T07:54:35Z'
+  finished_at_utc: '2026-03-22T07:54:45Z'
+  duration_ms: 9734
   result: ok
   force_flag: false
 source_files:
   index:
     path: master_index.yaml
-    sha256: 4f18f8d46ea7f532a176cd95155e2b37e0c5b87bf3ae67e116e6d179173679f8
-    generated_at_utc: '2026-03-21T00:00:00Z'
-    repo_count: 122
+    sha256: c00b6b5ebeaf21a45426326705404f856065dbc6db31e138b68252f8432841e2
+    generated_at_utc: '2026-03-22T00:00:00Z'
+    repo_count: 123
   graph:
     path: master_graph.yaml
-    sha256: 967d39c42921230406201adac2b036616e0dfaab52d6b1c248b65d69369ac806
-    generated_at_utc: '2026-03-21T00:00:00Z'
-    node_count: 136
+    sha256: 44d8cfe5eeefda70c99dd9825e66ac7a86a16b14e21603acbf8876d0828ed2bc
+    generated_at_utc: '2026-03-22T00:00:00Z'
+    node_count: 137
     edge_count: 152
   facts:
     path: master_deep_facts.yaml
@@ -23,18 +23,21 @@ source_files:
     fact_count: 6186
 gates:
   snapshot_consistency:
-    status: pass
-    detail: max_delta_seconds=0
+    status: warn
+    detail: 'timestamp divergence (non-blocking): index(ts=2026-03-22T00:00:00Z,sha256=c00b6b5ebeaf21a45426326705404f856065dbc6db31e138b68252f8432841e2),
+      graph(ts=2026-03-22T00:00:00Z,sha256=44d8cfe5eeefda70c99dd9825e66ac7a86a16b14e21603acbf8876d0828ed2bc),
+      facts(ts=2026-03-21T00:00:00Z,sha256=9aa5234137504b97cc54c0eaf144ce2cdad1a7bef98ce30b6df1cf08616029c3),
+      max_delta_seconds=86400'
   row_count_parity:
     status: pass
     expected:
-      repos: 122
-      nodes: 136
+      repos: 123
+      nodes: 137
       edges: 152
       facts: 6186
     actual:
-      repos: 122
-      nodes: 136
+      repos: 123
+      nodes: 137
       edges: 152
       facts: 6186
   orphan_edge_detection:
@@ -46,8 +49,8 @@ gates:
     checks:
     - check: repos_count
       status: pass
-      expected: 122
-      actual: 122
+      expected: 123
+      actual: 123
     - check: first_repo_lookup
       status: pass
       node_id: repo::1panel-dev/maxkb
@@ -68,8 +71,8 @@ output:
   path: knowledge.db
   size_bytes: 8986624
   table_counts:
-    repos: 122
-    nodes: 136
+    repos: 123
+    nodes: 137
     edges: 152
     facts: 6186
     compile_metadata: 1

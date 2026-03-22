@@ -1,0 +1,543 @@
+name: hindsight
+node_id: repo::vectorize-io/hindsight
+github_full_name: vectorize-io/hindsight
+html_url: https://github.com/vectorize-io/hindsight
+source: remote_metadata
+provenance:
+  shard: repos
+  source_file: repos/knowledge/deep_facts/vectorize-io__hindsight.yaml
+  as_of: '2026-03-22'
+  extractor_version: ws6-deep-integrator-v1
+  extraction_agent: codex
+facts:
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.85
+  as_of: '2026-03-22'
+  provenance:
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-api-slim/hindsight_api/engine/memory_engine.py
+    source_section: module_docstring
+    extraction_mode: direct
+  evidence:
+  - kind: file_block
+    ref: module_docstring
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-api-slim/hindsight_api/engine/memory_engine.py
+    excerpt: Temporal links, Semantic links, Entity links, Spreading activation, Dynamic weighting
+  object_value: Memory Engine
+  note: Core engine combining temporal, semantic, and entity links with spreading activation and recency-weighted retrieval.
+  fact_id: fact::7db98e6c28cc28525fdc1199
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.85
+  as_of: '2026-03-22'
+  provenance:
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-api-slim/hindsight_api/engine/search/
+    source_section: module_layout
+    extraction_mode: direct
+  evidence:
+  - kind: file_block
+    ref: engine/search/retrieval.py
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-api-slim/hindsight_api/engine/search/
+    excerpt: semantic, BM25, graph, temporal — four parallel retrieval strategies (TEMPR)
+  object_value: TEMPR retrieval pipeline
+  note: Four-strategy search pipeline (Temporal, Entity, Multi-hop, Parallel Retrieval) — semantic, keyword, graph, and temporal queries run in parallel then fused via RRF.
+  fact_id: fact::9fcc3f69f0257543134f8804
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.85
+  as_of: '2026-03-22'
+  provenance:
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-api-slim/hindsight_api/engine/retain/
+    source_section: module_layout
+    extraction_mode: direct
+  evidence:
+  - kind: file_block
+    ref: engine/retain/orchestrator.py
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-api-slim/hindsight_api/engine/retain/
+    excerpt: fact_extraction, entity_processing, embedding_processing, chunk_storage, link_creation
+  object_value: Retention pipeline
+  note: Write-path pipeline — LLM-based fact extraction, entity resolution, embedding generation, and graph link creation happen at ingest time to make reads fast.
+  fact_id: fact::2e65ecc610a6426084064428
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.82
+  as_of: '2026-03-22'
+  provenance:
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-api-slim/hindsight_api/engine/consolidation/
+    source_section: module_layout
+    extraction_mode: direct
+  evidence:
+  - kind: file_block
+    ref: engine/consolidation/consolidator.py
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-api-slim/hindsight_api/engine/consolidation/
+    excerpt: mental models synthesized from accumulated facts
+  object_value: Consolidation engine
+  note: Builds evolving mental models that synthesize accumulated facts across sessions — enables knowledge that grows and self-corrects over time.
+  fact_id: fact::e92059df514df2b1c981b6f8
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-22'
+  provenance:
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-api-slim/hindsight_api/engine/entity_resolver.py
+    source_section: class_body
+    extraction_mode: direct
+  evidence:
+  - kind: file_block
+    ref: entity_resolver.py
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-api-slim/hindsight_api/engine/entity_resolver.py
+    excerpt: entity resolution, co-occurrence tracking, max_date temporal tracking
+  object_value: Entity resolver
+  note: Resolves named entities across memory units, tracks co-occurrence and temporal recency so graph traversal can follow entity links across sessions.
+  fact_id: fact::2aa7be3ef2b39e03259c2e0a
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.8
+  as_of: '2026-03-22'
+  provenance:
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-api-slim/hindsight_api/api/mcp.py
+    source_section: module
+    extraction_mode: direct
+  evidence:
+  - kind: file_block
+    ref: hindsight-api-slim/hindsight_api/mcp_local.py
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-api-slim/hindsight_api/mcp_local.py
+    excerpt: hindsight-local-mcp entrypoint
+  object_value: MCP server
+  note: Built-in MCP server exposing memory operations as tools for Claude Code and other MCP-compatible coding assistants; extensible via MCPExtension.
+  fact_id: fact::195a9e859fc1fc73614ea38d
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.78
+  as_of: '2026-03-22'
+  provenance:
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-integrations/
+    source_section: directory
+    extraction_mode: direct
+  evidence:
+  - kind: directory
+    ref: hindsight-integrations/
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-integrations/
+    excerpt: langgraph, crewai, litellm, pydantic-ai, agno, hermes, ai-sdk
+  object_value: Framework integrations
+  note: First-party integration packages for LangGraph, CrewAI, LiteLLM, PydanticAI, Agno, Hermes (AI SDK), and a JS AI-SDK adapter.
+  fact_id: fact::96d3122315d408dfed6490e6
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.78
+  as_of: '2026-03-22'
+  provenance:
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-control-plane/
+    source_section: directory
+    extraction_mode: direct
+  evidence:
+  - kind: directory
+    ref: hindsight-control-plane/
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-control-plane/
+    excerpt: Next.js web UI for memory management
+  object_value: Control plane (web UI)
+  note: Next.js-based web UI served on port 9999 by default; provides visibility into banks, entities, mental models, and operations.
+  fact_id: fact::9c44809b96b953d6ec234720
+- fact_type: component
+  predicate: has_component
+  object_kind: concept
+  confidence: 0.75
+  as_of: '2026-03-22'
+  provenance:
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-embed/
+    source_section: directory
+    extraction_mode: direct
+  evidence:
+  - kind: manifest
+    ref: hindsight-embed/pyproject.toml
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-embed/pyproject.toml
+    excerpt: local embeddings provider
+  object_value: Local embeddings provider
+  note: Self-contained local embeddings package (BAAI/bge-small-en-v1.5 default) — runs without an external API; switchable to HuggingFace TEI via config.
+  fact_id: fact::08543056fede68b4ff3b0eb5
+# Config options
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.9
+  as_of: '2026-03-22'
+  provenance:
+    source_file: workspace/clones/vectorize-io__hindsight/.env.example
+    source_section: llm_configuration
+    extraction_mode: direct
+  evidence:
+  - kind: file_block
+    ref: .env.example
+    source_file: workspace/clones/vectorize-io__hindsight/.env.example
+    excerpt: HINDSIGHT_API_LLM_PROVIDER
+  object_value: HINDSIGHT_API_LLM_PROVIDER
+  note: 'LLM provider for fact extraction and reflect; options: openai, anthropic, gemini, groq, ollama, lmstudio, vertexai, minimax'
+  fact_id: fact::8f3216b0563a4c08824cc4bd
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.9
+  as_of: '2026-03-22'
+  provenance:
+    source_file: workspace/clones/vectorize-io__hindsight/.env.example
+    source_section: vector_extension
+    extraction_mode: direct
+  evidence:
+  - kind: file_block
+    ref: .env.example
+    source_file: workspace/clones/vectorize-io__hindsight/.env.example
+    excerpt: HINDSIGHT_API_VECTOR_EXTENSION
+  object_value: HINDSIGHT_API_VECTOR_EXTENSION
+  note: 'Vector index backend; options: pgvector (HNSW, default), pgvectorscale (DiskANN, recommended for 10M+ vectors), vchord (high-dim + BM25)'
+  fact_id: fact::7fbd33578686541e625bd1ba
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.88
+  as_of: '2026-03-22'
+  provenance:
+    source_file: workspace/clones/vectorize-io__hindsight/.env.example
+    source_section: database
+    extraction_mode: direct
+  evidence:
+  - kind: file_block
+    ref: .env.example
+    source_file: workspace/clones/vectorize-io__hindsight/.env.example
+    excerpt: HINDSIGHT_API_DATABASE_URL
+  object_value: HINDSIGHT_API_DATABASE_URL
+  note: PostgreSQL connection string; defaults to embedded pg0 (not recommended for production).
+  fact_id: fact::146966377cbf0cf6560c89cf
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.85
+  as_of: '2026-03-22'
+  provenance:
+    source_file: workspace/clones/vectorize-io__hindsight/.env.example
+    source_section: embeddings
+    extraction_mode: direct
+  evidence:
+  - kind: file_block
+    ref: .env.example
+    source_file: workspace/clones/vectorize-io__hindsight/.env.example
+    excerpt: HINDSIGHT_API_EMBEDDINGS_PROVIDER
+  object_value: HINDSIGHT_API_EMBEDDINGS_PROVIDER
+  note: 'Embeddings provider; options: local (default, BAAI/bge-small-en-v1.5) or tei (HuggingFace Text Embeddings Inference)'
+  fact_id: fact::443cde635a6b6c1700a666c9
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.85
+  as_of: '2026-03-22'
+  provenance:
+    source_file: workspace/clones/vectorize-io__hindsight/.env.example
+    source_section: reranker
+    extraction_mode: direct
+  evidence:
+  - kind: file_block
+    ref: .env.example
+    source_file: workspace/clones/vectorize-io__hindsight/.env.example
+    excerpt: HINDSIGHT_API_RERANKER_PROVIDER
+  object_value: HINDSIGHT_API_RERANKER_PROVIDER
+  note: 'Reranker provider; options: local (cross-encoder/ms-marco-MiniLM-L-6-v2, default) or tei (TEI inference server)'
+  fact_id: fact::6eeebcc394015f64d2713a8b
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.8
+  as_of: '2026-03-22'
+  provenance:
+    source_file: workspace/clones/vectorize-io__hindsight/.env.example
+    source_section: observability
+    extraction_mode: direct
+  evidence:
+  - kind: file_block
+    ref: .env.example
+    source_file: workspace/clones/vectorize-io__hindsight/.env.example
+    excerpt: HINDSIGHT_API_OTEL_TRACES_ENABLED
+  object_value: HINDSIGHT_API_OTEL_TRACES_ENABLED
+  note: Enable OpenTelemetry tracing for LLM calls (GenAI semantic conventions); exports to OTLP endpoint.
+  fact_id: fact::f6be607684ece432d872f173
+- fact_type: config_option
+  predicate: has_config_option
+  object_kind: config_key
+  confidence: 0.8
+  as_of: '2026-03-22'
+  provenance:
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-docs/docs/developer/extensions.md
+    source_section: tenant_extension
+    extraction_mode: direct
+  evidence:
+  - kind: file_block
+    ref: docs/developer/extensions.md
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-docs/docs/developer/extensions.md
+    excerpt: HINDSIGHT_API_TENANT_EXTENSION
+  object_value: HINDSIGHT_API_TENANT_EXTENSION
+  note: Extension class for multi-tenancy and auth; built-ins include ApiKeyTenantExtension and SupabaseTenantExtension.
+  fact_id: fact::f84507c105fa4bc67b8f9833
+# Tasks
+- fact_type: task
+  predicate: supports_task
+  object_kind: operation
+  confidence: 0.9
+  as_of: '2026-03-22'
+  provenance:
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-api-slim/hindsight_api/api/http.py
+    source_section: api_routes
+    extraction_mode: direct
+  evidence:
+  - kind: file_block
+    ref: http.py route /v1/default/banks/{bank_id}/memories/list
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-api-slim/hindsight_api/api/http.py
+    excerpt: POST /v1/default/banks/{bank_id}/memories/recall
+  object_value: recall
+  note: Multi-strategy memory search — runs semantic, BM25, graph, and temporal queries in parallel, fuses via RRF, reranks with cross-encoder. Budget parameter (low/mid/high) controls depth.
+  fact_id: fact::03464600bd8bb4f404d009a9
+- fact_type: task
+  predicate: supports_task
+  object_kind: operation
+  confidence: 0.9
+  as_of: '2026-03-22'
+  provenance:
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-api-slim/hindsight_api/engine/retain/orchestrator.py
+    source_section: retain_pipeline
+    extraction_mode: direct
+  evidence:
+  - kind: file_block
+    ref: engine/retain/orchestrator.py
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-api-slim/hindsight_api/engine/retain/orchestrator.py
+    excerpt: fact_extraction → entity_processing → embedding_processing → link_creation
+  object_value: retain
+  note: Ingest memories with LLM-based fact extraction, entity resolution, and graph link creation at write time. Supports sync and async modes; large batches auto-split by token count (>10K tokens).
+  fact_id: fact::0ea05cd5ce116b4b52e419d9
+- fact_type: task
+  predicate: supports_task
+  object_kind: operation
+  confidence: 0.88
+  as_of: '2026-03-22'
+  provenance:
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-api-slim/hindsight_api/api/http.py
+    source_section: api_routes
+    extraction_mode: direct
+  evidence:
+  - kind: file_block
+    ref: http.py route /v1/default/banks/{bank_id}/reflect
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-api-slim/hindsight_api/api/http.py
+    excerpt: POST /v1/default/banks/{bank_id}/reflect
+  object_value: reflect
+  note: Disposition-aware answer generation — retrieves relevant memories then generates a response influenced by configurable agent traits (skepticism, literalism, empathy).
+  fact_id: fact::0c4d55a831b12681d571031b
+- fact_type: task
+  predicate: supports_task
+  object_kind: operation
+  confidence: 0.82
+  as_of: '2026-03-22'
+  provenance:
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-api-slim/hindsight_api/engine/consolidation/consolidator.py
+    source_section: class_body
+    extraction_mode: direct
+  evidence:
+  - kind: file_block
+    ref: engine/consolidation/consolidator.py
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-api-slim/hindsight_api/engine/consolidation/consolidator.py
+    excerpt: mental model refresh, synthesis from accumulated facts
+  object_value: mental model consolidation
+  note: Builds and refreshes evolving mental models that synthesize and supersede accumulated facts — produces higher-order beliefs that persist across sessions.
+  fact_id: fact::9279b71987d9f7a8b9dcdbc3
+- fact_type: task
+  predicate: supports_task
+  object_kind: operation
+  confidence: 0.78
+  as_of: '2026-03-22'
+  provenance:
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-docs/docs/developer/retrieval.md
+    source_section: temporal_queries
+    extraction_mode: direct
+  evidence:
+  - kind: file_block
+    ref: docs/developer/retrieval.md
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-docs/docs/developer/retrieval.md
+    excerpt: "Query: 'What did Alice do last spring?' → date parsing and range filtering"
+  object_value: temporal memory queries
+  note: Parses natural-language date expressions ("last spring", "in 2023") and applies temporal range filtering over timestamped memory units.
+  fact_id: fact::b9193e2903ff0115f02a0020
+# Failure modes
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: risk
+  confidence: 0.82
+  as_of: '2026-03-22'
+  provenance:
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-docs/docs/developer/performance.md
+    source_section: retain_performance
+    extraction_mode: direct
+  evidence:
+  - kind: file_block
+    ref: docs/developer/performance.md
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-docs/docs/developer/performance.md
+    excerpt: LLM is the primary bottleneck for write latency; 500ms-2000ms per batch
+  object_value: LLM rate-limit bottleneck at high retain throughput
+  note: Retention is LLM-bound (fact extraction). Rate limits on cloud providers (60-500 RPM per key) cap ingestion throughput; mitigation is Groq with gpt-oss-20b or batch API mode.
+  fact_id: fact::ac24c97cf1f043a5aa35b299
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: risk
+  confidence: 0.8
+  as_of: '2026-03-22'
+  provenance:
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-api-slim/hindsight_api/engine/db_budget.py
+    source_section: class_docstring
+    extraction_mode: direct
+  evidence:
+  - kind: file_block
+    ref: engine/db_budget.py
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-api-slim/hindsight_api/engine/db_budget.py
+    excerpt: Limits concurrent database connections per operation to prevent a single recall from exhausting the connection pool
+  object_value: Connection pool exhaustion under concurrent recall
+  note: Each recall/reflect can consume 2-4 DB connections concurrently; high concurrency without tuning DB_POOL_MAX_SIZE (default 100) exhausts the pool and causes timeouts.
+  fact_id: fact::dcb88cdd5680288651f7e5d7
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: risk
+  confidence: 0.78
+  as_of: '2026-03-22'
+  provenance:
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-docs/docs/developer/performance.md
+    source_section: recall_performance
+    extraction_mode: direct
+  evidence:
+  - kind: file_block
+    ref: docs/developer/performance.md
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-docs/docs/developer/performance.md
+    excerpt: re-ranker on CPU is the primary recall bottleneck; typical latency 100-600ms
+  object_value: CPU-bound cross-encoder reranking adds recall latency
+  note: Local cross-encoder reranker runs on CPU by default; on CPU-constrained hosts this becomes the p95 bottleneck for recall. Mitigation is GPU deployment or TEI inference server.
+  fact_id: fact::c14bbba8b471eb85813bd890
+- fact_type: failure_mode
+  predicate: has_failure_mode
+  object_kind: risk
+  confidence: 0.75
+  as_of: '2026-03-22'
+  provenance:
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-docs/docs/developer/configuration.md
+    source_section: database
+    extraction_mode: direct
+  evidence:
+  - kind: file_block
+    ref: docs/developer/configuration.md
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-docs/docs/developer/configuration.md
+    excerpt: embedded pg0 — convenient for development but not recommended for production
+  object_value: Embedded pg0 database unsupported for production
+  note: Default deployment uses embedded pg0 (bundled PostgreSQL); not suitable for production scale or data durability guarantees. Production requires external PostgreSQL.
+  fact_id: fact::58ed55ab0f03c9e46d6401be
+# Protocols
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.9
+  as_of: '2026-03-22'
+  provenance:
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-api-slim/hindsight_api/api/http.py
+    source_section: api_routes
+    extraction_mode: direct
+  evidence:
+  - kind: file_block
+    ref: http.py
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-api-slim/hindsight_api/api/http.py
+    excerpt: POST /v1/default/banks/{bank_id}/memories/recall
+  object_value: POST /v1/default/banks/{bank_id}/memories/recall
+  note: Core recall endpoint — returns ranked memory facts matching the query using TEMPR fusion.
+  fact_id: fact::5586b40af8492b63d16b8d44
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.9
+  as_of: '2026-03-22'
+  provenance:
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-api-slim/hindsight_api/api/http.py
+    source_section: api_routes
+    extraction_mode: direct
+  evidence:
+  - kind: file_block
+    ref: http.py
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-api-slim/hindsight_api/api/http.py
+    excerpt: POST /v1/default/banks/{bank_id}/reflect
+  object_value: POST /v1/default/banks/{bank_id}/reflect
+  note: Disposition-aware generation — runs recall then generates LLM response with configurable agent traits.
+  fact_id: fact::7fd896783888a9136f80d98f
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.88
+  as_of: '2026-03-22'
+  provenance:
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-api-slim/hindsight_api/api/http.py
+    source_section: api_routes
+    extraction_mode: direct
+  evidence:
+  - kind: file_block
+    ref: http.py
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-api-slim/hindsight_api/api/http.py
+    excerpt: GET /v1/default/banks/{bank_id}/graph
+  object_value: GET /v1/default/banks/{bank_id}/graph
+  note: Returns entity graph structure for a memory bank; used by the control plane UI and for inspection.
+  fact_id: fact::bf17af025703e1fbdbc94a37
+- fact_type: api_endpoint
+  predicate: exposes_api_endpoint
+  object_kind: api_route
+  confidence: 0.85
+  as_of: '2026-03-22'
+  provenance:
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-api-slim/hindsight_api/api/http.py
+    source_section: api_routes
+    extraction_mode: direct
+  evidence:
+  - kind: file_block
+    ref: http.py
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-api-slim/hindsight_api/api/http.py
+    excerpt: GET /health
+  object_value: GET /health
+  note: Health check endpoint; used by container orchestration and the connection budget manager.
+  fact_id: fact::f3eb175282e0cd845a9f356f
+- fact_type: protocol
+  predicate: uses_protocol
+  object_kind: protocol
+  confidence: 0.88
+  as_of: '2026-03-22'
+  provenance:
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-api-slim/hindsight_api/mcp_local.py
+    source_section: entrypoint
+    extraction_mode: direct
+  evidence:
+  - kind: manifest
+    ref: hindsight-api-slim/pyproject.toml
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-api-slim/pyproject.toml
+    excerpt: project.scripts:hindsight-local-mcp
+  object_value: MCP (Model Context Protocol)
+  note: Exposes memory operations (recall, retain, reflect) as MCP tools; local and remote MCP modes supported. Extended via MCPExtension.
+  fact_id: fact::f9697e499218ca7907b5a459
+- fact_type: extension_point
+  predicate: has_extension_point
+  object_kind: hook
+  confidence: 0.85
+  as_of: '2026-03-22'
+  provenance:
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-docs/docs/developer/extensions.md
+    source_section: available_extensions
+    extraction_mode: direct
+  evidence:
+  - kind: file_block
+    ref: docs/developer/extensions.md
+    source_file: workspace/clones/vectorize-io__hindsight/hindsight-docs/docs/developer/extensions.md
+    excerpt: TenantExtension, HttpExtension, OperationValidatorExtension, MCPExtension
+  object_value: Extension system (TenantExtension, HttpExtension, OperationValidatorExtension, MCPExtension)
+  note: Four plugin interfaces — tenant/auth isolation, custom HTTP routes under /ext/, operation lifecycle hooks (rate limiting, audit), and additional MCP tools. Each configured via a single env var pointing to the implementation class.
+  fact_id: fact::4cf2d30ba857f453bf7fdc56

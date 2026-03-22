@@ -1,12 +1,12 @@
 artifact_type: ws4_master_index
-generated_at_utc: '2026-03-21T00:00:00Z'
+generated_at_utc: '2026-03-22T00:00:00Z'
 contract_version: 1.0.0-ws1
 metadata:
   source_shards:
   - repos
-  total_repos: 122
+  total_repos: 123
   repo_counts_by_shard:
-    repos: 122
+    repos: 123
   category_counts:
     agent_cli: 13
     agent_framework: 8
@@ -30,7 +30,7 @@ metadata:
     network_infrastructure: 3
     network_utils: 2
     office_automation: 2
-    rag_frameworks: 6
+    rag_frameworks: 7
     relational_database: 1
     remote_access: 4
     snippet_collection: 1
@@ -5533,6 +5533,41 @@ repos:
   local_cache_dir: null
   extras:
     directory: remote::unum-cloud/usearch
+    refresh:
+      precedence: api_wins_readme_for_missing_required_fields
+      fallback_source: readme_fallback
+      fallback_used: false
+- node_id: repo::vectorize-io/hindsight
+  github_full_name: vectorize-io/hindsight
+  html_url: https://github.com/vectorize-io/hindsight
+  source: compiled_master
+  name: hindsight
+  category: rag_frameworks
+  summary: Agent memory system combining temporal reasoning, entity graph traversal,
+    and multi-strategy retrieval (semantic + BM25 + graph + temporal) as a structured
+    alternative to RAG.
+  core_concepts:
+  - agent memory
+  - TEMPR retrieval (semantic + keyword + graph + temporal)
+  - entity graph
+  - mental model consolidation
+  - disposition-aware generation
+  key_entry_points:
+  - hindsight-api-slim/hindsight_api/server.py
+  - hindsight-api-slim/hindsight_api/main.py
+  - hindsight-api-slim/hindsight_api/engine/
+  - hindsight-integrations/
+  build_run:
+    language: Python
+    build: docker run ghcr.io/vectorize-io/hindsight:latest
+    test: See upstream README for project test steps.
+  provenance:
+    shard: merged
+    source_file: repos/knowledge/repos/vectorize-io__hindsight.yaml
+    as_of: '2026-03-22'
+  local_cache_dir: workspace/clones/vectorize-io__hindsight
+  extras:
+    directory: remote::vectorize-io/hindsight
     refresh:
       precedence: api_wins_readme_for_missing_required_fields
       fallback_source: readme_fallback

@@ -481,3 +481,26 @@ repos:
     test: "See upstream README for project test steps."
   as_of: "2026-03-17"
   local_cache_dir: null
+- name: hindsight
+  github_full_name: vectorize-io/hindsight
+  html_url: "https://github.com/vectorize-io/hindsight"
+  target_shard: repos
+  source: remote_metadata
+  category: rag_frameworks
+  summary: Agent memory system combining temporal reasoning, entity graph traversal, and multi-strategy retrieval (semantic + BM25 + graph + temporal) as a structured alternative to RAG.
+  core_concepts:
+    - agent memory
+    - TEMPR retrieval (semantic + keyword + graph + temporal)
+    - entity graph traversal
+    - mental model consolidation
+    - disposition-aware generation
+  key_entry_points:
+    - hindsight-api-slim/hindsight_api/server.py
+    - hindsight-api-slim/hindsight_api/engine/
+    - hindsight-integrations/
+  build_run:
+    language: Python
+    build: "docker run ghcr.io/vectorize-io/hindsight:latest"
+    test: "See upstream README for project test steps."
+  as_of: "2026-03-22"
+  local_cache_dir: workspace/clones/vectorize-io__hindsight
