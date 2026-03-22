@@ -1,0 +1,35 @@
+schema_version: '0.1'
+generated_at_utc: '2026-03-22T05:23:28Z'
+batch_id: B18
+stage: ws6_structural_prepass
+clone_manifest: reports/ws6_clone_prep/B18_clones.yaml
+input_manifest: null
+output_dir: reports/ws6_structural_prepass/B18
+repo_filters:
+- clerk/javascript
+summary:
+  repos_selected: 1
+  repos_generated: 1
+  repos_failed: 0
+  repos_invalid: 0
+  gate_ready: true
+boundary_checks:
+  non_canonical_output_only: true
+  writes_outside_reports: false
+  canonical_files_written: []
+repos:
+- github_full_name: clerk/javascript
+  file_stem: clerk__javascript
+  status: ok
+  output_file: reports/ws6_structural_prepass/B18/clerk__javascript.yaml
+  repo_root: /home/abe/scripts/ext_sources/github_repos/workspace/clones/B18/clerk__javascript
+  source_files_seen: 2705
+  total_files_seen: 3864
+  validation:
+    valid: true
+    errors: []
+    forbidden_sections_present: []
+    consumption_boundary:
+      non_canonical_output_only: true
+      writes_canonical_files: false
+      ws6_canonical_emitter_unchanged: true

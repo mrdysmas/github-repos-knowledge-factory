@@ -136,6 +136,8 @@ NOISE_TOKENS = {
     "fixture",
     "fixtures",
     "generated",
+    "preset",
+    "presets",
     "sample",
     "samples",
     "site",
@@ -143,6 +145,7 @@ NOISE_TOKENS = {
     "template",
     "templates",
     "test",
+    "testutils",
     "tests",
 }
 
@@ -758,6 +761,8 @@ def score_entrypoint(path: Path, source_dir_counts: Counter[str]) -> tuple[int, 
         base_score += 2
     if base_score == 0:
         return 0, kind, note
+    if is_noise_root(path):
+        return 0, kind, "noise path component"
     score = base_score + orientation_score(path, prefer_runtime=True)
     subtree_source_count = source_dir_counts.get(ensure_repo_relative(path.parent), 0)
     if subtree_source_count >= 3:
@@ -1290,7 +1295,9 @@ def build_orientation_hints(
                 if path not in likely_runtime_surfaces:
                     likely_runtime_surfaces.append(path)
     else:
-        preferred_config_kinds = {"runtime_config", "framework_config", "env_example", "typescript_config"}
+        preferred_config_kinds = {"runtime_config", "env_example"}
+        if not entrypoints:
+            preferred_config_kinds |= {"framework_config", "typescript_config"}
         prioritized_configs = sorted(
             [item for item in config_files if item["kind"] in preferred_config_kinds],
             key=lambda item: (-orientation_score(Path(item["path"]), prefer_runtime=True), item["path"]),
